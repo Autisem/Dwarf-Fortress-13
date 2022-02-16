@@ -206,7 +206,7 @@
 				to_chat(owner, span_warning("Схожу с ума от одиночества!"))
 				owner.hallucination += 30
 
-		if(5)
+		if(5, 6)
 			if(!high_stress)
 				to_chat(owner, span_warning("Моё сердце замирает на мгновение."))
 				owner.adjustOxyLoss(8)

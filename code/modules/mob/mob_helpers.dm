@@ -98,7 +98,7 @@
 			if(7)			letter += "'"
 			if(9,10)		letter = "<b>[letter]</b>"
 			if(11,12)		letter = "<big>[letter]</big>"
-			if(13)			letter = "<small>[letter]</small>"
+			if(13,14)		letter = "<small>[letter]</small>"
 		output += letter
 
 	return output
@@ -128,7 +128,7 @@
 			if(7)			letter += "'"
 			if(9,10)		letter = "<b>[letter]</b>"
 			if(11,12)		letter = "<big>[letter]</big>"
-			if(13)			letter = "<small>[letter]</small>"
+			if(13,14)			letter = "<small>[letter]</small>"
 		output += letter
 
 	return output
