@@ -42,11 +42,6 @@
 		return TRUE
 	return FALSE
 
-
-/mob/living/carbon/alien/larva/has_left_hand()
-	return 1
-
-
 /mob/proc/has_right_hand(check_disabled = TRUE)
 	return TRUE
 
@@ -57,11 +52,6 @@
 			continue
 		return TRUE
 	return FALSE
-
-
-/mob/living/carbon/alien/larva/has_right_hand()
-	return 1
-
 
 /mob/living/proc/get_missing_limbs()
 	return list()
@@ -74,27 +64,11 @@
 			full -= zone
 	return full
 
-/mob/living/carbon/alien/larva/get_missing_limbs()
-	var/list/full = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST)
-	for(var/zone in full)
-		if(get_bodypart(zone))
-			full -= zone
-	return full
-
 /mob/living/proc/get_disabled_limbs()
 	return list()
 
 /mob/living/carbon/get_disabled_limbs()
 	var/list/full = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
-	var/list/disabled = list()
-	for(var/zone in full)
-		var/obj/item/bodypart/affecting = get_bodypart(zone)
-		if(affecting?.bodypart_disabled)
-			disabled += zone
-	return disabled
-
-/mob/living/carbon/alien/larva/get_disabled_limbs()
-	var/list/full = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST)
 	var/list/disabled = list()
 	for(var/zone in full)
 		var/obj/item/bodypart/affecting = get_bodypart(zone)
@@ -153,41 +127,6 @@
 		if(robotic)
 			L.change_bodypart_status(BODYPART_ROBOTIC)
 	. = L
-
-/mob/living/carbon/alien/larva/newBodyPart(zone, robotic, fixed_icon)
-	var/obj/item/bodypart/L
-	switch(zone)
-		if(BODY_ZONE_HEAD)
-			L = new /obj/item/bodypart/head/larva()
-		if(BODY_ZONE_CHEST)
-			L = new /obj/item/bodypart/chest/larva()
-	if(L)
-		L.update_limb(fixed_icon, src)
-		if(robotic)
-			L.change_bodypart_status(BODYPART_ROBOTIC)
-	. = L
-
-/mob/living/carbon/alien/humanoid/newBodyPart(zone, robotic, fixed_icon)
-	var/obj/item/bodypart/L
-	switch(zone)
-		if(BODY_ZONE_L_ARM)
-			L = new /obj/item/bodypart/l_arm/alien()
-		if(BODY_ZONE_R_ARM)
-			L = new /obj/item/bodypart/r_arm/alien()
-		if(BODY_ZONE_HEAD)
-			L = new /obj/item/bodypart/head/alien()
-		if(BODY_ZONE_L_LEG)
-			L = new /obj/item/bodypart/l_leg/alien()
-		if(BODY_ZONE_R_LEG)
-			L = new /obj/item/bodypart/r_leg/alien()
-		if(BODY_ZONE_CHEST)
-			L = new /obj/item/bodypart/chest/alien()
-	if(L)
-		L.update_limb(fixed_icon, src)
-		if(robotic)
-			L.change_bodypart_status(BODYPART_ROBOTIC)
-	. = L
-
 
 /proc/skintone2hex(skin_tone)
 	. = 0

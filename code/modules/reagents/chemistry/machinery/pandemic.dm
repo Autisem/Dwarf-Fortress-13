@@ -1,7 +1,7 @@
 #define MAIN_SCREEN 1
 #define SYMPTOM_DETAILS 2
 
-/obj/machinery/computer/pandemic
+/obj/machinery/pandemic
 	name = "ПанД.Е.М.И.Я 2200"
 	desc = "Используется при работе с вирусами."
 	density = TRUE
@@ -16,15 +16,15 @@
 	var/datum/symptom/selected_symptom
 	var/obj/item/reagent_containers/beaker
 
-/obj/machinery/computer/pandemic/Initialize()
+/obj/machinery/pandemic/Initialize()
 	. = ..()
 	update_icon()
 
-/obj/machinery/computer/pandemic/Destroy()
+/obj/machinery/pandemic/Destroy()
 	QDEL_NULL(beaker)
 	return ..()
 
-/obj/machinery/computer/pandemic/examine(mob/user)
+/obj/machinery/pandemic/examine(mob/user)
 	. = ..()
 	. += "<hr>"
 	if(beaker)
@@ -36,30 +36,30 @@
 			. += "It has a beaker inside it."
 		. += "\n<span class='info'>ПКМ to eject [is_close ? beaker : "the beaker"].</span>"
 
-/obj/machinery/computer/pandemic/AltClick(mob/user)
+/obj/machinery/pandemic/AltClick(mob/user)
 	. = ..()
 	if(user.canUseTopic(src, BE_CLOSE))
 		eject_beaker()
 
-/obj/machinery/computer/pandemic/handle_atom_del(atom/A)
+/obj/machinery/pandemic/handle_atom_del(atom/A)
 	if(A == beaker)
 		beaker = null
 		update_icon()
 	return ..()
 
-/obj/machinery/computer/pandemic/proc/get_by_index(thing, index)
+/obj/machinery/pandemic/proc/get_by_index(thing, index)
 	if(!beaker || !beaker.reagents)
 		return
 	var/datum/reagent/blood/B = locate() in beaker.reagents.reagent_list
 	if(B?.data[thing])
 		return B.data[thing][index]
 
-/obj/machinery/computer/pandemic/proc/get_virus_id_by_index(index)
+/obj/machinery/pandemic/proc/get_virus_id_by_index(index)
 	var/datum/disease/D = get_by_index("viruses", index)
 	if(D)
 		return D.GetDiseaseID()
 
-/obj/machinery/computer/pandemic/proc/get_viruses_data(datum/reagent/blood/B)
+/obj/machinery/pandemic/proc/get_viruses_data(datum/reagent/blood/B)
 	. = list()
 	var/list/V = B.get_diseases()
 	var/index = 1
@@ -94,7 +94,7 @@
 
 		. += list(this)
 
-/obj/machinery/computer/pandemic/proc/get_symptom_data(datum/symptom/S)
+/obj/machinery/pandemic/proc/get_symptom_data(datum/symptom/S)
 	. = list()
 	var/list/this = list()
 	this["name"] = S.name
@@ -108,7 +108,7 @@
 	this["threshold_desc"] = S.threshold_descs
 	. += this
 
-/obj/machinery/computer/pandemic/proc/get_resistance_data(datum/reagent/blood/B)
+/obj/machinery/pandemic/proc/get_resistance_data(datum/reagent/blood/B)
 	. = list()
 	if(!islist(B.data["resistances"]))
 		return
@@ -122,35 +122,35 @@
 
 		. += list(this)
 
-/obj/machinery/computer/pandemic/proc/reset_replicator_cooldown()
+/obj/machinery/pandemic/proc/reset_replicator_cooldown()
 	wait = FALSE
 	update_icon()
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 
-/obj/machinery/computer/pandemic/update_icon_state()
+/obj/machinery/pandemic/update_icon_state()
 	if(machine_stat & BROKEN)
 		icon_state = (beaker ? "mixer1_b" : "mixer0_b")
 	else
 		icon_state = "mixer[(beaker) ? "1" : "0"][powered() ? "" : "_nopower"]"
 
-/obj/machinery/computer/pandemic/update_overlays()
+/obj/machinery/pandemic/update_overlays()
 	. = ..()
 	if(wait)
 		. += "waitlight"
 
-/obj/machinery/computer/pandemic/proc/eject_beaker()
+/obj/machinery/pandemic/proc/eject_beaker()
 	if(beaker)
 		try_put_in_hand(beaker, usr)
 		beaker = null
 		update_icon()
 
-/obj/machinery/computer/pandemic/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/pandemic/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Pandemic", name)
 		ui.open()
 
-/obj/machinery/computer/pandemic/ui_data(mob/user)
+/obj/machinery/pandemic/ui_data(mob/user)
 	var/list/data = list()
 	data["is_ready"] = !wait
 	if(beaker)
@@ -172,7 +172,7 @@
 
 	return data
 
-/obj/machinery/computer/pandemic/ui_act(action, params)
+/obj/machinery/pandemic/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -234,7 +234,7 @@
 			. = TRUE
 
 
-/obj/machinery/computer/pandemic/attackby(obj/item/I, mob/user, params)
+/obj/machinery/pandemic/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers) && !(I.item_flags & ABSTRACT) && I.is_open_container())
 		. = TRUE //no afterattack
 		if(machine_stat & (NOPOWER|BROKEN))
@@ -251,6 +251,6 @@
 	else
 		return ..()
 
-/obj/machinery/computer/pandemic/on_deconstruction()
+/obj/machinery/pandemic/on_deconstruction()
 	eject_beaker()
 	. = ..()

@@ -13,5 +13,5 @@
 	result = /obj/item/closet_hacker
 	time = 30
 	tool_behaviors = list(TOOL_SCREWDRIVER)
-	reqs = list(/obj/item/multitool = 1, /obj/item/stock_parts/subspace/filter = 1)
+	reqs = list(/obj/item/stock_parts/subspace/filter = 1)
 	category = CAT_MISC

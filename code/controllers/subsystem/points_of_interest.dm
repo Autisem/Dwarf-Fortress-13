@@ -11,9 +11,6 @@ SUBSYSTEM_DEF(points_of_interest)
 	/// List of all value:POI datums by their key:target refs.
 	var/list/datum/point_of_interest/points_of_interest_by_target_ref = list()
 
-	/// Special helper list of all real nuke disks.
-	var/list/obj/item/disk/nuclear/real_nuclear_disks = list()
-
 	/// Special helper list to track any Nar'sies.
 	var/list/obj/narsie/narsies = list()
 

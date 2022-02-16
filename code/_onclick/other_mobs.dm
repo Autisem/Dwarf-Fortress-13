@@ -148,20 +148,6 @@
 	return FALSE
 
 /*
-	Drones
-*/
-/mob/living/simple_animal/drone/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
-	if(LIVING_UNARMED_ATTACK_BLOCKED(attack_target))
-		return
-	attack_target.attack_drone(src, modifiers)
-
-/// Defaults to attack_hand or attack_hand_secondary. Override it when you don't want drones to do same stuff as humans.
-/atom/proc/attack_drone(mob/living/simple_animal/drone/user, list/modifiers)
-	if(!user.right_click_attack_chain(src, modifiers))
-		attack_hand(user, modifiers)
-
-
-/*
 	Brain
 */
 

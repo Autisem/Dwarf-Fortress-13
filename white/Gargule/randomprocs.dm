@@ -20,17 +20,3 @@
 		if(cooldown < world.time - 100)
 			playsound(user,'white/Gargule/sounds/shitMask.ogg',75,1)
 			cooldown = world.time
-
-/obj/item/nullrod/claymore
-	var/cooldown = 0
-
-/obj/item/nullrod/claymore/attack_self(mob/user)
-	..()
-	if(isstrictlytype(src,/obj/item/nullrod/claymore) && cooldown < world.time - 100)
-		playsound(user,'white/Gargule/sounds/inTheNameOfGod.ogg',75,1)
-		cooldown = world.time
-
-/mob/living/carbon/alien/humanoid/royal/queen/tamed/default_can_use_topic(src_object)//tgui sasat
-	. = shared_ui_interaction(src_object)
-	if(. > UI_CLOSE)
-		. = min(., shared_living_ui_distance(src_object)) // Check the distance...

@@ -130,27 +130,6 @@
 		death(FALSE)
 		ghostize(FALSE)	// Disallows reentering body and disassociates mind
 
-/mob/living/carbon/alien/humanoid/verb/suicide()
-	set hidden = TRUE
-	if(!canSuicide())
-		return
-	var/confirm = tgui_alert(usr,"Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
-	if(!canSuicide())
-		return
-	if(confirm == "Yes")
-		inc_metabalance(src, METACOIN_SUICIDE_REWARD, reason="За всё нужно платить.")
-		set_suicide(TRUE)
-		visible_message(span_danger("[capitalize(src.name)] is thrashing wildly! It looks like [p_theyre()] trying to commit suicide.") , \
-				span_userdanger("[capitalize(src.name)] is thrashing wildly! It looks like [p_theyre()] trying to commit suicide.") , \
-				span_hear("You hear thrashing."))
-
-		suicide_log()
-
-		//put em at -175
-		adjustOxyLoss(max(200 - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
-		death(FALSE)
-		ghostize(FALSE)	// Disallows reentering body and disassociates mind
-
 /mob/living/simple_animal/verb/suicide()
 	set hidden = TRUE
 	if(!canSuicide())

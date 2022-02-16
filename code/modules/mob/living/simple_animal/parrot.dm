@@ -93,7 +93,6 @@
 	var/obj/parrot_perch = null
 	var/obj/desired_perches = list(/obj/structure/filingcabinet,
 		/obj/machinery/smartfridge,
-		/obj/machinery/computer,
 	)
 
 	//Parrots are kleptomaniacs. This variable ... stores the item a parrot is holding.

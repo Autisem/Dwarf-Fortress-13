@@ -46,4 +46,4 @@
 
 /obj/item/clothing/suit/bio_suit/plaguedoctorsuit/Initialize()
 	. = ..()
-	allowed += list(/obj/item/storage/book/bible, /obj/item/nullrod)
+	allowed += list(/obj/item/storage/book/bible)

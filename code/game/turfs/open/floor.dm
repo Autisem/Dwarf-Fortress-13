@@ -41,8 +41,6 @@
 		broken = TRUE
 	if(!burnt && burnt_states && (icon_state in burnt_states))
 		burnt = TRUE
-	if(mapload && prob(23))
-		MakeDirty()
 	if(is_station_level(z))
 		GLOB.station_turfs += src
 

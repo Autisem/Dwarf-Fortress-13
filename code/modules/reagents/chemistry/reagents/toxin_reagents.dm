@@ -326,9 +326,6 @@
 	. = ..()
 	if(istype(exposed_obj, /obj/structure/glowshroom)) //even a small amount is enough to kill it
 		qdel(exposed_obj)
-	else if(istype(exposed_obj, /obj/structure/spacevine))
-		var/obj/structure/spacevine/SV = exposed_obj
-		SV.on_chem_effect(src)
 
 /datum/reagent/toxin/plantbgone/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
 	. = ..()

@@ -171,7 +171,7 @@
 		if(prob(100 - (planted_things.len * 10)))
 			var/list/possible_turfs = list()
 			for(var/turf/T in RANGE_TURFS(7, src))
-				if(istype(T, /turf/open/floor/stone/raw) || istype(T, /turf/open/floor/plating/asteroid/boxplanet/caves))
+				if(istype(T, /turf/open/floor/stone/raw))
 					possible_turfs += T
 			planted_things += new generating_type(pick(possible_turfs))
 			if(prob(20))
@@ -207,98 +207,6 @@
 		qdel(src)
 	else
 		amb_chance += 10
-
-///////////////////////////////////////////////
-
-/turf/open/floor/plating/asteroid/boxplanet/caves
-	name = "затвердевшая грязь"
-	desc = "Неприятная."
-	icon_state = "caves1"
-	baseturfs = /turf/open/openspace/boxplanet/caves
-	icon = 'white/valtos/icons/caves_floor.dmi'
-	dug = TRUE
-
-/turf/open/floor/plating/asteroid/boxplanet/caves/Initialize()
-	. = ..()
-	icon_state = "caves[rand(1,6)]"
-
-/turf/open/floor/plating/asteroid/boxplanet/can_dig(mob/user)
-	if(!dug)
-		return TRUE
-	else if(user)
-		var/turf/T = below()
-		var/dir_to_dig = get_dir(src, user.loc)
-
-		if(do_after(user, 60, target = src))
-			var/area/A = get_area(T)
-			if(!istype(A, /area/boxplanet))
-				ChangeTurf(/turf/open/floor/plating)
-				to_chat(user, span_danger("<b>[capitalize(src.name)]</b> уже достаточно раскопан!"))
-			if(istype(T, /turf/closed/mineral))
-				ChangeTurf(/turf/open/openspace/boxplanet/caves)
-				T.ChangeTurf(/turf/open/floor/plating/asteroid/boxplanet/caves)
-				var/obj/L = new /obj/structure/stairs(T)
-				L.dir = dir_to_dig
-			if(istype(T, /turf/open))
-				ChangeTurf(/turf/open/openspace/boxplanet/caves)
-
-/turf/open/floor/plating/asteroid/boxplanet/surface
-	name = "снег"
-	desc = "Выглядит холодным."
-	icon = 'icons/turf/snow.dmi'
-	baseturfs = /turf/open/openspace/boxplanet/surface
-	icon_state = "snow"
-	base_icon_state = "snow"
-	slowdown = 2
-	flags_1 = NONE
-	broken_states = list("snow_dug")
-	burnt_states = list("snow_dug")
-	bullet_sizzle = TRUE
-	bullet_bounce_sound = null
-	digResult = /obj/item/stack/sheet/mineral/snow
-
-/turf/open/floor/plating/asteroid/boxplanet/surface/burn_tile()
-	if(!burnt)
-		visible_message(span_danger("[capitalize(src.name)] тает!."))
-		slowdown = 0
-		burnt = TRUE
-		icon_state = "snow_dug"
-		return TRUE
-	return FALSE
-
-/turf/open/floor/plating/asteroid/airless/cave/boxplanet
-	name = "затвердевшая грязь"
-	desc = "Неприятная."
-	icon = 'white/valtos/icons/caves_floor.dmi'
-	baseturfs = /turf/open/floor/plating/asteroid/boxplanet/caves
-	icon_state = "caves1"
-	base_icon_state = "caves1"
-	slowdown = 0
-	flags_1 = NONE
-	burnt_states = list("snow_dug")
-	bullet_sizzle = TRUE
-	bullet_bounce_sound = null
-	digResult = /obj/item/stack/sheet/mineral/snow
-	turf_type = /turf/open/floor/plating/asteroid/boxplanet/caves
-
-/turf/open/floor/plating/asteroid/boxplanet/ex_act(severity, target)
-	..()
-	if(severity == 1)
-		var/turf/T = below()
-		T.ScrapeAway()
-	ScrapeAway()
-
-///////////////////////////////////////////////
-
-/turf/open/openspace/boxplanet
-	name = "открытое пространство"
-	baseturfs = /turf/open/openspace/boxplanet
-
-/turf/open/openspace/boxplanet/surface
-
-/turf/open/openspace/boxplanet/caves
-
-///////////////////////////////////////////////
 
 /obj/machinery/power_restarter
 	name = "большой ржавый рубильник"

@@ -25,19 +25,6 @@
 		/datum/surgery_step/close
 		)
 
-/datum/surgery/organ_manipulation/alien
-	name = "Манипуляции с органами пришельцев"
-	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
-	target_mobtypes = list(/mob/living/carbon/alien/humanoid)
-	steps = list(
-		/datum/surgery_step/saw,
-		/datum/surgery_step/incise,
-		/datum/surgery_step/retract_skin,
-		/datum/surgery_step/saw,
-		/datum/surgery_step/manipulate_organs,
-		/datum/surgery_step/close
-		)
-
 /datum/surgery/organ_manipulation/mechanic
 	name = "Манипуляции по протезированию органов"
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)

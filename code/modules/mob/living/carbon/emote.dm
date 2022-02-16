@@ -88,7 +88,6 @@
 	ru_name = "перекатываться"
 	key_third_person = "rolls"
 	message = "перекатывается."
-	mob_type_allowed_typecache = list(/mob/living/carbon/alien)
 	hands_use_check = TRUE
 
 /datum/emote/living/carbon/scratch
@@ -96,7 +95,6 @@
 	ru_name = "чесаться"
 	key_third_person = "scratches"
 	message = "чешется."
-	mob_type_allowed_typecache = list(/mob/living/carbon/alien)
 	hands_use_check = TRUE
 
 /datum/emote/living/carbon/sign
@@ -104,7 +102,6 @@
 	ru_name = "петь"
 	key_third_person = "signs"
 	message_param = "поёт ноту %t."
-	mob_type_allowed_typecache = list(/mob/living/carbon/alien)
 	hands_use_check = TRUE
 
 /datum/emote/living/carbon/sign/select_param(mob/user, params)
@@ -117,14 +114,12 @@
 	ru_name = "сигнал"
 	key_third_person = "signals"
 	message_param = "поднимает %t палец."
-	mob_type_allowed_typecache = list(/mob/living/carbon/human)
 	hands_use_check = TRUE
 
 /datum/emote/living/carbon/tail
 	key = "tail"
 	ru_name = "махать"
 	message = "машет хвостом."
-	mob_type_allowed_typecache = list(/mob/living/carbon/alien)
 
 /datum/emote/living/carbon/wink
 	key = "wink"

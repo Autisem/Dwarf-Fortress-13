@@ -1,7 +1,7 @@
 /proc/power_failure()
 	priority_announce("Аномальная активность обнаружена энергосетях [station_name()]. В качестве меры предосторожности энергия будет отключена на неопределенный срок.", "Критический сбой питания", ANNOUNCER_POWEROFF)
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
-		if(istype(get_area(S), /area/ai_monitored/turret_protected) || !is_station_level(S.z))
+		if(!is_station_level(S.z))
 			continue
 		S.charge = 0
 		S.output_level = 0
@@ -12,8 +12,6 @@
 	for(var/area/A in GLOB.the_station_areas)
 		if(!A.requires_power || A.always_unpowered )
 			continue
-		if(GLOB.typecache_powerfailure_safe_areas[A.type])
-			continue
 
 		A.power_light = FALSE
 		A.power_equip = FALSE
@@ -22,10 +20,6 @@
 
 	for(var/obj/machinery/power/apc/C in GLOB.apcs_list)
 		if(C.cell && is_station_level(C.z))
-			var/area/A = C.area
-			if(GLOB.typecache_powerfailure_safe_areas[A.type])
-				continue
-
 			C.cell.charge = 0
 
 /proc/power_restore()

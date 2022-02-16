@@ -126,7 +126,6 @@
 	/obj/item/clothing/suit/bunnysuit,
 	/obj/item/storage/backpack/satchel/bunnysatchel,
 	/obj/item/food/grown/carrot,
-	/obj/item/toy/plush/carpplushie,
 	/obj/item/clothing/head/collectable/rabbitears)
 	new won(where)
 	new/obj/item/food/chocolateegg(where)

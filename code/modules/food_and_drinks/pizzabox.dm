@@ -1,11 +1,3 @@
-/obj/item/bombcore/miniature/pizza
-	name = "pizza bomb"
-	desc = "Special delivery!"
-	icon_state = "pizzabomb_inactive"
-	inhand_icon_state = "eshield0"
-	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
-
 /obj/item/pizzabox
 	name = "pizza box"
 	desc = "A box suited for pizzas."
@@ -25,15 +17,6 @@
 	var/list/boxes = list()
 
 	var/obj/item/food/pizza/pizza
-
-	var/obj/item/bombcore/miniature/pizza/bomb
-	var/bomb_active = FALSE // If the bomb is counting down.
-	var/bomb_defused = TRUE // If the bomb is inert.
-	var/bomb_timer = 1 // How long before blowing the bomb, in seconds.
-	/// Min bomb timer allowed in seconds
-	var/bomb_timer_min = 1
-	/// Max bomb timer allower in seconds
-	var/bomb_timer_max = 20
 
 /obj/item/pizzabox/Initialize(mapload)
 	. = ..()
@@ -55,12 +38,6 @@
 	if(open)
 		if(pizza)
 			desc = "[desc] It appears to have \a [pizza] inside. Use your other hand to take it out."
-		if(bomb)
-			desc = "[desc] Wait, what?! It has \a [bomb] inside!"
-			if(bomb_defused)
-				desc = "[desc] The bomb seems inert. Use your other hand to activate it."
-			if(bomb_active)
-				desc = "[desc] It looks like it's about to go off!"
 	else
 		var/obj/item/pizzabox/box = boxes.len ? boxes[boxes.len] : src
 		if(boxes.len)
@@ -74,7 +51,6 @@
 		return ..()
 
 	icon_state = pizza ? "[base_icon_state]_messy" : "[base_icon_state]_open"
-	bomb?.icon_state = "pizzabomb_[bomb_active ? "active" : "inactive"]"
 	return ..()
 
 /obj/item/pizzabox/update_overlays()
@@ -84,10 +60,6 @@
 			var/mutable_appearance/pizza_overlay = mutable_appearance(pizza.icon, pizza.icon_state)
 			pizza_overlay.pixel_y = -2
 			. += pizza_overlay
-		if(bomb)
-			var/mutable_appearance/bomb_overlay = mutable_appearance(bomb.icon, bomb.icon_state)
-			bomb_overlay.pixel_y = 8
-			. += bomb_overlay
 		return
 
 	var/box_offset = 0
@@ -120,11 +92,7 @@
 	if(boxes.len > 0)
 		return
 	open = !open
-	if(open && !bomb_defused)
-		audible_message(span_warning("[icon2html(src, hearers(src))] *beep*"))
-		bomb_active = TRUE
-		START_PROCESSING(SSobj, src)
-	else if(!open && !pizza && !bomb)
+	if(!open && !pizza)
 		var/obj/item/stack/sheet/cardboard/cardboard = new /obj/item/stack/sheet/cardboard(user.drop_location())
 		to_chat(user, span_notice("You fold [src] into [cardboard]."))
 		user.put_in_active_hand(cardboard)

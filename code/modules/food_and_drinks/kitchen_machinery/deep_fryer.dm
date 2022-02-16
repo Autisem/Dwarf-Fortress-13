@@ -30,7 +30,6 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	/obj/item/crowbar,
 	/obj/item/wrench,
 	/obj/item/wirecutters,
-	/obj/item/multitool,
 	/obj/item/weldingtool))
 
 /obj/machinery/deepfryer/Initialize()

@@ -247,8 +247,6 @@ Turf and target are separate in case you want to teleport some distance from a t
 		moblist += mob_to_sort
 	for(var/mob/living/brain/mob_to_sort in sortmob)
 		moblist += mob_to_sort
-	for(var/mob/living/carbon/alien/mob_to_sort in sortmob)
-		moblist += mob_to_sort
 	for(var/mob/dead/observer/mob_to_sort in sortmob)
 		moblist += mob_to_sort
 	for(var/mob/dead/new_player/mob_to_sort in sortmob)

@@ -193,11 +193,6 @@
 		var/obj/item/food/monkeycube/cube = exposed_obj
 		cube.Expand()
 
-	// Dehydrated carp
-	else if(istype(exposed_obj, /obj/item/toy/plush/carpplushie/dehy_carp))
-		var/obj/item/toy/plush/carpplushie/dehy_carp/dehy = exposed_obj
-		dehy.Swell() // Makes a carp
-
 	else if(istype(exposed_obj, /obj/item/stack/sheet/hairlesshide))
 		var/obj/item/stack/sheet/hairlesshide/HH = exposed_obj
 		new /obj/item/stack/sheet/wethide(get_turf(HH), HH.amount)
