@@ -1354,12 +1354,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("species")
 
-					var/list/custom_races = list()
-
-					if(user.ckey in GLOB.custom_race_donations)
-						custom_races += GLOB.custom_race_donations[user.ckey]
-
-					var/result = input(user, "Select a species", "Species Selection") as null|anything in GLOB.roundstart_races + custom_races
+					var/result = input(user, "Select a species", "Species Selection") as null|anything in GLOB.roundstart_races
 
 					if(result)
 						var/newtype = GLOB.species_list[result]

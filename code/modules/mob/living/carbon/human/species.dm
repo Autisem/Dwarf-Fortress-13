@@ -214,6 +214,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			GLOB.roundstart_races += S.id
 			qdel(S)
 	if(!GLOB.roundstart_races.len)
+		GLOB.roundstart_races += "dwarf"
 		GLOB.roundstart_races += "human"
 
 /**
