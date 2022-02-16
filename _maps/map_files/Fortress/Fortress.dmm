@@ -101,10 +101,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/vietnam/dwarf)
-"kb" = (
-/obj/structure/water_source/puddle,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
-/area/awaymission/vietnam/dwarf)
 "kg" = (
 /obj/structure/mineral_door/heavystone{
 	dir = 1
@@ -129,7 +125,7 @@
 /turf/open/floor/carpet/green,
 /area/awaymission/vietnam/dwarf)
 "lP" = (
-/obj/structure/closet/crate/miningcar,
+/obj/structure/closet/crate,
 /turf/open/floor/grass/gensgrass/dirty/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "lW" = (
@@ -182,7 +178,7 @@
 /turf/open/floor/grass/gensgrass/dirty/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "oN" = (
-/obj/structure/bed/prison/bed,
+/obj/structure/bed,
 /obj/effect/mob_spawn/human/dwarf,
 /turf/open/floor/grass/gensgrass/dirty/stone,
 /area/awaymission/vietnam/dwarf)
@@ -306,14 +302,6 @@
 /mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient,
 /turf/open/lava/smooth,
 /area/awaymission/vietnam/dwarf)
-"GY" = (
-/obj/effect/spawner/lootdrop/gross_decal_spawner,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
-/area/awaymission/vietnam/dwarf)
-"HG" = (
-/obj/machinery/biogenerator,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
-/area/awaymission/vietnam/dwarf)
 "II" = (
 /obj/structure/table/stone,
 /obj/item/food/grown/mushroom/plumphelmet,
@@ -332,7 +320,7 @@
 "JF" = (
 /obj/structure/table/stone,
 /obj/item/cultivator/rake,
-/obj/item/shovel/spade/german,
+/obj/item/shovel/spade,
 /turf/open/floor/grass/gensgrass/dirty/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "LG" = (
@@ -375,7 +363,6 @@
 /area/awaymission/vietnam/dwarf)
 "Ny" = (
 /mob/living/simple_animal/hostile/retaliate/frog,
-/obj/item/soapstone,
 /turf/open/floor/grass/gensgrass/dirty/stone,
 /area/awaymission/vietnam/dwarf)
 "PL" = (
@@ -474,7 +461,6 @@
 /turf/open/lava/smooth,
 /area/awaymission/vietnam/dwarf)
 "WV" = (
-/obj/machinery/gateway/away,
 /turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/vietnam/dwarf)
 "XI" = (
@@ -13868,7 +13854,7 @@ yR
 lv
 lv
 ha
-GY
+ha
 ha
 ha
 yR
@@ -14946,7 +14932,7 @@ iq
 iq
 lq
 vK
-HG
+ha
 lq
 lq
 ha
@@ -15452,7 +15438,7 @@ ha
 MB
 lq
 st
-kb
+ha
 lq
 el
 vK
