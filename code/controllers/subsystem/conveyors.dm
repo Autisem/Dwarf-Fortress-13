@@ -1,3 +1,3 @@
 PROCESSING_SUBSYSTEM_DEF(conveyors)
-	name = "Conveyor Belts"
+	name = "Конвейеры"
 	wait = 0.2 SECONDS

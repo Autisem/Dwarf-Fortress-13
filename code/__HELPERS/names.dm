@@ -55,82 +55,17 @@ GLOBAL_VAR(command_name)
 		world.name = GLOB.station_name
 
 /proc/new_station_name()
-	var/random = rand(1,5)
 	var/name = ""
 	var/new_station_name = ""
 
-	//Rare: Pre-Prefix
 	if (prob(10))
-		name = pick(GLOB.station_prefixes)
-		new_station_name = name + " "
-		name = ""
-
-	// Prefix
-	var/holiday_name = pick(SSevents.holidays)
-	if(holiday_name)
-		var/datum/holiday/holiday = SSevents.holidays[holiday_name]
-		if(istype(holiday, /datum/holiday/friday_thirteenth))
-			random = 13
-		name = holiday.getStationPrefix()
-		//get normal name
-	if(!name)
-		name = pick(GLOB.station_names)
-	if(name)
-		new_station_name += name + " "
-
-	// Suffix
-	name = pick(GLOB.station_suffixes)
-	new_station_name += name + " "
-
-	// ID Number
-	switch(random)
-		if(1)
-			new_station_name += "[rand(1, 99)]"
-		if(2)
-			new_station_name += pick(GLOB.greek_letters)
-		if(3)
-			new_station_name += "\Roman[rand(1,99)]"
-		if(4)
-			new_station_name += pick(GLOB.phonetic_alphabet)
-		if(5)
-			new_station_name += pick(GLOB.numbers_as_words)
-		if(13)
-			new_station_name += pick("13","XIII","Тринадцать")
-	return capitalize(new_station_name)
-
-/proc/syndicate_name()
-	var/name = ""
-
-	// Prefix
-	name += pick("Нелегальный", "Прима", "Синий", "Невесомый", "Максимальный", "Взрывной", "Опасный", "Северный", "Всенаправленный", "Ньютоновский", "Кибер", "Угрожающий", "Геномодифицированный", "Противостоящий")
-
-	// Suffix
-	if (prob(80))
-		name += " "
-
-		// Full
-		if (prob(60))
-			name += pick("Синдикат", "Консорциум", "Коллектив", "Корпорация", "Социум", "Холдинг", "Биоразработчик", "Промышленник", "Системник", "Товарник", "Химпроизводственник", "Предприниматель", "Семьянин", "Произведенец", "Интернационалец", "Межгалактик", "Межпланетар", "Фонд", "Позитроник", "Муравейник")
-		// Broken
-		else
-			name += pick("Теко", "Солнцо", "Ко", "Техо", "Иксо", "Цехо", "Корпо")
-			name += pick("", "-")
-			name += pick("Синдикатов", "Корпораций", "Биотехнологов", "Системников", "Крафтовиков", "Химовиков", "Интерников", "Муравейников")
-	// Small
+		new_station_name = pick(GLOB.fortress_prefixes) + " "
 	else
-		name += pick("-", "*", "")
-		name += pick("Тех", "Солнце", "Ко", "Тек", "Икс", "Цех", "Инфо", "Звезд", "Дин", "Код", "Муравейник")
+		new_station_name = "Крепость"
 
-	return name
+	new_station_name += capitalize(pick(GLOB.fortress_names))
 
-
-//Traitors and traitor silicons will get these. Revs will not.
-GLOBAL_VAR(syndicate_code_phrase) //Code phrase for traitors.
-GLOBAL_VAR(syndicate_code_response) //Code response for traitors.
-
-//Cached regex search - for checking if codewords are used.
-GLOBAL_DATUM(syndicate_code_phrase_regex, /regex)
-GLOBAL_DATUM(syndicate_code_response_regex, /regex)
+	return capitalize(new_station_name)
 
 	/*
 	Should be expanded.

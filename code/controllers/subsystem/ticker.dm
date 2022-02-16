@@ -1,7 +1,7 @@
 #define ROUND_START_MUSIC_LIST "strings/round_start_sounds.txt"
 
 SUBSYSTEM_DEF(ticker)
-	name = "Ticker"
+	name = "Тикер"
 	init_order = INIT_ORDER_TICKER
 
 	priority = FIRE_PRIORITY_TICKER
@@ -127,23 +127,6 @@ SUBSYSTEM_DEF(ticker)
 	else
 		login_music = "[global.config.directory]/title_music/sounds/[pick(music)]"
 
-
-	if(!GLOB.syndicate_code_phrase)
-		GLOB.syndicate_code_phrase	= generate_code_phrase(return_list=TRUE)
-
-		var/codewords = jointext(GLOB.syndicate_code_phrase, "|")
-		var/regex/codeword_match = new("([codewords])", "ig")
-
-		GLOB.syndicate_code_phrase_regex = codeword_match
-
-	if(!GLOB.syndicate_code_response)
-		GLOB.syndicate_code_response = generate_code_phrase(return_list=TRUE)
-
-		var/codewords = jointext(GLOB.syndicate_code_response, "|")
-		var/regex/codeword_match = new("([codewords])", "ig")
-
-		GLOB.syndicate_code_response_regex = codeword_match
-
 	start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 	if(CONFIG_GET(flag/randomize_shift_time))
 		gametime_offset = rand(0, 23) HOURS
@@ -158,8 +141,7 @@ SUBSYSTEM_DEF(ticker)
 				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
-			to_chat(world, span_boldnotice("Приветствуем вас на [station_name()]!"))
-			send2chat("New round starting on [SSmapping.config.map_name]!", CONFIG_GET(string/chat_announce_new_game))
+			to_chat(world, span_boldnotice("Крепость [station_name()] готова принять гостей!"))
 			current_state = GAME_STATE_PREGAME
 			webhook_send_roundstatus("lobby")
 			SEND_SIGNAL(src, COMSIG_TICKER_ENTER_PREGAME)
@@ -312,7 +294,7 @@ SUBSYSTEM_DEF(ticker)
 	round_start_time = world.time
 	SSdbcore.SetRoundStart()
 
-	to_chat(world, span_notice("Приветствуем вас на <B>[station_name()]</B>, приятного пребывания!"))
+	to_chat(world, span_notice("Крепость <B>[station_name()]</B> принимает гостей!"))
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
@@ -330,9 +312,6 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/PostSetup()
 	set waitfor = FALSE
 	mode.post_setup()
-	var/list/adm = get_admin_counts()
-	var/list/allmins = adm["present"]
-	send2adminchat("Server", "Round [GLOB.round_id ? "#[GLOB.round_id]:" : "of"] [hide_mode ? "secret":"[mode.name]"] has started[allmins.len ? ".":" with no active admins online!"]")
 	setup_done = TRUE
 
 	for(var/i in GLOB.start_landmarks_list)

@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(assets)
-	name = "Assets"
+	name = "Ассеты"
 	init_order = INIT_ORDER_ASSETS
 	flags = SS_NO_FIRE
 	var/list/cache = list()

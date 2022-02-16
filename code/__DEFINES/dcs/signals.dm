@@ -1295,21 +1295,6 @@
 ///from base of /obj/item/mmi/set_brainmob(): (mob/living/brain/new_brainmob)
 #define COMSIG_MMI_SET_BRAINMOB "mmi_set_brainmob"
 
-/// Sent when a [/obj/item/circuit_component] is added to a circuit.
-#define COMSIG_CIRCUIT_ADD_COMPONENT "circuit_add_component"
-	/// Cancels adding the component to the circuit.
-	#define COMPONENT_CANCEL_ADD_COMPONENT (1<<0)
-
-/// Sent when a [/obj/item/circuit_component] is added to a circuit manually, by putting the item inside directly.
-/// Accepts COMPONENT_CANCEL_ADD_COMPONENT.
-#define COMSIG_CIRCUIT_ADD_COMPONENT_MANUALLY "circuit_add_component_manually"
-
-/// Sent when a circuit is removed from its shell
-#define COMSIG_CIRCUIT_SHELL_REMOVED "circuit_shell_removed"
-
-/// Sent to [/obj/item/circuit_component] when it is removed from a circuit. (/obj/item/integrated_circuit)
-#define COMSIG_CIRCUIT_COMPONENT_REMOVED "circuit_component_removed"
-
 /// Called when the integrated circuit's cell is set.
 #define COMSIG_CIRCUIT_SET_CELL "circuit_set_cell"
 
@@ -1330,12 +1315,6 @@
 
 	/// Cancels the attack chain, but without performing any other action.
 	#define COMSIG_CANCEL_USB_CABLE_ATTACK (1<<2)
-
-/// Called when the circuit component is saved.
-#define COMSIG_CIRCUIT_COMPONENT_SAVE "circuit_component_save"
-
-/// Called when an external object is loaded.
-#define COMSIG_MOVABLE_CIRCUIT_LOADED "movable_circuit_loaded"
 
 /// Sent from /obj/structure/industrial_lift/tram when its travelling status updates. (travelling)
 #define COMSIG_TRAM_SET_TRAVELLING "tram_set_travelling"

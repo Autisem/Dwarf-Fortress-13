@@ -67,9 +67,6 @@
 	var/githuburl = CONFIG_GET(string/githuburl)
 	if(githuburl)
 		var/message = "This will open the Github issue reporter in your browser. Are you sure?"
-		if(GLOB.revdata.testmerge.len)
-			message += "<br>The following experimental changes are active and are probably the cause of any new or sudden issues you may experience. If possible, please try to find a specific thread for your issue instead of posting to the general issue tracker:<br>"
-			message += GLOB.revdata.GetTestMergeInfo(FALSE)
 		// We still use tgalert here because some people were concerned that if someone wanted to report that tgui wasn't working
 		// then the report issue button being tgui-based would be problematic.
 		if(tgalert(src, message, "Report Issue","Yes","No")!="Yes")
@@ -89,15 +86,6 @@
 		// Insert round
 		if(GLOB.round_id)
 			local_template = replacetext(local_template, "## Round ID:\n", "## Round ID:\n[GLOB.round_id]")
-
-		// Insert testmerges
-		if(GLOB.revdata.testmerge.len)
-			var/list/all_tms = list()
-			for(var/entry in GLOB.revdata.testmerge)
-				var/datum/tgs_revision_information/test_merge/tm = entry
-				all_tms += "- \[[tm.title]\]([githuburl]/pull/[tm.number])"
-			var/all_tms_joined = all_tms.Join("\n") // for some reason this can't go in the []
-			local_template = replacetext(local_template, "## Testmerges:\n", "## Testmerges:\n[all_tms_joined]")
 
 		var/url_params = "Reporting client version: [byond_version].[byond_build]\n\n[local_template]"
 		DIRECT_OUTPUT(src, link("[githuburl]/issues/new?body=[url_encode(url_params)]"))

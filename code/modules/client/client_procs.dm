@@ -413,7 +413,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if (CONFIG_GET(flag/irc_first_connection_alert))
 			send2tgs_adminless_only("new_byond_user", "[key_name(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].")
 	get_message_output("watchlist entry", ckey)
-	check_ip_intel()
 	validate_key_in_db()
 
 	send_resources()
@@ -836,15 +835,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			return
 	qdel(query_get_notes)
 	create_message("note", key, system_ckey, message, null, null, 0, 0, null, 0, 0)
-
-
-/client/proc/check_ip_intel()
-	set waitfor = 0 //we sleep when getting the intel, no need to hold up the client connection while we sleep
-	if (CONFIG_GET(string/ipintel_email))
-		var/datum/ipintel/res = get_ip_intel(address)
-		if (res.intel >= CONFIG_GET(number/ipintel_rating_bad))
-			message_admins(span_adminnotice("Proxy Detection: [key_name_admin(src)] IP intel rated [res.intel*100]% likely to be a Proxy/VPN."))
-		ip_intel = res.intel
 
 /client/Click(atom/object, atom/location, control, params)
 	if(click_intercept_time)

@@ -6,7 +6,7 @@ These materials call on_applied() on whatever item they are applied to, common e
 */
 
 SUBSYSTEM_DEF(materials)
-	name = "Materials"
+	name = "Материалы"
 	flags = SS_NO_FIRE | SS_NO_INIT
 	///Dictionary of material.id || material ref
 	var/list/materials

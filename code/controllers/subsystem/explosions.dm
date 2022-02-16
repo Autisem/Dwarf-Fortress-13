@@ -2,7 +2,7 @@
 GLOBAL_LIST_EMPTY(explosions)
 
 SUBSYSTEM_DEF(explosions)
-	name = "Explosions"
+	name = "Взрывы"
 	init_order = INIT_ORDER_EXPLOSIONS
 	priority = FIRE_PRIORITY_EXPLOSIONS
 	wait = 1

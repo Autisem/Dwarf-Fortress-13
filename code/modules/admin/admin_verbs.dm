@@ -171,10 +171,6 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/cmd_display_init_log,
 	/client/proc/cmd_display_overlay_log,
 	/client/proc/reload_configuration,
-	/client/proc/reload_cards,
-	/client/proc/validate_cards,
-	/client/proc/test_cardpack_distribution,
-	/client/proc/print_cards,
 	#ifdef TESTING
 	/client/proc/check_missing_sprites,
 	#endif
@@ -564,48 +560,6 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	GLOB.DYN_EX_SCALE = ex_scale
 	log_admin("[key_name(usr)] has modified Dynamic Explosion Scale: [ex_scale]")
 	message_admins("[key_name_admin(usr)] has  modified Dynamic Explosion Scale: [ex_scale]")
-
-/client/proc/reload_cards()
-	set name = "Reload Cards"
-	set category = "Дбг"
-	if(!check_rights(R_DEBUG))
-		return
-	if(!SStrading_card_game.loaded)
-		message_admins("The card subsystem is not currently loaded")
-		return
-	reloadAllCardFiles(SStrading_card_game.card_files, SStrading_card_game.card_directory)
-
-/client/proc/validate_cards()
-	set name = "Validate Cards"
-	set category = "Дбг"
-	if(!check_rights(R_DEBUG))
-		return
-	if(!SStrading_card_game.loaded)
-		message_admins("The card subsystem is not currently loaded")
-		return
-	var/message = checkCardpacks(SStrading_card_game.card_packs)
-	message += checkCardDatums()
-	if(message)
-		message_admins(message)
-
-/client/proc/test_cardpack_distribution()
-	set name = "Test Cardpack Distribution"
-	set category = "Дбг"
-	if(!check_rights(R_DEBUG))
-		return
-	if(!SStrading_card_game.loaded)
-		message_admins("The card subsystem is not currently loaded")
-		return
-	var/pack = input("Which pack should we test?", "You fucked it didn't you") as null|anything in sort_list(SStrading_card_game.card_packs)
-	var/batchCount = input("How many times should we open it?", "Don't worry, I understand") as null|num
-	var/batchSize = input("How many cards per batch?", "I hope you remember to check the validation") as null|num
-	var/guar = input("Should we use the pack's guaranteed rarity? If so, how many?", "We've all been there. Man you should have seen the old system") as null|num
-	checkCardDistribution(pack, batchSize, batchCount, guar)
-
-/client/proc/print_cards()
-	set name = "Print Cards"
-	set category = "Дбг"
-	printAllCards()
 
 /client/proc/give_disease(mob/living/T in GLOB.mob_living_list)
 	set category = "Адм.Веселье"

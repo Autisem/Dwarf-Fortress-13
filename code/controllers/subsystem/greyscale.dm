@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(greyscale)
-	name = "Greyscale"
+	name = "Красильщик"
 	flags = SS_NO_FIRE
 	init_order = INIT_ORDER_GREYSCALE
 

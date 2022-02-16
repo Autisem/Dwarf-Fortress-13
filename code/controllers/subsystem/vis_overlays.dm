@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(vis_overlays)
-	name = "Vis contents overlays"
+	name = "Вис-контентные оверлеи"
 	wait = 1 MINUTES
 	priority = FIRE_PRIORITY_VIS
 	init_order = INIT_ORDER_VIS

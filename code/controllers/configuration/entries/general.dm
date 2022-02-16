@@ -360,30 +360,6 @@
 
 /datum/config_entry/flag/check_randomizer
 
-/datum/config_entry/string/ipintel_email
-
-/datum/config_entry/string/ipintel_email/ValidateAndSet(str_val)
-	return str_val != "ch@nge.me" && ..()
-
-/datum/config_entry/number/ipintel_rating_bad
-	config_entry_value = 1
-	integer = FALSE
-	min_val = 0
-	max_val = 1
-
-/datum/config_entry/number/ipintel_save_good
-	config_entry_value = 12
-	integer = FALSE
-	min_val = 0
-
-/datum/config_entry/number/ipintel_save_bad
-	config_entry_value = 1
-	integer = FALSE
-	min_val = 0
-
-/datum/config_entry/string/ipintel_domain
-	config_entry_value = "check.getipintel.net"
-
 /datum/config_entry/flag/aggressive_changelog
 
 /datum/config_entry/flag/autoconvert_notes	//if all connecting player's notes should attempt to be converted to the database

@@ -1,6 +1,6 @@
 /// The subsystem for controlling drastic performance enhancements aimed at reducing server load for a smoother albeit slightly duller gaming experience
 SUBSYSTEM_DEF(lag_switch)
-	name = "Lag Switch"
+	name = "Переключатель Лагов"
 	flags = SS_NO_FIRE
 
 	/// If the lag switch measures should attempt to trigger automatically, TRUE if a config value exists
@@ -28,8 +28,6 @@ SUBSYSTEM_DEF(lag_switch)
 
 /datum/controller/subsystem/lag_switch/proc/client_connected(datum/source, client/connected)
 	SIGNAL_HANDLER
-	if(TGS_CLIENT_COUNT < trigger_pop)
-		return
 
 	auto_switch = FALSE
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CLIENT_CONNECT)

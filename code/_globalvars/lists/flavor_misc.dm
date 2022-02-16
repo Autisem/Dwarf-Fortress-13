@@ -194,6 +194,10 @@ GLOBAL_LIST_INIT(crypto_names, world.file2list("strings/crypto_names.txt"))
 
 GLOBAL_LIST_INIT(wisdoms, world.file2list("strings/wisdoms.txt"))
 
+GLOBAL_LIST_INIT(fortress_names, world.file2list("strings/fortress_names.txt"))
+
+GLOBAL_LIST_INIT(fortress_prefixes, world.file2list("strings/fortress_prefixes.txt"))
+
 /proc/generate_number_strings()
 	var/list/L[198]
 	for(var/i in 1 to 99)

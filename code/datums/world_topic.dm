@@ -117,25 +117,6 @@
 /datum/world_topic/adminmsg/Run(list/input)
 	return TgsPm(input[keyword], input["msg"], input["sender"])
 
-/datum/world_topic/namecheck
-	keyword = "namecheck"
-	require_comms_key = TRUE
-
-/datum/world_topic/namecheck/Run(list/input)
-	//Oh this is a hack, someone refactor the functionality out of the chat command PLS
-	var/datum/tgs_chat_command/namecheck/NC = new
-	var/datum/tgs_chat_user/user = new
-	user.friendly_name = input["sender"]
-	user.mention = user.friendly_name
-	return NC.Run(user, input["namecheck"])
-/*
-/datum/world_topic/adminwho
-	keyword = "adminwho"
-	require_comms_key = TRUE
-
-/datum/world_topic/adminwho/Run(list/input)
-	return ircadminwho()
-*/
 /datum/world_topic/status
 	keyword = "status"
 
@@ -153,8 +134,6 @@
 	.["host"] = world.host ? world.host : null
 	.["round_id"] = GLOB.round_id
 	.["players"] = wl + GLOB.clients.len
-	.["revision"] = GLOB.revdata.commit
-	.["revision_date"] = GLOB.revdata.date
 	.["hub"] = GLOB.hub_visibility
 	var/game_status
 	switch(SSticker.current_state)

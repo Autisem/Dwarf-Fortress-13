@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(icon_smooth)
-	name = "Icon Smoothing"
+	name = "Сглаживатель"
 	init_order = INIT_ORDER_ICON_SMOOTHING
 	wait = 1
 	priority = FIRE_PRIOTITY_SMOOTHING

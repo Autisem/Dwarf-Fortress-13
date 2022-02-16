@@ -4,7 +4,7 @@
 #define BAD_INIT_NO_HINT 8
 
 SUBSYSTEM_DEF(atoms)
-	name = "Atoms"
+	name = "Атомы"
 	init_order = INIT_ORDER_ATOMS
 	flags = SS_NO_FIRE
 

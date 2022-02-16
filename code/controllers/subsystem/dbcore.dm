@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(dbcore)
-	name = "Database"
+	name = "База данных"
 	flags = SS_BACKGROUND
 	wait = 1 MINUTES
 	init_order = INIT_ORDER_DBCORE

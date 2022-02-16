@@ -532,8 +532,6 @@
 	var/msg = "has created a [isnull(duration) ? "permanent" : "temporary [time_message]"] [applies_to_admins ? "admin " : ""][roles_to_ban[1] == "Server" ? "server ban" : "role ban from [roles_to_ban.len] roles"] for [target]."
 	log_admin_private("[kn] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join(", ")]"] Reason: [reason]")
 	message_admins("[kna] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join("\n")]"]\nReason: [reason]")
-	if(applies_to_admins)
-		send2adminchat("BAN ALERT","[kn] [msg]")
 	if(player_ckey)
 		create_message("note", player_ckey, admin_ckey, note_reason, null, null, 0, 0, null, 0, severity)
 	var/client/C = GLOB.directory[player_ckey]
@@ -860,8 +858,6 @@
 	var/kna = key_name_admin(usr)
 	log_admin_private("[kn] has edited the [changes_keys_text] of a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"].") //if a ban doesn't have a key it must have an ip and/or a cid to have reached this point normally
 	message_admins("[kna] has edited the [changes_keys_text] of a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"].")
-	if(changes["Applies to admins"])
-		send2adminchat("BAN ALERT","[kn] has edited a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"] to [applies_to_admins ? "" : "not"]affect admins")
 	var/client/C = GLOB.directory[old_key]
 	if(C)
 		build_ban_cache(C)
