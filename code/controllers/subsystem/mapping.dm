@@ -146,6 +146,11 @@ Used by the AI doomsday and the self-destruct nuke.
 
 	// preload the relevant space_level datums
 	var/start_z = world.maxz + 1
+	var/i = 0
+	for (var/level in traits)
+		add_new_zlevel("[name][i ? " [i + 1]" : ""]", level)
+		++i
+
 	// load the maps
 	for (var/P in parsed_maps)
 		var/datum/parsed_map/pm = P
