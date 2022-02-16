@@ -8,7 +8,23 @@
 			"Mining": true,
 			"Gravity": true,
 			"Linkage": null,
-			"Baseturf": "/turf/open/floor/plating/asteroid"
+			"Up": 1,
+			"Baseturf": "/turf/open/floor/stone/raw"
+		},
+		{
+			"Mining": true,
+			"Gravity": true,
+			"Linkage": null,
+			"Up": 1,
+			"Down": -1,
+			"Baseturf": "/turf/open/openspace"
+		},
+		{
+			"Mining": true,
+			"Gravity": true,
+			"Linkage": null,
+			"Down": -1,
+			"Baseturf": "/turf/open/openspace"
 		}
 	]
 }
