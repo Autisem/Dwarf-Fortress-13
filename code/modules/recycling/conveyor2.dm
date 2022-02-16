@@ -428,7 +428,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/item/conveyor_switch_construct/afterattack(atom/target, mob/user, proximity)
 	. = ..()
-	if(!proximity || user.stat || !isfloorturf(target) || istype(target, /area/shuttle))
+	if(!proximity || user.stat || !isfloorturf(target))
 		return
 
 	var/found = FALSE
@@ -461,7 +461,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/item/stack/conveyor/afterattack(atom/target, mob/user, proximity)
 	. = ..()
-	if(!proximity || user.stat || !isfloorturf(target) || istype(target, /area/shuttle))
+	if(!proximity || user.stat || !isfloorturf(target))
 		return
 	var/belt_dir = get_dir(target, user)
 	if(target == user.loc)

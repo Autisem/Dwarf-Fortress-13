@@ -65,7 +65,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(SSticker.force_ending || SSticker.mode.station_was_nuked) // Just let them win.
 		return TRUE
 	var/area/current_area = get_area(M.current)
-	if(!current_area || istype(current_area, /area/shuttle/escape/brig)) // Fails if they are in the shuttle brig
+	if(!current_area) // Fails if they are in the shuttle brig
 		return FALSE
 	var/turf/current_turf = get_turf(M.current)
 	return current_turf.onCentCom() || current_turf.onSyndieBase()

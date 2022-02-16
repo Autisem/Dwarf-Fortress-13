@@ -24,7 +24,7 @@
 	death_limit = 3
 
 /area/awaymission/vietnam/dwarfgen
-	name = "Тёмное подземелье"
+	name = "Подземелье"
 	icon_state = "unexplored"
 	outdoors = TRUE
 	static_lighting = TRUE

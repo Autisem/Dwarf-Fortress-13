@@ -7,15 +7,6 @@
 	map_generator = /datum/map_generator/jungle_generator
 	ambientsounds = AWAY_MISSION
 
-/area/awaymission/vietnam/dark
-	name = "Тёмное джунглевое место"
-	icon_state = "unexplored"
-	static_lighting = TRUE
-	base_lighting_alpha = 1
-	base_lighting_color = COLOR_WHITE
-	ambientsounds = AWAY_MISSION
-	requires_power = FALSE
-
 /datum/outfit/vietcong
 	name = "Вьетконговец"
 	uniform = /obj/item/clothing/under/pants/khaki
@@ -332,7 +323,7 @@
 		new /mob/living/simple_animal/hostile/troll(src)
 
 /area/awaymission/vietnam/dwarf
-	name = "Тёмное подземелье"
+	name = "Крепость"
 	icon_state = "unexplored"
 	outdoors = TRUE
 	static_lighting = TRUE

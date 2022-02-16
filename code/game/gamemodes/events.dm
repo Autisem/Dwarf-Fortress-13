@@ -40,11 +40,10 @@
 	for(var/area/A in GLOB.the_station_areas)
 		if(!A.requires_power || A.always_unpowered)
 			continue
-		if(!istype(A, /area/shuttle))
-			A.power_light = TRUE
-			A.power_equip = TRUE
-			A.power_environ = TRUE
-			A.power_change()
+		A.power_light = TRUE
+		A.power_equip = TRUE
+		A.power_environ = TRUE
+		A.power_change()
 
 /proc/power_restore_quick()
 

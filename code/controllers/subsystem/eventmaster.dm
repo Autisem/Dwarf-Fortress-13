@@ -43,8 +43,8 @@ SUBSYSTEM_DEF(eventmaster)
 			SSevents.flags |= SS_NO_FIRE
 			SSweather.flags |= SS_NO_FIRE
 			to_chat(world, span_heavy_brass("Остановка лишних контроллеров успешна!"))
-			action_area = GLOB.areas_by_type[/area/partyhard/outdoors]
-			second_area = GLOB.areas_by_type[/area/partyhard/indoors]
+			action_area = GLOB.areas_by_type[/area]
+			second_area = GLOB.areas_by_type[/area]
 			action_area?.luminosity = 1
 			second_area?.luminosity = 1
 			adjust_areas_light()
