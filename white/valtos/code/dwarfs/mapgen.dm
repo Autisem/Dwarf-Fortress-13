@@ -22,6 +22,7 @@
 	smoothing_iterations = 20
 	birth_limit = 4
 	death_limit = 3
+
 /area/awaymission/vietnam/dwarfgen
 	name = "Тёмное подземелье"
 	icon_state = "unexplored"

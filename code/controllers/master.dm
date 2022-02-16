@@ -85,11 +85,6 @@
 `........................`.``.`.....---..--..---..-...--..--..-----------.--------..--.--------.--...--...-..---------:.
 */
 
-//Init the debugger datum first so we can debug Master
-//You might wonder why not just create the debugger datum global in its own file, since its loaded way earlier than this DM file
-//Well for whatever reason then the Master gets created first and then the debugger when doing that
-//So thats why this code lives here now, until someone finds out how Byond inits globals
-GLOBAL_REAL(Debugger, /datum/debugger) = new
 //This is the ABSOLUTE ONLY THING that should init globally like this
 //2019 update: the failsafe,config and Global controllers also do it
 GLOBAL_REAL(Master, /datum/controller/master) = new
@@ -297,10 +292,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	current_ticklimit = TICK_LIMIT_RUNNING
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 
-	if(CONFIG_GET(flag/df_enabled))
-		message_admins(span_boldannounce("Подгружаем DF..."))
-		load_new_z_level("_maps/RandomZLevels/dwarf_lustress.dmm", "Dwarf Fortress")
-		message_admins(span_boldannounce("DF подгружен..."))
 	to_chat(world, span_green("-- $<b>Мир</b>:> <b>[time]с</b> --"))
 	to_chat(world, span_nzcrentr("-- #<b>Хэш энтропии</b>:> <b>[md5("[random_seed]")]</b> --"))
 	log_world("World init for [time] seconds!")

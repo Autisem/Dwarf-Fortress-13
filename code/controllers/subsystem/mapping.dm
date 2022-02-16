@@ -13,18 +13,7 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/map_templates = list()
 
-	var/list/ruins_templates = list()
-	var/list/space_ruins_templates = list()
-	var/list/lava_ruins_templates = list()
-	var/list/gens_ruins_templates = list()
-	var/list/ice_ruins_templates = list()
-	var/list/ice_ruins_underground_templates = list()
-
 	var/datum/space_level/isolated_ruins_z //Created on demand during ruin loading.
-
-	var/list/shuttle_templates = list()
-	var/list/shelter_templates = list()
-	var/list/holodeck_templates = list()
 
 	var/list/areas_in_z = list()
 
@@ -111,17 +100,9 @@ Used by the AI doomsday and the self-destruct nuke.
 	flags |= SS_NO_INIT
 	initialized = SSmapping.initialized
 	map_templates = SSmapping.map_templates
-	ruins_templates = SSmapping.ruins_templates
-	space_ruins_templates = SSmapping.space_ruins_templates
-	lava_ruins_templates = SSmapping.lava_ruins_templates
-	ice_ruins_templates = SSmapping.ice_ruins_templates
-	ice_ruins_underground_templates = SSmapping.ice_ruins_underground_templates
-	shuttle_templates = SSmapping.shuttle_templates
-	shelter_templates = SSmapping.shelter_templates
 	unused_turfs = SSmapping.unused_turfs
 	turf_reservations = SSmapping.turf_reservations
 	used_turfs = SSmapping.used_turfs
-	holodeck_templates = SSmapping.holodeck_templates
 	transit = SSmapping.transit
 	areas_in_z = SSmapping.areas_in_z
 
@@ -175,8 +156,6 @@ Used by the AI doomsday and the self-destruct nuke.
 		switch(name)
 			if("Station")
 				name = "Станция"
-			if("Lavaland")
-				name = "Лаваленд"
 		to_chat(world, span_green(" -- #<b>[name]</b>:> <b>[(REALTIMEOFDAY - start_time)/10]</b> -- "))
 	return parsed_maps
 
@@ -318,42 +297,6 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	for(var/map in filelist)
 		var/datum/map_template/T = new(path = "[path][map]", rename = "[map]")
 		map_templates[T.name] = T
-
-	preloadRuinTemplates()
-
-/datum/controller/subsystem/mapping/proc/preloadRuinTemplates()
-	// Still supporting bans by filename
-	var/list/banned = generateMapList("[global.config.directory]/lavaruinblacklist.txt")
-	banned += generateMapList("[global.config.directory]/spaceruinblacklist.txt")
-	banned += generateMapList("[global.config.directory]/iceruinblacklist.txt")
-
-	for(var/item in sort_list(subtypesof(/datum/map_template/ruin), /proc/cmp_ruincost_priority))
-		var/datum/map_template/ruin/ruin_type = item
-		// screen out the abstract subtypes
-		if(!initial(ruin_type.id))
-			continue
-		var/datum/map_template/ruin/R = new ruin_type()
-
-		if(banned.Find(R.mappath))
-			continue
-
-		map_templates[R.name] = R
-		ruins_templates[R.name] = R
-
-		if(istype(R, /datum/map_template/ruin/lavaland))
-			lava_ruins_templates[R.name] = R
-		else if(istype(R, /datum/map_template/ruin/gensokyo))
-			gens_ruins_templates[R.name] = R
-		else if(istype(R, /datum/map_template/ruin/icemoon/underground))
-			ice_ruins_underground_templates[R.name] = R
-		else if(istype(R, /datum/map_template/ruin/icemoon))
-			ice_ruins_templates[R.name] = R
-		else if(istype(R, /datum/map_template/ruin/space))
-			space_ruins_templates[R.name] = R
-		else if(istype(R, /datum/map_template/ruin/station)) //yogs
-			station_room_templates[R.name] = R //yogs
-		else if(istype(R, /datum/map_template/ruin/maint)) // white
-			station_room_templates[R.name] = R // white
 
 /datum/controller/subsystem/mapping/proc/reserve_turfs(list/turfs)
 	for(var/i in turfs)

@@ -69,17 +69,6 @@
 
 		qdel(M)
 
-		var/shuttles = tgui_alert(usr,"Do you want to modify the shuttles?", "Map Shuttles", list("Yes", "No"))
-		if(shuttles == "Yes")
-			for(var/s in VM.shuttles)
-				var/shuttle = input(s, "Map Shuttles") as null|text
-				if(!shuttle)
-					continue
-				if(!SSmapping.shuttle_templates[shuttle])
-					to_chat(usr, span_warning("No such shuttle as '[shuttle]' exists, using default."))
-					continue
-				VM.shuttles[s] = shuttle
-
 		VM.map_path = "custom"
 		VM.map_file = "[map_file]"
 		VM.config_filename = "data/next_map.json"
@@ -88,7 +77,6 @@
 			"map_name" = VM.map_name,
 			"map_path" = VM.map_path,
 			"map_file" = VM.map_file,
-			"shuttles" = VM.shuttles
 		)
 
 		// If the file isn't removed text2file will just append.

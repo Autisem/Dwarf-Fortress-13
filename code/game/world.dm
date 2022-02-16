@@ -281,8 +281,7 @@ GLOBAL_VAR(restart_counter)
 	TgsReboot()
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	if(CONFIG_GET(flag/this_shit_is_stable))
-		shelleo("curl -X POST http://localhost:3636/hard-reboot-white")
-		shelleo("python3 /home/ubuntu/tenebrae/prod/server_white/data/parser.py [GLOB.round_id]")
+		shelleo("curl -X POST http://localhost:3636/hard-reboot-dwarf")
 	..()
 
 /*

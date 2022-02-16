@@ -165,7 +165,6 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/debug_huds_wrapper,
 	/client/proc/map_template_load,
 	/client/proc/map_template_upload,
-	/client/proc/jump_to_ruin,
 	/client/proc/toggle_medal_disable,
 	/client/proc/view_runtimes,
 	/client/proc/pump_random_event,
