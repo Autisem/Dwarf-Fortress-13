@@ -1,6 +1,6 @@
 /datum/map_generator/cave_generator/dwarven
 	name = "Дворфы"
-	open_turf_types = list(/turf/open/floor/grass/gensgrass/dirty/stone/raw=1)
+	open_turf_types = list(/turf/open/floor/stone/raw=1)
 	closed_turf_types = list(/turf/closed/mineral/random/dwarf_lustress=1)
 
 	feature_spawn_list = null
@@ -35,10 +35,11 @@
 	sound_environment = SOUND_ENVIRONMENT_CAVE
 	ambientsounds = list('white/valtos/sounds/lifeweb/caves8.ogg', 'white/valtos/sounds/lifeweb/caves_old.ogg')
 	map_generator = /datum/map_generator/cave_generator/dwarven
-
+/*
 /area/awaymission/vietnam/dwarfgen/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, .proc/gen), 5 SECONDS)
 
 /area/awaymission/vietnam/dwarfgen/proc/gen()
 	RunGeneration()
+*/

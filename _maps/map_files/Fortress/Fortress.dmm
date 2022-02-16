@@ -15,7 +15,7 @@
 /area/awaymission/vietnam/dwarf)
 "cU" = (
 /obj/structure/fluff/drake_statue,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "dG" = (
 /obj/structure/table/stone,
@@ -24,11 +24,11 @@
 /area/awaymission/vietnam/dwarf)
 "el" = (
 /obj/item/reagent_containers/glass/bucket/wooden,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "eu" = (
 /obj/structure/dwarf_waterbarrel,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "eN" = (
 /obj/structure/stone_tile/block/cracked,
@@ -48,29 +48,29 @@
 /area/awaymission/vietnam/dwarf)
 "eV" = (
 /obj/structure/fermenting_barrel,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "gc" = (
 /obj/structure/bonfire/prelit,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "gr" = (
 /obj/structure/table/stone,
 /obj/item/pickaxe/rusted,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "gW" = (
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /obj/item/reagent_containers/food/drinks/bottle/wine,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "ha" = (
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "hk" = (
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /obj/item/reagent_containers/food/drinks/bottle/wine,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "hL" = (
 /obj/structure/stone_tile/burnt,
@@ -93,7 +93,7 @@
 /obj/item/flashlight/flare/torch,
 /obj/item/flashlight/flare/torch,
 /obj/item/flashlight/flare/torch,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "jD" = (
 /obj/effect/turf_decal/stripes{
@@ -105,18 +105,18 @@
 /obj/structure/mineral_door/heavystone{
 	dir = 1
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "kJ" = (
 /mob/living/simple_animal/pet/cat/female,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "kL" = (
 /obj/item/stack/rods/ten,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "lq" = (
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "lv" = (
 /turf/open/lava/smooth,
@@ -126,7 +126,7 @@
 /area/awaymission/vietnam/dwarf)
 "lP" = (
 /obj/structure/closet/crate,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "lW" = (
 /obj/structure/closet/crate/wooden,
@@ -137,54 +137,54 @@
 /obj/item/seeds/ambrosia/gaia,
 /obj/item/seeds/grape,
 /obj/item/seeds/grape,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "lZ" = (
 /obj/anvil/fullsteel{
 	anchored = 1
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "md" = (
 /obj/forge,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "mf" = (
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarfgen)
 "mn" = (
 /obj/machinery/microwave/furnace,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "nC" = (
 /obj/structure/table/stone,
 /obj/item/blacksmith/ingot,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "nG" = (
 /obj/structure/table/stone,
 /obj/item/damaz,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "nH" = (
 /obj/furnace,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "oD" = (
 /turf/closed/mineral/random/dwarf_lustress,
 /area/awaymission/vietnam/dwarfgen)
 "oI" = (
 /obj/structure/table/stone,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "oN" = (
 /obj/structure/bed,
 /obj/effect/mob_spawn/human/dwarf,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "qu" = (
 /obj/item/flashlight/lantern,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "qy" = (
 /obj/structure/stone_tile/center/cracked,
@@ -202,7 +202,7 @@
 /obj/item/blacksmith/smithing_hammer,
 /obj/item/blacksmith/tongs,
 /obj/item/flashlight/lantern,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "sf" = (
 /obj/machinery/torch_fixture{
@@ -210,11 +210,11 @@
 	on = 1;
 	pixel_x = 32
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "st" = (
 /obj/item/storage/bag/plants/portaseeder,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "ux" = (
 /obj/effect/turf_decal/stripes{
@@ -224,7 +224,7 @@
 /area/awaymission/vietnam/dwarf)
 "vf" = (
 /obj/machinery/hydroponics/soil,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "vx" = (
 /obj/machinery/torch_fixture{
@@ -232,7 +232,7 @@
 	on = 1;
 	pixel_y = 32
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "vC" = (
 /obj/structure/closet/crate/wooden,
@@ -241,7 +241,7 @@
 /obj/item/seeds/cotton,
 /obj/item/seeds/cotton,
 /obj/item/seeds/tobacco,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "vK" = (
 /turf/closed/wall/stonewall,
@@ -252,18 +252,18 @@
 "wU" = (
 /obj/structure/table/stone,
 /obj/item/clothing/mask/cigarette/pipe,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "xc" = (
 /turf/open/lava/smooth,
 /area/awaymission/vietnam/dwarfgen)
 "yR" = (
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarfgen)
 "zx" = (
 /obj/item/reagent_containers/glass/bucket/wooden,
 /obj/structure/table/stone,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "Ak" = (
 /obj/effect/turf_decal/stripes,
@@ -271,26 +271,26 @@
 /area/awaymission/vietnam/dwarf)
 "Bg" = (
 /mob/living/simple_animal/pet/cat/male,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "Bz" = (
 /obj/structure/table/stone,
 /obj/item/flashlight/lantern,
 /obj/item/kitchen/knife,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "Cw" = (
 /obj/structure/table/stone,
 /obj/item/blacksmith/ingot,
 /obj/item/blacksmith/ingot,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "DC" = (
 /turf/open/floor/carpet/black,
 /area/awaymission/vietnam/dwarf)
 "DI" = (
 /obj/structure/gemcutter,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "Gr" = (
 /obj/effect/turf_decal/stripes{
@@ -306,7 +306,7 @@
 /obj/structure/table/stone,
 /obj/item/food/grown/mushroom/plumphelmet,
 /obj/item/food/grown/mushroom/plumphelmet,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "IO" = (
 /obj/machinery/torch_fixture{
@@ -315,13 +315,13 @@
 	pixel_y = 32
 	},
 /obj/structure/workbench,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "JF" = (
 /obj/structure/table/stone,
 /obj/item/cultivator/rake,
 /obj/item/shovel/spade,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "LG" = (
 /obj/structure/stone_tile/burnt{
@@ -342,7 +342,7 @@
 	on = 1;
 	pixel_x = -32
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "MB" = (
 /turf/closed/mineral/random/dwarf_lustress,
@@ -353,7 +353,7 @@
 	on = 1;
 	pixel_y = 0
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "Nl" = (
 /obj/effect/turf_decal/stripes{
@@ -363,7 +363,7 @@
 /area/awaymission/vietnam/dwarf)
 "Ny" = (
 /mob/living/simple_animal/hostile/retaliate/frog,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "PL" = (
 /obj/machinery/torch_fixture{
@@ -371,11 +371,11 @@
 	on = 1;
 	pixel_y = 32
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "PW" = (
 /obj/machinery/torch_fixture,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "QJ" = (
 /obj/structure/stone_tile/slab/burnt,
@@ -387,7 +387,7 @@
 /area/awaymission/vietnam/dwarf)
 "Sc" = (
 /obj/structure/table/stone,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "Sj" = (
 /obj/structure/stone_tile/slab/cracked,
@@ -418,7 +418,7 @@
 /obj/structure/mineral_door/heavystone{
 	dir = 4
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "Ur" = (
 /obj/structure/stone_tile/cracked,
@@ -513,7 +513,7 @@
 	on = 1;
 	pixel_x = 32
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "ZM" = (
 /obj/effect/turf_decal/stripes{

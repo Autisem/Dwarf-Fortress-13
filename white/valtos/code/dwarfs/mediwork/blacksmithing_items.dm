@@ -831,14 +831,14 @@
 					qdel(B)
 				if(blocks_need <= 0)
 					break
-			T.ChangeTurf(/turf/open/floor/grass/gensgrass/dirty/stone, flags = CHANGETURF_INHERIT_AIR)
+			T.ChangeTurf(/turf/open/floor/stone, flags = CHANGETURF_INHERIT_AIR)
 			user.visible_message(span_notice("<b>[user]</b> создаёт каменный пол.") , \
 								span_notice("Делаю каменный пол."))
 
 /obj/item/blacksmith/shpatel/proc/do_job(atom/A, mob/user)
 	if(!istype(A, /turf/open/floor))
 		return
-	if(mode != SHPATEL_BUILD_FLOOR && !istype(A, /turf/open/floor/grass/gensgrass/dirty/stone))
+	if(mode != SHPATEL_BUILD_FLOOR && !istype(A, /turf/open/floor/stone))
 		to_chat(user, span_warning("Не могу построить на этом полу!"))
 		return
 	var/turf/T = get_turf(A)

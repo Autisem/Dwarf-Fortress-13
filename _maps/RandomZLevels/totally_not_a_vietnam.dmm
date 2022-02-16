@@ -5,7 +5,7 @@
 /area/awaymission/vietnam/dark)
 "aO" = (
 /obj/item/reagent_containers/syringe/contraband/morphine,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "aT" = (
 /obj/structure/table/wood,
@@ -31,24 +31,24 @@
 /obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy{
 	pixel_x = 7
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "bf" = (
 /obj/item/flashlight/lantern,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "bm" = (
 /obj/structure/bed/prison/bed,
 /obj/structure/bed/prison/bed{
 	pixel_y = 14
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "bq" = (
 /obj/machinery/gateway/away{
 	calibrated = 0
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "bv" = (
 /obj/structure/closet/crate,
@@ -68,7 +68,7 @@
 /obj/item/ammo_box/a762,
 /obj/item/ammo_box/a762,
 /obj/item/ammo_box/a762,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "bw" = (
 /obj/effect/light_emitter,
@@ -80,16 +80,16 @@
 /area/awaymission/vietnam/dark)
 "cp" = (
 /obj/item/seeds/tower/steel,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "cC" = (
 /obj/item/documents/syndicate/red,
 /obj/structure/closet/crate,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "cE" = (
 /obj/structure/flora/tree/boxplanet/svetosvin,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "cJ" = (
 /obj/effect/mob_spawn/human/vietcong{
@@ -97,7 +97,7 @@
 	pixel_y = 7;
 	uses = 30
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "cM" = (
 /obj/structure/table/wood,
@@ -176,15 +176,15 @@
 /area/awaymission/vietnam/dark)
 "dD" = (
 /obj/item/seeds/cocoapod/bungotree,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "dG" = (
 /obj/item/seeds/ambrosia/gaia,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "dK" = (
 /mob/living/simple_animal/hostile/asteroid/hivelord,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "dO" = (
 /turf/open/floor/rospilovo/plitka/full,
@@ -198,7 +198,7 @@
 /area/awaymission/vietnam/dark)
 "ei" = (
 /obj/item/reagent_containers/syringe/contraband/space_drugs,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "ey" = (
 /turf/open/floor/plating/dirt/jungle,
@@ -211,7 +211,7 @@
 /area/awaymission/vietnam/dark)
 "eM" = (
 /obj/item/reagent_containers/syringe/contraband/methamphetamine,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "eU" = (
 /turf/open/floor/rospilovo/plitka,
@@ -239,11 +239,11 @@
 /area/awaymission/vietnam)
 "gy" = (
 /obj/effect/light_emitter,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam)
 "gD" = (
 /obj/structure/mineral_door/wood,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "gH" = (
 /obj/effect/light_emitter,
@@ -298,7 +298,7 @@
 /area/awaymission/vietnam)
 "iP" = (
 /obj/structure/barricade/sandbags,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam)
 "jd" = (
 /obj/item/circuitboard/machine/autolathe/soviet,
@@ -374,7 +374,7 @@
 /area/awaymission/vietnam/dark)
 "li" = (
 /mob/living/simple_animal/hostile/asteroid/mineral_crab,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "lq" = (
 /obj/machinery/hydroponics/soil,
@@ -402,7 +402,7 @@
 /area/awaymission/vietnam)
 "lP" = (
 /obj/effect/light_emitter,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam)
 "lT" = (
 /obj/structure/rospilovo/stolb,
@@ -505,7 +505,7 @@
 /area/awaymission/vietnam)
 "pC" = (
 /obj/structure/rospilovo/truba/vert,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "pG" = (
 /turf/open/water,
@@ -529,7 +529,7 @@
 /area/awaymission/vietnam/dark)
 "qK" = (
 /obj/structure/rospilovo/yashik,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "rg" = (
 /obj/machinery/hydroponics/soil,
@@ -559,11 +559,11 @@
 "sn" = (
 /obj/structure/table/stone,
 /obj/item/blacksmith/chisel,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "ss" = (
 /obj/anvil,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "st" = (
 /obj/item/shovel/spade/german,
@@ -601,7 +601,7 @@
 /obj/item/blacksmith/tongs,
 /obj/item/blacksmith/smithing_hammer,
 /obj/structure/table/stone,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "tF" = (
 /obj/machinery/hydroponics/soil,
@@ -637,7 +637,7 @@
 /turf/open/genturf,
 /area/awaymission/vietnam)
 "vb" = (
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "vc" = (
 /obj/item/secateurs,
@@ -748,7 +748,7 @@
 /area/awaymission/vietnam)
 "yQ" = (
 /obj/structure/table/stone,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "zj" = (
 /obj/structure/table/wood,
@@ -850,7 +850,7 @@
 	pixel_x = -12;
 	pixel_y = -4
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "AQ" = (
 /turf/closed/mineral/random/vietnam,
@@ -862,7 +862,7 @@
 /turf/closed/wall/mineral/wood/nonmetal,
 /area/awaymission/vietnam)
 "Bg" = (
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam)
 "Bi" = (
 /obj/structure/table,
@@ -881,7 +881,7 @@
 "BB" = (
 /obj/effect/light_emitter,
 /obj/structure/rospilovo/water/bochka/kap,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam)
 "BF" = (
 /obj/machinery/light{
@@ -903,7 +903,7 @@
 /area/awaymission/vietnam)
 "BS" = (
 /mob/living/simple_animal/hostile/russian/ranged/mosin,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "Cj" = (
 /obj/item/reagent_containers/syringe/antiviral,
@@ -925,7 +925,7 @@
 	on = 1;
 	pixel_x = 32
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "CX" = (
 /obj/structure/deployable_barricade/wooden{
@@ -954,11 +954,11 @@
 	pixel_x = 4;
 	pixel_y = -4
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "Dp" = (
 /obj/item/reagent_containers/syringe/convermol,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "Dq" = (
 /obj/effect/light_emitter,
@@ -970,7 +970,7 @@
 /area/awaymission/vietnam)
 "DA" = (
 /obj/structure/barricade/sandbags,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "DM" = (
 /obj/structure/deployable_barricade/wooden{
@@ -1003,7 +1003,7 @@
 /area/awaymission/vietnam/dark)
 "Ep" = (
 /mob/living/simple_animal/hostile/asteroid/mineral_crab,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam)
 "Et" = (
 /obj/structure/chair/brevno,
@@ -1039,15 +1039,15 @@
 /area/awaymission/vietnam/dark)
 "EF" = (
 /obj/structure/rospilovo/yashik/yaskik_a/big,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "EH" = (
 /obj/structure/rospilovo/yashik/yaskik_a,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "Fb" = (
 /obj/item/reagent_containers/syringe/epinephrine,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "Fc" = (
 /obj/structure/table,
@@ -1056,7 +1056,7 @@
 /area/awaymission/vietnam/dark)
 "Fw" = (
 /mob/living/carbon/human/combat_ai/pistol,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "FM" = (
 /obj/structure/table,
@@ -1079,7 +1079,7 @@
 /area/awaymission/vietnam/dark)
 "Gj" = (
 /obj/structure/rospilovo/yashik/yaskik_a,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "Gn" = (
 /obj/effect/light_emitter,
@@ -1091,7 +1091,7 @@
 /area/awaymission/vietnam/dark)
 "Gw" = (
 /obj/item/reagent_containers/syringe/contraband/krokodil,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "GE" = (
 /obj/structure/window/paperframe,
@@ -1104,7 +1104,7 @@
 /area/awaymission/vietnam)
 "GO" = (
 /obj/item/reagent_containers/syringe/lethal/choral,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "GS" = (
 /obj/item/kirbyplants/random,
@@ -1178,7 +1178,7 @@
 /area/awaymission/vietnam)
 "Iu" = (
 /obj/item/reagent_containers/syringe/plasma,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "Iv" = (
 /mob/living/simple_animal/hostile/russian/ranged/mosin,
@@ -1193,10 +1193,10 @@
 /area/awaymission/vietnam)
 "Ji" = (
 /obj/item/reagent_containers/syringe/penacid,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "Jl" = (
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "Jr" = (
 /obj/structure/rospilovo/water/luzha,
@@ -1208,7 +1208,7 @@
 /area/awaymission/vietnam)
 "JB" = (
 /obj/item/reagent_containers/syringe/multiver,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "JD" = (
 /obj/effect/light_emitter,
@@ -1234,7 +1234,7 @@
 /area/awaymission/vietnam/dark)
 "Ki" = (
 /obj/item/reagent_containers/syringe/oxandrolone,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "Kq" = (
 /obj/machinery/light{
@@ -1251,7 +1251,7 @@
 /area/awaymission/vietnam/dark)
 "Lf" = (
 /obj/structure/rospilovo/yashik/yaskik_a/big,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "Lr" = (
 /obj/effect/turf_decal/stripes/white/line{
@@ -1265,7 +1265,7 @@
 /area/awaymission/vietnam)
 "Lu" = (
 /obj/item/ammo_box/a762,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "LA" = (
 /obj/item/flashlight/lantern/jade,
@@ -1281,13 +1281,13 @@
 /area/awaymission/vietnam)
 "LU" = (
 /obj/item/reagent_containers/syringe/contraband/fentanyl,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "LY" = (
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "Mh" = (
 /obj/structure/table,
@@ -1296,7 +1296,7 @@
 /area/awaymission/vietnam/dark)
 "Mt" = (
 /obj/structure/fence/door,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "Mw" = (
 /obj/structure/table,
@@ -1305,20 +1305,20 @@
 /area/awaymission/vietnam/dark)
 "MJ" = (
 /obj/structure/rospilovo/luk,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "MK" = (
 /mob/living/simple_animal/hostile/russian/bydlo,
 /obj/structure/chair/brevno,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "MN" = (
 /obj/structure/chair/brevno/log2,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "MQ" = (
 /obj/structure/rospilovo/shina2,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "MY" = (
 /obj/structure/grille/rospilovo/beton,
@@ -1326,7 +1326,7 @@
 /area/awaymission/vietnam)
 "Nf" = (
 /obj/structure/rospilovo/water/bochka,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "Nk" = (
 /obj/structure/fence{
@@ -1387,7 +1387,7 @@
 "Qh" = (
 /obj/structure/table/wood,
 /obj/item/ammo_box/a762,
-/turf/open/floor/grass/gensgrass/dirty/stone,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dark)
 "Qr" = (
 /obj/effect/turf_decal/stripes/white/corner,
@@ -1535,7 +1535,7 @@
 /area/awaymission/vietnam)
 "TI" = (
 /obj/item/pickaxe,
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "TQ" = (
 /obj/structure/rospilovo/doski/doski4,
@@ -1554,7 +1554,7 @@
 /turf/open/floor/rospilovo/plitka/full,
 /area/awaymission/vietnam/dark)
 "UD" = (
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dark)
 "UL" = (
 /obj/item/flashlight/flare/torch,
@@ -1741,7 +1741,7 @@
 /turf/open/floor/rospilovo/wood,
 /area/awaymission/vietnam/dark)
 "Zz" = (
-/turf/open/floor/grass/gensgrass/dirty/stone/raw,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam)
 "ZH" = (
 /turf/open/floor/plating/beach/water,

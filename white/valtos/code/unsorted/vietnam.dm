@@ -50,7 +50,7 @@
 	attack_verb_continuous = "ебошит"
 	attack_verb_simple = "прописывает двоечку"
 
-/turf/open/floor/grass/gensgrass/dirty/stone
+/turf/open/floor/stone
 	name = "каменный пол"
 	desc = "Классика."
 	icon = 'white/kacherkin/icons/dwarfs/obj/turfs1.dmi'
@@ -59,32 +59,32 @@
 	barefootstep = FOOTSTEP_SAND
 	clawfootstep = FOOTSTEP_SAND
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-	floor_tile = /turf/open/floor/grass/gensgrass/dirty/stone/raw
+	floor_tile = /turf/open/floor/stone/raw
 	slowdown = 0
 	var/busy = FALSE
 
-/turf/open/floor/grass/gensgrass/dirty/stone/crowbar_act(mob/living/user, obj/item/I)
+/turf/open/floor/stone/crowbar_act(mob/living/user, obj/item/I)
 	if(pry_tile(I, user))
 		new /obj/item/stack/sheet/stone(get_turf(src))
 		return TRUE
 
-/turf/open/floor/grass/gensgrass/dirty/stone/attackby(obj/item/I, mob/user, params)
+/turf/open/floor/stone/attackby(obj/item/I, mob/user, params)
 	if((I.tool_behaviour == TOOL_SHOVEL) && params)
 		user.visible_message(span_warning("[user] грустно долбит лопатой по [src].") , span_warning("Как я лопатой буду копать [src]?!"))
 		return FALSE
 	if(..())
 		return
 
-/turf/open/floor/grass/gensgrass/dirty/stone/raw
+/turf/open/floor/stone/raw
 	name = "уродливый камень"
 	desc = "Ужас."
 	icon = 'white/kacherkin/icons/dwarfs/obj/turfs1.dmi'
 	icon_state = "stone"
 	slowdown = 1
-	baseturfs = /turf/open/floor/grass/gensgrass/dirty/stone/raw
+	baseturfs = /turf/open/floor/stone/raw
 	var/digged_up = FALSE
 
-/turf/open/floor/grass/gensgrass/dirty/stone/raw/crowbar_act(mob/living/user, obj/item/I)
+/turf/open/floor/stone/raw/crowbar_act(mob/living/user, obj/item/I)
 	return FALSE
 
 /turf/closed/wall/stonewall
@@ -97,7 +97,7 @@
 	smoothing_groups = list(SMOOTH_GROUP_INDUSTRIAL_LIFT)
 	canSmoothWith = list(SMOOTH_GROUP_INDUSTRIAL_LIFT)
 	sheet_type = /obj/item/stack/sheet/stone
-	baseturfs = /turf/open/floor/grass/gensgrass/dirty/stone
+	baseturfs = /turf/open/floor/stone
 	sheet_amount = 4
 	girder_type = null
 	var/busy = FALSE
@@ -126,11 +126,11 @@
 	smoothing_groups = list(SMOOTH_GROUP_INDUSTRIAL_LIFT)
 	canSmoothWith = list(SMOOTH_GROUP_INDUSTRIAL_LIFT)
 	sheet_type = /obj/item/stack/sheet/stone
-	baseturfs = /turf/open/floor/grass/gensgrass/dirty/stone
+	baseturfs = /turf/open/floor/stone
 	sheet_amount = 4
 	girder_type = null
 
-/turf/open/floor/grass/gensgrass/dirty/stone/fancy
+/turf/open/floor/stone/fancy
 	name = "красивый каменный пол"
 	desc = "Красивая классика."
 	icon = 'white/kacherkin/icons/dwarfs/obj/turfs1.dmi'
@@ -139,12 +139,12 @@
 	barefootstep = FOOTSTEP_SAND
 	clawfootstep = FOOTSTEP_SAND
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-	floor_tile = /turf/open/floor/grass/gensgrass/dirty/stone/raw
+	floor_tile = /turf/open/floor/stone/raw
 	slowdown = 0
 
-/turf/open/floor/grass/gensgrass/dirty/stone/attackby(obj/item/W, mob/user, params)
+/turf/open/floor/stone/attackby(obj/item/W, mob/user, params)
 	. = ..()
-	if(istype(W, /obj/item/blacksmith/chisel)&&isstrictlytype(src, /turf/open/floor/grass/gensgrass/dirty/stone))
+	if(istype(W, /obj/item/blacksmith/chisel)&&isstrictlytype(src, /turf/open/floor/stone))
 		if(busy)
 			to_chat(user, span_warning("Сейчас занято."))
 			return
@@ -154,9 +154,9 @@
 			return
 		busy = FALSE
 		to_chat(user, span_warning("Обрабатываю [src]."))
-		ChangeTurf(/turf/open/floor/grass/gensgrass/dirty/stone/fancy, flags=CHANGETURF_INHERIT_AIR)
+		ChangeTurf(/turf/open/floor/stone/fancy, flags=CHANGETURF_INHERIT_AIR)
 
-/turf/open/floor/grass/gensgrass/dirty/stone/raw/attackby(obj/item/I, mob/user, params)
+/turf/open/floor/stone/raw/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, /obj/item/pickaxe))
 		if(!digged_up)
@@ -180,8 +180,8 @@
 	smooth_icon = 'white/valtos/icons/rocks_smooth.dmi'
 	smoothing_flags = SMOOTH_CORNERS
 	environment_type = "stone_raw"
-	turf_type = /turf/open/floor/grass/gensgrass/dirty/stone/raw
-	baseturfs = /turf/open/floor/grass/gensgrass/dirty/stone/raw
+	turf_type = /turf/open/floor/stone/raw
+	baseturfs = /turf/open/floor/stone/raw
 	mineralSpawnChanceList = list(/obj/item/stack/ore/diamond = 1, /obj/item/stack/ore/gold = 3, /obj/item/stack/ore/iron = 40)
 
 /turf/closed/mineral/random/vietnam/Initialize()
@@ -292,7 +292,7 @@
 
 /obj/effect/baseturf_helper/beach/raw_stone
 	name = "raw stone baseturf editor"
-	baseturf = /turf/open/floor/grass/gensgrass/dirty/stone/raw
+	baseturf = /turf/open/floor/stone/raw
 
 /obj/effect/mob_spawn/human/dwarf
 	name = "мягкая шконка"
@@ -316,8 +316,8 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_INDUSTRIAL_LIFT)
 	canSmoothWith = list(SMOOTH_GROUP_INDUSTRIAL_LIFT)
-	turf_type = /turf/open/floor/grass/gensgrass/dirty/stone/raw
-	baseturfs = /turf/open/floor/grass/gensgrass/dirty/stone/raw
+	turf_type = /turf/open/floor/stone/raw
+	baseturfs = /turf/open/floor/stone/raw
 	mineralSpawnChanceList = list(/obj/item/stack/ore/gold = 5, /obj/item/stack/ore/iron = 40, /obj/item/gem/diamond=1,/obj/item/gem/ruby=1,/obj/item/gem/saphire=1,/obj/item/stack/ore/coal=20)
 
 /turf/closed/mineral/random/dwarf_lustress/Initialize()
