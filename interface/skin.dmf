@@ -1,0 +1,246 @@
+macro "default"
+	elem ".winset :map.right-click=false"
+		name = "SHIFT+Shift"
+	elem "Shift"
+		name = "SHIFT"
+		command = ".winset :map.right-click=false"
+	elem "ShiftUp"
+		name = "SHIFT+UP"
+		command = ".winset :map.right-click=true"
+
+menu "menu"
+	elem
+		name = "&Меню"
+		command = ""
+		saved-params = "is-checked"
+	elem
+		name = "&Скриншот\tF2"
+		command = ".screenshot auto"
+		category = "&Меню"
+		saved-params = "is-checked"
+	elem
+		name = "&Сделать скриншот...\tShift+F2"
+		command = ".screenshot"
+		category = "&Меню"
+		saved-params = "is-checked"
+	elem
+		name = ""
+		command = ""
+		category = "&Меню"
+		saved-params = "is-checked"
+	elem "reconnectbutton"
+		name = "&Переподключиться"
+		command = ".reconnect"
+		category = "&Меню"
+		saved-params = "is-checked"
+	elem
+		name = "&Выход\tAlt-F4"
+		command = ".quit"
+		category = "&Меню"
+		saved-params = "is-checked"
+
+
+window "mainwindow"
+	elem "mainwindow"
+		type = MAIN
+		pos = 281,0
+		size = 640x440
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		is-default = true
+		saved-params = "pos;size;is-minimized;is-maximized"
+		statusbar = false
+		icon = 'icons\\tg_32.png'
+		macro = "default"
+		menu = "menu"
+	elem "split"
+		type = CHILD
+		pos = 0,0
+		size = 640x440
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = none
+		saved-params = "splitter"
+		left = "mapwindow"
+		right = "infowindow"
+		is-vert = true
+	elem "asset_cache_browser"
+		type = BROWSER
+		pos = 0,0
+		size = 200x200
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = ""
+	elem "tooltip"
+		type = BROWSER
+		pos = 0,0
+		size = 640x440
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = ""
+
+window "mapwindow"
+	elem "mapwindow"
+		type = MAIN
+		pos = 0,0
+		size = 640x480
+		anchor1 = none
+		anchor2 = none
+		saved-params = "pos;size;is-minimized;is-maximized"
+		is-pane = true
+	elem "map"
+		type = MAP
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		font-family = "Arial"
+		font-size = 7
+		text-color = none
+		is-default = true
+		saved-params = "zoom;letterbox;zoom-mode"
+		style = ".center { text-align: center; } .maptext { font-family: 'Small Fonts'; font-size: 7px; -dm-text-outline: 1px black; color: white; line-height: 1.1; } .command_headset { font-weight: bold;\tfont-size: 8px; } .small { font-size: 6px; } .big { font-size: 8px; } .reallybig { font-size: 8px; } .extremelybig { font-size: 8px; } .greentext { color: #00FF00; font-size: 7px; } .redtext { color: #FF0000; font-size: 7px; } .clown { color: #FF69Bf; font-size: 7px;  font-weight: bold; } .his_grace { color: #15D512; } .hypnophrase { color: #0d0d0d; font-weight: bold; } .yell { font-weight: bold; } .italics { font-size: 6px; }"
+	elem "lobbyprotoc"
+		type = BROWSER
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = none
+		is-visible = false
+		is-disabled = true
+		saved-params = ""
+		auto-format = false
+
+window "infowindow"
+	elem "infowindow"
+		type = MAIN
+		pos = 281,0
+		size = 640x480
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		saved-params = "pos;size;is-minimized;is-maximized"
+		is-pane = true
+	elem "info"
+		type = CHILD
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = none
+		saved-params = "splitter"
+		left = "statwindow"
+		right = "outputwindow"
+		is-vert = false
+
+window "outputwindow"
+	elem "outputwindow"
+		type = MAIN
+		pos = 281,0
+		size = 640x480
+		anchor1 = none
+		anchor2 = none
+		saved-params = "pos;size;is-minimized;is-maximized"
+		is-pane = true
+	elem "saybutton"
+		type = BUTTON
+		pos = 592,453
+		size = 48x24
+		anchor1 = 100,100
+		anchor2 = none
+		saved-params = "is-checked"
+		text = "Сказать"
+		command = ".winset \"saybutton.is-checked=true ? input.command=\"!Сказать \\\"\" : input.command=\"\"saybutton.is-checked=true ? mebutton.is-checked=false\"\"saybutton.is-checked=true ? oocbutton.is-checked=false\""
+		button-type = pushbox
+	elem "input"
+		type = INPUT
+		pos = 0,453
+		size = 592x24
+		anchor1 = 0,100
+		anchor2 = 100,100
+		font-family = "Consolas"
+		font-size = 12
+		text-color = #ffffff
+		background-color = #020202
+		is-default = true
+		border = none
+		saved-params = "command"
+	elem "browseroutput"
+		type = BROWSER
+		pos = 0,0
+		size = 640x451
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = #ffffff
+		is-visible = false
+		is-disabled = true
+		saved-params = ""
+	elem "output"
+		type = OUTPUT
+		pos = 0,0
+		size = 640x452
+		anchor1 = 0,0
+		anchor2 = 100,100
+		is-default = true
+		saved-params = ""
+
+window "popupwindow"
+	elem "popupwindow"
+		type = MAIN
+		pos = 281,0
+		size = 120x120
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		statusbar = false
+		can-resize = false
+
+window "preferences_window"
+	elem "preferences_window"
+		type = MAIN
+		pos = 64,64
+		size = 1200x640
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		statusbar = false
+	elem "preferences_browser_new"
+		type = BROWSER
+		pos = 0,0
+		size = 1050x640
+		anchor1 = 0,0
+		anchor2 = 85,100
+		saved-params = ""
+		can-scroll = vertical
+	elem "character_preview_map"
+		type = MAP
+		pos = 1050,0
+		size = 150x640
+		anchor1 = 85,0
+		anchor2 = 100,100
+		right-click = true
+		saved-params = "zoom;letterbox;zoom-mode"
+
+window "statwindow"
+	elem "statwindow"
+		type = MAIN
+		pos = 372,0
+		size = 640x480
+		anchor1 = none
+		anchor2 = none
+		saved-params = "pos;size;is-minimized;is-maximized"
+		is-pane = true
+	elem "statbrowser"
+		type = BROWSER
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		is-visible = false
+		saved-params = ""

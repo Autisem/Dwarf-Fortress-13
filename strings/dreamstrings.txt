@@ -1,0 +1,44 @@
+%A% %ADJECTIVE% знакомое лицо
+%A% %ADJECTIVE% член экипажа
+%A% %ADJECTIVE% сотрудник службы безопасности
+%A% %ADJECTIVE% доктор
+%A% %ADJECTIVE% инженер
+%A% %ADJECTIVE% шахтёр
+%A% %ADJECTIVE% слайм
+%A% %ADJECTIVE% пришелец
+%A% %ADJECTIVE% предатель
+%A% %ADJECTIVE% союзник
+%A% %ADJECTIVE% учёный
+%A% %ADJECTIVE% мартышка
+%A% %ADJECTIVE% любимый человек
+%A% %ADJECTIVE% монстр
+the %ADJECTIVE% капитан
+%A% %ADJECTIVE% шапка
+%A% %ADJECTIVE% ID-карта
+%A% %ADJECTIVE% бутылка
+%A% %ADJECTIVE% ящик с инструментами
+%A% %ADJECTIVE% пушка
+солнце
+двигатель
+станция
+%A% %ADJECTIVE% планета
+медбей
+%ADJECTIVE% мостик
+%ADJECTIVE% бриг
+%A% %ADJECTIVE% шаттл
+%A% %ADJECTIVE% лаборатория
+NanoTrasen
+Синдикат
+Федерация Волшебников
+%ADJECTIVE% кровь
+%ADJECTIVE% плазма
+%ADJECTIVE% ветер
+%ADJECTIVE% тьма
+%ADJECTIVE% свет
+%ADJECTIVE% смерть
+%ADJECTIVE% мигающие огни
+%ADJECTIVE% энергия
+%ADJECTIVE% богатства
+вода
+%ADJECTIVE% огни
+немного %ADJECTIVE% арбузов

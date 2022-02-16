@@ -1,0 +1,121 @@
+#define MAX_NOTICES 5
+
+/obj/structure/noticeboard
+	name = "notice board"
+	desc = "A board for pinning important notices upon."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "nboard00"
+	density = FALSE
+	anchored = TRUE
+	max_integrity = 150
+	var/notices = 0
+
+/obj/structure/noticeboard/directional/north
+	dir = SOUTH
+	pixel_y = 32
+
+/obj/structure/noticeboard/directional/south
+	dir = NORTH
+	pixel_y = -32
+
+/obj/structure/noticeboard/directional/east
+	dir = WEST
+	pixel_x = 32
+
+/obj/structure/noticeboard/directional/west
+	dir = EAST
+	pixel_x = -32
+
+/obj/structure/noticeboard/Initialize(mapload)
+	. = ..()
+
+	if(!mapload)
+		return
+
+	for(var/obj/item/I in loc)
+		if(notices >= MAX_NOTICES)
+			break
+		if(istype(I, /obj/item/paper))
+			I.forceMove(src)
+			notices++
+	icon_state = "nboard0[notices]"
+
+//attaching papers!!
+/obj/structure/noticeboard/attackby(obj/item/O, mob/user, params)
+	if(istype(O, /obj/item/paper))
+		if(notices < MAX_NOTICES)
+			if(!user.transferItemToLoc(O, src))
+				return
+			notices++
+			icon_state = "nboard0[notices]"
+			to_chat(user, span_notice("You pin the [O] to the noticeboard."))
+		else
+			to_chat(user, span_warning("The notice board is full!"))
+	else
+		return ..()
+
+/obj/structure/noticeboard/ui_state(mob/user)
+	return GLOB.physical_state
+
+/obj/structure/noticeboard/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "NoticeBoard", name)
+		ui.open()
+
+/obj/structure/noticeboard/ui_data(mob/user)
+	var/list/data = list()
+	data["items"] = list()
+	for(var/obj/item/content in contents)
+		var/list/content_data = list(
+			name = content.name,
+			ref = REF(content)
+		)
+		data["items"] += list(content_data)
+	return data
+
+/obj/structure/noticeboard/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+
+	var/obj/item/item = locate(params["ref"]) in contents
+	if(!istype(item) || item.loc != src)
+		return
+
+	var/mob/user = usr
+
+	switch(action)
+		if("examine")
+			if(istype(item, /obj/item/paper))
+				item.ui_interact(user)
+			else
+				user.examinate(item)
+			return TRUE
+		if("remove")
+			remove_item(item, user)
+			return TRUE
+
+/**
+ * Removes an item from the notice board
+ *
+ * Arguments:
+ * * item - The item that is to be removed
+ * * user - The mob that is trying to get the item removed, if there is one
+ */
+/obj/structure/noticeboard/proc/remove_item(obj/item/item, mob/user)
+	item.forceMove(drop_location())
+	if(user)
+		user.put_in_hands(item)
+		balloon_alert(user, "removed from board")
+	notices--
+	icon_state = "nboard0[notices]"
+
+/obj/structure/noticeboard/deconstruct(disassembled = TRUE)
+	if(!(flags_1 & NODECONSTRUCT_1))
+		new /obj/item/stack/sheet/iron (loc, 1)
+	for(var/obj/item/content in contents)
+		remove_item(content)
+	qdel(src)
+
+#undef MAX_NOTICES
