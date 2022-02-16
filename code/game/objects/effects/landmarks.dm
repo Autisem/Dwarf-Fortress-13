@@ -47,8 +47,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 
 // START LANDMARKS FOLLOW. Don't change the names unless
 // you are refactoring shitty landmark code.
-/obj/effect/landmark/start/assistant
-	name = "Assistant"
+/obj/effect/landmark/start/dwarf
+	name = "Dwarf"
 	icon_state = "Assistant" //icon_state is case sensitive. why are all of these capitalized? because fuck you that's why
 
 // Must be immediate because players will

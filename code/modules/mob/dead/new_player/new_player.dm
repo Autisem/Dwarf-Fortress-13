@@ -234,7 +234,7 @@
 	var/list/dat = list()
 	if(SSlag_switch.measures[DISABLE_NON_OBSJOBS])
 		dat += "<div class='notice red' style='font-size: 125%'>Разрешено только следить на данный момент.</div><br>"
-	dat += "<div class='notice'>Длительность раунда: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>"
+	dat += "<div class='notice'>Длительность истории: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>"
 	for(var/datum/job/prioritized_job in SSjob.prioritized_jobs)
 		if(prioritized_job.current_positions >= prioritized_job.total_positions)
 			SSjob.prioritized_jobs -= prioritized_job
@@ -251,8 +251,6 @@
 			var/datum/job/job_datum = SSjob.name_occupations[job]
 			if(job_datum && IsJobUnavailable(job_datum.title, TRUE) == JOB_AVAILABLE)
 				var/command_bold = ""
-				if(job in GLOB.command_positions)
-					command_bold = " command"
 				if(job_datum in SSjob.prioritized_jobs)
 					dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'><span class='priority'>[job_datum.ru_title] ([job_datum.current_positions])</span></a>"
 				else
@@ -266,7 +264,7 @@
 			dat += "</td><td valign='top'>"
 	dat += "</td></tr></table></center>"
 	dat += "</div></div>"
-	var/datum/browser/popup = new(src, "latechoices", "Выбери профессию", 750, 750)
+	var/datum/browser/popup = new(src, "latechoices", "Выбери свою судьбу", 350, 350)
 	popup.add_stylesheet("playeroptions", 'html/browser/playeroptions.css')
 	popup.set_content(jointext(dat, ""))
 	popup.open(FALSE) // 0 is passed to open so that it doesn't use the onclose() proc

@@ -74,13 +74,6 @@ GLOBAL_LIST_INIT(voice_of_god_commands, init_voice_of_god_commands())
 	if(is_cultie)
 		power_multiplier *= 2
 
-	//Now get the proper job titles and check for matches.
-	var/job_message = get_full_job_name(message)
-	for(var/mob/living/candidate in candidates)
-		var/their_role = candidate.mind?.assigned_role.title
-		if(their_role && findtext(job_message, their_role))
-			specific_listeners |= candidate //focus on those with the specified job. "|=" instead "+=" so "Mrs. Capri the Captain" doesn't get affected twice.
-
 	if(specific_listeners.len)
 		listeners = specific_listeners
 		power_multiplier *= (1 + (1/specific_listeners.len)) //2x on a single guy, 1.5x on two and so on

@@ -55,7 +55,6 @@ GLOBAL_VAR(command_name)
 		world.name = GLOB.station_name
 
 /proc/new_station_name()
-	var/name = ""
 	var/new_station_name = ""
 
 	if (prob(10))

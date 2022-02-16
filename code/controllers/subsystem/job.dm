@@ -12,16 +12,12 @@ SUBSYSTEM_DEF(job)
 	var/list/prioritized_jobs = list()
 	var/list/latejoin_trackers = list()	//Don't read this list, use GetLateJoinTurfs() instead
 
-	var/overflow_role = "Assistant"
+	var/overflow_role = "Dwarf"
 
 	var/list/level_order = list(JP_HIGH,JP_MEDIUM,JP_LOW)
 
 	/// A list of all jobs associated with the station. These jobs also have various icons associated with them including sechud and card trims.
 	var/list/station_jobs
-	/// A list of additional jobs that have various icons associated with them including sechud and card trims.
-	var/list/additional_jobs_with_icons
-	/// A list of jobs associed with Centcom and should use the standard NT Centcom icons.
-	var/list/centcom_jobs
 
 	/**
 	 * Keys should be assigned job roles. Values should be >= 1.
@@ -179,9 +175,6 @@ SUBSYSTEM_DEF(job)
 		if(istype(job, GetJob(SSjob.overflow_role))) // We don't want to give him assistant, that's boring!
 			continue
 
-		if(job.title in GLOB.command_positions) //If you want a command position, select it!
-			continue
-
 		if(is_banned_from(player.ckey, job.title) || QDELETED(player))
 			if(QDELETED(player))
 				JobDebug("GRJ isbanned failed, Player deleted")
@@ -223,60 +216,6 @@ SUBSYSTEM_DEF(job)
 	return
 
 
-//This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until
-//it locates a head or runs out of levels to check
-//This is basically to ensure that there's atleast a few heads in the round
-/datum/controller/subsystem/job/proc/FillHeadPosition()
-	for(var/level in level_order)
-		for(var/command_position in GLOB.command_positions)
-			var/datum/job/job = GetJob(command_position)
-			if(!job)
-				continue
-			if((job.current_positions >= job.total_positions) && job.total_positions != -1)
-				continue
-			var/list/candidates = FindOccupationCandidates(job, level)
-			if(!candidates.len)
-				continue
-			var/mob/dead/new_player/candidate = pick(candidates)
-			if(AssignRole(candidate, command_position))
-				return TRUE
-	return FALSE
-
-
-//This proc is called at the start of the level loop of DivideOccupations() and will cause head jobs to be checked before any other jobs of the same level
-//This is also to ensure we get as many heads as possible
-/datum/controller/subsystem/job/proc/CheckHeadPositions(level)
-	for(var/command_position in GLOB.command_positions)
-		var/datum/job/job = GetJob(command_position)
-		if(!job)
-			continue
-		if((job.current_positions >= job.total_positions) && job.total_positions != -1)
-			continue
-		var/list/candidates = FindOccupationCandidates(job, level)
-		if(!candidates.len)
-			continue
-		var/mob/dead/new_player/candidate = pick(candidates)
-		AssignRole(candidate, command_position)
-
-/datum/controller/subsystem/job/proc/FillAIPosition()
-	var/ai_selected = FALSE
-	var/datum/job/job = GetJob("AI")
-	if(!job)
-		return FALSE
-	for(var/i = job.total_positions, i > 0, i--)
-		for(var/level in level_order)
-			var/list/candidates = list()
-			candidates = FindOccupationCandidates(job, level)
-			if(candidates.len)
-				var/mob/dead/new_player/candidate = pick(candidates)
-				if(AssignRole(candidate, "AI"))
-					ai_selected++
-					break
-	if(ai_selected)
-		return TRUE
-	return FALSE
-
-
 /** Proc DivideOccupations
  *  fills var "assigned_role" for all ready players.
  *  This proc must not have any side effect besides of modifying "assigned_role".
@@ -296,9 +235,6 @@ SUBSYSTEM_DEF(job)
 	JobDebug("DO, Len: [unassigned.len]")
 	if(unassigned.len == 0)
 		return validate_required_jobs(required_jobs)
-
-	//Scale number of open security officer slots to population
-	setup_officer_positions()
 
 	//Jobs will have fewer access permissions if the number of players exceeds the threshold defined in game_options.txt
 	var/mat = CONFIG_GET(number/minimal_access_threshold)
@@ -324,16 +260,6 @@ SUBSYSTEM_DEF(job)
 		overflow_candidates -= player
 	JobDebug("DO, AC1 end")
 
-	//Select one head
-	JobDebug("DO, Running Head Check")
-	FillHeadPosition()
-	JobDebug("DO, Head Check end")
-
-	//Check for an AI
-	JobDebug("DO, Running AI Check")
-	FillAIPosition()
-	JobDebug("DO, AI Check end")
-
 	//Other jobs are now checked
 	JobDebug("DO, Running Standard Check")
 
@@ -345,8 +271,6 @@ SUBSYSTEM_DEF(job)
 	// Loop through all levels from high to low
 	var/list/shuffledoccupations = shuffle(occupations)
 	for(var/level in level_order)
-		//Check the head jobs first each level
-		CheckHeadPositions(level)
 
 		// Loop through all unassigned players
 		for(var/mob/dead/new_player/player in unassigned)
@@ -507,11 +431,6 @@ SUBSYSTEM_DEF(job)
 				M.client.holder.auto_deadmin()
 			else
 				handle_auto_deadmin_roles(M.client, rank)
-		to_chat(M, "\n<span class='notice'>На должности <b>[ru_job_parse(rank)]</b> я подчиняюсь [job.supervisors]. Некоторые обстоятельства могут изменить это.</span>")
-		job.radio_help_message(M)
-		if(job.req_admin_notify)
-			to_chat(M, "\n<span class='revenbignotice'>Это важная работа. Перед уходом стоит найти себе замену.</spawn>")
-
 	var/related_policy = get_policy(rank)
 	if(related_policy)
 		to_chat(M,"\n[related_policy]")
@@ -542,19 +461,6 @@ SUBSYSTEM_DEF(job)
 		return C.holder.auto_deadmin()
 	else if((job.auto_deadmin_role_flags & DEADMIN_POSITION_SILICON) && ((CONFIG_GET(flag/auto_deadmin_silicons) && !timegate_expired) || (C.prefs?.toggles & DEADMIN_POSITION_SILICON))) //in the event there's ever psuedo-silicon roles added, ie synths.
 		return C.holder.auto_deadmin()
-
-/datum/controller/subsystem/job/proc/setup_officer_positions()
-	var/datum/job/J = SSjob.GetJob("Security Officer")
-	if(!J)
-		CRASH("setup_officer_positions(): Security officer job is missing")
-
-	var/ssc = CONFIG_GET(number/security_scaling_coeff)
-	if(ssc > 0)
-		if(J.spawn_positions > 0)
-			var/officer_positions = min(12, max(J.spawn_positions, round(unassigned.len / ssc))) //Scale between configured minimum and 12 officers
-			JobDebug("Setting open security officer positions to [officer_positions]")
-			J.total_positions = officer_positions
-			J.spawn_positions = officer_positions
 
 /datum/controller/subsystem/job/proc/LoadJobs()
 	var/jobstext = file2text("[global.config.directory]/jobs.txt")
@@ -658,61 +564,9 @@ SUBSYSTEM_DEF(job)
 		destination.JoinPlayerHere(M, buckle)
 		return TRUE
 
-///////////////////////////////////
-//Keeps track of all living heads//
-///////////////////////////////////
-/datum/controller/subsystem/job/proc/get_living_heads()
-	. = list()
-	for(var/i in GLOB.human_list)
-		var/mob/living/carbon/human/player = i
-		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in GLOB.command_positions))
-			. |= player.mind
-
-
-////////////////////////////
-//Keeps track of all heads//
-////////////////////////////
-/datum/controller/subsystem/job/proc/get_all_heads()
-	. = list()
-	for(var/i in GLOB.mob_list)
-		var/mob/player = i
-		if(player.mind && (player.mind.assigned_role in GLOB.command_positions))
-			. |= player.mind
-
-//////////////////////////////////////////////
-//Keeps track of all living security members//
-//////////////////////////////////////////////
-/datum/controller/subsystem/job/proc/get_living_sec()
-	. = list()
-	for(var/i in GLOB.human_list)
-		var/mob/living/carbon/human/player = i
-		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in GLOB.security_positions))
-			. |= player.mind
-
-////////////////////////////////////////
-//Keeps track of all  security members//
-////////////////////////////////////////
-/datum/controller/subsystem/job/proc/get_all_sec()
-	. = list()
-	for(var/i in GLOB.human_list)
-		var/mob/living/carbon/human/player = i
-		if(player.mind && (player.mind.assigned_role in GLOB.security_positions))
-			. |= player.mind
-
 /datum/controller/subsystem/job/proc/JobDebug(message)
 	log_job_debug(message)
 
 /// Builds various lists of jobs based on station, centcom and additional jobs with icons associated with them.
 /datum/controller/subsystem/job/proc/setup_job_lists()
-	station_jobs = list("Assistant", "Captain", "Head of Personnel", "Bartender", "Cook", "Botanist", "Quartermaster", "Cargo Technician", \
-		"Shaft Miner", "Hunter", "Clown", "Mime", "Janitor", "Curator", "Lawyer", "Chaplain", "Chief Engineer", "Station Engineer", \
-		"Atmospheric Technician", "Chief Medical Officer", "Medical Doctor", "Paramedic", "Chemist", "Geneticist", "Virologist", "Psychologist", \
-		"Research Director", "Scientist", "Roboticist", "Head of Security", "Warden", "Detective", "Security Officer", "Russian Officer", \
-		"Veteran", "Field Medic", "Mechanic", "Bomj", "Prisoner")
-
-	additional_jobs_with_icons = list("Emergency Response Team Commander", "Security Response Officer", "Engineering Response Officer", "Medical Response Officer", \
-		"Entertainment Response Officer", "Religious Response Officer", "Janitorial Response Officer", "Death Commando", "Security Officer (Engineering)", \
-		"Security Officer (Cargo)", "Security Officer (Medical)", "Security Officer (Science)")
-
-	centcom_jobs = list("Central Command","VIP Guest","Custodian","Thunderdome Overseer","CentCom Official","Medical Officer","Research Officer", \
-		"Special Ops Officer","Admiral","CentCom Commander","CentCom Bartender","Private Security Force")
+	station_jobs = list("Dwarf")

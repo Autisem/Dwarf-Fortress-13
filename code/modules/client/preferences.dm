@@ -278,14 +278,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(user.client.get_exp_living(TRUE) >= PLAYTIME_HARDCORE_RANDOM)
 				dat += "<tr><td><b>Режим хардкора:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HARDCORE]'>[(randomise[RANDOM_HARDCORE]) ? "Yes" : "No"]</a></td></tr>"
 
-			dat += "</table>"
-			dat += "<h3 class='statusDisplay'>Особенности должности</h3>"
-			dat += "<table width='360px' class='block'>"
-
-			dat += "<tr><td><b>Дисплей ИИ:</b></td><td align='right'><a href='?_src_=prefs;preference=ai_core_icon;task=input'>[preferred_ai_core_display]</a></td></tr>"
-			dat += "<tr><td><b>Отдел офицера:</b></td><td align='right'><a href='?_src_=prefs;preference=sec_dept;task=input'>[prefered_security_department]</a></td></tr>"
-
-			dat += "</table></td></table>"
+			dat += "</table></table></td></table>"
 
 			dat += "<table width='100%'><td width='400px' align='right' valign='top'><h3 class='statusDisplay'>Тело</h3>"
 			dat += "<a href='?_src_=prefs;preference=all;task=random'>Случайное</A>"
@@ -898,10 +891,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if((job_preferences[SSjob.overflow_role] == JP_LOW) && (rank != SSjob.overflow_role) && !is_banned_from(user.ckey, SSjob.overflow_role))
 				HTML += "<font color='#ff9955'>[ru_rank]</font></td><td></td></tr>"
 				continue
-			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
-				HTML += "<b><span>[ru_rank]</span></b>"
-			else
-				HTML += "<span>[ru_rank]</span>"
+
+			HTML += "<span>[ru_rank]</span>"
 
 			HTML += "</td><td width='40%'>"
 
@@ -1957,8 +1948,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		character.update_body_parts()
 
 /datum/preferences/proc/can_be_random_hardcore()
-	if(parent.mob.mind.assigned_role in GLOB.command_positions) //No command staff
-		return FALSE
 	for(var/A in parent.mob.mind.antag_datums)
 		var/datum/antagonist/antag
 		if(antag.get_team()) //No team antags
@@ -1990,7 +1979,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(!namedata)
 		return
 
-	var/raw_name = input(user, "Choose your character's [namedata["qdesc"]]:","Character Preference") as text|null
+	var/raw_name = input(user, "Запасное имя [namedata["qdesc"]]:","Настройка персонажа") as text|null
 	if(!raw_name)
 		if(namedata["allow_null"])
 			custom_names[name_id] = get_default_name(name_id)

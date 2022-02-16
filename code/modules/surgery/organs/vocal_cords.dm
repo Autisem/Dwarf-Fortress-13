@@ -154,22 +154,15 @@
 	var/power_multiplier = base_multiplier
 
 	if(user.mind)
-		//Chaplains are very good at speaking with the voice of god
-		if(user.mind.assigned_role == "Chaplain")
+		if(user.mind.assigned_role == "Human")
 			power_multiplier *= 2
-		//Command staff has authority
-		if(user.mind.assigned_role in GLOB.command_positions)
-			power_multiplier *= 1.4
 		//Why are you speaking
-		if(user.mind.assigned_role == "Mime")
+		if(user.mind.assigned_role == "Dwarf")
 			power_multiplier *= 0.5
 
 	//Try to check if the speaker specified a name or a job to focus on
 	var/list/specific_listeners = list()
 	var/found_string = null
-
-	//Get the proper job titles
-	message = get_full_job_name(message)
 
 	for(var/V in listeners)
 		var/mob/living/L = V

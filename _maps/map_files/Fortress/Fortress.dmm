@@ -206,7 +206,7 @@
 /turf/open/openspace,
 /area/awaymission/vietnam/dwarf)
 "vx" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/dwarf,
 /turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "vC" = (

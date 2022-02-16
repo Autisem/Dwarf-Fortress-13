@@ -26,9 +26,6 @@
 	//How many players have this job
 	var/current_positions = 0
 
-	//Supervisors, who this person answers to directly
-	var/supervisors = ""
-
 	//Sellection screen color
 	var/selection_color = "#ffffff"
 
@@ -50,9 +47,6 @@
 	//can be overridden by antag_rep.txt config
 	var/antag_rep = 10
 
-	var/paycheck = PAYCHECK_MINIMAL
-	var/paycheck_department = ACCOUNT_CIV
-
 	var/list/mind_traits // Traits added to the mind of the mob assigned this job
 
 	///Lazylist of traits added to the liver of the mob assigned this job (used for the classic "cops heal from donuts" reaction, among others)
@@ -60,26 +54,13 @@
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 
-	var/bounty_types = CIV_JOB_BASIC
-
 	var/metalocked = FALSE
-	/// Goodies that can be received via the mail system.
-	// this is a weighted list.
-	/// Keep the _job definition for this empty and use /obj/item/mail to define general gifts.
-	var/list/mail_goodies = list()
-
-	/// If this job's mail goodies compete with generic goodies.
-	var/exclusive_mail_goodies = FALSE
 
 	///Bitfield of departments this job belongs wit
 	var/departments = NONE
 
 	/// Should this job be allowed to be picked for the bureaucratic error event?
 	var/allow_bureaucratic_error = TRUE
-
-	///RPG job names, for the memes
-	var/rpg_title
-
 
 /datum/job/New()
 	. = ..()
@@ -236,11 +217,6 @@
 /datum/job/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source, is_captain = FALSE)
 	if(!H)
 		return FALSE
-	if(CONFIG_GET(flag/enforce_human_authority) && ((title in GLOB.command_positions) || (title in GLOB.security_positions)))
-		if(H.dna.species.id != "human")
-			H.set_species(/datum/species/human)
-			H.apply_pref_name("human", preference_source)
-
 	//Equip the rest of the gear
 	H.dna.species.before_equip_job(src, H, visualsOnly)
 
@@ -345,7 +321,3 @@
 	types += satchel
 	types += duffelbag
 	return types
-
-/// An overridable getter for more dynamic goodies.
-/datum/job/proc/get_mail_goodies(mob/recipient)
-	return mail_goodies
