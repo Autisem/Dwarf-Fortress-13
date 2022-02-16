@@ -1,0 +1,14 @@
+{
+	"version": 1,
+    "map_name": "Fortress",
+    "map_path": "map_files/Fortress",
+    "map_file": "Fortress.dmm",
+	"traits": [
+		{
+			"Mining": true,
+			"Gravity": true,
+			"Linkage": null,
+			"Baseturf": "/turf/open/floor/plating/asteroid"
+		}
+	]
+}

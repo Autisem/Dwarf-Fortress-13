@@ -14,22 +14,11 @@
 	var/votable = FALSE
 
 	// Config actually from the JSON - should default to Meta
-	var/map_name = "Construction Station"
-	var/map_path = "map_files/ConstructionStation"
-	var/map_file = "ConstructionStation.dmm"
+	var/map_name = "Fortress"
+	var/map_path = "map_files/Fortress"
+	var/map_file = "Fortress.dmm"
 
 	var/traits = null
-	var/space_ruin_levels = 2
-	var/space_empty_levels = 1
-
-	var/minetype = "lavaland"
-
-	var/allow_custom_shuttles = TRUE
-	var/shuttles = list(
-		"cargo" = "cargo_box",
-		"ferry" = "ferry_fancy",
-		"whiteship" = "whiteship_box",
-		"emergency" = "emergency_box")
 
 	/// Dictionary of job sub-typepath to template changes dictionary
 	var/job_changes = list()
@@ -98,15 +87,6 @@
 		log_world("map_file missing from json!")
 		return
 
-	if (islist(json["shuttles"]))
-		var/list/L = json["shuttles"]
-		for(var/key in L)
-			var/value = L[key]
-			shuttles[key] = value
-	else if ("shuttles" in json)
-		log_world("map_config shuttles is not a list!")
-		return
-
 	traits = json["traits"]
 	// "traits": [{"Linkage": "Cross"}, {"Space Ruins": true}]
 	if (islist(traits))
@@ -119,25 +99,6 @@
 	else if (!isnull(traits))
 		log_world("map_config traits is not a list!")
 		return
-
-	var/temp = json["space_ruin_levels"]
-	if (isnum(temp))
-		space_ruin_levels = temp
-	else if (!isnull(temp))
-		log_world("map_config space_ruin_levels is not a number!")
-		return
-
-	temp = json["space_empty_levels"]
-	if (isnum(temp))
-		space_empty_levels = temp
-	else if (!isnull(temp))
-		log_world("map_config space_empty_levels is not a number!")
-		return
-
-	if ("minetype" in json)
-		minetype = json["minetype"]
-
-	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
 
 	if ("job_changes" in json)
 		if(!islist(json["job_changes"]))
