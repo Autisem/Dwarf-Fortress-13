@@ -10,7 +10,6 @@
 	baseturfs = /turf/open/floor/plating/asteroid/airless
 	opacity = TRUE
 	density = TRUE
-	layer = EDGED_TURF_LAYER
 	base_icon_state = "smoothrocks"
 	temperature = 2.7
 	var/smooth_icon = 'icons/turf/smoothrocks.dmi'
