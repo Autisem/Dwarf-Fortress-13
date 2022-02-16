@@ -37,7 +37,7 @@
 	species_language_holder = /datum/language_holder/dwarf
 
 /datum/species/dwarf/check_roundstart_eligible()
-	return FALSE
+	return TRUE
 
 /datum/species/dwarf/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
 	if((slot == ITEM_SLOT_ICLOTHING) && !is_type_in_list(src, I.species_exception))
