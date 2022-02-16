@@ -8,10 +8,8 @@
 /turf/open/floor/carpet/black,
 /area/awaymission/vietnam/dwarf)
 "cK" = (
-/obj/effect/turf_decal/stripes{
-	dir = 9
-	},
-/turf/open/floor/mineral/plastitanium/red,
+/obj/effect/landmark/observer_start,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "cU" = (
 /obj/structure/fluff/drake_statue,
@@ -96,10 +94,8 @@
 /turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "jD" = (
-/obj/effect/turf_decal/stripes{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium/red,
+/obj/effect/landmark/latejoin,
+/turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
 "kg" = (
 /obj/structure/mineral_door/heavystone{
@@ -192,10 +188,8 @@
 /turf/open/lava/smooth,
 /area/awaymission/vietnam/dwarf)
 "rb" = (
-/obj/effect/turf_decal/stripes{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium/red,
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/stone/raw,
 /area/awaymission/vietnam/dwarf)
 "rv" = (
 /obj/structure/table/stone,
@@ -215,12 +209,6 @@
 "st" = (
 /obj/item/storage/bag/plants/portaseeder,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
-"ux" = (
-/obj/effect/turf_decal/stripes{
-	dir = 6
-	},
-/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/vietnam/dwarf)
 "vf" = (
 /obj/machinery/hydroponics/soil,
@@ -265,10 +253,6 @@
 /obj/structure/table/stone,
 /turf/open/floor/stone,
 /area/awaymission/vietnam/dwarf)
-"Ak" = (
-/obj/effect/turf_decal/stripes,
-/turf/open/floor/mineral/plastitanium/red,
-/area/awaymission/vietnam/dwarf)
 "Bg" = (
 /mob/living/simple_animal/pet/cat/male,
 /turf/open/floor/stone,
@@ -291,12 +275,6 @@
 "DI" = (
 /obj/structure/gemcutter,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
-"Gr" = (
-/obj/effect/turf_decal/stripes{
-	dir = 10
-	},
-/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/vietnam/dwarf)
 "GJ" = (
 /mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient,
@@ -354,12 +332,6 @@
 	pixel_y = 0
 	},
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
-"Nl" = (
-/obj/effect/turf_decal/stripes{
-	dir = 1
-	},
-/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/vietnam/dwarf)
 "Ny" = (
 /mob/living/simple_animal/hostile/retaliate/frog,
@@ -460,9 +432,6 @@
 /obj/structure/stone_tile/block,
 /turf/open/lava/smooth,
 /area/awaymission/vietnam/dwarf)
-"WV" = (
-/turf/open/floor/mineral/plastitanium/red,
-/area/awaymission/vietnam/dwarf)
 "XI" = (
 /obj/structure/stone_tile/cracked,
 /obj/structure/stone_tile/burnt{
@@ -514,12 +483,6 @@
 	pixel_x = 32
 	},
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
-"ZM" = (
-/obj/effect/turf_decal/stripes{
-	dir = 5
-	},
-/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/vietnam/dwarf)
 
 (1,1,1) = {"
@@ -12845,10 +12808,10 @@ lv
 yR
 yR
 yR
-ha
-ha
-ha
-ha
+yR
+yR
+yR
+yR
 oD
 oD
 oD
@@ -13097,11 +13060,11 @@ yR
 yR
 yR
 yR
-ha
-cK
-rb
-Gr
-ha
+yR
+yR
+yR
+yR
+yR
 oD
 oD
 lv
@@ -13349,11 +13312,11 @@ yR
 yR
 yR
 yR
-ha
-Nl
-WV
-Ak
-ha
+yR
+yR
+yR
+yR
+yR
 oD
 oD
 lv
@@ -13601,11 +13564,11 @@ yR
 yR
 yR
 yR
-ha
-ZM
-jD
-ux
-ha
+yR
+yR
+yR
+yR
+yR
 yR
 oD
 lv
@@ -13853,10 +13816,10 @@ lv
 yR
 lv
 lv
-ha
-ha
-ha
-ha
+yR
+yR
+yR
+yR
 yR
 yR
 lv
@@ -14172,9 +14135,9 @@ ha
 ha
 ha
 ha
-lq
-lq
-ha
+cK
+jD
+rb
 ha
 ha
 lq

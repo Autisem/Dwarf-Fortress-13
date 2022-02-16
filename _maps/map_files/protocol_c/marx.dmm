@@ -8,9 +8,12 @@
 "w" = (
 /turf/closed/indestructible/black,
 /area/start)
-"R" = (
+"E" = (
 /obj/effect/landmark/start/new_player,
 /turf/open/indestructible,
+/area/start)
+"R" = (
+/turf/open/space/basic,
 /area/start)
 
 (1,1,1) = {"
@@ -2334,7 +2337,7 @@ w
 w
 w
 w
-w
+E
 w
 w
 w
@@ -4383,21 +4386,21 @@ a
 a
 "}
 (18,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
 a
 a
 a
@@ -4640,21 +4643,21 @@ a
 a
 "}
 (19,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
+w
 a
 a
 a
