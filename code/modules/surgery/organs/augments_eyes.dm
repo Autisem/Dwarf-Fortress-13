@@ -37,11 +37,6 @@
 	HUD_type = DATA_HUD_MEDICAL_ADVANCED
 	HUD_trait = TRAIT_MEDICAL_HUD
 
-/obj/item/organ/cyberimp/eyes/hud/diagnostic
-	name = "имплант интерфейса диагностики"
-	desc = "Эти кибернетические глаза выведут интерфейс диагностики поверх всего что вы видите."
-	HUD_type = DATA_HUD_DIAGNOSTIC_ADVANCED
-
 /obj/item/organ/cyberimp/eyes/hud/security/syndicate
 	name = "контрабандный имплант интерфейса службы безопасности"
 	desc = "Интерфейс службы безопасности от КиберСан Индастриз. Эти нелегальные кибернетические глаза выведут интерфейс службы безопасности поверх всего что вы видите"

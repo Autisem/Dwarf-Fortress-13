@@ -263,9 +263,3 @@
 	mob_name = "zombie"
 	mob_species = /datum/species/zombie
 	assignedrole = "Zombie"
-
-/datum/outfit/abductorcorpse
-	name = "Труп Похитителя"
-	uniform = /obj/item/clothing/under/color/grey
-	shoes = /obj/item/clothing/shoes/combat
-

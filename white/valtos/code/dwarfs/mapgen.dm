@@ -23,7 +23,7 @@
 	birth_limit = 4
 	death_limit = 3
 
-/area/awaymission/vietnam/dwarfgen
+/area/dwarf/fortressgen
 	name = "Подземелье"
 	icon_state = "unexplored"
 	outdoors = TRUE
@@ -36,10 +36,10 @@
 	ambientsounds = list('white/valtos/sounds/lifeweb/caves8.ogg', 'white/valtos/sounds/lifeweb/caves_old.ogg')
 	map_generator = /datum/map_generator/cave_generator/dwarven
 /*
-/area/awaymission/vietnam/dwarfgen/Initialize(mapload)
+/area/dwarf/fortressgen/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, .proc/gen), 5 SECONDS)
 
-/area/awaymission/vietnam/dwarfgen/proc/gen()
+/area/dwarf/fortressgen/proc/gen()
 	RunGeneration()
 */

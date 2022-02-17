@@ -551,8 +551,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(OFFSET_FACE in H.dna.species.offset_features)
 				facial_overlay.pixel_x += H.dna.species.offset_features[OFFSET_FACE][1]
 				facial_overlay.pixel_y += H.dna.species.offset_features[OFFSET_FACE][2]
-				gradient_overlay.pixel_x += H.dna.species.offset_features[OFFSET_FACE][1]
-				gradient_overlay.pixel_y += H.dna.species.offset_features[OFFSET_FACE][2]
+				if(gradient_overlay)
+					gradient_overlay.pixel_x += H.dna.species.offset_features[OFFSET_FACE][1]
+					gradient_overlay.pixel_y += H.dna.species.offset_features[OFFSET_FACE][2]
 
 			standing += facial_overlay
 			if(gradient_overlay)
@@ -634,8 +635,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				if(OFFSET_FACE in H.dna.species.offset_features)
 					hair_overlay.pixel_x += H.dna.species.offset_features[OFFSET_FACE][1]
 					hair_overlay.pixel_y += H.dna.species.offset_features[OFFSET_FACE][2]
-					gradient_overlay.pixel_x += H.dna.species.offset_features[OFFSET_FACE][1]
-					gradient_overlay.pixel_y += H.dna.species.offset_features[OFFSET_FACE][2]
+					if(gradient_overlay)
+						gradient_overlay.pixel_x += H.dna.species.offset_features[OFFSET_FACE][1]
+						gradient_overlay.pixel_y += H.dna.species.offset_features[OFFSET_FACE][2]
 		if(hair_overlay.icon)
 			standing += hair_overlay
 			if(gradient_overlay)

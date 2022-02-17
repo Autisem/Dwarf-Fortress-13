@@ -1,45 +1,14 @@
-/area/awaymission/vietnam
-	name = "Дикие джунгли"
+/area/dwarf
+	name = "Подземелье"
 	icon_state = "unexplored"
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 	base_lighting_color = COLOR_WHITE
 	map_generator = /datum/map_generator/jungle_generator
 	ambientsounds = AWAY_MISSION
-
-/datum/outfit/vietcong
-	name = "Вьетконговец"
-	uniform = /obj/item/clothing/under/pants/khaki
-
-/obj/effect/mob_spawn/human/vietcong
-	name = "пещера гуков"
-	desc = "Джонни... Тут кто-то затаился под шконкой..."
-	icon = 'white/valtos/icons/prison/prison.dmi'
-	icon_state = "spwn"
-	roundstart = FALSE
-	death = FALSE
-	short_desc = "Я житель провинции Хаостан."
-	flavour_text = "Проснуться, работать в рисовом поле, лечь спать, повторить."
-	outfit = /datum/outfit/vietcong
-	assignedrole = "Vietcong"
-
-/obj/effect/mob_spawn/human/vietcong/special(mob/living/L)
-	var/list/fn = list("Сунь", "Хунь", "Дунь", "Пунь", "Ляо", "Хуао", "Мао", "Жень", "Пам")
-	var/list/ln = list("Хуй", "Дуй", "Дзинь", "Минь", "Кинь", "Пинь", "Вынь", "Синь", "Жунь", "Вунь")
-	L.real_name = "[pick(fn)] [pick(ln)]"
-	L.name = L.real_name
-	ADD_TRAIT(L, TRAIT_ASIAT, type)
-
-/mob/living/simple_animal/hostile/russian/bydlo
-	name = "Гопник"
-	desc = "Ку-ку, ёпта!"
-	icon = 'white/valtos/icons/rospilovo/sh.dmi'
-	icon_state = "gopnik"
-	icon_living = "gopnik"
-	icon_dead = "gopnik_dead"
-	icon_gib = "gopnik_bottle_dead"
-	attack_verb_continuous = "ебошит"
-	attack_verb_simple = "прописывает двоечку"
+	has_gravity = STANDARD_GRAVITY
+	ambience_index = AMBIENCE_AWAY
+	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /turf/open/floor/stone
 	name = "каменный пол"
@@ -58,13 +27,6 @@
 	if(pry_tile(I, user))
 		new /obj/item/stack/sheet/stone(get_turf(src))
 		return TRUE
-
-/turf/open/floor/stone/attackby(obj/item/I, mob/user, params)
-	if((I.tool_behaviour == TOOL_SHOVEL) && params)
-		user.visible_message(span_warning("[user] грустно долбит лопатой по [src].") , span_warning("Как я лопатой буду копать [src]?!"))
-		return FALSE
-	if(..())
-		return
 
 /turf/open/floor/stone/raw
 	name = "уродливый камень"
@@ -135,7 +97,7 @@
 
 /turf/open/floor/stone/attackby(obj/item/W, mob/user, params)
 	. = ..()
-	if(istype(W, /obj/item/blacksmith/chisel)&&isstrictlytype(src, /turf/open/floor/stone))
+	if(istype(W, /obj/item/blacksmith/chisel) && isstrictlytype(src, /turf/open/floor/stone))
 		if(busy)
 			to_chat(user, span_warning("Сейчас занято."))
 			return
@@ -145,16 +107,40 @@
 			return
 		busy = FALSE
 		to_chat(user, span_warning("Обрабатываю [src]."))
-		ChangeTurf(/turf/open/floor/stone/fancy, flags=CHANGETURF_INHERIT_AIR)
+		ChangeTurf(/turf/open/floor/stone/fancy)
 
 /turf/open/floor/stone/raw/attackby(obj/item/I, mob/user, params)
-	. = ..()
 	if(istype(I, /obj/item/pickaxe))
-		if(!digged_up)
+		if(digged_up)
 			playsound(src, pick(I.usesound), 100, TRUE)
 			if(do_after(user, 5 SECONDS, target = src))
-				if(digged_up)
+				if(QDELETED(src))
 					return
+				var/turf/TD = SSmapping.get_turf_below(src)
+				if(istype(TD, /turf/closed/mineral))
+					TD.ChangeTurf(/turf/open/floor/stone/raw)
+					var/obj/O = new /obj/structure/stairs(TD)
+					O.dir = REVERSE_DIR(user.dir)
+					ChangeTurf(/turf/open/openspace)
+					user.visible_message(span_notice("<b>[user]</b> делает лестницу вниз.") , \
+										span_notice("Делаю лестницу вниз."))
+				else
+					to_chat(user, span_warning("Внизу что-то очень твёрдое!"))
+	if((I.tool_behaviour == TOOL_SHOVEL) && params)
+		playsound(src, pick(I.usesound), 100, TRUE)
+		if(do_after(user, 5 SECONDS, target = src))
+			if(QDELETED(src))
+				return
+			if(digged_up)
+				var/turf/TD = SSmapping.get_turf_below(src)
+				if(istype(TD, /turf/closed/mineral))
+					TD.ChangeTurf(/turf/open/floor/stone/raw)
+					ChangeTurf(/turf/open/openspace)
+					user.visible_message(span_warning("<b>[user]</b> выкапывает яму!") , \
+										span_notice("Выкапываю яму."))
+				else
+					to_chat(user, span_warning("Внизу что-то очень твёрдое!"))
+			else
 				for(var/i in 1 to rand(3, 6))
 					var/obj/item/S = new /obj/item/stack/ore/stone(src)
 					S.pixel_x = rand(-8, 8)
@@ -162,8 +148,8 @@
 				digged_up = TRUE
 				user.visible_message(span_notice("<b>[user]</b> выкапывает немного камней.") , \
 									span_notice("Выкапываю немного камней."))
-		else
-			to_chat(user, span_warning("Здесь уже всё раскопано!"))
+	if(..())
+		return
 
 /turf/closed/mineral/random/vietnam
 	icon = 'white/valtos/icons/rocks.dmi'
@@ -318,11 +304,29 @@
 /turf/closed/mineral/random/dwarf_lustress/gets_drilled(user, give_exp = FALSE)
 	. = ..()
 
-	if(prob(0.8))
+	if(prob(0.3))
 		to_chat(user, span_userdanger("КАМЕНЬ ОКАЗАЛСЯ УДИВИТЕЛЬНО МЯГКИМ!"))
 		new /mob/living/simple_animal/hostile/troll(src)
 
-/area/awaymission/vietnam/dwarf
+/turf/closed/mineral/random/dwarf_lustress/attackby_secondary(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/pickaxe) && params)
+		playsound(src, pick(I.usesound), 100, TRUE)
+		if(do_after(user, 10 SECONDS, target = src))
+			if(QDELETED(src))
+				return
+			var/turf/TA = SSmapping.get_turf_above(src)
+			if(istype(TA, /turf/closed/mineral) || istype(TA, /turf/open/floor/stone/raw))
+				TA.ChangeTurf(/turf/open/openspace)
+				var/turf/TT = ChangeTurf(/turf/open/floor/stone/raw)
+				var/obj/O = new /obj/structure/stairs(TT)
+				O.dir = user.dir
+				user.visible_message(span_notice("<b>[user]</b> делает лестницу наверх.") , \
+									span_notice("Делаю лестницу наверх."))
+			else
+				to_chat(user, span_warning("Наверху что-то очень твёрдое!"))
+	return ..()
+
+/area/dwarf/fortress
 	name = "Крепость"
 	icon_state = "unexplored"
 	outdoors = TRUE

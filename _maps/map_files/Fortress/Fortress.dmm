@@ -1,46 +1,46 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aR" = (
 /turf/open/lava/smooth,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "aX" = (
 /turf/open/lava/smooth,
-/area/awaymission/vietnam/dwarfgen)
+/area/dwarf/fortressgen)
 "cK" = (
 /turf/closed/mineral/random/dwarf_lustress,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "cU" = (
 /obj/effect/baseturf_helper/beach/raw_stone,
 /turf/closed/mineral/random/dwarf_lustress,
-/area/awaymission/vietnam/dwarfgen)
+/area/dwarf/fortressgen)
 "dG" = (
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarfgen)
+/area/dwarf/fortressgen)
 "el" = (
 /turf/closed/wall/stonewall,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "eu" = (
 /mob/living/simple_animal/hostile/retaliate/frog,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "eN" = (
 /turf/open/floor/carpet/black,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "eQ" = (
 /obj/structure/dwarf_altar,
 /turf/open/floor/carpet/black,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "eV" = (
 /obj/structure/fluff/drake_statue,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "gc" = (
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "gr" = (
 /obj/structure/table/stone,
 /obj/item/damaz,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "gW" = (
 /obj/machinery/torch_fixture{
 	dir = 8;
@@ -48,7 +48,7 @@
 	pixel_x = -32
 	},
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "ha" = (
 /obj/machinery/torch_fixture{
 	dir = 4;
@@ -56,13 +56,13 @@
 	pixel_x = 32
 	},
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "hk" = (
 /obj/structure/mineral_door/heavystone{
 	dir = 1
 	},
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "hL" = (
 /obj/machinery/torch_fixture{
 	dir = 1;
@@ -70,30 +70,30 @@
 	pixel_y = 32
 	},
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "iq" = (
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "jD" = (
 /obj/structure/table/stone,
 /obj/item/flashlight/lantern,
 /turf/open/floor/carpet/green,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "kg" = (
 /turf/open/floor/carpet/green,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "kJ" = (
 /obj/structure/chair/comfy/stone/throne{
 	dir = 4
 	},
 /turf/open/floor/carpet/green,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "kL" = (
 /obj/structure/mineral_door/heavystone{
 	dir = 4
 	},
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "lq" = (
 /obj/machinery/torch_fixture{
 	dir = 4;
@@ -101,29 +101,29 @@
 	pixel_x = 32
 	},
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "lv" = (
 /obj/structure/bonfire/prelit,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "lH" = (
 /obj/item/stack/rods/ten,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "lP" = (
 /obj/machinery/microwave/furnace,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "lW" = (
 /obj/structure/table/stone,
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "lZ" = (
 /obj/structure/table/stone,
 /obj/item/flashlight/lantern,
 /obj/item/kitchen/knife,
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "md" = (
 /obj/machinery/torch_fixture{
 	dir = 2;
@@ -131,21 +131,21 @@
 	pixel_y = 0
 	},
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "mf" = (
 /obj/machinery/torch_fixture,
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "mn" = (
 /obj/structure/table/stone,
 /obj/item/food/grown/mushroom/plumphelmet,
 /obj/item/food/grown/mushroom/plumphelmet,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "nC" = (
 /obj/structure/fermenting_barrel,
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "nG" = (
 /obj/machinery/torch_fixture{
 	dir = 1;
@@ -153,33 +153,33 @@
 	pixel_y = 32
 	},
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "nH" = (
 /obj/item/reagent_containers/glass/bucket/wooden,
 /obj/structure/table/stone,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "oD" = (
 /turf/closed/mineral/random/dwarf_lustress,
-/area/awaymission/vietnam/dwarfgen)
+/area/dwarf/fortressgen)
 "oI" = (
 /obj/structure/table/stone,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "oN" = (
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "qu" = (
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "qy" = (
 /obj/effect/landmark/observer_start,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "rb" = (
 /obj/structure/closet/crate/wooden,
 /obj/item/flashlight/flare/torch,
@@ -189,34 +189,34 @@
 /obj/item/flashlight/flare/torch,
 /obj/item/flashlight/flare/torch,
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "rv" = (
 /obj/structure/grille,
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "sf" = (
 /obj/effect/landmark/latejoin,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "st" = (
 /mob/living/simple_animal/pet/cat/male,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "vf" = (
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "vx" = (
 /obj/effect/landmark/start/dwarf,
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "vC" = (
 /mob/living/simple_animal/pet/cat/female,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "vK" = (
 /obj/item/flashlight/lantern,
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "vZ" = (
 /obj/structure/stone_tile/burnt{
 	dir = 1
@@ -230,7 +230,7 @@
 	},
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "wv" = (
 /obj/structure/stone_tile/block/cracked,
 /obj/structure/stone_tile/cracked{
@@ -241,38 +241,38 @@
 	},
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "wz" = (
 /turf/closed/indestructible/black,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "wU" = (
 /obj/structure/table/stone,
 /obj/item/cultivator/rake,
 /obj/item/shovel/spade,
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "xc" = (
 /obj/machinery/hydroponics/soil,
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "yR" = (
 /obj/item/storage/bag/plants/portaseeder,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "zx" = (
 /obj/structure/table/stone,
 /obj/item/pickaxe/rusted,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "Bg" = (
 /obj/structure/bed,
 /obj/effect/mob_spawn/human/dwarf,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "Bz" = (
 /obj/structure/closet/crate,
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "Cw" = (
 /obj/structure/closet/crate/wooden,
 /obj/item/seeds/tower,
@@ -283,7 +283,7 @@
 /obj/item/seeds/grape,
 /obj/item/seeds/grape,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "DC" = (
 /obj/structure/closet/crate/wooden,
 /obj/item/seeds/plump,
@@ -292,11 +292,11 @@
 /obj/item/seeds/cotton,
 /obj/item/seeds/tobacco,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "DI" = (
 /obj/item/reagent_containers/glass/bucket/wooden,
 /turf/open/floor/stone/raw,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "DR" = (
 /obj/structure/stone_tile/burnt,
 /obj/structure/stone_tile/burnt{
@@ -310,32 +310,32 @@
 	},
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "GJ" = (
 /obj/structure/table/stone,
 /obj/item/clothing/mask/cigarette/pipe,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "II" = (
 /obj/anvil/fullsteel{
 	anchored = 1
 	},
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "IO" = (
 /obj/forge,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "JF" = (
 /obj/structure/gemcutter,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "LG" = (
 /obj/structure/table/stone,
 /obj/item/blacksmith/ingot,
 /obj/item/blacksmith/ingot,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "Mu" = (
 /obj/machinery/torch_fixture{
 	dir = 1;
@@ -344,61 +344,61 @@
 	},
 /obj/structure/workbench,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "MB" = (
 /obj/structure/table/stone,
 /obj/item/blacksmith/ingot,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "MV" = (
 /obj/structure/table/stone,
 /obj/item/blacksmith/smithing_hammer,
 /obj/item/blacksmith/tongs,
 /obj/item/flashlight/lantern,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "Ny" = (
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarfgen)
+/area/dwarf/fortressgen)
 "PL" = (
 /mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "PW" = (
 /obj/furnace,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "QJ" = (
 /obj/structure/dwarf_waterbarrel,
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "QN" = (
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "Sc" = (
 /obj/structure/stone_tile/slab/burnt,
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "Sj" = (
 /obj/structure/stone_tile/slab,
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "SG" = (
 /obj/structure/stone_tile/slab/cracked,
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "SX" = (
 /obj/structure/fluff/big_chain,
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "Tv" = (
 /turf/open/floor/stone,
-/area/awaymission/vietnam/dwarfgen)
+/area/dwarf/fortressgen)
 "TA" = (
 /obj/structure/stone_tile/burnt,
 /obj/structure/stone_tile/block/cracked{
@@ -409,7 +409,7 @@
 	},
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "Ur" = (
 /obj/structure/stone_tile/block,
 /obj/structure/stone_tile/block/cracked{
@@ -417,7 +417,7 @@
 	},
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "Vs" = (
 /obj/structure/stone_tile/cracked,
 /obj/structure/stone_tile{
@@ -431,7 +431,7 @@
 	},
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "Vz" = (
 /obj/structure/stone_tile/cracked{
 	dir = 1
@@ -442,7 +442,7 @@
 /obj/structure/stone_tile/block,
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "Wp" = (
 /obj/structure/stone_tile/cracked{
 	dir = 8
@@ -453,13 +453,13 @@
 /obj/structure/stone_tile,
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "Xe" = (
 /obj/structure/stone_tile/center/cracked,
 /obj/structure/stone_tile/surrounding,
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "XI" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 5
@@ -467,7 +467,7 @@
 /obj/structure/stone_tile/block,
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "YA" = (
 /obj/structure/stone_tile/cracked,
 /obj/structure/stone_tile/burnt{
@@ -478,7 +478,7 @@
 	},
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "YP" = (
 /obj/structure/stone_tile/block/burnt{
 	dir = 4
@@ -491,7 +491,7 @@
 	},
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "YZ" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 6
@@ -504,7 +504,7 @@
 	},
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 "Zf" = (
 /obj/structure/stone_tile/block,
 /obj/structure/stone_tile{
@@ -515,7 +515,7 @@
 	},
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/awaymission/vietnam/dwarf)
+/area/dwarf/fortress)
 
 (1,1,1) = {"
 wz

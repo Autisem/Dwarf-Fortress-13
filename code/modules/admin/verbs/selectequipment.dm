@@ -137,7 +137,6 @@
 		cached_outfits = list()
 		cached_outfits += list(outfit_entry("Осн", /datum/outfit, "Naked", priority=TRUE))
 		cached_outfits += make_outfit_entries("Осн", subtypesof(/datum/outfit) - typesof(/datum/outfit/job))
-		cached_outfits += make_outfit_entries("Джоб", typesof(/datum/outfit/job))
 
 	data["outfits"] = cached_outfits
 	return data

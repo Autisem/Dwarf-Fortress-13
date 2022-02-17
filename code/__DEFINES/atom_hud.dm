@@ -17,8 +17,6 @@
 //Don't forget to update human/New() if you change these!
 #define DATA_HUD_MEDICAL_BASIC			1
 #define DATA_HUD_MEDICAL_ADVANCED		2
-#define DATA_HUD_DIAGNOSTIC_BASIC		3
-#define DATA_HUD_DIAGNOSTIC_ADVANCED	4
 
 // Notification action types
 #define NOTIFY_JUMP "jump"
