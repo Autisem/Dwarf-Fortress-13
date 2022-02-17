@@ -1,12 +1,16 @@
 /obj/effect/liquid
+	name = "жидкость"
 	icon_state = "water"
+	anchored = TRUE
+	layer = TURF_LAYER
+	obj_flags = BLOCK_Z_OUT_DOWN
 
 /obj/effect/liquid/Initialize()
 	. = ..()
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = .proc/on_entered,
 	)
-	AddElement(/datum/element/connect_loc, src, loc_connections)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/effect/liquid/proc/on_entered(datum/source, atom/movable/movable_atom)
 	SIGNAL_HANDLER
@@ -23,15 +27,17 @@
 		return
 	var/turf/T = SSmapping.get_turf_below(get_turf(src))
 	if(T && isopenturf(T))
-		if(ismob(A))
-			A.AddElement(/datum/element/swimming)
+		if(isliving(A))
+			// some logic here
 			return
 	else
 		qdel(src)
 		return
 
 /obj/effect/liquid/magma
-	icon_state = "magma"
+	name = "магма"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "lava"
 
 /obj/effect/liquid/magma/Initialize(mapload)
 	. = ..()
@@ -42,8 +48,9 @@
 		return
 	var/turf/T = SSmapping.get_turf_below(get_turf(src))
 	if(T && isopenturf(T))
-		if(ishuman(A))
+		if(isliving(A))
 			var/mob/living/L = A
+			L.emote("agony")
 			L.dust(TRUE, FALSE)
 			return
 	else
