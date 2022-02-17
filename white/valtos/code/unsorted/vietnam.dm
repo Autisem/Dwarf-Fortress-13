@@ -23,6 +23,9 @@
 	slowdown = 0
 	var/busy = FALSE
 
+/turf/open/floor/stone/setup_broken_states()
+	return list(icon_state)
+
 /turf/open/floor/stone/crowbar_act(mob/living/user, obj/item/I)
 	if(pry_tile(I, user))
 		new /obj/item/stack/sheet/stone(get_turf(src))
@@ -42,7 +45,7 @@
 
 /turf/closed/wall/stonewall
 	name = "каменная стена"
-	desc = "Не дай боженька увидеть такое на продвинутой исследовательской станции!"
+	desc = "Самая обычная каменная стена. Изначально камни в этом регионе были серого цвета, но за много лет Дварфийская природа сделала своё дело."
 	icon = 'white/valtos/icons/stonewall.dmi'
 	icon_state = "stonewall-0"
 	base_icon_state = "stonewall"

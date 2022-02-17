@@ -1,12 +1,6 @@
 /datum/emote/living/carbon
 	mob_type_allowed_typecache = list(/mob/living/carbon)
 
-/datum/emote/living/carbon/airguitar
-	key = "airguitar"
-	ru_name = "гитарить"
-	message = "играет на воздухе и трясет головой, как шимпанзе-сафари."
-	hands_use_check = TRUE
-
 /datum/emote/living/carbon/blink
 	key = "blink"
 	ru_name = "моргнуть"
@@ -116,31 +110,11 @@
 	message_param = "поднимает %t палец."
 	hands_use_check = TRUE
 
-/datum/emote/living/carbon/tail
-	key = "tail"
-	ru_name = "махать"
-	message = "машет хвостом."
-
 /datum/emote/living/carbon/wink
 	key = "wink"
 	ru_name = "подмигнуть"
 	key_third_person = "winks"
 	message = "подмигивает."
-
-/datum/emote/living/carbon/circle
-	key = "circle"
-	ru_name = "рука-круг"
-	key_third_person = "circles"
-	hands_use_check = TRUE
-
-/datum/emote/living/carbon/circle/run_emote(mob/user, params, type_override, intentional)
-	. = ..()
-	if(!length(user.get_empty_held_indexes()))
-		to_chat(user, span_warning("Да у меня и рук свободных нет."))
-		return
-	var/obj/item/circlegame/N = new(user)
-	if(user.put_in_hands(N))
-		to_chat(user, span_notice("Изображаю круг рукой."))
 
 /datum/emote/living/carbon/slap
 	key = "slap"

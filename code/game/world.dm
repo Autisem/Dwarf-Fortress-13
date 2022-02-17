@@ -307,26 +307,9 @@ GLOBAL_VAR_INIT(hub_mimic_desc, "GO! GO! GO!")
 	var/s = ""
 
 	if(!GLOB.hub_mimic)
-		s += "<big><b>White Dream: RU</b> 18+</big>\] <a href=\"http://station13.ru\">SITE</a> | <a href=\"https://discord.gg/2WAsvv5B5v\">DISCORD</a>\n\n"
-		switch(rand(1, 6))
-			if(1)
-				s += "<img src='https://assets.station13.ru/l/w7.png'>\n\n"
-				s += "\[<big>CLASSIC STATION</big>"
-			if(2)
-				s += "<img src='https://assets.station13.ru/l/w6.png'>\n\n"
-				s += "\[<big>ANIME HENTAI</big>"
-			if(3)
-				s += "<img src='https://assets.station13.ru/l/w5.png'>\n\n"
-				s += "\[<big>GRIMDARK EDITION</big>"
-			if(4)
-				s += "<img src='https://assets.station13.ru/l/w4.png'>\n\n"
-				s += "\[<big>CYBERPUNK EDITION</big>"
-			if(5)
-				s += "<img src='https://assets.station13.ru/l/w8.png'>\n\n"
-				s += "\[<big>REMOVE KEBAB</big>"
-			if(6)
-				s += "<img src='https://assets.station13.ru/l/w9.png'>\n\n"
-				s += "\[<big>PROBABLY NOT HARAM</big>"
+		s += "<big><b>FDev: Dwarf Fotress</b></big>\] <a href=\"http://station13.ru\">SITE</a> | <a href=\"https://discord.gg/2WAsvv5B5v\">DISCORD</a>\n\n"
+		s += "<img src='https://assets.station13.ru/l/d1.gif'>\n\n"
+		s += "\[<big>SLAVES TO ARMOK</big>"
 	else
 		s += "<big><b>[GLOB.hub_mimic]: RU</b></big>\] <a href=\"http://station13.ru\">SITE</a> | <a href=\"https://discord.gg/2WAsvv5B5v\">DISCORD</a>\n\n"
 		s += "<img src='https://assets.station13.ru/l/w[rand(4, 8)].gif'>\n\n"

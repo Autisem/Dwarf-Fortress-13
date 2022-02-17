@@ -70,7 +70,7 @@
 	added_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 13, BOMB = 10)
 
 /datum/crafting_recipe/plasteel_armor_plate
-	name = "бронепластина из пластали"
+	name = "Бронепластина из пластали"
 	result =  /obj/item/stack/sheet/plasteel_armor_plate
 	time = 80
 	reqs = list(/obj/item/stack/sheet/plasteel = 10)

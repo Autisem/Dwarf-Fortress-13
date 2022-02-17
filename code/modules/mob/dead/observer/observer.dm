@@ -60,15 +60,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	// of the mob
 	var/deadchat_name
 	var/datum/spawners_menu/spawners_menu
-	var/datum/minigames_menu/minigames_menu
 
 /mob/dead/observer/Initialize()
 	set_invisibility(GLOB.observer_default_invisibility)
 
 	add_verb(src, list(
 		/mob/dead/observer/proc/dead_tele,
-		/mob/dead/observer/proc/open_spawners_menu,
-		/mob/dead/observer/proc/tray_view))
+		/mob/dead/observer/proc/open_spawners_menu))
 
 	if(icon_state in GLOB.ghost_forms_with_directions_list)
 		ghostimage_default = image(src.icon,src,src.icon_state + "_nodir")
@@ -716,8 +714,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		H.remove_hud_from(src)
 
 /mob/dead/observer/verb/toggle_data_huds()
-	set name = " 🔄 Sec/Med/Diag HUD"
-	set desc = "Toggles whether you see medical/security/diagnostic HUDs"
+	set name = " 🔄 Med HUD"
+	set desc = "Toggles whether you see medical HUDs"
 	set category = "Призрак"
 
 	if(data_huds_on) //remove old huds
@@ -728,42 +726,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		show_data_huds()
 		to_chat(src, span_notice("Data HUDs enabled."))
 		data_huds_on = 1
-
-/mob/dead/observer/verb/toggle_health_scan()
-	set name = " 🔄 Сканирование здоровья"
-	set desc = "Toggles whether you health-scan living beings on click"
-	set category = "Призрак"
-
-	if(health_scan) //remove old huds
-		to_chat(src, span_notice("Health scan disabled."))
-		health_scan = FALSE
-	else
-		to_chat(src, span_notice("Health scan enabled."))
-		health_scan = TRUE
-
-/mob/dead/observer/verb/toggle_chem_scan()
-	set name = " 🔄 Сканирование химикатов"
-	set desc = "Toggles whether you scan living beings for chemicals and addictions on click"
-	set category = "Призрак"
-
-	if(chem_scan) //remove old huds
-		to_chat(src, span_notice("Chem scan disabled."))
-		chem_scan = FALSE
-	else
-		to_chat(src, span_notice("Chem scan enabled."))
-		chem_scan = TRUE
-
-/mob/dead/observer/verb/toggle_gas_scan()
-	set name = " 🔄 Сканирование газов"
-	set desc = "Toggles whether you analyze gas contents on click"
-	set category = "Призрак"
-
-	if(gas_scan)
-		to_chat(src, span_notice("Gas scan disabled."))
-		gas_scan = FALSE
-	else
-		to_chat(src, span_notice("Gas scan enabled."))
-		gas_scan = TRUE
 
 /mob/dead/observer/verb/restore_ghost_appearance()
 	set name = "❌ Сбросить внешность призрака"
@@ -917,33 +879,3 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		spawners_menu = new(src)
 
 	spawners_menu.ui_interact(src)
-
-/mob/dead/observer/proc/tray_view()
-	set category = "Призрак"
-	set name = " 🔄 T-ray зрение"
-	set desc = "Toggles a view of sub-floor objects"
-
-	var/static/t_ray_view = FALSE
-
-	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !client?.holder && !t_ray_view)
-		to_chat(usr, span_notice("Запрещено."))
-		return
-
-	t_ray_view = !t_ray_view
-
-	var/list/t_ray_images = list()
-	var/static/list/stored_t_ray_images = list()
-	for(var/obj/O in orange(client.view, src) )
-		if(HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
-			var/image/I = new(loc = get_turf(O))
-			var/mutable_appearance/MA = new(O)
-			MA.alpha = 128
-			MA.dir = O.dir
-			I.appearance = MA
-			t_ray_images += I
-	stored_t_ray_images += t_ray_images
-	if(t_ray_images.len)
-		if(t_ray_view)
-			client.images += t_ray_images
-		else
-			client.images -= stored_t_ray_images

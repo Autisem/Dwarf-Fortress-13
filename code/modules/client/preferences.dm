@@ -278,20 +278,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(user.client.get_exp_living(TRUE) >= PLAYTIME_HARDCORE_RANDOM)
 				dat += "<tr><td><b>Режим хардкора:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HARDCORE]'>[(randomise[RANDOM_HARDCORE]) ? "Yes" : "No"]</a></td></tr>"
 
-			dat += "</table></table></td></table>"
-
-			dat += "<table width='100%'><td width='400px' align='right' valign='top'><h3 class='statusDisplay'>Тело</h3>"
-			dat += "<a href='?_src_=prefs;preference=all;task=random'>Случайное</A>"
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_BODY]'>Случайное всегда: [(randomise[RANDOM_BODY]) ? "Да" : "Нет"]</A>"
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_BODY_ANTAG]'>Когда антагонист: [(randomise[RANDOM_BODY_ANTAG]) ? "Да" : "Нет"]</A>"
-
-			dat += "<table width='400px' class='block'>"
+			dat += "</table>"
+			dat += "<h3 class='statusDisplay'>Тело</h3>"
+			dat += "<table width='360px' class='block'>"
 
 			dat += "<tr><td><b>Вид:</b></td><td align='right'><a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a>"
 			dat += "<a href='?_src_=prefs;preference=species;task=random'>Случайно</A>"
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SPECIES]'>[(randomise[RANDOM_SPECIES]) ? "Да" : "Нет"]</A></td></tr>"
+			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SPECIES]'>[(randomise[RANDOM_SPECIES]) ? "Случайно" : "Одна"]</a></td></tr>"
 
-			dat += "</table></td><td width='400px' valign='top'><h3 class='statusDisplay'>Подробности</h3><table width='400px' class='block'>"
+			dat += "<tr><td><b>Внешность:</b></td><td align='right'><a href='?_src_=prefs;preference=all;task=random'>Случайная</a>"
+			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_BODY]'>Случайная всегда: [(randomise[RANDOM_BODY]) ? "Да" : "Нет"]</a></td></tr>"
+
+			dat += "</table></td></table>"
+
+			dat += "<table width='100%'><td valign='top'><h3 class='statusDisplay'>Подробности</h3><table class='block'>"
 
 			if((HAS_FLESH in pref_species.species_traits) || (HAS_BONE in pref_species.species_traits))
 				dat += "<tr><td><b>Получение шрамов:</b></td><td align='right'><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Включено" : "Отключено"]</A>"
@@ -542,16 +542,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<tr><td><h3>Управление</h3></td></tr>"
 			dat += "<tr><td><b>Кнопки действий:</b></td><td align='right'><a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Не двигаются" : "Свободные"]</a></td></tr>"
 			dat += "<tr><td><b>Режим хоткеев:</b></td><td align='right'><a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Хоткеи" : "Ретро"]</a></td></tr>"
-			dat += "<tr><td><h3>ПДА:</h3></td></tr>"
-			dat += "<tr><td><b>Цвет меню:</b></td><td align='right'><span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Сменить</a></td></tr>"
-			dat += "<tr><td><b>Стиль:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a></td></tr>"
+
+			dat += "</table></td><td width='300px' height='300px' valign='top'>"
+
 			dat += "<tr><td><h3>Призрак:</h3></td></tr>"
 			dat += "<tr><td><b>Разговоры:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_ears'>[(chat_toggles & CHAT_GHOSTEARS) ? "Все" : "Ближайшие"]</a></td></tr>"
-			dat += "<tr><td><b>Радиопереговоры:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_radio'>[(chat_toggles & CHAT_GHOSTRADIO) ? "Все":"Не слушать"]</a></td></tr>"
 			dat += "<tr><td><b>Эмоуты:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_sight'>[(chat_toggles & CHAT_GHOSTSIGHT) ? "Все" : "Ближайшие"]</a></td></tr>"
 			dat += "<tr><td><b>Шёпот:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_whispers'>[(chat_toggles & CHAT_GHOSTWHISPER) ? "Все" : "Ближайшие"]</a></td></tr>"
-			dat += "<tr><td><b>ПДА:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_pda'>[(chat_toggles & CHAT_GHOSTPDA) ? "Все" : "Ближайшие"]</a></td></tr>"
-			dat += "<tr><td><b>Законы ИИ:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_laws'>[(chat_toggles & CHAT_GHOSTLAWS) ? "Все изменения" : "Не слушать"]</a></td></tr>"
 			dat += "<tr><td><b>Форма:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostform'>[ghost_form]</a></td></tr>"
 			dat += "<tr><td><B>Орбита:</B></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostorbit'>[ghost_orbit]</a></td></tr>"
 			dat += "<tr><td><b>Передача тела:</b></td><td align='right'><a href='?_src_=prefs;preference=ice_cream'>[(ice_cream) ? "Вкл" : "Выкл"]</a></td></tr>"
@@ -580,7 +577,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<tr><td><b>Призраки других:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostothers'>[button_name]</a></td></tr>"
 			dat += "<tr><td><h3>Внутриигровое:</h3></td></tr>"
 			dat += "<tr><td><b>Автокоррекция текста:</b></td><td align='right'><a href='?_src_=prefs;preference=disabled_autocap'>[disabled_autocap ? "Выкл" : "Вкл"]</a></td></tr>"
-			dat += "<tr><td><b>Сообщения ID-карты:</b></td><td align='right'><a href='?_src_=prefs;preference=income_pings'>[(chat_toggles & CHAT_BANKCARD) ? "Вкл" : "Выкл"]</a></td></tr>"
 			dat += "<tr><td><b>FPS:</b></td><td align='right'><a href='?_src_=prefs;preference=clientfps;task=input'>[clientfps]</a></td></tr>"
 			dat += "<tr><td><b>Параллакс:</b></td><td align='right'><a href='?_src_=prefs;preference=parallaxdown' oncontextmenu='window.location.href=\"?_src_=prefs;preference=parallaxup\";return false;'>"
 			switch (parallax)
@@ -639,8 +635,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						p_map += " (No longer exists)"
 				if(CONFIG_GET(flag/preference_map_voting))
 					dat += "<tr><td><b>Любимая карта:</b></td><td align='right'><a href='?_src_=prefs;preference=preferred_map;task=input'>[p_map]</a></td></tr>"
-
-			dat += "</table></td><td width='300px' height='300px' valign='top'>"
 
 			dat += "<h2>Спецроли</h2>"
 

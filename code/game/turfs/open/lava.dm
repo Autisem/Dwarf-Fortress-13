@@ -23,22 +23,32 @@
 	/// How much temperature we expose objects with
 	var/temperature_damage = 10000
 
-	var/obj/effect/liquid/magmus_top
+	var/spread = TRUE
+
+	var/turf/open/lava/magmus_top
 
 /turf/open/lava/Initialize(mapload)
 	. = ..()
+	if(!spread)
+		return
 	update_lava_effect()
-	LAZYADD(SSliquids.lava_turfs_list, src)
 
 /turf/open/lava/proc/update_lava_effect()
-	qdel(magmus_top)
+	if(!spread)
+		return
 
-	var/top_turf = SSmapping.get_turf_above(src)
+	LAZYADD(SSliquids.liquid_turfs_list, src)
+
+	var/turf/top_turf = SSmapping.get_turf_above(src)
 	if(isopenspace(top_turf))
-		magmus_top = new /obj/effect/liquid/magma(top_turf)
+		magmus_top = top_turf.ChangeTurf(/turf/open/lava/smooth/nospread)
 
-/turf/open/lava/proc/spread_lava()
-	for(var/turf/T as() in RANGE_TURFS(1, src) - src)
+/turf/open/lava/spread_liquid()
+	var/list/temp_turf_list = list()
+	for(var/direction in GLOB.cardinals)
+		temp_turf_list += get_step(src, direction)
+
+	for(var/turf/T as() in temp_turf_list)
 
 		if(!T || isclosedturf(T) || islava(T))
 			continue
@@ -48,8 +58,8 @@
 	return TRUE
 
 /turf/open/lava/Destroy(force)
-	qdel(magmus_top)
-	LAZYREMOVE(SSliquids.lava_turfs_list, src)
+	if(magmus_top)
+		magmus_top.ChangeTurf(/turf/open/openspace)
 	. = ..()
 
 /turf/open/lava/ex_act(severity, target)
@@ -185,7 +195,7 @@
 				L.IgniteMob()
 
 /turf/open/lava/smooth
-	name = "лава"
+	name = "магма"
 	baseturfs = /turf/open/lava/smooth
 	icon = 'icons/turf/floors/lava.dmi'
 	icon_state = "lava-255"
@@ -198,3 +208,6 @@
 	baseturfs = /turf/open/lava/smooth/lava_land_surface
 
 /turf/open/lava/smooth/airless
+
+/turf/open/lava/smooth/nospread
+	spread = FALSE

@@ -445,27 +445,6 @@ GLOBAL_LIST_INIT(alko_list, list("zarri", "maxsc", "nfogmann", "sanecman", "sran
 		else
 			winset(src, "mainwindow.split", "splitter=[pct]")
 
-/client/verb/policy()
-	set name = "📘 Показать политику"
-	set desc = "Show special server rules related to your current character."
-	set category = "OOC"
-
-	//Collect keywords
-	var/list/keywords = mob.get_policy_keywords()
-	var/header = get_policy(POLICY_VERB_HEADER)
-	var/list/policytext = list(header,"<meta http-equiv='Content-Type' content='text/html; charset=utf-8'><hr>")
-	var/anything = FALSE
-	for(var/keyword in keywords)
-		var/p = get_policy(keyword)
-		if(p)
-			policytext += p
-			policytext += "<hr>"
-			anything = TRUE
-	if(!anything)
-		policytext += "Нет особых правил."
-
-	usr << browse(policytext.Join(""),"window=policy")
-
 /client/verb/fix_stat_panel()
 	set name = "Починить ЭТУ панель"
 	set hidden = TRUE

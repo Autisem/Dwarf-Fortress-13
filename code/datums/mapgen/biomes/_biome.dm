@@ -44,7 +44,7 @@
 	turf_type = /turf/open/floor/plating/dirt/jungle/wasteland
 
 /datum/biome/water
-	turf_type = /turf/open/water/jungle
+	turf_type = /turf/open/water
 
 /datum/biome/mountain
 	turf_type = /turf/closed/mineral/random/vietnam

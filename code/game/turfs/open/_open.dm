@@ -218,3 +218,6 @@
 
 /turf/open/proc/ClearWet()//Nuclear option of immediately removing slipperyness from the tile instead of the natural drying over time
 	qdel(GetComponent(/datum/component/wet_floor))
+
+/turf/open/proc/spread_liquid()
+	return TRUE

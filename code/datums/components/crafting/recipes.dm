@@ -262,11 +262,6 @@
 	result = /obj/structure/headpike/bamboo
 	category = CAT_PRIMAL
 
-/datum/crafting_recipe/mummy/body
-	name = "Mummification Bandages (Body)"
-	result = /obj/item/clothing/under/costume/mummy
-	reqs = list(/obj/item/stack/sheet/cloth = 5)
-
 /datum/crafting_recipe/guillotine
 	name = "Guillotine"
 	result = /obj/structure/guillotine
@@ -312,7 +307,7 @@
 	if(!HAS_TRAIT(user,TRAIT_UNDERWATER_BASKETWEAVING_KNOWLEDGE))
 		return FALSE
 	var/turf/T = get_turf(user)
-	if(istype(T,/turf/open/water) || istype(T,/turf/open/floor/plating/beach/water))
+	if(istype(T,/turf/open/water))
 		return TRUE
 	var/obj/machinery/shower/S = locate() in T
 	if(S?.on)

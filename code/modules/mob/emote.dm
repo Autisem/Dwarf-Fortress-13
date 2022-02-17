@@ -33,44 +33,6 @@
 		to_chat(src, span_notice("Эмоция '[act]' невозможна. Напиши <b>*help</b> для вывода списка доступных."))
 	return FALSE
 
-/datum/emote/flip
-	key = "flip"
-	ru_name = "сальто"
-	key_third_person = "flips"
-	hands_use_check = TRUE
-	mob_type_allowed_typecache = list(/mob/living, /mob/dead/observer)
-	mob_type_ignore_stat_typecache = list(/mob/dead/observer)
-
-/datum/emote/flip/run_emote(mob/user, params , type_override, intentional)
-	. = ..()
-	if(.)
-		user.SpinAnimation(7,1)
-
-/datum/emote/flip/check_cooldown(mob/user, intentional)
-	. = ..()
-	if(.)
-		return
-	if(!can_run_emote(user, intentional=intentional))
-		return
-	if(isliving(user))
-		var/mob/living/flippy_mcgee = user
-		if(prob(90) && !(HAS_TRAIT(user, TRAIT_FREERUNNING)))
-			flippy_mcgee.Knockdown(5 SECONDS)
-			flippy_mcgee.visible_message(
-				span_notice("[flippy_mcgee] пытается сделать кувырок и падает на голову, во чудила!") ,
-				span_notice("Пытаюсь сделать изящный кувырок, но спотыкаюсь и падаю!")
-			)
-			if(prob(75))
-				flippy_mcgee.adjustBruteLoss(5)
-				if(prob(50))
-					var/obj/item/bodypart/neckflip = flippy_mcgee.get_bodypart(BODY_ZONE_HEAD)
-					neckflip.force_wound_upwards(/datum/wound/blunt/critical)
-		else
-			flippy_mcgee.visible_message(
-				span_notice("[flippy_mcgee] пытается удержать баланс после прыжка.") ,
-				span_notice("Ух...")
-			)
-
 /datum/emote/spin
 	key = "spin"
 	ru_name = "крутиться"

@@ -3,28 +3,28 @@ SUBSYSTEM_DEF(liquids)
 	init_order = INIT_ORDER_LIQUIDS
 	flags = SS_KEEP_TIMING
 	wait = 1 SECONDS
-	var/list/lava_turfs_list = list()
+	var/list/liquid_turfs_list = list()
 	var/list/currentrun = list()
 
 /datum/controller/subsystem/liquids/stat_entry(msg)
-	msg = "L:[length(lava_turfs_list)]"
+	msg = "L:[length(liquid_turfs_list)]"
 	return ..()
 
 /datum/controller/subsystem/liquids/fire(resumed = FALSE)
 	if (!resumed)
-		src.currentrun = lava_turfs_list.Copy()
+		src.currentrun = liquid_turfs_list.Copy()
 
 	var/list/currentrun = src.currentrun
 
 	while(currentrun.len)
-		var/turf/open/lava/thing = currentrun[currentrun.len]
+		var/turf/open/thing = currentrun[currentrun.len]
 		currentrun.len--
-		if(thing.spread_lava())
-			lava_turfs_list -= thing
+		if(thing.spread_liquid())
+			liquid_turfs_list -= thing
 		if (MC_TICK_CHECK)
 			return
 		CHECK_TICK
 
 /datum/controller/subsystem/liquids/Recover()
-	if (istype(SSliquids.lava_turfs_list))
-		lava_turfs_list = SSliquids.lava_turfs_list
+	if (istype(SSliquids.liquid_turfs_list))
+		liquid_turfs_list = SSliquids.liquid_turfs_list

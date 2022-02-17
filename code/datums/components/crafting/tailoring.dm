@@ -50,44 +50,6 @@
 	time = 20
 	category = CAT_CLOTHING
 
-/datum/crafting_recipe/scienceglasses
-	name = "Science Glasses"
-	result = /obj/item/clothing/glasses/sunglasses/chemical
-	time = 20
-	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
-	reqs = list(/obj/item/clothing/glasses/science = 1,
-				  /obj/item/clothing/glasses/sunglasses = 1,
-				  /obj/item/stack/cable_coil = 5)
-	category = CAT_EYEWEAR
-
-/datum/crafting_recipe/scienceglassesremoval
-	name = "Chemical Scanner removal"
-	result = /obj/item/clothing/glasses/sunglasses
-	time = 20
-	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
-	reqs = list(/obj/item/clothing/glasses/sunglasses/chemical = 1)
-	category = CAT_EYEWEAR
-
-/datum/crafting_recipe/hudpressci
-	name = "Prescription Science Goggles"
-	result = /obj/item/clothing/glasses/science/prescription
-	time = 20
-	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
-	reqs = list(/obj/item/clothing/glasses/science = 1,
-				  /obj/item/clothing/glasses/regular/ = 1,
-				  /obj/item/stack/cable_coil = 5)
-	category = CAT_EYEWEAR
-
-/datum/crafting_recipe/hudpresmeson
-	name = "Prescription Meson Scanner"
-	result = /obj/item/clothing/glasses/meson/prescription
-	time = 20
-	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
-	reqs = list(/obj/item/clothing/glasses/meson = 1,
-				  /obj/item/clothing/glasses/regular/ = 1,
-				  /obj/item/stack/cable_coil = 5)
-	category = CAT_EYEWEAR
-
 /datum/crafting_recipe/ghostsheet
 	name = "Ghost Sheet"
 	result = /obj/item/clothing/suit/ghost_sheet

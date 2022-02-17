@@ -222,7 +222,10 @@
 	if(!.)
 		return
 	var/mob/dead/new_player/new_player = hud.mymob
-	new_player.make_me_an_observer()
+	if(new_player?.client?.holder)
+		new_player.make_me_an_observer()
+	else
+		to_chat(hud.mymob, span_boldwarning("Тебе нельзя."))
 
 /atom/movable/screen/lobby/button/observe/proc/enable_observing()
 	SIGNAL_HANDLER

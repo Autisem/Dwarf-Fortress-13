@@ -180,7 +180,7 @@
 	icon_state = "sandwater_inner"
 	baseturfs = /turf/open/floor/plating/beach/coastline_t/sandwater_inner
 
-/turf/open/floor/plating/beach/water/coastline_t/sandwater_inner/setup_broken_states()
+/turf/open/floor/plating/beach/coastline_t/sandwater_inner/setup_broken_states()
 	return list("sandwater_inner")
 
 /turf/open/floor/plating/ironsand

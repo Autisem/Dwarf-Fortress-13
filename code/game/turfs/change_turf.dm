@@ -72,7 +72,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/old_lighting_corner_NW = lighting_corner_NW
 	var/old_directional_opacity = directional_opacity
 	var/old_dynamic_lumcount = dynamic_lumcount
-	var/old_rcd_memory = rcd_memory
 
 	var/old_exl = explosion_level
 	var/old_exi = explosion_id
@@ -116,7 +115,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		W.AfterChange(flags, old_type)
 
 	W.blueprint_data = old_bp
-	W.rcd_memory = old_rcd_memory
 
 	lighting_corner_NE = old_lighting_corner_NE
 	lighting_corner_SE = old_lighting_corner_SE
@@ -139,8 +137,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		if(lighting_object && !lighting_object.needs_update)
 			lighting_object.update()
 
-		for(var/turf/open/space/space_tile in RANGE_TURFS(1, src))
-			space_tile.update_starlight()
+	for(var/turf/open/lava/lava_tile in RANGE_TURFS(1, src))
+		lava_tile.update_lava_effect()
 
 	var/area/thisarea = get_area(W)
 	if(thisarea.lighting_effect)
