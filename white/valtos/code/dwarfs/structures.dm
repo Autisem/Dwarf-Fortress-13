@@ -81,6 +81,9 @@
 			var/obj/item/blacksmith/partial/P = get_primary()
 			O.name = "[P.grade][O.name][P.grade]"
 			O.calculate_smithing_stats(P.level)
+			if(istype(O, /obj/item/blacksmith))
+				var/obj/item/blacksmith/B = O
+				B.level = P.level
 		to_chat(user, span_notice("Собираю [O]."))
 		qdel(recipe)
 		inventory.Cut()
