@@ -36,8 +36,8 @@
 
 /obj/effect/liquid/magma
 	name = "магма"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "lava"
+	icon = 'icons/turf/floors/lava.dmi'
+	icon_state = "lava-255"
 
 /obj/effect/liquid/magma/Initialize(mapload)
 	. = ..()
@@ -53,6 +53,10 @@
 			L.emote("agony")
 			L.dust(TRUE, FALSE)
 			return
+		else if(isobj(A))
+			var/obj/O = A
+			O.burn()
+		return
 	else
 		qdel(src)
 		return

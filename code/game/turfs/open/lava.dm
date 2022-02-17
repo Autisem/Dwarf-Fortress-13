@@ -23,17 +23,33 @@
 	/// How much temperature we expose objects with
 	var/temperature_damage = 10000
 
-	var/obj/effect/liquid/magmus_mid
 	var/obj/effect/liquid/magmus_top
 
 /turf/open/lava/Initialize(mapload)
 	. = ..()
-	magmus_mid = new /obj/effect/liquid/magma(src)
-	magmus_top = new /obj/effect/liquid/magma(SSmapping.get_turf_above(src))
+	update_lava_effect()
+	LAZYADD(SSliquids.lava_turfs_list, src)
+
+/turf/open/lava/proc/update_lava_effect()
+	qdel(magmus_top)
+
+	var/top_turf = SSmapping.get_turf_above(src)
+	if(isopenspace(top_turf))
+		magmus_top = new /obj/effect/liquid/magma(top_turf)
+
+/turf/open/lava/proc/spread_lava()
+	for(var/turf/T as() in RANGE_TURFS(1, src) - src)
+
+		if(!T || isclosedturf(T) || islava(T))
+			continue
+
+		T.ChangeTurf(/turf/open/lava/smooth)
+
+	return TRUE
 
 /turf/open/lava/Destroy(force)
-	qdel(magmus_mid)
 	qdel(magmus_top)
+	LAZYREMOVE(SSliquids.lava_turfs_list, src)
 	. = ..()
 
 /turf/open/lava/ex_act(severity, target)
