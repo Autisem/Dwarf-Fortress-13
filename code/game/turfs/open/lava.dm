@@ -7,7 +7,7 @@
 	baseturfs = /turf/open/lava //lava all the way down
 	slowdown = 2
 
-	light_range = 2
+	light_range = 1
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
 	bullet_bounce_sound = 'sound/items/welder2.ogg'
@@ -22,6 +22,19 @@
 	var/lava_firestacks = 20
 	/// How much temperature we expose objects with
 	var/temperature_damage = 10000
+
+	var/obj/effect/liquid/magmus_mid
+	var/obj/effect/liquid/magmus_top
+
+/turf/open/lava/Initialize(mapload)
+	. = ..()
+	magmus_mid = new /obj/effect/liquid/magma(src)
+	magmus_top = new /obj/effect/liquid/magma(SSmapping.get_turf_above(src))
+
+/turf/open/lava/Destroy(force)
+	qdel(magmus_mid)
+	qdel(magmus_top)
+	. = ..()
 
 /turf/open/lava/ex_act(severity, target)
 	contents_explosion(severity, target)
