@@ -23,6 +23,15 @@
 	birth_limit = 4
 	death_limit = 3
 
+/datum/map_generator/cave_generator/dwarven/upper
+	name = "Upper Dwarfs"
+
+/datum/map_generator/cave_generator/dwarven/middle
+	name = "Middle Dwarfs"
+
+/datum/map_generator/cave_generator/dwarven/bottom
+	name = "Bottom Dwarfs"
+
 /area/dwarf/fortressgen
 	name = "Подземелье"
 	icon_state = "unexplored"
@@ -35,6 +44,16 @@
 	sound_environment = SOUND_ENVIRONMENT_CAVE
 	ambientsounds = list('white/valtos/sounds/lifeweb/caves8.ogg', 'white/valtos/sounds/lifeweb/caves_old.ogg')
 	map_generator = /datum/map_generator/cave_generator/dwarven
+
+/area/dwarf/fortressgen/upper_level
+	map_generator = /datum/map_generator/cave_generator/dwarven/upper
+
+/area/dwarf/fortressgen/middle_level
+	map_generator = /datum/map_generator/cave_generator/dwarven/middle
+
+/area/dwarf/fortressgen/bottom_level
+	map_generator = /datum/map_generator/cave_generator/dwarven/bottom
+
 /*
 /area/dwarf/fortressgen/Initialize(mapload)
 	. = ..()
