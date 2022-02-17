@@ -22,7 +22,7 @@
 	. = ..()
 
 	var/mutable_appearance/overlay = mutable_appearance('icons/turf/floors.dmi', "riverwater_motion")
-	overlay.plane = GAME_PLANE
+	overlay.plane = ABOVE_GAME_PLANE
 	overlay.layer = ABOVE_MOB_LAYER
 	overlay.alpha = 200
 	add_overlay(overlay)
@@ -79,14 +79,6 @@
 	barefootstep = FOOTSTEP_WATER
 	clawfootstep = FOOTSTEP_WATER
 	heavyfootstep = FOOTSTEP_WATER
-
-/turf/open/openspace/water/Initialize()
-	. = ..()
-	var/mutable_appearance/overlay = mutable_appearance('icons/turf/floors.dmi', "riverwater_headless")
-	overlay.plane = GAME_PLANE
-	overlay.layer = ABOVE_MOB_LAYER
-	overlay.alpha = 200
-	add_overlay(overlay)
 
 /turf/open/openspace/water/Entered(atom/movable/A)
 	if(isliving(A))
