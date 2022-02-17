@@ -50,7 +50,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	else
 		. += "Таймер: СКОРО"
 
-	var/tp = SSticker.totalPlayers + GLOB.whitelist.len
+	var/tp = SSticker.totalPlayers
 
 	. += "Игроки: [tp]"
 	. += "Готовы: [SSticker.totalPlayersReady]"
