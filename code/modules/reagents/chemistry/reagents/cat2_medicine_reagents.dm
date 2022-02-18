@@ -72,7 +72,6 @@
 			return
 		else //VICTORY ROYALE
 			to_chat(M, span_hierophant("Победил, зловещие духи исчезли, как и мои раны."))
-			M.client.give_award(/datum/award/achievement/misc/helbitaljanken, M)
 			M.revive(full_heal = TRUE, admin_revive = FALSE)
 			holder.del_reagent(type)
 			return

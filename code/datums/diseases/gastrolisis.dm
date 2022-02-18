@@ -65,7 +65,6 @@
 
 			if(shell && eyes && tongue && DT_PROB(2.5, delta_time))
 				affected_mob.set_species(/datum/species/snail)
-				affected_mob.client?.give_award(/datum/award/achievement/misc/snail, affected_mob)
 				affected_mob.visible_message(span_warning("[affected_mob] превращается в улитку!") , \
 				span_boldnotice("Кажется теперь я улитка! Пора пооолзааааать..."))
 				cure()

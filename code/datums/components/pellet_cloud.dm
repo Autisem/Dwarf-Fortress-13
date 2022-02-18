@@ -312,10 +312,6 @@
 			target.visible_message(span_danger("В[hit_part ? " в [ru_parse_zone(hit_part.name)]" : ""] <b>[target]</b> попадает [proj_name][did_damage ? ", но не оставляет даже царапины" : ""]!"), null, null, COMBAT_MESSAGE_RANGE, target)
 			to_chat(target, span_userdanger("В[hit_part ? " в [ru_parse_zone(hit_part.name)]" : ""] попадает [proj_name]!"))
 
-	for(var/M in purple_hearts)
-		var/mob/living/martyr = M
-		if(martyr.stat == DEAD && martyr.client)
-			martyr.client.give_award(/datum/award/achievement/misc/lookoutsir, martyr)
 	UnregisterSignal(parent, COMSIG_PARENT_PREQDELETED)
 	if(queued_delete)
 		qdel(parent)

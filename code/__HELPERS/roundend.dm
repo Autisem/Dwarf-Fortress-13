@@ -148,29 +148,6 @@
 	for(var/client/C in antag_coins)
 		C.process_greentext(antag_coins[C]["reward"], antag_coins[C]["completed"])
 
-///Handles random hardcore point rewarding if it applies.
-/datum/controller/subsystem/ticker/proc/HandleRandomHardcoreScore(client/player_client)
-	if(!ishuman(player_client.mob))
-		return FALSE
-	var/mob/living/carbon/human/human_mob = player_client.mob
-	if(!human_mob.hardcore_survival_score) ///no score no glory
-		return FALSE
-
-	if(human_mob.mind && (human_mob.mind.special_role || length(human_mob.mind.antag_datums) > 0))
-		var/didthegamerwin = TRUE
-		for(var/a in human_mob.mind.antag_datums)
-			var/datum/antagonist/antag_datum = a
-			for(var/i in antag_datum.objectives)
-				var/datum/objective/objective_datum = i
-				if(!objective_datum.check_completion())
-					didthegamerwin = FALSE
-		if(!didthegamerwin)
-			return FALSE
-		player_client.give_award(/datum/award/score/hardcore_random, human_mob, round(human_mob.hardcore_survival_score))
-	else if(human_mob.onCentCom())
-		player_client.give_award(/datum/award/score/hardcore_random, human_mob, round(human_mob.hardcore_survival_score))
-
-
 /datum/controller/subsystem/ticker/proc/declare_completion()
 	set waitfor = FALSE
 
@@ -183,7 +160,6 @@
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_end_events)
 
-	var/speed_round = FALSE
 	if(world.time - SSticker.round_start_time <= 300 SECONDS)
 		speed_round = TRUE
 
@@ -194,10 +170,6 @@
 
 		spawn(-1) // do it async
 			C.process_endround_metacoin()
-
-		if(speed_round)
-			C.give_award(/datum/award/achievement/misc/speed_round, C.mob)
-		HandleRandomHardcoreScore(C)
 
 	var/popcount = gather_roundend_feedback()
 	display_report(popcount)

@@ -79,8 +79,8 @@ SUBSYSTEM_DEF(title)
 			if(GLOB.disable_fucking_station_shit_please)
 				caa["Выживший"] += list(player.key)
 				continue
-			if(player.client.prefs.job_preferences["Assistant"])
-				role_thing = "Ассистент"
+			if(player.client.prefs.job_preferences["Dwarf"])
+				role_thing = "Дварф"
 			else
 				for(var/j in player.client.prefs.job_preferences)
 					if(player.client.prefs.job_preferences[j] == JP_HIGH)
