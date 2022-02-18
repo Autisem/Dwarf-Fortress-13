@@ -160,9 +160,6 @@
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_end_events)
 
-	if(world.time - SSticker.round_start_time <= 300 SECONDS)
-		speed_round = TRUE
-
 	for(var/client/C in GLOB.clients)
 		if(!C.credits)
 			C.RollCredits()
