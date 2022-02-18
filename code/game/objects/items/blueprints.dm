@@ -155,7 +155,6 @@
 		return AREA_SPACE
 	var/list/SPECIALS = list(
 		/area/centcom,
-		/area/tdome,
 		/area/wizard_station,
 	)
 	for (var/type in SPECIALS)

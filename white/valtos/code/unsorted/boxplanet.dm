@@ -1,45 +1,5 @@
 ///////////////////////////////////////////////
 
-/area/boxplanet
-	icon_state = "mining"
-	has_gravity = STANDARD_GRAVITY
-	flags_1 = NONE
-	area_flags = FLORA_ALLOWED
-
-/area/boxplanet/surface
-	name = "Поверхность"
-	outdoors = TRUE
-	static_lighting = TRUE
-	icon_state = "explored"
-	always_unpowered = TRUE
-	//poweralm = FALSE
-	power_environ = FALSE
-	power_equip = FALSE
-	power_light = FALSE
-	requires_power = TRUE
-	ambientsounds = MINING
-
-/area/boxplanet/underground
-	name = "Пещеры"
-	outdoors = TRUE
-	always_unpowered = TRUE
-	requires_power = TRUE
-	//poweralm = FALSE
-	power_environ = FALSE
-	power_equip = FALSE
-	power_light = FALSE
-	ambientsounds = MINING
-	area_flags = MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
-
-/area/boxplanet/underground/unexplored
-	icon_state = "unexplored"
-
-/area/boxplanet/underground/explored
-	name = "Подземелье"
-	area_flags = FLORA_ALLOWED
-
-///////////////////////////////////////////////
-
 /obj/structure/flora/tree/boxplanet
 	name = "что-то"
 	desc = "АААААААААААААААААААААААААААА"

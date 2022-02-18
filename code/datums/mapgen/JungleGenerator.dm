@@ -86,10 +86,3 @@
 	desc = "If you see this, and you're not a ghost, yell at coders"
 	icon = 'icons/turf/debug.dmi'
 	icon_state = "genturf"
-
-/area/mine/planetgeneration
-	name = "planet generation area"
-	static_lighting = FALSE
-	base_lighting_alpha = 255
-	base_lighting_color = COLOR_WHITE
-	map_generator = /datum/map_generator/jungle_generator

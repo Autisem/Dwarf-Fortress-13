@@ -1,6 +1,6 @@
 /area/dwarf
 	name = "Подземелье"
-	icon_state = "unexplored"
+	icon_state = "caves"
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 	base_lighting_color = COLOR_WHITE
@@ -9,6 +9,25 @@
 	has_gravity = STANDARD_GRAVITY
 	ambience_index = AMBIENCE_AWAY
 	sound_environment = SOUND_ENVIRONMENT_ROOM
+
+/area/dwarf/fortress
+	name = "Крепость"
+	icon_state = "fortress"
+	outdoors = TRUE
+	static_lighting = TRUE
+	base_lighting_alpha = 0
+	ambientsounds = AWAY_MISSION
+	requires_power = FALSE
+	sound_environment = SOUND_ENVIRONMENT_CAVE
+	ambientsounds = list('white/valtos/sounds/lifeweb/caves8.ogg', 'white/valtos/sounds/lifeweb/caves_old.ogg')
+	env_temp_relative = 20
+
+/area/dwarf/Entered(atom/movable/M, oldloc)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!H.GetComponent(/datum/component/realtemp))
+			H.AddComponent(/datum/component/realtemp)
 
 /turf/open/floor/stone
 	name = "каменный пол"
@@ -328,14 +347,3 @@
 			else
 				to_chat(user, span_warning("Наверху что-то очень твёрдое!"))
 	return ..()
-
-/area/dwarf/fortress
-	name = "Крепость"
-	icon_state = "unexplored"
-	outdoors = TRUE
-	static_lighting = TRUE
-	base_lighting_alpha = 0
-	ambientsounds = AWAY_MISSION
-	requires_power = FALSE
-	sound_environment = SOUND_ENVIRONMENT_CAVE
-	ambientsounds = list('white/valtos/sounds/lifeweb/caves8.ogg', 'white/valtos/sounds/lifeweb/caves_old.ogg')

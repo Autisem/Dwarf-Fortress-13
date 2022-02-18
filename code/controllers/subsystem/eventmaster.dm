@@ -65,8 +65,8 @@ SUBSYSTEM_DEF(eventmaster)
 		if(EVENT_READJUST_TO_WARFARE)
 			to_chat(world, span_heavy_brass("Отключение всех ролей..."))
 			to_chat(world, span_heavy_brass("Перестройка под боевые действия..."))
-			action_area = GLOB.areas_by_type[/area/ctf/warfare]
-			second_area = GLOB.areas_by_type[/area/ctf/warfare/indoors]
+			action_area = GLOB.areas_by_type[/area/dwarf]
+			second_area = GLOB.areas_by_type[/area/dwarf]
 			action_area?.luminosity = 1
 			second_area?.luminosity = 1
 			adjust_areas_light()

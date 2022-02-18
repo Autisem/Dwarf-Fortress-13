@@ -112,48 +112,6 @@
 /area/centcom/supplypod/loading/ert
 	name = "Дропподы ЦК: Десант"
 	loading_id = "5"
-//THUNDERDOME
-
-/area/tdome
-	name = "Thunderdome"
-	icon_state = "yellow"
-	static_lighting = TRUE
-	requires_power = FALSE
-	has_gravity = STANDARD_GRAVITY
-	flags_1 = NONE
-
-/area/tdome/arena
-	name = "Thunderdome Arena"
-	icon_state = "thunder"
-	static_lighting = FALSE
-	base_lighting_alpha = 255
-	base_lighting_color = COLOR_WHITE
-
-/area/tdome/arena_source
-	name = "Thunderdome Arena Template"
-	icon_state = "thunder"
-	static_lighting = FALSE
-	base_lighting_alpha = 255
-	base_lighting_color = COLOR_WHITE
-
-/area/tdome/tdome1
-	name = "Thunderdome (Team 1)"
-	icon_state = "green"
-
-/area/tdome/tdome2
-	name = "Thunderdome (Team 2)"
-	icon_state = "green"
-
-/area/tdome/tdomeadmin
-	name = "Thunderdome (Admin.)"
-	icon_state = "purple"
-
-/area/tdome/tdomeobserve
-	name = "Thunderdome (Observer.)"
-	icon_state = "purple"
-
-
-//ENEMY
 
 //Wizard
 /area/wizard_station
@@ -165,18 +123,6 @@
 	area_flags = VALID_TERRITORY | UNIQUE_AREA | NOTELEPORT
 	flags_1 = NONE
 	network_root_id = "MAGIC_NET"
-
-//Abductors
-/area/abductor_ship
-	name = "Корабль похитителей"
-	icon_state = "yellow"
-	requires_power = FALSE
-	area_flags = UNIQUE_AREA | NOTELEPORT
-	base_lighting_color = COLOR_WHITE
-	base_lighting_alpha = 255
-	has_gravity = STANDARD_GRAVITY
-	flags_1 = NONE
-	network_root_id = "ALIENS"
 
 //Syndicates
 /area/syndicate_mothership
@@ -202,53 +148,3 @@
 	name = "Синдикат: Элитный отряд"
 	icon_state = "syndie-elite"
 	network_root_id = SYNDICATE_NETWORK_ROOT
-//CAPTURE THE FLAG
-
-/area/ctf
-	name = "Захват флага"
-	icon_state = "yellow"
-	requires_power = FALSE
-	static_lighting = FALSE
-	base_lighting_color = COLOR_WHITE
-	base_lighting_alpha = 255
-	has_gravity = STANDARD_GRAVITY
-	flags_1 = NONE
-
-/area/ctf/control_room
-	name = "Захват флага: Комната управления A"
-
-/area/ctf/control_room2
-	name = "Захват флага: Комната управления B"
-
-/area/ctf/central
-	name = "Захват флага: Центр"
-
-/area/ctf/main_hall
-	name = "Захват флага: Основной коридор A"
-
-/area/ctf/main_hall2
-	name = "Захват флага: Основной коридор B"
-
-/area/ctf/corridor
-	name = "Захват флага: Коридор A"
-
-/area/ctf/corridor2
-	name = "Захват флага: Коридор B"
-
-/area/ctf/flag_room
-	name = "Захват флага: Флаг A"
-
-/area/ctf/flag_room2
-	name = "Захват флага: Флаг B"
-
-/area/ctf/warfare
-	name = "Астральный Забив"
-	static_lighting = TRUE
-	base_lighting_color = COLOR_WHITE
-	base_lighting_alpha = 0
-
-/area/ctf/warfare/indoors
-	name = "Астральный Забив: Помещения"
-	static_lighting = TRUE
-	base_lighting_color = COLOR_WHITE
-	base_lighting_alpha = 0

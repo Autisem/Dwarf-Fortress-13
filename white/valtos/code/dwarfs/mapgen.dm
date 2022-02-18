@@ -32,9 +32,9 @@
 /datum/map_generator/cave_generator/dwarven/bottom
 	name = "Bottom Dwarfs"
 
-/area/dwarf/fortressgen
+/area/dwarf/cavesgen
 	name = "Подземелье"
-	icon_state = "unexplored"
+	icon_state = "cavesgen"
 	outdoors = TRUE
 	static_lighting = TRUE
 	base_lighting_alpha = 0
@@ -45,20 +45,11 @@
 	ambientsounds = list('white/valtos/sounds/lifeweb/caves8.ogg', 'white/valtos/sounds/lifeweb/caves_old.ogg')
 	map_generator = /datum/map_generator/cave_generator/dwarven
 
-/area/dwarf/fortressgen/upper_level
+/area/dwarf/cavesgen/upper_level
 	map_generator = /datum/map_generator/cave_generator/dwarven/upper
 
-/area/dwarf/fortressgen/middle_level
+/area/dwarf/cavesgen/middle_level
 	map_generator = /datum/map_generator/cave_generator/dwarven/middle
 
-/area/dwarf/fortressgen/bottom_level
+/area/dwarf/cavesgen/bottom_level
 	map_generator = /datum/map_generator/cave_generator/dwarven/bottom
-
-/*
-/area/dwarf/fortressgen/Initialize(mapload)
-	. = ..()
-	addtimer(CALLBACK(src, .proc/gen), 5 SECONDS)
-
-/area/dwarf/fortressgen/proc/gen()
-	RunGeneration()
-*/

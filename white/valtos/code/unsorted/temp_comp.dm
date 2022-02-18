@@ -5,20 +5,7 @@ PROCESSING_SUBSYSTEM_DEF(realtemp)
 	wait = 20
 
 /area
-	var/env_temp_relative = 20
-
-/area/awaymission/chilly/Entered(atom/movable/M, oldloc)
-	. = ..()
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(!H.GetComponent(/datum/component/realtemp))
-			H.AddComponent(/datum/component/realtemp)
-
-/area/awaymission/chilly/Exited(atom/movable/M)
-	. = ..()
-	//if(ishuman(M))
-	//	var/mob/living/carbon/human/H = M
-	//	qdel(H.GetComponent(/datum/component/realtemp))
+	var/env_temp_relative = 4
 
 /datum/component/realtemp
 	var/mob/living/carbon/human/owner

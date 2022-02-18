@@ -4,17 +4,17 @@
 /area/dwarf/fortress)
 "aX" = (
 /turf/open/water,
-/area/dwarf/fortressgen/middle_level)
+/area/dwarf/cavesgen/middle_level)
 "cK" = (
 /turf/closed/mineral/random/dwarf_lustress,
 /area/dwarf/fortress)
 "cU" = (
 /obj/effect/baseturf_helper/beach/raw_stone,
 /turf/closed/mineral/random/dwarf_lustress,
-/area/dwarf/fortressgen/upper_level)
+/area/dwarf/cavesgen/upper_level)
 "dG" = (
 /turf/open/floor/stone/raw,
-/area/dwarf/fortressgen/upper_level)
+/area/dwarf/cavesgen/upper_level)
 "el" = (
 /turf/closed/wall/stonewall,
 /area/dwarf/fortress)
@@ -35,7 +35,7 @@
 /area/dwarf/fortress)
 "fv" = (
 /turf/closed/mineral/random/dwarf_lustress,
-/area/dwarf/fortressgen/middle_level)
+/area/dwarf/cavesgen/middle_level)
 "fN" = (
 /obj/structure/mineral_door/heavystone{
 	dir = 4
@@ -182,10 +182,10 @@
 /area/dwarf/fortress)
 "nV" = (
 /turf/closed/mineral/random/dwarf_lustress,
-/area/dwarf/fortressgen/upper_level)
+/area/dwarf/cavesgen/upper_level)
 "oD" = (
 /turf/closed/mineral/random/dwarf_lustress,
-/area/dwarf/fortressgen/bottom_level)
+/area/dwarf/cavesgen/bottom_level)
 "oI" = (
 /obj/structure/table/stone,
 /turf/open/floor/stone,
@@ -229,7 +229,7 @@
 /area/dwarf/fortress)
 "sf" = (
 /turf/open/lava/smooth,
-/area/dwarf/fortressgen/bottom_level)
+/area/dwarf/cavesgen/bottom_level)
 "st" = (
 /mob/living/simple_animal/pet/cat/male,
 /turf/open/floor/stone,
@@ -285,7 +285,7 @@
 /area/dwarf/fortress)
 "xc" = (
 /turf/closed/wall/stonewall,
-/area/dwarf/fortressgen/middle_level)
+/area/dwarf/cavesgen/middle_level)
 "yR" = (
 /obj/anvil/fullsteel{
 	anchored = 1
@@ -380,14 +380,14 @@
 /area/dwarf/fortress)
 "MB" = (
 /turf/open/floor/stone/raw,
-/area/dwarf/fortressgen/middle_level)
+/area/dwarf/cavesgen/middle_level)
 "MV" = (
 /obj/item/pickaxe/rusted,
 /turf/open/floor/stone/raw,
-/area/dwarf/fortressgen/upper_level)
+/area/dwarf/cavesgen/upper_level)
 "Ny" = (
 /turf/open/openspace,
-/area/dwarf/fortressgen/upper_level)
+/area/dwarf/cavesgen/upper_level)
 "PL" = (
 /mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient,
 /turf/open/openspace,
@@ -395,7 +395,7 @@
 "PW" = (
 /obj/effect/landmark/latejoin,
 /turf/open/floor/stone/raw,
-/area/dwarf/fortressgen/upper_level)
+/area/dwarf/cavesgen/upper_level)
 "QJ" = (
 /obj/structure/table/stone,
 /obj/item/cultivator/rake,
@@ -429,7 +429,7 @@
 /area/dwarf/fortress)
 "Tv" = (
 /turf/open/floor/stone,
-/area/dwarf/fortressgen/upper_level)
+/area/dwarf/cavesgen/upper_level)
 "TA" = (
 /obj/structure/stone_tile/burnt,
 /obj/structure/stone_tile/block/cracked{

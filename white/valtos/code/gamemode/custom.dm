@@ -315,33 +315,3 @@
 		transform = M
 		icon = smooth_icon
 		icon_state = "[icon_state]-[smoothing_junction]"
-
-/********************** New mining areas **************************/
-
-/area/thetaMining
-	icon_state = "mining"
-	has_gravity = STANDARD_GRAVITY
-	flags_1 = NONE
-
-/area/thetaMining/surface
-	name = "Mining Theta"
-	icon_state = "purple"
-	always_unpowered = TRUE
-	power_environ = FALSE
-	power_equip = FALSE
-	power_light = TRUE
-	requires_power = TRUE
-	ambientsounds = MINING
-	static_lighting = TRUE
-	outdoors = TRUE
-
-/area/thetaMining/underground
-	name = "Caves"
-	icon_state = "red"
-	always_unpowered = TRUE
-	requires_power = TRUE
-	power_environ = FALSE
-	power_equip = FALSE
-	power_light = FALSE
-	ambientsounds = MINING
-	static_lighting = FALSE
