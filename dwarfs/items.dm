@@ -1,5 +1,5 @@
 /obj/item/gem
-	name = "необработанный гем"
+	name = "uncut gem"
 	desc = "Крутой"
 	w_class = WEIGHT_CLASS_TINY
 	icon = 'white/rashcat/icons/dwarfs/objects/gems.dmi'
@@ -15,50 +15,50 @@
 /obj/item/gem/cut
 
 /obj/item/gem/diamond
-	name = "необработанный алмаз"
-	desc = "Алмаз. Необработанный"
+	name = "uncut diamond"
+	desc = "Diamond. Uncut"
 	icon_state = "diamond_uncut"
 	cut_type = /obj/item/gem/cut/diamond
 	scan_state = "diamond"
 	max_amount = 2
 
 /obj/item/gem/cut/diamond
-	name = "алмаз"
-	desc = "Алмаз"
+	name = "diamond"
+	desc = "Diamond"
 	icon_state = "diamond"
 
 /obj/item/gem/ruby
-	name = "необработанный рубин"
-	desc = "По нему видно что в таком виде не годится даже на палку"
+	name = "uncut ruby"
+	desc = "Ruby. Uncut."
 	icon_state = "ruby_uncut"
 	cut_type = /obj/item/gem/cut/ruby
 	scan_state = "ruby"
 
 /obj/item/gem/cut/ruby
-	name = "рубин"
-	desc = "Так и просит ебани меня на палку братан"
+	name = "ruby"
+	desc = "Ruby."
 	icon_state = "ruby"
 
 /obj/item/gem/saphire
-	name = "необработанный сапфир"
-	desc = "Такой камень не подошел бы королю"
+	name = "uncut saphire"
+	desc = "Saphire. Uncut."
 	icon_state = "saphire_uncut"
 	cut_type = /obj/item/gem/cut/saphire
 	scan_state = "saphire"
 
 /obj/item/gem/cut/saphire
-	name = "сапфир"
-	icon_state = "saphire"
+	name = "saphire"
+	icon_state = "Saphire."
 	desc = "Такой камень подошел бы королю."
 
 /obj/item/damaz
-	name = "Дамаз Крон"
-	desc = "Обидно."
+	name = "Damaz"
+	desc = "A book?"
 	icon = 'white/rashcat/icons/dwarfs/objects/tools.dmi'
 	icon_state = "damaz"
 
 /obj/item/damaz/proc/can_use(mob/user)
 	var/allowed = isdwarf(user)
 	if(!allowed)
-		to_chat(user, span_warning("Ты не достоин!"))
+		to_chat(user, span_warning("Thy are not worthy!"))
 	return allowed

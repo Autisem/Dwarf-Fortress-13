@@ -1,6 +1,6 @@
 /obj/structure/workbench
-	name = "верстак"
-	desc = "Почти майнкрафт"
+	name = "workbench"
+	desc = "Almost that cube game."
 	icon = 'white/kacherkin/icons/dwarfs/obj/workbench.dmi'
 	icon_state = "workbench"
 	density = TRUE
@@ -25,11 +25,11 @@
 /obj/structure/workbench/attack_hand(mob/user)
 	. = ..()
 	if(busy)
-		to_chat(user, span_notice("Сейчас занято."))
+		to_chat(user, span_notice("Currently busy."))
 		return
 	if(recipe && inventory.len && !ready)
-		var/answer = tgui_alert(user, "Отменить нынешнюю сборку?", "Верстак", list("Да", "Нет"))
-		if(answer != "Да" || !answer)
+		var/answer = tgui_alert(user, "Cancel current assembly?", "Workbench", list("Yes", "No"))
+		if(answer != "Yes" || !answer)
 			return
 		for(var/I in inventory)
 			var/atom/movable/M = I
@@ -37,7 +37,7 @@
 		qdel(recipe)
 		recipe = null
 		inventory.Cut()
-		to_chat(user, span_notice("Отменяю сборку [recipe]."))
+		to_chat(user, span_notice("You cancel the assembly of [recipe]."))
 		return
 	if(ready)
 		busy = TRUE
@@ -54,7 +54,7 @@
 			if(istype(O, /obj/item/blacksmith))
 				var/obj/item/blacksmith/B = O
 				B.level = P.level
-		to_chat(user, span_notice("Собираю [O]."))
+		to_chat(user, span_notice("You assemble [O]."))
 		qdel(recipe)
 		inventory.Cut()
 		recipe = null
@@ -68,17 +68,17 @@
 			continue
 		recipes[r.name] = r
 		recipe_names+=r.name
-	var/answer = tgui_input_list(user, "Что собираем?", "Верстак", recipe_names)
+	var/answer = tgui_input_list(user, "What to assemble?", "Workbench", recipe_names)
 	if(!answer)
 		return
 	recipe = recipes[answer]
-	to_chat(user, span_notice("Выбираю [recipe.name] для сборки."))
+	to_chat(user, span_notice("You select [recipe.name] for assembly."))
 
 /obj/structure/workbench/examine(mob/user)
 	. = ..()
 	if(recipe)
-		.+="<hr>Собирается [recipe.name]."
-		var/text = "Требуется"
+		.+="<hr>Currenly [recipe.name] is assembled."
+		var/text = "Required"
 		for(var/S in recipe.reqs)
 			var/obj/item/stack/I = new S()
 			var/r = recipe.reqs[I.type] - amount(I)
@@ -86,12 +86,12 @@
 			if(r)
 				text+="<br>[I.name]: [govno]"
 			qdel(I)
-		if(text!="Требуется")
+		if(text != "Required")
 			.+="<hr>[text]"
 		else
-			.+="<hr>[recipe.name] готов к сборке."
+			.+="<hr>[recipe.name] is ready to be assembled."
 	else
-		.+="<hr>Верстак пустой!"
+		.+="<hr>[src] is empty!"
 
 /obj/structure/workbench/proc/amount(obj/item/I)
 	. = 0
@@ -137,9 +137,9 @@
 					qdel(S)
 			user.transferItemToLoc(I, src)
 			inventory+=I
-			visible_message(span_notice("[user] кладет [I] на [src].") ,span_notice("Кладу [I] на [src]."))
+			visible_message(span_notice("[user] places [I] on \the [src].") ,span_notice("You place [I] on \the [src]."))
 			check_ready()
 		else
-			to_chat(user, span_notice("В [src] больше не влазит."))
+			to_chat(user, span_warning("There is enough [I]."))
 	else
 		..()

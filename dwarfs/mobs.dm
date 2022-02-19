@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/frogman
-	name = "Фрогман"
-	desc = "Не имеет ничего общего с Фогманом"
+	name = "frogman"
+	desc = "Humanoid frog."
 	icon = 'white/rashcat/icons/dwarfs/mobs/frogges.dmi'
 	icon_state = "frogman"
 	icon_dead = "frogman_dead"
@@ -29,8 +29,8 @@
 	maxbodytemp = 1600
 
 /mob/living/simple_animal/hostile/shrooman
-	name = "Миконид"
-	desc = "Я смотрю в глазок – на пороге грибы. Уж лучше б это были свидетели Иеговы."
+	name = "shrooman"
+	desc = "When did it learn to walk?"
 	icon = 'white/kacherkin/icons/dwarfs/mobs/dwarfmobs.dmi'
 	icon_state = "muchroom2"
 	icon_dead = "muchroom_dead"
@@ -78,8 +78,8 @@
 
 
 /mob/living/simple_animal/hostile/shrooman/fighter
-	name = "Миконид-боец"
-	desc = "Среднее растение, законно-нейтральное."
+	name = "fighter shrooman"
+	desc = "Looks dangerous."
 	icon = 'white/kacherkin/icons/dwarfs/mobs/dwarfmobs.dmi'
 	icon_state = "muchroom1"
 	icon_dead = "muchroom_dead"
@@ -92,7 +92,7 @@
 
 
 /mob/living/simple_animal/hostile/mech_frog
-	name = "Меха-лягуха"
+	name = "mecha-frog"
 	desc = "All systems nominal."
 	icon = 'white/rashcat/icons/dwarfs/mobs/frogges.dmi'
 	icon_state = "frog_mech"
@@ -122,8 +122,8 @@
 	maxbodytemp = 1600
 
 /mob/living/simple_animal/hostile/froggernaut
-	name = "Бурый Увалень"
-	desc = "Отвратительные и ужасные бурые увальни из глубин земли роются в пещерных комплексах, подземельях и поселениях Подземья в поисках еды."
+	name = "froggernaut"
+	desc = "What the fuck?"
 	icon = 'white/kacherkin/icons/dwarfs/mobs/46x46.dmi'
 	icon_state = "umber_hulk"
 	speed = 2

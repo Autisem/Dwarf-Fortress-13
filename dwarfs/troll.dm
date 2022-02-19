@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/troll
-	name = "тролль"
-	desc = "Милый."
+	name = "troll"
+	desc = "Cute."
 	icon = 'white/rashcat/icons/dwarfs/mobs/troll.dmi'
 	icon_state = "troll"
 	icon_living = "troll"
@@ -47,7 +47,7 @@
 					for(var/mob/living/L in T.contents)
 						L.apply_damage_type(20, BRUTE)
 						L.Paralyze(100)
-						to_chat(L, span_userdanger("ГРУДА КАМНЕЙ ПАДАЕТ С ПОТОЛКА ПРЯМО НА МЕНЯ!"))
+						to_chat(L, span_userdanger("A PILE OF STONE IS FALLING ON ME!"))
 					T.ChangeTurf(/turf/closed/mineral/random/dwarf_lustress)
 
 /obj/effect/temp_visual/rockfall

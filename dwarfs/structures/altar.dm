@@ -1,6 +1,6 @@
 /obj/structure/dwarf_altar
-	name = "Алтарь"
-	desc = "Руны оо мм ммм."
+	name = "Altar"
+	desc = "Mysterious."
 	icon = 'white/rashcat/icons/dwarfs/objects/altar.dmi'
 	icon_state = "altar_inactive"
 	density = TRUE
@@ -29,11 +29,11 @@
 /obj/structure/dwarf_altar/proc/summon_dwarf(mob/user)
 	if(!active)
 		return FALSE
-	var/dwarf_ask = tgui_alert(usr, "Стать дворфом?", "КОПАТЬ?", list("Да", "Нет"))
-	if(dwarf_ask != "Да" || !src || QDELETED(src) || QDELETED(user))
+	var/dwarf_ask = tgui_alert(usr, "Become a dwarf?", "DIG?", list("Yes", "No"))
+	if(dwarf_ask != "Yes" || !src || QDELETED(src) || QDELETED(user))
 		return FALSE
 	if(!active)
-		to_chat(user, span_warning("Уже занято!"))
+		to_chat(user, span_warning("Already used!"))
 		return FALSE
 	var/mob/living/carbon/human/D = new /mob/living/carbon/human(loc)
 	D.set_species(/datum/species/dwarf)
@@ -41,7 +41,7 @@
 	D.key = user.key
 	D.mind.assigned_role = "Dwarf"
 	active = FALSE
-	to_chat(D, "<span class='big bold'>Я Дварф в невероятно диких условиях.</span>")
+	to_chat(D, "<span class='big bold'>I am a dwarf in god knows where.</span>")
 	deactivate()
 
 /obj/structure/dwarf_altar/proc/deactivate()
@@ -49,7 +49,7 @@
 
 /obj/structure/dwarf_altar/attackby(obj/item/I, mob/living/user, params)
 	if((I.type in allowed_resources))
-		to_chat(user, span_notice("Жертвую [I.name]"))
+		to_chat(user, span_notice("You sacrifice [I.name]"))
 		resources+=allowed_resources[I.type]
 		qdel(I)
 	else if(istype(I, /obj/item/damaz))
@@ -63,27 +63,27 @@
 /obj/structure/dwarf_altar/attack_hand(mob/user)
 	if(ishuman(user) && !isdwarf(user))
 		if(!active)
-			to_chat(user, span_warning("Алтарь не готов!"))
+			to_chat(user, span_warning("[src] is not ready!"))
 			return
 		var/mob/living/carbon/human/M = user
-		var/dwarf_ask = tgui_alert(M, "Стать дворфом?", "КОПАТЬ?", list("Да", "Нет"))
-		if(dwarf_ask != "Да" || !src || QDELETED(src) || QDELETED(M))
+		var/dwarf_ask = tgui_alert(M, "Become a dwarf?", "DIG?", list("Yes", "No"))
+		if(dwarf_ask != "Yes" || !src || QDELETED(src) || QDELETED(M))
 			return FALSE
 		if(!active)
-			to_chat(M, span_warning("Не повезло!"))
+			to_chat(M, span_warning("Already used!"))
 			return FALSE
 		M.set_species(/datum/species/dwarf)
 		M.unequip_everything()
 		M.equipOutfit(/datum/outfit/dwarf)
 		active = FALSE
-		to_chat(M, span_notice("Становлюсь дворфом."))
+		to_chat(M, span_notice("You become a dwarf."))
 
 /obj/structure/dwarf_altar/proc/perform_rite(rite, mob/user)
 	var/datum/ritual/R = new rite
 	if(busy)
 		return
 	busy = TRUE
-	to_chat(user, span_notice("Начинаю ритуал"))
+	to_chat(user, span_notice("You start a ritual."))
 	activate()
 	if(!do_after(user, 3 SECONDS, target = src))
 		busy = FALSE
@@ -96,14 +96,14 @@
 					new seed(loc)
 		if("dwarf")
 			active = TRUE
-			notify_ghosts("Новый дворф готов.", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Спавн дворфа доступен.")
+			notify_ghosts("New dwarf is ready.", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Dwarf spawn available.")
 		if("frog")
 			new /mob/living/simple_animal/hostile/retaliate/frog(loc)
 		if("tools")
 			for(var/tool in list(/obj/item/blacksmith/smithing_hammer, /obj/item/blacksmith/tongs))
 				new tool(loc)
 	busy = FALSE
-	to_chat(user, span_notice("Заканчиваю ритуал"))
+	to_chat(user, span_notice("You finish the ritual."))
 	deactivate()
 	qdel(R)
 
@@ -136,7 +136,7 @@
 	. = ..()
 	var/cost = params["cost"]
 	if(cost>resources)
-		to_chat(usr, span_warning("Не хватает ресурсов!"))
+		to_chat(usr, span_warning("Not enough favor!"))
 		return
 	resources-=cost
 	perform_rite(params["path"], usr)

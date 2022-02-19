@@ -5,25 +5,25 @@
 	var/cost = 0
 
 /datum/ritual/summon_seeds
-	name = "Ритуал земли"
+	name = "Ritual of earth"
 	true_name = "seeds"
-	desc = "Призывает полезные семена."
+	desc = "Summons helpful seeds."
 	cost = 150
 
 /datum/ritual/summon_dwarf
-	name = "Ритуал митозиса"
+	name = "Ritual of mitosis"
 	true_name = "dwarf"
-	desc = "Призывает нового раба Армока."
+	desc = "Summons a new worker."
 	cost = 300
 
 /datum/ritual/summon_frog
-	name = "Ритуал ква"
+	name = "Ritual of quack"
 	true_name = "frog"
-	desc = "Ква."
+	desc = "Quack."
 	cost = 500
 
 /datum/ritual/summon_tools
-	name = "Ритуал Грунгни"
+	name = "Ritual of metal"
 	true_name = "tools"
-	desc = "Во имя металла!"
+	desc = "In the name of metal!"
 	cost = 800

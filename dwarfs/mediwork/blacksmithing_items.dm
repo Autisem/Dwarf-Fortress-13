@@ -1,5 +1,5 @@
 /obj/item/blacksmith
-	name = "штука"
+	name = "item"
 	icon = 'white/valtos/icons/objects.dmi'
 	icon_state = "iron_ingot"
 	lefthand_file = 'white/valtos/icons/lefthand.dmi'
@@ -10,8 +10,8 @@
 	var/level = 1
 
 /obj/item/blacksmith/smithing_hammer
-	name = "молот"
-	desc = "Используется для ковки. По идее."
+	name = "smithing hammer"
+	desc = "Used for forging."
 	icon_state = "molotochek"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
@@ -38,12 +38,12 @@
 		else
 			playsound(src, 'sound/effects/bang.ogg', 50, 1)
 			W.add_dent(WALL_DENT_HIT)
-			visible_message(span_danger("<b>[user]</b> бьёт молотом по <b>стене</b>!") , null, COMBAT_MESSAGE_RANGE)
+			visible_message(span_danger("<b>[user]</b> hits the <b>[W]</b> with [src]!") , null, COMBAT_MESSAGE_RANGE)
 	return TRUE
 
 /obj/item/blacksmith/anvil_free
-	name = "наковальня"
-	desc = "На ней неудобно ковать. Стоит поставить её на что-то крепкое."
+	name = "anvil"
+	desc = "Its hard to forge on it."
 	icon_state = "anvil_free"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 10
@@ -55,8 +55,8 @@
 	AddComponent(/datum/component/two_handed, require_twohands=TRUE, force_unwielded=10, force_wielded=10)
 
 /obj/item/blacksmith/srub
-	name = "полено"
-	desc = "Достаточно крепкое, чтобы удерживать на себе наковальню."
+	name = "log"
+	desc = "Sturdy enough to hold an anvil."
 	icon_state = "srub"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 7
@@ -69,8 +69,8 @@
 	AddComponent(/datum/component/two_handed, require_twohands=TRUE, force_unwielded=7, force_wielded=7)
 
 /obj/item/blacksmith/chisel
-	name = "стамеска"
-	desc = "Для обработки каменных поверхностей."
+	name = "chisel"
+	desc = "Used for carving on stone."
 	icon_state = "chisel"
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
@@ -80,8 +80,8 @@
 	throw_range = 7
 
 /obj/item/blacksmith/tongs
-	name = "клещи"
-	desc = "Для ковки. Не для анальных утех."
+	name = "tongs"
+	desc = "Essential tool for smithing."
 	icon_state = "tongs"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 4
@@ -102,8 +102,8 @@
 		..()
 
 /obj/item/blacksmith/ingot
-	name = "железный слиток"
-	desc = "Из него можно сделать что-то."
+	name = "iron ingot"
+	desc = "Can be forged into something."
 	icon_state = "iron_ingot"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 2
@@ -118,7 +118,7 @@
 	var/mod_grade = 1
 
 /obj/item/blacksmith/ingot/gold
-	name = "золотой слиток"
+	name = "golden ingot"
 	icon_state = "gold_ingot"
 	type_metal = "gold"
 
@@ -127,15 +127,15 @@
 	var/ct = ""
 	switch(heattemp)
 		if(200 to INFINITY)
-			ct = "раскалена до бела"
+			ct = "red-hot"
 		if(100 to 199)
-			ct = "очень горячая"
+			ct = "very hot"
 		if(1 to 99)
-			ct = "достаточно тёплая"
+			ct = "hot enough"
 		else
-			ct = "холодная"
+			ct = "cold"
 
-	. += "Болванка [ct]."
+	. += "\the [src] is [ct]."
 
 /obj/item/blacksmith/ingot/Initialize()
 	. = ..()
@@ -161,7 +161,7 @@
 
 	if(istype(I, /obj/item/blacksmith/tongs))
 		if(I.contents.len)
-			to_chat(user, span_warning("Некуда!"))
+			to_chat(user, span_warning("You are already holding something with [I]!"))
 			return
 		else
 			src.forceMove(I)
@@ -169,21 +169,20 @@
 				I.icon_state = "tongs_hot"
 			else
 				I.icon_state = "tongs_cold"
-			to_chat(user, span_notice("Беру слиток клещами."))
+			to_chat(user, span_notice("You grab \the [src] with \the [I]."))
 			return
 
 /datum/material/stone
-	name = "камень"
-	skloname = "камня"
-	desc = "Олдфаг."
+	name = "stone"
+	desc = "Oldfag."
 	color = "#878687"
 	sheet_type = /obj/item/stack/sheet/stone
 
 /obj/item/stack/ore/stone
-	name = "камень"
+	name = "stone"
 	icon = 'white/valtos/icons/objects.dmi'
 	icon_state = "stone"
-	singular_name = "Кусок камня"
+	singular_name = "Stone piece"
 	max_amount = 1
 	refined_type = /obj/item/stack/sheet/stone
 	merge_type = /obj/item/stack/ore/stone
@@ -196,23 +195,23 @@
 	if(istype(I, /obj/item/blacksmith/chisel))
 		playsound(src, 'white/valtos/sounds/tough.wav', 100, TRUE)
 		if(prob(25))
-			to_chat(user, span_warning("Обрабатываю камень."))
+			to_chat(user, span_warning("You process \the [src]."))
 			return
 		new /obj/item/stack/sheet/stone(user.loc)
-		to_chat(user, span_notice("Обрабатываю камень."))
+		to_chat(user, span_notice("You process \the [src]."))
 		qdel(src)
 		return
 	if(istype(I, /obj/item/blacksmith/smithing_hammer))
 		playsound(src, 'sound/effects/break_stone.ogg', 50, TRUE)
 		new /obj/item/stack/ore/glass(drop_location())
-		to_chat(user, span_notice("Разбиваю [src]."))
+		to_chat(user, span_notice("You smash \the [src]."))
 		qdel(src)
 		return
 
 /obj/item/stack/sheet/stone
-	name = "Кирпич"
-	desc = "\"Кастрат\" - могли бы сказать Вы, если бы он не вырубил Вас одним попаданием."
-	singular_name = "Кирпич"
+	name = "brick"
+	desc = "Used in building."
+	singular_name = "Brick"
 	icon = 'white/valtos/icons/objects.dmi'
 	icon_state = "block"
 	inhand_icon_state = "sheet-metal"
@@ -226,8 +225,8 @@
 	cost = 500
 
 /obj/item/blacksmith/katanus
-	name = "катанус"
-	desc = "Не путать с катаной."
+	name = "katanus"
+	desc = "To not confuse with katana."
 	icon_state = "katanus"
 	inhand_icon_state = "katanus"
 	worn_icon_state = "katanus"
@@ -247,8 +246,8 @@
 	custom_materials = list(/datum/material/iron = 10000)
 
 /obj/item/blacksmith/zwei
-	name = "цвай"
-	desc = "Таким можно рубить деревья."
+	name = "zweihander"
+	desc = "Can even cut down trees."
 	icon_state = "zwei"
 	inhand_icon_state = "zwei"
 	worn_icon_state = "katanus"
@@ -280,8 +279,8 @@
 	user.changeNext_move(3 SECONDS)
 
 /obj/item/blacksmith/cep
-	name = "цеп"
-	desc = "Хрустим - не тормозим!"
+	name = "flail"
+	desc = "Spin it really fast."
 	icon_state = "cep"
 	inhand_icon_state = "cep"
 	worn_icon_state = "cep"
@@ -290,7 +289,7 @@
 	throwforce = 25
 	w_class = WEIGHT_CLASS_HUGE
 	//hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb_simple = list("ударяет")
+	attack_verb_simple = list("hits")
 	block_chance = 0
 	max_integrity = 50
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
@@ -304,8 +303,8 @@
 	user.changeNext_move(3 SECONDS)
 
 /obj/item/blacksmith/dagger
-	name = "кинжал"
-	desc = "Быстрый, лёгкий и довольный острый."
+	name = "dagger"
+	desc = "Quick, light and quite sharp."
 	icon_state = "dagger"
 	inhand_icon_state = "dagger"
 	worn_icon_state = "dagger"
@@ -329,8 +328,8 @@
 	user.changeNext_move(CLICK_CD_RAPID)
 
 /obj/item/storage/belt/dagger_sneath
-	name = "ножны кинжала"
-	desc = "Идеальный дом для вашего маленького друга."
+	name = "dagger sneath"
+	desc = "Perfect habitat for your little friend."
 
 	icon = 'white/valtos/icons/clothing/belts.dmi'
 	worn_icon = 'white/valtos/icons/clothing/mob/belt.dmi'
@@ -360,8 +359,8 @@
 		worn_icon_state += "-sword"
 
 /obj/item/clothing/suit/armor/light_plate
-	name = "нагрудная пластина"
-	desc = "Защищает только грудь, плохо останавливает пули."
+	name = "chest plate"
+	desc = "Covers only chest area."
 	body_parts_covered = CHEST|GROIN
 	icon_state = "light_plate"
 	inhand_icon_state = "light_plate"
@@ -371,8 +370,8 @@
 	custom_materials = list(/datum/material/iron = 10000)
 
 /obj/item/clothing/suit/armor/heavy_plate
-	name = "латный доспех"
-	desc = "Останавливает иногда и пули. Замедляет скорость передвижения."
+	name = "plate armor"
+	desc = "Sturdy but heavy."
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	w_class = WEIGHT_CLASS_GIGANTIC
 	slowdown = 1
@@ -427,8 +426,8 @@
 	return ..()
 
 /obj/item/clothing/under/chainmail
-	name = "кольчуга"
-	desc = "Неплохо защищает от всех видов колющего и режущего оружия. Немного стесняет движения."
+	name = "chainmail"
+	desc = "Great protection from stabs and slashes for its weight."
 	worn_icon = 'white/valtos/icons/clothing/mob/uniform.dmi'
 	icon = 'white/valtos/icons/clothing/uniforms.dmi'
 	icon_state = "chainmail"
@@ -439,8 +438,8 @@
 	has_sensor = NO_SENSORS
 
 /obj/item/clothing/head/helmet/plate_helmet
-	name = "железный шлем"
-	desc = "Спасёт голову от внезапного удара по ней."
+	name = "plate helmet"
+	desc = "Protects your head from all unexpected and expected attacks."
 	worn_icon = 'white/valtos/icons/clothing/mob/hat.dmi'
 	icon = 'white/valtos/icons/clothing/hats.dmi'
 	icon_state = "plate_helmet"
@@ -450,8 +449,8 @@
 	custom_materials = list(/datum/material/iron = 10000)
 
 /obj/item/clothing/gloves/plate_gloves
-	name = "железные перчатки"
-	desc = "Уберегут ваши руки от внезапных потерь."
+	name = "plate gloves"
+	desc = "Will save your hands from unexpected losses."
 	worn_icon = 'white/valtos/icons/clothing/mob/glove.dmi'
 	icon = 'white/valtos/icons/clothing/gloves.dmi'
 	icon_state = "plate_gloves"
@@ -459,18 +458,19 @@
 	custom_materials = list(/datum/material/iron = 10000)
 
 /obj/item/clothing/shoes/jackboots/plate_boots
-	name = "железные сапоги"
-	desc = "Спасут ваши ноги от внезапных переломов и других страшных штук."
+	name = "plate boots"
+	desc = "The boots."
 	worn_icon = 'white/valtos/icons/clothing/mob/shoe.dmi'
 	icon = 'white/valtos/icons/clothing/shoes.dmi'
 	icon_state = "plate_boots"
 	armor = list("melee" = 25, "bullet" = 30, "laser" = 20,"energy" = 0, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 25, "wound" = 30)
 	custom_materials = list(/datum/material/iron = 10000)
 
-/obj/item/blacksmith/gun_parts
-	name = "запчасть"
-	desc = "Для оружия какого-нибудь. Да?"
 /*
+/obj/item/blacksmith/gun_parts
+	name = "gun part"
+	desc = "Для оружия какого-нибудь. Да?"
+
 /obj/item/blacksmith/gun_parts/kar98k
 	name = "основа Kar98k"
 	desc = "Используется для создания винтовки Kar98k. Похоже, здесь не хватает дерева."
@@ -491,7 +491,7 @@
 			return
 */
 /obj/structure/mineral_door/detailed_door
-	name = "Красивая каменная дверь"
+	name = "majestic stone door"
 	icon = 'white/valtos/icons/objects.dmi'
 	icon_state = "detaileddoor"
 	max_integrity = 600
@@ -502,12 +502,12 @@
 /obj/structure/mineral_door/detailed_door/examine(mob/user)
 	. = ..()
 	if(isdwarf(user))
-		. += "<hr><span class='notice'>CTRL-клик для [locked_door ? "раз" : ""]блокировки двери.</span>"
+		. += "<hr><span class='notice'>CTRL-click to [locked_door ? "un" : ""]lock \the [src].</span>"
 
 /obj/structure/mineral_door/detailed_door/CtrlClick(mob/user)
 	. = ..()
 	if(isdwarf(user) && !door_opened)
-		visible_message(span_notice("<b>[user]</b> [locked_door ? "от" : "за"]пирает дверь.") , null, COMBAT_MESSAGE_RANGE)
+		visible_message(span_notice("<b>[user]</b> [locked_door ? "un" : ""]locks \the [src].") , null, COMBAT_MESSAGE_RANGE)
 		locked_door = !locked_door
 		playsound(get_turf(src), 'white/valtos/sounds/stonelock.ogg', 65, vary = TRUE)
 
@@ -516,7 +516,7 @@
 		return FALSE
 	. = ..()
 /obj/structure/mineral_door/heavystone
-	name = "тяжёлая каменная дверь"
+	name = "heavy stone door"
 	icon = 'white/valtos/icons/objects.dmi'
 	icon_state = "heavystone"
 	max_integrity = 600
@@ -529,14 +529,14 @@
 	. = ..()
 	if(istype(W, /obj/item/blacksmith/chisel))
 		if(busy)
-			to_chat(user, span_warning("Сейчас занято."))
+			to_chat(user, span_warning("Currently busy."))
 			return
 		busy = TRUE
 		if(!do_after(user, 10 SECONDS, target = src))
 			busy = FALSE
 			return
 		busy = FALSE
-		to_chat(user, span_warning("Обрабатываю [src]."))
+		to_chat(user, span_warning("You detail [src]."))
 		var/obj/structure/mineral_door/D = new /obj/structure/mineral_door/detailed_door(loc)
 		D.dir = dir
 		qdel(src)
@@ -545,12 +545,12 @@
 /obj/structure/mineral_door/heavystone/examine(mob/user)
 	. = ..()
 	if(isdwarf(user))
-		. += "<hr><span class='notice'>CTRL-клик для [locked_door ? "раз" : ""]блокировки двери.</span>"
+		. += "<hr><span class='notice'>CTRL-click to [locked_door ? "un" : ""]lock \the [src].</span>"
 
 /obj/structure/mineral_door/heavystone/CtrlClick(mob/user)
 	. = ..()
 	if(isdwarf(user) && !door_opened)
-		visible_message(span_notice("<b>[user]</b> [locked_door ? "от" : "за"]пирает дверь.") , null, COMBAT_MESSAGE_RANGE)
+		visible_message(span_notice("<b>[user]</b> [locked_door ? "un" : ""]locks \the [src].") , null, COMBAT_MESSAGE_RANGE)
 		locked_door = !locked_door
 		playsound(get_turf(src), 'white/valtos/sounds/stonelock.ogg', 65, vary = TRUE)
 
@@ -559,8 +559,8 @@
 		return FALSE
 	. = ..()
 /obj/item/clothing/head/helmet/dwarf_crown
-	name = "Королевская корона"
-	desc = "Достойна настоящего короля. Или не настоящего. Я за него не голосовал."
+	name = "crown"
+	desc = "Worthy of a real king."
 	worn_icon = 'white/valtos/icons/clothing/mob/hat.dmi'
 	icon = 'white/valtos/icons/clothing/hats.dmi'
 	icon_state = "dwarf_king"
@@ -579,7 +579,7 @@
     GLOB.dwarf_crowns-=src
 
 /datum/action/item_action/send_message_action
-	name = "Отправить сообщение подданым"
+	name = "Send message to subjects"
 
 /obj/item/clothing/head/helmet/dwarf_crown/proc/send_message(mob/user, msg)
 	message_admins("DF: [ADMIN_LOOKUPFLW(user)]: [msg]")
@@ -597,26 +597,26 @@
 			king = C.assigned_count
 	if(busy && assigned_count != user)
 		if(user != king)
-			to_chat(user, span_warning("У МЕНЯ ЗДЕСЬ НЕТ ВЛАСТИ!"))
+			to_chat(user, span_warning("YOU HAVE NO POWER!"))
 		else
-			to_chat(user, span_warning("У МЕНЯ УЖЕ ЕСТЬ ВЛАСТЬ!"))
+			to_chat(user, span_warning("YOU ALREADY HAVE POWER!"))
 		return
 
 	if(is_species(user, /datum/species/dwarf) && (!assigned_count || assigned_count?.stat == DEAD))
 		assigned_count = user
-		send_message(user, "Волей Армока <b>[user]</b> был выбран как наш новый Лидер Экспедиции! Ура!")
+		send_message(user, "<b>[user]</b> has been chosen as our leader!")
 	if(assigned_count == user)
-		var/msg = stripped_input(user, "Что же мы скажем?", "Сообщение:")
+		var/msg = stripped_input(user, "What to say?", "Message:")
 		if(!msg)
 			return
 		user.whisper("[msg]")
 		send_message(user, "<b>[user]</b>: [pointization(msg)]")
 	else
-		to_chat(user, span_warning("У МЕНЯ ЗДЕСЬ НЕТ ВЛАСТИ!"))
+		to_chat(user, span_warning("YOU HAVE NO POWER!"))
 
 /obj/item/blacksmith/torch_handle
-	name = "Скоба"
-	desc = "Её можно установить на стену."
+	name = "torch handle"
+	desc = "Can be attached to a wall."
 	icon_state = "torch_handle"
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron = 10000)
@@ -630,10 +630,10 @@
 		return
 	var/turf/T = get_turf(user)
 	if(!isfloorturf(T))
-		to_chat(user, span_warning("Пол не подходит для установки держателя!"))
+		to_chat(user, span_warning("You can't place [src] on the floor!"))
 		return
 	if(locate(/obj/machinery/torch_fixture) in view(1))
-		to_chat(user, span_warning("Здесь уже что-то есть на стене!"))
+		to_chat(user, span_warning("There is something already attached to it!"))
 		return
 
 	return TRUE
@@ -641,17 +641,17 @@
 /obj/item/blacksmith/torch_handle/proc/attach(turf/on_wall, mob/user)
 	if(result_path)
 		playsound(src.loc, 'sound/machines/click.ogg', 75, TRUE)
-		user.visible_message(span_notice("[user.name] прикрепляет скобу к стене.") ,
-			span_notice("Прикрепляю скобу к стене.") ,
-			span_hear("Слышу щелчки."))
+		user.visible_message(span_notice("[user.name] attaches [src] to the wall.") ,
+			span_notice("You attach the handle to the wall.") ,
+			span_hear("You hear a metal click."))
 		var/ndir = get_dir(on_wall, user)
 
 		new result_path(get_turf(user), ndir, TRUE)
 	qdel(src)
 
 /obj/machinery/torch_fixture
-	name = "Скоба"
-	desc = "Держит факел. Да."
+	name = "torch"
+	desc = "Provides light."
 	icon = 'white/valtos/icons/objects.dmi'
 	icon_state = "torch_handle_wall"
 	layer = BELOW_MOB_LAYER
@@ -721,7 +721,7 @@
 
 	if(istype(W, /obj/item/flashlight/flare/torch))
 		if(status == LIGHT_OK)
-			to_chat(user, span_warning("Здесь уже есть факел!"))
+			to_chat(user, span_warning("There is a torch already!"))
 		else
 			src.add_fingerprint(user)
 			var/obj/item/flashlight/flare/torch/L = W
@@ -729,7 +729,7 @@
 				if(!user.temporarilyRemoveItemFromInventory(L))
 					return
 				src.add_fingerprint(user)
-				to_chat(user, span_notice("Ставлю [L] на место."))
+				to_chat(user, span_notice("You place [L] inside."))
 				status = LIGHT_OK
 				fuel = L.fuel
 				on = L.on
@@ -737,7 +737,7 @@
 				qdel(L)
 				START_PROCESSING(SSobj, src)
 			else
-				to_chat(user, span_warning("Эта штука поддерживает только обычные факелы!"))
+				to_chat(user, span_warning("It supports regulat torches only!"))
 	else
 		return ..()
 
@@ -749,7 +749,7 @@
 	add_fingerprint(user)
 
 	if(status == LIGHT_EMPTY)
-		to_chat(user, span_warning("Здесь нет факела!"))
+		to_chat(user, span_warning("There is no torch!"))
 		return
 
 	var/obj/item/flashlight/flare/torch/L = new light_type()
@@ -778,8 +778,8 @@
 #define SHPATEL_BUILD_CHAIR 5
 
 /obj/item/blacksmith/shpatel
-	name = "Мастерок"
-	desc = "Передовое устройство для строительства большинства объектов."
+	name = "trowel"
+	desc = "Used for building purposes."
 	icon_state = "shpatel"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 8
@@ -819,8 +819,8 @@
 				if(blocks_need <= 0)
 					break
 			T.ChangeTurf(/turf/closed/wall/stonewall, flags = CHANGETURF_IGNORE_AIR)
-			user.visible_message(span_notice("<b>[user]</b> возводит каменную стену.") , \
-								span_notice("Возвожу каменную стену."))
+			user.visible_message(span_notice("<b>[user]</b> constructs a stone wall.") , \
+								span_notice("You construct a stone wall."))
 		if(SHPATEL_BUILD_FLOOR)
 			var/blocks_need = 1
 			for(var/obj/item/stack/sheet/stone/B in view(1))
@@ -832,14 +832,14 @@
 				if(blocks_need <= 0)
 					break
 			T.ChangeTurf(/turf/open/floor/stone, flags = CHANGETURF_INHERIT_AIR)
-			user.visible_message(span_notice("<b>[user]</b> создаёт каменный пол.") , \
-								span_notice("Делаю каменный пол."))
+			user.visible_message(span_notice("<b>[user]</b> constructs stone floor.") , \
+								span_notice("You construct stone floor."))
 
 /obj/item/blacksmith/shpatel/proc/do_job(atom/A, mob/user)
 	if(!istype(A, /turf/open/floor))
 		return
 	if(mode != SHPATEL_BUILD_FLOOR && !istype(A, /turf/open/floor/stone))
-		to_chat(user, span_warning("Не могу построить на этом полу!"))
+		to_chat(user, span_warning("Can't build here!"))
 		return
 	var/turf/T = get_turf(A)
 	if(check_resources())
@@ -849,7 +849,7 @@
 				playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 				return TRUE
 	else
-		to_chat(user, span_warning("Не хватает материалов!"))
+		to_chat(user, span_warning("Not enough materials!"))
 
 /obj/item/blacksmith/shpatel/proc/check_menu(mob/living/user)
 	if(!istype(user))
@@ -861,21 +861,21 @@
 /obj/item/blacksmith/shpatel/attack_self(mob/user)
 	..()
 	var/list/choices = list(
-		"Пол" = image(icon = 'white/kacherkin/icons/dwarfs/obj/turfs1.dmi', icon_state = "stone_floor"),
-		"Стена" = image(icon = 'white/valtos/icons/stonewall.dmi', icon_state = "wallthefuck")
+		"Floor" = image(icon = 'white/kacherkin/icons/dwarfs/obj/turfs1.dmi', icon_state = "stone_floor"),
+		"Wall" = image(icon = 'white/valtos/icons/stonewall.dmi', icon_state = "wallthefuck")
 	)
 	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(choice)
-		if("Пол")
+		if("Floor")
 			mode = SHPATEL_BUILD_FLOOR
-		if("Стена")
+		if("Wall")
 			mode = SHPATEL_BUILD_WALL
 
 /obj/item/blacksmith/scepter
-	name = "скипетр власти"
-	desc = "Выглядит солидно? Ну так положи туда, откуда взял, а то ещё поцарапаешь..."
+	name = "scepter"
+	desc = "Comes with a crown."
 	icon_state = "scepter"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 9
@@ -896,28 +896,28 @@
 /obj/item/blacksmith/scepter/attack_self(mob/user)
 	..()
 	var/list/choices = list(
-		"Полы"   = image(icon = 'white/valtos/icons/objects.dmi', icon_state = "plan_floor"),
-		"Стены"  = image(icon = 'white/valtos/icons/objects.dmi', icon_state = "plan_wall"),
-		"Двери"  = image(icon = 'white/valtos/icons/objects.dmi', icon_state = "plan_door"),
-		"Столы"  = image(icon = 'white/valtos/icons/objects.dmi', icon_state = "plan_table"),
-		"Стулья" = image(icon = 'white/valtos/icons/objects.dmi', icon_state = "plan_chair"),
-		"Очистка"= image(icon = 'white/valtos/icons/objects.dmi', icon_state = "clear")
+		"Floors"   = image(icon = 'white/valtos/icons/objects.dmi', icon_state = "plan_floor"),
+		"Walls"  = image(icon = 'white/valtos/icons/objects.dmi', icon_state = "plan_wall"),
+		"Doors"  = image(icon = 'white/valtos/icons/objects.dmi', icon_state = "plan_door"),
+		"Tables"  = image(icon = 'white/valtos/icons/objects.dmi', icon_state = "plan_table"),
+		"Chairs" = image(icon = 'white/valtos/icons/objects.dmi', icon_state = "plan_chair"),
+		"Clear"= image(icon = 'white/valtos/icons/objects.dmi', icon_state = "clear")
 	)
 	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(choice)
-		if("Полы")
+		if("Floors")
 			mode = SHPATEL_BUILD_FLOOR
-		if("Стены")
+		if("Walls")
 			mode = SHPATEL_BUILD_WALL
-		if("Двери")
+		if("Doors")
 			mode = SHPATEL_BUILD_DOOR
-		if("Столы")
+		if("Tables")
 			mode = SHPATEL_BUILD_TABLE
-		if("Стулья")
+		if("Chairs")
 			mode = SHPATEL_BUILD_CHAIR
-		if("Очистка")
+		if("Clear")
 			clear(user)
 
 /obj/item/blacksmith/scepter/proc/clear(mob/user)
@@ -925,7 +925,7 @@
 	for(var/obj/effect/plan_marker/M in view(7, user))
 		qdel(M)
 		i++
-	to_chat(user, span_notice("Удалено [i] маркеров."))
+	to_chat(user, span_notice("Deleted [i] markers."))
 
 /obj/item/blacksmith/scepter/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
@@ -936,11 +936,11 @@
 		for(var/atom/A in T)
 			if(istype(A, /obj/effect/plan_marker))
 				qdel(A)
-				to_chat(user, span_notice("Убираю маркер."))
+				to_chat(user, span_notice("You remove a marker."))
 				cur_markers--
 				return
 		if(cur_markers >= max_markers)
-			to_chat(user, span_warning("Максимум 64!"))
+			to_chat(user, span_warning("Max 64!"))
 			return
 		var/obj/visual = new /obj/effect/plan_marker(T)
 		cur_markers++
@@ -963,7 +963,7 @@
 #undef SHPATEL_BUILD_CHAIR
 
 /obj/effect/plan_marker
-	name = "маркер"
+	name = "marker"
 	icon = 'white/valtos/icons/objects.dmi'
 	anchored = TRUE
 	icon_state = "plan_floor"
@@ -972,8 +972,8 @@
 	alpha = 190
 
 /obj/structure/chair/comfy/stone
-	name = "каменный стул"
-	desc = "Это выглядит НЕ удобно."
+	name = "stone chair"
+	desc = "Not so comfy."
 	icon = 'white/valtos/icons/objects.dmi'
 	icon_state = "stoool"
 	color = rgb(255,255,255)
@@ -987,15 +987,15 @@
 /obj/structure/chair/comfy/stone/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH && !(flags_1&NODECONSTRUCT_1))
 		W.play_tool_sound(src)
-		user.visible_message(span_notice("[user] пытается разобрать каменный стул <b>ГАЕЧНЫМ КЛЮЧОМ</b>.") , \
-		span_notice("Пытаюсь разобрать каменный стул..."))
+		user.visible_message(span_notice("[user] tries to disasseble stone chair using <b>wrench</b>.") , \
+		span_notice("You try to disassemble stone chair..."))
 		return
 	else
 		return ..()
 
 /obj/structure/chair/comfy/stone/throne
-	name = "каменный трон"
-	desc = "Выглядит роскошно, но не удобно."
+	name = "stone throne"
+	desc = "Amazing looks, still not very comfy."
 	icon_state = "throne"
 	max_integrity = 650
 
@@ -1003,8 +1003,8 @@
 	return mutable_appearance('white/valtos/icons/objects.dmi', "throne_armrest")
 
 /obj/structure/table/stone
-	name = "каменный стол"
-	desc = "Прочный стол из камня."
+	name = "stoen table"
+	desc = "Caveman technology."
 	icon = 'white/valtos/icons/stone_table.dmi'
 	icon_state = "stone_table-0"
 	base_icon_state = "stone_table"
@@ -1016,13 +1016,13 @@
 
 /obj/structure/table/stone/attackby(obj/item/W, mob/user, params)
 	if (W.tool_behaviour == TOOL_WRENCH || W.tool_behaviour == TOOL_SCREWDRIVER)
-		to_chat(user, span_warning("А че как..."))
+		to_chat(user, span_warning("How..."))
 		return
 	else
 		return ..()
 
 /obj/machinery/microwave/furnace
-	name = "печка"
+	name = "stove"
 	icon = 'white/valtos/icons/peeech.dmi'
 	icon_state = "peeech"
 	use_power = NO_POWER_USE
@@ -1053,8 +1053,8 @@
 	..()
 
 /obj/structure/closet/crate/sarcophage
-	name = "саркофаг"
-	desc = "Души усопших запечатаны здесь. В нём не рекомендуется спать."
+	name = "sarcophage"
+	desc = "Resting place for the dead. Not recommended for sleep."
 	icon = 'white/valtos/icons/objects.dmi'
 	icon_state = "sarcophage"
 	drag_slowdown = 4
@@ -1065,7 +1065,7 @@
 	if(.)
 		for(var/mob/living/carbon/human/H in contents)
 			if(H.stat == DEAD)
-				name = "саркофаг [skloname(H.real_name, VINITELNI, H.gender)]"
+				name = "sarcophage of [H.real_name]."
 				for(var/obj/item/W in H)
 					if(!H.dropItemToGround(W))
 						qdel(W)
@@ -1077,7 +1077,7 @@
 				return TRUE
 
 /obj/item/blacksmith/partial
-	desc = "Похоже на часть чего-то большего."
+	desc = "Looks like a part of something bigger."
 	var/item_grade = "*"
 
 /obj/item/blacksmith/partial/Initialize()
@@ -1085,41 +1085,41 @@
 	force = 1
 
 /obj/item/blacksmith/partial/zwei
-	name = "лезвие цвая"
+	name = "zweihander blade"
 	real_force = 40
 	icon_state = "zwei_part"
 
 /obj/item/blacksmith/partial/katanus
-	name = "лезвие катануса"
+	name = "katanus blade"
 	real_force = 16
 	icon_state = "katanus_part"
 
 /obj/item/blacksmith/partial/cep
-	name = "шар с цепью"
+	name = "ball on a chain"
 	real_force = 20
 	icon_state = "cep_part"
 
 /obj/item/blacksmith/partial/dwarfsord
-	name = "лезвие прямого меча"
+	name = "sword blade"
 	real_force = 16
 	icon_state = "dwarfsord_part"
 
 /obj/item/blacksmith/partial/crown_empty
-	name = "Пустая корона"
+	name = "empty crown"
 	icon_state = "crown_empty"
 
 /obj/item/blacksmith/partial/scepter_part
-	name = "части скипетра"
+	name = "scepter part"
 	icon_state = "scepter_part"
 
 /obj/item/scepter_shaft
-	name = "рукоять скипетра"
+	name = "scepter shaft"
 	icon = 'white/valtos/icons/objects.dmi'
 	icon_state = "scepter_shaft"
 
 /obj/item/blacksmith/dwarfsord
-	name = "прямой меч"
-	desc = "Точно не гейский"
+	name = "sword"
+	desc = "Regular sword."
 	icon_state = "dwarfsord"
 	inhand_icon_state = "dwarfsord"
 	worn_icon_state = "dwarfsord"

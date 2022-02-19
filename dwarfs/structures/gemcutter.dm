@@ -1,6 +1,6 @@
 /obj/structure/gemcutter
-	name = "стол ювелира"
-	desc = "У дворфов нет имени Александр в списке имен."
+	name = "gem cutter"
+	desc = "Makes items that don't shine to do so."
 	icon = 'white/rashcat/icons/dwarfs/objects/tools.dmi'
 	icon_state = "gemcutter_off"
 	anchored = TRUE
@@ -22,7 +22,7 @@
 		busy = FALSE
 		var/obj/item/gem/G = I
 		new G.cut_type(loc)
-		to_chat(user, span_notice("Обрабатываю [G] на [src]"))
+		to_chat(user, span_notice("You process [G] on \a [src]"))
 		qdel(G)
 		icon_state = "gemcutter_off"
 	else

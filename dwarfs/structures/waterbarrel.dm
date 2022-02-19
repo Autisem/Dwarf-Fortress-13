@@ -1,6 +1,6 @@
 /obj/structure/dwarf_waterbarrel
-	name = "Бочка с грязной водой"
-	desc = "Для охлаждения и закалки заготовок."
+	name = "barrel with dirty water"
+	desc = "Do. Not. Drink."
 	icon = 'white/rashcat/icons/dwarfs/objects/tools.dmi'
 	icon_state = "barrel_water_1"
 	anchored = TRUE
