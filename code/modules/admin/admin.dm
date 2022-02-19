@@ -4,8 +4,7 @@
 	msg = "<span class=\"admin\"><span class=\"prefix\">AL:</span> <span class=\"message linkify\">[msg]</span></span>"
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
-		html = msg,
-		confidential = TRUE)
+		html = msg)
 
 	webhook_send_garbage("ADMIN LOG", msg)
 
@@ -31,18 +30,17 @@
 	if(izidi)
 		for(var/client/A in GLOB.admins)
 			if(check_rights_for(A,R_PERMISSIONS))
-				to_chat(A, msg, confidential = TRUE)
+				to_chat(A, msg)
 	else
-		to_chat(GLOB.admins, msg, confidential = TRUE)
+		to_chat(GLOB.admins, msg)
 
-	to_chat(GLOB.admins, msg, confidential = TRUE)
+	to_chat(GLOB.admins, msg)
 */
 /proc/relay_msg_admins(msg)
 	msg = "<span class=\"admin\"><span class=\"prefix\">RELAY:</span> <span class=\"message linkify\">[msg]</span></span>"
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
-		html = msg,
-		confidential = TRUE)
+		html = msg)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
@@ -58,7 +56,7 @@
 	log_admin("[key_name(usr)] checked the individual player panel for [key_name(M)][isobserver(usr)?"":" while in game"].")
 
 	if(!M)
-		to_chat(usr, span_warning("You seem to be selecting a mob that doesn't exist anymore.") , confidential = TRUE)
+		to_chat(usr, span_warning("You seem to be selecting a mob that doesn't exist anymore."))
 		return
 
 	var/body = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'><title>Панель [M.key]</title></head>"
@@ -304,13 +302,16 @@
 						return FALSE
 				SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", delay * 10)
 			if("Hard Restart (No Delay, No Feeback Reason)")
-				to_chat(world, "Перезагрузка мира - [init_by]")
+				to_chat(world, "Перезагрузка мира - [init_by]",
+						html_en = "Restart - [init_by]")
 				world.Reboot()
 			if("Hardest Restart (No actions, just reboot)")
-				to_chat(world, "Быстрая перезагрузка мира - [init_by]")
+				to_chat(world, "Быстрая перезагрузка мира - [init_by]",
+						html_en = "Fast Restart - [init_by]")
 				world.Reboot(fast_track = TRUE)
 			if("Server Restart (Kill and restart DD)")
-				to_chat(world, "Жесткая перезагрузка мира - [init_by]")
+				to_chat(world, "Жесткая перезагрузка мира - [init_by]",
+						html_en = "Hard Fast Restart - [init_by]")
 				if(CONFIG_GET(flag/this_shit_is_stable))
 					world.shelleo("curl -X POST http://localhost:3636/hard-reboot-dwarf")
 
@@ -340,7 +341,7 @@
 	if(message)
 		if(!check_rights(R_SERVER,0))
 			message = adminscrub(message,500)
-		to_chat(world, "<span class='adminnotice'><b>[usr.client.holder.fakekey ? "Администратор" : usr.key] делает объявление:</b></span>\n \t [message]", confidential = TRUE)
+		to_chat(world, "<span class='adminnotice'><b>[usr.client.holder.fakekey ? "Администратор" : usr.key] делает объявление:</b></span>\n \t [message]")
 		log_admin("Announce: [key_name(usr)] : [message]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Announce") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -362,7 +363,7 @@
 	else
 		message_admins("[key_name(usr)] set the admin notice.")
 		log_admin("[key_name(usr)] set the admin notice:\n[new_admin_notice]")
-		to_chat(world, span_adminnotice("<b>Admin Notice:</b>\n \t [new_admin_notice]") , confidential = TRUE)
+		to_chat(world, span_adminnotice("<b>Admin Notice:</b>\n \t [new_admin_notice]"))
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set Admin Notice") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	GLOB.admin_notice = new_admin_notice
 	return
@@ -411,7 +412,7 @@
 		message_admins(span_blue("[usr.key] has cancelled immediate game start. Game will start in 180 seconds."))
 		log_admin("[usr.key] has cancelled immediate game start.")
 	else
-		to_chat(usr, span_red("Error: Start Now: Game has already started."), confidential = TRUE)
+		to_chat(usr, span_red("Error: Start Now: Game has already started."))
 	return FALSE
 
 /datum/admins/proc/toggleenter()
@@ -432,9 +433,9 @@
 	var/alai = CONFIG_GET(flag/allow_ai)
 	CONFIG_SET(flag/allow_ai, !alai)
 	if (alai)
-		to_chat(world, "<B>The AI job is no longer chooseable.</B>", confidential = TRUE)
+		to_chat(world, "<B>The AI job is no longer chooseable.</B>")
 	else
-		to_chat(world, "<B>The AI job is chooseable now.</B>", confidential = TRUE)
+		to_chat(world, "<B>The AI job is chooseable now.</B>")
 	log_admin("[key_name(usr)] toggled AI allowed.")
 	world.update_status()
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle AI", "[!alai ? "Disabled" : "Enabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -446,9 +447,11 @@
 	var/new_nores = !CONFIG_GET(flag/norespawn)
 	CONFIG_SET(flag/norespawn, new_nores)
 	if (!new_nores)
-		to_chat(world, "<B>Разрешено переродиться.</B>", confidential = TRUE)
+		to_chat(world, "<B>Разрешено переродиться.</B>",
+				html_en = "<B>Respawn Enabled.</B>")
 	else
-		to_chat(world, "<B>Запрещено перерождаться.</B>", confidential = TRUE)
+		to_chat(world, "<B>Запрещено перерождаться.</B>",
+				html_en = "<B>Respawn Disabled.</B>")
 	message_admins(span_adminnotice("[key_name_admin(usr)] toggled respawn to [!new_nores ? "On" : "Off"]."))
 	log_admin("[key_name(usr)] toggled respawn to [!new_nores ? "On" : "Off"].")
 	world.update_status()
@@ -467,10 +470,12 @@
 		SSticker.SetTimeLeft(newtime)
 		SSticker.start_immediately = FALSE
 		if(newtime < 0)
-			to_chat(world, "<b>Запуск отложен.</b>", confidential = TRUE)
+			to_chat(world, "<b>Запуск отложен.</b>",
+				html_en = "<B>Start Delayed.</B>")
 			log_admin("[key_name(usr)] delayed the round start.")
 		else
-			to_chat(world, "<b>Игра начнётся через [DisplayTimeText(newtime)].</b>", confidential = TRUE)
+			to_chat(world, "<b>Игра начнётся через [DisplayTimeText(newtime)].</b>",
+				html_en = "<B>Game will start in [DisplayTimeText(newtime)].</B>")
 			log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delay Game Start") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -556,10 +561,10 @@
 	set name = "Show Traitor Panel"
 	var/datum/mind/target_mind = target_mob.mind
 	if(!target_mind)
-		to_chat(usr, "This mob has no mind!", confidential = TRUE)
+		to_chat(usr, "This mob has no mind!")
 		return
 	if(!istype(target_mob) && !istype(target_mind))
-		to_chat(usr, "This can only be used on instances of type /mob and /mind", confidential = TRUE)
+		to_chat(usr, "This can only be used on instances of type /mob and /mind")
 		return
 	target_mind.traitor_panel()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Traitor Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -575,7 +580,7 @@
 	else if (istype(target, /datum/mind))
 		target_mind = target
 	else
-		to_chat(usr, "This can only be used on instances of type /mob and /mind", confidential = TRUE)
+		to_chat(usr, "This can only be used on instances of type /mob and /mind")
 		return
 	var/datum/skill_panel/SP  = new(usr, target_mind)
 	SP.ui_interact(usr)
@@ -588,9 +593,9 @@
 	set name="Toggle tinted welding helmes"
 	GLOB.tinted_weldhelh = !( GLOB.tinted_weldhelh )
 	if (GLOB.tinted_weldhelh)
-		to_chat(world, "<B>The tinted_weldhelh has been enabled!</B>", confidential = TRUE)
+		to_chat(world, "<B>The tinted_weldhelh has been enabled!</B>")
 	else
-		to_chat(world, "<B>The tinted_weldhelh has been disabled!</B>", confidential = TRUE)
+		to_chat(world, "<B>The tinted_weldhelh has been disabled!</B>")
 	log_admin("[key_name(usr)] toggled tinted_weldhelh.")
 	message_admins("[key_name_admin(usr)] toggled tinted_weldhelh.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Tinted Welding Helmets", "[GLOB.tinted_weldhelh ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -602,9 +607,9 @@
 	var/new_guest_ban = !CONFIG_GET(flag/guest_ban)
 	CONFIG_SET(flag/guest_ban, new_guest_ban)
 	if (new_guest_ban)
-		to_chat(world, "<B>Guests may no longer enter the game.</B>", confidential = TRUE)
+		to_chat(world, "<B>Guests may no longer enter the game.</B>")
 	else
-		to_chat(world, "<B>Guests may now enter the game.</B>", confidential = TRUE)
+		to_chat(world, "<B>Guests may now enter the game.</B>")
 	log_admin("[key_name(usr)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed.")
 	message_admins(span_adminnotice("[key_name_admin(usr)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed."))
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Guests", "[!new_guest_ban ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -675,7 +680,7 @@
 			if(kick_only_afk && !C.is_afk()) //Ignore clients who are not afk
 				continue
 			if(message)
-				to_chat(C, message, confidential = TRUE)
+				to_chat(C, message)
 			kicked_client_names.Add("[C.key]")
 			qdel(C)
 	return kicked_client_names

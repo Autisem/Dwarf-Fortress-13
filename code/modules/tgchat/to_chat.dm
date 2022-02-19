@@ -13,10 +13,7 @@
 	type = null,
 	text = null,
 	avoid_highlighting = FALSE,
-	// FIXME: These flags are now pointless and have no effect
-	handle_whitespace = TRUE,
-	trailing_newline = TRUE,
-	confidential = FALSE
+	html_en
 )
 	// Useful where the integer 0 is the entire message. Use case is enabling to_chat(target, some_boolean) while preventing to_chat(target, "")
 	html = "[html]"
@@ -42,6 +39,9 @@
 			var/client/client = CLIENT_FROM_VAR(_target)
 			if(client)
 				// Send to tgchat
+				if(html_en && client.prefs?.en_chat)
+					message["html"] = html_en
+					message_blob = TGUI_CREATE_MESSAGE("chat/message", message)
 				client.tgui_panel?.window.send_raw_message(message_blob)
 				// Send to old chat
 				SEND_TEXT(client, message_html)
@@ -49,6 +49,9 @@
 	var/client/client = CLIENT_FROM_VAR(target)
 	if(client)
 		// Send to tgchat
+		if(html_en && client.prefs?.en_chat)
+			message["html"] = html_en
+			message_blob = TGUI_CREATE_MESSAGE("chat/message", message)
 		client.tgui_panel?.window.send_raw_message(message_blob)
 		// Send to old chat
 		SEND_TEXT(client, message_html)
@@ -69,13 +72,10 @@
 	type = null,
 	text = null,
 	avoid_highlighting = FALSE,
-	// FIXME: These flags are now pointless and have no effect
-	handle_whitespace = TRUE,
-	trailing_newline = TRUE,
-	confidential = FALSE
+	html_en
 )
 	if(isnull(Master) || Master.current_runlevel == RUNLEVEL_INIT || !SSchat?.initialized)
-		to_chat_immediate(target, html, type, text, avoid_highlighting)
+		to_chat_immediate(target, html, type, text, avoid_highlighting, html_en)
 		return
 
 	// Useful where the integer 0 is the entire message. Use case is enabling to_chat(target, some_boolean) while preventing to_chat(target, "")
@@ -95,4 +95,5 @@
 	if(text) message["text"] = text
 	if(html) message["html"] = html
 	if(avoid_highlighting) message["avoidHighlighting"] = avoid_highlighting
+	if(html_en) message["html"] = html_en
 	SSchat.queue(target, message)

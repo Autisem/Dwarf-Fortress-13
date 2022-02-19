@@ -26,7 +26,8 @@ SUBSYSTEM_DEF(atoms)
 	InitializeAtoms()
 	initialized = INITIALIZATION_INNEW_REGULAR
 
-	to_chat(world, span_green(" -- $<b>Мир</b>:> <b>Почти готов</b> -- "))
+	to_chat(world, span_green(" -- $<b>Мир</b>:> <b>Почти готов</b> -- "),
+			html_en = span_green(" -- $<b>World</b>:> <b>Almost Ready</b> -- "))
 
 	return ..()
 

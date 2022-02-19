@@ -261,7 +261,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		current_runlevel = Master.current_runlevel
 		StartProcessing(10)
 	else
-		to_chat(world, span_green("Мастер-контроллер обосрался. Пытаемся переинициализировать <b>ВСЕ подсистемы</b>."))
+		to_chat(world, span_green("Мастер-контроллер обосрался. Пытаемся переинициализировать <b>ВСЕ подсистемы</b>."),
+			html_en = span_green("Everything is dead. Trying to fix <b>them all</b>."))
 		Initialize(20, TRUE)
 
 
@@ -276,7 +277,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if(init_sss)
 		init_subtypes(/datum/controller/subsystem, subsystems)
 
-	to_chat(world, span_green("Расставляем всё по полочкам..."))
+	to_chat(world, span_green("Расставляем всё по полочкам..."),
+			html_en = span_green("Creating new world..."))
 
 	// Sort subsystems by init_order, so they initialize in the correct order.
 	sortTim(subsystems, /proc/cmp_subsystem_init)
@@ -292,8 +294,10 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	current_ticklimit = TICK_LIMIT_RUNNING
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 
-	to_chat(world, span_green("-- $<b>Мир</b>:> <b>[time]с</b> --"))
-	to_chat(world, span_nzcrentr("-- #<b>Хэш энтропии</b>:> <b>[md5("[random_seed]")]</b> --"))
+	to_chat(world, span_green("-- $<b>Мир</b>:> <b>[time]с</b> --"),
+			html_en = span_green("-- $<b>World</b>:> <b>[time]s</b> --"))
+	to_chat(world, span_nzcrentr("-- #<b>Хэш энтропии</b>:> <b>[md5("[random_seed]")]</b> --"),
+			html_en = span_nzcrentr("-- #<b>Entropy</b>:> <b>[md5("[random_seed]")]</b> --"))
 	log_world("World init for [time] seconds!")
 
 	if (!current_runlevel)

@@ -162,6 +162,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///What outfit typepaths we've favorited in the SelectEquipment menu
 	var/list/favorite_outfits = list()
 
+	var/en_chat = TRUE
+
 /datum/preferences/New(client/C)
 	parent = C
 
@@ -531,6 +533,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<h2>Основные настройки</h2>"
 			dat += "<table>"
 			dat += "<tr><td><h3>Интерфейс</h3></td></tr>"
+			dat += "<tr><td><b>Language:</b></td><td align='right'><a href='?_src_=prefs;preference=en_chat'>[(en_chat) ? "ENGLISH" : "RUSSIAN"]</a></td></tr>"
 			dat += "<tr><td><b>Стиль:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a></td></tr>"
 			dat += "<tr><td><b>Окна в TGUI:</b></td><td align='right'><a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Основные" : "Все"]</a></td></tr>"
 			dat += "<tr><td><b>Стиль TGUI:</b></td><td align='right'><a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Красивый" : "Строгие рамки"]</a></td></tr>"
@@ -1805,6 +1808,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if(SCALING_METHOD_BLUR)
 							scaling_method = SCALING_METHOD_NORMAL
 					user.client.view_size.setZoomMode()
+
+				if("en_chat")
+					en_chat = !en_chat
 
 				if("save")
 					save_preferences()

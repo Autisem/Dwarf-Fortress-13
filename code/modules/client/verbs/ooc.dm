@@ -121,7 +121,8 @@ GLOBAL_LIST_INIT(alko_list, list("zarri", "maxsc", "nfogmann", "sanecman", "sran
 			return
 	else //otherwise just toggle it
 		GLOB.ooc_allowed = !GLOB.ooc_allowed
-	to_chat(world, "<B>Чат ООС был глобально [GLOB.ooc_allowed ? "включен" : "отключен"]!</B>")
+	to_chat(world, "<B>Чат ООС был глобально [GLOB.ooc_allowed ? "включен" : "отключен"]!</B>",
+				html_en = "<B>ООС is [GLOB.ooc_allowed ? "enabled" : "disabled"]!</B>")
 
 /proc/toggle_dooc(toggle = null)
 	if(toggle != null)
@@ -218,7 +219,7 @@ GLOBAL_LIST_INIT(alko_list, list("zarri", "maxsc", "nfogmann", "sanecman", "sran
 
 	var/motd = global.config.motd
 	if(motd)
-		to_chat(src, "<div class=\"motd\">[motd]</div>", handle_whitespace=FALSE)
+		to_chat(src, "<div class=\"motd\">[motd]</div>")
 	else
 		to_chat(src, span_notice("The Message of the Day has not been set."))
 

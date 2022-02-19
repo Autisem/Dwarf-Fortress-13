@@ -141,7 +141,8 @@ SUBSYSTEM_DEF(ticker)
 				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
-			to_chat(world, span_boldnotice("Крепость [station_name()] готова принять гостей!"))
+			to_chat(world, span_boldnotice("Крепость [station_name()] готова принять гостей!"),
+					html_en = span_boldnotice("Fortress [station_name()] ready for dwellers!"))
 			current_state = GAME_STATE_PREGAME
 			webhook_send_roundstatus("lobby")
 			SEND_SIGNAL(src, COMSIG_TICKER_ENTER_PREGAME)
@@ -203,7 +204,8 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/setup()
-	to_chat(world, span_green(" -- [prob(5) ? "*#!&$^@$ Запускаем симуляцию в режиме полного реализма... $@!^(&*" : "Запускаем симуляцию..."] -- "))
+	to_chat(world, span_green(" -- [prob(5) ? "*#!&$^@$ Запускаем симуляцию в режиме полного реализма... $@!^(&*" : "Запускаем симуляцию..."] -- "),
+					html_en = span_green("Starting..."))
 	var/init_start = world.timeofday
 		//Create and announce mode
 	var/list/datum/game_mode/runnable_modes
@@ -221,7 +223,8 @@ SUBSYSTEM_DEF(ticker)
 
 		if(!mode)
 			if(!runnable_modes.len)
-				to_chat(world, span_green("<B>Ничего не вышло!</B> Откатываем таймер назад."))
+				to_chat(world, span_green("<B>Ничего не вышло!</B> Откатываем таймер назад."),
+					html_en = span_green("Something is fucked."))
 				return FALSE
 			mode = pickweight(runnable_modes)
 			if(!mode)	//too few roundtypes all run too recently
@@ -230,7 +233,8 @@ SUBSYSTEM_DEF(ticker)
 	else
 		mode = config.pick_mode(GLOB.master_mode)
 		if(!mode.can_start())
-			to_chat(world, span_green("<B>Режим [mode.name] не хочет запускаться.</B> Недостаточно игроков, требуется [mode.required_players] готовых и [mode.required_enemies] антагов. Откатываем таймер назад."))
+			to_chat(world, span_green("<B>Режим [mode.name] не хочет запускаться.</B> Недостаточно игроков, требуется [mode.required_players] готовых и [mode.required_enemies] антагов. Откатываем таймер назад."),
+					html_en = span_green("<B>Gamemode [mode.name] can't launch, it requires [mode.required_players] players and [mode.required_enemies] antags.</B> Rollback."))
 			qdel(mode)
 			mode = null
 			SSjob.ResetOccupations()
@@ -247,14 +251,16 @@ SUBSYSTEM_DEF(ticker)
 	if(retrycap >= 4)
 		hide_mode = FALSE
 		mode = config.pick_mode("extended")
-		to_chat(world, "<span class='notice big'>Время отдыхать!</span>")
+		to_chat(world, "<span class='notice big'>Время отдыхать!</span>",
+				html_en = "<span class='notice big'>Time to relax!</span>")
 	else
 		if(!GLOB.Debug2)
 			if(!can_continue)
 				log_game("[mode.name] failed pre_setup, cause: [mode.setup_error]")
 				QDEL_NULL(mode)
 				retrycap++
-				to_chat(world, span_notice("Станция не сможет работать без <B>Капитана</B>. [retrycap]/5 до отдыха."))
+				to_chat(world, span_notice("Станция не сможет работать без <B>Капитана</B>. [retrycap]/5 до отдыха."),
+						html_en = span_notice("Where is the <B>Captain</B>? [retrycap]/5 to the relax procedure."))
 				SSjob.ResetOccupations()
 				return FALSE
 		else
@@ -267,7 +273,8 @@ SUBSYSTEM_DEF(ticker)
 		for (var/datum/game_mode/M in runnable_modes)
 			modes += M.name
 		modes = sort_list(modes)
-		to_chat(world, "<b>Режим: секрет!\nВозможные режимы:</B> [english_list(modes)]")
+		to_chat(world, "<b>Режим: секрет!\nВозможные режимы:</B> [english_list(modes)]",
+				html_en = "<b>Gamemode: secret!\nPossibilities:</B> [english_list(modes)]")
 	else
 		mode.announce()
 
@@ -294,13 +301,15 @@ SUBSYSTEM_DEF(ticker)
 	round_start_time = world.time
 	SSdbcore.SetRoundStart()
 
-	to_chat(world, span_notice("Крепость <B>[station_name()]</B> принимает гостей!"))
+	to_chat(world, span_notice("Крепость <B>[station_name()]</B> принимает гостей!"),
+				html_en = span_notice("Fortress <B>[station_name()]</B> ready for dwellers!"))
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
 
 	if(SSevents.holidays)
-		to_chat(world, span_notice("и..."))
+		to_chat(world, span_notice("и..."),
+				html_en = span_notice("and..."))
 		for(var/holidayname in SSevents.holidays)
 			var/datum/holiday/holiday = SSevents.holidays[holidayname]
 			to_chat(world, "<h4>[holiday.greet()]</h4>")
@@ -644,20 +653,23 @@ SUBSYSTEM_DEF(ticker)
 
 	var/skip_delay = check_rights()
 	if(delay_end && !skip_delay)
-		to_chat(world, span_boldannounce("Конец продлён."))
+		to_chat(world, span_boldannounce("Конец продлён."),
+				html_en = span_boldannounce("Round end delayed."))
 		return
 
 	if(world.system_type == UNIX)
 		WRITE_FILE("nhb/ended", world.time)
 
-	to_chat(world, span_boldannounce("Игра закончится через [DisplayTimeText(delay)]. [reason]"))
+	to_chat(world, span_boldannounce("Игра закончится через [DisplayTimeText(delay)]. [reason]"),
+				html_en = span_boldannounce("Reboot in [DisplayTimeText(delay)]. [reason]"))
 
 	var/start_wait = world.time
 	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2))	//don't wait forever
 	sleep(delay - (world.time - start_wait))
 
 	if(delay_end && !skip_delay)
-		to_chat(world, span_boldannounce("Перезагрузка отменена. Веселье продолжается!"))
+		to_chat(world, span_boldannounce("Перезагрузка отменена. Веселье продолжается!"),
+				html_en = span_boldannounce("Round end delayed. Kill everyone!"))
 		return
 	if(end_string)
 		end_state = end_string
