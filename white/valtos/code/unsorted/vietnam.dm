@@ -217,7 +217,7 @@
 
 /datum/crafting_recipe/smithman/workplace
 	name = "Наковальня на полене"
-	result = /obj/anvil
+	result = /obj/structure/anvil
 	tool_paths = list(/obj/item/blacksmith/smithing_hammer)
 	reqs = list(/obj/item/blacksmith/srub = 1,
 				/obj/item/blacksmith/anvil_free = 1)
@@ -235,7 +235,7 @@
 
 /datum/crafting_recipe/smithman/furnace
 	name = "Плавильня"
-	result = /obj/furnace
+	result = /obj/structure/furnace
 	reqs = list(/obj/item/stack/sheet/stone = 10, /obj/item/stack/sheet/mineral/wood = 10)
 	time = 300
 	category = CAT_STRUCTURE
@@ -251,7 +251,7 @@
 
 /datum/crafting_recipe/smithman/forge
 	name = "Кузница"
-	result = /obj/forge
+	result = /obj/structure/forge
 	reqs = list(/obj/item/stack/sheet/stone = 20, /obj/item/stack/sheet/mineral/wood = 20)
 	time = 300
 	category = CAT_STRUCTURE

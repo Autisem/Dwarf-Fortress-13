@@ -287,7 +287,7 @@
 /turf/closed/wall/stonewall,
 /area/dwarf/cavesgen/middle_level)
 "yR" = (
-/obj/anvil/fullsteel{
+/obj/structure/anvil/fullsteel{
 	anchored = 1
 	},
 /turf/open/floor/stone,
@@ -303,7 +303,7 @@
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "Bz" = (
-/obj/forge,
+/obj/structure/forge,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "Cw" = (
@@ -371,7 +371,7 @@
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "LG" = (
-/obj/furnace,
+/obj/structure/furnace,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "Mu" = (

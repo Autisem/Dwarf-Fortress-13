@@ -1,4 +1,4 @@
-/obj/forge
+/obj/structure/forge
 	name = "кузница"
 	desc = "Нагревает различные штуки, но реже всего слитки."
 	icon = 'white/kacherkin/icons/dwarfs/obj/forge.dmi'
@@ -7,21 +7,21 @@
 	light_color = "#BB661E"
 	density = TRUE
 	anchored = TRUE
-	var/fuel = 60
+	var/fuel = 180
 	var/fuel_consumption = 1
 	var/list/fuel_values = list(/obj/item/stack/sheet/mineral/coal = 15, /obj/item/stack/sheet/mineral/wood = 10)
 	var/busy_heating = FALSE
 
-/obj/forge/Initialize(mapload)
+/obj/structure/forge/Initialize(mapload)
 	. = ..()
 	flick("forge_start", src)
 	START_PROCESSING(SSprocessing, src)
 
-/obj/forge/Destroy(force)
+/obj/structure/forge/Destroy(force)
 	. = ..()
 	STOP_PROCESSING(SSprocessing, src)
 
-/obj/forge/process(delta_time)
+/obj/structure/forge/process(delta_time)
 	if(fuel >= fuel_consumption)
 		fuel-=fuel_consumption
 	else
@@ -30,7 +30,7 @@
 			icon_state = "forge_off"
 			flick("forge_shutdown", src)
 
-/obj/forge/attackby(obj/item/I, mob/living/user, params)
+/obj/structure/forge/attackby(obj/item/I, mob/living/user, params)
 
 	if(user.a_intent == INTENT_HARM)
 		return ..()
@@ -60,7 +60,7 @@
 			to_chat(user, span_warning("Ты ебанутый?"))
 			return
 
-/obj/furnace
+/obj/structure/furnace
 	name = "плавильня"
 	desc = "Плавит."
 	icon = 'white/valtos/icons/objects.dmi'
@@ -72,7 +72,7 @@
 	var/furnacing = FALSE
 	var/furnacing_type = "iron"
 
-/obj/furnace/proc/furnaced_thing()
+/obj/structure/furnace/proc/furnaced_thing()
 	icon_state = "furnace"
 	furnacing = FALSE
 	light_range = 0
@@ -85,7 +85,7 @@
 		if("glass")
 			new /obj/item/stack/sheet/glass/five(drop_location())
 
-/obj/furnace/attackby(obj/item/I, mob/living/user, params)
+/obj/structure/furnace/attackby(obj/item/I, mob/living/user, params)
 
 	if(user.a_intent == INTENT_HARM)
 		return ..()
@@ -112,7 +112,7 @@
 		else
 			to_chat(user, "<span class=\"alert\">Нужно примерно пять единиц руды для создания слитка.</span>")
 
-/obj/anvil
+/obj/structure/anvil
 	name = "наковальня"
 	desc = "Вот на этом удобно ковать, да?"
 	icon = 'white/valtos/icons/objects.dmi'
@@ -122,7 +122,7 @@
 	var/obj/item/blacksmith/ingot/current_ingot = null
 	var/list/allowed_things = list()
 
-/obj/anvil/Topic(href, list/href_list)
+/obj/structure/anvil/Topic(href, list/href_list)
 	. = ..()
 	if(.)
 		return .
@@ -134,7 +134,7 @@
 	if(href_list["miss"])
 		miss(usr)
 
-/obj/anvil/proc/hit(mob/user)
+/obj/structure/anvil/proc/hit(mob/user)
 	var/mob/living/carbon/human/H = user
 	if(current_ingot.progress_current == current_ingot.progress_need)
 		current_ingot.progress_current++
@@ -152,7 +152,7 @@
 		H.mind.adjust_experience(/datum/skill/smithing, rand(0, 4) * current_ingot.mod_grade)
 		return
 
-/obj/anvil/proc/miss(mob/user)
+/obj/structure/anvil/proc/miss(mob/user)
 	// var/mob/living/carbon/human/H = user
 	current_ingot.durability--
 	if(current_ingot.durability == 0)
@@ -166,19 +166,19 @@
 						span_warning("Неправильно бью молотом по наковальне."))
 	return
 
-/obj/anvil/fullsteel
+/obj/structure/anvil/fullsteel
 	name = "тяжёлая наковальня"
 	desc = "Не сдвинуть. Совсем."
 	icon = 'white/kacherkin/icons/dwarfs/obj/objects.dmi'
 	icon_state = "old_anvil_full"
 
-/obj/anvil/Initialize()
+/obj/structure/anvil/Initialize()
 	. = ..()
 	for(var/item in subtypesof(/datum/smithing_recipe))
 		var/datum/smithing_recipe/SR = new item()
 		allowed_things += SR
 
-/obj/anvil/attackby(obj/item/I, mob/living/user, params)
+/obj/structure/anvil/attackby(obj/item/I, mob/living/user, params)
 
 	if(user.a_intent == INTENT_HARM)
 		return ..()
