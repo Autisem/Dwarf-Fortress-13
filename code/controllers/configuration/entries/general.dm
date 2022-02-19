@@ -67,15 +67,9 @@
 
 /datum/config_entry/flag/log_prayer	// log prayers
 
-/datum/config_entry/flag/log_law	// log lawchanges
-
 /datum/config_entry/flag/log_game	// log game events
 
-/datum/config_entry/flag/log_mecha	// log mech data
-
 /datum/config_entry/flag/log_virus	// log virology data
-
-/datum/config_entry/flag/log_cloning // log cloning actions.
 
 /datum/config_entry/flag/log_vote	// log voting
 
@@ -85,16 +79,8 @@
 
 /datum/config_entry/flag/log_emote	// log emotes
 
-/datum/config_entry/flag/log_econ	// log economy actions
-
 /datum/config_entry/flag/log_adminchat	// log admin chat messages
 	protection = CONFIG_ENTRY_LOCKED
-
-/datum/config_entry/flag/log_pda	// log pda messages
-
-/datum/config_entry/flag/log_uplink // log uplink/spellbook/codex ciatrix purchases and refundss
-
-/datum/config_entry/flag/log_telecomms	// log telecomms messages
 
 /datum/config_entry/flag/log_twitter	// log certain expliotable parrots and other such fun things in a JSON file of twitter valid phrases.
 
@@ -103,10 +89,6 @@
 /datum/config_entry/flag/log_manifest	// log crew manifest to seperate file
 
 /datum/config_entry/flag/log_job_debug	// log roundstart divide occupations debug information to a file
-
-/datum/config_entry/flag/log_shuttle // log shuttle related actions, ie shuttle computers, shuttle manipulator, emergency console
-
-/datum/config_entry/flag/log_mechcomp // log mechcomp actions like (un)anchoring and triggering of components that can interact with the world.
 
 /datum/config_entry/flag/log_exrp // :^)
 

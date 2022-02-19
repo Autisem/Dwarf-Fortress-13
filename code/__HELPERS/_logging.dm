@@ -89,17 +89,9 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 	if (CONFIG_GET(flag/log_game))
 		WRITE_LOG(GLOB.world_game_log, "GAME: [text]")
 
-/proc/log_mecha(text)
-	if (CONFIG_GET(flag/log_mecha))
-		WRITE_LOG(GLOB.world_mecha_log, "MECHA: [text]")
-
 /proc/log_virus(text)
 	if (CONFIG_GET(flag/log_virus))
 		WRITE_LOG(GLOB.world_virus_log, "VIRUS: [text]")
-
-/proc/log_cloning(text, mob/initiator)
-	if(CONFIG_GET(flag/log_cloning))
-		WRITE_LOG(GLOB.world_cloning_log, "CLONING: [text]")
 
 /proc/log_paper(text)
 	WRITE_LOG(GLOB.world_paper_log, "PAPER: [text]")
@@ -111,17 +103,9 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 	if (CONFIG_GET(flag/log_access))
 		WRITE_LOG(GLOB.world_game_log, "ACCESS: [text]")
 
-/proc/log_law(text)
-	if (CONFIG_GET(flag/log_law))
-		WRITE_LOG(GLOB.world_game_log, "LAW: [text]")
-
 /proc/log_attack(text)
 	if (CONFIG_GET(flag/log_attack))
 		WRITE_LOG(GLOB.world_attack_log, "ATTACK: [text]")
-
-/proc/log_econ(text)
-	if (CONFIG_GET(flag/log_econ))
-		WRITE_LOG(GLOB.world_econ_log, "MONEY: [text]")
 
 /proc/log_manifest(ckey, datum/mind/mind,mob/body, latejoin = FALSE)
 	if (CONFIG_GET(flag/log_manifest))
@@ -144,10 +128,6 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 /proc/log_exrp(text)
 	if (CONFIG_GET(flag/log_exrp))
 		WRITE_LOG(GLOB.world_exrp_log, "EXRP: [text]")
-
-/proc/log_mechcomp(text)
-	if (CONFIG_GET(flag/log_mechcomp))
-		WRITE_LOG(GLOB.world_mechcomp_log, "MECHCOMP: [text]")
 
 /proc/log_say(text)
 	if (CONFIG_GET(flag/log_say))
@@ -173,39 +153,9 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 	if (CONFIG_GET(flag/log_prayer))
 		WRITE_LOG(GLOB.world_game_log, "PRAY: [text]")
 
-/proc/log_pda(text)
-	if (CONFIG_GET(flag/log_pda))
-		WRITE_LOG(GLOB.world_pda_log, "PDA: [text]")
-
-/proc/log_comment(text)
-	if (CONFIG_GET(flag/log_pda))
-		//reusing the PDA option because I really don't think news comments are worth a config option
-		WRITE_LOG(GLOB.world_pda_log, "COMMENT: [text]")
-
-/proc/log_uplink(text)
-	if (CONFIG_GET(flag/log_uplink))
-		WRITE_LOG(GLOB.world_uplink_log, "UPLINK: [text]")
-
-/proc/log_spellbook(text)
-	if (CONFIG_GET(flag/log_uplink))
-		WRITE_LOG(GLOB.world_uplink_log, "SPELLBOOK: [text]")
-
-/proc/log_telecomms(text)
-	if (CONFIG_GET(flag/log_telecomms))
-		WRITE_LOG(GLOB.world_telecomms_log, "TCOMMS: [text]")
-
-/proc/log_chat(text)
-	if (CONFIG_GET(flag/log_pda))
-		//same thing here
-		WRITE_LOG(GLOB.world_pda_log, "CHAT: [text]")
-
 /proc/log_vote(text)
 	if (CONFIG_GET(flag/log_vote))
 		WRITE_LOG(GLOB.world_game_log, "VOTE: [text]")
-
-/proc/log_shuttle(text)
-	if (CONFIG_GET(flag/log_shuttle))
-		WRITE_LOG(GLOB.world_shuttle_log, "SHUTTLE: [text]")
 
 /proc/log_topic(text)
 	WRITE_LOG(GLOB.world_game_log, "TOPIC: [text]")

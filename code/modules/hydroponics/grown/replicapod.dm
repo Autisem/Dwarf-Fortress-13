@@ -62,7 +62,6 @@
 		sampleDNA = B.data["blood_DNA"]
 		contains_sample = TRUE
 		visible_message(span_notice(" В [src] ввели кровь."))
-		log_cloning("[key_name(mind)] cloning record was added to [src] at [AREACOORD(src)].")
 	else
 		visible_message(span_warning(" Не получается ввести кровь в [src]!"))
 	return NONE
@@ -174,7 +173,6 @@
 		new V(podman)
 	podman.hardset_dna(null,null,null,podman.real_name,blood_type, new /datum/species/pod,features)//Discard SE's and UI's, podman cloning is inaccurate, and always make them a podman
 	podman.set_cloned_appearance()
-	log_cloning("[key_name(mind)] cloned as a podman via [src] in [parent] at [AREACOORD(parent)].")
 
 	parent.update_tray()
 	return result

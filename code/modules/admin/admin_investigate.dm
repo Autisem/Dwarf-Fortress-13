@@ -10,26 +10,10 @@
 	if(!holder)
 		return
 
-	var/list/investigates = list(INVESTIGATE_RESEARCH,
-								INVESTIGATE_EXONET,
-								INVESTIGATE_PORTAL,
-								INVESTIGATE_SINGULO,
-								INVESTIGATE_WIRES,
-								INVESTIGATE_TELESCI,
-								INVESTIGATE_GRAVITY,
-								INVESTIGATE_RECORDS,
-								INVESTIGATE_CARGO,
+	var/list/investigates = list(INVESTIGATE_WIRES,
 								INVESTIGATE_CRAFTING,
-								INVESTIGATE_SUPERMATTER,
-								INVESTIGATE_ATMOS,
-								INVESTIGATE_EXPERIMENTOR,
 								INVESTIGATE_BOTANY,
-								INVESTIGATE_HALLUCINATIONS,
-								INVESTIGATE_RADIATION,
-								INVESTIGATE_NANITES,
-								INVESTIGATE_PRESENTS,
-								INVESTIGATE_HYPERTORUS,
-								INVESTIGATE_ACCESSCHANGES)
+								INVESTIGATE_HALLUCINATIONS)
 
 	var/list/logs_present = list("notes, memos, watchlist")
 	var/list/logs_missing = list("---")
