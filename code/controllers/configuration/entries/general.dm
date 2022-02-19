@@ -178,8 +178,6 @@
 
 /datum/config_entry/string/special_string
 
-/datum/config_entry/string/hostedby
-
 /datum/config_entry/flag/norespawn
 
 /datum/config_entry/flag/usewhitelist
@@ -227,11 +225,6 @@
 /datum/config_entry/string/gamelogurl
 
 /datum/config_entry/flag/guest_ban
-
-/datum/config_entry/number/id_console_jobslot_delay
-	config_entry_value = 30
-	integer = FALSE
-	min_val = 0
 
 /datum/config_entry/number/inactivity_period	//time in ds until a player is considered inactive
 	config_entry_value = 3000
