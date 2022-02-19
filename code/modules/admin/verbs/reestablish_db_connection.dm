@@ -2,7 +2,7 @@
 	set category = "Особенное"
 	set name = "Reestablish DB Connection"
 	if (!CONFIG_GET(flag/sql_enabled))
-		to_chat(usr, span_adminnotice("The Database is not enabled!"))
+		to_chat(usr, span_adminnotice("The Database is not enabled!") , confidential = TRUE)
 		return
 
 	if (SSdbcore.IsConnected())

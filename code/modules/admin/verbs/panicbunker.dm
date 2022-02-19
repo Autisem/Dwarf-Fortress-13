@@ -2,7 +2,7 @@
 	set category = "Срв"
 	set name = "Toggle Panic Bunker"
 	if (!CONFIG_GET(flag/sql_enabled))
-		to_chat(usr, span_adminnotice("The Database is not enabled!"))
+		to_chat(usr, span_adminnotice("The Database is not enabled!") , confidential = TRUE)
 		return
 
 	var/new_pb = !CONFIG_GET(flag/panic_bunker)

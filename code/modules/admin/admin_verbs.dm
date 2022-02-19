@@ -315,7 +315,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	remove_admin_verbs()
 	add_verb(src, /client/proc/show_verbs)
 
-	to_chat(src, span_interface("Almost all of your adminverbs have been hidden."))
+	to_chat(src, span_interface("Almost all of your adminverbs have been hidden.") , confidential = TRUE)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Hide All Adminverbs") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
@@ -326,7 +326,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	remove_verb(src, /client/proc/show_verbs)
 	add_admin_verbs()
 
-	to_chat(src, span_interface("All of your adminverbs are now visible."))
+	to_chat(src, span_interface("All of your adminverbs are now visible.") , confidential = TRUE)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Adminverbs") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -350,7 +350,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		ghost.reenter_corpse()
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Admin Reenter") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else if(isnewplayer(mob))
-		to_chat(src, span_red("Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first."))
+		to_chat(src, span_red("Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first."), confidential = TRUE)
 		return FALSE
 	else
 		//ghostize
@@ -369,14 +369,14 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set desc = "Toggles ghost-like invisibility (Don't abuse this)"
 	if(holder && mob)
 		if(initial(mob.invisibility) == INVISIBILITY_OBSERVER)
-			to_chat(mob, span_boldannounce("Invisimin toggle failed. You are already an invisible mob like a ghost."))
+			to_chat(mob, span_boldannounce("Invisimin toggle failed. You are already an invisible mob like a ghost."), confidential = TRUE)
 			return
 		if(mob.invisibility == INVISIBILITY_OBSERVER)
 			mob.invisibility = initial(mob.invisibility)
-			to_chat(mob, span_boldannounce("Invisimin off. Invisibility reset."))
+			to_chat(mob, span_boldannounce("Invisimin off. Invisibility reset.") , confidential = TRUE)
 		else
 			mob.invisibility = INVISIBILITY_OBSERVER
-			to_chat(mob, span_adminnotice("<b>Invisimin on. You are now as invisible as a ghost.</b>"))
+			to_chat(mob, span_adminnotice("<b>Invisimin on. You are now as invisible as a ghost.</b>") , confidential = TRUE)
 
 /client/proc/check_antagonists()
 	set name = "Check Antagonists"
@@ -535,7 +535,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if (isnull(ex_power))
 		return
 	var/range = round((2 * ex_power)**GLOB.DYN_EX_SCALE)
-	to_chat(usr, "Estimated Explosive Range: (Devastation: [round(range*0.25)], Heavy: [round(range*0.5)], Light: [round(range)])")
+	to_chat(usr, "Estimated Explosive Range: (Devastation: [round(range*0.25)], Heavy: [round(range*0.5)], Light: [round(range)])", confidential = TRUE)
 
 /client/proc/get_dynex_power()
 	set category = "Дбг"
@@ -546,7 +546,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if (isnull(ex_range))
 		return
 	var/power = (0.5 * ex_range)**(1/GLOB.DYN_EX_SCALE)
-	to_chat(usr, "Estimated Explosive Power: [power]")
+	to_chat(usr, "Estimated Explosive Power: [power]", confidential = TRUE)
 
 /client/proc/set_dynex_scale()
 	set category = "Дбг"
@@ -565,7 +565,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set name = "Give Disease"
 	set desc = "Gives a Disease to a mob."
 	if(!istype(T))
-		to_chat(src, span_notice("You can only give a disease to a mob of type /mob/living."))
+		to_chat(src, span_notice("You can only give a disease to a mob of type /mob/living.") , confidential = TRUE)
 		return
 	var/datum/disease/D = input("Choose the disease to give to that guy", "ACHOO") as null|anything in sort_list(SSdisease.diseases, /proc/cmp_typepaths_asc)
 	if(!D)
@@ -618,11 +618,11 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set desc = "Regain your admin powers."
 
 	//if(!isdead(src.mob) && !check_rights(R_PERMISSIONS))
-	//	to_chat(src, span_interface("Тебе нельзя. Надо бы из тела выйти."))
+	//	to_chat(src, span_interface("Тебе нельзя. Надо бы из тела выйти.") , confidential = TRUE)
 	//	return
 
 	if(src.ckey in GLOB.de_admined)
-		to_chat(src, span_interface("Тебе отрезали кнопки до конца раунда. Praise the Lord!"))
+		to_chat(src, span_interface("Тебе отрезали кнопки до конца раунда. Praise the Lord!") , confidential = TRUE)
 		return
 
 	var/datum/admins/A = GLOB.deadmins[ckey]
@@ -639,7 +639,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if (!holder)
 		return //This can happen if an admin attempts to vv themself into somebody elses's deadmin datum by getting ref via brute force
 
-	to_chat(src, span_interface("Ты пидор."))
+	to_chat(src, span_interface("Ты пидор.") , confidential = TRUE)
 	message_admins("[src] re-adminned themselves.")
 	log_admin("[src] re-adminned themselves.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Readmin")

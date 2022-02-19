@@ -242,7 +242,7 @@
 				var/list/prefs = settings["mainsettings"]
 
 				if (prefs["amount"]["value"] < 1 || prefs["portalnum"]["value"] < 1)
-					to_chat(holder, span_warning("Number of portals and mobs to spawn must be at least 1."))
+					to_chat(holder, span_warning("Number of portals and mobs to spawn must be at least 1.") , confidential = TRUE)
 					return
 
 				var/mob/pathToSpawn = prefs["typepath"]["value"]
@@ -250,7 +250,7 @@
 					pathToSpawn = text2path(pathToSpawn)
 
 				if (!ispath(pathToSpawn))
-					to_chat(holder, span_notice("Invalid path [pathToSpawn]."))
+					to_chat(holder, span_notice("Invalid path [pathToSpawn].") , confidential = TRUE)
 					return
 
 				var/list/candidates = list()
@@ -308,7 +308,7 @@
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Mass Braindamage"))
 			for(var/mob/living/carbon/human/H in GLOB.player_list)
-				to_chat(H, span_boldannounce("You suddenly feel stupid."))
+				to_chat(H, span_boldannounce("You suddenly feel stupid.") , confidential = TRUE)
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 60, 80)
 			message_admins("[key_name_admin(holder)] made everybody brain damaged")
 		if("floorlava")
@@ -356,7 +356,7 @@
 	if(holder)
 		log_admin("[key_name(holder)] used secret [action]")
 		if(ok)
-			to_chat(world, text("<B>A secret has been activated by []!</B>", holder.key))
+			to_chat(world, text("<B>A secret has been activated by []!</B>", holder.key), confidential = TRUE)
 
 /proc/portalAnnounce(announcement, playlightning)
 	set waitfor = FALSE
