@@ -12,7 +12,7 @@
 	if(istype(I, /obj/item/gem) && !istype(I, /obj/item/gem/cut))
 		icon_state = "gemcutter_on"
 		if(busy)
-			to_chat(user, span_notice("Сейчас занято."))
+			to_chat(user, span_notice("Currently busy."))
 			return
 		busy = TRUE
 		if(!do_after(user, 15 SECONDS, target = src))
