@@ -80,15 +80,28 @@
 	clawfootstep = FOOTSTEP_WATER
 	heavyfootstep = FOOTSTEP_WATER
 
+/turf/open/water/Entered(atom/movable/A)
+	if(isliving(A))
+		var/mob/living/L = A
+		L.adjustStaminaLoss(6)
+		L.movement_type |= FLOATING
+	. = ..()
+
 /turf/open/openspace/water/Entered(atom/movable/A)
 	if(isliving(A))
 		var/mob/living/L = A
-		L.adjustStaminaLoss(1)
+		L.adjustStaminaLoss(3)
 		L.movement_type |= FLOATING
 	. = ..()
+
+/turf/open/water/water/Exited(atom/movable/A, direction)
+	. = ..()
+	if(isliving(A))
+		var/mob/living/L = A
+		L.movement_type ~= FLOATING
 
 /turf/open/openspace/water/Exited(atom/movable/A, direction)
 	. = ..()
 	if(isliving(A))
 		var/mob/living/L = A
-		L.movement_type |= FLOATING
+		L.movement_type ~= FLOATING

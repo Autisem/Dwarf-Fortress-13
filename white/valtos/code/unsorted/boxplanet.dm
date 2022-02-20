@@ -108,13 +108,13 @@
 	light_range = 5
 	var/cooldown = 0
 
-/obj/structure/flora/tree/boxplanet/svetosvin/Initialize()
+/obj/structure/flora/tree/boxplanet/svetosvin/Bump(atom/A)
 	. = ..()
-	START_PROCESSING(SSobj, src)
-
-/obj/structure/flora/tree/boxplanet/svetosvin/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
+	if(isliving(A))
+		var/mob/living/L = A
+		L.electrocute_act(15, src)
+		L.Paralyze(5 SECONDS)
+		playsound(L, "sparks", 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 /obj/effect/flora_spawner
 	invisibility = SEE_INVISIBLE_OBSERVER
