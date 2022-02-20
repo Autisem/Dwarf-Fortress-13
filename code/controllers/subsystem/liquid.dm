@@ -19,6 +19,8 @@ SUBSYSTEM_DEF(liquids)
 	while(currentrun.len)
 		var/turf/open/thing = currentrun[currentrun.len]
 		currentrun.len--
+		if(istype(thing, /turf/closed))
+			continue
 		if(thing.spread_liquid())
 			liquid_turfs_list -= thing
 		if (MC_TICK_CHECK)
