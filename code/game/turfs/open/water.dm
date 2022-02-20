@@ -98,10 +98,10 @@
 	. = ..()
 	if(isliving(A))
 		var/mob/living/L = A
-		L.movement_type ~= FLOATING
+		L.movement_type &= ~FLOATING
 
 /turf/open/openspace/water/Exited(atom/movable/A, direction)
 	. = ..()
 	if(isliving(A))
 		var/mob/living/L = A
-		L.movement_type ~= FLOATING
+		L.movement_type &= ~FLOATING
