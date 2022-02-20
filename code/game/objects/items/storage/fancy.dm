@@ -33,6 +33,7 @@
 		icon_state = "[icon_type]box[contents.len]"
 	else
 		icon_state = "[icon_type]box"
+	return ..()
 
 /obj/item/storage/fancy/examine(mob/user)
 	. = ..()
@@ -95,6 +96,7 @@
 		icon_state = "donutbox_inner"
 	else
 		icon_state = "donutbox"
+	return ..()
 
 /obj/item/storage/fancy/donut_box/update_overlays()
 	. = ..()
@@ -232,6 +234,7 @@
 			icon_state = "[initial(icon_state)]_empty"
 		else
 			icon_state = initial(icon_state)
+	return ..()
 
 /obj/item/storage/fancy/cigarettes/update_overlays()
 	. = ..()
@@ -369,7 +372,7 @@
 
 ///Overrides to do nothing because fancy boxes are fucking insane.
 /obj/item/storage/fancy/rollingpapers/update_icon_state()
-	return
+	return ..()
 
 /obj/item/storage/fancy/rollingpapers/update_overlays()
 	. = ..()
@@ -401,6 +404,7 @@
 		icon_state = "[initial(icon_state)]_open"
 	else
 		icon_state = "[initial(icon_state)]"
+	return ..()
 
 /obj/item/storage/fancy/cigarettes/cigars/update_overlays()
 	. = ..()

@@ -301,6 +301,7 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw/update_icon_state()
 	inhand_icon_state = "[initial(icon_state)][cover_open ? "open" : "closed"][magazine ? "mag":"nomag"]"
+	return ..()
 
 /obj/item/gun/ballistic/automatic/l6_saw/update_overlays()
 	. = ..()
@@ -435,6 +436,7 @@
 
 /obj/item/gun/ballistic/automatic/evgenii/update_icon_state()
 	inhand_icon_state = "[initial(icon_state)][magazine ? "_mag":""]"
+	return ..()
 
 /obj/item/ammo_box/magazine/evgenii
 	name = "странный магазин"

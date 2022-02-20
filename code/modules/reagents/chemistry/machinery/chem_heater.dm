@@ -61,6 +61,7 @@
 		icon_state = "mixer1b"
 	else
 		icon_state = "mixer0b"
+	return ..()
 
 /obj/machinery/chem_heater/AltClick(mob/living/user)
 	. = ..()

@@ -182,6 +182,7 @@
 		icon_state = "control_on"
 	else icon_state = "control"
 	//No other icons for it atm
+	return ..()
 
 
 /obj/machinery/power/am_control_unit/attackby(obj/item/W, mob/user, params)
@@ -501,6 +502,7 @@
 			setup_core()
 	else if(processing)
 		shutdown_core()
+	return ..()
 
 
 /obj/machinery/am_shielding/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)

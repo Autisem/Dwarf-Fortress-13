@@ -85,6 +85,7 @@
 		icon_state = "notholstered"
 	else
 		icon_state = "holstered"
+	return ..()
 
 /obj/item/minigunpack/proc/attach_gun(mob/user)
 	if(!gun)

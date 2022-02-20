@@ -19,6 +19,7 @@
 		icon_state = "[initial(icon_state)]"
 	else
 		icon_state = "[initial(icon_state)]_[min(amount, 14)]"
+	return ..()
 
 
 /obj/item/stack/cannonball/fourteen

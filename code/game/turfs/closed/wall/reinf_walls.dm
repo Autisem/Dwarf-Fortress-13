@@ -207,6 +207,7 @@
 		icon_state = "r_wall-[d_state]"
 	else
 		icon_state = "[base_icon_state]-[smoothing_junction]"
+	return ..()
 
 /turf/closed/wall/r_wall/syndicate
 	name = "обшивка"

@@ -575,3 +575,4 @@
 			icon_state = "[initial(icon_state)]5"
 		if(6)
 			icon_state = "[initial(icon_state)]6"
+	return ..()

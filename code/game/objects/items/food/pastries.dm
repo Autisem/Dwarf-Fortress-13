@@ -821,6 +821,7 @@
 		name = initial(name)
 	if(contents.len < LAZYLEN(overlays))
 		overlays-=overlays[overlays.len]
+	return ..()
 
 /obj/item/food/pancakes/examine(mob/user)
 	var/ingredients_listed = ""

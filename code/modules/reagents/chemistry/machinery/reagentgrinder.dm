@@ -109,6 +109,7 @@
 		icon_state = "juicer1"
 	else
 		icon_state = "juicer0"
+	return ..()
 
 /obj/machinery/reagentgrinder/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
 	if(!user)

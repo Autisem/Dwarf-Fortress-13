@@ -357,6 +357,7 @@
 	if(contents.len)
 		icon_state += "-sword"
 		worn_icon_state += "-sword"
+	return ..()
 
 /obj/item/clothing/suit/armor/light_plate
 	name = "chest plate"
@@ -1043,6 +1044,7 @@
 		icon_state = "peech"
 	else
 		icon_state = "peech"
+	return ..()
 
 /obj/machinery/microwave/furnace/attackby(obj/item/O, mob/user, params)
 	efficiency = 4

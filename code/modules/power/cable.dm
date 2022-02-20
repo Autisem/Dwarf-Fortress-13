@@ -141,6 +141,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 						break
 		dir_string = "l[cable_layer]-[dir_string]"
 		icon_state = dir_string
+	return ..()
 
 /obj/structure/cable/examine(mob/user)
 	. = ..()
@@ -434,6 +435,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	var/how_many_things = amount < 3 ? "piece" : "coil"
 	name = "cable [how_many_things]"
 	desc = "A [how_many_things] of insulated power cable."
+	return ..()
 
 /obj/item/stack/cable_coil/suicide_act(mob/user)
 	if(locate(/obj/structure/chair/stool) in get_turf(user))
@@ -643,7 +645,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER|VIS_UNDERLAY
 
 /obj/structure/cable/multilayer/update_icon_state()
-	return
+	return ..()
 
 /obj/structure/cable/multilayer/update_icon()
 

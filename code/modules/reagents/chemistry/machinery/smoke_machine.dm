@@ -47,6 +47,7 @@
 			icon_state = "smoke0"
 	else
 		icon_state = "smoke1"
+	return ..()
 
 /obj/machinery/smoke_machine/RefreshParts()
 	var/new_volume = REAGENTS_BASE_VOLUME

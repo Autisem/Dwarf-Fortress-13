@@ -23,6 +23,7 @@
 			icon_state = "arcade-ticket_2"
 		else
 			icon_state = "arcade-ticket"
+	return ..()
 
 /obj/item/stack/arcadeticket/proc/pay_tickets()
 	amount -= 2

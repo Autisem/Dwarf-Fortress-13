@@ -63,6 +63,7 @@
 			QUEUE_SMOOTH(src)
 		else
 			icon_state = "fwall_open"
+	return ..()
 
 /obj/structure/falsewall/proc/ChangeToWall(delete = 1)
 	var/turf/T = get_turf(src)

@@ -342,6 +342,7 @@
 		icon_state = "[initial(icon_state)]-active"
 	else
 		icon_state = "[initial(icon_state)]"
+	return ..()
 
 /obj/machinery/jukebox/ui_status(mob/user)
 	if(!anchored)

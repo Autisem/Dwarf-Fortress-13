@@ -27,6 +27,7 @@
 		icon_state = "[icon_base]-on"
 	else
 		icon_state = "[icon_base]-off"
+	return ..()
 
 /obj/item/organ/heart/Remove(mob/living/carbon/M, special = 0)
 	..()

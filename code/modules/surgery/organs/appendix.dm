@@ -20,6 +20,7 @@
 	else
 		icon_state = "appendix"
 		name = "аппендикс"
+	return ..()
 
 /obj/item/organ/appendix/on_life(delta_time, times_fired)
 	..()

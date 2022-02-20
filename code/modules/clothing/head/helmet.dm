@@ -422,6 +422,7 @@
 			state += "-flight" //etc.
 
 	icon_state = state
+	return ..()
 
 /obj/item/clothing/head/helmet/ui_action_click(mob/user, action)
 	if(istype(action, alight))

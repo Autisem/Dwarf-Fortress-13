@@ -132,6 +132,7 @@
 		icon_state = (beaker ? "mixer1_b" : "mixer0_b")
 	else
 		icon_state = "mixer[(beaker) ? "1" : "0"][powered() ? "" : "_nopower"]"
+	return ..()
 
 /obj/machinery/pandemic/update_overlays()
 	. = ..()

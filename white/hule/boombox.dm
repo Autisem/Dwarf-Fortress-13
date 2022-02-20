@@ -39,6 +39,7 @@
 		icon_state = "[initial(icon_state)]_active"
 	else
 		icon_state = "[initial(icon_state)]"
+	return ..()
 
 /obj/item/boombox/proc/load_tracks()
 	var/list/tracks = flist("[global.config.directory]/jukebox_music/sounds/")

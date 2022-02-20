@@ -99,6 +99,7 @@
 		icon_state = "mixer1"
 	else
 		icon_state = "mixer0"
+	return ..()
 
 /obj/machinery/chem_master/update_overlays()
 	. = ..()

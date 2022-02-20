@@ -46,6 +46,7 @@
 
 /obj/item/fireaxe/update_icon_state()
 	icon_state = "fireaxe0"
+	return ..()
 
 /obj/item/fireaxe/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] axes [user.ru_na()]self from head to toe! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -74,6 +75,7 @@
 
 /obj/item/fireaxe/boneaxe/update_icon_state()
 	icon_state = "bone_axe0"
+	return ..()
 
 /*
  * Metal Hydrogen Axe

@@ -66,6 +66,7 @@
 
 	if(master)
 		master.update_icon()
+	return ..()
 
 /obj/item/assembly_holder/on_found(mob/finder)
 	if(a_left)

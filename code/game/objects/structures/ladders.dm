@@ -70,6 +70,7 @@
 		icon_state = "ladder01"
 	else	//wtf make your ladders properly assholes
 		icon_state = "ladder00"
+	return ..()
 
 /obj/structure/ladder/proc/travel(going_up, mob/user, is_ghost, obj/structure/ladder/ladder)
 	if(!is_ghost)

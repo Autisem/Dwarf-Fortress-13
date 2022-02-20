@@ -508,6 +508,7 @@
 	else
 		icon_state = "glowstick"
 		cut_overlays()
+	return ..()
 
 /obj/item/flashlight/glowstick/attack_self(mob/user)
 	if(fuel <= 0)

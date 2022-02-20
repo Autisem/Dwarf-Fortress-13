@@ -33,6 +33,7 @@
 
 /obj/item/spear/update_icon_state()
 	icon_state = "[icon_prefix]0"
+	return ..()
 
 /obj/item/spear/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] начинает глотать меч <b>[src.name]</b>! Это выглядит будто [user.p_theyre()] пытается совершить самоубийство!"))
@@ -67,6 +68,7 @@
 
 /obj/item/spear/bonespear/update_icon_state()
 	icon_state = "bone_spear0"
+	return ..()
 
 /*
  * Bamboo Spear

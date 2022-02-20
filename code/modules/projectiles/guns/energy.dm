@@ -187,6 +187,7 @@
 		inhand_icon_state = temp_icon_to_use
 	if(!skip_worn_icon)
 		worn_icon_state = temp_icon_to_use
+	return ..()
 
 
 /obj/item/gun/energy/update_overlays()

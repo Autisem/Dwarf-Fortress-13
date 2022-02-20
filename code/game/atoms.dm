@@ -320,7 +320,6 @@
 /// Returns true or false to allow the mover to move through src
 /atom/proc/CanAllowThrough(atom/movable/mover, border_dir)
 	SHOULD_CALL_PARENT(TRUE)
-	//SHOULD_BE_PURE(TRUE)
 	if(mover.pass_flags & pass_flags_self)
 		return TRUE
 	if(mover.throwing && (pass_flags_self & LETPASSTHROW))
@@ -660,7 +659,7 @@
 /// Updates the icon of the atom
 /atom/proc/update_icon(updates=ALL)
 	SIGNAL_HANDLER
-	//SHOULD_CALL_PARENT(TRUE) лично я ебал резолвать 180 конфликтов изза етой хуйни
+	SHOULD_CALL_PARENT(TRUE)
 
 	. = NONE
 	updates &= ~SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_ICON, updates)
@@ -688,7 +687,7 @@
 
 /// Updates the icon state of the atom
 /atom/proc/update_icon_state()
-	//SHOULD_CALL_PARENT(TRUE)
+	SHOULD_CALL_PARENT(TRUE)
 	return SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_ICON_STATE)
 
 /// Updates the overlays of the atom

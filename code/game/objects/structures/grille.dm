@@ -51,6 +51,7 @@
 		var/mask = 1 << i
 		if(holes & mask)
 			filters += filter(type="alpha", icon = icon('icons/obj/smooth_structures/grille.dmi', "broken_[i]"), flags = MASK_INVERSE)
+	return ..()
 
 /obj/structure/grille/examine(mob/user)
 	. = ..()

@@ -26,6 +26,7 @@
 
 /obj/projectile/curse_hand/update_icon_state()
 	icon_state = "[initial(icon_state)][handedness]"
+	return ..()
 
 /obj/projectile/curse_hand/fire(setAngle)
 	if(QDELETED(src)) //I'm going to try returning nothing because if it's being deleted, surely we don't want anything to happen?

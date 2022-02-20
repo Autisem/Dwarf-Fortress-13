@@ -77,6 +77,7 @@
 	else
 		icon_state = "[initial(icon_state)]"
 		inhand_icon_state = "[initial(inhand_icon_state)]"
+	return ..()
 
 /obj/item/melee/sabre/security/examine(mob/user)
 	. = ..()
@@ -226,6 +227,7 @@
 	if(contents.len)
 		icon_state += "-sword"
 		inhand_icon_state += "-sword"
+	return ..()
 
 /obj/item/storage/belt/sheath/security
 	name = "ножны катаны офицера"

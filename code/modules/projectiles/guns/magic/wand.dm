@@ -23,6 +23,7 @@
 
 /obj/item/gun/magic/wand/update_icon_state()
 	icon_state = "[initial(icon_state)][charges ? "" : "-drained"]"
+	return ..()
 
 /obj/item/gun/magic/wand/attack(atom/target, mob/living/user)
 	if(target == user)

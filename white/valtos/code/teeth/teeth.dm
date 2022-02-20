@@ -13,13 +13,11 @@
 	switch(amount)
 		if(1)
 			icon_state = initial(icon_state)
-			return
 		if(2 to 5)
 			icon_state = "[initial(icon_state)]_[amount]"
-			return
 		else
 			icon_state = "[initial(icon_state)]_5"
-			return
+	return ..()
 
 /obj/item/stack/teeth/Initialize()
 	. = ..()

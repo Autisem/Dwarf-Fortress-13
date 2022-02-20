@@ -64,6 +64,7 @@
 			icon_state = "[initial(icon_state)]1"
 		else
 			icon_state = "[initial(icon_state)]"
+	return ..()
 
 /obj/item/storage/bag/trash/bluespace
 	name = "блюспейс мешок для мусора"
@@ -485,6 +486,7 @@
 			icon_state = "[initial(icon_state)]1"
 		else
 			icon_state = "[initial(icon_state)]"
+	return ..()
 
 /obj/item/storage/bag/pissbox/ComponentInitialize()
 	. = ..()

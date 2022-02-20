@@ -83,6 +83,7 @@
 		attached_overlays += "timer_timing"
 	if(holder)
 		holder.update_icon()
+	return ..()
 
 /obj/item/assembly/timer/ui_status(mob/user)
 	if(is_secured(user))

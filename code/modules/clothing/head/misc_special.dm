@@ -175,6 +175,7 @@
 /obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user)
 	if(ishuman(user))
 		add_atom_colour("#[user.hair_color]", FIXED_COLOUR_PRIORITY)
+	return ..()
 
 /obj/item/clothing/head/kitty/genuine
 	desc = "Пара кошачьих ушей. На бирке внутри написано: \"Сделано вручную из настоящих кошек.\"."

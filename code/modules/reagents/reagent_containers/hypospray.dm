@@ -86,6 +86,7 @@
 		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]0"
+	return ..()
 
 /obj/item/reagent_containers/hypospray/combat/heresypurge
 	name = "holy water piercing injector"
@@ -135,6 +136,7 @@
 		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]0"
+	return ..()
 
 /obj/item/reagent_containers/hypospray/medipen/examine()
 	. = ..()
@@ -216,6 +218,7 @@
 		icon_state = "[initial(icon_state)]1"
 	else
 		icon_state = "[initial(icon_state)]0"
+	return ..()
 
 /obj/item/reagent_containers/hypospray/medipen/survival
 	name = "survival emergency medipen"

@@ -256,6 +256,7 @@
 
 /obj/item/restraints/legcuffs/beartrap/update_icon_state()
 	icon_state = "[initial(icon_state)][armed]"
+	return ..()
 
 /obj/item/restraints/legcuffs/beartrap/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is sticking [user.ru_ego()] head in the [src.name]! It looks like [user.p_theyre()] trying to commit suicide!"))

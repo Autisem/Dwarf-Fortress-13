@@ -61,6 +61,7 @@
 		icon_state = "dnamod-off"
 	else
 		icon_state = "dnamod"
+	return ..()
 
 /obj/machinery/plantgenes/update_overlays()
 	. = ..()

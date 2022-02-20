@@ -59,6 +59,7 @@
 	var/mutable_appearance/holochip_overlay = mutable_appearance('icons/obj/economy.dmi', "[icon_state]-color")
 	holochip_overlay.color = overlay_color
 	add_overlay(holochip_overlay)
+	return ..()
 
 /obj/item/holochip/proc/spend(amount, pay_anyway = FALSE)
 	if(credits >= amount)

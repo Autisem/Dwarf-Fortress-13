@@ -67,3 +67,4 @@
 		icon_state = "clown_prototype_on"
 	else
 		icon_state = "clown_prototype_off"
+	return ..()

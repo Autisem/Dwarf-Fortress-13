@@ -140,6 +140,7 @@
 
 /obj/machinery/chem_dispenser/update_icon_state()
 	icon_state = "[(nopower_state && !powered()) ? nopower_state : initial(icon_state)]"
+	return ..()
 
 /obj/machinery/chem_dispenser/update_overlays()
 	. = ..()

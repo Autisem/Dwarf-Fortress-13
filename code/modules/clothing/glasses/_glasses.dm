@@ -365,6 +365,7 @@
 	if(ishuman(user) && !colored_before)
 		add_atom_colour("#[user.eye_color]", FIXED_COLOUR_PRIORITY)
 		colored_before = TRUE
+	return ..()
 
 /obj/item/clothing/glasses/blindfold/white/worn_overlays(isinhands = FALSE, file2use)
 	. = list()

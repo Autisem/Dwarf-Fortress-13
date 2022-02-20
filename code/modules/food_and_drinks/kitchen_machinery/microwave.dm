@@ -96,6 +96,7 @@
 		icon_state = "mw-o"
 	else
 		icon_state = "mw"
+	return ..()
 
 /obj/machinery/microwave/attackby(obj/item/O, mob/user, params)
 	if(operating)

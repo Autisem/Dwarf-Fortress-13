@@ -106,7 +106,7 @@
 		attached_overlays += "prox_scanning"
 	if(holder)
 		holder.update_icon()
-	return
+	return ..()
 
 /obj/item/assembly/prox_sensor/ui_status(mob/user)
 	if(is_secured(user))

@@ -74,6 +74,7 @@
 		icon_state = "barrel_open"
 	else
 		icon_state = "barrel"
+	return ..()
 
 /datum/crafting_recipe/fermenting_barrel
 	name = "Wooden Barrel"

@@ -61,6 +61,7 @@
 			icon_state = "disposal"
 		else
 			icon_state = "condisposal"
+	return ..()
 
 /obj/structure/disposalconstruct/proc/get_disposal_dir()
 	if(!is_pipe())

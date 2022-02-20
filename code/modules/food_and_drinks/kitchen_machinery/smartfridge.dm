@@ -55,6 +55,7 @@
 			icon_state = "[initial(icon_state)]"
 	else
 		icon_state = "[initial(icon_state)]-off"
+	return ..()
 
 /obj/machinery/smartfridge/update_overlays()
 	. = ..()

@@ -30,3 +30,4 @@
 		icon_state = "filled_plate_[rand(1,6)]_2"
 	else
 		icon_state = "filled_plate_[rand(1,6)]_3"
+	return ..()

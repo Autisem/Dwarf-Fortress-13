@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	update_icon()
 
 /obj/structure/bodycontainer/update_icon()
-	return
+	return ..()
 
 /obj/structure/bodycontainer/relaymove(mob/living/user, direction)
 	if(user.stat || !isturf(loc))
@@ -190,6 +190,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 							playsound(src, 'sound/weapons/gun/general/empty_alarm.ogg', 50, FALSE) //Revive them you blind fucks
 							next_beep = world.time + beep_cooldown
 					break
+	return ..()
 
 
 /obj/item/paper/guides/jobs/medical/morgue
@@ -239,7 +240,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		if(locked)
 			src.icon_state = "crema_active"
 
-	return
+	return ..()
 
 /obj/structure/bodycontainer/crematorium/process()
 	temperature += 100

@@ -68,7 +68,7 @@
 
 	if(holder)
 		holder.update_icon()
-	return
+	return ..()
 
 /obj/item/assembly/infra/dropped()
 	. = ..()

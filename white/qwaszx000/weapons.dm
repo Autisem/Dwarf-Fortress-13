@@ -18,6 +18,7 @@ Arrow&bow
 
 /obj/item/reagent_containers/syringe/arrow/update_icon()
 	cut_overlays()
+	return ..()
 
 /obj/projectile/bullet/dart/syringe/bow//Arrow
 	name = "arrow"
