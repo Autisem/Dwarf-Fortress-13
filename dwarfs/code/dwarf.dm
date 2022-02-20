@@ -77,8 +77,6 @@
 /datum/species/dwarf/random_name(gender,unique,lastname, en_lang = FALSE)
 	return dwarf_name()
 
-#undef DWARF_ALCOHOL_RATE
-
 // Dwarven tongue, they only know their language.
 /obj/item/organ/tongue/dwarven
 	name = "nol"
