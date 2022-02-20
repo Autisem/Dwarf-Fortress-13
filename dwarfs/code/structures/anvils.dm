@@ -51,12 +51,12 @@
 	var/mob/living/carbon/human/H = user
 	if(current_ingot.progress_current == current_ingot.progress_need)
 		current_ingot.progress_current++
-		playsound(src, 'white/valtos/sounds/anvil_hit.ogg', 70, TRUE)
+		playsound(src, 'dwarfs/sounds/anvil_hit.ogg', 70, TRUE)
 		to_chat(user, span_notice("[current_ingot] is ready. Hit it again to keep smithing or cool it down."))
 		user<<browse(null, "window=Anvil")
 		return
 	else
-		playsound(src, 'white/valtos/sounds/anvil_hit.ogg', 70, TRUE)
+		playsound(src, 'dwarfs/sounds/anvil_hit.ogg', 70, TRUE)
 		user.visible_message(span_notice("<b>[user]</b> hits \the anvil with \a hammer.") , \
 						span_notice("You hit \the anvil with \a hammer."))
 		current_ingot.progress_current++
@@ -73,7 +73,7 @@
 		LAZYCLEARLIST(contents)
 		icon_state = "[initial(icon_state)]"
 		user<<browse(null, "window=Anvil")
-	playsound(src, 'white/valtos/sounds/anvil_hit.ogg', 70, TRUE)
+	playsound(src, 'dwarfs/sounds/anvil_hit.ogg', 70, TRUE)
 	user.visible_message(span_warning("<b>[user]</b> hits \the anvil with \a hammer incorrectly.") , \
 						span_warning("You hit \the anvil with \a hammer incorrectly."))
 	return
@@ -250,7 +250,7 @@
 					current_ingot.progress_current = 0
 					current_ingot.mod_grade++
 					current_ingot.progress_need = round(current_ingot.progress_need * 1.1)
-					playsound(src, 'white/valtos/sounds/anvil_hit.ogg', 70, TRUE)
+					playsound(src, 'dwarfs/sounds/anvil_hit.ogg', 70, TRUE)
 					to_chat(user, span_notice("You begin to upgrade \the [current_ingot]."))
 					return
 			else
@@ -267,7 +267,7 @@
 					return
 				current_ingot.recipe = new sel_recipe.type()
 				current_ingot.recipe.max_resulting = H.mind.get_skill_modifier(/datum/skill/smithing, SKILL_RANDS_MODIFIER)
-				playsound(src, 'white/valtos/sounds/anvil_hit.ogg', 70, TRUE)
+				playsound(src, 'dwarfs/sounds/anvil_hit.ogg', 70, TRUE)
 				to_chat(user, span_notice("You begin to forge..."))
 				return
 		else

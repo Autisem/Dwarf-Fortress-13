@@ -45,7 +45,7 @@
 			busy = FALSE
 			return
 		busy = FALSE
-		playsound(src, 'white/valtos/sounds/anvil_hit.ogg', 70, TRUE)
+		playsound(src, 'dwarfs/sounds/anvil_hit.ogg', 70, TRUE)
 		var/obj/O = new recipe.result(loc)
 		if(istype(get_primary(), /obj/item/blacksmith/partial))
 			var/obj/item/blacksmith/partial/P = get_primary()
