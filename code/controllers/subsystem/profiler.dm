@@ -4,7 +4,7 @@ GLOBAL_REAL_VAR(world_init_maptick_profiler) = world.Profile(PROFILE_RESTART, ty
 
 
 SUBSYSTEM_DEF(profiler)
-	name = "Профайлер"
+	name = "Profiler"
 	init_order = INIT_ORDER_PROFILER
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 	wait = 3000

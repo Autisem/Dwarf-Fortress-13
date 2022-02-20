@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(time_track)
-	name = "Отслеживатель времени"
+	name = "Time Tracker"
 	wait = 100
 	init_order = INIT_ORDER_TIMETRACK
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT

@@ -1,7 +1,7 @@
 #define PING_BUFFER_TIME 25
 
 SUBSYSTEM_DEF(server_maint)
-	name = "Серверные техи"
+	name = "Server Maint"
 	wait = 6
 	flags = SS_POST_FIRE_TIMING
 	priority = FIRE_PRIORITY_SERVER_MAINT

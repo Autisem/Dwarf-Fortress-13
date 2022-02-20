@@ -17,7 +17,7 @@
  * and next references for the respective elements in that bucket's list.
  */
 SUBSYSTEM_DEF(timer)
-	name = "Таймер"
+	name = "Timer"
 	wait = 1 // SS_TICKER subsystem, so wait is in ticks
 	init_order = INIT_ORDER_TIMER
 	priority = FIRE_PRIORITY_TIMER

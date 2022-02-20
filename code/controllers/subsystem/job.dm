@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(job)
-	name = "Работы"
+	name = "Jobs"
 	init_order = INIT_ORDER_JOBS
 	flags = SS_NO_FIRE
 

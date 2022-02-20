@@ -4,7 +4,7 @@
 #define KEEP_ROUNDS_MAP 3
 
 SUBSYSTEM_DEF(persistence)
-	name = "Память системы"
+	name = "Persistence"
 	init_order = INIT_ORDER_PERSISTENCE
 	flags = SS_NO_FIRE
 

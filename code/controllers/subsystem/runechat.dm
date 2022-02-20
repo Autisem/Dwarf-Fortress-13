@@ -16,7 +16,7 @@
  * of a circularly linked list. Any given index in bucket_list could be null, representing an empty bucket.
  */
 SUBSYSTEM_DEF(runechat)
-	name = "Рунический Чат"
+	name = "Runechat"
 	flags = SS_TICKER | SS_NO_INIT
 	wait = 1
 	priority = FIRE_PRIORITY_RUNECHAT

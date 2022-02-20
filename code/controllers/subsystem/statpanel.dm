@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(statpanels)
-	name = "Статус-панель"
+	name = "Stat-panel"
 	wait = 4
 	init_order = INIT_ORDER_STATPANELS
 	priority = FIRE_PRIORITY_STATPANEL

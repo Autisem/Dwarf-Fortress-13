@@ -1,7 +1,7 @@
 #define PROB_MOUSE_SPAWN 98
 
 SUBSYSTEM_DEF(minor_mapping)
-	name = "Незначительная Картография"
+	name = "Minor Mapping"
 	init_order = INIT_ORDER_MINOR_MAPPING
 	flags = SS_NO_FIRE
 

@@ -1,9 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aR" = (
-/turf/open/water,
+/turf/open/lava,
 /area/dwarf/fortress)
 "aX" = (
-/turf/open/water,
+/turf/open/lava,
 /area/dwarf/cavesgen/middle_level)
 "bk" = (
 /obj/structure/mineral_door/heavystone{

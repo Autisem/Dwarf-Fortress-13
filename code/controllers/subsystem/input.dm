@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(input)
-	name = "Управление"
+	name = "Controls"
 	wait = 1 //SS_TICKER means this runs every tick
 	init_order = INIT_ORDER_INPUT
 	flags = SS_TICKER

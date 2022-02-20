@@ -1,7 +1,7 @@
 //Used for active reactions in reagents/equilibrium datums
 
 PROCESSING_SUBSYSTEM_DEF(reagents)
-	name = "Реагенты"
+	name = "Reagents"
 	init_order = INIT_ORDER_REAGENTS
 	priority = FIRE_PRIORITY_REAGENTS
 	wait = 0.25 SECONDS //You might think that rate_up_lim has to be set to half, but since everything is normalised around delta_time, it automatically adjusts it to be per second. Magic!

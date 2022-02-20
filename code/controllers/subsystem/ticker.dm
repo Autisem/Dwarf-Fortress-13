@@ -1,7 +1,7 @@
 #define ROUND_START_MUSIC_LIST "strings/round_start_sounds.txt"
 
 SUBSYSTEM_DEF(ticker)
-	name = "Тикер"
+	name = "Ticker"
 	init_order = INIT_ORDER_TICKER
 
 	priority = FIRE_PRIORITY_TICKER

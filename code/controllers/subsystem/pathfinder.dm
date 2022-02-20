@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(pathfinder)
-	name = "Путеводитель"
+	name = "Pathfinder"
 	init_order = INIT_ORDER_PATH
 	flags = SS_NO_FIRE
 	var/datum/flowcache/mobs

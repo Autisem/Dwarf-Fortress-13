@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(spacedrift)
-	name = "Космодрифт"
+	name = "Spacedrift"
 	priority = FIRE_PRIORITY_SPACEDRIFT
 	wait = 5
 	flags = SS_NO_INIT|SS_KEEP_TIMING

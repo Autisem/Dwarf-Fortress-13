@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(sun)
-	name = "Светило"
+	name = "Sun"
 	wait = 1 MINUTES
 	flags = SS_NO_TICK_CHECK
 

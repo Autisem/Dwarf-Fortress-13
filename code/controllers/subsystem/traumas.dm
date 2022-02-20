@@ -1,3 +1,3 @@
 SUBSYSTEM_DEF(traumas)
-	name = "Травмы"
+	name = "Traumas"
 	flags = SS_NO_FIRE

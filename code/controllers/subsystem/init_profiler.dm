@@ -3,7 +3,7 @@
 ///Subsystem exists so we can seperately log init time costs from the costs of general operation
 ///Hopefully this makes sorting out what causes problems when easier
 SUBSYSTEM_DEF(init_profiler)
-	name = "Инит Профайлер"
+	name = "Init Profiler"
 	init_order = INIT_ORDER_INIT_PROFILER
 	flags = SS_NO_FIRE
 

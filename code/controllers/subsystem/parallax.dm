@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(parallax)
-	name = "Параллакс"
+	name = "Parallax"
 	wait = 2
 	flags = SS_POST_FIRE_TIMING | SS_BACKGROUND
 	priority = FIRE_PRIORITY_PARALLAX

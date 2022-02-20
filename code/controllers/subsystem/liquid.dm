@@ -1,8 +1,8 @@
 SUBSYSTEM_DEF(liquids)
-	name = "Жидкости"
+	name = "Liquids"
 	init_order = INIT_ORDER_LIQUIDS
 	flags = SS_KEEP_TIMING
-	wait = 1 SECONDS
+	wait = 9999999 HOURS
 	var/list/liquid_turfs_list = list()
 	var/list/currentrun = list()
 
