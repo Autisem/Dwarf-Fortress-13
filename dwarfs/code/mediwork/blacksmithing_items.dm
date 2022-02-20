@@ -1003,7 +1003,7 @@
 	return mutable_appearance('white/valtos/icons/objects.dmi', "throne_armrest")
 
 /obj/structure/table/stone
-	name = "stoen table"
+	name = "stone table"
 	desc = "Caveman technology."
 	icon = 'white/valtos/icons/stone_table.dmi'
 	icon_state = "stone_table-0"
