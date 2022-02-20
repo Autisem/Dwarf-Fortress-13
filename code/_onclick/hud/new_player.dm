@@ -187,7 +187,10 @@
 			to_chat(new_player, span_notice("Тебя добавили в очередь для захода в игру. Твой номер в очереди: [SSticker.queued_players.len]."))
 		return
 	if(!GLOB.is_tournament_rules)
-		new_player.LateChoices()
+		if(check_whitelist(new_player?.client?.ckey) || new_player?.client?.holder)
+			new_player.LateChoices()
+		else
+			to_chat(hud.mymob, span_boldwarning("You are not invited. Just stay in lobby."))
 	else
 		new_player.make_me_an_observer(TRUE)
 
