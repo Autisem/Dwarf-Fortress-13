@@ -1,7 +1,7 @@
 /**********************Mineral deposits**************************/
 
 /turf/closed/mineral //wall piece
-	name = "камень"
+	name = "rock"
 	icon = 'icons/turf/mining.dmi'
 	icon_state = "rock"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
@@ -61,7 +61,7 @@
 
 /turf/closed/mineral/attackby(obj/item/I, mob/user, params)
 	if (!ISADVANCEDTOOLUSER(user))
-		to_chat(usr, span_warning("Маловато у меня сил для такой работы!"))
+		to_chat(usr, span_warning("You don't have the dexterity to do this!"))
 		return
 
 	if(I.tool_behaviour == TOOL_MINING)
@@ -72,11 +72,11 @@
 		if(last_act + (40 * I.toolspeed) > world.time)//prevents message spam
 			return
 		last_act = world.time
-		to_chat(user, span_notice("Начинаю копать..."))
+		to_chat(user, span_notice("You start picking..."))
 
 		if(I.use_tool(src, user, 40, volume=50))
 			if(ismineralturf(src))
-				to_chat(user, span_notice("Вскапываю камень."))
+				to_chat(user, span_notice("You finish cutting into the rock."))
 				gets_drilled(user, TRUE)
 				SSblackbox.record_feedback("tally", "pick_used_mining", 1, I.type)
 	else
@@ -224,7 +224,7 @@
 		/turf/closed/mineral/gibtonite/volcanic = 4, /obj/item/stack/ore/bluespace_crystal = 1)
 
 /turf/closed/mineral/random/snow
-	name = "заснеженный склон горы"
+	name = "snowy mountainside"
 	icon = 'icons/turf/mining.dmi'
 	smooth_icon = 'icons/turf/walls/icerock_wall.dmi'
 	icon_state = "icerock_wall-0"
@@ -284,7 +284,7 @@
 
 // Subtypes for mappers placing ores manually.
 /turf/closed/mineral/random/labormineral/ice
-	name = "заснеженный склон горы"
+	name = "snowy mountainside"
 	icon = 'icons/turf/mining.dmi'
 	smooth_icon = 'icons/turf/walls/icerock_wall.dmi'
 	icon_state = "icerock_wall-0"
@@ -406,7 +406,7 @@
 	defer_change = TRUE
 
 /turf/closed/mineral/ash_rock //wall piece
-	name = "камень"
+	name = "rock"
 	icon = 'icons/turf/mining.dmi'
 	smooth_icon = 'icons/turf/walls/rock_wall.dmi'
 	icon_state = "rock2"
@@ -419,7 +419,7 @@
 	defer_change = TRUE
 
 /turf/closed/mineral/snowmountain
-	name = "заснеженный склон горы"
+	name = "snowy mountainside"
 	icon = 'icons/turf/mining.dmi'
 	smooth_icon = 'icons/turf/walls/mountain_wall.dmi'
 	icon_state = "mountain_wall-0"
@@ -436,7 +436,7 @@
 	baseturfs = /turf/open/floor/plating/asteroid/snow
 
 /turf/closed/mineral/snowmountain/cavern
-	name = "ледяная скала пещеры"
+	name = "ice cavern rock"
 	icon = 'icons/turf/mining.dmi'
 	smooth_icon = 'icons/turf/walls/icerock_wall.dmi'
 	icon_state = "icerock"
