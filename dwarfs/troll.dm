@@ -14,16 +14,16 @@
 	weather_immunities = list("lava","ash")
 	see_in_dark = 1
 	butcher_results = list(/obj/item/food/meat/slab = 3, /obj/item/stack/ore/stone = 6, /obj/item/stack/sheet/mineral/coal = 5)
-	response_help_continuous = "отталкивает"
-	response_help_simple = "отталкивает"
-	response_disarm_continuous = "толкает"
-	response_disarm_simple = "толкает"
-	response_harm_continuous = "вмазывает"
-	response_harm_simple = "вмазывает"
+	response_help_continuous = "pushes"
+	response_help_simple = "pushes"
+	response_disarm_continuous = "pushes"
+	response_disarm_simple = "pushes"
+	response_harm_continuous = "hits"
+	response_harm_simple = "hits"
 	melee_damage_lower = 15
 	melee_damage_upper = 25
-	attack_verb_continuous = "ударяет"
-	attack_verb_simple = "ударяет"
+	attack_verb_continuous = "attacks"
+	attack_verb_simple = "attacks"
 	atmos_requirements = list("min_oxy" = 5, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 10, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = INFINITY

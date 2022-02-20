@@ -5,8 +5,8 @@
 	icon_state = "frogman"
 	icon_dead = "frogman_dead"
 	speak_chance = 1
-	speak = list("Ква", "Израиль нелегитимное госдарство", "ХРРР")
-	speak_emote = list("квакает")
+	speak = list("quack")
+	speak_emote = list("quacks")
 	turns_per_move = 2
 	maxHealth = 120
 	health = 120
@@ -14,16 +14,16 @@
 	weather_immunities = list("ash")
 	see_in_dark = 1
 	butcher_results = list(/obj/item/food/meat/slab = 2)
-	response_help_continuous = "отталкивает"
-	response_help_simple = "отталкивает"
-	response_disarm_continuous = "толкает"
-	response_disarm_simple = "толкает"
-	response_harm_continuous = "вмазывает"
-	response_harm_simple = "вмазывает"
+	response_help_continuous = "pushes"
+	response_help_simple = "pushes"
+	response_disarm_continuous = "pushes"
+	response_disarm_simple = "pushes"
+	response_harm_continuous = "hits"
+	response_harm_simple = "hits"
 	melee_damage_lower = 8
 	melee_damage_upper = 15
-	attack_verb_continuous = "ударяет"
-	attack_verb_simple = "ударяет"
+	attack_verb_continuous = "attacks"
+	attack_verb_simple = "attacks"
 	atmos_requirements = list("min_oxy" = 1, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 40, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1600
@@ -42,14 +42,14 @@
 	see_in_dark = 1
 	melee_damage_lower = 8
 	melee_damage_upper = 12
-	attack_verb_continuous = "вмазывает"
-	attack_verb_simple = "вмазывает"
-	response_help_continuous = "отталкивает"
-	response_help_simple = "отталкивает"
-	response_disarm_continuous = "толкает"
-	response_disarm_simple = "толкает"
-	response_harm_continuous = "вмазывает"
-	response_harm_simple = "вмазывает"
+	attack_verb_continuous = "attacks"
+	attack_verb_simple = "attacks"
+	response_help_continuous = "pushes"
+	response_help_simple = "pushes"
+	response_disarm_continuous = "pushes"
+	response_disarm_simple = "pushes"
+	response_harm_continuous = "hits"
+	response_harm_simple = "hits"
 	atmos_requirements = list("min_oxy" = 1, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 40, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1600
@@ -107,16 +107,16 @@
 	weather_immunities = list("ash")
 	see_in_dark = 1
 	butcher_results = list(/obj/item/blacksmith/ingot = 1, /obj/item/food/meat/slab = 1)
-	response_help_continuous = "подталкивает"
-	response_help_simple = "подталкивает"
-	response_disarm_continuous = "толкает"
-	response_disarm_continuous = "толкает"
-	response_harm_continuous = "таранит"
-	response_harm_simple = "таранит"
+	attack_verb_continuous = "attacks"
+	attack_verb_simple = "attacks"
+	response_help_continuous = "pushes"
+	response_help_simple = "pushes"
+	response_disarm_continuous = "pushes"
+	response_disarm_simple = "pushes"
+	response_harm_continuous = "hits"
+	response_harm_simple = "hits"
 	melee_damage_lower = 12
 	melee_damage_upper = 18
-	attack_verb_continuous = "врезается в"
-	attack_verb_simple = "врезается в"
 	atmos_requirements = list("min_oxy" = 1, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 40, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1600
@@ -135,8 +135,8 @@
 	faction = list("mining")
 	weather_immunities = list("ash")
 	see_in_dark = 1
-	attack_verb_continuous = "уничтожает"
-	attack_verb_simple = "уничтожает"
+	attack_verb_continuous = "destroys"
+	attack_verb_simple = "destroys"
 	melee_damage_lower = 28
 	melee_damage_upper = 35
 	armour_penetration = 40
