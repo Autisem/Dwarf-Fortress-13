@@ -1,115 +1,29 @@
-/obj/structure/forge
-	name = "forge"
-	desc = "Heats up various things, sometimes even ingots."
-	icon = 'white/kacherkin/icons/dwarfs/obj/forge.dmi'
-	icon_state = "forge_on"
-	light_range = 9
-	light_color = "#BB661E"
-	density = TRUE
-	anchored = TRUE
-	var/fuel = 180
-	var/fuel_consumption = 1
-	var/list/fuel_values = list(/obj/item/stack/sheet/mineral/coal = 15, /obj/item/stack/sheet/mineral/wood = 10)
-	var/busy_heating = FALSE
+/obj/item/blacksmith/anvil_free
+	name = "anvil"
+	desc = "Its hard to forge on it."
+	icon_state = "anvil_free"
+	w_class = WEIGHT_CLASS_HUGE
+	force = 10
+	throwforce = 20
+	throw_range = 2
 
-/obj/structure/forge/Initialize(mapload)
+/obj/item/blacksmith/anvil_free/ComponentInitialize()
 	. = ..()
-	flick("forge_start", src)
-	START_PROCESSING(SSprocessing, src)
+	AddComponent(/datum/component/two_handed, require_twohands=TRUE, force_unwielded=10, force_wielded=10)
 
-/obj/structure/forge/Destroy(force)
+/obj/item/blacksmith/srub
+	name = "log"
+	desc = "Sturdy enough to hold an anvil."
+	icon_state = "srub"
+	w_class = WEIGHT_CLASS_HUGE
+	force = 7
+	throwforce = 10
+	throw_range = 3
+	custom_materials = null
+
+/obj/item/blacksmith/srub/ComponentInitialize()
 	. = ..()
-	STOP_PROCESSING(SSprocessing, src)
-
-/obj/structure/forge/process(delta_time)
-	if(fuel >= fuel_consumption)
-		fuel-=fuel_consumption
-	else
-		fuel = 0
-		if(icon_state != "forge_off")
-			icon_state = "forge_off"
-			flick("forge_shutdown", src)
-
-/obj/structure/forge/attackby(obj/item/I, mob/living/user, params)
-	if(user.a_intent == INTENT_HARM)
-		return ..()
-	if(I.type in fuel_values)
-		var/obj/item/stack/S = I
-		src.visible_message(span_notice("[user] throws [S] into [src]."), span_notice("You throw [S] into [src]."))
-		fuel+=S.amount*fuel_values[I.type]
-		qdel(S)
-		if(icon_state != "forge_on")
-			icon_state = "forge_on"
-			flick("forge_start", src)
-	else if(istype(I, /obj/item/blacksmith/tongs))
-		if(I.contents.len)
-			if(!fuel)
-				to_chat(user, span_warning("No fuel."))
-				return
-			if(istype(I.contents[I.contents.len], /obj/item/blacksmith/ingot))
-				if(!busy_heating)
-					busy_heating = TRUE
-					if(do_after(user, 10, src))
-						var/obj/item/blacksmith/ingot/N = I.contents[I.contents.len]
-						N.heattemp = 350
-						I.icon_state = "tongs_hot"
-						to_chat(user, span_notice("You heat up [N]."))
-					busy_heating = FALSE
-		else
-			to_chat(user, span_warning("Are you retarded?"))
-			return
-
-/obj/structure/furnace
-	name = "smelter"
-	desc = "Looks weird, probably useless."
-	icon = 'white/valtos/icons/objects.dmi'
-	icon_state = "furnace"
-	density = TRUE
-	anchored = TRUE
-	light_range = 0
-	light_color = "#BB661E"
-	var/furnacing = FALSE
-	var/furnacing_type = "iron"
-
-/obj/structure/furnace/proc/furnaced_thing()
-	icon_state = "furnace"
-	furnacing = FALSE
-	light_range = 0
-
-	switch(furnacing_type)
-		if("iron")
-			new /obj/item/blacksmith/ingot(drop_location())
-		if("gold")
-			new /obj/item/blacksmith/ingot/gold(drop_location())
-		if("glass")
-			new /obj/item/stack/sheet/glass/five(drop_location())
-
-/obj/structure/furnace/attackby(obj/item/I, mob/living/user, params)
-
-	if(user.a_intent == INTENT_HARM)
-		return ..()
-
-	if(furnacing)
-		to_chat(user, span_alert("[src] is already smelting."))
-		return
-
-	if(istype(I, /obj/item/stack/ore/iron) || istype(I, /obj/item/stack/ore/gold) || istype(I, /obj/item/stack/sheet/iron) || istype(I, /obj/item/stack/ore/glass))
-		var/obj/item/stack/S = I
-		if(S.amount >= 5)
-			S.use(5)
-			furnacing = TRUE
-			icon_state = "furnace_on"
-			light_range = 3
-			to_chat(user, span_notice("[src] lights up."))
-			if(istype(I, /obj/item/stack/ore/gold))
-				furnacing_type = "gold"
-			else if(istype(I, /obj/item/stack/ore/glass))
-				furnacing_type = "glass"
-			else
-				furnacing_type = "iron"
-			addtimer(CALLBACK(src, .proc/furnaced_thing), 15 SECONDS)
-		else
-			to_chat(user, "<span class=\"alert\">You need at least 5 pieces.</span>")
+	AddComponent(/datum/component/two_handed, require_twohands=TRUE, force_unwielded=7, force_wielded=7)
 
 /obj/structure/anvil
 	name = "anvil"
