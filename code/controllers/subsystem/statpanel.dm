@@ -21,7 +21,6 @@ SUBSYSTEM_DEF(statpanels)
 /datum/controller/subsystem/statpanels/fire(resumed = FALSE)
 	if (!resumed)
 		num_fires++
-		var/datum/map_config/cached = SSmapping.next_map_config
 		var/list/global_data = list(
 			"TD: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
 			"Story: [GLOB.round_id ? GLOB.round_id : "NULL"]"
