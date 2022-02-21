@@ -53,10 +53,10 @@
 /turf/closed/wall/examine(mob/user)
 	. += ..()
 	. += "<hr>"
-	. += deconstruction_hints(user)
+	// . += deconstruction_hints(user)
 
 /turf/closed/wall/proc/deconstruction_hints(mob/user)
-	return span_notice("Внешняя обшивка крепко <b>приварена</b>.")
+	return span_notice("The outer plating is <b>welded</b> firmly in place.</b>.")
 
 /turf/closed/wall/proc/dismantle_wall(devastated=0, explode=0)
 	if(devastated)

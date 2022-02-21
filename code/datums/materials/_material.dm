@@ -8,7 +8,6 @@ Simple datum which is instanced once per type and is used for every object of sa
 /datum/material
 	/// What the material is referred to as IC.
 	var/name = "материал"
-	var/skloname = "материала"
 	/// A short description of the material. Not used anywhere, yet...
 	var/desc = "its..stuff."
 	/// What the material is indexed by in the SSmaterials.materials list. Defaults to the type of the material.

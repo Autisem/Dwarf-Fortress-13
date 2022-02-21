@@ -1,8 +1,7 @@
 ///It's gross, gets the name of it's owner, and is all kinds of fucked up
 /datum/material/meat
-	name = "мясо"
-	skloname = "мяса"
-	desc = "Ням?"
+	name = "meat"
+	desc = "Yum?"
 	id = /datum/material/meat	// So the bespoke versions are categorized under this
 	color = rgb(214, 67, 67)
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)

@@ -108,7 +108,7 @@
 		else
 			ct = "cold"
 
-	. += "\the [src] is [ct]."
+	. += "<hr>The [src] is [ct]."
 
 /obj/item/blacksmith/ingot/Initialize()
 	. = ..()

@@ -20,7 +20,6 @@
 	. = ..()
 	if(!isitem(target)) // Do not attach this to anything that isn't an item
 		return ELEMENT_INCOMPATIBLE
-	RegisterSignal(target, COMSIG_PARENT_EXAMINE, .proc/warning_label)
 	RegisterSignal(target, COMSIG_TOPIC, .proc/topic_handler)
 	// Don't perform the assignment if there is nothing to assign, or if we already have something for this bespoke element
 	if(attached_proc && !src.attached_proc)
@@ -29,22 +28,6 @@
 /datum/element/weapon_description/Detach(datum/target)
 	. = ..()
 	UnregisterSignal(target, list(COMSIG_PARENT_EXAMINE, COMSIG_TOPIC))
-
-/**
- *
- * This proc is called when the user examines an object with the associated element. This produces a hyperlinked
- * text line provided that the given item meets the weapon-determining criteria (Sufficient force or notes)
- *
- * Arguments:
- * 	* source - Object being examined, cast into an item variable
- *  * user - Unused
- *  * examine_texts - The output text list of the original examine function
- */
-/datum/element/weapon_description/proc/warning_label(obj/item/item, mob/user, list/examine_texts)
-	SIGNAL_HANDLER
-
-	if(item.force >= 5 || item.throwforce >= 5 || item.override_notes || item.offensive_notes || attached_proc) /// Only show this tag for items that could feasibly be weapons, shields, or those that have special notes
-		examine_texts += span_notice("<hr>На [item.ru_na()] есть обновляющася блюспейс <a href='?src=[REF(item)];examine=1'>этикетка</a>.")
 
 /**
  *

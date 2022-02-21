@@ -13,8 +13,8 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	alpha = 160
 
 /turf/open/openspace
-	name = "открытое пространство"
-	desc = "Смотри под ноги!"
+	name = "open space"
+	desc = "Watch your step!"
 	icon_state = "invisible"
 	baseturfs = /turf/open/openspace
 	baseturfs = /turf/open/openspace

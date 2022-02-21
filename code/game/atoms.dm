@@ -579,35 +579,35 @@
 		var/list/materials_list = list()
 		for(var/i in custom_materials)
 			var/datum/material/M = i
-			materials_list += "<font color='[M.color]'>[M.skloname]</font>"
-		. += span_small("Этот предмет создан из <u>[english_list(materials_list)]</u>.")
+			materials_list += "<font color='[M.color]'>[M.name]</font>"
+		. += span_small("It's made out of <u>[english_list(materials_list)]</u>.")
 	if(reagents)
 		. += "<hr>"
 		if(reagents.flags & TRANSPARENT)
-			. += "Он содержит: "
+			. += "It contains: "
 			if(length(reagents.reagent_list))
 				if(user.can_see_reagents()) //Show each individual reagent
 					for(var/datum/reagent/R in reagents.reagent_list)
-						. += "\n[round(R.volume, 0.01)] единиц [R.name]"
+						. += "\n[round(R.volume, 0.01)] units [R.name]"
 					if(reagents.is_reacting)
-						. += "\n<span class='warning'>Сейчас бурлит!</span>"
-					. += "\n<span class='notice'>Кислотность раствора [round(reagents.ph, 0.01)], его температура [reagents.chem_temp]K.</span>"
+						. += "\n<span class='warning'>Is reacting!</span>"
+					. += "\n<span class='notice'>Solution acidity [round(reagents.ph, 0.01)], its temperature is [reagents.chem_temp]K.</span>"
 				else //Otherwise, just show the total volume
 					var/total_volume = 0
 					for(var/datum/reagent/R in reagents.reagent_list)
 						total_volume += R.volume
-					. += "[total_volume] единиц различных реагентов."
+					. += "[total_volume] units various reagents."
 			else
-				. += "Ничего."
+				. += "Nothing."
 		else if(reagents.flags & AMOUNT_VISIBLE)
 			if(reagents.total_volume)
-				. += span_notice("В нём ещё есть [reagents.total_volume] единиц.")
+				. += span_notice("It still has [reagents.total_volume] units.")
 			else
-				. += span_danger("Он пуст.")
+				. += span_danger("It's empty.")
 
 	if(ishuman(user))
 		if(user.stat == CONSCIOUS && !user.eye_blind)
-			user.visible_message(span_small("<b>[user]</b> смотрит на <b>[skloname(name, VINITELNI, gender)]</b>.") , span_small("Смотрю на <b>[src.name]</b>.") , null, COMBAT_MESSAGE_RANGE)
+			user.visible_message(span_small("<b>[user]</b> looks at <b>[src.name]</b>.") , span_small("You look at <b>[src.name]</b>.") , null, COMBAT_MESSAGE_RANGE)
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 
 
@@ -623,7 +623,7 @@
 	. = list()
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE_MORE, user, .)
 	if(!LAZYLEN(.)) // lol ..length
-		return list(span_notice("<i>Осматриваю <b>[src]</b> тщательно, но не могу найти что-то ещё интересное...</i>"))
+		return list(span_notice("<i>You examine <b>[src]</b> closer, but find nothing of interest...</i>"))
 
 /**
  * Updates the appearence of the icon

@@ -332,7 +332,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	. += "<hr>"
 
 	if(resistance_flags & INDESTRUCTIBLE)
-		. += span_smallnotice("<b>Защитные свойства:</b> [icon2html(EMOJI_SET, user, "indestructible")] Неуязвимый.\n")
+		. += span_smallnotice("<b>Protective properties:</b> [icon2html(EMOJI_SET, user, "indestructible")] Indestructible.\n")
 	else
 		var/list/rfm = list()
 		if(resistance_flags & LAVA_PROOF)
@@ -344,9 +344,9 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		if(resistance_flags & FIRE_PROOF)
 			rfm += icon2html(EMOJI_SET, user, "fire")
 		if(rfm.len)
-			. += span_smallnotice("<b>Защитные свойства:</b> [rfm.Join(" ")]\n")
+			. += span_smallnotice("<b>Protective properties:</b> [rfm.Join(" ")]\n")
 
-	. += span_smallnotice("<b>Размер:</b> [weightclass2icon(w_class, user, TRUE)]")
+	. += span_smallnotice("<b>Size:</b> [weightclass2icon(w_class, user, TRUE)]")
 
 /obj/item/interact(mob/user)
 	add_fingerprint(user)

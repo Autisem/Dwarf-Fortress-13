@@ -1,7 +1,7 @@
 ///LAVA
 
 /turf/open/lava
-	name = "лава"
+	name = "lava"
 	icon_state = "lava"
 	gender = PLURAL //"That's some lava."
 	baseturfs = /turf/open/lava //lava all the way down
@@ -195,7 +195,7 @@
 				L.IgniteMob()
 
 /turf/open/lava/smooth
-	name = "магма"
+	name = "lava"
 	baseturfs = /turf/open/lava/smooth
 	icon = 'icons/turf/floors/lava.dmi'
 	icon_state = "lava-255"

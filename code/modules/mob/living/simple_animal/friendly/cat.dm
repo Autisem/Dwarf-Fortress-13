@@ -236,22 +236,22 @@
 /mob/living/simple_animal/pet/cat/Life(delta_time = SSMOBS_DT, times_fired)
 	if(!stat && !buckled && !client)
 		if(DT_PROB(0.5, delta_time))
-			manual_emote(pick("вытягивается и показывает свой животик.", "виляет хвостиком.", "ложится."))
+			manual_emote(pick("stretches out for a belly rub.", "wags its tail.", "lies down."))
 			set_resting(TRUE)
 			playsound(src, pick(meowlist), 50, TRUE)
 		else if(DT_PROB(0.5, delta_time))
-			manual_emote(pick("присаживается.", "присаживается на задние лапы.", "загадочно присаживается."))
+			manual_emote(pick("sits down.", "crouches on its hind legs.", "looks alert."))
 			set_resting(TRUE)
 			icon_state = "[icon_living]_sit"
 			collar_type = "[initial(collar_type)]_sit"
 			playsound(src, pick(meowlist), 25, TRUE)
 		else if(DT_PROB(0.5, delta_time))
 			if (resting)
-				manual_emote(pick("встаёт и мяукает.", "ходит по кругу.", "встаёт."))
+				manual_emote(pick("gets up and meows.", "walks around.", "stops resting."))
 				set_resting(FALSE)
 				playsound(src, pick(meowlist), 25, TRUE)
 			else
-				manual_emote(pick("прилизывается.", "дергает усами.", "отряхивается."))
+				manual_emote(pick("grooms its fur.", "twitches its whiskers.", "shakes out its coat."))
 				playsound(src, pick(meowlist), 40, TRUE)
 
 	//MICE!
@@ -260,12 +260,12 @@
 			for(var/mob/living/simple_animal/mouse/M in view(1,src))
 				if(istype(M, /mob/living/simple_animal/mouse/brown/tom) && inept_hunter)
 					if(COOLDOWN_FINISHED(src, emote_cooldown))
-						visible_message(span_warning("[capitalize(src.name)] бежит за [M] безуспешно, теряя последнюю надежду!"))
+						visible_message(span_warning("[src] chases [M] around, to no avail!"))
 						step(M, pick(GLOB.cardinals))
 						COOLDOWN_START(src, emote_cooldown, 1 MINUTES)
 					break
 				if(!M.stat && Adjacent(M))
-					manual_emote("давит [M]!")
+					manual_emote("splats [M]!")
 					M.splat()
 					movement_target = null
 					stop_automated_movement = 0

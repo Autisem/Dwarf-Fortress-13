@@ -14,9 +14,8 @@
 	amount = 10
 
 /datum/material/palputinum
-	name = "палпутинум"
-	skloname = "палпутинума"
-	desc = "Туз"
+	name = "palputinum"
+	desc = "Ace"
 	color = rgb(239, 151, 68)
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/palputinum

@@ -13,8 +13,8 @@
  */
 
 /obj/structure/table
-	name = "стол"
-	desc = "Квадратный кусок металла, стоящий на четырех металлических ножках. Это не может двигаться."
+	name = "table"
+	desc = "A square piece of metal standing on four metal legs. It can not move."
 	icon = 'icons/obj/smooth_structures/table.dmi'
 	icon_state = "table-0"
 	base_icon_state = "table"
@@ -48,7 +48,7 @@
 	. += deconstruction_hints(user)
 
 /obj/structure/table/proc/deconstruction_hints(mob/user)
-	return "<hr><span class='notice'>Верхушка <b>прикручена</b>, но основные <b>болты</b> также видны.</span>"
+	return "<hr><span class='notice'>The top is <b>screwed</b> on, but the main <b>bolts</b> are also visible.</span>"
 
 /obj/structure/table/update_icon()
 	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
@@ -64,19 +64,19 @@
 		if(isliving(user.pulling))
 			var/mob/living/pushed_mob = user.pulling
 			if(pushed_mob.buckled)
-				to_chat(user, span_warning("<b>[pushed_mob]</b> прикован к <b>[pushed_mob.buckled]</b>!"))
+				to_chat(user, span_warning("<b>[pushed_mob]</b> is buckled to <b>[pushed_mob.buckled]</b>!"))
 				return
 			if(user.a_intent == INTENT_GRAB)
 				if(user.grab_state < GRAB_AGGRESSIVE)
-					to_chat(user, span_warning("Надо бы посильнее взять!"))
+					to_chat(user, span_warning("You need a better grip to do that!"))
 					return
 				if(user.grab_state >= GRAB_NECK)
 					tablelimbsmash(user, pushed_mob)
 				else
 					tablepush(user, pushed_mob)
 			if(user.a_intent == INTENT_HELP)
-				pushed_mob.visible_message(span_notice("<b>[user]</b> начинает укладывать <b>[pushed_mob]</b> на <b>[src]</b>...") , \
-									span_userdanger("<b>[user]</b> начинает укладывать <b>меня</b> на <b>[src]</b>..."))
+				pushed_mob.visible_message(span_notice("<b>[user]</b> begins to place <b>[pushed_mob]</b> onto <b>[src]</b>...") , \
+									span_userdanger("<b>[user]</b> begins to place <b>you</b> onto <b>[src]</b>..."))
 				if(do_after(user, 35, target = pushed_mob))
 					tableplace(user, pushed_mob)
 				else
@@ -85,13 +85,13 @@
 		else if(user.pulling.pass_flags & PASSTABLE)
 			user.Move_Pulled(src)
 			if (user.pulling.loc == loc)
-				user.visible_message(span_notice("<b>[user]</b> кладёт <b>[user.pulling]</b> на <b>[src]</b>.") ,
-					span_notice("Кладу на <b>[user.pulling]</b> на <b>[src]</b>."))
+				user.visible_message(span_notice("<b>[user]</b> places <b>[user.pulling]</b> onto <b>[src]</b>.") ,
+					span_notice("You place <b>[user.pulling]</b> onto <b>[src]</b>."))
 				user.stop_pulling()
 	if(user.a_intent == INTENT_HARM)
 		user.changeNext_move(CLICK_CD_MELEE)
-		user.visible_message(span_warning("[user] долбит по столу!") , span_warning("Долблю по столу!") ,
-			span_danger("Слышу звук удара."))
+		user.visible_message(span_warning("[user] smashes \the [src]!") , span_warning("You smash \the [src]!") ,
+			span_danger("You hear a loud sound."))
 		playsound(src, bashsound, 80, TRUE)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -120,13 +120,13 @@
 /obj/structure/table/proc/tableplace(mob/living/user, mob/living/pushed_mob)
 	pushed_mob.forceMove(loc)
 	pushed_mob.set_resting(TRUE, TRUE)
-	pushed_mob.visible_message(span_notice("<b>[user]</b> кладет <b>[pushed_mob]</b> на <b>[src]</b>.") , \
-								span_notice("<b>[user]</b> кладет <b>[pushed_mob]</b> на <b>[src]</b>."))
+	pushed_mob.visible_message(span_notice("<b>[user]</b> places <b>[pushed_mob]</b> onto <b>[src]</b>.") , \
+								span_notice("<b>[user]</b> places <b>[pushed_mob]</b> onto <b>[src]</b>."))
 	log_combat(user, pushed_mob, "places", null, "onto [src]")
 
 /obj/structure/table/proc/tablepush(mob/living/user, mob/living/pushed_mob)
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_danger("Не хочу бросать [pushed_mob] на стол. Это может ему навредить!"))
+		to_chat(user, span_danger("Throwing [pushed_mob] onto the table might hurt them!"))
 		return
 	var/added_passtable = FALSE
 	if(!(pushed_mob.pass_flags & PASSTABLE))
@@ -143,8 +143,8 @@
 	if(user.mind?.martial_art.smashes_tables && user.mind?.martial_art.can_use(user))
 		deconstruct(FALSE)
 	playsound(pushed_mob, 'sound/effects/tableslam.ogg', 90, TRUE)
-	pushed_mob.visible_message(span_danger("<b>[user]</b> укладывает <b>[pushed_mob]</b> на <b>[src]</b>!") , \
-								span_userdanger("<b>[user]</b> прикладывает меня на <b>[src]</b>!"))
+	pushed_mob.visible_message(span_danger("<b>[user]</b> slams <b>[pushed_mob]</b> onto <b>[src]</b>!") , \
+								span_userdanger("<b>[user]</b> slams you onto <b>[src]</b>!"))
 	log_combat(user, pushed_mob, "tabled", null, "onto [src]")
 	SEND_SIGNAL(pushed_mob, COMSIG_ADD_MOOD_EVENT, "table", /datum/mood_event/table)
 
@@ -157,21 +157,21 @@
 	if(user.mind?.martial_art.smashes_tables && user.mind?.martial_art.can_use(user))
 		deconstruct(FALSE)
 	playsound(pushed_mob, "sound/effects/bang.ogg", 90, TRUE)
-	pushed_mob.visible_message(span_danger("<b>[user]</b> ударяет голову <b>[pushed_mob]</b> об <b>[src]</b>!") ,
-								span_userdanger("<b>[user]</b> бьёт моей головой об <b>[src]</b>!"))
+	pushed_mob.visible_message(span_danger("<b>[user]</b> smashes [pushed_mob]'s head againts \the <b>[src]</b>!") ,
+								span_userdanger("<b>[user]</b> smashes your head against \the <b>[src]</b>!"))
 	log_combat(user, pushed_mob, "head slammed", null, "against [src]")
 	SEND_SIGNAL(pushed_mob, COMSIG_ADD_MOOD_EVENT, "table", /datum/mood_event/table_limbsmash, banged_limb)
 
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
 	if(!(flags_1 & NODECONSTRUCT_1) && user.a_intent != INTENT_HELP)
 		if(I.tool_behaviour == TOOL_SCREWDRIVER && deconstruction_ready)
-			to_chat(user, span_notice("Начинаю раскручивать <b>[src]</b>..."))
+			to_chat(user, span_notice("You start disassembling <b>[src]</b>..."))
 			if(I.use_tool(src, user, 20, volume=50))
 				deconstruct(TRUE)
 			return
 
 		if(I.tool_behaviour == TOOL_WRENCH && deconstruction_ready)
-			to_chat(user, span_notice("Начинаю разбирать <b>[src]</b>..."))
+			to_chat(user, span_notice("You start deconstructing <b>[src]</b>..."))
 			if(I.use_tool(src, user, 40, volume=50))
 				playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 				deconstruct(TRUE, 1)
@@ -184,7 +184,7 @@
 				var/obj/item/item = x
 				AfterPutItemOnTable(item, user)
 			SEND_SIGNAL(I, COMSIG_TRY_STORAGE_QUICK_EMPTY, drop_location())
-			user.visible_message(span_notice("<b>[user]</b> опустошает <b>[I]</b> на <b>[src]</b>."))
+			user.visible_message(span_notice("<b>[user]</b> empties <b>[I]</b> on <b>[src]</b>."))
 			return
 		// If the tray IS empty, continue on (tray will be placed on the table like other items)
 
@@ -293,8 +293,8 @@
  * Glass tables
  */
 /obj/structure/table/glass
-	name = "стеклянный стол"
-	desc = "Что можно сказать залезая на стеклянные столы? Теперь мне нужно к хирургу."
+	name = "glass table"
+	desc = "What did I say about leaning on the glass tables? Now you need surgery."
 	icon = 'icons/obj/smooth_structures/glass_table.dmi'
 	icon_state = "glass_table-0"
 	base_icon_state = "glass_table"
@@ -341,8 +341,8 @@
 		table_shatter(M)
 
 /obj/structure/table/glass/proc/table_shatter(mob/living/L)
-	visible_message(span_warning("<b>[src]</b> ломается!") ,
-		span_danger("Слышу звук ломающегося стекла."))
+	visible_message(span_warning("<b>[src]</b> breaks!") ,
+		span_danger("You hear breaking glass!"))
 	var/turf/T = get_turf(src)
 	playsound(T, "shatter", 50, TRUE)
 	for(var/I in debris)
@@ -373,8 +373,8 @@
  */
 
 /obj/structure/table/wood
-	name = "деревянный стол"
-	desc = "Не применяйте огонь к этому. Говорят, что он легко горит."
+	name = "wooden table"
+	desc = "Do not apply fire to this. Rumour says it burns easily."
 	icon = 'icons/obj/smooth_structures/wood_table.dmi'
 	icon_state = "wood_table-0"
 	base_icon_state = "wood_table"
@@ -387,16 +387,16 @@
 	canSmoothWith = list(SMOOTH_GROUP_WOOD_TABLES)
 
 /obj/structure/table/wood/poker //No specialties, Just a mapping object.
-	name = "игорный стол"
-	desc = "Сытный стол для грязных отношений в захудалых местах."
+	name = "gambling table"
+	desc = "A seedy table for seedy dealings in seedy places."
 	icon = 'icons/obj/smooth_structures/poker_table.dmi'
 	icon_state = "poker_table-0"
 	base_icon_state = "poker_table"
 	buildstack = /obj/item/stack/tile/carpet
 
 /obj/structure/table/wood/fancy
-	name = "красивый стол"
-	desc = "Стандартная металлическая рама стола, покрытая удивительно причудливой узорчатой тканью."
+	name = "fancy table"
+	desc = "A standard metal table frame covered with an amazingly fancy, patterned cloth."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "fancy_table"
 	base_icon_state = "fancy_table"
@@ -473,8 +473,8 @@
  * Reinforced tables
  */
 /obj/structure/table/reinforced
-	name = "армированный стол"
-	desc = "Усиленная версия четырехногого стола."
+	name = "reinforced table"
+	desc = "A reinforced version of the four legged table."
 	icon = 'icons/obj/smooth_structures/reinforced_table.dmi'
 	icon_state = "reinforced_table-0"
 	base_icon_state = "reinforced_table"
