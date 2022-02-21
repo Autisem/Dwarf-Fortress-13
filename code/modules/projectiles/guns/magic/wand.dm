@@ -35,13 +35,6 @@
 		shoot_with_empty_chamber(user)
 		return
 	if(target == user)
-		if(no_den_usage)
-			var/area/A = get_area(user)
-			if(istype(A, /area/wizard_station))
-				to_chat(user, span_warning("You know better than to violate the security of The Den, best wait until you leave to use [src]."))
-				return
-			else
-				no_den_usage = 0
 		zap_self(user)
 	else
 		. = ..()
@@ -160,7 +153,6 @@
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 	icon_state = "telewand"
 	max_charges = 10 //10, 5, 5, 4
-	no_den_usage = TRUE
 
 /obj/item/gun/magic/wand/teleport/zap_self(mob/living/user)
 	if(do_teleport(user, user, 10, channel = TELEPORT_CHANNEL_MAGIC))
@@ -178,7 +170,6 @@
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 	icon_state = "telewand"
 	max_charges = 10 //10, 5, 5, 4
-	no_den_usage = FALSE
 
 /obj/item/gun/magic/wand/safety/zap_self(mob/living/user)
 	var/turf/origin = get_turf(user)
@@ -211,7 +202,6 @@
 	icon_state = "doorwand"
 	fire_sound = 'sound/magic/staff_door.ogg'
 	max_charges = 20 //20, 10, 10, 7
-	no_den_usage = 1
 
 /obj/item/gun/magic/wand/door/zap_self(mob/living/user)
 	to_chat(user, span_notice("Чувствую что стал более открытым человеком."))

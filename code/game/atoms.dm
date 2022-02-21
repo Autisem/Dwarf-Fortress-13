@@ -341,12 +341,8 @@
 	if(!T)
 		return FALSE
 
-	if(!is_centcom_level(T.z))//if not, don't bother
+	if(!is_marx_level(T.z))//if not, don't bother
 		return FALSE
-
-	//Check for centcom itself
-	if(istype(T.loc, /area/centcom))
-		return TRUE
 
 /**
  * Is the atom in any of the centcom syndicate areas
@@ -360,28 +356,8 @@
 	if(!T)
 		return FALSE
 
-	if(!is_centcom_level(T.z))//if not, don't bother
+	if(!is_marx_level(T.z))//if not, don't bother
 		return FALSE
-
-	if(istype(T.loc, /area/syndicate_mothership))
-		return TRUE
-
-	return FALSE
-
-/**
- * Is the atom in an away mission
- *
- * Must be in the away mission z-level to return TRUE
- *
- * Also used in gamemode code for win conditions
- */
-/atom/proc/onAwayMission()
-	var/turf/T = get_turf(src)
-	if(!T)
-		return FALSE
-
-	if(is_away_level(T.z))
-		return TRUE
 
 	return FALSE
 

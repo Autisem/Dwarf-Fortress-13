@@ -435,7 +435,6 @@
 			continue
 		var/turf/open/open_turf = any_turf
 		open_turf.MakeSlippery(TURF_WET_PERMAFROST, freeze_duration, freeze_duration, freeze_duration)
-		open_turf.temperature = temp
 
 ///Clears the beaker of the reagents only
 ///if volume is not set, it will remove all of the reactant

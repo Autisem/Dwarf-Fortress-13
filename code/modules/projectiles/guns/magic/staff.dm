@@ -89,7 +89,6 @@
 	inhand_icon_state = "staffofchaos"
 	max_charges = 10
 	recharge_rate = 2
-	no_den_usage = 1
 	school = SCHOOL_FORBIDDEN //this staff is evil. okay? it just is. look at this projectile type list. this is wrong.
 	var/allowed_projectile_types = list(/obj/projectile/magic/change, /obj/projectile/magic/animate, /obj/projectile/magic/resurrection,
 	/obj/projectile/magic/death, /obj/projectile/magic/teleport, /obj/projectile/magic/door, /obj/projectile/magic/aoe/fireball,
@@ -125,7 +124,6 @@
 	inhand_icon_state = "staffofdoor"
 	max_charges = 10
 	recharge_rate = 2
-	no_den_usage = 1
 	school = SCHOOL_TRANSMUTATION
 
 /obj/item/gun/magic/staff/honk

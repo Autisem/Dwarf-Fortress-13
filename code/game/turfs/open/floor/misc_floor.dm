@@ -45,16 +45,6 @@
 	icon_state = "bcircuitoff"
 	on = FALSE
 
-/turf/open/floor/circuit/airless
-
-/turf/open/floor/circuit/telecomms
-
-/turf/open/floor/circuit/telecomms/mainframe
-	name = "мейнфреймовое основание"
-
-/turf/open/floor/circuit/telecomms/server
-	name = "серверная база"
-
 /turf/open/floor/circuit/green
 	icon_state = "gcircuit"
 	icon_normal = "gcircuit"
@@ -70,13 +60,6 @@
 	icon_normal = "gcircuitanim"
 	floor_tile = /obj/item/stack/tile/circuit/green/anim
 
-/turf/open/floor/circuit/green/airless
-
-/turf/open/floor/circuit/green/telecomms
-
-/turf/open/floor/circuit/green/telecomms/mainframe
-	name = "мейнфреймовое основание"
-
 /turf/open/floor/circuit/red
 	icon_state = "rcircuit"
 	icon_normal = "rcircuit"
@@ -91,10 +74,6 @@
 	icon_state = "rcircuitanim"
 	icon_normal = "rcircuitanim"
 	floor_tile = /obj/item/stack/tile/circuit/red/anim
-
-/turf/open/floor/circuit/red/airless
-
-/turf/open/floor/circuit/red/telecomms
 
 /turf/open/floor/pod
 	name = "капсульный пол"
@@ -137,10 +116,6 @@
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "clockwork_floor"
 	floor_tile = /obj/item/stack/tile/bronze
-
-/turf/open/floor/bronze/lavaland
-
-/turf/open/floor/bronze/icemoon
 
 /turf/open/floor/white
 	name = "белый пол"

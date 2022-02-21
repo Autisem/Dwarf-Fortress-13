@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(minor_mapping)
 	var/list/exposed_wires = list()
 
 	var/list/all_turfs
-	for(var/z in SSmapping.levels_by_trait(ZTRAIT_STATION))
+	for(var/z in SSmapping.levels_by_trait(ZTRAIT_FORTRESS))
 		all_turfs += block(locate(1,1,z), locate(world.maxx,world.maxy,z))
 	for(var/turf/open/floor/plating/T in all_turfs)
 		if(T.is_blocked_turf())
@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(minor_mapping)
 /proc/find_satchel_suitable_turfs()
 	var/list/suitable = list()
 
-	for(var/z in SSmapping.levels_by_trait(ZTRAIT_STATION))
+	for(var/z in SSmapping.levels_by_trait(ZTRAIT_FORTRESS))
 		for(var/t in block(locate(1,1,z), locate(world.maxx,world.maxy,z)))
 			if(isfloorturf(t) && !isplatingturf(t))
 				suitable += t

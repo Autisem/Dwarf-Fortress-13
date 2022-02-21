@@ -13,13 +13,13 @@
 		if(1) //same sound for everyone
 			var/sound = pick("airlock","airlock_pry","console","explosion","far_explosion","mech","glass","alarm","beepsky","mech","wall_decon","door_hack","tesla")
 			for(var/mob/living/carbon/C in GLOB.alive_mob_list)
-				if(C.z in SSmapping.levels_by_trait(ZTRAIT_CENTCOM))//not for admin/ooc stuff
+				if(C.z in SSmapping.levels_by_trait(ZTRAIT_MARX))//not for admin/ooc stuff
 					continue
 				new /datum/hallucination/sounds(C, TRUE, sound)
 		if(2)
 			var/weirdsound = pick("phone","hallelujah","highlander","hyperspace","game_over","creepy","tesla")
 			for(var/mob/living/carbon/C in GLOB.alive_mob_list)
-				if(C.z in SSmapping.levels_by_trait(ZTRAIT_CENTCOM))//not for admin/ooc stuff
+				if(C.z in SSmapping.levels_by_trait(ZTRAIT_MARX))//not for admin/ooc stuff
 					continue
 				new /datum/hallucination/weird_sounds(C, TRUE, weirdsound)
 		if(3 to 6)
@@ -32,6 +32,6 @@
 												/datum/hallucination/delusion,
 												/datum/hallucination/oh_yeah)
 			for(var/mob/living/carbon/C in GLOB.alive_mob_list)
-				if(C.z in SSmapping.levels_by_trait(ZTRAIT_CENTCOM))//not for admin/ooc stuff
+				if(C.z in SSmapping.levels_by_trait(ZTRAIT_MARX))//not for admin/ooc stuff
 					continue
 				new picked_hallucination(C, TRUE)

@@ -69,7 +69,6 @@
 	return
 
 /turf/open/lava/Melt()
-	to_be_destroyed = FALSE
 	return src
 
 /turf/open/lava/acid_act(acidpwr, acid_volume)
@@ -77,8 +76,6 @@
 
 /turf/open/lava/MakeDry(wet_setting = TURF_WET_WATER)
 	return
-
-/turf/open/lava/airless
 
 /turf/open/lava/Entered(atom/movable/AM)
 	if(burn_stuff(AM))
@@ -206,8 +203,6 @@
 
 /turf/open/lava/smooth/lava_land_surface
 	baseturfs = /turf/open/lava/smooth/lava_land_surface
-
-/turf/open/lava/smooth/airless
 
 /turf/open/lava/smooth/nospread
 	spread = FALSE

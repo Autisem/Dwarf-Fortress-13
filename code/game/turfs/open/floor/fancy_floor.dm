@@ -64,11 +64,6 @@
 				to_chat(user, span_notice("Силой отрываю доски, уничтожая их в процессе."))
 	return make_plating(force_plating)
 
-/turf/open/floor/wood/cold
-	temperature = 255.37
-
-/turf/open/floor/wood/airless
-
 /turf/open/floor/wood/tile
 	icon_state = "wood_tile"
 	floor_tile = /obj/item/stack/tile/wood/tile
@@ -367,27 +362,6 @@
 	floor_tile = /obj/item/stack/tile/carpet/donk
 	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_CARPET_DONK)
 	canSmoothWith = list(SMOOTH_GROUP_CARPET_DONK)
-
-//*****Airless versions of all of the above.*****
-/turf/open/floor/carpet/airless
-
-/turf/open/floor/carpet/black/airless
-
-/turf/open/floor/carpet/blue/airless
-
-/turf/open/floor/carpet/cyan/airless
-
-/turf/open/floor/carpet/green/airless
-
-/turf/open/floor/carpet/orange/airless
-
-/turf/open/floor/carpet/purple/airless
-
-/turf/open/floor/carpet/red/airless
-
-/turf/open/floor/carpet/royalblack/airless
-
-/turf/open/floor/carpet/royalblue/airless
 
 /turf/open/floor/carpet/break_tile()
 	broken = TRUE

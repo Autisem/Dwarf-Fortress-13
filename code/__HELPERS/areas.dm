@@ -6,9 +6,6 @@
 // break_if_found is a typecache of turf/area types to return false if found
 // Please keep this proc type agnostic. If you need to restrict it do it elsewhere or add an arg.
 /proc/detect_room(turf/origin, list/break_if_found, max_size=INFINITY)
-	if(origin.blocks_air)
-		return list(origin)
-
 	. = list()
 	var/list/checked_turfs = list()
 	var/list/found_turfs = list(origin)

@@ -19,22 +19,7 @@
 	icon_state = base_icon_state
 	return ..()
 
-
-/turf/open/floor/plasteel/airless
-
-/turf/open/floor/plasteel/telecomms
-
-/turf/open/floor/plasteel/icemoon
-
 /turf/open/floor/plasteel/dark
-	icon_state = "darkfull"
-	base_icon_state = "darkfull"
-
-/turf/open/floor/plasteel/dark/airless
-
-/turf/open/floor/plasteel/dark/telecomms
-
-/turf/open/floor/plasteel/airless/dark
 	icon_state = "darkfull"
 	base_icon_state = "darkfull"
 
@@ -62,25 +47,6 @@
 /turf/open/floor/plasteel/white/corner
 	icon_state = "whitecorner"
 	base_icon_state = "whitecorner"
-
-/turf/open/floor/plasteel/airless/white
-	icon_state = "white"
-	base_icon_state = "white"
-
-/turf/open/floor/plasteel/airless/white/side
-	icon_state = "whitehall"
-	base_icon_state = "whitehall"
-
-/turf/open/floor/plasteel/airless/white/corner
-	icon_state = "whitecorner"
-	base_icon_state = "whitecorner"
-
-/turf/open/floor/plasteel/white/telecomms
-
-/turf/open/floor/plasteel/airless/showroomfloor
-	icon_state = "showroomfloor"
-	base_icon_state = "showroomfloor"
-
 
 /turf/open/floor/plasteel/yellowsiding
 	icon_state = "yellowsiding"
@@ -113,23 +79,12 @@
 	icon_state = "solarpanel"
 	base_icon_state = "solarpanel"
 
-/turf/open/floor/plasteel/airless/solarpanel
-	icon_state = "solarpanel"
-	base_icon_state = "solarpanel"
-
-
 /turf/open/floor/plasteel/freezer
 	icon_state = "freezerfloor"
 	base_icon_state = "freezerfloor"
 
-/turf/open/floor/plasteel/freezer/airless
-
-
 /turf/open/floor/plasteel/kitchen_coldroom
 	name = "пол холодильной камеры"
-
-/turf/open/floor/plasteel/kitchen_coldroom/Initialize()
-	. = ..()
 
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor
 	icon_state = "freezerfloor"
@@ -144,11 +99,6 @@
 /turf/open/floor/plasteel/cafeteria
 	icon_state = "cafeteria"
 	base_icon_state = "cafeteria"
-
-/turf/open/floor/plasteel/airless/cafeteria
-	icon_state = "cafeteria"
-	base_icon_state = "cafeteria"
-
 
 /turf/open/floor/plasteel/cult
 	name = "гравированный пол"
@@ -217,16 +167,10 @@
 	icon_state = "monofloor"
 	base_icon_state = "monofloor"
 
-/turf/open/floor/plasteel/monofloor/airless
-
 /turf/open/floor/plasteel/monofloor/white
 	icon_state = "monowhite"
 	base_icon_state = "monowhite"
 
-/turf/open/floor/plasteel/monofloor/white/airless
-
 /turf/open/floor/plasteel/monofloor/dark
 	icon_state = "monodarkfull"
 	base_icon_state = "monodarkfull"
-
-/turf/open/floor/plasteel/monofloor/dark/airless

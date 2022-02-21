@@ -48,7 +48,7 @@
 
 /obj/item/ammo_casing/Destroy()
 	var/turf/T = get_turf(src)
-	if(T && !loaded_projectile && is_station_level(T.z))
+	if(T && !loaded_projectile && is_fortress_level(T.z))
 		SSblackbox.record_feedback("tally", "station_mess_destroyed", 1, name)
 	QDEL_NULL(loaded_projectile)
 	return ..()

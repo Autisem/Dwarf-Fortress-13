@@ -23,7 +23,6 @@
 	return FALSE
 
 /turf/closed/indestructible/Melt()
-	to_be_destroyed = FALSE
 	return src
 
 /turf/closed/attack_hand(mob/user)

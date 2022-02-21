@@ -4,7 +4,6 @@
 	icon_state = ""
 	smoothing_flags = SMOOTH_BITMASK
 	canSmoothWith = null
-	rcd_memory = null
 	var/last_event = 0
 	var/active = null
 

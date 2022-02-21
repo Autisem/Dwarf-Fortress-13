@@ -87,7 +87,7 @@
 
 /datum/map_generator/repair/reload_station_map/defineRegion(turf/start, turf/end)
 	. = ..()
-	if(!is_station_level(start.z) || !is_station_level(end.z))
+	if(!is_fortress_level(start.z) || !is_fortress_level(end.z))
 		return
 	x_low = min(start.x, end.x)
 	y_low = min(start.y, end.y)

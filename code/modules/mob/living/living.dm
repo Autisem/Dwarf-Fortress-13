@@ -996,9 +996,7 @@
 	var/turf/T = get_turf(src)
 	if(!T)
 		return FALSE
-	if(is_centcom_level(T.z)) //dont detect mobs on centcom
-		return FALSE
-	if(is_away_level(T.z))
+	if(is_marx_level(T.z)) //dont detect mobs on centcom
 		return FALSE
 	if(user != null && src == user)
 		return FALSE

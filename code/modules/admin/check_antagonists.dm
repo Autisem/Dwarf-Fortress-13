@@ -174,7 +174,7 @@
 				lobby_players++
 				continue
 			else if(M.stat != DEAD && M.mind && !isbrain(M))
-				if(is_centcom_level(M.z))
+				if(is_marx_level(M.z))
 					living_skipped++
 					continue
 				living_players++

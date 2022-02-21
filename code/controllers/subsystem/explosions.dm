@@ -255,7 +255,7 @@ SUBSYSTEM_DEF(explosions)
 		var/sound/creaking_explosion_sound = sound(get_sfx("explosion_creaking"))
 		var/sound/hull_creaking_sound = sound(get_sfx("hull_creaking"))
 		var/sound/explosion_echo_sound = sound(pick(FAR_EXPLOSION_SOUNDS))
-		var/on_station = SSmapping.level_trait(epicenter.z, ZTRAIT_STATION)
+		var/on_station = SSmapping.level_trait(epicenter.z, ZTRAIT_FORTRESS)
 		var/creaking_explosion = FALSE
 
 		if(prob(devastation_range*DEVASTATION_PROB+heavy_impact_range*HEAVY_IMPACT_PROB) && on_station) // Huge explosions are near guaranteed to make the station creak and whine, smaller ones might.

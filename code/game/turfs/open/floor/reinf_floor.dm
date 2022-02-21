@@ -3,7 +3,6 @@
 	name = "армированный пол"
 	desc = "Чрезвычайно прочный."
 	icon_state = "engine"
-	holodeck_compatible = TRUE
 	floor_tile = /obj/item/stack/rods
 	footstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
@@ -15,8 +14,6 @@
 /turf/open/floor/engine/examine(mob/user)
 	. += ..()
 	. += "<hr><span class='notice'>Арматурные стержни <b>прикручены</b> крепко.</span>"
-
-/turf/open/floor/engine/airless
 
 /turf/open/floor/engine/break_tile()
 	return //unbreakable

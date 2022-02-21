@@ -1,12 +1,3 @@
-
-/turf/open/floor/plating/airless
-
-/turf/open/floor/plating/lowpressure
-	baseturfs = /turf/open/floor/plating/lowpressure
-
-/turf/open/floor/plating/icemoon
-	icon_state = "plating"
-
 /turf/open/floor/plating/abductor
 	name = "чужеродное покрытие"
 	icon_state = "alienpod1"
@@ -213,7 +204,6 @@
 	icon = 'icons/turf/floors/ice_turf.dmi'
 	icon_state = "ice_turf-0"
 	base_icon_state = "ice_turf-0"
-	temperature = 180
 	baseturfs = /turf/open/floor/plating/ice
 	slowdown = 1
 	attachment_holes = FALSE
@@ -252,16 +242,11 @@
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snowplating"
 	base_icon_state = "snowplating"
-	temperature = 180
 	attachment_holes = FALSE
 	footstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	clawfootstep = FOOTSTEP_SAND
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-
-/turf/open/floor/plating/snowed/cavern
-
-/turf/open/floor/plating/snowed/icemoon
 
 /turf/open/floor/plating/snowed/smoothed
 	icon = 'icons/turf/floors/snow_turf.dmi'
@@ -270,11 +255,6 @@
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_FLOOR_SNOWED)
 	canSmoothWith = list(SMOOTH_GROUP_FLOOR_SNOWED)
-
-/turf/open/floor/plating/snowed/temperatre
-	temperature = 255.37
-
-/turf/open/floor/plating/snowed/smoothed/icemoon
 
 /turf/open/floor/plating/grass
 	name = "трава"

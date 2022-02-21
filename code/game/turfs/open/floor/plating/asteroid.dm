@@ -108,8 +108,6 @@
 /turf/open/floor/plating/asteroid/basalt/lava //lava underneath
 	baseturfs = /turf/open/lava/smooth
 
-/turf/open/floor/plating/asteroid/basalt/airless
-
 /turf/open/floor/plating/asteroid/basalt/Initialize()
 	. = ..()
 	set_basalt_light(src)
@@ -129,14 +127,6 @@
 
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/lava/smooth/lava_land_surface
-
-/turf/open/floor/plating/asteroid/lowpressure
-	baseturfs = /turf/open/floor/plating/asteroid/lowpressure
-	turf_type = /turf/open/floor/plating/asteroid/lowpressure
-
-/turf/open/floor/plating/asteroid/airless
-	baseturfs = /turf/open/floor/plating/asteroid/airless
-	turf_type = /turf/open/floor/plating/asteroid/airless
 
 /turf/open/floor/plating/asteroid/snow
 	gender = PLURAL
@@ -181,21 +171,6 @@
 
 /turf/open/floor/plating/asteroid/snow/ice/setup_broken_states()
 	return list("snow-ice")
-/turf/open/floor/plating/asteroid/snow/ice/icemoon
-	baseturfs = /turf/open/floor/plating/asteroid/snow/ice/icemoon
-	slowdown = 0
 
 /turf/open/floor/plating/asteroid/snow/ice/burn_tile()
 	return FALSE
-
-/turf/open/floor/plating/asteroid/snow/airless
-
-/turf/open/floor/plating/asteroid/snow/temperatre
-
-/turf/open/floor/plating/asteroid/snow/atmosphere
-
-/turf/open/floor/plating/asteroid/snow/centcom
-	temperature = 180
-
-/turf/open/floor/plating/asteroid/snow/centcom/New()
-	return

@@ -1,7 +1,7 @@
 /proc/power_failure()
 	priority_announce("Аномальная активность обнаружена энергосетях [station_name()]. В качестве меры предосторожности энергия будет отключена на неопределенный срок.", "Критический сбой питания", ANNOUNCER_POWEROFF)
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
-		if(!is_station_level(S.z))
+		if(!is_fortress_level(S.z))
 			continue
 		S.charge = 0
 		S.output_level = 0
@@ -19,18 +19,18 @@
 		A.power_change()
 
 	for(var/obj/machinery/power/apc/C in GLOB.apcs_list)
-		if(C.cell && is_station_level(C.z))
+		if(C.cell && is_fortress_level(C.z))
 			C.cell.charge = 0
 
 /proc/power_restore()
 
 	priority_announce("Электроэнергия восстановлена на [station_name()]. Приносим свои извинения за доставленные неудобства.", "Электропитание стабилизировано", ANNOUNCER_POWEROFF)
 	for(var/obj/machinery/power/apc/C in GLOB.machines)
-		if(C.cell && is_station_level(C.z))
+		if(C.cell && is_fortress_level(C.z))
 			C.cell.charge = C.cell.maxcharge
 			C.failure_timer = 0
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
-		if(!is_station_level(S.z))
+		if(!is_fortress_level(S.z))
 			continue
 		S.charge = S.capacity
 		S.output_level = S.output_level_max
@@ -49,7 +49,7 @@
 
 	priority_announce("Все СНМЭ на станции [station_name()] были заряжены нашей электромагнитной установкой. Приносим свои извинения за доставленные неудобства.", "Электропитание стабилизировано", ANNOUNCER_POWERON)
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
-		if(!is_station_level(S.z))
+		if(!is_fortress_level(S.z))
 			continue
 		S.charge = S.capacity
 		S.output_level = S.output_level_max

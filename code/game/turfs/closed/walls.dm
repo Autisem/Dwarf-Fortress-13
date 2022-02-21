@@ -15,8 +15,6 @@
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_WINDOW_FULLTILE)
 
-	rcd_memory = RCD_MEMORY_WALL
-
 	///lower numbers are harder. Used to determine the probability of a hulk smashing through.
 	var/hardness = 40
 	var/slicing_duration = 100  //default time taken to slice the wall
@@ -29,7 +27,7 @@
 
 /turf/closed/wall/Initialize(mapload)
 	. = ..()
-	if(is_station_level(z))
+	if(is_fortress_level(z))
 		GLOB.station_turfs += src
 	if(smoothing_flags & SMOOTH_DIAGONAL_CORNERS && fixed_underlay) //Set underlays for the diagonal walls.
 		var/mutable_appearance/underlay_appearance = mutable_appearance(layer = TURF_LAYER, plane = FLOOR_PLANE)
@@ -45,7 +43,7 @@
 
 
 /turf/closed/wall/Destroy()
-	if(is_station_level(z))
+	if(is_fortress_level(z))
 		GLOB.station_turfs -= src
 	return ..()
 

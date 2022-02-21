@@ -41,7 +41,7 @@ GLOBAL_DATUM_INIT(maploader, /datum/dmm_suite, new())
 /datum/dmm_suite/proc/save_station()
 	save_map(locate(16, 16, 2), locate(world.maxx - 16, world.maxy - 16, 2), "z1", (DMM_IGNORE_NPCS | DMM_IGNORE_PLAYERS | DMM_IGNORE_MOBS), "data/map_saves/[ckey(SSmapping.config?.map_name)]/[GLOB.round_id]/")
 	var/turf/ttop = locate(125, 125, 3)
-	if(is_station_level(ttop.z))
+	if(is_fortress_level(ttop.z))
 		save_map(locate(16, 16, 3), locate(world.maxx - 16, world.maxy - 16, 3), "z2", (DMM_IGNORE_NPCS | DMM_IGNORE_PLAYERS | DMM_IGNORE_MOBS), "data/map_saves/[ckey(SSmapping.config?.map_name)]/[GLOB.round_id]/")
 
 /datum/dmm_suite/proc/save_map(turf/t1, turf/t2, map_name = "", flags = 0, map_prefix = "_maps/quicksave/")

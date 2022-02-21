@@ -175,7 +175,7 @@ Used by the AI doomsday and the self-destruct nuke.
 	station_start = world.maxz + 1
 	log_world("Loading map config named [config.map_name]...")
 	to_chat(world, span_green(" -- $<b>Настройка</b>:> <b>[config.map_name]</b> -- "))
-	LoadGroup(FailedZs, "Station", config.map_path, config.map_file, config.traits, ZTRAITS_STATION)
+	LoadGroup(FailedZs, "Station", config.map_path, config.map_file, config.traits, ZTRAITS_FORTRESS)
 
 	if(SSdbcore.Connect())
 		var/datum/db_query/query_round_map_name = SSdbcore.NewQuery({"
@@ -209,7 +209,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		if (!A.contents.len || !(A.area_flags & UNIQUE_AREA))
 			continue
 		var/turf/picked = A.contents[1]
-		if (is_station_level(picked.z))
+		if (is_fortress_level(picked.z))
 			GLOB.the_station_areas += A.type
 
 	if(!GLOB.the_station_areas.len)
