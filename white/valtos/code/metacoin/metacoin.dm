@@ -4,20 +4,20 @@
 	var/mob/M = mob
 	if(M.mind && !isnewplayer(M))
 		if(M.stat != DEAD && !isbrain(M))
-			inc_metabalance(M, METACOIN_ESCAPE_REWARD, reason="Выжил.")
+			inc_metabalance(M, METACOIN_ESCAPE_REWARD, reason="Survived.")
 		else
-			inc_metabalance(M, METACOIN_NOTSURVIVE_REWARD, reason="Я пытался...")
+			inc_metabalance(M, METACOIN_NOTSURVIVE_REWARD, reason="Tried...")
 
 /client/proc/process_greentext(reward, o_completed)
 	if(!reward)
 		reward = 5
 	switch(o_completed)
 		if(0)
-			inc_metabalance(mob, reward, reason="Не удалось выполнить задачи...")
+			inc_metabalance(mob, reward, reason="Nothing is completed...")
 		if(1)
-			inc_metabalance(mob, reward, reason="Задача выполнена!")
+			inc_metabalance(mob, reward, reason="Task completed!")
 		if(2 to INFINITY)
-			inc_metabalance(mob, reward, reason="Задачи выполнены!")
+			inc_metabalance(mob, reward, reason="Tasks completed!")
 
 /client/proc/process_ten_minute_living()
 	inc_metabalance(mob, METACOIN_TENMINUTELIVING_REWARD, FALSE)
@@ -52,7 +52,7 @@
 	update_metabalance_cache()
 	qdel(query_set_metacoins)
 	if(ann)
-		to_chat(src, "<span class='rose bold'>Новый баланс: [mc_count] метакэша!</span>")
+		to_chat(src, "<span class='rose bold'>New balance: [mc_count] chronos!</span>")
 
 /proc/inc_metabalance(mob/M, mc_count, ann = TRUE, reason = null)
 	if(!M.client || mc_count == 0)
@@ -70,13 +70,13 @@
 	M.client.update_metabalance_cache()
 	if(ann)
 		if(reason)
-			to_chat(M, "<span class='rose bold'>[reason] [mc_count >= 0 ? "Получено" : "Потеряно"] [abs(mc_count)] метакэша!</span>")
+			to_chat(M, "<span class='rose bold'>[reason] [mc_count >= 0 ? "Gained" : "Lost"] [abs(mc_count)] chronos!</span>")
 		else
-			to_chat(M, "<span class='rose bold'>[mc_count >= 0 ? "Получено" : "Потеряно"] [abs(mc_count)] метакэша!</span>")
+			to_chat(M, "<span class='rose bold'>[mc_count >= 0 ? "Gained" : "Lost"] [abs(mc_count)] chronos!</span>")
 /client
 	var/mc_cached = 0
 
 /mob/living/carbon/human/get_status_tab_items()
 	. = ..()
 	. += ""
-	. += "Метакэш: [client.mc_cached]"
+	. += "Chronos: [client.mc_cached]"

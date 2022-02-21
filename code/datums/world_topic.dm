@@ -298,7 +298,7 @@
  * Отправляет админ-анноунс
  */
 /proc/global_fucking_announce(text, userkey = null)
-	to_chat(world, "<span class='adminnotice'><b>[userkey ? userkey : "Администратор"] делает объявление:</b></span>\n \t [text]")
+	to_chat(world, "<span class='adminnotice'><b>[userkey ? userkey : "Administrator"] announces:</b></span>\n \t [text]")
 	return TRUE
 
 /**
@@ -315,7 +315,7 @@
 	if(announce)
 		for(var/client/C in GLOB.clients)
 			if(userkey == C.ckey)
-				to_chat(C, "<span class='rose bold'>Новый баланс: [value] метакэша!</span>")
+				to_chat(C, "<span class='rose bold'>New balance: [value] chronos!</span>")
 	return no_err
 
 /**

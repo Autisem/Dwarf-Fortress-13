@@ -406,7 +406,7 @@
 /mob/living/carbon/get_status_tab_items()
 	. = ..()
 	if(locate(/obj/item/assembly/health) in src)
-		. += "Здоровье: [health]"
+		. += "Health: [health]"
 
 /mob/living/carbon/attack_ui(slot)
 	if(!has_hand_for_held_index(active_hand_index))

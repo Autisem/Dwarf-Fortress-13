@@ -36,7 +36,7 @@ export const createMainPage = () => {
     acceptedTypes[typeDef.type] = true;
   }
   return createPage({
-    name: 'Основной',
+    name: 'Main',
     acceptedTypes,
   });
 };

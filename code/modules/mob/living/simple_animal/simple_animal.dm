@@ -371,7 +371,7 @@
 /mob/living/simple_animal/get_status_tab_items()
 	. = ..()
 	. += ""
-	. += "Здоровье: [round((health / maxHealth) * 100)]%"
+	. += "Health: [round((health / maxHealth) * 100)]%"
 
 /mob/living/simple_animal/proc/drop_loot()
 	if(loot.len)

@@ -45,7 +45,7 @@ export const Panel = (props, context) => {
                   color="grey"
                   selected={audio.visible}
                   icon="music"
-                  tooltip="Плеер"
+                  tooltip="Player"
                   tooltipPosition="bottom-start"
                   onClick={() => audio.toggle()} />
               </Stack.Item>
@@ -54,8 +54,8 @@ export const Panel = (props, context) => {
                   icon={settings.visible ? 'times' : 'cog'}
                   selected={settings.visible}
                   tooltip={settings.visible
-                    ? 'Закрыть настройки'
-                    : 'Открыть настройки'}
+                    ? 'Close settings'
+                    : 'Open settings'}
                   tooltipPosition="bottom-start"
                   onClick={() => settings.toggle()} />
               </Stack.Item>
@@ -86,18 +86,15 @@ export const Panel = (props, context) => {
                     <Button
                       color="white"
                       onClick={() => Byond.command('.reconnect')}>
-                      Переподключиться
+                      Reconnect
                     </Button>
                   )}>
-                  Сервер перезагружается. Если сообщение висит
-                  более двух минут, то можете нажать на кнопку справа.
+                  Server rebooting.
                 </Notifications.Item>
               )}
               {game.roundRestartedAt && (
                 <Notifications.Item>
-                  Соединение было закрыто по причине  перезагрузки сервера.
-                  Пожалуйста, подождите. Игра сама переподключится к серверу.
-                  Это может занять 30 секунд и более, учтите!
+                  Server is lagging. Please, be patient.
                 </Notifications.Item>
               )}
             </Notifications>
@@ -122,7 +119,7 @@ const HoboPanel = (props, context) => {
           }}
           selected={settings.visible}
           onClick={() => settings.toggle()}>
-          Настройки
+          Settings
         </Button>
         {settings.visible && (
           <SettingsPanel />

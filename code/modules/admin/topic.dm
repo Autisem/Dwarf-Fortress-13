@@ -1393,7 +1393,7 @@
 			var/mob/M = locate(href_list["changemetacash"]) in GLOB.mob_list
 			var/client/C = M.client
 			C.set_metacoin_count(amount)
-			message_admins("[key_name(usr)] изменяет баланс метакэша [key_name(C)] на [amount].")
+			message_admins("[key_name(usr)] изменяет баланс хроноса [key_name(C)] на [amount].")
 
 	else if(href_list["slowquery"])
 		if(!check_rights(R_ADMIN))

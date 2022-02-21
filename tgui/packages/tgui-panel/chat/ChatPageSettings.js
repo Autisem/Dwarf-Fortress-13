@@ -32,12 +32,12 @@ export const ChatPageSettings = (props, context) => {
             onClick={() => dispatch(removeChatPage({
               pageId: page.id,
             }))}>
-            Удалить
+            Remove
           </Button>
         </Stack.Item>
       </Stack>
       <Divider />
-      <Section title="Сообщения для отображения" level={2}>
+      <Section title="Filters" level={2}>
         {MESSAGE_TYPES
           .filter(typeDef => !typeDef.important && !typeDef.admin)
           .map(typeDef => (
@@ -54,7 +54,7 @@ export const ChatPageSettings = (props, context) => {
         <Collapsible
           mt={1}
           color="transparent"
-          title="Педальное">
+          title="Pedalique Bullshit">
           {MESSAGE_TYPES
             .filter(typeDef => !typeDef.important && typeDef.admin)
             .map(typeDef => (

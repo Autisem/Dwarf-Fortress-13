@@ -36,26 +36,6 @@
 	var/mob/dead/observer/G = usr
 	G.dead_tele()
 
-/atom/movable/screen/ghost/spawners
-	name = "Меню перерождений"
-	icon_state = "spawners"
-	icon = 'white/baldenysh/icons/ui/midnight_extended.dmi'
-
-/atom/movable/screen/ghost/spawners/Initialize(mapload)
-	. = ..()
-	update_count()
-
-/atom/movable/screen/ghost/spawners/Click()
-	var/mob/dead/observer/G = usr
-	G.open_spawners_menu()
-
-/atom/movable/screen/ghost/spawners/MouseEntered()
-	. = ..()
-	update_count()
-
-/atom/movable/screen/ghost/spawners/proc/update_count()
-	maptext = "<span class='maptext big'>[LAZYLEN(GLOB.mob_spawners)]</span>"
-
 /datum/hud/ghost/New(mob/owner)
 	..()
 
@@ -82,10 +62,6 @@
 	using = new /atom/movable/screen/ghost/teleport()
 	using.screen_loc = ui_ghost_teleport
 	using.hud = src
-	static_inventory += using
-
-	using = new /atom/movable/screen/ghost/spawners()
-	using.screen_loc = ui_ghost_spawners
 	static_inventory += using
 
 	using = new /atom/movable/screen/language_menu/ghost

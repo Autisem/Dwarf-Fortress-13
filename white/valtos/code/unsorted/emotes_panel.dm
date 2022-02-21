@@ -7,7 +7,7 @@
 	infodisplay += using
 
 /atom/movable/screen/emote_button
-	name = "Действия"
+	name = "Emotes"
 	icon = 'white/baldenysh/icons/ui/midnight_extended.dmi'
 	icon_state = "emotes"
 	var/cooldown = 0
@@ -37,7 +37,7 @@
 				continue
 			if(P.can_run_emote(user, status_check = FALSE , intentional = TRUE))
 				keys += P.key
-				L.Add(list(list("name" = P.key, "ru_name" = capitalize(P.ru_name))))
+				L.Add(list(list("name" = P.key, "name" = capitalize(P.key))))
 
 	var/list/data = list()
 	data["emotes"] = L

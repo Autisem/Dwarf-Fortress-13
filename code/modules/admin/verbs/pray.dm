@@ -1,13 +1,13 @@
 /mob/verb/pray_wrapper()
 	set category = "IC"
-	set name = "Молитва"
+	set name = "Pray"
 
-	var/msg = input(src, null, "Молитва") as message|null
+	var/msg = input(src, null, "Pray") as message|null
 	if(msg)
 		pray(msg)
 
 /mob/verb/pray(msg as text)
-	set name = "Молитва"
+	set name = "Pray"
 	set hidden = 1
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems

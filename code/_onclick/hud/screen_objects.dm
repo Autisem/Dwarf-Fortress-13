@@ -340,7 +340,7 @@
 	return ..()
 
 /atom/movable/screen/resist
-	name = "сопротивляться"
+	name = "resist"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "act_resist"
 	plane = HUD_PLANE
@@ -351,7 +351,7 @@
 		L.resist()
 
 /atom/movable/screen/rest
-	name = "лежать"
+	name = "lie down"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "act_rest"
 	base_icon_state = "act_rest"

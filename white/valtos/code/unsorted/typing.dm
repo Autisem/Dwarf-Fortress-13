@@ -12,17 +12,17 @@ GLOBAL_DATUM_INIT(human_typing_indicator, /mutable_appearance, mutable_appearanc
 		remove_typing_indicator()
 
 /mob/proc/get_input_text()
-	return copytext_char(winget(src, "outputwindow.input", "text"), 10)
+	return copytext_char(winget(src, "outputwindow.input", "text"), 6)
 
 ////Wrappers////
 //Keybindings were updated to change to use these wrappers. If you ever remove this file, revert those keybind changes
 /mob/verb/say_wrapper()
-	set name = ".сказать"
+	set name = ".say"
 	set hidden = 1
 	set instant = 1
 
 	create_typing_indicator()
-	var/message = input("", pick("Эй, послушай...", "И конечно же мы скажем...", "Вероятно надо сказать...", "Хотелось бы сказать...", "Слушай внимательно...")) as text|null
+	var/message = input("", pick("Hey, listen...", "We will say...", "I want to say...", "Wanna say...", "Listen carefully...")) as text|null
 	remove_typing_indicator()
 	if(message)
 		say_verb(message)

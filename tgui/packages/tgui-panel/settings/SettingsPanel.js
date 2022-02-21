@@ -59,7 +59,7 @@ export const SettingsGeneral = (props, context) => {
   return (
     <Section>
       <LabeledList>
-        <LabeledList.Item label="Тема">
+        <LabeledList.Item label="Skin">
           <Dropdown
             selected={theme}
             options={THEMES}
@@ -67,7 +67,7 @@ export const SettingsGeneral = (props, context) => {
               theme: value,
             }))} />
         </LabeledList.Item>
-        <LabeledList.Item label="Шрифт">
+        <LabeledList.Item label="Font">
           <NumberInput
             width="4em"
             step={1}
@@ -81,7 +81,7 @@ export const SettingsGeneral = (props, context) => {
               fontSize: value,
             }))} />
         </LabeledList.Item>
-        <LabeledList.Item label="Высота линий">
+        <LabeledList.Item label="Line Height">
           <NumberInput
             width="4em"
             step={0.01}
@@ -99,7 +99,7 @@ export const SettingsGeneral = (props, context) => {
       <Box>
         <Flex mb={1} color="label" align="baseline">
           <Flex.Item grow={1}>
-            Подсветка слов (через запятую):
+            Highlight (separated with comma):
           </Flex.Item>
           <Flex.Item shrink={0}>
             <ColorBox mr={1} color={highlightColor} />
@@ -125,17 +125,17 @@ export const SettingsGeneral = (props, context) => {
         <Button
           icon="check"
           onClick={() => dispatch(rebuildChat())}>
-          Применить
+          Apply
         </Button>
         <Box inline fontSize="0.9em" ml={1} color="label">
-          Чат может замереть на некоторое время.
+          Chat may freeze.
         </Box>
       </Box>
       <Divider />
       <Button
         icon="save"
         onClick={() => dispatch(saveChatToDisk())}>
-        Сохранить лог
+        Save Log
       </Button>
     </Section>
   );

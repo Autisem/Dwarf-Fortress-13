@@ -564,7 +564,7 @@
 	sound.volume = rand(50, 100)
 	SEND_SOUND(C.client, sound)
 	C.Paralyze(5)
-	to_chat(C, "<span class='rose bold'>[prob(50) ? "Получено" : "Потеряно"] [rand(1, 20)] метакэша!</span>")
+	to_chat(C, "<span class='rose bold'>[prob(50) ? "Gained" : "Lost"] [rand(1, 20)] chronos!</span>")
 	. = ..()
 	qdel(src)
 

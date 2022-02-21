@@ -430,6 +430,7 @@ em {
 
 .alert {
   color: #ff0000;
+  text-shadow: none;
 }
 
 h1.alert, h2.alert {
@@ -440,41 +441,49 @@ h1.alert, h2.alert {
   color: #ff0000;
   font-weight: bold;
   font-size: 135%;
+  text-shadow: none;
 }
 
 .bolddanger {
   color: #ff0000;
   font-weight: bold;
+  text-shadow: none;
 }
 
 .danger {
   color: #ff0000;
+  text-shadow: none;
 }
 
 .tinydanger {
   color: #ff0000;
   font-size: 85%;
+  text-shadow: none;
 }
 
 .smalldanger {
   color: #ff0000;
   font-size: 90%;
+  text-shadow: none;
 }
 
 .warning {
   color: #ff0000;
   font-style: italic;
+  text-shadow: none;
 }
 
 .alertwarning {
   color: #FF0000;
   font-weight: bold;
+  text-shadow: none;
 }
 
 .boldwarning {
   color: #ff0000;
   font-style: italic;
   font-weight: bold;
+  text-shadow: none;
 }
 
 .announce {
@@ -485,6 +494,7 @@ h1.alert, h2.alert {
 .boldannounce {
   color: #ff0000;
   font-weight: bold;
+  text-shadow: none;
 }
 
 .minorannounce {
@@ -503,32 +513,38 @@ h1.alert, h2.alert {
 
 .info {
   color: #0000CC;
+  text-shadow: none;
 }
 
 .notice {
   color: #000099;
+  text-shadow: none;
 }
 
 .tinynotice {
   color: #000099;
   font-size: 85%;
+  text-shadow: none;
 }
 
 .tinynoticeital {
   color: #000099;
   font-style: italic;
   font-size: 85%;
+  text-shadow: none;
 }
 
 .smallnotice {
   color: #000099;
   font-size: 95%;
+  text-shadow: none;
 }
 
 .smallnoticeital {
   color: #000099;
   font-style: italic;
   font-size: 95%;
+  text-shadow: none;
 }
 
 .boldnotice {
@@ -539,10 +555,12 @@ h1.alert, h2.alert {
 .hear {
   color: #000099;
   font-style: italic;
+  text-shadow: none;
 }
 
 .adminnotice {
   color: #0000ff;
+  text-shadow: none;
 }
 
 .adminhelp {
@@ -1055,6 +1073,10 @@ a, b, h1, h2, h3, h4, h5, h6 {
 
 .chat_step_7 {
   font-size: 90%;
+}
+
+.Layout__content {
+  background-image: url('../../assets/bginvert.png');
 }
 
 .brass					{color: #BE8700;}

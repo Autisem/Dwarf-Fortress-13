@@ -2,7 +2,7 @@
 
 ///what clients use to speak. when you type a message into the chat bar in say mode, this is the first thing that goes off serverside.
 /mob/verb/say_verb(message as text)
-	set name = "Сказать"
+	set name = "Say"
 	set category = "IC"
 	set instant = TRUE
 
@@ -17,7 +17,7 @@
 
 ///Whisper verb
 /mob/verb/whisper_verb(message as text)
-	set name = "Шептать"
+	set name = "Whisper"
 	set category = "IC"
 	set instant = TRUE
 
@@ -33,7 +33,7 @@
 
 ///The me emote verb
 /mob/verb/me_verb(message as text)
-	set name = "Действия"
+	set name = "Me"
 	set category = "IC"
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems

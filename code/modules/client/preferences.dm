@@ -459,7 +459,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<table align='center' width='100%' class='metamag'>"
 			dat += "<tr><td colspan=4 class='bal'><center>"
 			dat += "<b>Баланс: <img src='[SSassets.transport.get_asset_url("mc_32.gif")]' width=16 height=16 border=0>"
-			dat += "<font color='[fcolor]'>[metabalance]</font> метакэша.</b>"
+			dat += "<font color='[fcolor]'>[metabalance]</font> chronos.</b>"
 			dat += "<a href='?_src_=prefs;preference=gear;clear_loadout=1'>Снять всё</a></center></td></tr>"
 			dat += "<tr><td colspan=4><center><b>"
 
@@ -1041,7 +1041,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					inc_metabalance(user, (TG.cost * -1), TRUE, "Покупаю [TG.display_name].")
 					save_preferences()
 			else
-				to_chat(user, span_warning("У меня не хватает метакэша для покупки [TG.display_name]!"))
+				to_chat(user, span_warning("Not enough chronos to buy [TG.display_name]!"))
 		if(href_list["toggle_gear"])
 			var/datum/gear/TG = GLOB.gear_datums[href_list["toggle_gear"]]
 			if(TG.id in equipped_gear)

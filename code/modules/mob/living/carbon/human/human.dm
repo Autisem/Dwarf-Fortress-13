@@ -71,8 +71,8 @@
 
 /mob/living/carbon/human/get_status_tab_items()
 	. = ..()
-	. += "Взаимодействие: [a_intent]"
-	. += "Режим перемещения: [m_intent]"
+	. += "Intent: [a_intent]"
+	. += "Mode: [m_intent]"
 
 // called when something steps onto a human
 /mob/living/carbon/human/proc/on_entered(datum/source, atom/movable/AM)

@@ -8,8 +8,8 @@
 
 @use '~tgui/styles/colors.scss';
 @use '~tgui/styles/base.scss' with (
-  $color-bg: #090909,
-  $color-bg-section: color.adjust(#090909, $lightness: -1%),
+  $color-bg: #030200,
+  $color-bg-section: color.adjust(#020100, $lightness: 1%),
   $color-bg-grad-spread: 0%,
 );
 
@@ -53,7 +53,6 @@
 
 // Layouts
 @include meta.load-css('~tgui/styles/layouts/Layout.scss');
-// @include meta.load-css('~tgui/styles/layouts/TitleBar.scss');
 @include meta.load-css('~tgui/styles/layouts/Window.scss');
 
 // Goonchat styles

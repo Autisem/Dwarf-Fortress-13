@@ -25,7 +25,8 @@ img.icon {
 }
 
 a {
-  color: #a1a1be;
+  color: #f54848;
+  text-shadow: 1px 1px #310808, -1px 1px #310808, 1px 1px #310808, -1px -1px #310808;
 }
 
 a.visited {
@@ -180,12 +181,6 @@ a.popt {
   padding: 2px 0;
 }
 
-.filterMessages input {
-}
-
-.filterMessages label {
-}
-
 .icon-stack {
   height: 1em;
   line-height: 1em;
@@ -222,7 +217,7 @@ a.popt {
 .motd h4,
 .motd h5,
 .motd h6 {
-  color: #d6d6d6;
+  color: #f54848;
   text-decoration: underline;
 }
 
@@ -231,7 +226,7 @@ a.popt {
 .motd a:visited,
 .motd a:active,
 .motd a:hover {
-  color: #d6d6d6;
+  color: #f54848;
 }
 
 
@@ -323,9 +318,6 @@ em {
 
 .name {
   font-weight: bold;
-}
-
-.say, .emote, .infoplain, .mentor {
 }
 
 .deadsay {
@@ -424,10 +416,12 @@ em {
 
 .alert {
   color: #d82020;
+  text-shadow: 1px 1px #570f0f, -1px 1px #570f0f, 1px 1px #570f0f, -1px -1px #570f0f;
 }
 
 .userdanger {
   color: #d82020;
+  text-shadow: 1px 1px #570f0f, -1px 1px #570f0f, 1px 1px #570f0f, -1px -1px #570f0f;
   font-size: 135%;
   margin-left: 16px;
   animation: udfade 3s ease-out;
@@ -440,18 +434,21 @@ em {
 
 .danger {
   color: #fd5b5b;
+  text-shadow: 1px 1px #310808, -1px 1px #310808, 1px 1px #310808, -1px -1px #310808;
   font-size: 115%;
   margin-left: 8px;
 }
 
 .smalldanger {
   color: #b87878;
+  text-shadow: 1px 1px #310808, -1px 1px #310808, 1px 1px #310808, -1px -1px #310808;
   font-size: 90%;
   margin-left: 4px;
 }
 
 .warning {
   color: #9d1b1b;
+  text-shadow: 1px 1px #310808, -1px 1px #310808, 1px 1px #310808, -1px -1px #310808;
   font-style: italic;
   font-size: 115%;
   margin-left: 8px;
@@ -459,6 +456,7 @@ em {
 
 .alertwarning {
   color: #FF0000;
+  text-shadow: 1px 1px #310808, -1px 1px #310808, 1px 1px #310808, -1px -1px #310808;
   font-weight: bold;
   font-size: 115%;
   margin-left: 8px;
@@ -466,6 +464,7 @@ em {
 
 .boldwarning {
   color: #9d1b1b;
+  text-shadow: 1px 1px #310808, -1px 1px #310808, 1px 1px #310808, -1px -1px #310808;
   font-style: italic;
   font-weight: bold;
   font-size: 115%;
@@ -474,6 +473,7 @@ em {
 
 .announce {
   color: #c51e1e;
+  text-shadow: 1px 1px #310808, -1px 1px #310808, 1px 1px #310808, -1px -1px #310808;
   font-weight: bold;
   font-size: 115%;
   margin-left: 8px;
@@ -481,6 +481,7 @@ em {
 
 .boldannounce {
   color: #c51e1e;
+  text-shadow: 1px 1px #310808, -1px 1px #310808, 1px 1px #310808, -1px -1px #310808;
   font-weight: bold;
   font-size: 115%;
   margin-left: 8px;
@@ -506,34 +507,40 @@ em {
 
 .notice {
   color: #635fcf;
+  text-shadow: 1px 1px #181637, -1px 1px #181637, 1px 1px #181637, -1px -1px #181637;
   font-size: 90%;
   margin-left: 6px;
 }
 
 .tinynotice {
   color: #cfa68b;
+  text-shadow: 1px 1px #181637, -1px 1px #181637, 1px 1px #181637, -1px -1px #181637;
   font-size: 85%;
 }
 
 .tinynoticeital {
   color: #cfa68b;
+  text-shadow: 1px 1px #181637, -1px 1px #181637, 1px 1px #181637, -1px -1px #181637;
   font-style: italic;
   font-size: 85%;
 }
 
 .smallnotice {
   color: #bdaa9e;
+  text-shadow: 1px 1px #181637, -1px 1px #181637, 1px 1px #181637, -1px -1px #181637;
   font-size: 95%;
 }
 
 .smallnoticeital {
   color: #c4ac9c;
+  text-shadow: 1px 1px #181637, -1px 1px #181637, 1px 1px #181637, -1px -1px #181637;
   font-style: italic;
   font-size: 95%;
 }
 
 .boldnotice {
   color: #cfa68b;
+  text-shadow: 1px 1px #181637, -1px 1px #181637, 1px 1px #181637, -1px -1px #181637;
   font-weight: bold;
 }
 
@@ -544,6 +551,7 @@ em {
 
 .adminnotice {
   color: #f5f5f5;
+  text-shadow: 1px 1px #181637, -1px 1px #181637, 1px 1px #181637, -1px -1px #181637;
 }
 
 .adminhelp {
@@ -568,6 +576,7 @@ em {
 
 .red {
   color: #a72b2b;
+  text-shadow: 1px 1px #570f0f, -1px 1px #570f0f, 1px 1px #570f0f, -1px -1px #570f0f;
 }
 
 .blue {
@@ -943,12 +952,12 @@ em {
 /* MOTD SHIT */
 #motd-main {
   padding: 5px 0 1px 0;
-  background: repeating-linear-gradient(45deg,#232323,#232323 8px,#222222 8px,#222222 16px);
-  text-shadow: 0 0 3px black;
+  background: repeating-linear-gradient(-45deg,#0A0500,#0A0500 8px,#0e0700 8px,#0e0700 16px);
+  text-shadow: 1px 1px #0e0700, -1px 1px #0e0700, 1px 1px #0e0700, -1px -1px #0e0700;
   box-shadow: 0 0 24px rgba(0, 0, 0, 1);
-  border: 1px solid #111;
+  border: 1px solid #0e0700;
   margin: 16px 0 16px 0;
-  border-bottom: 8px solid #151515;
+  border-bottom: 8px solid #0A0500;
 }
 
 #motd-header {
@@ -964,7 +973,12 @@ em {
 
 #motd-a {
   padding: 2px;
-  color: #ddd;
+  color: #d33;
+  font-size: 150%;
+}
+
+#motd-a:hover {
+  color: #f99;
 }
 
 #motd-b {
@@ -980,10 +994,10 @@ em {
 
 #motd-hr {
   border: none;
-  border-top: 1px solid #333;
-  border-bottom: 2px solid #151515;
+  border-top: 1px solid #0A0500;
+  border-bottom: 2px solid #0e0700;
   padding: 4px 0 8px 0;
-  background: #232323;
+  background: #0e0700;
 }
 
 #motd-footer {
@@ -1007,11 +1021,11 @@ em {
 }
 
 .examine_block {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(55, 55, 55, 0.1);
   border: 1px solid rgba(55, 55, 55, 0.33);
-  margin: 7px 4px;
+  margin: 7px auto;
   padding: 8px 12px;
-  max-width: 550px;
+  max-width: 450px;
 }
 .examine_block hr {
   border: none;
@@ -1061,6 +1075,14 @@ a, b {
 
 .chat_step_7 {
   font-size: 90%;
+}
+
+.Layout__content {
+  background-image: url('../assets/bg.png');
+  background-size: 100%;
+  background-position-y: bottom;
+  background-position-x: right 16px;
+  background-repeat: no-repeat;
 }
 
 .brass					{color: #BE8700;}

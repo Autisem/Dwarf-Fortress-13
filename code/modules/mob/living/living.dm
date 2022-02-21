@@ -351,7 +351,7 @@
 //mob verbs are a lot faster than object verbs
 //for more info on why this is not atom/pull, see examinate() in mob.dm
 /mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
-	set name = "Тащить"
+	set name = "Pull"
 	set category = "Объект"
 
 	if(istype(AM) && Adjacent(AM))
@@ -368,7 +368,7 @@
 	update_pull_hud_icon()
 
 /mob/living/verb/stop_pulling1()
-	set name = "Прекратить тащить"
+	set name = "Stop pulling"
 	set category = "IC"
 	stop_pulling()
 
@@ -432,7 +432,7 @@
 // MOB PROCS //END
 
 /mob/living/proc/mob_sleep()
-	set name = "Спать"
+	set name = "Sleep"
 	set category = "IC"
 
 	if(IsSleeping())
@@ -455,7 +455,7 @@
 /mob/proc/get_contents()
 
 /mob/living/proc/toggle_resting()
-	set name = "Лечь/Встать"
+	set name = "Lie down/Get up"
 	set category = "IC"
 
 	set_resting(!resting, FALSE)
@@ -821,7 +821,7 @@
 	return !((next_move > world.time) || incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
 
 /mob/living/verb/resist()
-	set name = "Сопротивляться"
+	set name = "Resist"
 	set category = "IC"
 
 	if(!can_resist())
