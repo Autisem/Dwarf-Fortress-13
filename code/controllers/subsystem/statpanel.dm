@@ -22,12 +22,9 @@ SUBSYSTEM_DEF(statpanels)
 	if (!resumed)
 		num_fires++
 		var/datum/map_config/cached = SSmapping.next_map_config
-		var/round_time = world.time - SSticker.round_start_time
 		var/list/global_data = list(
-			"Map: [SSmapping.config?.map_name || "Загрузка..."]",
-			cached ? "Next: [cached.map_name]" : null,
-			"Story-ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
-			"TD: [round(SStime_track.time_dilation_current,1)]% SRD:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)"
+			"TD: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
+			"Story: [GLOB.round_id ? GLOB.round_id : "NULL"]"
 		)
 		encoded_global_data = url_encode(json_encode(global_data))
 		src.currentrun = GLOB.clients.Copy()

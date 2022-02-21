@@ -212,7 +212,7 @@ GLOBAL_LIST_INIT(alko_list, list("zarri", "maxsc", "nfogmann", "sanecman", "sran
 		to_chat(src, span_notice("Нет ничего особенного на этот раунд."))
 
 /client/verb/motd()
-	set name = "📘 Приветствие"
+	set name = "📘 MOTD"
 	set category = "OOC"
 	set desc ="Check the Message of the Day"
 
@@ -246,7 +246,7 @@ GLOBAL_LIST_INIT(alko_list, list("zarri", "maxsc", "nfogmann", "sanecman", "sran
 
 // Ignore verb
 /client/verb/select_ignore()
-	set name = "❌ Игнорировать"
+	set name = "❌ Ignore"
 	set category = "OOC"
 	set desc ="Ignore a player's messages on the OOC channel"
 
@@ -328,7 +328,7 @@ GLOBAL_LIST_INIT(alko_list, list("zarri", "maxsc", "nfogmann", "sanecman", "sran
 
 // Unignore verb
 /client/verb/select_unignore()
-	set name = "❌ Не игнорировать"
+	set name = "❌ UnIgnore"
 	set category = "OOC"
 	set desc = "Stop ignoring a player's messages on the OOC channel"
 
@@ -365,7 +365,7 @@ GLOBAL_LIST_INIT(alko_list, list("zarri", "maxsc", "nfogmann", "sanecman", "sran
 	to_chat(src, "You are no longer ignoring [selection] on the OOC channel.")
 
 /client/proc/show_previous_roundend_report()
-	set name = "📘 Мой последний раунд"
+	set name = "📘 My Last Story"
 	set category = "OOC"
 	set desc = "View the last round end report you've seen"
 
@@ -379,7 +379,7 @@ GLOBAL_LIST_INIT(alko_list, list("zarri", "maxsc", "nfogmann", "sanecman", "sran
 	SSticker.show_roundend_report(src, report_type = SERVER_LAST_ROUND)
 
 /client/verb/fit_viewport()
-	set name = "❗ Подстроить экран"
+	set name = "❗ Fit Screen"
 	set category = "Особенное"
 	set desc = "Fit the width of the map window to match the viewport"
 

@@ -2,7 +2,7 @@
 	set name = "Who"
 	set category = "OOC"
 
-	var/msg = "<b>Онлайн:</b>\n"
+	var/msg = "<b>Online:</b>\n"
 
 	var/living = 0
 	var/dead = 0
@@ -80,7 +80,7 @@
 					entry += " - <b>AFK: [C.inactivity2text()]</b>"
 
 				entry += " [ADMIN_QUE(C.mob)]"
-				entry += " ([round(C.avgping, 1)]мс)"
+				entry += " ([round(C.avgping, 1)]ms)"
 				Lines += entry
 
 		else//If they don't have +ADMIN, only show hidden admins
@@ -92,7 +92,7 @@
 				if(C.holder && C.holder.fakekey)
 					entry += " <i>(as [C.holder.fakekey])</i>"
 
-				entry += " - ([round(C.avgping, 1)]мс)"
+				entry += " - ([round(C.avgping, 1)]ms)"
 				Lines += entry
 	else
 		for(var/client/C in GLOB.clients)
@@ -100,11 +100,11 @@
 				continue
 
 			if(C.holder && C.holder.fakekey)
-				Lines += "\t[C.holder.fakekey] - ([round(C.avgping, 1)]мс)"
+				Lines += "\t[C.holder.fakekey] - ([round(C.avgping, 1)]ms)"
 			else if (C.holder)
-				Lines += "\t<b>[C.key]</b> - ([round(C.avgping, 1)]мс)"
+				Lines += "\t<b>[C.key]</b> - ([round(C.avgping, 1)]ms)"
 			else
-				Lines += "\t[C.key] - ([round(C.avgping, 1)]мс)"
+				Lines += "\t[C.key] - ([round(C.avgping, 1)]ms)"
 
 	for(var/line in sort_list(Lines))
 		msg += "[line]\n"
@@ -112,14 +112,14 @@
 	if(check_rights(R_ADMIN, 0))
 		msg += "<b><font color='green'>L: [living]</font> | D: [dead] | <font color='gray'>O: [observers]</font> | <font color='#006400'>LOBBY: [lobby]</font> | <font color='#8100aa'>AA: [living_antags]</font> | <font color='#9b0000'>DA: [dead_antags]</font></b>\n"
 
-	msg += "<b>Всего игроков: [length(Lines)]</b>"
+	msg += "<b>Total: [length(Lines)]</b>"
 	to_chat(src, msg)
 
 /client/verb/adminwho()
 	set category = "Адм"
 	set name = "Adminwho"
 
-	var/msg = "<b>Педали:</b>\n"
+	var/msg = "<b>Pedals:</b>\n"
 	if(holder)
 		for(var/client/C in GLOB.admins)
 			msg += "\t[C] - [C.holder.rank]"
@@ -143,9 +143,9 @@
 				continue //Don't show afk admins to adminwho
 			if(!C.holder.fakekey)
 				msg += "\t[C] - [C.holder.rank]\n"
-		msg += span_info("Ахелпы также отправляются в Discord, если нет педалей онлайн.\n")
+		msg += span_info("No jannies online.\n")
 
-	msg += "<b>Знатоки:</b>\n"
+	msg += "<b>Mentors:</b>\n"
 	for(var/X in GLOB.mentors)
 		var/client/C = X
 		if(!C)

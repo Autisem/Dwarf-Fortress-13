@@ -17,6 +17,6 @@
 	to_chat(src, span_notice("Время отклика [round(pingfromtime(time)/4, 1)]мс."))
 
 /client/verb/ping()
-	set name = "Пинг"
+	set name = "Ping"
 	set category = "OOC"
 	winset(src, null, "command=.display_ping+[world.time+world.tick_lag*TICK_USAGE_REAL/100]")

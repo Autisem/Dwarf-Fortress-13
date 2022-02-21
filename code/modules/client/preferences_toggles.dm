@@ -16,28 +16,28 @@
 		winset(C, "[verbpath]", "is-checked = [!checked]")
 
 /datum/verbs/menu/settings/verb/setup_character()
-	set name = " ! Основные настройки"
+	set name = " ! Main"
 	set category = "Настройки"
-	set desc = "Основные настройки"
+	set desc = "Main"
 	usr.client.prefs.current_tab = 2
 	usr.client.prefs.ShowChoices(usr)
 
 /datum/verbs/menu/settings/verb/setup_sound()
-	set name = " ! Настройка звука"
+	set name = " ! Sound"
 	set category = "Настройки"
-	set desc = "Настройки звука"
+	set desc = "Sound"
 	new /datum/sound_panel(usr)
 
 /datum/verbs/menu/settings/verb/setup_chat()
-	set name = " ! Настройка чата"
+	set name = " ! Chat"
 	set category = "Настройки"
-	set desc = "Настройки чата"
+	set desc = "Chat"
 	new /datum/chat_settings_panel(usr)
 
 /datum/verbs/menu/settings/verb/stop_client_sounds()
-	set name = "❌ Остановить звуки"
+	set name = "❌ Stop sounds"
 	set category = "Особенное"
-	set desc = "Остановить звуки"
+	set desc = "Stop sounds"
 	SEND_SOUND(usr, sound(null))
 	var/client/C = usr.client
 	C?.tgui_panel?.stop_music()
@@ -84,7 +84,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 			O.update_icon()
 
 /client/verb/pick_ghost_customization()
-	set name = "Настройка призрака"
+	set name = "Ghost Settings"
 	set category = "Призрак"
 	switch(tgui_alert("Что хотим сменить?",,list("Форма","Тип орбиты","Побрякушки")))
 		if("Форма")
@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 			O.update_sight()
 
 /client/verb/toggle_intent_style()
-	set name = "🔄 Метод выбора интентов"
+	set name = "🔄 Intents method"
 	set category = null
 	set desc = "Toggle between directly clicking the desired intent or clicking to rotate through."
 	prefs.toggles ^= INTENT_STYLE
@@ -122,7 +122,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Intent Selection", "[prefs.toggles & INTENT_STYLE ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_ghost_hud_pref()
-	set name = "🔄 HUD призрака"
+	set name = "🔄 Ghost HUD"
 	set category = "Призрак"
 
 	prefs.ghost_hud = !prefs.ghost_hud
@@ -133,7 +133,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Ghost HUD", "[prefs.ghost_hud ? "Enabled" : "Disabled"]"))
 
 /client/verb/toggle_inquisition() // warning: unexpected inquisition
-	set name = "🔄 Изучение при клике"
+	set name = "🔄 Examine on click"
 	set category = "Призрак"
 
 	prefs.inquisitive_ghost = !prefs.inquisitive_ghost

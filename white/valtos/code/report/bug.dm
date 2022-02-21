@@ -29,7 +29,7 @@
 	return list(json_decode(file2text(json_file)))
 
 /client/verb/report_a_bug()
-	set name = "Отрепортить баг"
+	set name = "Report a bug"
 	set category = "Особенное"
 
 	if(ckey in GLOB.bug_downs)

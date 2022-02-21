@@ -23,11 +23,11 @@
 		to_chat(src, "<div class=\"motd\">[motd]</div>", handle_whitespace=FALSE)
 
 	if(GLOB.admin_notice)
-		to_chat(src, span_notice("<b>ВАЖНАЯ ЗАМЕТКА:</b>\n \t [GLOB.admin_notice]"))
+		to_chat(src, span_notice("<b>IMPORTANT NOTICE:</b>\n \t [GLOB.admin_notice]"))
 
 	var/spc = CONFIG_GET(number/soft_popcap)
 	if(spc && living_player_count() >= spc)
-		to_chat(src, span_notice("<b>Сервер сообщает:</b>\n \t [CONFIG_GET(string/soft_popcap_message)]"))
+		to_chat(src, span_notice("<b>Server says:</b>\n \t [CONFIG_GET(string/soft_popcap_message)]"))
 
 	sight |= SEE_TURFS
 
@@ -49,10 +49,10 @@
 		var/tl = SSticker.GetTimeLeft()
 		var/postfix
 		if(tl > 0)
-			postfix = "через [DisplayTimeText(tl)]"
+			postfix = "[DisplayTimeText(tl)]"
 		else
-			postfix = "скоро"
-		to_chat(src, "Пожалуйста, настройте своего персонажа и нажмите кнопку \"Готов\". Игра начнётся [postfix].")
+			postfix = "soon"
+		to_chat(src, "Please, setup your character and press \"Ready\". Story will start in [postfix].")
 
 	if (!GLOB.donators[ckey]) //It doesn't exist yet
 		load_donator(ckey)

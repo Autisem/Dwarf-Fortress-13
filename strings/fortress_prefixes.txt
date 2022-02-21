@@ -1,6 +1,6 @@
-Бастион
-Башня
-Замок
-Острог
-Форштадт
-Цитадель
+Bastion
+Tower
+Castle
+Burg
+Forstadt
+Citadel

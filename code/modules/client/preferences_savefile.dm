@@ -98,12 +98,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		addtimer(CALLBACK(src, .proc/announce_conflict, notadded), 5 SECONDS)
 
 /datum/preferences/proc/announce_conflict(list/notadded)
-	to_chat(parent, "<span class='userdanger'>Конфликт хоткеев!\n\
-	Появились новые функции, которые могут пересекаться с текущими хоткеями. Перепроверь настройки на всякий.\n\
-	<a href='?_src_=prefs;preference=tab;tab=4'>Ну или можешь нажать сюда, чтобы перейти сразу к настройкам.</a></span>")
+	to_chat(parent, "<span class='userdanger'>Hotkeys conflict!\n\
+	<a href='?_src_=prefs;preference=tab;tab=4'>Click me to fix them.</a></span>")
 	for(var/item in notadded)
 		var/datum/keybinding/conflicted = item
-		to_chat(parent, "<span class='userdanger'>[conflicted.category]: [conflicted.full_name] требует обновления")
+		to_chat(parent, "<span class='userdanger'>[conflicted.category]: [conflicted.full_name] requires update.")
 		LAZYADD(key_bindings["Unbound"], conflicted.name) // set it to unbound to prevent this from opening up again in the future
 
 

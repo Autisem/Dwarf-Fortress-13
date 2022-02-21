@@ -643,7 +643,7 @@
  * This actually gets the mind datums notes
  */
 /mob/verb/memory()
-	set name = "📘 Заметки"
+	set name = "📘 Notes"
 	set category = "IC"
 	set desc = "View your character's notes memory."
 	if(mind)
@@ -655,7 +655,7 @@
  * Add a note to the mind datum
  */
 /mob/verb/add_memory_wrapper(msg as message)
-	set name = "📘 Добавить заметку"
+	set name = "📘 Add note"
 	set category = "IC"
 
 	msg = input("", "Добавить заметку") as null|message
@@ -663,7 +663,7 @@
 		add_memory(msg)
 
 /mob/verb/add_memory(msg as message)
-	set name = "📘 Добавить заметку"
+	set name = "📘 Add note"
 	set hidden = 1
 	if(mind)
 		if (world.time < memory_throttle_time)
@@ -684,7 +684,7 @@
  * Only works if flag/norespawn is allowed in config
  */
 /mob/verb/abandon_mob()
-	set name = "❗ Переродиться"
+	set name = "❗ Respawn"
 	set category = "OOC"
 
 	if (CONFIG_GET(flag/norespawn) && (!check_rights_for(usr.client, R_ADMIN) || tgui_alert(usr, "Respawn configs disabled. Do you want to use your permissions to circumvent it?", "Respawn", list("Yes", "No")) != "Yes"))
@@ -722,7 +722,7 @@
  * Sometimes helps if the user is stuck in another perspective or camera
  */
 /mob/verb/cancel_camera()
-	set name = "❗ Выйти из режима камеры"
+	set name = "❗ Reset Camera"
 	set category = "OOC"
 	reset_perspective(null)
 	unset_machine()
