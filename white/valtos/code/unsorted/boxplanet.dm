@@ -8,8 +8,8 @@
 	pixel_x = 0
 
 /obj/structure/flora/tree/boxplanet/kartoshmel
-	name = "картошмель"
-	desc = "Удивительное растение, которое... Будем честны - какая-то непонятная херобора торчащая из земли и убивающая своим присутствием всех вокруг."
+	name = "rat potato"
+	desc = "Amazing plant which... is unknown to the world."
 	icon_state = "kartoshmel"
 	var/mob_type
 	var/spawned_mobs = 0
@@ -46,8 +46,8 @@
 
 
 /obj/structure/flora/tree/boxplanet/glikodil
-	name = "гликодил"
-	desc = "Целебный куст."
+	name = "healroot"
+	desc = "Its leaves have healing properties."
 	icon_state = "glikodil"
 	var/has_cure = TRUE
 	var/needs_sharp_harvest = TRUE
@@ -58,7 +58,7 @@
 
 /obj/structure/flora/tree/boxplanet/glikodil/attackby(obj/item/W, mob/user, params)
 	if(has_cure && needs_sharp_harvest && W.get_sharpness())
-		user.visible_message(span_notice("[user] начинает собирать [src] используя [W].") ,span_notice("Вы начинаете собирать [src] используя [W]."))
+		user.visible_message(span_notice("[user] starts collecting [src] using [W].") ,span_notice("You start collecting [src] with [W]."))
 		if(do_after(user, harvest_time, target = src))
 			new /obj/item/glikoleaf(loc)
 			has_cure = FALSE
@@ -75,18 +75,18 @@
 			H.adjustFireLoss(-25)
 			H.remove_CC()
 			H.bodytemperature = H.get_body_temp_normal()
-			visible_message(span_notice("[H] прикасается рукой к растению и его раны начинают затягиваться."))
+			visible_message(span_notice("[H] touches [src] and his wounds start to heal."))
 		else
-			visible_message(span_warning("Похоже, что эта штука помогает только людям, но не животным. <b>[capitalize(user)]</b> поедает гликодил."))
+			visible_message(span_warning("Seems it works on humans only. <b>[capitalize(user)]</b> eats [src]."))
 			qdel(src)
 		spawn(rand(600, 3600))
 			has_cure = TRUE
 	else
-		to_chat(user, span_notice("Не могу найти лечебных листочков на этом растении. Видимо ещё не время."))
+		to_chat(user, span_notice("Can't find any more leaves."))
 
 /obj/item/glikoleaf
-	name = "Листок гликодила"
-	desc = "Наныли"
+	name = "healroot leaf"
+	desc = "A leaf with healing properties."
 	icon = 'white/valtos/icons/mineflora.dmi'
 	icon_state = "glikoleaf"
 	w_class = WEIGHT_CLASS_TINY
@@ -96,12 +96,12 @@
 	M.adjustBruteLoss(-25)
 	M.adjustFireLoss(-25)
 	M.remove_CC()
-	visible_message("span class='notice'>[M] прикладываеет лист гликодила")
+	visible_message(span_notice("[M] applies [src] to \himself."))
 	qdel(src)
 
 /obj/structure/flora/tree/boxplanet/svetosvin
-	name = "светосвин"
-	desc = "Эта штука светится. Надеешься, что это растение не радиоактивное."
+	name = "lightpig"
+	desc = "It glows. Hopefully its not radioactive."
 	icon_state = "svetosvin"
 	light_color = "#00aaff"
 	light_power = 1

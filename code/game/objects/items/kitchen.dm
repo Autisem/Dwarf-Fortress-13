@@ -81,7 +81,7 @@
 		qdel(src)
 
 /obj/item/kitchen/knife
-	name = "кухонный нож"
+	name = "kitchen knife"
 	icon_state = "knife"
 	inhand_icon_state = "knife"
 	worn_icon_state = "knife"

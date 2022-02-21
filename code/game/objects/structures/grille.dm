@@ -1,6 +1,6 @@
 /obj/structure/grille
-	desc = "Хрупкий каркас из железных стержней."
-	name = "решетка"
+	desc = "A flimsy framework of metal rods."
+	name = "grille"
 	icon = 'icons/obj/smooth_structures/grille.dmi'
 	icon_state = "grille-0"
 	base_icon_state = "grille"

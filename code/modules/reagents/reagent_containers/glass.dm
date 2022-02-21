@@ -262,8 +262,8 @@
 	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 50)
 
 /obj/item/reagent_containers/glass/bucket
-	name = "ведро"
-	desc = "Это ведро."
+	name = "bucket"
+	desc = "It's a bucket."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "bucket"
 	inhand_icon_state = "bucket"
@@ -290,7 +290,7 @@
 	)
 
 /obj/item/reagent_containers/glass/bucket/wooden
-	name = "деревянное ведро"
+	name = "wooden bucket"
 	icon_state = "woodbucket"
 	inhand_icon_state = "woodbucket"
 	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT * 2)
@@ -303,20 +303,20 @@
 	if(istype(O, /obj/item/mop))
 		if(user.a_intent == INTENT_HARM)
 			if(O.reagents.total_volume == 0)
-				to_chat(user, span_warning("[capitalize(O.name)] сухая!"))
+				to_chat(user, span_warning("[capitalize(O.name)] is empty!"))
 				return
 			if(reagents.total_volume == reagents.maximum_volume)
-				to_chat(user, span_warning("[capitalize(src.name)] переполнено!"))
+				to_chat(user, span_warning("[capitalize(src.name)] is full!"))
 				return
 			O.reagents.remove_any(O.reagents.total_volume*SQUEEZING_DISPERSAL_PERCENT)
 			O.reagents.trans_to(src, O.reagents.total_volume, transfered_by = user)
-			to_chat(user, span_notice("Выживаю [O.name] в [src.name]."))
+			to_chat(user, span_notice("You wet [O.name] in [src.name]."))
 		else
 			if(reagents.total_volume < 1)
-				to_chat(user, span_warning("[capitalize(src.name)] пустое!"))
+				to_chat(user, span_warning("[capitalize(src.name)] is empty!"))
 			else
 				reagents.trans_to(O, 5, transfered_by = user)
-				to_chat(user, span_notice("Окунаю [O.name] в [src.name]."))
+				to_chat(user, span_notice("You fill [src.name]."))
 				playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 	else
 		..()
@@ -327,7 +327,7 @@
 	..()
 	if (slot == ITEM_SLOT_HEAD)
 		if(reagents.total_volume)
-			to_chat(user, span_userdanger("Содержимое [capitalize(src.name)] разлилось на меня!"))
+			to_chat(user, span_userdanger("[capitalize(src.name)]'s contents spill all over you!"))
 			reagents.expose(user, TOUCH)
 			reagents.clear_reagents()
 		reagents.flags = NONE

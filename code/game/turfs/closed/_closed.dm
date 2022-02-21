@@ -11,7 +11,7 @@
 	return FALSE
 
 /turf/closed/indestructible
-	name = "стена"
+	name = "wall"
 	desc = "Достаточно крепкая для попытки хоть как-то поцарапать её."
 	icon = 'icons/turf/walls.dmi'
 	explosion_block = 50

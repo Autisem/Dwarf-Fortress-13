@@ -849,8 +849,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 /obj/machinery/hydroponics/soil //Not actually hydroponics at all! Honk!
-	name = "Почва"
-	desc = "Пятно грязи."
+	name = "soil"
+	desc = "A patch of dirt."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "soil"
 	gender = PLURAL
@@ -869,7 +869,7 @@
 
 /obj/machinery/hydroponics/soil/attackby(obj/item/O, mob/user, params)
 	if(O.tool_behaviour == TOOL_SHOVEL && !istype(O, /obj/item/shovel/spade)) //Doesn't include spades because of uprooting plants
-		to_chat(user, span_notice("Очищаю [src]!"))
+		to_chat(user, span_notice("You clear up [src]!"))
 		qdel(src)
 	else
 		return ..()

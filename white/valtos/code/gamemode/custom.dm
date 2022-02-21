@@ -275,7 +275,8 @@
 	defer_change = 1
 
 /turf/closed/indestructible/black
-	name = "пустота"
+	name = "emptiness"
+	desc = "It looks back at you."
 	icon = 'white/valtos/icons/area.dmi'
 	icon_state = "black"
 	layer = FLY_LAYER

@@ -197,14 +197,14 @@
 ////////
 
 /obj/item/storage/bag/plants/portaseeder
-	name = "портативный экстрактор семян"
-	desc = "Для предприимчивого ботаника в движении. Менее эффективен, чем стационарная модель, он дает одно семя на растение."
+	name = "portable seed extractor"
+	desc = "For the enterprising botanist on the go. Less efficient than the stationary model, it creates one seed per plant."
 	icon_state = "portaseeder"
 
 /obj/item/storage/bag/plants/portaseeder/verb/dissolve_contents()
-	set name = "Активировать экстракцию семян"
+	set name = "Activate Seed Extraction"
 	set category = "Объект"
-	set desc = "Активируйте, чтобы превратить ваши растения в семена для посадки."
+	set desc = "Activate to convert your plants into plantable seeds."
 	if(usr.incapacitated())
 		return
 	for(var/obj/item/O in contents)

@@ -357,12 +357,12 @@
 	fuel = rand(8000, 9000)
 
 /obj/item/flashlight/lantern
-	name = "фонарь"
+	name = "lantern"
 	icon_state = "lantern"
 	inhand_icon_state = "lantern"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
-	desc = "Шахтёрский."
+	desc = "A mining lantern."
 	light_range = 6			// luminosity when on
 	light_system = MOVABLE_LIGHT
 	light_color = "#e7c16d"

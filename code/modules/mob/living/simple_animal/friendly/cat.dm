@@ -1,15 +1,15 @@
 //Cat
 /mob/living/simple_animal/pet/cat
-	name = "Кот"
-	desc = "Кiшка!!"
+	name = "cat"
+	desc = "Kitty!!"
 	icon = 'icons/mob/pets.dmi'
 	icon_state = "cat2"
 	icon_living = "cat2"
 	icon_dead = "cat2_dead"
-	speak = list("Мяу!", "Шшш!", "Мурр!", "ХШШШШ")
-	speak_emote = list("мурчит", "мяукает")
-	emote_hear = list("мяукает.", "мявкает.")
-	emote_see = list("мотает головой.", "дрожит.")
+	speak = list("Meow!", "Esp!", "Purr!", "HSSSSS")
+	speak_emote = list("purrs", "meows")
+	emote_hear = list("meows.", "mews.")
+	emote_see = list("shakes its head.", "shivers.")
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
@@ -23,12 +23,12 @@
 	animal_species = /mob/living/simple_animal/pet/cat
 	childtype = list(/mob/living/simple_animal/pet/cat/kitten)
 	butcher_results = list(/obj/item/food/meat/slab = 1, /obj/item/organ/ears/cat = 1, /obj/item/organ/tail/cat = 1, /obj/item/stack/sheet/animalhide/cat = 1)
-	response_help_continuous = "гладит"
-	response_help_simple = "гладит"
-	response_disarm_continuous = "отталкивает"
-	response_disarm_simple = "отталкивает"
-	response_harm_continuous = "пинает"
-	response_harm_simple = "пинает"
+	response_help_continuous = "pets"
+	response_help_simple = "pet"
+	response_disarm_continuous = "gently pushes aside"
+	response_disarm_simple = "gently push aside"
+	response_harm_continuous = "kicks"
+	response_harm_simple = "kick"
 	mobility_flags = MOBILITY_FLAGS_REST_CAPABLE_DEFAULT
 	var/mob/living/simple_animal/mouse/movement_target
 	gold_core_spawnable = FRIENDLY_SPAWN
@@ -36,10 +36,10 @@
 	can_be_held = TRUE
 	held_state = "cat2"
 	pet_bonus = TRUE
-	pet_bonus_emote = "мурчит!"
+	pet_bonus_emote = "purrs!"
 	///In the case 'melee_damage_upper' is somehow raised above 0
-	attack_verb_continuous = "цапает"
-	attack_verb_simple = "цапает"
+	attack_verb_continuous = "scratches"
+	attack_verb_simple = "scratch"
 	attack_sound = 'sound/weapons/slash.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 
@@ -69,7 +69,10 @@
 		gender = _gender
 	else
 		gender = pick(MALE, FEMALE)
-	name = gender == FEMALE ? "Кошка":"Кот"
+
+/mob/living/simple_animal/pet/cat/examinate(atom/A)
+	. = ..()
+	.+= "<hr>It seems to be \a [gender]"
 
 /mob/living/simple_animal/pet/cat/space
 	name = "Космокот"
@@ -109,7 +112,7 @@
 /mob/living/simple_animal/pet/cat/original/add_cell_sample()
 	return
 /mob/living/simple_animal/pet/cat/kitten
-	name = "Киса"
+	name = "kitten"
 	desc = "D'aaawwww."
 	icon_state = "kitten"
 	icon_living = "kitten"
@@ -122,14 +125,12 @@
 /mob/living/simple_animal/pet/cat/kitten/Initialize(_gender=null)
 	. = ..(null)
 	addtimer(CALLBACK(src, .proc/grow), 2.5 MINUTES)
-	name = gender == FEMALE ? "Киса":"Котик"
 
 /mob/living/simple_animal/pet/cat/kitten/proc/grow()
 	if(stat == DEAD)
 		return
 	var/mob/living/M = new animal_species(loc)
 	M.gender = gender
-	M.name = M.gender == FEMALE ? "Кошка":"Кот"
 	qdel(src)
 
 //RUNTIME IS ALIVE! SQUEEEEEEEE~

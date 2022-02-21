@@ -151,8 +151,8 @@
 	return SHAME
 
 /obj/item/shovel/spade
-	name = "лопаточка"
-	desc = "Небольшой инструмент для рытья и перемещения грязи."
+	name = "spade"
+	desc = "A small tool for digging and moving dirt."
 	icon_state = "spade"
 	inhand_icon_state = "spade"
 	worn_icon_state = "spade"

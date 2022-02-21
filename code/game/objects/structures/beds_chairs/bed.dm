@@ -8,8 +8,8 @@
  * Beds
  */
 /obj/structure/bed
-	name = "кровать"
-	desc = "На ней можно лежать. Или стоять."
+	name = "bed"
+	desc = "This is used to lie in, sleep in or strap on."
 	icon_state = "bed"
 	icon = 'icons/obj/objects.dmi'
 	anchored = TRUE
@@ -25,7 +25,7 @@
 /obj/structure/bed/examine(mob/user)
 	. = ..()
 	if(bolts)
-		. += "<hr><span class='notice'>Скручено несколькими <b>болтами</b>.</span>"
+		. += "<hr><span class='notice'>It's held together by a couple of <b>bolts</b>.</span>"
 
 /obj/structure/bed/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

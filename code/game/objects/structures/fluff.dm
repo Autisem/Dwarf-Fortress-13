@@ -57,8 +57,8 @@
 	icon_state = "corner"
 
 /obj/structure/fluff/drake_statue //Ash drake status spawn on either side of the necropolis gate in lavaland.
-	name = "статуя дракона"
-	desc = "Возвышающаяся базальтовая скульптура гордого и царственного дракона. Его глаза как шесть сияющих самоцветов."
+	name = "drake statue"
+	desc = "A towering basalt sculpture of a proud and regal drake. Its eyes are six glowing gemstones."
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "drake_statue"
 	pixel_x = -16

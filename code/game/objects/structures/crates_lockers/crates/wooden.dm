@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/wooden
-	name = "деревянный ящик"
-	desc = "Как металлический, только деревянный."
+	name = "wooden crate"
+	desc = "Works just as well as a metal one."
 	material_drop = /obj/item/stack/sheet/mineral/wood
 	material_drop_amount = 6
 	icon_state = "wooden"

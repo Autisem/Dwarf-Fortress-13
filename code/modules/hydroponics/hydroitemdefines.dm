@@ -244,8 +244,8 @@
 	return (TOXLOSS)
 
 /obj/item/cultivator
-	name = "тяпка"
-	desc = "Используется для удаления сорняков и чесания спины."
+	name = "cultivator"
+	desc = "It's used for removing weeds or scratching your back."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "cultivator"
 	inhand_icon_state = "cultivator"
@@ -265,7 +265,7 @@
 	return (BRUTELOSS)
 
 /obj/item/cultivator/rake
-	name = "Грабли"
+	name = "rake"
 	icon_state = "rake"
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("донатит", "вайпает", "колотит", "педалирует")
