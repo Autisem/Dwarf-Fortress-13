@@ -187,8 +187,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	menuoptions = list()
 	return
 
-#define APPEARANCE_CATEGORY_COLUMN "<td valign='top' width='14%'>"
-#define MAX_MUTANT_ROWS 4
+/**
+ * Magic bullshit.
+ */
+
+#define SETUP_CHARACTER_NODE(L)  		  	 		 "<div class='csetup_character_node'><div class='csetup_character_label'>[L]</div><div class='csetup_character_input'>"
+
+#define SETUP_GET_LINK(pref, task, task_type, value) "<a href='?_src_=prefs;preference=[pref][task ? ";[task_type]=[task]" : ""]'>[value]</a>"
+#define SETUP_GET_LINK_RANDOM(random_type) 		  	 "<a href='?_src_=prefs;preference=toggle_random[random_type]'>[randomise[random_type] ? "Yes" : "No"]</a>"
+#define SETUP_COLOR_BOX(color) 				  	 	 "<span style='border: 1px solid #161616; background-color: #[color];'>&nbsp;&nbsp;&nbsp;</span>"
+
+#define SETUP_NODE_INPUT(label, pref, value)		  "[SETUP_CHARACTER_NODE(label)][SETUP_GET_LINK(pref, "input", "task", value)][SETUP_CLOSE_NODE]"
+#define SETUP_NODE_COLOR(label, pref, color, random)  "[SETUP_CHARACTER_NODE(label)][SETUP_COLOR_BOX(color)][SETUP_GET_LINK(pref, "input", "task", "Change")][random ? "[SETUP_GET_LINK_RANDOM(random)]" : ""][SETUP_CLOSE_NODE]"
+#define SETUP_NODE_RANDOM(label, random)		  	  "[SETUP_CHARACTER_NODE(label)][SETUP_GET_LINK_RANDOM(random)][SETUP_CLOSE_NODE]"
+#define SETUP_NODE_INPUT_RANDOM(label, pref, value, random) "[SETUP_CHARACTER_NODE(label)][SETUP_GET_LINK(pref, "input", "task", value)][SETUP_GET_LINK_RANDOM(random)][SETUP_CLOSE_NODE]"
+#define SETUP_NODE_COLOR_RANDOM(label, pref, color, random) "[SETUP_CHARACTER_NODE(label)][SETUP_COLOR_BOX(color)][SETUP_GET_LINK(pref, "input", "task", "Change")][SETUP_GET_LINK_RANDOM(random)][SETUP_CLOSE_NODE]"
+
+#define SETUP_CLOSE_NODE 	  			  "</div></div>"
 
 /datum/preferences/proc/ShowChoices(mob/user)
 	if(!user || !user.client)
@@ -200,7 +215,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/dat = list("<center>")
 
 	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character</a>"
-	// dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Магазин</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>Game</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>OOC</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=4' [current_tab == 4 ? "class='linkOn'" : ""]>Hotkeys</a>"
@@ -217,26 +231,28 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(path)
 				var/savefile/S = new /savefile(path)
 				if(S)
-					dat += "<center>"
+					dat += "<div class='csetup_characters'>"
 					var/name
 					for(var/i=1, i<=max_slots, i++)
 						S.cd = "/character[i]"
 						S["real_name"] >> name
 						if(!name)
 							name = "Character [i]"
-						dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=changeslot;num=[i];' [i == default_slot ? "class='linkOn'" : ""]>[name]</a> "
-					dat += "</center>"
-			dat += "<table width='100%'><tr>"
-			dat += "<td><center><h2>Occupation Choices</h2>"
-			dat += "<a href='?_src_=prefs;preference=job;task=menu'>Choose</a><br></center></td>"
-			dat += "</table>"
-			dat += "<table width='100%'>"
+						dat += "<a class='csetup_characters_character' href='?_src_=prefs;preference=changeslot;num=[i];' [i == default_slot ? "class='linkOn'" : ""]>[name]</a> "
+					dat += "</div>"
+			dat += "<div class='csetup_occupations'>"
+			dat += "<h2>Occupation Choices</h2>"
+			dat += "<a class='csetup_occupations_choose' href='?_src_=prefs;preference=job;task=menu'>Choose</a>"
+			dat += "</div>"
+			dat += "<div class='csetup_character_main'>"
 			if(is_banned_from(user.ckey, "Appearance"))
-				dat += "<b>You are banned from appearance. You can still setup your character but you name and appearance will be random.</b><br>"
-			dat += "<td align='right' width='360px' valign='top'>"
-			dat += "<h3 class='statusDisplay'>Name</h3>"
-			dat += "<table width='360px' class='block'>"
-			dat += "<tr><td><b>Character Name:</b></td><td align='right'><a href='?_src_=prefs;preference=name;task=input'>[real_name]</a> <a href='?_src_=prefs;preference=name;task=random'>Random</a></td></tr>"
+				dat += "<div class='csetup_banned'>You are banned from appearance. You can still setup your character but you name and appearance will be random.</div>"
+			dat += "<div class='csetup_character_header'>Character</div>"
+			dat += "<div class='csetup_character_content'>"
+			dat += SETUP_CHARACTER_NODE("Character Name")
+			dat += SETUP_GET_LINK("name", "input", "task", real_name)
+			dat += SETUP_GET_LINK("name", "random", "task", "Random")
+			dat += SETUP_CLOSE_NODE
 
 			var/old_group
 			for(var/custom_name_id in GLOB.preferences_custom_names)
@@ -245,279 +261,108 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					old_group = namedata["group"]
 				else if(old_group != namedata["group"])
 					old_group = namedata["group"]
-				dat += "<tr><td><b>[namedata["pref_name"]]:</b></td><td align='right'><a href ='?_src_=prefs;preference=[custom_name_id];task=input'>[custom_names[custom_name_id]]</a></td></tr>"
+				dat += SETUP_CHARACTER_NODE(namedata["pref_name"])
+				dat += SETUP_GET_LINK(custom_name_id, "input", "task", custom_names[custom_name_id])
+				dat += SETUP_CLOSE_NODE
 
-			dat += "<tr><td><b>Always random name:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_NAME]'>[(randomise[RANDOM_NAME]) ? "Yes" : "No"]</a></td></tr>"
-			dat += "<tr><td><b>Язык генератора имени:</b></td><td align='right'><a href='?_src_=prefs;preference=name_lang'>[(en_names) ? "EN" : "RU"]</a></td></tr>"
-			dat += "<tr><td><b>Random name when antagonist:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_NAME_ANTAG]'>[(randomise[RANDOM_NAME_ANTAG]) ? "Yes" : "No"]</a></td></tr>"
-
-			dat += "</table></td><td width='360px' valign='top'>"
-			dat += "<h3 class='statusDisplay'>Character</h3>"
-			dat += "<table width='360px' class='block'>"
+			dat += SETUP_NODE_RANDOM("Always random name", RANDOM_NAME)
+			dat += SETUP_NODE_RANDOM("Random name when antagonist", RANDOM_NAME_ANTAG)
 
 			if(!(AGENDER in pref_species.species_traits))
-				dat += "<tr><td><b>Gender:</b></td><td align='right'><a href='?_src_=prefs;preference=gender'>[gender]</a></td></tr>"
+				dat += SETUP_CHARACTER_NODE("Gender")
+				dat += SETUP_GET_LINK("gender", null, null, gender)
+				dat += SETUP_CLOSE_NODE
 				if(gender == PLURAL || gender == NEUTER)
-					dat += "<tr><td><b>Body type:</b></td><td align='right'><a href='?_src_=prefs;preference=body_type'>[body_type == MALE ? "Male" : "Female"]</a></td></tr>"
+					dat += SETUP_CHARACTER_NODE("Body type")
+					dat += SETUP_GET_LINK("body_type", null, null, body_type == MALE ? "Male" : "Female")
+					dat += SETUP_CLOSE_NODE
 				if(randomise[RANDOM_BODY] || randomise[RANDOM_BODY_ANTAG]) //doesn't work unless random body
-					dat += "<tr><td><b>Always random gender:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER]'>[(randomise[RANDOM_GENDER]) ? "Yes" : "No"]</A></td></tr>"
-					dat += "<tr><td><b>When antagonist:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER_ANTAG]'>[(randomise[RANDOM_GENDER_ANTAG]) ? "Yes" : "No"]</A></td></tr>"
+					dat += SETUP_NODE_RANDOM("Always random gender", RANDOM_GENDER)
+					dat += SETUP_NODE_RANDOM("When antagonist", RANDOM_GENDER_ANTAG)
 
-			dat += "<tr><td><b>Age:</b></td><td align='right'><a href='?_src_=prefs;preference=age;task=input'>[age]</a></td></tr>"
+			dat += SETUP_CHARACTER_NODE("Age")
+			dat += SETUP_GET_LINK("age", "input", "task", age)
+			dat += SETUP_CLOSE_NODE
+
 			if(randomise[RANDOM_BODY] || randomise[RANDOM_BODY_ANTAG]) //doesn't work unless random body
-				dat += "<tr><td><b>Always random age:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_AGE]'>[(randomise[RANDOM_AGE]) ? "Yes" : "No"]</A></td></tr>"
-				dat += "<tr><td><b>When antagonist:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_AGE_ANTAG]'>[(randomise[RANDOM_AGE_ANTAG]) ? "Yes" : "No"]</A></td></tr>"
+				dat += SETUP_NODE_RANDOM("Always random age", RANDOM_AGE)
+				dat += SETUP_NODE_RANDOM("When antagonist", RANDOM_AGE_ANTAG)
 
 			if(user.client.get_exp_living(TRUE) >= PLAYTIME_HARDCORE_RANDOM)
-				dat += "<tr><td><b>Hardcore mode:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HARDCORE]'>[(randomise[RANDOM_HARDCORE]) ? "Yes" : "No"]</a></td></tr>"
+				dat += SETUP_NODE_RANDOM("Hardcore mode", RANDOM_HARDCORE)
 
-			dat += "</table>"
-			dat += "<h3 class='statusDisplay'>Body</h3>"
-			dat += "<table width='360px' class='block'>"
+			dat += SETUP_CHARACTER_NODE("Species")
+			dat += SETUP_GET_LINK("species", "input", "task", pref_species.name)
+			dat += SETUP_GET_LINK("species", "random", "task", "Random")
+			dat += SETUP_GET_LINK("toggle_random", RANDOM_SPECIES, "random_type", randomise[RANDOM_SPECIES] ? "Yes" : "No")
+			dat += SETUP_CLOSE_NODE
 
-			dat += "<tr><td><b>Species:</b></td><td align='right'><a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a>"
-			dat += "<a href='?_src_=prefs;preference=species;task=random'>Random</A>"
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SPECIES]'>[(randomise[RANDOM_SPECIES]) ? "Yes" : "No"]</a></td></tr>"
-
-			dat += "<tr><td><b>Appearance:</b></td><td align='right'><a href='?_src_=prefs;preference=all;task=random'>Random</a>"
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_BODY]'>Always random: [(randomise[RANDOM_BODY]) ? "Yes" : "No"]</a></td></tr>"
-
-			dat += "</table></td></table>"
-
-			dat += "<table width='100%'><td valign='top'><h3 class='statusDisplay'>Details</h3><table class='block'>"
+			dat += SETUP_CHARACTER_NODE("Appearance")
+			dat += SETUP_GET_LINK("all", "random", "task", "Random")
+			dat += SETUP_GET_LINK("species", "random", "task", "Random")
+			dat += SETUP_GET_LINK("toggle_random", RANDOM_BODY, "random_type", randomise[RANDOM_BODY] ? "Yes" : "No")
+			dat += SETUP_CLOSE_NODE
 
 			if((HAS_FLESH in pref_species.species_traits) || (HAS_BONE in pref_species.species_traits))
-				dat += "<tr><td><b>Temporal Scarring:</b></td><td align='right'><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Enabled" : "Disabled"]</A>"
-				dat += "<a href='?_src_=prefs;preference=clear_scars'>Очистить шрамы</A></td></tr>"
+				dat += SETUP_CHARACTER_NODE("Temporal Scarring")
+				dat += SETUP_GET_LINK("persistent_scars", null, null, persistent_scars ? "Enabled" : "Disabled")
+				dat += SETUP_GET_LINK("clear_scars", null, null, "Clear")
+				dat += SETUP_CLOSE_NODE
 
 			var/use_skintones = pref_species.use_skintones
 			if(use_skintones)
-
-				dat += "<tr><td><b>Skin Tone:</b></td><td align='right'><a href='?_src_=prefs;preference=s_tone;task=input'>[skin_tone]</a>"
-				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SKIN_TONE]'>[(randomise[RANDOM_SKIN_TONE]) ? "🔓" : "🔒"]</A></td></tr>"
+				dat += SETUP_NODE_INPUT_RANDOM("Skin Tone", "s_tone", skin_tone, RANDOM_SKIN_TONE)
 
 			if((MUTCOLORS in pref_species.species_traits) || (MUTCOLORS_PARTSONLY in pref_species.species_traits))
-
-				dat += "<tr><td><b>Mutant Colorss:</b></td><td align='right'>"
-
-				dat += "<span style='border: 1px solid #161616; background-color: #[features["mcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mutant_color;task=input'>Change</a></td></tr>"
+				dat += SETUP_NODE_COLOR("Mutant Colors", "mutant_color", features["mcolor"], null)
 
 			if((EYECOLOR in pref_species.species_traits) && !(NOEYESPRITES in pref_species.species_traits))
-
-				dat += "<tr><td><b>Цвет глаз:</b></td><td align='right'>"
-				dat += "<span style='border: 1px solid #161616; background-color: #[eye_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=eyes;task=input'>Change</a>"
-				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_EYE_COLOR]'>[(randomise[RANDOM_EYE_COLOR]) ? "🔓" : "🔒"]</A></td></tr>"
+				dat += SETUP_NODE_COLOR("Eyes", "eyes", eye_color, RANDOM_EYE_COLOR)
 
 			if(HAIR in pref_species.species_traits)
+				dat += SETUP_NODE_INPUT_RANDOM("Hairstyle", "hairstyle", hairstyle, RANDOM_HAIRSTYLE)
+				dat += SETUP_NODE_INPUT_RANDOM("Hair Color", "hair", hair_color, RANDOM_HAIR_COLOR)
+				dat += SETUP_NODE_COLOR("Hair Gradient Color", "hair_grad_color", hair_grad_color, null)
+				dat += SETUP_NODE_INPUT("Hair Gradient Style", "hair_grad_style", hair_grad_style)
 
-				dat += "<tr><td><b>Hairstyle:</b></td><td align='right'>"
-
-				dat += "<a href='?_src_=prefs;preference=hairstyle;task=input'>[hairstyle]</a>"
-				dat += "<a href='?_src_=prefs;preference=previous_hairstyle;task=input'>&lt;</a><a href='?_src_=prefs;preference=next_hairstyle;task=input'>&gt;</a>"
-				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HAIRSTYLE]'>[(randomise[RANDOM_HAIRSTYLE]) ? "🔓" : "🔒"]</A></td></tr>"
-
-				dat += "<tr><td><b>Hair Color:</b></td><td align='right'>"
-
-				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair;task=input'>Change</a>"
-				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HAIR_COLOR]'>[(randomise[RANDOM_HAIR_COLOR]) ? "🔓" : "🔒"]</A></td></tr>"
-
-				dat += "<tr><td><b>Hair Gradient:</b></td><td align='right'>"
-				dat += "<span style='border:1px solid #161616; background-color: #[hair_grad_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_grad_color;task=input'>Change</a><a href='?_src_=prefs;preference=hair_grad_style;task=input'>[hair_grad_style]</a></td></tr>"
-
-				dat += "<tr><td><b>Facial Gradient:</b></td><td align='right'>"
-				dat += "<span style='border:1px solid #161616; background-color: #[facial_grad_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial_grad_color;task=input'>Change</a><a href='?_src_=prefs;preference=facial_grad_style;task=input'>[facial_grad_style]</a></td></tr>"
-
-				dat += "<tr><td><b>Facial:</b></td><td align='right'>"
-
-				dat += "<a href='?_src_=prefs;preference=facial_hairstyle;task=input'>[facial_hairstyle]</a>"
-				dat += "<a href='?_src_=prefs;preference=previous_facehairstyle;task=input'>&lt;</a><a href='?_src_=prefs;preference=next_facehairstyle;task=input'>&gt;</a>"
-				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_FACIAL_HAIRSTYLE]'>[(randomise[RANDOM_FACIAL_HAIRSTYLE]) ? "🔓" : "🔒"]</A></td></tr>"
-
-				dat += "<tr><td><b>Facial Color:</b></td><td align='right'>"
-
-				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a>"
-				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_FACIAL_HAIR_COLOR]'>[(randomise[RANDOM_FACIAL_HAIR_COLOR]) ? "🔓" : "🔒"]</A></td></tr>"
+				dat += SETUP_NODE_INPUT_RANDOM("Facial", "facial_hairstyle", hairstyle, RANDOM_FACIAL_HAIRSTYLE)
+				dat += SETUP_NODE_INPUT_RANDOM("Facial Color", "facial", facial_hair_color, RANDOM_FACIAL_HAIR_COLOR)
+				dat += SETUP_NODE_COLOR("Facial Gradient Color", "facial_grad_color", facial_grad_color, null)
+				dat += SETUP_NODE_INPUT("Facial Gradient Style", "facial_grad_style", facial_grad_style)
 
 			//Mutant stuff
 
-			if(pref_species.mutant_bodyparts["ipc_screen"])
-
-				dat += "<tr><td><b>Экран:</b></td><td align='right'>"
-
-				dat += "<a href='?_src_=prefs;preference=ipc_screen;task=input'>[features["ipc_screen"]]</a></td></tr>"
-
-			if(pref_species.mutant_bodyparts["ipc_antenna"])
-
-				dat += "<tr><td><b>Антенна:</b></td><td align='right'>"
-
-				dat += "<a href='?_src_=prefs;preference=ipc_antenna;task=input'>[features["ipc_antenna"]]</a></td></tr>"
-
 			if(pref_species.mutant_bodyparts["tail_lizard"])
-
-				dat += "<tr><td><b>Хвост:</b></td><td align='right'>"
-
-				dat += "<a href='?_src_=prefs;preference=tail_lizard;task=input'>[features["tail_lizard"]]</a></td></tr>"
-
-			if(pref_species.mutant_bodyparts["snout"])
-
-				dat += "<tr><td><b>Нос:</b></td><td align='right'>"
-
+				dat += SETUP_NODE_INPUT("Tail", "tail_lizard", features["tail_lizard"])
 
 			if(pref_species.mutant_bodyparts["horns"])
-
-				dat += "<tr><td><b>Рожки:</b></td><td align='right'>"
-
-				dat += "<a href='?_src_=prefs;preference=horns;task=input'>[features["horns"]]</a></td></tr>"
+				dat += SETUP_NODE_INPUT("Horns", "horns", features["horns"])
 
 			if(pref_species.mutant_bodyparts["frills"])
-
-				dat += "<tr><td><b>Украшения:</b></td><td align='right'>"
-
-				dat += "<a href='?_src_=prefs;preference=frills;task=input'>[features["frills"]]</a></td></tr>"
-
-			if(pref_species.mutant_bodyparts["spines"])
-
-				dat += "<tr><td><b>Шипы:</b></td><td align='right'>"
-
+				dat += SETUP_NODE_INPUT("Frills", "frills", features["frills"])
 
 			if(pref_species.mutant_bodyparts["body_markings"])
-
-				dat += "<tr><td><b>Маркировки:</b></td><td align='right'>"
-
-				dat += "<a href='?_src_=prefs;preference=body_markings;task=input'>[features["body_markings"]]</a></td></tr>"
+				dat += SETUP_NODE_INPUT("Body Markings", "body_markings", features["body_markings"])
 
 			if(pref_species.mutant_bodyparts["legs"])
-
-				dat += "<tr><td><b>Ноги:</b></td><td align='right'>"
-
-				dat += "<a href='?_src_=prefs;preference=legs;task=input'>[features["legs"]]</a></td></tr>"
+				dat += SETUP_NODE_INPUT("Legs", "legs", features["legs"])
 
 			if(pref_species.mutant_bodyparts["moth_wings"])
-
-				dat += "<tr><td><b>Крылья:</b></td><td align='right'>"
-
-				dat += "<a href='?_src_=prefs;preference=moth_wings;task=input'>[features["moth_wings"]]</a></td></tr>"
+				dat += SETUP_NODE_INPUT("Wings", "moth_wings", features["moth_wings"])
 
 			if(pref_species.mutant_bodyparts["moth_antennae"])
-
-				dat += "<a href='?_src_=prefs;preference=moth_antennae;task=input'>[features["moth_antennae"]]</a><BR>"
+				dat += SETUP_NODE_INPUT("Antennae", "moth_antennae", features["moth_antennae"])
 
 			if(pref_species.mutant_bodyparts["moth_markings"])
-
-				dat += "<tr><td><b>Маркировки:</b></td><td align='right'>"
-
-				dat += "<a href='?_src_=prefs;preference=moth_markings;task=input'>[features["moth_markings"]]</a></td></tr>"
+				dat += SETUP_NODE_INPUT("Markings", "moth_markings", features["moth_markings"])
 
 			if(pref_species.mutant_bodyparts["tail_human"])
-
-				dat += "<tr><td><b>Хвост:</b></td><td align='right'>"
-
-				dat += "<a href='?_src_=prefs;preference=tail_human;task=input'>[features["tail_human"]]</a></td></tr>"
+				dat += SETUP_NODE_INPUT("Tail", "tail_human", features["tail_human"])
 
 			if(pref_species.mutant_bodyparts["ears"])
+				dat += SETUP_NODE_INPUT("Ears", "ears", features["ears"])
 
-				dat += "<tr><td><b>Уши:</b></td><td align='right'>"
-
-				dat += "<a href='?_src_=prefs;preference=ears;task=input'>[features["ears"]]</a></td></tr>"
-
-			if(CONFIG_GET(flag/join_with_mutant_humans))
-
-				if(pref_species.mutant_bodyparts["wings"] && GLOB.r_wings_list.len >1)
-
-					dat += "<tr><td><b>Крылья:</b></td><td align='right'>"
-
-
-			dat += "</table></td></table>"
-
-		if(1) //Loadout
-			//if(!length(equipped_gear))
-			//	if(SSmetainv)
-			//		SSmetainv.open_inventory(user.client)
-			//	else
-			//		to_chat(user, span_warning("Инвентарь еще не загружен, попробуйте позже!"))
-
-			var/list/type_blacklist = list()
-			if(equipped_gear && equipped_gear.len)
-				for(var/i = 1, i <= equipped_gear.len, i++)
-					var/datum/gear/G = GLOB.gear_datums[equipped_gear[i]]
-					if(G)
-						if(G.subtype_path in type_blacklist)
-							continue
-						type_blacklist += G.subtype_path
-					else
-						equipped_gear.Cut(i,i+1)
-
-			var/fcolor =  "#3366CC"
-			var/metabalance = user.client.get_metabalance()
-			dat += "<table align='center' width='100%' class='metamag'>"
-			dat += "<tr><td colspan=4 class='bal'><center>"
-			dat += "<b>Balance: <img src='[SSassets.transport.get_asset_url("mc_32.gif")]' width=16 height=16 border=0>"
-			dat += "<font color='[fcolor]'>[metabalance]</font> chronos.</b>"
-			dat += "<a href='?_src_=prefs;preference=gear;clear_loadout=1'>Withdraw all</a></center></td></tr>"
-			dat += "<tr><td colspan=4><center><b>"
-
-
-			if(gear_tab == "Inventory")
-				dat += span_linkoff("Inventory")
-			else
-				dat += "<a href='?_src_=prefs;preference=gear;select_category=Inventory'>Inventory</a>"
-
-			for(var/category in GLOB.loadout_categories)
-				dat += " |"
-				if(category == gear_tab)
-					dat += " <span class='linkOff'>[category]</span> "
-				else
-					dat += " <a href='?_src_=prefs;preference=gear;select_category=[category]'>[category]</a> "
-			dat += "</b></center></td></tr>"
-
-			dat += "<tr><td colspan=4><hr></td></tr>"
-
-			if(gear_tab != "Inventory")
-				dat += "<tr><td><b>Name</b></td>"
-				dat += "<td><b>Price</b></td>"
-				dat += "<td><b>Roles</b></td>"
-				dat += "<td><b>Description</b></td></tr>"
-				dat += "<tr><td colspan=4><hr></td></tr>"
-				var/datum/loadout_category/LC = GLOB.loadout_categories[gear_tab]
-				for(var/gear_name in LC.gear)
-					var/datum/gear/G = LC.gear[gear_name]
-					var/ticked = (G.id in equipped_gear)
-
-					dat += "<tr style='vertical-align:middle;' class='metaitem"
-					if(G.id in purchased_gear)
-						dat += " buyed'><td width=300>"
-						if(G.sort_category == "OOC")
-							dat += "<a style='white-space:normal;' href='?_src_=prefs;preference=gear;purchase_gear=[G.id]'>Buy more</a>"
-						else if(G.sort_category == "Roles")
-							dat += "<a style='white-space:normal;' href='#'>Bought</a>"
-						else
-							dat += "[G.get_base64_icon_html()]<a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?_src_=prefs;preference=gear;toggle_gear=[G.id]'>[ticked ? "Экипировано" : "Экипировать"]</a>"
-					else
-						dat += "'><td width=300>"
-						if(G.sort_category == "OOC" || G.sort_category == "Roles")
-							dat += "<a style='white-space:normal;' href='?_src_=prefs;preference=gear;purchase_gear=[G.id]'>Купить</a>"
-						else
-							dat += "[G.get_base64_icon_html()]<a style='white-space:normal;' href='?_src_=prefs;preference=gear;purchase_gear=[G.id]'>Купить</a>"
-					dat += " - [capitalize(G.display_name)]</td>"
-					dat += "<td width=5% style='vertical-align:middle' class='metaprice'>[G.cost]</td><td>"
-					if(G.allowed_roles)
-						dat += "<font size=2>[english_list(G.allowed_roles)]</font>"
-					else
-						dat += "<font size=2>Все</font>"
-					dat += "</td><td><font size=2><i>[G.description]</i></font></td></tr>"
-			else
-				for(var/category in GLOB.loadout_categories)
-					if(category == "OOC" || category == "Roles")
-						continue
-					dat += "<tr class='metaitem buyed'><td><b>[category]:</b></td><td>"
-					for(var/gear_name in purchased_gear)
-						var/datum/gear/G = GLOB.gear_datums[gear_name]
-						if(!G || category != G.sort_category)
-							continue
-						var/ticked = (G.id in equipped_gear)
-						dat += "<a class='tooltip[ticked ? " linkOn" : ""]' style='padding: 10px 2px;' href='?_src_=prefs;preference=gear;toggle_gear=[G.id]'>[G.get_base64_icon_html()]<span class='tooltiptext'>[G.display_name]</span></a>"
-					dat += "</td></tr>"
-			dat += "</table>"
+			dat += "</div></div>"
 
 		if (2) // Game Preferences
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
@@ -767,9 +612,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	popup.set_content(dat.Join())
 	popup.open(FALSE)
 	onclose(user, "preferences_window", src)
-
-#undef APPEARANCE_CATEGORY_COLUMN
-#undef MAX_MUTANT_ROWS
 
 /datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, old_key)
 	var/HTML = {"

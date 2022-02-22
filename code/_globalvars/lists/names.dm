@@ -49,5 +49,5 @@ List of configurable names in preferences and their metadata
 	),
 */
 GLOBAL_LIST_INIT(preferences_custom_names, list(
-	"human" = list("pref_name" = "Запасное человеческое", "qdesc" = "используется, когда требуемая роль возможна только для людей с чистыми генами", "allow_numbers" = FALSE , "group" = "backup_human", "allow_null" = FALSE)
+	"human" = list("pref_name" = "Backup Name", "qdesc" = "используется, когда требуемая роль возможна только для людей с чистыми генами", "allow_numbers" = FALSE , "group" = "backup_human", "allow_null" = FALSE)
 	))
