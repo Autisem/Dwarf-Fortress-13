@@ -33,7 +33,7 @@
 
 	if(!holder)
 		if(!GLOB.looc_allowed)
-			to_chat(src, span_danger("LOOC выключен."))
+			to_chat(src, span_danger("LOOC disabled."))
 			return
 		if(!GLOB.dlooc_allowed && (mob.stat == DEAD))
 			to_chat(usr, span_danger("LOOC для мёртвых не разрешен."))

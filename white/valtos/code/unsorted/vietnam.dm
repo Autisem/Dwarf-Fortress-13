@@ -117,16 +117,3 @@
 /obj/effect/baseturf_helper/beach/raw_stone
 	name = "raw stone baseturf editor"
 	baseturf = /turf/open/floor/stone/raw
-
-/obj/effect/mob_spawn/human/dwarf
-	name = "мягкая шконка"
-	desc = "Тут кто-то под шконкой, кирку мне в зад..."
-	icon = 'white/valtos/icons/prison/prison.dmi'
-	icon_state = "spwn"
-	roundstart = FALSE
-	death = FALSE
-	short_desc = "Я Дварф в невероятно диких условиях."
-	flavour_text = "Выжить."
-	mob_species = /datum/species/dwarf
-	outfit = /datum/outfit/dwarf
-	assignedrole = "Dwarf"

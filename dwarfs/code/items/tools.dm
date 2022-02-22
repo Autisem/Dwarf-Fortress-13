@@ -16,8 +16,8 @@
 	tool_behaviour = TOOL_MINING
 	toolspeed = 1
 	usesound = list('sound/effects/picaxe1.ogg', 'sound/effects/picaxe2.ogg', 'sound/effects/picaxe3.ogg')
-	attack_verb_continuous = list("бьёт", "протыкает", "рубит", "атакует")
-	attack_verb_simple = list("бьёт", "протыкает", "рубит", "атакует")
+	attack_verb_continuous = list("hits", "pierces", "slashes", "attacks")
+	attack_verb_simple = list("hit", "pierce", "slash", "attacks")
 
 /obj/item/pickaxe/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] begins digging into [user.ru_ego()] chest! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -118,8 +118,8 @@
 	custom_materials = list(/datum/material/iron=12050) //metal needed for a crowbar and for a knife, why the FUCK does a knife cost 6 metal sheets while a crowbar costs 0.025 sheets? shit makes no sense fuck this
 
 /obj/item/shovel
-	name = "лопата"
-	desc = "Большой инструмент для копания и перемещения грязи."
+	name = "shovel"
+	desc = "A large tool for digging and moving dirt."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "shovel"
 	worn_icon_state = "shovel"
@@ -135,8 +135,8 @@
 	inhand_icon_state = "shovel"
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_materials = list(/datum/material/iron=50)
-	attack_verb_continuous = list("колотит", "ударяет", "колошматит", "вмазывает")
-	attack_verb_simple = list("колотит", "ударяет", "колошматит", "вмазывает")
+	attack_verb_continuous = list("smashes", "hits", "attacks")
+	attack_verb_simple = list("smash", "hit", "attack")
 	sharpness = SHARP_EDGED
 
 /obj/item/shovel/Initialize()

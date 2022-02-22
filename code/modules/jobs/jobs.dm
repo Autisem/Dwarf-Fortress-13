@@ -2,7 +2,7 @@ GLOBAL_LIST_INIT(dwarf_positions, list("Dwarf"))
 
 // job categories for rendering the late join menu
 GLOBAL_LIST_INIT(position_categories, list(
-	EXP_TYPE_CREW = list("jobs" = dwarf_positions, "color" = "#5555ff", "runame" = "Дварфы")
+	EXP_TYPE_CREW = list("jobs" = dwarf_positions, "color" = "#5555ff", "name" = "Dwarfs")
 ))
 
 GLOBAL_LIST_INIT(exp_jobsmap, list(

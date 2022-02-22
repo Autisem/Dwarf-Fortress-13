@@ -650,13 +650,6 @@ Turf and target are separate in case you want to teleport some distance from a t
 	else
 		return zone
 
-// FUCK?
-/proc/ru_job_parse(job)
-	if (job == "Dwarf")
-		return "Дварф"
-	else
-		return job
-
 /proc/jumpsuit_to_ru_conversion(jumpsuit)
 	switch(jumpsuit)
 		if("Jumpsuit")

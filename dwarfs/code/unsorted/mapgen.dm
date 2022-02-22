@@ -1,5 +1,5 @@
 /datum/map_generator/cave_generator/dwarven
-	name = "Дворфы"
+	name = "Dwarfs"
 	open_turf_types = list(/turf/open/floor/stone/raw=1)
 	closed_turf_types = list(/turf/closed/mineral/random/dwarf_lustress=1)
 

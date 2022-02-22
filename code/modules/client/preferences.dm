@@ -199,14 +199,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	update_preview_icon()
 	var/list/dat = list("<center>")
 
-	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Персонаж</a>"
-	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Магазин</a>"
-	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>Игра</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character</a>"
+	// dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Магазин</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>Game</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>OOC</a>"
-	dat += "<a href='?_src_=prefs;preference=tab;tab=4' [current_tab == 4 ? "class='linkOn'" : ""]>Хоткеи</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=4' [current_tab == 4 ? "class='linkOn'" : ""]>Hotkeys</a>"
 
 	if(!path)
-		dat += "<div class='notice'>Создайте своего первого персонажа.</div>"
+		dat += "<div class='notice'>Create a new character.</div>"
 
 	dat += "</center>"
 
@@ -223,20 +223,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						S.cd = "/character[i]"
 						S["real_name"] >> name
 						if(!name)
-							name = "Персонаж [i]"
+							name = "Character [i]"
 						dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=changeslot;num=[i];' [i == default_slot ? "class='linkOn'" : ""]>[name]</a> "
 					dat += "</center>"
 			dat += "<table width='100%'><tr>"
-			dat += "<td><center><h2>Предпочтительные должности</h2>"
-			dat += "<a href='?_src_=prefs;preference=job;task=menu'>Выбрать</a><br></center></td>"
+			dat += "<td><center><h2>Occupation Choices</h2>"
+			dat += "<a href='?_src_=prefs;preference=job;task=menu'>Choose</a><br></center></td>"
 			dat += "</table>"
 			dat += "<table width='100%'>"
 			if(is_banned_from(user.ckey, "Appearance"))
-				dat += "<b>Тебе нельзя. Ты всё ещё можешь настраивать персонажей, но в любом случае получишь случайную внешность и имя.</b><br>"
+				dat += "<b>You are banned from appearance. You can still setup your character but you name and appearance will be random.</b><br>"
 			dat += "<td align='right' width='360px' valign='top'>"
-			dat += "<h3 class='statusDisplay'>Имя</h3>"
+			dat += "<h3 class='statusDisplay'>Name</h3>"
 			dat += "<table width='360px' class='block'>"
-			dat += "<tr><td><b>Основное имя персонажа:</b></td><td align='right'><a href='?_src_=prefs;preference=name;task=input'>[real_name]</a> <a href='?_src_=prefs;preference=name;task=random'>Сгенерировать случайное</a></td></tr>"
+			dat += "<tr><td><b>Character Name:</b></td><td align='right'><a href='?_src_=prefs;preference=name;task=input'>[real_name]</a> <a href='?_src_=prefs;preference=name;task=random'>Random</a></td></tr>"
 
 			var/old_group
 			for(var/custom_name_id in GLOB.preferences_custom_names)
@@ -247,102 +247,95 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					old_group = namedata["group"]
 				dat += "<tr><td><b>[namedata["pref_name"]]:</b></td><td align='right'><a href ='?_src_=prefs;preference=[custom_name_id];task=input'>[custom_names[custom_name_id]]</a></td></tr>"
 
-			dat += "<tr><td><b>Всегда случайное имя:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_NAME]'>[(randomise[RANDOM_NAME]) ? "Да" : "Нет"]</a></td></tr>"
+			dat += "<tr><td><b>Always random name:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_NAME]'>[(randomise[RANDOM_NAME]) ? "Yes" : "No"]</a></td></tr>"
 			dat += "<tr><td><b>Язык генератора имени:</b></td><td align='right'><a href='?_src_=prefs;preference=name_lang'>[(en_names) ? "EN" : "RU"]</a></td></tr>"
-			dat += "<tr><td><b>Случайное имя, если антагонист:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_NAME_ANTAG]'>[(randomise[RANDOM_NAME_ANTAG]) ? "Да" : "Нет"]</a></td></tr>"
+			dat += "<tr><td><b>Random name when antagonist:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_NAME_ANTAG]'>[(randomise[RANDOM_NAME_ANTAG]) ? "Yes" : "No"]</a></td></tr>"
 
 			dat += "</table></td><td width='360px' valign='top'>"
-			dat += "<h3 class='statusDisplay'>Персонаж</h3>"
+			dat += "<h3 class='statusDisplay'>Character</h3>"
 			dat += "<table width='360px' class='block'>"
 
 			if(!(AGENDER in pref_species.species_traits))
-				var/dispGender
-				if(gender == MALE)
-					dispGender = "Мужской"
-				else if(gender == FEMALE)
-					dispGender = "Женский"
-				else
-					dispGender = "УДАРНЫЙ ВЕРТОЛЁТ"
-				dat += "<tr><td><b>Пол:</b></td><td align='right'><a href='?_src_=prefs;preference=gender'>[dispGender]</a></td></tr>"
+				dat += "<tr><td><b>Gender:</b></td><td align='right'><a href='?_src_=prefs;preference=gender'>[gender]</a></td></tr>"
 				if(gender == PLURAL || gender == NEUTER)
-					dat += "<tr><td><b>Тип тела:</b></td><td align='right'><a href='?_src_=prefs;preference=body_type'>[body_type == MALE ? "Male" : "Female"]</a></td></tr>"
+					dat += "<tr><td><b>Body type:</b></td><td align='right'><a href='?_src_=prefs;preference=body_type'>[body_type == MALE ? "Male" : "Female"]</a></td></tr>"
 				if(randomise[RANDOM_BODY] || randomise[RANDOM_BODY_ANTAG]) //doesn't work unless random body
-					dat += "<tr><td><b>Всегда случайный пол:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER]'>[(randomise[RANDOM_GENDER]) ? "Да" : "Нет"]</A></td></tr>"
-					dat += "<tr><td><b>Когда антагонист:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER_ANTAG]'>[(randomise[RANDOM_GENDER_ANTAG]) ? "Да" : "Нет"]</A></td></tr>"
+					dat += "<tr><td><b>Always random gender:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER]'>[(randomise[RANDOM_GENDER]) ? "Yes" : "No"]</A></td></tr>"
+					dat += "<tr><td><b>When antagonist:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER_ANTAG]'>[(randomise[RANDOM_GENDER_ANTAG]) ? "Yes" : "No"]</A></td></tr>"
 
-			dat += "<tr><td><b>Возраст:</b></td><td align='right'><a href='?_src_=prefs;preference=age;task=input'>[age]</a></td></tr>"
+			dat += "<tr><td><b>Age:</b></td><td align='right'><a href='?_src_=prefs;preference=age;task=input'>[age]</a></td></tr>"
 			if(randomise[RANDOM_BODY] || randomise[RANDOM_BODY_ANTAG]) //doesn't work unless random body
-				dat += "<tr><td><b>Всегда случайный возраст:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_AGE]'>[(randomise[RANDOM_AGE]) ? "Да" : "Нет"]</A></td></tr>"
-				dat += "<tr><td><b>Когда антагонист:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_AGE_ANTAG]'>[(randomise[RANDOM_AGE_ANTAG]) ? "Да" : "Нет"]</A></td></tr>"
+				dat += "<tr><td><b>Always random age:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_AGE]'>[(randomise[RANDOM_AGE]) ? "Yes" : "No"]</A></td></tr>"
+				dat += "<tr><td><b>When antagonist:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_AGE_ANTAG]'>[(randomise[RANDOM_AGE_ANTAG]) ? "Yes" : "No"]</A></td></tr>"
 
 			if(user.client.get_exp_living(TRUE) >= PLAYTIME_HARDCORE_RANDOM)
-				dat += "<tr><td><b>Режим хардкора:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HARDCORE]'>[(randomise[RANDOM_HARDCORE]) ? "Yes" : "No"]</a></td></tr>"
+				dat += "<tr><td><b>Hardcore mode:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HARDCORE]'>[(randomise[RANDOM_HARDCORE]) ? "Yes" : "No"]</a></td></tr>"
 
 			dat += "</table>"
-			dat += "<h3 class='statusDisplay'>Тело</h3>"
+			dat += "<h3 class='statusDisplay'>Body</h3>"
 			dat += "<table width='360px' class='block'>"
 
-			dat += "<tr><td><b>Вид:</b></td><td align='right'><a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a>"
-			dat += "<a href='?_src_=prefs;preference=species;task=random'>Случайно</A>"
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SPECIES]'>[(randomise[RANDOM_SPECIES]) ? "Случайно" : "Одна"]</a></td></tr>"
+			dat += "<tr><td><b>Species:</b></td><td align='right'><a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a>"
+			dat += "<a href='?_src_=prefs;preference=species;task=random'>Random</A>"
+			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SPECIES]'>[(randomise[RANDOM_SPECIES]) ? "Yes" : "No"]</a></td></tr>"
 
-			dat += "<tr><td><b>Внешность:</b></td><td align='right'><a href='?_src_=prefs;preference=all;task=random'>Случайная</a>"
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_BODY]'>Случайная всегда: [(randomise[RANDOM_BODY]) ? "Да" : "Нет"]</a></td></tr>"
+			dat += "<tr><td><b>Appearance:</b></td><td align='right'><a href='?_src_=prefs;preference=all;task=random'>Random</a>"
+			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_BODY]'>Always random: [(randomise[RANDOM_BODY]) ? "Yes" : "No"]</a></td></tr>"
 
 			dat += "</table></td></table>"
 
-			dat += "<table width='100%'><td valign='top'><h3 class='statusDisplay'>Подробности</h3><table class='block'>"
+			dat += "<table width='100%'><td valign='top'><h3 class='statusDisplay'>Details</h3><table class='block'>"
 
 			if((HAS_FLESH in pref_species.species_traits) || (HAS_BONE in pref_species.species_traits))
-				dat += "<tr><td><b>Получение шрамов:</b></td><td align='right'><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Включено" : "Отключено"]</A>"
+				dat += "<tr><td><b>Temporal Scarring:</b></td><td align='right'><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Enabled" : "Disabled"]</A>"
 				dat += "<a href='?_src_=prefs;preference=clear_scars'>Очистить шрамы</A></td></tr>"
 
 			var/use_skintones = pref_species.use_skintones
 			if(use_skintones)
 
-				dat += "<tr><td><b>Цвет кожи:</b></td><td align='right'><a href='?_src_=prefs;preference=s_tone;task=input'>[skin_tone]</a>"
+				dat += "<tr><td><b>Skin Tone:</b></td><td align='right'><a href='?_src_=prefs;preference=s_tone;task=input'>[skin_tone]</a>"
 				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SKIN_TONE]'>[(randomise[RANDOM_SKIN_TONE]) ? "🔓" : "🔒"]</A></td></tr>"
 
 			if((MUTCOLORS in pref_species.species_traits) || (MUTCOLORS_PARTSONLY in pref_species.species_traits))
 
-				dat += "<tr><td><b>Мутацвет:</b></td><td align='right'>"
+				dat += "<tr><td><b>Mutant Colorss:</b></td><td align='right'>"
 
-				dat += "<span style='border: 1px solid #161616; background-color: #[features["mcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mutant_color;task=input'>Изменить</a></td></tr>"
+				dat += "<span style='border: 1px solid #161616; background-color: #[features["mcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mutant_color;task=input'>Change</a></td></tr>"
 
 			if((EYECOLOR in pref_species.species_traits) && !(NOEYESPRITES in pref_species.species_traits))
 
 				dat += "<tr><td><b>Цвет глаз:</b></td><td align='right'>"
-				dat += "<span style='border: 1px solid #161616; background-color: #[eye_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=eyes;task=input'>Изменить</a>"
+				dat += "<span style='border: 1px solid #161616; background-color: #[eye_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=eyes;task=input'>Change</a>"
 				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_EYE_COLOR]'>[(randomise[RANDOM_EYE_COLOR]) ? "🔓" : "🔒"]</A></td></tr>"
 
 			if(HAIR in pref_species.species_traits)
 
-				dat += "<tr><td><b>Причёска:</b></td><td align='right'>"
+				dat += "<tr><td><b>Hairstyle:</b></td><td align='right'>"
 
 				dat += "<a href='?_src_=prefs;preference=hairstyle;task=input'>[hairstyle]</a>"
 				dat += "<a href='?_src_=prefs;preference=previous_hairstyle;task=input'>&lt;</a><a href='?_src_=prefs;preference=next_hairstyle;task=input'>&gt;</a>"
 				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HAIRSTYLE]'>[(randomise[RANDOM_HAIRSTYLE]) ? "🔓" : "🔒"]</A></td></tr>"
 
-				dat += "<tr><td><b>Цвет причёски:</b></td><td align='right'>"
+				dat += "<tr><td><b>Hair Color:</b></td><td align='right'>"
 
-				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair;task=input'>Изменить</a>"
+				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair;task=input'>Change</a>"
 				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HAIR_COLOR]'>[(randomise[RANDOM_HAIR_COLOR]) ? "🔓" : "🔒"]</A></td></tr>"
 
-				dat += "<tr><td><b>Градиент волос:</b></td><td align='right'>"
-				dat += "<span style='border:1px solid #161616; background-color: #[hair_grad_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_grad_color;task=input'>Изменить</a><a href='?_src_=prefs;preference=hair_grad_style;task=input'>[hair_grad_style]</a></td></tr>"
+				dat += "<tr><td><b>Hair Gradient:</b></td><td align='right'>"
+				dat += "<span style='border:1px solid #161616; background-color: #[hair_grad_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_grad_color;task=input'>Change</a><a href='?_src_=prefs;preference=hair_grad_style;task=input'>[hair_grad_style]</a></td></tr>"
 
-				dat += "<tr><td><b>Градиент бороды:</b></td><td align='right'>"
-				dat += "<span style='border:1px solid #161616; background-color: #[facial_grad_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial_grad_color;task=input'>Изменить</a><a href='?_src_=prefs;preference=facial_grad_style;task=input'>[facial_grad_style]</a></td></tr>"
+				dat += "<tr><td><b>Facial Gradient:</b></td><td align='right'>"
+				dat += "<span style='border:1px solid #161616; background-color: #[facial_grad_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial_grad_color;task=input'>Change</a><a href='?_src_=prefs;preference=facial_grad_style;task=input'>[facial_grad_style]</a></td></tr>"
 
-				dat += "<tr><td><b>Борода:</b></td><td align='right'>"
+				dat += "<tr><td><b>Facial:</b></td><td align='right'>"
 
 				dat += "<a href='?_src_=prefs;preference=facial_hairstyle;task=input'>[facial_hairstyle]</a>"
 				dat += "<a href='?_src_=prefs;preference=previous_facehairstyle;task=input'>&lt;</a><a href='?_src_=prefs;preference=next_facehairstyle;task=input'>&gt;</a>"
 				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_FACIAL_HAIRSTYLE]'>[(randomise[RANDOM_FACIAL_HAIRSTYLE]) ? "🔓" : "🔒"]</A></td></tr>"
 
-				dat += "<tr><td><b>Цвет бороды:</b></td><td align='right'>"
+				dat += "<tr><td><b>Facial Color:</b></td><td align='right'>"
 
-				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Изменить</a>"
+				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a>"
 				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_FACIAL_HAIR_COLOR]'>[(randomise[RANDOM_FACIAL_HAIR_COLOR]) ? "🔓" : "🔒"]</A></td></tr>"
 
 			//Mutant stuff
@@ -458,16 +451,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/metabalance = user.client.get_metabalance()
 			dat += "<table align='center' width='100%' class='metamag'>"
 			dat += "<tr><td colspan=4 class='bal'><center>"
-			dat += "<b>Баланс: <img src='[SSassets.transport.get_asset_url("mc_32.gif")]' width=16 height=16 border=0>"
+			dat += "<b>Balance: <img src='[SSassets.transport.get_asset_url("mc_32.gif")]' width=16 height=16 border=0>"
 			dat += "<font color='[fcolor]'>[metabalance]</font> chronos.</b>"
-			dat += "<a href='?_src_=prefs;preference=gear;clear_loadout=1'>Снять всё</a></center></td></tr>"
+			dat += "<a href='?_src_=prefs;preference=gear;clear_loadout=1'>Withdraw all</a></center></td></tr>"
 			dat += "<tr><td colspan=4><center><b>"
 
 
-			if(gear_tab == "Инвентарь")
-				dat += span_linkoff("Инвентарь")
+			if(gear_tab == "Inventory")
+				dat += span_linkoff("Inventory")
 			else
-				dat += "<a href='?_src_=prefs;preference=gear;select_category=Инвентарь'>Инвентарь</a>"
+				dat += "<a href='?_src_=prefs;preference=gear;select_category=Inventory'>Inventory</a>"
 
 			for(var/category in GLOB.loadout_categories)
 				dat += " |"
@@ -479,11 +472,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<tr><td colspan=4><hr></td></tr>"
 
-			if(gear_tab != "Инвентарь")
-				dat += "<tr><td><b>Название</b></td>"
-				dat += "<td><b>Цена</b></td>"
-				dat += "<td><b>Роли</b></td>"
-				dat += "<td><b>Описание</b></td></tr>"
+			if(gear_tab != "Inventory")
+				dat += "<tr><td><b>Name</b></td>"
+				dat += "<td><b>Price</b></td>"
+				dat += "<td><b>Roles</b></td>"
+				dat += "<td><b>Description</b></td></tr>"
 				dat += "<tr><td colspan=4><hr></td></tr>"
 				var/datum/loadout_category/LC = GLOB.loadout_categories[gear_tab]
 				for(var/gear_name in LC.gear)
@@ -494,14 +487,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(G.id in purchased_gear)
 						dat += " buyed'><td width=300>"
 						if(G.sort_category == "OOC")
-							dat += "<a style='white-space:normal;' href='?_src_=prefs;preference=gear;purchase_gear=[G.id]'>Купить ещё</a>"
-						else if(G.sort_category == "Роли")
-							dat += "<a style='white-space:normal;' href='#'>Куплено</a>"
+							dat += "<a style='white-space:normal;' href='?_src_=prefs;preference=gear;purchase_gear=[G.id]'>Buy more</a>"
+						else if(G.sort_category == "Roles")
+							dat += "<a style='white-space:normal;' href='#'>Bought</a>"
 						else
 							dat += "[G.get_base64_icon_html()]<a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?_src_=prefs;preference=gear;toggle_gear=[G.id]'>[ticked ? "Экипировано" : "Экипировать"]</a>"
 					else
 						dat += "'><td width=300>"
-						if(G.sort_category == "OOC" || G.sort_category == "Роли")
+						if(G.sort_category == "OOC" || G.sort_category == "Roles")
 							dat += "<a style='white-space:normal;' href='?_src_=prefs;preference=gear;purchase_gear=[G.id]'>Купить</a>"
 						else
 							dat += "[G.get_base64_icon_html()]<a style='white-space:normal;' href='?_src_=prefs;preference=gear;purchase_gear=[G.id]'>Купить</a>"
@@ -514,7 +507,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td><td><font size=2><i>[G.description]</i></font></td></tr>"
 			else
 				for(var/category in GLOB.loadout_categories)
-					if(category == "OOC" || category == "Роли")
+					if(category == "OOC" || category == "Roles")
 						continue
 					dat += "<tr class='metaitem buyed'><td><b>[category]:</b></td><td>"
 					for(var/gear_name in purchased_gear)
@@ -528,32 +521,32 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if (2) // Game Preferences
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
-			dat += "<h2>Основные настройки</h2>"
+			dat += "<h2>Game Preferences</h2>"
 			dat += "<table>"
-			dat += "<tr><td><h3>Интерфейс</h3></td></tr>"
-			dat += "<tr><td><b>Стиль:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a></td></tr>"
-			dat += "<tr><td><b>Окна в TGUI:</b></td><td align='right'><a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Основные" : "Все"]</a></td></tr>"
-			dat += "<tr><td><b>Стиль TGUI:</b></td><td align='right'><a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Красивый" : "Строгие рамки"]</a></td></tr>"
+			dat += "<tr><td><h3>Interface</h3></td></tr>"
+			dat += "<tr><td><b>Style:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a></td></tr>"
+			dat += "<tr><td><b>Windows in TGUI:</b></td><td align='right'><a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Minimal" : "All"]</a></td></tr>"
+			dat += "<tr><td><b>TGUI Style:</b></td><td align='right'><a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy" : "Minimal"]</a></td></tr>"
 			dat += "<tr><td><h3>Runechat</h3></td></tr>"
-			dat += "<tr><td><b>Текст над головой:</b></td><td align='right'><a href='?_src_=prefs;preference=chat_on_map'>[(chat_on_map) ? "Вкл" : "Выкл"]</a></td></tr>"
-			dat += "<tr><td><b>Максимальная длина:</b></td><td align='right'><a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a></td></tr>"
-			dat += "<tr><td><b>Текст не только у мобов:</b></td><td align='right'><a href='?_src_=prefs;preference=see_chat_non_mob'>[(see_chat_non_mob) ? "Вкл" : "Выкл"]</a></td></tr>"
-			dat += "<tr><td><b>Эмоции над головой:</b></td><td align='right'><a href='?_src_=prefs;preference=see_rc_emotes'>[(see_rc_emotes) ? "Вкл" : "Выкл"]</a></td></tr>"
-			dat += "<tr><td><h3>Управление</h3></td></tr>"
-			dat += "<tr><td><b>Кнопки действий:</b></td><td align='right'><a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Не двигаются" : "Свободные"]</a></td></tr>"
-			dat += "<tr><td><b>Режим хоткеев:</b></td><td align='right'><a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Хоткеи" : "Ретро"]</a></td></tr>"
+			dat += "<tr><td><b>Text above head:</b></td><td align='right'><a href='?_src_=prefs;preference=chat_on_map'>[(chat_on_map) ? "On" : "Off"]</a></td></tr>"
+			dat += "<tr><td><b>Max lenght:</b></td><td align='right'><a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a></td></tr>"
+			dat += "<tr><td><b>See above mobs only:</b></td><td align='right'><a href='?_src_=prefs;preference=see_chat_non_mob'>[(see_chat_non_mob) ? "On" : "Off"]</a></td></tr>"
+			dat += "<tr><td><b>Emotes above head:</b></td><td align='right'><a href='?_src_=prefs;preference=see_rc_emotes'>[(see_rc_emotes) ? "On" : "Off"]</a></td></tr>"
+			dat += "<tr><td><h3>Controls</h3></td></tr>"
+			dat += "<tr><td><b>Action buttons:</b></td><td align='right'><a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked" : "Movable"]</a></td></tr>"
+			dat += "<tr><td><b>Hotkey mode:</b></td><td align='right'><a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Retro"]</a></td></tr>"
 
 			dat += "</table></td><td width='300px' height='300px' valign='top'>"
 
-			dat += "<tr><td><h3>Призрак:</h3></td></tr>"
-			dat += "<tr><td><b>Разговоры:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_ears'>[(chat_toggles & CHAT_GHOSTEARS) ? "Все" : "Ближайшие"]</a></td></tr>"
-			dat += "<tr><td><b>Эмоуты:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_sight'>[(chat_toggles & CHAT_GHOSTSIGHT) ? "Все" : "Ближайшие"]</a></td></tr>"
-			dat += "<tr><td><b>Шёпот:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_whispers'>[(chat_toggles & CHAT_GHOSTWHISPER) ? "Все" : "Ближайшие"]</a></td></tr>"
-			dat += "<tr><td><b>Форма:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostform'>[ghost_form]</a></td></tr>"
-			dat += "<tr><td><B>Орбита:</B></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostorbit'>[ghost_orbit]</a></td></tr>"
-			dat += "<tr><td><b>Передача тела:</b></td><td align='right'><a href='?_src_=prefs;preference=ice_cream'>[(ice_cream) ? "Вкл" : "Выкл"]</a></td></tr>"
+			dat += "<tr><td><h3>Ghost:</h3></td></tr>"
+			dat += "<tr><td><b>Speech:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_ears'>[(chat_toggles & CHAT_GHOSTEARS) ? "All" : "Near"]</a></td></tr>"
+			dat += "<tr><td><b>Emotes:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_sight'>[(chat_toggles & CHAT_GHOSTSIGHT) ? "All" : "Near"]</a></td></tr>"
+			dat += "<tr><td><b>Whisper:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_whispers'>[(chat_toggles & CHAT_GHOSTWHISPER) ? "All" : "Near"]</a></td></tr>"
+			dat += "<tr><td><b>Form:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostform'>[ghost_form]</a></td></tr>"
+			dat += "<tr><td><B>Orbit:</B></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostorbit'>[ghost_orbit]</a></td></tr>"
+			dat += "<tr><td><b>Body transfer:</b></td><td align='right'><a href='?_src_=prefs;preference=ice_cream'>[(ice_cream) ? "On" : "Off"]</a></td></tr>"
 			if(ice_cream)
-				dat += "<tr><td><b>Таймер до передачи:</b></td><td align='right'><a href='?_src_=prefs;preference=ice_cream_time;task=input'>[ice_cream_time/600] минут</a></td></tr>"
+				dat += "<tr><td><b>Time until transfer:</b></td><td align='right'><a href='?_src_=prefs;preference=ice_cream_time;task=input'>[ice_cream_time/600] minutes</a></td></tr>"
 
 			var/button_name = "If you see this something went wrong."
 			switch(ghost_accs)
@@ -564,7 +557,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(GHOST_ACCS_NONE)
 					button_name = GHOST_ACCS_NONE_NAME
 
-			dat += "<tr><td><b>Вид призраков:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostaccs'>[button_name]</a></td></tr>"
+			dat += "<tr><td><b>Ghost appearance:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostaccs'>[button_name]</a></td></tr>"
 
 			switch(ghost_others)
 				if(GHOST_OTHERS_THEIR_SETTING)
@@ -574,11 +567,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(GHOST_OTHERS_SIMPLE)
 					button_name = GHOST_OTHERS_SIMPLE_NAME
 
-			dat += "<tr><td><b>Призраки других:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostothers'>[button_name]</a></td></tr>"
-			dat += "<tr><td><h3>Внутриигровое:</h3></td></tr>"
-			dat += "<tr><td><b>Автокоррекция текста:</b></td><td align='right'><a href='?_src_=prefs;preference=disabled_autocap'>[disabled_autocap ? "Выкл" : "Вкл"]</a></td></tr>"
+			dat += "<tr><td><b>Other ghosts:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostothers'>[button_name]</a></td></tr>"
+			dat += "<tr><td><h3>Ingame:</h3></td></tr>"
+			dat += "<tr><td><b>Text autocorrection:</b></td><td align='right'><a href='?_src_=prefs;preference=disabled_autocap'>[disabled_autocap ? "Off" : "On"]</a></td></tr>"
 			dat += "<tr><td><b>FPS:</b></td><td align='right'><a href='?_src_=prefs;preference=clientfps;task=input'>[clientfps]</a></td></tr>"
-			dat += "<tr><td><b>Параллакс:</b></td><td align='right'><a href='?_src_=prefs;preference=parallaxdown' oncontextmenu='window.location.href=\"?_src_=prefs;preference=parallaxup\";return false;'>"
+			dat += "<tr><td><b>Parallax:</b></td><td align='right'><a href='?_src_=prefs;preference=parallaxdown' oncontextmenu='window.location.href=\"?_src_=prefs;preference=parallaxup\";return false;'>"
 			switch (parallax)
 				if (PARALLAX_LOW)
 					dat += "Low"
@@ -592,20 +585,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "High"
 			dat += "</a></td></tr>"
 
-			dat += "<tr><td><b>Тени:</b></td><td align='right'><a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "Вкл" : "Выкл"]</a></td></tr>"
-			dat += "<tr><td><b>Подстройка экрана:</b></td><td align='right'><a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Авто" : "Вручную"]</a></td></tr>"
-			dat += "<tr><td><b>Полный экран:</b></td><td align='right'><a href='?_src_=prefs;preference=fullscreen'>[fullscreen ? "Вкл" : "Выкл"]</a></td></tr>"
+			dat += "<tr><td><b>Shadows:</b></td><td align='right'><a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "On" : "Off"]</a></td></tr>"
+			dat += "<tr><td><b>Fit viewpoint:</b></td><td align='right'><a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a></td></tr>"
+			dat += "<tr><td><b>Fullscreen:</b></td><td align='right'><a href='?_src_=prefs;preference=fullscreen'>[fullscreen ? "On" : "Off"]</a></td></tr>"
 			if (CONFIG_GET(string/default_view) != CONFIG_GET(string/default_view_square))
-				dat += "<tr><td><b>Широкий экран:</b></td><td align='right'><a href='?_src_=prefs;preference=widescreenpref'>[widescreenpref ? "Вкл ([CONFIG_GET(string/default_view)])" : "Выкл ([CONFIG_GET(string/default_view_square)])"]</a></td></tr>"
+				dat += "<tr><td><b>Wide screen:</b></td><td align='right'><a href='?_src_=prefs;preference=widescreenpref'>[widescreenpref ? "On ([CONFIG_GET(string/default_view)])" : "Off ([CONFIG_GET(string/default_view_square)])"]</a></td></tr>"
 				if(widescreenpref)
-					dat += "<tr><td><b>Своя ширина экрана:</b></td><td align='right'><a href='?_src_=prefs;preference=widescreenwidth;task=input'>[widescreenwidth]</a></td></tr>"
+					dat += "<tr><td><b>Custom screen width:</b></td><td align='right'><a href='?_src_=prefs;preference=widescreenwidth;task=input'>[widescreenwidth]</a></td></tr>"
 
-			dat += "<tr><td><b>Названия предметов:</b></td><td align='right'><a href='?_src_=prefs;preference=tooltip_user'>[(w_toggles & TOOLTIP_USER_UP) ? "Вкл" : "Выкл"]</a></td></tr>"
-			dat += "<tr><td><b>Позиция на экране:</b></td><td align='right'><a href='?_src_=prefs;preference=tooltip_pos'>[(w_toggles & TOOLTIP_USER_POS) ? "Низ" : "Верх"]</a></td></tr>"
-			dat += "<tr><td><b>Ретро-статусбар:</b></td><td align='right'><a href='?_src_=prefs;preference=tooltip_retro'>[(w_toggles & TOOLTIP_USER_RETRO) ? "Вкл" : "Выкл"]</a></td></tr>"
-			dat += "<tr><td><b>Горизонтальная инверсия:</b></td><td align='right'><a href='?_src_=prefs;preference=horiz_inv'>[(w_toggles & SCREEN_HORIZ_INV) ? "Вкл" : "Выкл"]</a></td></tr>"
-			dat += "<tr><td><b>Вертикальная инверсия:</b></td><td align='right'><a href='?_src_=prefs;preference=verti_inv'>[(w_toggles & SCREEN_VERTI_INV) ? "Вкл" : "Выкл"]</a></td></tr>"
-			dat += "<tr><td><b>Невидимые разделители:</b></td><td align='right'><a href='?_src_=prefs;preference=hide_split'>[(w_toggles & SCREEN_HIDE_SPLIT) ? "Вкл" : "Выкл"]</a></td></tr>"
+			dat += "<tr><td><b>Item names:</b></td><td align='right'><a href='?_src_=prefs;preference=tooltip_user'>[(w_toggles & TOOLTIP_USER_UP) ? "On" : "Off"]</a></td></tr>"
+			dat += "<tr><td><b>Place on screen:</b></td><td align='right'><a href='?_src_=prefs;preference=tooltip_pos'>[(w_toggles & TOOLTIP_USER_POS) ? "Bottom" : "Top"]</a></td></tr>"
+			dat += "<tr><td><b>Retro-Statusbar:</b></td><td align='right'><a href='?_src_=prefs;preference=tooltip_retro'>[(w_toggles & TOOLTIP_USER_RETRO) ? "On" : "Off"]</a></td></tr>"
+			dat += "<tr><td><b>Horisontal inversion:</b></td><td align='right'><a href='?_src_=prefs;preference=horiz_inv'>[(w_toggles & SCREEN_HORIZ_INV) ? "On" : "Off"]</a></td></tr>"
+			dat += "<tr><td><b>Vertical inversion:</b></td><td align='right'><a href='?_src_=prefs;preference=verti_inv'>[(w_toggles & SCREEN_VERTI_INV) ? "On" : "Off"]</a></td></tr>"
+			dat += "<tr><td><b>Invisible separators:</b></td><td align='right'><a href='?_src_=prefs;preference=hide_split'>[(w_toggles & SCREEN_HIDE_SPLIT) ? "On" : "Off"]</a></td></tr>"
 			button_name = pixel_size
 			dat += "<tr><td><b>Pixel Scaling:</b></td><td align='right'><a href='?_src_=prefs;preference=pixel_size'>[(button_name) ? "Pixel Perfect [button_name]x" : "Stretch to fit"]</a></td></tr>"
 
@@ -634,33 +627,33 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						p_map += " (No longer exists)"
 				if(CONFIG_GET(flag/preference_map_voting))
-					dat += "<tr><td><b>Любимая карта:</b></td><td align='right'><a href='?_src_=prefs;preference=preferred_map;task=input'>[p_map]</a></td></tr>"
+					dat += "<tr><td><b>Favourite map:</b></td><td align='right'><a href='?_src_=prefs;preference=preferred_map;task=input'>[p_map]</a></td></tr>"
 
-			dat += "<h2>Спецроли</h2>"
+			// dat += "<h2>Спецроли</h2>"
 
 			dat += "<table>"
 
-			if(is_banned_from(user.ckey, ROLE_ICECREAM))
-				dat += "<font color='#ff7777'><b>Тебе нельзя быть антагами.</b></font><br>"
-				src.be_special = list()
+			// if(is_banned_from(user.ckey, ROLE_ICECREAM))
+			// 	dat += "<font color='#ff7777'><b>You can't be an antag.</b></font><br>"
+			// 	src.be_special = list()
 
-			dat += "<tr><td><b>Посреди раунда:</b></td><td><a href='?_src_=prefs;preference=allow_midround_antag'>[(toggles & MIDROUND_ANTAG) ? "Да" : "Нет"]</a></td></tr>"
+			// dat += "<tr><td><b>Посреди раунда:</b></td><td><a href='?_src_=prefs;preference=allow_midround_antag'>[(toggles & MIDROUND_ANTAG) ? "Да" : "Нет"]</a></td></tr>"
 			dat += "</table></td></tr></table>"
 		if(3) //OOC Preferences
 			dat += "<table><tr><td width='340px' height='300px' valign='top'><table>"
-			dat += "<tr><td><h2>Настройки OOC</h2></td></tr>"
-			dat += "<tr><td><b>Мигание окна:</b></td><td><a href='?_src_=prefs;preference=winflash'>[(windowflashing) ? "Вкл":"Выкл"]</a></td></tr>"
-			dat += "<tr><td><b>Слышать Admin MIDIs:</b></td><td><a href='?_src_=prefs;preference=hear_midis'>[(toggles & SOUND_MIDI) ? "Вкл":"Выкл"]</a></td></tr>"
-			dat += "<tr><td><b>Слышать Lobby Music:</b></td><td><a href='?_src_=prefs;preference=lobby_music'>[(toggles & SOUND_LOBBY) ? "Вкл":"Выкл"]</a></td></tr>"
-			dat += "<tr><td><b>Проигрывать звук окончания раунда:</b></td><td><a href='?_src_=prefs;preference=endofround_sounds'>[(toggles & SOUND_ENDOFROUND) ? "Вкл":"Выкл"]</a></td></tr>"
-			dat += "<tr><td><b>Видеть PR:</b></td><td><a href='?_src_=prefs;preference=pull_requests'>[(chat_toggles & CHAT_PULLR) ? "Вкл":"Выкл"]</a></td></tr>"
+			dat += "<tr><td><h2>OOC Preferences</h2></td></tr>"
+			dat += "<tr><td><b>Window flashing:</b></td><td><a href='?_src_=prefs;preference=winflash'>[(windowflashing) ? "On":"Off"]</a></td></tr>"
+			dat += "<tr><td><b>Hear Admin MIDIs:</b></td><td><a href='?_src_=prefs;preference=hear_midis'>[(toggles & SOUND_MIDI) ? "On":"Off"]</a></td></tr>"
+			dat += "<tr><td><b>Hear Lobby Music:</b></td><td><a href='?_src_=prefs;preference=lobby_music'>[(toggles & SOUND_LOBBY) ? "On":"Off"]</a></td></tr>"
+			dat += "<tr><td><b>Play roundend sound:</b></td><td><a href='?_src_=prefs;preference=endofround_sounds'>[(toggles & SOUND_ENDOFROUND) ? "On":"Off"]</a></td></tr>"
+			dat += "<tr><td><b>See PR:</b></td><td><a href='?_src_=prefs;preference=pull_requests'>[(chat_toggles & CHAT_PULLR) ? "On":"Off"]</a></td></tr>"
 
 			if(user.client)
 				if(unlock_content)
 					dat += "<tr><td><b>BYOND Membership Publicity:</b></td><td><a href='?_src_=prefs;preference=publicity'>[(toggles & MEMBER_PUBLIC) ? "Public" : "Hidden"]</a></td></tr>"
 
 				if(unlock_content || check_rights_for(user.client, R_ADMIN) || check_donations(user.client.ckey) >= 100)
-					dat += "<tr><td><b>Цвет OOC:</b></td><td><span style='border: 1px solid #161616; background-color: [ooccolor ? ooccolor : GLOB.normal_ooc_colour];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=ooccolor;task=input'>Change</a></td></tr>"
+					dat += "<tr><td><b>OOC color:</b></td><td><span style='border: 1px solid #161616; background-color: [ooccolor ? ooccolor : GLOB.normal_ooc_colour];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=ooccolor;task=input'>Change</a></td></tr>"
 
 			dat += "</table></td>"
 
@@ -669,9 +662,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h2>Admin Settings</h2>"
 
-				dat += "<b>Adminhelp Sounds:</b> <a href='?_src_=prefs;preference=hear_adminhelps'>[(toggles & SOUND_ADMINHELP)?"Вкл":"Выкл"]</a><br>"
-				dat += "<b>Prayer Sounds:</b> <a href = '?_src_=prefs;preference=hear_prayers'>[(toggles & SOUND_PRAYERS)?"Вкл":"Выкл"]</a><br>"
-				dat += "<b>Announce Login:</b> <a href='?_src_=prefs;preference=announce_login'>[(toggles & ANNOUNCE_LOGIN)?"Вкл":"Выкл"]</a><br>"
+				dat += "<b>Adminhelp Sounds:</b> <a href='?_src_=prefs;preference=hear_adminhelps'>[(toggles & SOUND_ADMINHELP)?"On":"Off"]</a><br>"
+				dat += "<b>Prayer Sounds:</b> <a href = '?_src_=prefs;preference=hear_prayers'>[(toggles & SOUND_PRAYERS)?"On":"Off"]</a><br>"
+				dat += "<b>Announce Login:</b> <a href='?_src_=prefs;preference=announce_login'>[(toggles & ANNOUNCE_LOGIN)?"On":"Off"]</a><br>"
 				dat += "<br>"
 				dat += "<b>Combo HUD Lighting:</b> <a href = '?_src_=prefs;preference=combohud_lighting'>[(toggles & COMBOHUD_LIGHTING)?"Full-bright":"No Change"]</a><br>"
 				dat += "<br>"
@@ -692,7 +685,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(CONFIG_GET(flag/auto_deadmin_players) && !timegate)
 					dat += "<b>Always Deadmin:</b> FORCED</a><br>"
 				else
-					dat += "<b>Always Deadmin:</b> [timegate ? "(Time Locked) " : ""]<a href = '?_src_=prefs;preference=toggle_deadmin_always'>[(toggles & DEADMIN_ALWAYS)?"Вкл":"Выкл"]</a><br>"
+					dat += "<b>Always Deadmin:</b> [timegate ? "(Time Locked) " : ""]<a href = '?_src_=prefs;preference=toggle_deadmin_always'>[(toggles & DEADMIN_ALWAYS)?"On":"Off"]</a><br>"
 					if(!(toggles & DEADMIN_ALWAYS))
 						dat += "<br>"
 						if(!CONFIG_GET(flag/auto_deadmin_antagonists) || (CONFIG_GET(flag/auto_deadmin_antagonists) && !timegate))
@@ -740,7 +733,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						dat += "<tr><td>[kb.full_name]</td><td><a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=["Unbound"]'>НЕТ</a></td>"
 						var/list/default_keys = hotkeys ? kb.hotkey_keys : kb.classic_keys
 						if(LAZYLEN(default_keys))
-							dat += "<td>Стандартно: [default_keys.Join(", ")]</td>"
+							dat += "<td>Default: [default_keys.Join(", ")]</td>"
 						dat += "</tr>"
 					else
 						var/bound_key = user_binds[kb.name][1]
@@ -749,28 +742,28 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							bound_key = user_binds[kb.name][bound_key_index]
 							dat += "<td><a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a></td>"
 						if(length(user_binds[kb.name]) < MAX_KEYS_PER_KEYBIND)
-							dat += "<td><a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name]'>Альт</a></td>"
+							dat += "<td><a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name]'>Alt</a></td>"
 						var/list/default_keys = hotkeys ? kb.classic_keys : kb.hotkey_keys
 						if(LAZYLEN(default_keys))
-							dat += "<td>Стандартно: [default_keys.Join(", ")]</td>"
+							dat += "<td>Default: [default_keys.Join(", ")]</td>"
 						dat += "</tr>"
 
-			dat += "<tr><td><a href ='?_src_=prefs;preference=keybindings_reset'>\[Сбросить до стандартных\]</a></td></tr>"
+			dat += "<tr><td><a href ='?_src_=prefs;preference=keybindings_reset'>\[Reset to default\]</a></td></tr>"
 			dat += "</table></body>"
 	dat += "<hr><center>"
 
 	if(!IsGuestKey(user.key))
-		dat += "<a href='?_src_=prefs;preference=load'>Отмена</a> "
-		dat += "<a href='?_src_=prefs;preference=save'>Сохранить</a> "
+		dat += "<a href='?_src_=prefs;preference=load'>Cancel</a> "
+		dat += "<a href='?_src_=prefs;preference=save'>Save</a> "
 
-	dat += "<a href='?_src_=prefs;preference=reset_all'>Сбросить</a>"
+	dat += "<a href='?_src_=prefs;preference=reset_all'>Reset</a>"
 	dat += "</center>"
 
 	var/datum/asset/stuff = get_asset_datum(/datum/asset/simple/metacoins)
 	stuff.send(user)
 
 	winshow(user, "preferences_window", TRUE)
-	var/datum/browser/popup = new(user, "preferences_browser_new", "<div align='center'>Настройки</div>", 1200, 770)
+	var/datum/browser/popup = new(user, "preferences_browser_new", "<div align='center'>Preferences</div>", 1200, 770)
 	popup.set_content(dat.Join())
 	popup.open(FALSE)
 	onclose(user, "preferences_window", src)
@@ -816,13 +809,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/HTML = "<center>"
 	if(SSjob.occupations.len <= 0)
-		HTML += "Список работ ещё не инициализирован до конца. Подождите немного."
-		HTML += "<center><a href='?_src_=prefs;preference=job;task=close'>Готово</a></center><br>" // Easier to press up here.
+		HTML += "The job SSticker is not yet finished creating jobs, please try again later"
+		HTML += "<center><a href='?_src_=prefs;preference=job;task=close'>Done</a></center><br>" // Easier to press up here.
 
 	else
-		HTML += "<b>Выбери шанс получить желаемую должность</b><br>"
-		HTML += "<div align='center'>ЛКМ, чтобы поднять вес, ПКМ чтобы понизить.<br></div>"
-		HTML += "<center><a href='?_src_=prefs;preference=job;task=close'>Готово</a></center><br>" // Easier to press up here.
+		HTML += "<b>Choose occupation chances</b><br>"
+		HTML += "<div align='center'>Left-click to raise an occupation preference, right-click to lower it.<br></div>"
+		HTML += "<center><a href='?_src_=prefs;preference=job;task=close'>Done</a></center><br>" // Easier to press up here.
 		HTML += "<script type='text/javascript'>function setJobPrefRedirect(level, rank) { window.location.href='?_src_=prefs;preference=job;task=setJobLevel;level=' + level + ';text=' + encodeURIComponent(rank); return false; }</script>"
 		HTML += "<table class='role_col' width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more colomns.
 		HTML += "<table width='100%' cellpadding='1' cellspacing='0'>"
@@ -846,53 +839,52 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			HTML += "<tr style='color: [job.selection_color]'><td width='60%' align='right'>"
 			var/rank = job.title
-			var/ru_rank = job.ru_title
 			lastJob = job
 			if(is_banned_from(user.ckey, rank))
-				HTML += "<font color='#ff7777'>[ru_rank]</font></td><td><a href='?_src_=prefs;bancheck=[rank]'> БЛОК</a></td></tr>"
+				HTML += "<font color='#ff7777'>[rank]</font></td><td><a href='?_src_=prefs;bancheck=[rank]'> BANNED</a></td></tr>"
 				continue
 			var/required_playtime_remaining = job.required_playtime_remaining(user.client)
 			if(required_playtime_remaining)
-				HTML += "<font color='#ff7777'>[ru_rank]</font></td><td><font color='#ff7777'> \[ [get_exp_format(required_playtime_remaining)] как [job.get_exp_req_type()] \] </font></td></tr>"
+				HTML += "<font color='#ff7777'>[rank]</font></td><td><font color='#ff7777'> \[ [get_exp_format(required_playtime_remaining)] как [job.get_exp_req_type()] \] </font></td></tr>"
 				continue
 			if(job.metalocked && !(job.type in jobs_buyed))
-				HTML += "<font color='#ff7777'>[ru_rank]</font></td><td><font color='#ff7777'> \[ $$$ \] </font></td></tr>"
+				HTML += "<font color='#ff7777'>[rank]</font></td><td><font color='#ff7777'> \[ $$$ \] </font></td></tr>"
 				continue
 			if(!job.player_old_enough(user.client))
 				var/available_in_days = job.available_in_days(user.client)
-				HTML += "<font color='#ff7777'>[ru_rank]</font></td><td><font color='#ff7777'> \[ЧЕРЕЗ [(available_in_days)] ДНЕЙ\]</font></td></tr>"
+				HTML += "<font color='#ff7777'>[rank]</font></td><td><font color='#ff7777'> \[ЧЕРЕЗ [(available_in_days)] ДНЕЙ\]</font></td></tr>"
 				continue
 			if((job_preferences[SSjob.overflow_role] == JP_LOW) && (rank != SSjob.overflow_role) && !is_banned_from(user.ckey, SSjob.overflow_role))
-				HTML += "<font color='#ff9955'>[ru_rank]</font></td><td></td></tr>"
+				HTML += "<font color='#ff9955'>[rank]</font></td><td></td></tr>"
 				continue
 
-			HTML += "<span>[ru_rank]</span>"
+			HTML += "<span>[rank]</span>"
 
 			HTML += "</td><td width='40%'>"
 
-			var/prefLevelLabel = "ОШИБКА"
+			var/prefLevelLabel = "ERROR"
 			var/prefLevelColor = "pink"
 			var/prefUpperLevel = -1 // level to assign on left click
 			var/prefLowerLevel = -1 // level to assign on right click
 
 			switch(job_preferences[job.title])
 				if(JP_HIGH)
-					prefLevelLabel = "Высокий"
+					prefLevelLabel = "High"
 					prefLevelColor = "#9999ff"
 					prefUpperLevel = 4
 					prefLowerLevel = 2
 				if(JP_MEDIUM)
-					prefLevelLabel = "Средний"
+					prefLevelLabel = "Medium"
 					prefLevelColor = "#77ff77"
 					prefUpperLevel = 1
 					prefLowerLevel = 3
 				if(JP_LOW)
-					prefLevelLabel = "Низкий"
+					prefLevelLabel = "Low"
 					prefLevelColor = "#ff9955"
 					prefUpperLevel = 2
 					prefLowerLevel = 4
 				else
-					prefLevelLabel = "НИКОГДА"
+					prefLevelLabel = "NEVER"
 					prefLevelColor = "#ff7777"
 					prefUpperLevel = 3
 					prefLowerLevel = 1
@@ -901,9 +893,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			if(rank == SSjob.overflow_role)//Overflow is special
 				if(job_preferences[SSjob.overflow_role] == JP_LOW)
-					HTML += "<font color='#77ff77'>Да</font>"
+					HTML += "<font color='#77ff77'>Yes</font>"
 				else
-					HTML += "<font color='#ff7777'>Нет</font>"
+					HTML += "<font color='#ff7777'>No</font>"
 				HTML += "</a></td></tr>"
 				continue
 
@@ -916,15 +908,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		HTML += "</td'></tr></table>"
 		HTML += "</center></table>"
 
-		var/message = "Быть [SSjob.overflow_role], если не получилось"
+		var/message = "Be an [SSjob.overflow_role] if preference unavailable"
 		if(joblessrole == BERANDOMJOB)
-			message = "Получить случайную должность, если не получилось"
+			message = "Get random job if preference unavailable"
 		else if(joblessrole == RETURNTOLOBBY)
-			message = "Вернуться в лобби, если не получилось"
+			message = "Return to lobby preference unavailable"
 		HTML += "<center><br><a href='?_src_=prefs;preference=job;task=random'>[message]</a></center>"
-		HTML += "<center><a href='?_src_=prefs;preference=job;task=reset'>Сбросить настройки</a></center>"
+		HTML += "<center><a href='?_src_=prefs;preference=job;task=reset'>Reset Preferences</a></center>"
 
-	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Выбор должностей</div>", width, height)
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Occupation Choice</div>", width, height)
 	popup.set_window_options("can_close=0")
 	popup.set_content(HTML)
 	popup.open(FALSE)
@@ -1038,7 +1030,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(TG.cost < user.client.get_metabalance())
 				if(TG.purchase(user.client))
 					purchased_gear += TG.id
-					inc_metabalance(user, (TG.cost * -1), TRUE, "Покупаю [TG.display_name].")
+					inc_metabalance(user, (TG.cost * -1), TRUE, "You buy [TG.display_name].")
 					save_preferences()
 			else
 				to_chat(user, span_warning("Not enough chronos to buy [TG.display_name]!"))
@@ -1060,7 +1052,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(!(TG.subtype_path in type_blacklist) || !(TG.slot in slot_blacklist))
 						equipped_gear += TG.id
 					else
-						to_chat(user, span_warning("Нет места для [TG.display_name]. Что-то уже есть в этом слоте."))
+						to_chat(user, span_warning("Not enough space for [TG.display_name]. Something else is already equipped there."))
 			save_preferences()
 
 		else if(href_list["select_category"])

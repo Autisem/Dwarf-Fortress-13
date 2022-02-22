@@ -96,17 +96,17 @@
 	alcohol_tolerance = 0
 
 /datum/language/dwarven
-	name = "Дварфийский"
-	desc = "Старый язык, который до сих пор используется некоторыми представителями человеческого рода."
+	name = "Dwarfen"
+	desc = "An ancient language which is still used by some individuals."
 	key = "w"
 	syllables = list(
-		"етаг", "гекур", "тел", "гудос", "гетх", "удиз", "залуд", "шоветх", "вер", "зилир",
-		"ешобак", "сарумак", "асдобак", "фозак", "шоветхак", "тангак", "догак", "ашокак", "гетхак", "слисак", "мулонак",
-		"вадаг", "васаг", "удосаг", "лонгудосаг", "ванаг", "хиваг", "вилкаг", "нигаг",
-		"асдоб", "нир", "ноб", "мез", "вор", "фим", "гäт", "зун", "åтт", "наг", "зез", "ешоб", "асдоб",
-		"ог", "гет", "зал", "уд", "лок", "ад", "нат", "гат", "мит", "дес", "шуг", "кул", "гит", "гад", "зис",
-		"деб", "кошмот", "легон", "размер", "ланзил", "гим", "гамил", "датлад", "тат", "гелут", "гакит", "томус", "тизöт", "рирнöл",
-		"мед", "кулет", "нгалáк", "кутхдêнг", "ценäтх", "устос", "ошнïл", "нурал", "назуш"
+		"etag", "gekur", "tol", "gudos", "geth", "udiz", "zalud", "showeh", "ver", "zilir",
+		"eshobak", "samurak", "asdobak", "fosak", "shoveth", "tangak", "dogak", "ashokak", "gethak", "slisak", "mulonak",
+		"wadag", "vasag", "udosag", "longudosag", "wanag", "hivag", "wilkag",
+		"asdob", "nir", "nob", "mes", "vor", "fim", "gat", "zyn", "att", "nog", "zez", "eshob", "asdob",
+		"og", "get", "zal", "yd", "lok", "ad", "nat", "gat", "mit", "des", "shyg", "kul", "gat", "gad", "zis",
+		"deb", "koshmot", "legon", "raz", "lanzil", "gim", "gamil", "datlad", "tat", "gelut", "gakit", "tomus", "tizot", "rirnol",
+		"med", "kulet", "ngalak", "kuthdeng", "cenath", "ustos", "oshnel", "nural", "nazush"
 	)
 	space_chance = 35
 	icon = 'white/valtos/icons/language.dmi'

@@ -200,7 +200,7 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/protect/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Защитить [target.name], на должности [ru_job_parse(!target_role_type ? target.assigned_role : target.special_role)]."
+		explanation_text = "Защитить [target.name], на должности [!target_role_type ? target.assigned_role : target.special_role]."
 	else
 		explanation_text = "Ничего."
 

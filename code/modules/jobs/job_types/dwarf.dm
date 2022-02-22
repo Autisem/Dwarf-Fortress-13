@@ -3,7 +3,6 @@ Dwarf
 */
 /datum/job/dwarf
 	title = "Dwarf"
-	ru_title = "Дварф"
 	faction = FACTION_DWARF
 	total_positions = 5
 	spawn_positions = 5

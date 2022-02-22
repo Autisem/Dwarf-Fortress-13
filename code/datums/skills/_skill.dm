@@ -22,21 +22,21 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
  */
 /datum/skill/New()
 	. = ..()
-	levelUpMessages = list(span_nicegreen("Че такое [name]? Сообщите администратору, если увидите это.") , //This first index shouldn't ever really be used
-	span_nicegreen("Начинаю понимать что такое [name]!") ,
-	span_nicegreen("Становится легче понимать [name]!") ,
-	span_nicegreen("Гораздо лучше понимаю [name]!") ,
-	span_nicegreen("Уже неплохо справляюсь с таким навыком как [name]!") ,
-	"<span class='nicegreen'>После долгих практик и упорного обучения, я теперь почти \
-	превосходно понимаю что такое [name]. Могу называть себя [title].</span>",
-	span_nicegreen("Благодаря невероятной решимости и усилиям я достиг пика в развитии [name]. Я наконец могу считать себя легендарным [title]!")  )
-	levelDownMessages = list(span_nicegreen("Как-то полностью потерял понимание [name]. Сообщите администратору, если увидите это.") ,
-	span_nicegreen("Начинаю забывать что такое [name]. Нужно больше практики...") ,
-	span_nicegreen("Мне становится немного хуже понятна [name]. Мне нужно продолжать практиковаться, чтобы стать лучше...") ,
-	span_nicegreen("Мне становится немного хуже понятна [name]...") ,
-	span_nicegreen("Теряю понимание [name] ещё сильнее...") ,
-	span_nicegreen("Теперь я больше не мастер в таком навыке как [name].") ,
-	span_nicegreen("Мои легендарные навыки в навыке [name] иссякают. Мне понадобится более интенсивная тренировка, чтобы восстановить утраченные навыки.")  )
+	levelUpMessages = list("<span class='nicegreen'>What the hell is [name]? Tell an admin if you see this message.</span>", //This first index shouldn't ever really be used
+	"<span class='nicegreen'>I'm starting to figure out what [name] really is!</span>",
+	"<span class='nicegreen'>I'm getting a little better at [name]!</span>",
+	"<span class='nicegreen'>I'm getting much better at [name]!</span>",
+	"<span class='nicegreen'>I feel like I've become quite proficient at [name]!</span>",
+	"<span class='nicegreen'>After lots of practice, I've begun to truly understand the intricacies \
+	and surprising depth behind [name]. I now consider myself a master [title].</span>",
+	"<span class='nicegreen'>Through incredible determination and effort, I've reached the peak of my [name] abiltities. I'm finally able to consider myself a legendary [title]!</span>" )
+	levelDownMessages = list("<span class='nicegreen'>I have somehow completely lost all understanding of [name]. Please tell an admin if you see this.</span>",
+	"<span class='nicegreen'>I'm starting to forget what [name] really even is. I need more practice...</span>",
+	"<span class='nicegreen'>I'm getting a little worse at [name]. I'll need to keep practicing to get better at it...</span>",
+	"<span class='nicegreen'>I'm getting a little worse at [name]...</span>",
+	"<span class='nicegreen'>I'm losing my [name] expertise ....</span>",
+	"<span class='nicegreen'>I feel like I'm losing my mastery of [name].</span>",
+	"<span class='nicegreen'>I feel as though my legendary [name] skills have deteriorated. I'll need more intense training to recover my lost skills.</span>" )
 
 /**
  * level_gained: Gives skill levelup messages to the user
@@ -69,10 +69,10 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 	if (new_level != SKILL_LEVEL_LEGENDARY)
 		return
 	if (!ispath(skill_cape_path))
-		to_chat(mind.current, span_nicegreen("Мой легендарный навык [name] весьма крут, однако Ассоциация Профессионалов [title] не имеет особых символов чтобы отметить это."))
+		to_chat(mind.current, span_nicegreen("My legendary [name] skill is quite impressive."))
 		return
 	if (LAZYFIND(mind.skills_rewarded, src.type))
-		to_chat(mind.current, span_nicegreen("Похоже,  Ассоциация Профессионалов [title] не хочет давать мне больше символов навыка."))
+		// to_chat(mind.current, span_nicegreen("Похоже,  Ассоциация Профессионалов [title] не хочет давать мне больше символов навыка."))
 		return
 	podspawn(list(
 		"target" = get_turf(mind.current),
@@ -81,5 +81,4 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 		"spawn" = skill_cape_path,
 		"delays" = list(POD_TRANSIT = 150, POD_FALLING = 4, POD_OPENING = 30, POD_LEAVING = 30)
 	))
-	to_chat(mind.current, span_nicegreen("Мой легендарный навык привлёк Ассоциацию Профессионалов [title]. Похоже, они выслали мне особый символ, чтобы отметить это."))
 	LAZYADD(mind.skills_rewarded, src.type)

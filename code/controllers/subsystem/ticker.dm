@@ -141,7 +141,7 @@ SUBSYSTEM_DEF(ticker)
 				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
-			to_chat(world, span_boldnotice("Крепость [station_name()] готова принять гостей!"))
+			to_chat(world, span_boldnotice("Fortress [station_name()] is ready for guests!"))
 			current_state = GAME_STATE_PREGAME
 			webhook_send_roundstatus("lobby")
 			SEND_SIGNAL(src, COMSIG_TICKER_ENTER_PREGAME)
@@ -203,7 +203,7 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/setup()
-	to_chat(world, span_green(" -- [prob(5) ? "*#!&$^@$ Запускаем симуляцию в режиме полного реализма... $@!^(&*" : "Запускаем симуляцию..."] -- "))
+	to_chat(world, span_green(" -- Starting simulation... -- "))
 	var/init_start = world.timeofday
 		//Create and announce mode
 	var/list/datum/game_mode/runnable_modes
@@ -294,7 +294,7 @@ SUBSYSTEM_DEF(ticker)
 	round_start_time = world.time
 	SSdbcore.SetRoundStart()
 
-	to_chat(world, span_notice("Крепость <B>[station_name()]</B> принимает гостей!"))
+	to_chat(world, span_notice("Fortress <B>[station_name()]</B> is accepting guests!"))
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
@@ -372,7 +372,7 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/equip_characters()
-	var/captainless = TRUE
+	// var/captainless = TRUE
 
 	var/highest_rank = length(SSjob.chain_of_command) + 1
 	var/list/spare_id_candidates = list()
@@ -406,18 +406,18 @@ SUBSYSTEM_DEF(ticker)
 		if(istype(new_player_human) && new_player_human.mind?.assigned_role)
 			var/player_assigned_role = new_player_human.mind.assigned_role
 			var/player_is_captain = (picked_spare_id_candidate == new_player_mob) || (SSjob.always_promote_captain_job && (player_assigned_role == "Captain"))
-			if(player_is_captain)
-				captainless = FALSE
+			// if(player_is_captain)
+				// captainless = FALSE
 			if(player_assigned_role != new_player_human.mind.special_role)
 				SSjob.EquipRank(new_player_mob, player_assigned_role, FALSE, player_is_captain)
 		CHECK_TICK
 
-	if(captainless)
-		for(var/mob/dead/new_player/new_player_mob as anything in GLOB.new_player_list)
-			var/mob/living/carbon/human/new_player_human = new_player_mob.new_character
-			if(new_player_human)
-				to_chat(new_player_mob, span_notice("НЕТ КАПИТАНА!"))
-			CHECK_TICK
+	// if(captainless)
+	// 	for(var/mob/dead/new_player/new_player_mob as anything in GLOB.new_player_list)
+	// 		var/mob/living/carbon/human/new_player_human = new_player_mob.new_character
+			// if(new_player_human)
+				// to_chat(new_player_mob, span_notice("NO CAPTAIN!"))
+			// CHECK_TICK
 
 /datum/controller/subsystem/ticker/proc/transfer_characters()
 	var/list/livings = list()

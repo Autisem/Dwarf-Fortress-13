@@ -56,7 +56,7 @@
 
 
 /datum/game_mode/proc/announce() //Shows the gamemode's name and a fast description.
-	message_admins("<b>Режим: <span class='[announce_span]'>[name]</span>!</b>")
+	message_admins("<b>Gamemode: <span class='[announce_span]'>[name]</span>!</b>")
 	message_admins("<b>[announce_text]</b>")
 
 

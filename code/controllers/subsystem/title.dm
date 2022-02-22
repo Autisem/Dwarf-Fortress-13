@@ -71,22 +71,22 @@ SUBSYSTEM_DEF(title)
 /datum/controller/subsystem/title/proc/update_players_table()
 	var/list/caa = list()
 	var/list/cum = list()
-	var/tcc = "<table><thead><tr><th class='rhead'>Роль</th><th>Готовы</th></tr></thead><tbody>"
+	var/tcc = "<table><thead><tr><th class='rhead'>Role</th><th>Ready</th></tr></thead><tbody>"
 	for(var/i in GLOB.new_player_list)
 		var/mob/dead/new_player/player = i
 		if(player.ready == PLAYER_READY_TO_PLAY)
-			var/role_thing = "Неизвестно"
+			var/role_thing = "Unknown"
 			if(GLOB.disable_fucking_station_shit_please)
 				caa["Выживший"] += list(player.key)
 				continue
 			if(player.client.prefs.job_preferences["Dwarf"])
-				role_thing = "Дварф"
+				role_thing = "Dwarf"
 			else
 				for(var/j in player.client.prefs.job_preferences)
 					if(player.client.prefs.job_preferences[j] == JP_HIGH)
 						var/datum/job/jobdatum = SSjob.GetJob(j)
 						if(jobdatum)
-							role_thing = jobdatum.ru_title
+							role_thing = jobdatum
 							break
 			if(!caa[role_thing])
 				caa[role_thing] = list(player.key)
@@ -97,9 +97,9 @@ SUBSYSTEM_DEF(title)
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
 		for(var/line in sort_list(caa))
 			tcc += "<tr><td class='role'>[line]</td><td>[english_list(caa[line])]</td></tr>"
-		tcc += "<tr><td class='role'>Не готовы</td><td>"
+		tcc += "<tr><td class='role'>Not ready</td><td>"
 	else
-		tcc += "<tr><td class='role'>Чат-боты</td><td>"
+		tcc += "<tr><td class='role'>Chat-Bots</td><td>"
 	tcc += "[english_list(cum)]</td></tr></tbody></table>"
 	cached_title = tcc
 

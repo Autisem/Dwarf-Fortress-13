@@ -220,8 +220,8 @@
 		set_basalt_light(src)
 
 /turf/open/floor/carpet
-	name = "ковёр"
-	desc = "Мягкий бархатный ковер. Приятно ощущается между пальцами ног."
+	name = "carpet"
+	desc = "Soft velvet carpeting. Feels good between your toes."
 	icon = 'icons/turf/floors/carpet.dmi'
 	icon_state = "carpet-255"
 	base_icon_state = "carpet"
@@ -242,7 +242,7 @@
 
 /turf/open/floor/carpet/examine(mob/user)
 	. = ..()
-	. += "<hr><span class='notice'>Здесь есть <b>небольшая щель</b> с краю.</span>"
+	. += "<hr><span class='notice'>There's a <b>small crack</b> on the edge.</span>"
 
 /turf/open/floor/carpet/Initialize()
 	. = ..()

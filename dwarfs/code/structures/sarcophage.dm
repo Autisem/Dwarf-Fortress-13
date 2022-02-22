@@ -18,6 +18,4 @@
 						H.regenerate_icons()
 				qdel(H)
 				dead_used = TRUE
-				var/turf/where_is_new = get_turf(pick(GLOB.dwarf_shkonka_list))
-				new /obj/effect/mob_spawn/human/dwarf(where_is_new)
 				return TRUE
