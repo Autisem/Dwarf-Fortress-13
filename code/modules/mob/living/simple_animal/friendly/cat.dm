@@ -70,7 +70,7 @@
 	else
 		gender = pick(MALE, FEMALE)
 
-/mob/living/simple_animal/pet/cat/examinate(atom/A)
+/mob/living/simple_animal/pet/cat/examine(mob/user)
 	. = ..()
 	.+= "<hr>It seems to be \a [gender]"
 

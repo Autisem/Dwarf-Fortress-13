@@ -21,10 +21,3 @@
 	sound_environment = SOUND_ENVIRONMENT_CAVE
 	ambientsounds = list('white/valtos/sounds/lifeweb/caves8.ogg', 'white/valtos/sounds/lifeweb/caves_old.ogg')
 	env_temp_relative = 20
-
-/area/dwarf/Entered(atom/movable/M, oldloc)
-	. = ..()
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(!H.GetComponent(/datum/component/realtemp))
-			H.AddComponent(/datum/component/realtemp)

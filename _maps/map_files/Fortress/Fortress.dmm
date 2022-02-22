@@ -405,9 +405,10 @@
 /turf/open/floor/stone/raw,
 /area/dwarf/cavesgen/middle_level)
 "MV" = (
-/obj/item/pickaxe/rusted,
+/obj/effect/landmark/start/dwarf,
+/obj/effect/landmark/latejoin,
 /turf/open/floor/stone/raw,
-/area/dwarf/cavesgen/upper_level)
+/area/dwarf/fortress)
 "Ny" = (
 /turf/open/openspace,
 /area/dwarf/cavesgen/upper_level)
@@ -415,10 +416,6 @@
 /mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient,
 /turf/open/openspace,
 /area/dwarf/fortress)
-"PW" = (
-/obj/effect/landmark/latejoin,
-/turf/open/floor/stone/raw,
-/area/dwarf/cavesgen/upper_level)
 "QJ" = (
 /obj/structure/table/stone,
 /obj/item/cultivator/rake,
@@ -89837,7 +89834,7 @@ iq
 iq
 qy
 gc
-vx
+MV
 iq
 iq
 gc
@@ -92044,7 +92041,7 @@ vf
 dG
 dG
 dG
-MV
+dG
 dG
 vf
 vf
@@ -92546,7 +92543,7 @@ vf
 vf
 vf
 dG
-PW
+dG
 dG
 dG
 dG
@@ -94754,7 +94751,7 @@ dG
 dG
 dG
 dG
-MV
+dG
 dG
 dG
 dG
@@ -95258,7 +95255,7 @@ dG
 dG
 dG
 dG
-PW
+dG
 dG
 dG
 dG
@@ -98369,7 +98366,7 @@ nV
 nV
 nV
 dG
-MV
+dG
 dG
 dG
 dG
@@ -98622,7 +98619,7 @@ nV
 dG
 dG
 dG
-PW
+dG
 dG
 dG
 dG
@@ -112217,7 +112214,7 @@ vf
 vf
 vf
 vf
-MV
+dG
 nV
 wz
 "}
@@ -112721,7 +112718,7 @@ vf
 vf
 vf
 vf
-PW
+dG
 nV
 wz
 "}
@@ -113304,8 +113301,8 @@ nV
 vf
 vf
 vf
-PW
-MV
+dG
+dG
 nV
 nV
 nV
