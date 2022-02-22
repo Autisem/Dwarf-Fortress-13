@@ -204,7 +204,7 @@ window "preferences_window"
 	elem "preferences_window"
 		type = MAIN
 		pos = 64,64
-		size = 1200x640
+		size = 500x640
 		anchor1 = none
 		anchor2 = none
 		is-visible = false
@@ -213,16 +213,16 @@ window "preferences_window"
 	elem "preferences_browser_new"
 		type = BROWSER
 		pos = 0,0
-		size = 1050x640
+		size = 350x640
 		anchor1 = 0,0
-		anchor2 = 85,100
+		anchor2 = 70,100
 		saved-params = ""
 		can-scroll = vertical
 	elem "character_preview_map"
 		type = MAP
-		pos = 1050,0
+		pos = 350,0
 		size = 150x640
-		anchor1 = 85,0
+		anchor1 = 70,0
 		anchor2 = 100,100
 		right-click = true
 		saved-params = "zoom;letterbox;zoom-mode"

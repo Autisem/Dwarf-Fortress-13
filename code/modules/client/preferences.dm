@@ -321,12 +321,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			if(HAIR in pref_species.species_traits)
 				dat += SETUP_NODE_INPUT_RANDOM("Hairstyle", "hairstyle", hairstyle, RANDOM_HAIRSTYLE)
-				dat += SETUP_NODE_INPUT_RANDOM("Hair Color", "hair", hair_color, RANDOM_HAIR_COLOR)
+				dat += SETUP_NODE_COLOR("Hair Color", "hair", hair_color, RANDOM_HAIR_COLOR)
 				dat += SETUP_NODE_COLOR("Hair Gradient Color", "hair_grad_color", hair_grad_color, null)
 				dat += SETUP_NODE_INPUT("Hair Gradient Style", "hair_grad_style", hair_grad_style)
 
 				dat += SETUP_NODE_INPUT_RANDOM("Facial", "facial_hairstyle", hairstyle, RANDOM_FACIAL_HAIRSTYLE)
-				dat += SETUP_NODE_INPUT_RANDOM("Facial Color", "facial", facial_hair_color, RANDOM_FACIAL_HAIR_COLOR)
+				dat += SETUP_NODE_COLOR("Facial Color", "facial", facial_hair_color, RANDOM_FACIAL_HAIR_COLOR)
 				dat += SETUP_NODE_COLOR("Facial Gradient Color", "facial_grad_color", facial_grad_color, null)
 				dat += SETUP_NODE_INPUT("Facial Gradient Style", "facial_grad_style", facial_grad_style)
 
@@ -608,7 +608,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	stuff.send(user)
 
 	winshow(user, "preferences_window", TRUE)
-	var/datum/browser/popup = new(user, "preferences_browser_new", "<div align='center'>Preferences</div>", 1200, 770)
+	var/datum/browser/popup = new(user, "preferences_browser_new", "<div align='center'>Preferences</div>", 500, 640)
 	popup.set_content(dat.Join())
 	popup.open(FALSE)
 	onclose(user, "preferences_window", src)
