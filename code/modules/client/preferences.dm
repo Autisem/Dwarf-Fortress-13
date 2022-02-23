@@ -479,76 +479,52 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "</div></div>"
 		if(3) //OOC Preferences
-			dat += "<table><tr><td width='340px' height='300px' valign='top'><table>"
-			dat += "<tr><td><h2>OOC Preferences</h2></td></tr>"
-			dat += "<tr><td><b>Window flashing:</b></td><td><a href='?_src_=prefs;preference=winflash'>[(windowflashing) ? "On":"Off"]</a></td></tr>"
-			dat += "<tr><td><b>Hear Admin MIDIs:</b></td><td><a href='?_src_=prefs;preference=hear_midis'>[(toggles & SOUND_MIDI) ? "On":"Off"]</a></td></tr>"
-			dat += "<tr><td><b>Hear Lobby Music:</b></td><td><a href='?_src_=prefs;preference=lobby_music'>[(toggles & SOUND_LOBBY) ? "On":"Off"]</a></td></tr>"
-			dat += "<tr><td><b>Play roundend sound:</b></td><td><a href='?_src_=prefs;preference=endofround_sounds'>[(toggles & SOUND_ENDOFROUND) ? "On":"Off"]</a></td></tr>"
-			dat += "<tr><td><b>See PR:</b></td><td><a href='?_src_=prefs;preference=pull_requests'>[(chat_toggles & CHAT_PULLR) ? "On":"Off"]</a></td></tr>"
-
+			dat += "<div class='csetup_main'>"
+			dat += "<div class='csetup_header'>OOC Preferences</div>"
+			dat += "<div class='csetup_content'>"
+			dat += SETUP_NODE_SWITCH("Window flashing", "winflash", windowflashing ? "On" : "Off")
+			dat += SETUP_NODE_SWITCH("Hear Admin MIDIs", "hear_midis", (toggles & SOUND_MIDI) ? "On" : "Off")
+			dat += SETUP_NODE_SWITCH("Hear Lobby Music", "lobby_music", (toggles & SOUND_LOBBY) ? "On" : "Off")
+			dat += SETUP_NODE_SWITCH("Play roundend sound", "endofround_sounds", (toggles & SOUND_ENDOFROUND) ? "On" : "Off")
 			if(user.client)
 				if(unlock_content)
-					dat += "<tr><td><b>BYOND Membership Publicity:</b></td><td><a href='?_src_=prefs;preference=publicity'>[(toggles & MEMBER_PUBLIC) ? "Public" : "Hidden"]</a></td></tr>"
+					dat += SETUP_NODE_SWITCH("BYOND Membership Publicity", "publicity", (toggles & MEMBER_PUBLIC) ? "Public" : "Hidden")
 
 				if(unlock_content || check_rights_for(user.client, R_ADMIN) || check_donations(user.client.ckey) >= 100)
-					dat += "<tr><td><b>OOC color:</b></td><td><span style='border: 1px solid #161616; background-color: [ooccolor ? ooccolor : GLOB.normal_ooc_colour];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=ooccolor;task=input'>Change</a></td></tr>"
+					dat += SETUP_NODE_COLOR("OOC Color", "ooccolor", ooccolor ? ooccolor : GLOB.normal_ooc_colour, null)
 
-			dat += "</table></td>"
+			dat += "</div>"
 
 			if(user.client.holder)
-				dat +="<td width='300px' height='300px' valign='top'>"
+				dat += "<div class='csetup_content'>"
+				dat += "<div class='csetup_header'>Admin Settings</div>"
+				dat += SETUP_NODE_SWITCH("Adminhelp Sounds", "hear_adminhelps", (toggles & SOUND_ADMINHELP) ? "On" : "Off")
+				dat += SETUP_NODE_SWITCH("Prayer Sounds", "hear_prayers", (toggles & SOUND_PRAYERS) ? "On" : "Off")
+				dat += SETUP_NODE_SWITCH("Announce Sounds", "announce_login", (toggles & ANNOUNCE_LOGIN) ? "On" : "Off")
+				dat += SETUP_NODE_SWITCH("Combo HUD Lighting", "combohud_lighting", (toggles & COMBOHUD_LIGHTING) ? "Full-bright" : "No Change")
+				dat += SETUP_NODE_SWITCH("Hide Dead Chat", "toggle_dead_chat", (toggles & CHAT_DEAD) ? "Shown" : "Hidden")
+				dat += SETUP_NODE_SWITCH("Hide Radio Messages", "toggle_radio_chatter", (toggles & CHAT_RADIO) ? "Shown" : "Hidden")
+				dat += SETUP_NODE_SWITCH("Hide Prayers", "toggle_prayers", (toggles & CHAT_PRAYER) ? "Shown" : "Hidden")
+				dat += SETUP_NODE_SWITCH("Ignore Cult Ghost", "toggle_ignore_cult_ghost", (toggles & ADMIN_IGNORE_CULT_GHOST) ? "Don't Allow" : "Allow")
 
-				dat += "<h2>Admin Settings</h2>"
-
-				dat += "<b>Adminhelp Sounds:</b> <a href='?_src_=prefs;preference=hear_adminhelps'>[(toggles & SOUND_ADMINHELP)?"On":"Off"]</a><br>"
-				dat += "<b>Prayer Sounds:</b> <a href = '?_src_=prefs;preference=hear_prayers'>[(toggles & SOUND_PRAYERS)?"On":"Off"]</a><br>"
-				dat += "<b>Announce Login:</b> <a href='?_src_=prefs;preference=announce_login'>[(toggles & ANNOUNCE_LOGIN)?"On":"Off"]</a><br>"
-				dat += "<br>"
-				dat += "<b>Combo HUD Lighting:</b> <a href = '?_src_=prefs;preference=combohud_lighting'>[(toggles & COMBOHUD_LIGHTING)?"Full-bright":"No Change"]</a><br>"
-				dat += "<br>"
-				dat += "<b>Hide Dead Chat:</b> <a href = '?_src_=prefs;preference=toggle_dead_chat'>[(chat_toggles & CHAT_DEAD)?"Shown":"Hidden"]</a><br>"
-				dat += "<b>Hide Radio Messages:</b> <a href = '?_src_=prefs;preference=toggle_radio_chatter'>[(chat_toggles & CHAT_RADIO)?"Shown":"Hidden"]</a><br>"
-				dat += "<b>Hide Prayers:</b> <a href = '?_src_=prefs;preference=toggle_prayers'>[(chat_toggles & CHAT_PRAYER)?"Shown":"Hidden"]</a><br>"
-				dat += "<b>Ignore Being Summoned as Cult Ghost:</b> <a href = '?_src_=prefs;preference=toggle_ignore_cult_ghost'>[(toggles & ADMIN_IGNORE_CULT_GHOST)?"Don't Allow Being Summoned":"Allow Being Summoned"]</a><br>"
 				if(CONFIG_GET(flag/allow_admin_asaycolor))
-					dat += "<br>"
-					dat += "<b>ASAY Color:</b> <span style='border: 1px solid #161616; background-color: [asaycolor ? asaycolor : "#FF4500"];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=asaycolor;task=input'>Change</a><br>"
+					dat += SETUP_NODE_COLOR("ASAY Color", "asaycolor", asaycolor ? asaycolor : "#FF4500", null)
 
-				//deadmin
-				dat += "<h2>Deadmin While Playing</h2>"
-				var/timegate = CONFIG_GET(number/auto_deadmin_timegate)
-				if(timegate)
-					dat += "<b>Noted roles will automatically deadmin during the first [FLOOR(timegate / 600, 1)] minutes of the round, and will defer to individual preferences after.</b><br>"
+				dat += "</div><div class='csetup_content'>"
+				dat += "<div class='csetup_header'>Deadmin</div>"
 
-				if(CONFIG_GET(flag/auto_deadmin_players) && !timegate)
-					dat += "<b>Always Deadmin:</b> FORCED</a><br>"
+				if(CONFIG_GET(flag/auto_deadmin_players))
+					dat += SETUP_NODE_SWITCH("Always Deadmin", "suck", "FORCED")
 				else
-					dat += "<b>Always Deadmin:</b> [timegate ? "(Time Locked) " : ""]<a href = '?_src_=prefs;preference=toggle_deadmin_always'>[(toggles & DEADMIN_ALWAYS)?"On":"Off"]</a><br>"
+					dat += SETUP_NODE_SWITCH("Always Deadmin", "toggle_deadmin_always", (toggles & DEADMIN_ALWAYS) ? "On" : "Off")
 					if(!(toggles & DEADMIN_ALWAYS))
-						dat += "<br>"
-						if(!CONFIG_GET(flag/auto_deadmin_antagonists) || (CONFIG_GET(flag/auto_deadmin_antagonists) && !timegate))
-							dat += "<b>As Antag:</b> [timegate ? "(Time Locked) " : ""]<a href = '?_src_=prefs;preference=toggle_deadmin_antag'>[(toggles & DEADMIN_ANTAGONIST)?"Deadmin":"Keep Admin"]</a><br>"
+						if(!CONFIG_GET(flag/auto_deadmin_antagonists) || (CONFIG_GET(flag/auto_deadmin_antagonists)))
+							dat += SETUP_NODE_SWITCH("As Antag", "toggle_deadmin_always", (toggles & DEADMIN_ANTAGONIST) ? "Deadmin" : "Keep Admin")
 						else
-							dat += "<b>As Antag:</b> FORCED<br>"
+							dat += SETUP_NODE_SWITCH("As Antag", "suck", "FORCED")
 
-						if(!CONFIG_GET(flag/auto_deadmin_heads) || (CONFIG_GET(flag/auto_deadmin_heads) && !timegate))
-							dat += "<b>As Command:</b> [timegate ? "(Time Locked) " : ""]<a href = '?_src_=prefs;preference=toggle_deadmin_head'>[(toggles & DEADMIN_POSITION_HEAD)?"Deadmin":"Keep Admin"]</a><br>"
-						else
-							dat += "<b>As Command:</b> FORCED<br>"
-
-						if(!CONFIG_GET(flag/auto_deadmin_security) || (CONFIG_GET(flag/auto_deadmin_security) && !timegate))
-							dat += "<b>As Security:</b> [timegate ? "(Time Locked) " : ""]<a href = '?_src_=prefs;preference=toggle_deadmin_security'>[(toggles & DEADMIN_POSITION_SECURITY)?"Deadmin":"Keep Admin"]</a><br>"
-						else
-							dat += "<b>As Security:</b> FORCED<br>"
-
-						if(!CONFIG_GET(flag/auto_deadmin_silicons) || (CONFIG_GET(flag/auto_deadmin_silicons) && !timegate))
-							dat += "<b>As Silicon:</b> [timegate ? "(Time Locked) " : ""]<a href = '?_src_=prefs;preference=toggle_deadmin_silicon'>[(toggles & DEADMIN_POSITION_SILICON)?"Deadmin":"Keep Admin"]</a><br>"
-						else
-							dat += "<b>As Silicon:</b> FORCED<br>"
-
-				dat += "</td>"
-			dat += "</tr></table>"
+				dat += "</div>"
+			dat += "</div>"
 		if(4) // Custom keybindings
 			// Create an inverted list of keybindings -> key
 			var/list/user_binds = list()
@@ -562,33 +538,38 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
 				kb_categories[kb.category] += list(kb)
 
-			dat += "<body><table>"
+			dat += "<div class='csetup_main'>"
 
 			for (var/category in kb_categories)
-				dat += "<tr><td><h3>[category]</h3></td></tr>"
+				dat += "<div class='csetup_header'>[category]</div>"
+				dat += "<div class='csetup_content'>"
 				for (var/i in kb_categories[category])
 					var/datum/keybinding/kb = i
 					if(!length(user_binds[kb.name]) || user_binds[kb.name][1] == "Unbound")
-						dat += "<tr><td>[kb.full_name]</td><td><a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=["Unbound"]'>НЕТ</a></td>"
 						var/list/default_keys = hotkeys ? kb.hotkey_keys : kb.classic_keys
+						var/t_name = kb.full_name
 						if(LAZYLEN(default_keys))
-							dat += "<td>Default: [default_keys.Join(", ")]</td>"
-						dat += "</tr>"
+							t_name += " - DEFAULT: [default_keys.Join(", ")]"
+						dat += SETUP_START_NODE(t_name)
+						dat += SETUP_GET_LINK("keybindings_capture", "[kb.name];old_key=["Unbound"]", "keybinding", "NO")
+						dat += SETUP_CLOSE_NODE
 					else
 						var/bound_key = user_binds[kb.name][1]
-						dat += "<tr><td>[kb.full_name]</td><td><a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a></td>"
+						var/list/default_keys = hotkeys ? kb.hotkey_keys : kb.classic_keys
+						var/t_name = kb.full_name
+						if(LAZYLEN(default_keys))
+							t_name += " - DEFAULT: [default_keys.Join(", ")]"
+						dat += SETUP_START_NODE(t_name)
+						dat += SETUP_GET_LINK("keybindings_capture", "[kb.name];old_key=[bound_key]", "keybinding", bound_key)
 						for(var/bound_key_index in 2 to length(user_binds[kb.name]))
 							bound_key = user_binds[kb.name][bound_key_index]
-							dat += "<td><a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a></td>"
+							dat += SETUP_GET_LINK("keybindings_capture", "[kb.name];old_key=[bound_key]", "keybinding", bound_key)
 						if(length(user_binds[kb.name]) < MAX_KEYS_PER_KEYBIND)
-							dat += "<td><a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name]'>Alt</a></td>"
-						var/list/default_keys = hotkeys ? kb.classic_keys : kb.hotkey_keys
-						if(LAZYLEN(default_keys))
-							dat += "<td>Default: [default_keys.Join(", ")]</td>"
-						dat += "</tr>"
-
-			dat += "<tr><td><a href ='?_src_=prefs;preference=keybindings_reset'>\[Reset to default\]</a></td></tr>"
-			dat += "</table></body>"
+							dat += SETUP_GET_LINK("keybindings_capture", "[kb.name]", "keybinding", "Alt")
+						dat += SETUP_CLOSE_NODE
+				dat += "</div>"
+			dat += "<center><a href ='?_src_=prefs;preference=keybindings_reset'>Reset keys to default</a></center>"
+			dat += "</div>"
 	dat += "<hr><center>"
 
 	if(!IsGuestKey(user.key))
