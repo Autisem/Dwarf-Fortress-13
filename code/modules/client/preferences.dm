@@ -436,7 +436,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += SETUP_NODE_SWITCH("Fullscreen", "fullscreen", fullscreen ? "On" : "Off")
 
 			if (CONFIG_GET(string/default_view) != CONFIG_GET(string/default_view_square))
-				dat += SETUP_NODE_SWITCH("Widescreen", "widescreenpref", widescreenpref ? "On ([CONFIG_GET(string/default_view)])" : "Off ([CONFIG_GET(string/default_view_square)]))
+				dat += SETUP_NODE_SWITCH("Widescreen", "widescreenpref", widescreenpref ? "On ([CONFIG_GET(string/default_view)])" : "Off ([CONFIG_GET(string/default_view_square)])")
 				if(widescreenpref)
 					dat += SETUP_NODE_INPUT("Custom screen width", "widescreenwidth", widescreenwidth)
 
