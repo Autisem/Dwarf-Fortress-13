@@ -530,13 +530,13 @@ a.rs_butt:hover
 	margin-left: -60px;
 }
 
-.csetup_characters {background: #000;padding-bottom: 16px;padding-top: 16px;width: 360px;text-align: center;margin: auto;margin-bottom: 8px;}
+.csetup_characters {background: #000;padding-bottom: 16px;padding-top: 16px;width: 100%;text-align: center;margin: auto;margin-bottom: 8px;}
 
 .csetup_characters_character {
 
 }
 
-.csetup_occupations {background: #000;width: 360px;text-align: center;margin: auto;margin-bottom: 8px;padding-bottom: 10px;}
+.csetup_occupations {background: #000;width: 100%;text-align: center;margin: auto;margin-bottom: 8px;padding-bottom: 10px;}
 
 .csetup_occupations h2 {
 }
@@ -544,7 +544,7 @@ a.rs_butt:hover
 .csetup_occupations_choose {
 }
 
-.csetup_main {background: #050505;width: 360px;margin: auto;}
+.csetup_main {background: #050505;width: 100%;margin: auto;}
 
 .csetup_banned {
 

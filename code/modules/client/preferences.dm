@@ -547,19 +547,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/datum/keybinding/kb = i
 					if(!length(user_binds[kb.name]) || user_binds[kb.name][1] == "Unbound")
 						var/list/default_keys = hotkeys ? kb.hotkey_keys : kb.classic_keys
-						var/t_name = kb.full_name
+						dat += SETUP_START_NODE(kb.full_name)
 						if(LAZYLEN(default_keys))
-							t_name += " - DEFAULT: [default_keys.Join(", ")]"
-						dat += SETUP_START_NODE(t_name)
-						dat += SETUP_GET_LINK("keybindings_capture", "[kb.name];old_key=["Unbound"]", "keybinding", "NO")
+							dat += " - [default_keys.Join(", ")]"
+						dat += SETUP_GET_LINK("keybindings_capture", "[kb.name];old_key=["Unbound"]", "keybinding", "NO KEY")
 						dat += SETUP_CLOSE_NODE
 					else
 						var/bound_key = user_binds[kb.name][1]
 						var/list/default_keys = hotkeys ? kb.hotkey_keys : kb.classic_keys
-						var/t_name = kb.full_name
+						dat += SETUP_START_NODE(kb.full_name)
 						if(LAZYLEN(default_keys))
-							t_name += " - DEFAULT: [default_keys.Join(", ")]"
-						dat += SETUP_START_NODE(t_name)
+							dat += " - [default_keys.Join(", ")]"
 						dat += SETUP_GET_LINK("keybindings_capture", "[kb.name];old_key=[bound_key]", "keybinding", bound_key)
 						for(var/bound_key_index in 2 to length(user_binds[kb.name]))
 							bound_key = user_binds[kb.name][bound_key_index]
