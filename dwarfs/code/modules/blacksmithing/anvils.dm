@@ -126,6 +126,7 @@
 					current_ingot.progress_current = 0
 					current_ingot.mod_grade++
 					current_ingot.progress_need = round(current_ingot.progress_need * 1.1)
+					to_chat(user, span_notice("You hit \the anvil with \a [hammer]."))
 					playsound(src, 'dwarfs/sounds/anvil_hit.ogg', 70, TRUE)
 					to_chat(user, span_notice("You begin to upgrade \the [current_ingot]."))
 					return
