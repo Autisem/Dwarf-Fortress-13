@@ -367,23 +367,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if (2)
 			dat += "<div class='csetup_main'>"
-			dat += "<div class='csetup_content'>"
-			dat += "<div class='csetup_header'>Interface</div>"
+			dat += "<div class='csetup_header'>Interface</div><div class='csetup_content'>"
 			dat += SETUP_NODE_INPUT("Style", "ui", UI_style)
 			dat += SETUP_NODE_SWITCH("Windows in TGUI", "tgui_lock", tgui_lock ? "Minimal" : "All")
 			dat += SETUP_NODE_SWITCH("TGUI Style", "tgui_fancy", tgui_fancy ? "Fancy" : "Minimal")
-			dat += "</div><div class='csetup_content'>"
-			dat += "<div class='csetup_header'>Runechat</div>"
+			dat += "</div><div class='csetup_header'>Runechat</div><div class='csetup_content'>"
 			dat += SETUP_NODE_SWITCH("Text above head", "chat_on_map", chat_on_map ? "On" : "Off")
 			dat += SETUP_NODE_INPUT("Max lenght", "max_chat_length", max_chat_length)
 			dat += SETUP_NODE_SWITCH("See above mobs only", "see_chat_non_mob", see_chat_non_mob ? "On" : "Off")
 			dat += SETUP_NODE_SWITCH("Emotes above head", "see_rc_emotes", see_rc_emotes ? "On" : "Off")
-			dat += "</div><div class='csetup_content'>"
-			dat += "<div class='csetup_header'>Controls</div>"
+			dat += "</div><div class='csetup_header'>Controls</div><div class='csetup_content'>"
 			dat += SETUP_NODE_SWITCH("Action buttons", "action_buttons", buttons_locked ? "Locked" : "Movable")
 			dat += SETUP_NODE_SWITCH("Hotkey mode", "hotkeys", hotkeys ? "Hotkeys" : "Retro")
-			dat += "</div><div class='csetup_content'>"
-			dat += "<div class='csetup_header'>Ghost</div>"
+			dat += "</div><div class='csetup_header'>Ghost</div><div class='csetup_content'>"
 			dat += SETUP_NODE_SWITCH("Speech", "ghost_ears", (chat_toggles & CHAT_GHOSTEARS) ? "All" : "Near")
 			dat += SETUP_NODE_SWITCH("Emotes", "ghost_sight", (chat_toggles & CHAT_GHOSTSIGHT) ? "All" : "Near")
 			dat += SETUP_NODE_SWITCH("Whisper", "ghost_whispers", (chat_toggles & CHAT_GHOSTWHISPER) ? "All" : "Near")
@@ -413,8 +409,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					button_name = GHOST_OTHERS_SIMPLE_NAME
 
 			dat += SETUP_NODE_INPUT("Other ghosts", "ghostothers", button_name)
-			dat += "</div><div class='csetup_content'>"
-			dat += "<div class='csetup_header'>Ingame</div>"
+			dat += "</div><div class='csetup_header'>Ingame</div><div class='csetup_content'>"
 			dat += SETUP_NODE_SWITCH("Text autocorrection", "disabled_autocap", disabled_autocap ? "Off" : "On")
 			dat += SETUP_NODE_INPUT("FPS", "clientfps", clientfps)
 
@@ -480,8 +475,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "</div></div>"
 		if(3) //OOC Preferences
 			dat += "<div class='csetup_main'>"
-			dat += "<div class='csetup_content'>"
-			dat += "<div class='csetup_header'>OOC Preferences</div>"
+			dat += "<div class='csetup_header'>OOC Preferences</div><div class='csetup_content'>"
 			dat += SETUP_NODE_SWITCH("Window flashing", "winflash", windowflashing ? "On" : "Off")
 			dat += SETUP_NODE_SWITCH("Hear Admin MIDIs", "hear_midis", (toggles & SOUND_MIDI) ? "On" : "Off")
 			dat += SETUP_NODE_SWITCH("Hear Lobby Music", "lobby_music", (toggles & SOUND_LOBBY) ? "On" : "Off")
@@ -496,8 +490,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "</div>"
 
 			if(user.client.holder)
-				dat += "<div class='csetup_content'>"
-				dat += "<div class='csetup_header'>Admin Settings</div>"
+				dat += "<div class='csetup_header'>Admin Settings</div><div class='csetup_content'>"
 				dat += SETUP_NODE_SWITCH("Adminhelp Sounds", "hear_adminhelps", (toggles & SOUND_ADMINHELP) ? "On" : "Off")
 				dat += SETUP_NODE_SWITCH("Prayer Sounds", "hear_prayers", (toggles & SOUND_PRAYERS) ? "On" : "Off")
 				dat += SETUP_NODE_SWITCH("Announce Sounds", "announce_login", (toggles & ANNOUNCE_LOGIN) ? "On" : "Off")
@@ -510,8 +503,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(CONFIG_GET(flag/allow_admin_asaycolor))
 					dat += SETUP_NODE_COLOR("ASAY Color", "asaycolor", asaycolor ? asaycolor : "#FF4500", null)
 
-				dat += "</div><div class='csetup_content'>"
-				dat += "<div class='csetup_header'>Deadmin</div>"
+				dat += "</div><div class='csetup_header'>Deadmin</div><div class='csetup_content'>"
 
 				if(CONFIG_GET(flag/auto_deadmin_players))
 					dat += SETUP_NODE_SWITCH("Always Deadmin", "suck", "FORCED")
@@ -546,10 +538,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				for (var/i in kb_categories[category])
 					var/datum/keybinding/kb = i
 					if(!length(user_binds[kb.name]) || user_binds[kb.name][1] == "Unbound")
+						dat += SETUP_START_NODE(kb.full_name)
 						dat += SETUP_GET_LINK("keybindings_capture", "[kb.name];old_key=["Unbound"]", "keybinding", "NO KEY")
 						dat += SETUP_CLOSE_NODE
 					else
 						var/bound_key = user_binds[kb.name][1]
+						dat += SETUP_START_NODE(kb.full_name)
 						dat += SETUP_GET_LINK("keybindings_capture", "[kb.name];old_key=[bound_key]", "keybinding", bound_key)
 						for(var/bound_key_index in 2 to length(user_binds[kb.name]))
 							bound_key = user_binds[kb.name][bound_key_index]
