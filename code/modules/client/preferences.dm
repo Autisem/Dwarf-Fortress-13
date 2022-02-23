@@ -191,10 +191,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
  * Magic bullshit.
  */
 
-#define SETUP_START_NODE(L)  		  	 		 "<div class='csetup_character_node'><div class='csetup_character_label'>[L]</div><div class='csetup_character_input'>"
+#define SETUP_START_NODE(L)  		  	 		 	 "<div class='csetup_character_node'><div class='csetup_character_label'>[L]</div><div class='csetup_character_input'>"
 
 #define SETUP_GET_LINK(pref, task, task_type, value) "<a href='?_src_=prefs;preference=[pref][task ? ";[task_type]=[task]" : ""]'>[value]</a>"
-#define SETUP_GET_LINK_RANDOM(random_type) 		  	 "<a href='?_src_=prefs;preference=toggle_random[random_type]'>[randomise[random_type] ? "Yes" : "No"]</a>"
+#define SETUP_GET_LINK_RANDOM(random_type) 		  	 "<a href='?_src_=prefs;preference=toggle_random;random_type=[random_type]'>[randomise[random_type] ? "Yes" : "No"]</a>"
 #define SETUP_COLOR_BOX(color) 				  	 	 "<span style='border: 1px solid #161616; background-color: #[color];'>&nbsp;&nbsp;&nbsp;</span>"
 
 #define SETUP_NODE_SWITCH(label, pref, value)		  "[SETUP_START_NODE(label)][SETUP_GET_LINK(pref, null, null, value)][SETUP_CLOSE_NODE]"
@@ -367,8 +367,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if (2)
 			dat += "<div class='csetup_main'>"
-			dat += "<div class='csetup_header'>Interface</div>"
 			dat += "<div class='csetup_content'>"
+			dat += "<div class='csetup_header'>Interface</div>"
 			dat += SETUP_NODE_INPUT("Style", "ui", UI_style)
 			dat += SETUP_NODE_SWITCH("Windows in TGUI", "tgui_lock", tgui_lock ? "Minimal" : "All")
 			dat += SETUP_NODE_SWITCH("TGUI Style", "tgui_fancy", tgui_fancy ? "Fancy" : "Minimal")
@@ -480,8 +480,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "</div></div>"
 		if(3) //OOC Preferences
 			dat += "<div class='csetup_main'>"
-			dat += "<div class='csetup_header'>OOC Preferences</div>"
 			dat += "<div class='csetup_content'>"
+			dat += "<div class='csetup_header'>OOC Preferences</div>"
 			dat += SETUP_NODE_SWITCH("Window flashing", "winflash", windowflashing ? "On" : "Off")
 			dat += SETUP_NODE_SWITCH("Hear Admin MIDIs", "hear_midis", (toggles & SOUND_MIDI) ? "On" : "Off")
 			dat += SETUP_NODE_SWITCH("Hear Lobby Music", "lobby_music", (toggles & SOUND_LOBBY) ? "On" : "Off")
