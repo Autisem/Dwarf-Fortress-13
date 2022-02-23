@@ -326,7 +326,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += SETUP_NODE_COLOR("Hair Gradient Color", "hair_grad_color", hair_grad_color, null)
 				dat += SETUP_NODE_INPUT("Hair Gradient Style", "hair_grad_style", hair_grad_style)
 
-				dat += SETUP_NODE_INPUT_RANDOM("Facial", "facial_hairstyle", hairstyle, RANDOM_FACIAL_HAIRSTYLE)
+				dat += SETUP_NODE_INPUT_RANDOM("Facial", "facial_hairstyle", facial_hairstyle, RANDOM_FACIAL_HAIRSTYLE)
 				dat += SETUP_NODE_COLOR("Facial Color", "facial", facial_hair_color, RANDOM_FACIAL_HAIR_COLOR)
 				dat += SETUP_NODE_COLOR("Facial Gradient Color", "facial_grad_color", facial_grad_color, null)
 				dat += SETUP_NODE_INPUT("Facial Gradient Style", "facial_grad_style", facial_grad_style)
