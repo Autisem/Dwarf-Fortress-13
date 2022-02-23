@@ -191,17 +191,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
  * Magic bullshit.
  */
 
-#define SETUP_CHARACTER_NODE(L)  		  	 		 "<div class='csetup_character_node'><div class='csetup_character_label'>[L]</div><div class='csetup_character_input'>"
+#define SETUP_START_NODE(L)  		  	 		 "<div class='csetup_character_node'><div class='csetup_character_label'>[L]</div><div class='csetup_character_input'>"
 
 #define SETUP_GET_LINK(pref, task, task_type, value) "<a href='?_src_=prefs;preference=[pref][task ? ";[task_type]=[task]" : ""]'>[value]</a>"
 #define SETUP_GET_LINK_RANDOM(random_type) 		  	 "<a href='?_src_=prefs;preference=toggle_random[random_type]'>[randomise[random_type] ? "Yes" : "No"]</a>"
 #define SETUP_COLOR_BOX(color) 				  	 	 "<span style='border: 1px solid #161616; background-color: #[color];'>&nbsp;&nbsp;&nbsp;</span>"
 
-#define SETUP_NODE_INPUT(label, pref, value)		  "[SETUP_CHARACTER_NODE(label)][SETUP_GET_LINK(pref, "input", "task", value)][SETUP_CLOSE_NODE]"
-#define SETUP_NODE_COLOR(label, pref, color, random)  "[SETUP_CHARACTER_NODE(label)][SETUP_COLOR_BOX(color)][SETUP_GET_LINK(pref, "input", "task", "Change")][random ? "[SETUP_GET_LINK_RANDOM(random)]" : ""][SETUP_CLOSE_NODE]"
-#define SETUP_NODE_RANDOM(label, random)		  	  "[SETUP_CHARACTER_NODE(label)][SETUP_GET_LINK_RANDOM(random)][SETUP_CLOSE_NODE]"
-#define SETUP_NODE_INPUT_RANDOM(label, pref, value, random) "[SETUP_CHARACTER_NODE(label)][SETUP_GET_LINK(pref, "input", "task", value)][SETUP_GET_LINK_RANDOM(random)][SETUP_CLOSE_NODE]"
-#define SETUP_NODE_COLOR_RANDOM(label, pref, color, random) "[SETUP_CHARACTER_NODE(label)][SETUP_COLOR_BOX(color)][SETUP_GET_LINK(pref, "input", "task", "Change")][SETUP_GET_LINK_RANDOM(random)][SETUP_CLOSE_NODE]"
+#define SETUP_NODE_SWITCH(label, pref, value)		  "[SETUP_START_NODE(label)][SETUP_GET_LINK(pref, null, null, value)][SETUP_CLOSE_NODE]"
+#define SETUP_NODE_INPUT(label, pref, value)		  "[SETUP_START_NODE(label)][SETUP_GET_LINK(pref, "input", "task", value)][SETUP_CLOSE_NODE]"
+#define SETUP_NODE_COLOR(label, pref, color, random)  "[SETUP_START_NODE(label)][SETUP_COLOR_BOX(color)][SETUP_GET_LINK(pref, "input", "task", "Change")][random ? "[SETUP_GET_LINK_RANDOM(random)]" : ""][SETUP_CLOSE_NODE]"
+#define SETUP_NODE_RANDOM(label, random)		  	  "[SETUP_START_NODE(label)][SETUP_GET_LINK_RANDOM(random)][SETUP_CLOSE_NODE]"
+#define SETUP_NODE_INPUT_RANDOM(label, pref, value, random) "[SETUP_START_NODE(label)][SETUP_GET_LINK(pref, "input", "task", value)][SETUP_GET_LINK_RANDOM(random)][SETUP_CLOSE_NODE]"
+#define SETUP_NODE_COLOR_RANDOM(label, pref, color, random) "[SETUP_START_NODE(label)][SETUP_COLOR_BOX(color)][SETUP_GET_LINK(pref, "input", "task", "Change")][SETUP_GET_LINK_RANDOM(random)][SETUP_CLOSE_NODE]"
 
 #define SETUP_CLOSE_NODE 	  			  "</div></div>"
 
@@ -244,12 +245,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<h2>Occupation Choices</h2>"
 			dat += "<a class='csetup_occupations_choose' href='?_src_=prefs;preference=job;task=menu'>Choose</a>"
 			dat += "</div>"
-			dat += "<div class='csetup_character_main'>"
+			dat += "<div class='csetup_main'>"
 			if(is_banned_from(user.ckey, "Appearance"))
 				dat += "<div class='csetup_banned'>You are banned from appearance. You can still setup your character but you name and appearance will be random.</div>"
-			dat += "<div class='csetup_character_header'>Character</div>"
-			dat += "<div class='csetup_character_content'>"
-			dat += SETUP_CHARACTER_NODE("Character Name")
+			dat += "<div class='csetup_header'>Character</div>"
+			dat += "<div class='csetup_content'>"
+			dat += SETUP_START_NODE("Character Name")
 			dat += SETUP_GET_LINK("name", "input", "task", real_name)
 			dat += SETUP_GET_LINK("name", "random", "task", "Random")
 			dat += SETUP_CLOSE_NODE
@@ -261,7 +262,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					old_group = namedata["group"]
 				else if(old_group != namedata["group"])
 					old_group = namedata["group"]
-				dat += SETUP_CHARACTER_NODE(namedata["pref_name"])
+				dat += SETUP_START_NODE(namedata["pref_name"])
 				dat += SETUP_GET_LINK(custom_name_id, "input", "task", custom_names[custom_name_id])
 				dat += SETUP_CLOSE_NODE
 
@@ -269,18 +270,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += SETUP_NODE_RANDOM("Random name when antagonist", RANDOM_NAME_ANTAG)
 
 			if(!(AGENDER in pref_species.species_traits))
-				dat += SETUP_CHARACTER_NODE("Gender")
+				dat += SETUP_START_NODE("Gender")
 				dat += SETUP_GET_LINK("gender", null, null, gender)
 				dat += SETUP_CLOSE_NODE
 				if(gender == PLURAL || gender == NEUTER)
-					dat += SETUP_CHARACTER_NODE("Body type")
+					dat += SETUP_START_NODE("Body type")
 					dat += SETUP_GET_LINK("body_type", null, null, body_type == MALE ? "Male" : "Female")
 					dat += SETUP_CLOSE_NODE
 				if(randomise[RANDOM_BODY] || randomise[RANDOM_BODY_ANTAG]) //doesn't work unless random body
 					dat += SETUP_NODE_RANDOM("Always random gender", RANDOM_GENDER)
 					dat += SETUP_NODE_RANDOM("When antagonist", RANDOM_GENDER_ANTAG)
 
-			dat += SETUP_CHARACTER_NODE("Age")
+			dat += SETUP_START_NODE("Age")
 			dat += SETUP_GET_LINK("age", "input", "task", age)
 			dat += SETUP_CLOSE_NODE
 
@@ -291,20 +292,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(user.client.get_exp_living(TRUE) >= PLAYTIME_HARDCORE_RANDOM)
 				dat += SETUP_NODE_RANDOM("Hardcore mode", RANDOM_HARDCORE)
 
-			dat += SETUP_CHARACTER_NODE("Species")
+			dat += SETUP_START_NODE("Species")
 			dat += SETUP_GET_LINK("species", "input", "task", pref_species.name)
 			dat += SETUP_GET_LINK("species", "random", "task", "Random")
 			dat += SETUP_GET_LINK("toggle_random", RANDOM_SPECIES, "random_type", randomise[RANDOM_SPECIES] ? "Yes" : "No")
 			dat += SETUP_CLOSE_NODE
 
-			dat += SETUP_CHARACTER_NODE("Appearance")
+			dat += SETUP_START_NODE("Appearance")
 			dat += SETUP_GET_LINK("all", "random", "task", "Random")
 			dat += SETUP_GET_LINK("species", "random", "task", "Random")
 			dat += SETUP_GET_LINK("toggle_random", RANDOM_BODY, "random_type", randomise[RANDOM_BODY] ? "Yes" : "No")
 			dat += SETUP_CLOSE_NODE
 
 			if((HAS_FLESH in pref_species.species_traits) || (HAS_BONE in pref_species.species_traits))
-				dat += SETUP_CHARACTER_NODE("Temporal Scarring")
+				dat += SETUP_START_NODE("Temporal Scarring")
 				dat += SETUP_GET_LINK("persistent_scars", null, null, persistent_scars ? "Enabled" : "Disabled")
 				dat += SETUP_GET_LINK("clear_scars", null, null, "Clear")
 				dat += SETUP_CLOSE_NODE
@@ -364,34 +365,33 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "</div></div>"
 
-		if (2) // Game Preferences
-			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
-			dat += "<h2>Game Preferences</h2>"
-			dat += "<table>"
-			dat += "<tr><td><h3>Interface</h3></td></tr>"
-			dat += "<tr><td><b>Style:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a></td></tr>"
-			dat += "<tr><td><b>Windows in TGUI:</b></td><td align='right'><a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Minimal" : "All"]</a></td></tr>"
-			dat += "<tr><td><b>TGUI Style:</b></td><td align='right'><a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy" : "Minimal"]</a></td></tr>"
-			dat += "<tr><td><h3>Runechat</h3></td></tr>"
-			dat += "<tr><td><b>Text above head:</b></td><td align='right'><a href='?_src_=prefs;preference=chat_on_map'>[(chat_on_map) ? "On" : "Off"]</a></td></tr>"
-			dat += "<tr><td><b>Max lenght:</b></td><td align='right'><a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a></td></tr>"
-			dat += "<tr><td><b>See above mobs only:</b></td><td align='right'><a href='?_src_=prefs;preference=see_chat_non_mob'>[(see_chat_non_mob) ? "On" : "Off"]</a></td></tr>"
-			dat += "<tr><td><b>Emotes above head:</b></td><td align='right'><a href='?_src_=prefs;preference=see_rc_emotes'>[(see_rc_emotes) ? "On" : "Off"]</a></td></tr>"
-			dat += "<tr><td><h3>Controls</h3></td></tr>"
-			dat += "<tr><td><b>Action buttons:</b></td><td align='right'><a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked" : "Movable"]</a></td></tr>"
-			dat += "<tr><td><b>Hotkey mode:</b></td><td align='right'><a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Retro"]</a></td></tr>"
-
-			dat += "</table></td><td width='300px' height='300px' valign='top'>"
-
-			dat += "<tr><td><h3>Ghost:</h3></td></tr>"
-			dat += "<tr><td><b>Speech:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_ears'>[(chat_toggles & CHAT_GHOSTEARS) ? "All" : "Near"]</a></td></tr>"
-			dat += "<tr><td><b>Emotes:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_sight'>[(chat_toggles & CHAT_GHOSTSIGHT) ? "All" : "Near"]</a></td></tr>"
-			dat += "<tr><td><b>Whisper:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_whispers'>[(chat_toggles & CHAT_GHOSTWHISPER) ? "All" : "Near"]</a></td></tr>"
-			dat += "<tr><td><b>Form:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostform'>[ghost_form]</a></td></tr>"
-			dat += "<tr><td><B>Orbit:</B></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostorbit'>[ghost_orbit]</a></td></tr>"
-			dat += "<tr><td><b>Body transfer:</b></td><td align='right'><a href='?_src_=prefs;preference=ice_cream'>[(ice_cream) ? "On" : "Off"]</a></td></tr>"
+		if (2)
+			dat += "<div class='csetup_main'>"
+			dat += "<div class='csetup_header'>Interface</div>"
+			dat += "<div class='csetup_content'>"
+			dat += SETUP_NODE_INPUT("Style", "ui", UI_style)
+			dat += SETUP_NODE_SWITCH("Windows in TGUI", "tgui_lock", tgui_lock ? "Minimal" : "All")
+			dat += SETUP_NODE_SWITCH("TGUI Style", "tgui_fancy", tgui_fancy ? "Fancy" : "Minimal")
+			dat += "</div><div class='csetup_content'>"
+			dat += "<div class='csetup_header'>Runechat</div>"
+			dat += SETUP_NODE_SWITCH("Text above head", "chat_on_map", chat_on_map ? "On" : "Off")
+			dat += SETUP_NODE_INPUT("Max lenght", "max_chat_length", max_chat_length)
+			dat += SETUP_NODE_SWITCH("See above mobs only", "see_chat_non_mob", see_chat_non_mob ? "On" : "Off")
+			dat += SETUP_NODE_SWITCH("Emotes above head", "see_rc_emotes", see_rc_emotes ? "On" : "Off")
+			dat += "</div><div class='csetup_content'>"
+			dat += "<div class='csetup_header'>Controls</div>"
+			dat += SETUP_NODE_SWITCH("Action buttons", "action_buttons", buttons_locked ? "Locked" : "Movable")
+			dat += SETUP_NODE_SWITCH("Hotkey mode", "hotkeys", hotkeys ? "Hotkeys" : "Retro")
+			dat += "</div><div class='csetup_content'>"
+			dat += "<div class='csetup_header'>Ghost</div>"
+			dat += SETUP_NODE_SWITCH("Speech", "ghost_ears", (chat_toggles & CHAT_GHOSTEARS) ? "All" : "Near")
+			dat += SETUP_NODE_SWITCH("Emotes", "ghost_sight", (chat_toggles & CHAT_GHOSTSIGHT) ? "All" : "Near")
+			dat += SETUP_NODE_SWITCH("Whisper", "ghost_whispers", (chat_toggles & CHAT_GHOSTWHISPER) ? "All" : "Near")
+			dat += SETUP_NODE_INPUT("Form", "ghostform", ghost_form)
+			dat += SETUP_NODE_INPUT("Orbit", "ghostorbit", ghost_orbit)
+			dat += SETUP_NODE_SWITCH("Body transfer", "ice_cream", ice_cream ? "On" : "Off")
 			if(ice_cream)
-				dat += "<tr><td><b>Time until transfer:</b></td><td align='right'><a href='?_src_=prefs;preference=ice_cream_time;task=input'>[ice_cream_time/600] minutes</a></td></tr>"
+				dat += SETUP_NODE_INPUT("Time until transfer", "ice_cream_time", "[ice_cream_time/600] minutes")
 
 			var/button_name = "If you see this something went wrong."
 			switch(ghost_accs)
@@ -402,7 +402,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(GHOST_ACCS_NONE)
 					button_name = GHOST_ACCS_NONE_NAME
 
-			dat += "<tr><td><b>Ghost appearance:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostaccs'>[button_name]</a></td></tr>"
+			dat += SETUP_NODE_INPUT("Ghost appearance", "ghostaccs", button_name)
 
 			switch(ghost_others)
 				if(GHOST_OTHERS_THEIR_SETTING)
@@ -412,40 +412,42 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(GHOST_OTHERS_SIMPLE)
 					button_name = GHOST_OTHERS_SIMPLE_NAME
 
-			dat += "<tr><td><b>Other ghosts:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostothers'>[button_name]</a></td></tr>"
-			dat += "<tr><td><h3>Ingame:</h3></td></tr>"
-			dat += "<tr><td><b>Text autocorrection:</b></td><td align='right'><a href='?_src_=prefs;preference=disabled_autocap'>[disabled_autocap ? "Off" : "On"]</a></td></tr>"
-			dat += "<tr><td><b>FPS:</b></td><td align='right'><a href='?_src_=prefs;preference=clientfps;task=input'>[clientfps]</a></td></tr>"
-			dat += "<tr><td><b>Parallax:</b></td><td align='right'><a href='?_src_=prefs;preference=parallaxdown' oncontextmenu='window.location.href=\"?_src_=prefs;preference=parallaxup\";return false;'>"
+			dat += SETUP_NODE_INPUT("Other ghosts", "ghostothers", button_name)
+			dat += "</div><div class='csetup_content'>"
+			dat += "<div class='csetup_header'>Ingame</div>"
+			dat += SETUP_NODE_SWITCH("Text autocorrection", "disabled_autocap", disabled_autocap ? "Off" : "On")
+			dat += SETUP_NODE_INPUT("FPS", "clientfps", clientfps)
+
 			switch (parallax)
 				if (PARALLAX_LOW)
-					dat += "Low"
+					button_name += "Low"
 				if (PARALLAX_MED)
-					dat += "Medium"
+					button_name += "Medium"
 				if (PARALLAX_INSANE)
-					dat += "Insane"
+					button_name += "Insane"
 				if (PARALLAX_DISABLE)
-					dat += "Disabled"
+					button_name += "Disabled"
 				else
-					dat += "High"
-			dat += "</a></td></tr>"
+					button_name += "High"
 
-			dat += "<tr><td><b>Shadows:</b></td><td align='right'><a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "On" : "Off"]</a></td></tr>"
-			dat += "<tr><td><b>Fit viewpoint:</b></td><td align='right'><a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a></td></tr>"
-			dat += "<tr><td><b>Fullscreen:</b></td><td align='right'><a href='?_src_=prefs;preference=fullscreen'>[fullscreen ? "On" : "Off"]</a></td></tr>"
+			dat += SETUP_NODE_SWITCH("Parallax", "parallaxdown", button_name)
+			dat += SETUP_NODE_SWITCH("Shadows", "ambientocclusion", ambientocclusion ? "On" : "Off")
+			dat += SETUP_NODE_SWITCH("Fit viewport", "auto_fit_viewport", auto_fit_viewport ? "Auto" : "Manual")
+			dat += SETUP_NODE_SWITCH("Fullscreen", "fullscreen", fullscreen ? "On" : "Off")
+
 			if (CONFIG_GET(string/default_view) != CONFIG_GET(string/default_view_square))
-				dat += "<tr><td><b>Wide screen:</b></td><td align='right'><a href='?_src_=prefs;preference=widescreenpref'>[widescreenpref ? "On ([CONFIG_GET(string/default_view)])" : "Off ([CONFIG_GET(string/default_view_square)])"]</a></td></tr>"
+				dat += SETUP_NODE_SWITCH("Widescreen", "widescreenpref", widescreenpref ? "On ([CONFIG_GET(string/default_view)])" : "Off ([CONFIG_GET(string/default_view_square)]))
 				if(widescreenpref)
-					dat += "<tr><td><b>Custom screen width:</b></td><td align='right'><a href='?_src_=prefs;preference=widescreenwidth;task=input'>[widescreenwidth]</a></td></tr>"
+					dat += SETUP_NODE_INPUT("Custom screen width", "widescreenwidth", widescreenwidth)
 
-			dat += "<tr><td><b>Item names:</b></td><td align='right'><a href='?_src_=prefs;preference=tooltip_user'>[(w_toggles & TOOLTIP_USER_UP) ? "On" : "Off"]</a></td></tr>"
-			dat += "<tr><td><b>Place on screen:</b></td><td align='right'><a href='?_src_=prefs;preference=tooltip_pos'>[(w_toggles & TOOLTIP_USER_POS) ? "Bottom" : "Top"]</a></td></tr>"
-			dat += "<tr><td><b>Retro-Statusbar:</b></td><td align='right'><a href='?_src_=prefs;preference=tooltip_retro'>[(w_toggles & TOOLTIP_USER_RETRO) ? "On" : "Off"]</a></td></tr>"
-			dat += "<tr><td><b>Horisontal inversion:</b></td><td align='right'><a href='?_src_=prefs;preference=horiz_inv'>[(w_toggles & SCREEN_HORIZ_INV) ? "On" : "Off"]</a></td></tr>"
-			dat += "<tr><td><b>Vertical inversion:</b></td><td align='right'><a href='?_src_=prefs;preference=verti_inv'>[(w_toggles & SCREEN_VERTI_INV) ? "On" : "Off"]</a></td></tr>"
-			dat += "<tr><td><b>Invisible separators:</b></td><td align='right'><a href='?_src_=prefs;preference=hide_split'>[(w_toggles & SCREEN_HIDE_SPLIT) ? "On" : "Off"]</a></td></tr>"
+			dat += SETUP_NODE_SWITCH("Item names", "tooltip_user", (w_toggles & TOOLTIP_USER_UP) ? "On" : "Off")
+			dat += SETUP_NODE_SWITCH("Place on screen", "tooltip_pos", (w_toggles & TOOLTIP_USER_POS) ? "Bottom" : "Top")
+			dat += SETUP_NODE_SWITCH("Retro-Statusbar", "tooltip_retro", (w_toggles & TOOLTIP_USER_RETRO) ? "On" : "Off")
+			dat += SETUP_NODE_SWITCH("Horisontal inversion", "horiz_inv", (w_toggles & SCREEN_HORIZ_INV) ? "On" : "Off")
+			dat += SETUP_NODE_SWITCH("Vertical inversion", "verti_inv", (w_toggles & SCREEN_VERTI_INV) ? "On" : "Off")
+			dat += SETUP_NODE_SWITCH("Invisible separators", "hide_split", (w_toggles & SCREEN_HIDE_SPLIT) ? "On" : "Off")
 			button_name = pixel_size
-			dat += "<tr><td><b>Pixel Scaling:</b></td><td align='right'><a href='?_src_=prefs;preference=pixel_size'>[(button_name) ? "Pixel Perfect [button_name]x" : "Stretch to fit"]</a></td></tr>"
+			dat += SETUP_NODE_SWITCH("Pixel Scaling", "pixel_size", button_name ? "Pixel Perfect [button_name]x" : "Stretch to fit")
 
 			switch(scaling_method)
 				if(SCALING_METHOD_DISTORT)
@@ -454,7 +456,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					button_name = "Point Sampling"
 				if(SCALING_METHOD_BLUR)
 					button_name = "Bilinear"
-			dat += "<tr><td><b>Scaling Method:</b></td><td align='right'><a href='?_src_=prefs;preference=scaling_method'>[button_name]</a></td></tr>"
+
+			dat += SETUP_NODE_SWITCH("Scaling Method", "scaling_method", button_name)
 
 			if (CONFIG_GET(flag/maprotation))
 				var/p_map = preferred_map
@@ -472,18 +475,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						p_map += " (No longer exists)"
 				if(CONFIG_GET(flag/preference_map_voting))
-					dat += "<tr><td><b>Favourite map:</b></td><td align='right'><a href='?_src_=prefs;preference=preferred_map;task=input'>[p_map]</a></td></tr>"
+					dat += SETUP_NODE_INPUT("Favourite map", "preferred_map", p_map)
 
-			// dat += "<h2>Спецроли</h2>"
-
-			dat += "<table>"
-
-			// if(is_banned_from(user.ckey, ROLE_ICECREAM))
-			// 	dat += "<font color='#ff7777'><b>You can't be an antag.</b></font><br>"
-			// 	src.be_special = list()
-
-			// dat += "<tr><td><b>Посреди раунда:</b></td><td><a href='?_src_=prefs;preference=allow_midround_antag'>[(toggles & MIDROUND_ANTAG) ? "Да" : "Нет"]</a></td></tr>"
-			dat += "</table></td></tr></table>"
+			dat += "</div></div>"
 		if(3) //OOC Preferences
 			dat += "<table><tr><td width='340px' height='300px' valign='top'><table>"
 			dat += "<tr><td><h2>OOC Preferences</h2></td></tr>"

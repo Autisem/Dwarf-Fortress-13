@@ -544,15 +544,15 @@ a.rs_butt:hover
 .csetup_occupations_choose {
 }
 
-.csetup_character_main {background: #050505;width: 360px;margin: auto;}
+.csetup_main {background: #050505;width: 360px;margin: auto;}
 
 .csetup_banned {
 
 }
 
-.csetup_character_header {font-size: 24px;text-align: center;font-weight: bold;padding: 16px;background: #000;}
+.csetup_header {font-size: 24px;text-align: center;font-weight: bold;padding: 16px;background: #000;}
 
-.csetup_character_content {padding: 16px;}
+.csetup_content {padding: 16px;}
 
 .csetup_character_node {padding-bottom: 6px;padding-top: 4px;border-bottom: 1px solid #222;border-top: 1px solid #111;}
 
