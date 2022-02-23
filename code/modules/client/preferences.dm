@@ -546,18 +546,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				for (var/i in kb_categories[category])
 					var/datum/keybinding/kb = i
 					if(!length(user_binds[kb.name]) || user_binds[kb.name][1] == "Unbound")
-						var/list/default_keys = hotkeys ? kb.hotkey_keys : kb.classic_keys
-						dat += SETUP_START_NODE(kb.full_name)
-						if(LAZYLEN(default_keys))
-							dat += " - [default_keys.Join(", ")]"
 						dat += SETUP_GET_LINK("keybindings_capture", "[kb.name];old_key=["Unbound"]", "keybinding", "NO KEY")
 						dat += SETUP_CLOSE_NODE
 					else
 						var/bound_key = user_binds[kb.name][1]
-						var/list/default_keys = hotkeys ? kb.hotkey_keys : kb.classic_keys
-						dat += SETUP_START_NODE(kb.full_name)
-						if(LAZYLEN(default_keys))
-							dat += " - [default_keys.Join(", ")]"
 						dat += SETUP_GET_LINK("keybindings_capture", "[kb.name];old_key=[bound_key]", "keybinding", bound_key)
 						for(var/bound_key_index in 2 to length(user_binds[kb.name]))
 							bound_key = user_binds[kb.name][bound_key_index]
