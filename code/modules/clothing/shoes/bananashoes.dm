@@ -32,9 +32,6 @@
 				clothing_flags &= ~NOSLIP
 			update_icon()
 			to_chat(loc, span_warning("У вас закончился бананиум!"))
-		else
-			new /obj/item/grown/bananapeel/specialpeel(get_step(src,turn(wearer.dir, 180))) //honk
-			bananium.use_amount_mat(100, /datum/material/bananium)
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/attack_self(mob/user)
 	var/datum/component/material_container/bananium = GetComponent(/datum/component/material_container)

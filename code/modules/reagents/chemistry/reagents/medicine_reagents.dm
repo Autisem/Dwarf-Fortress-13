@@ -47,25 +47,6 @@
 	taste_description = "щитспавн"
 	chemical_flags = REAGENT_DEAD_PROCESS
 
-// The best stuff there is. For testing/debugging.
-/datum/reagent/medicine/adminordrazine/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(type, 1))
-		mytray.adjustWater(round(chems.get_reagent_amount(type) * 1))
-		mytray.adjustHealth(round(chems.get_reagent_amount(type) * 1))
-		mytray.adjustPests(-rand(1,5))
-		mytray.adjustWeeds(-rand(1,5))
-	if(chems.has_reagent(type, 3))
-		switch(rand(100))
-			if(66  to 100)
-				mytray.mutatespecie()
-			if(33 to 65)
-				mytray.mutateweed()
-			if(1   to 32)
-				mytray.mutatepest(user)
-			else if(prob(20))
-				mytray.visible_message(span_warning("Ничего не произошло..."))
-
 /datum/reagent/medicine/adminordrazine/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	M.heal_bodypart_damage(5 * REM * delta_time, 5 * REM * delta_time)
 	M.adjustToxLoss(-5 * REM * delta_time, FALSE, TRUE)
@@ -183,12 +164,6 @@
 		. = TRUE
 	metabolization_rate = REAGENTS_METABOLISM * (0.00001 * (M.bodytemperature ** 2) + 0.5)
 	..()
-
-// Healing
-/datum/reagent/medicine/cryoxadone/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	mytray.adjustHealth(round(chems.get_reagent_amount(type) * 3))
-	mytray.adjustToxic(-round(chems.get_reagent_amount(type) * 3))
 
 /datum/reagent/medicine/clonexadone
 	name = "Клоноксадон"
@@ -774,13 +749,6 @@
 	harmful = TRUE
 	ph = 0.5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-
-// FEED ME SEYMOUR
-/datum/reagent/medicine/strange_reagent/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(type, 1))
-		mytray.spawnplant()
 
 /datum/reagent/medicine/strange_reagent/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
 	if(exposed_mob.stat != DEAD)

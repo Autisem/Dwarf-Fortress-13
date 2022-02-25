@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/possess, /proc/r
 GLOBAL_PROTECT(admin_verbs_possess)
 GLOBAL_LIST_INIT(admin_verbs_permissions, list(/client/proc/edit_admin_permissions, /client/proc/add_bug_down))
 GLOBAL_PROTECT(admin_verbs_permissions)
-GLOBAL_LIST_INIT(admin_verbs_secured, list(/client/proc/de_admin, /client/proc/manage_some_donations, /client/proc/manage_player_ranks))
+GLOBAL_LIST_INIT(admin_verbs_secured, list(/client/proc/manage_some_donations, /client/proc/manage_player_ranks))
 GLOBAL_PROTECT(admin_verbs_secured)
 GLOBAL_LIST_INIT(admin_verbs_poll, list(/client/proc/poll_panel))
 GLOBAL_PROTECT(admin_verbs_poll)
@@ -620,10 +620,6 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	//if(!isdead(src.mob) && !check_rights(R_PERMISSIONS))
 	//	to_chat(src, span_interface("Тебе нельзя. Надо бы из тела выйти.") , confidential = TRUE)
 	//	return
-
-	if(src.ckey in GLOB.de_admined)
-		to_chat(src, span_interface("Тебе отрезали кнопки до конца раунда. Praise the Lord!") , confidential = TRUE)
-		return
 
 	var/datum/admins/A = GLOB.deadmins[ckey]
 

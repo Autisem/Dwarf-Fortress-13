@@ -62,11 +62,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		var/obj/item/paper/paperaffected = exposed_obj
 		paperaffected.clearpaper()
 		to_chat(usr, span_notice("чернила на [paperaffected] смываются."))
-	if(istype(exposed_obj, /obj/item/book))
-		if(reac_volume >= 5)
-			exposed_obj.visible_message(span_notice("Надписи на [exposed_obj] смыты [name]!"))
-		else
-			exposed_obj.visible_message(span_warning("[name] размазал чернила по [exposed_obj], но они не смылись!"))
 	return ..()
 
 /datum/reagent/consumable/ethanol/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)//Splashing people with ethanol isn't quite as good as fuel.
@@ -100,14 +95,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	fallback_icon_state = "beer"
 	glass_price = DRINK_PRICE_STOCK
-
-
-	// Beer is a chemical composition of alcohol and various other things. It's a garbage nutrient but hey, it's still one. Also alcohol is bad, mmmkay?
-/datum/reagent/consumable/ethanol/beer/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(src, 1))
-		mytray.adjustHealth(-round(chems.get_reagent_amount(src.type) * 0.05))
-		mytray.adjustWater(round(chems.get_reagent_amount(src.type) * 0.7))
 
 /datum/reagent/consumable/ethanol/beer/light
 	name = "Светлое Пиво"

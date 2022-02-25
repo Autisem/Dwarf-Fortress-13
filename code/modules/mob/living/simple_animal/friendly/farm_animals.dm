@@ -55,14 +55,12 @@
 	if(stat != CONSCIOUS)
 		return
 
-	eat_plants()
 	if(pulledby)
 		return
 
 	for(var/direction in shuffle(list(1,2,4,8,5,6,9,10)))
 		var/step = get_step(src, direction)
-		if(step && (locate(/obj/structure/glowshroom) in step))
-			Move(step, get_dir(src, step))
+		Move(step, get_dir(src, step))
 
 /mob/living/simple_animal/hostile/retaliate/goat/Retaliate()
 	..()
@@ -70,19 +68,6 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/Move()
 	. = ..()
-	if(!stat)
-		eat_plants()
-
-/mob/living/simple_animal/hostile/retaliate/goat/proc/eat_plants()
-	var/eaten = FALSE
-
-	var/obj/structure/glowshroom/GS = locate(/obj/structure/glowshroom) in loc
-	if(GS)
-		qdel(GS)
-		eaten = TRUE
-
-	if(eaten && prob(10))
-		say("Nom")
 
 /mob/living/simple_animal/hostile/retaliate/goat/AttackingTarget()
 	. = ..()
@@ -141,7 +126,7 @@
 
 ///wrapper for the tameable component addition so you can have non tamable cow subtypes
 /mob/living/simple_animal/cow/proc/make_tameable()
-	AddComponent(/datum/component/tameable, food_types = list(/obj/item/food/grown/wheat), tame_chance = 25, bonus_tame_chance = 15, after_tame = CALLBACK(src, .proc/tamed))
+	return
 
 /mob/living/simple_animal/cow/tamed(mob/living/tamer)
 	can_buckle = TRUE
@@ -308,16 +293,6 @@
 	chicken_count++
 	add_cell_sample()
 	AddElement(/datum/element/animal_variety, "chicken", pick("brown","black","white"), TRUE)
-	AddComponent(/datum/component/egg_layer,\
-		/obj/item/food/egg,\
-		list(/obj/item/food/grown/wheat),\
-		feed_messages = list("She clucks happily."),\
-		lay_messages = EGG_LAYING_MESSAGES,\
-		eggs_left = 0,\
-		eggs_added_from_eating = rand(1, 4),\
-		max_eggs_held = 8,\
-		egg_laid_callback = CALLBACK(src, .proc/egg_laid)\
-	)
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
 /mob/living/simple_animal/chicken/Destroy()

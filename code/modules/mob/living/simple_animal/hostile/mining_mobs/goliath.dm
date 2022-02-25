@@ -103,7 +103,6 @@
 	loot = list()
 	stat_attack = HARD_CRIT
 	robust_searching = 1
-	food_type = list(/obj/item/food/grown/ash_flora)//use lavaland plants to feed the lavaland monster
 	tame_chance = 10
 	bonus_tame_chance = 5
 	var/saddled = FALSE

@@ -30,18 +30,6 @@
 	if(activated && reagents.total_volume <= reagents.maximum_volume) //this is also evaluated in add_reagent, but from my understanding proc calls are expensive
 		reagents.add_reagent(reagent_id, potency)
 
-/obj/structure/geyser/plunger_act(obj/item/plunger/P, mob/living/user, _reinforced)
-	if(!_reinforced)
-		to_chat(user, span_warning("The [P.name] isn't strong enough!"))
-		return
-	if(activated)
-		to_chat(user, span_warning("The [name] is already active!"))
-		return
-
-	to_chat(user, span_notice("You start vigorously plunging [src]!"))
-	if(do_after(user, 50 * P.plunge_mod, target = src) && !activated)
-		start_chemming()
-
 /obj/structure/geyser/random
 	erupting_state = null
 	var/list/options = list(/datum/reagent/clf3 = 10, /datum/reagent/water/hollowwater = 10,/datum/reagent/plasma_oxide = 8, /datum/reagent/medicine/omnizine/protozine = 6, /datum/reagent/wittel = 1)
@@ -49,76 +37,3 @@
 /obj/structure/geyser/random/Initialize()
 	. = ..()
 	reagent_id = pickweight(options)
-
-/obj/item/plunger
-	name = "вантуз"
-	desc = "Не для унитаза!"
-	icon = 'white/valtos/icons/items.dmi'
-	icon_state = "plunger"
-
-	slot_flags = ITEM_SLOT_MASK
-	flags_inv = HIDESNOUT
-
-	///time*plunge_mod = total time we take to plunge an object
-	var/plunge_mod = 1
-	///whether we do heavy duty stuff like geysers
-	var/reinforced = FALSE
-	///alt sprite for the toggleable layer change mode
-	var/layer_mode_sprite = "plunger_layer"
-	///Wheter we're in layer mode
-	var/layer_mode = FALSE
-	///What layer we set it to
-	var/target_layer = DUCT_LAYER_DEFAULT
-
-	///Assoc list for possible layers
-	var/list/layers = list("Alternate Layer" = SECOND_DUCT_LAYER, "Default Layer" = DUCT_LAYER_DEFAULT)
-
-/obj/item/plunger/attack_obj(obj/O, mob/living/user)
-	if(layer_mode)
-		SEND_SIGNAL(O, COMSIG_MOVABLE_CHANGE_DUCT_LAYER, O, target_layer)
-		return ..()
-	else
-		if(!O.plunger_act(src, user, reinforced))
-			return ..()
-
-/obj/item/plunger/throw_impact(atom/hit_atom, datum/thrownthing/tt)
-	. = ..()
-	if(tt.target_zone != BODY_ZONE_HEAD)
-		return
-	if(iscarbon(hit_atom))
-		var/mob/living/carbon/H = hit_atom
-		if(!H.wear_mask)
-			H.equip_to_slot_if_possible(src, ITEM_SLOT_MASK)
-			H.visible_message(span_warning("The plunger slams into [H] face!") , span_warning("The plunger suctions to your face!"))
-
-/obj/item/plunger/attack_self(mob/user)
-	. = ..()
-
-	layer_mode = !layer_mode
-
-	if(!layer_mode)
-		icon_state = initial(icon_state)
-		to_chat(user, span_notice("You set the plunger to 'Plunger Mode'."))
-	else
-		icon_state = layer_mode_sprite
-		to_chat(user, span_notice("You set the plunger to 'Layer Mode'."))
-
-	playsound(src, 'sound/machines/click.ogg', 10, TRUE)
-
-/obj/item/plunger/AltClick(mob/user)
-	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
-		return
-
-	var/new_layer = input("Select a layer", "Layer") as null|anything in layers
-	if(new_layer)
-		target_layer = layers[new_layer]
-
-/obj/item/plunger/reinforced
-	name = "усиленный вантуз"
-	desc = "Имеет вытяжную силу, сравнивую с вакуумом."
-	icon_state = "reinforced_plunger"
-	reinforced = TRUE
-	plunge_mod = 0.8
-	layer_mode_sprite = "reinforced_plunger_layer"
-
-	custom_premium_price = PAYCHECK_MEDIUM * 8

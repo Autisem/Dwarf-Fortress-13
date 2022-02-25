@@ -406,7 +406,6 @@
 	bite_consumption = 20
 	food_reagents = list(/datum/reagent/consumable/honey = 10, /datum/reagent/toxin = 5, /datum/reagent/medicine/strange_reagent = 1)
 	tastes = list("buzzing" = 1, "honey" = 1, "regret" = 1)
-	spawned_mob = /mob/living/simple_animal/hostile/poison/bees
 
 /obj/item/food/enchiladas
 	name = "enchiladas"

@@ -38,4 +38,3 @@
 			if(DT_PROB(0.5, delta_time))
 				affected_mob.visible_message(span_danger("[affected_mob] выкашливает пчёл!") , \
 													span_userdanger("Выкашливаю рой пчёл!"))
-				new /mob/living/simple_animal/hostile/poison/bees(affected_mob.loc)

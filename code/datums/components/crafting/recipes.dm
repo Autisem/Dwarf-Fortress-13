@@ -208,22 +208,6 @@
 				/obj/item/stack/sheet/sinew = 3)
 	category = CAT_PRIMAL
 
-/datum/crafting_recipe/bonfire
-	name = "Bonfire"
-	time = 60
-	reqs = list(/obj/item/grown/log = 5)
-	parts = list(/obj/item/grown/log = 5)
-	blacklist = list(/obj/item/grown/log/steel)
-	result = /obj/structure/bonfire
-	category = CAT_PRIMAL
-
-/datum/crafting_recipe/rake //Category resorting incoming
-	name = "Rake"
-	time = 30
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 5)
-	result = /obj/item/cultivator/rake
-	category = CAT_PRIMAL
-
 /datum/crafting_recipe/woodbucket
 	name = "Wooden Bucket"
 	time = 30
@@ -314,12 +298,6 @@
 		return TRUE
 
 //Same but with wheat
-/datum/crafting_recipe/underwater_basket/wheat
-	name = "Underwater Basket (Wheat)"
-	reqs = list(
-		/obj/item/food/grown/wheat = 50
-	)
-
 /datum/crafting_recipe/alcohol_burner
 	name = "Alcohol burner"
 	result = /obj/item/burner

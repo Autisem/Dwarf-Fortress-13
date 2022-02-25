@@ -99,15 +99,4 @@
 		if(HAS_TRAIT(user, checked_trait))
 			return TRUE
 
-	var/obj/item/parent_item = source
-	var/obj/item/seeds/our_seed = parent_item.get_plant_seed()
-	if(our_seed)
-		for(var/checked_gene in extra_genes)
-			if(!our_seed.get_gene(checked_gene))
-				return TRUE
-
-	for(var/obj/item/clothing/worn_item in user.get_equipped_items())
-		if((worn_item.body_parts_covered & HANDS) && (worn_item.clothing_flags & THICKMATERIAL))
-			return TRUE
-
 	return FALSE

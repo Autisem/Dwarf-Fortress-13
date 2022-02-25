@@ -682,13 +682,6 @@
 	tastes = list("сладость" = 1)
 	foodtypes = GRAIN | JUNKFOOD | SUGAR
 
-/obj/item/food/cookie/sugar/Initialize()
-	. = ..()
-	if(SSevents.holidays && SSevents.holidays[FESTIVE_SEASON])
-		var/shape = pick("tree", "bear", "santa", "stocking", "present", "cane")
-		desc = "A sugar cookie in the shape of a [shape]. I hope Santa likes it!"
-		icon_state = "sugarcookie_[shape]"
-
 /obj/item/food/chococornet
 	name = "chocolate cornet"
 	desc = "Which side's the head, the fat end or the thin end?"
@@ -772,12 +765,7 @@
 
 /obj/item/food/pancakes/raw/attackby(obj/item/garnish, mob/living/user, params)
 	var/newresult
-	if(istype(garnish, /obj/item/food/grown/berries))
-		newresult = /obj/item/food/pancakes/blueberry
-		name = "raw blueberry pancake"
-		icon_state = "rawbbpancakes_1"
-		inhand_icon_state = "rawbbpancakes"
-	else if(istype(garnish, /obj/item/food/chocolatebar))
+	if(istype(garnish, /obj/item/food/chocolatebar))
 		newresult = /obj/item/food/pancakes/chocolatechip
 		name = "raw chocolate chip pancake"
 		icon_state = "rawccpancakes_1"

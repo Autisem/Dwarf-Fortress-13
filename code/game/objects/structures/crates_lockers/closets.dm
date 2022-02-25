@@ -105,36 +105,6 @@
 
 	return data
 
-/obj/structure/closet/ui_act(action, params)
-	. = ..()
-	if(.)
-		return
-
-	switch(action)
-		if("keypad")
-			switch(params["digit"])
-				if("C")
-					playsound(src, 'white/maxsc/sound/numpad-button.ogg', 20, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
-					keypad_input = ""
-				if("E")
-					if(length(keypad_input) != PASSWORD_LENGHT || keypad_input != password)
-						playsound(src, 'white/maxsc/sound/numpad-error.ogg', 20, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
-						return
-					if(keypad_input == password && locked)
-						locked = FALSE
-						keypad_input = ""
-						usr.visible_message(span_notice("[usr] [locked ? "блокирует" : "разблокировывает"] [src].") ,
-							span_notice("[locked ? "Блокирую" : "Разблокировываю"] [src]."))
-						playsound(src, 'white/valtos/sounds/locker.ogg', 25, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
-						update_icon()
-				if("0","1","2","3","4","5","6","7","8","9")
-					if(length(keypad_input) >= PASSWORD_LENGHT)
-						playsound(src, 'white/maxsc/sound/numpad-error.ogg', 20, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
-						return
-					playsound(src, 'white/maxsc/sound/numpad-button.ogg', 20, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
-					keypad_input+=params["digit"]
-			ui_interact(usr) //quicker ui update
-
 //USE THIS TO FILL IT, NOT INITIALIZE OR NEW
 /obj/structure/closet/proc/PopulateContents()
 	return
@@ -408,42 +378,6 @@
 		reinforced = TRUE
 		update_icon()
 		return
-	else if(W.tool_behaviour == TOOL_SCREWDRIVER && secure)
-		if(!locked)
-			var/list/choices = list(
-				"Пароль и ID-Карта" = icon('white/valtos/icons/radial.dmi', "pai"),
-				"Только ID-Карта" = icon('white/valtos/icons/radial.dmi', "i"),
-				"Только Пароль" = icon('white/valtos/icons/radial.dmi', "p"),
-			)
-			var/answer = show_radial_menu(user, src, choices, require_near=TRUE)
-			if(!answer)
-				return
-			var/list/l = list("Пароль и ID-Карта"=MODE_OPTIONAL, "Только ID-Карта"=MODE_CARD, "Только Пароль"=MODE_PASSWORD)
-			open_mode = l[answer]
-			to_chat(user, span_notice("Меняю режим на [lowertext(answer)]."))
-			user.visible_message(span_warning("[user] блокирует <b>[src]</b> используя [W].") ,
-									span_warning("Блокирую <b>[src]</b>."))
-			locked = TRUE
-			playsound(src, 'white/valtos/sounds/locker.ogg', 25, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
-			update_icon()
-			return
-	else if(W.tool_behaviour == TOOL_MULTITOOL && secure)
-		if(!locked && password)
-			to_chat(user, span_notice("Пароль: [password]."))
-		if(locked && open_mode == MODE_PASSWORD | open_mode == MODE_OPTIONAL)
-			ui_interact(user)
-	else if(istype(W, /obj/item/closet_hacker) && locked && secure && password)
-		if(length(keypad_input)>=PASSWORD_LENGHT)
-			return
-		var/obj/item/closet_hacker/H = W
-		if(!busy_hacked)
-			busy_hacked = TRUE
-			to_chat(user, span_notice("Начинаю взлом [src]."))
-			if(do_after(user, H.hack_time, src))
-				keypad_input+=password[length(keypad_input)+1]
-				playsound(src, 'white/maxsc/sound/numpad-button.ogg', 20, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
-			to_chat(user, span_notice("Заканчиваю взлом [src]."))
-			busy_hacked = FALSE
 	else
 		return FALSE
 

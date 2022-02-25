@@ -150,18 +150,6 @@
 		to_chat(user, span_warning("[capitalize(src.name)] забит полностью!"))
 		return TRUE
 
-	//Fill machine with a bag!
-	if(istype(I, /obj/item/storage/bag))
-		var/list/inserted = list()
-		if(SEND_SIGNAL(I, COMSIG_TRY_STORAGE_TAKE_TYPE, /obj/item/food/grown, src, limit - length(holdingitems), null, null, user, inserted))
-			for(var/i in inserted)
-				holdingitems[i] = TRUE
-			if(!I.contents.len)
-				to_chat(user, span_notice("Опустошаю [I.name] прямо в [src.name]."))
-			else
-				to_chat(user, span_notice("Наполняю [src.name] до краёв."))
-		return TRUE
-
 	if(!I.grind_results && !I.juice_results)
 		if(user.a_intent == INTENT_HARM)
 			return ..()

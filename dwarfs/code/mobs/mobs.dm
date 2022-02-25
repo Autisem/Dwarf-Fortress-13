@@ -55,12 +55,6 @@
 	maxbodytemp = 1600
 	loot =  list()
 
-/mob/living/simple_animal/hostile/shrooman/Initialize()
-	. = ..()
-	for (var/i in 1 to (rand(2,4)))
-		src.loot += pick(subtypesof(/obj/item/food/grown/mushroom))
-
-
 /mob/living/simple_animal/hostile/shrooman/death()
 	// On death, create a small smoke of harmful gas (s-Acid)
 	var/datum/effect_system/smoke_spread/chem/S = new

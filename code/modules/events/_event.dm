@@ -49,8 +49,6 @@
 		return FALSE
 	if(gamemode_whitelist.len && !(gamemode in gamemode_whitelist))
 		return FALSE
-	if(holidayID && (!SSevents.holidays || !SSevents.holidays[holidayID]))
-		return FALSE
 	return TRUE
 
 /datum/round_event_control/proc/preRunEvent()

@@ -19,11 +19,6 @@
 	bodytemp_heat_damage_limit = 373 // Take damage at fire temp
 	bodytemp_cold_damage_limit = 250 // take damage below minimum movement temp
 
-/datum/species/zombie/check_roundstart_eligible()
-	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
-		return TRUE
-	return ..()
-
 /datum/species/zombie/infectious
 	name = "Infectious Zombie"
 	id = "memezombies"

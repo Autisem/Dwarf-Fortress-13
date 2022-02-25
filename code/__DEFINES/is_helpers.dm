@@ -185,7 +185,6 @@ GLOBAL_LIST_INIT(glass_sheet_types, typecacheof(list(
 #define isbook(O) (is_type_in_typecache(O, GLOB.book_types))
 
 GLOBAL_LIST_INIT(book_types, typecacheof(list(
-	/obj/item/book,
 	/obj/item/storage/book)))
 
 #define is_thrall(M) (istype(M, /mob/living) && M.mind?.has_antag_datum(/datum/antagonist/thrall))

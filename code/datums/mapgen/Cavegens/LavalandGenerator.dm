@@ -9,7 +9,6 @@
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random = 30, \
 		SPAWN_MEGAFAUNA = 4, /mob/living/simple_animal/hostile/asteroid/goldgrub = 10
 	)
-	flora_spawn_list = list(/obj/structure/flora/ash/leaf_shroom = 2 , /obj/structure/flora/ash/cap_shroom = 2 , /obj/structure/flora/ash/stem_shroom = 2 , /obj/structure/flora/ash/cacti = 1, /obj/structure/flora/ash/tall_shroom = 2)
 
 	initial_closed_chance = 45
 	smoothing_iterations = 50

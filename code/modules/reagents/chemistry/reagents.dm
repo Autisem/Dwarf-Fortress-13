@@ -245,15 +245,6 @@ Primarily used in reagents/reaction_agents
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/overdose, name)
 	return
 
-/**
- * New, standardized method for chemicals to affect hydroponics trays.
- * Defined on a per-chem level as opposed to by the tray.
- * Can affect plant's health, stats, or cause the plant to react in certain ways.
- */
-/datum/reagent/proc/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	if(!mytray)
-		return
-
 /// Should return a associative list where keys are taste descriptions and values are strength ratios
 /datum/reagent/proc/get_taste_description(mob/living/taster)
 	return list("[taste_description]" = 1)

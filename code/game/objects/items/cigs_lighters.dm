@@ -552,31 +552,31 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		handle_reagents()
 
 
-/obj/item/clothing/mask/cigarette/pipe/attackby(obj/item/O, mob/user, params)
-	if(istype(O, /obj/item/food/grown))
-		var/obj/item/food/grown/G = O
-		if(!packeditem)
-			if(HAS_TRAIT(G, TRAIT_DRIED))
-				to_chat(user, span_notice("You stuff [O] into [src]."))
-				smoketime = 13 * 60
-				packeditem = TRUE
-				name = "[O.name]-packed [initial(name)]"
-				if(O.reagents)
-					O.reagents.trans_to(src, O.reagents.total_volume, transfered_by = user)
-				qdel(O)
-			else
-				to_chat(user, span_warning("It has to be dried first!"))
-		else
-			to_chat(user, span_warning("It is already packed!"))
-	else
-		var/lighting_text = O.ignition_effect(src,user)
-		if(lighting_text)
-			if(smoketime > 0)
-				light(lighting_text)
-			else
-				to_chat(user, span_warning("There is nothing to smoke!"))
-		else
-			return ..()
+// /obj/item/clothing/mask/cigarette/pipe/attackby(obj/item/O, mob/user, params)
+// 	if(istype(O, /obj/item/food/grown))
+// 		var/obj/item/food/grown/G = O
+// 		if(!packeditem)
+// 			if(HAS_TRAIT(G, TRAIT_DRIED))
+// 				to_chat(user, span_notice("You stuff [O] into [src]."))
+// 				smoketime = 13 * 60
+// 				packeditem = TRUE
+// 				name = "[O.name]-packed [initial(name)]"
+// 				if(O.reagents)
+// 					O.reagents.trans_to(src, O.reagents.total_volume, transfered_by = user)
+// 				qdel(O)
+// 			else
+// 				to_chat(user, span_warning("It has to be dried first!"))
+// 		else
+// 			to_chat(user, span_warning("It is already packed!"))
+// 	else
+// 		var/lighting_text = O.ignition_effect(src,user)
+// 		if(lighting_text)
+// 			if(smoketime > 0)
+// 				light(lighting_text)
+// 			else
+// 				to_chat(user, span_warning("There is nothing to smoke!"))
+// 		else
+// 			return ..()
 
 /obj/item/clothing/mask/cigarette/pipe/attack_self(mob/user)
 	var/turf/location = get_turf(user)
@@ -817,23 +817,23 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "cig_paper"
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/rollingpaper/afterattack(atom/target, mob/user, proximity)
-	. = ..()
-	if(!proximity)
-		return
-	if(istype(target, /obj/item/food/grown))
-		var/obj/item/food/grown/O = target
-		if(HAS_TRAIT(O, TRAIT_DRIED))
-			var/obj/item/clothing/mask/cigarette/rollie/R = new /obj/item/clothing/mask/cigarette/rollie(user.loc)
-			R.chem_volume = target.reagents.total_volume
-			target.reagents.trans_to(R, R.chem_volume, transfered_by = user)
-			qdel(target)
-			qdel(src)
-			user.put_in_active_hand(R)
-			to_chat(user, span_notice("You roll the [target.name] into a rolling paper."))
-			R.desc = "Dried [target.name] rolled up in a thin piece of paper."
-		else
-			to_chat(user, span_warning("You need to dry this first!"))
+// /obj/item/rollingpaper/afterattack(atom/target, mob/user, proximity)
+// 	. = ..()
+// 	if(!proximity)
+// 		return
+// 	if(istype(target, /obj/item/food/grown))
+// 		var/obj/item/food/grown/O = target
+// 		if(HAS_TRAIT(O, TRAIT_DRIED))
+// 			var/obj/item/clothing/mask/cigarette/rollie/R = new /obj/item/clothing/mask/cigarette/rollie(user.loc)
+// 			R.chem_volume = target.reagents.total_volume
+// 			target.reagents.trans_to(R, R.chem_volume, transfered_by = user)
+// 			qdel(target)
+// 			qdel(src)
+// 			user.put_in_active_hand(R)
+// 			to_chat(user, span_notice("You roll the [target.name] into a rolling paper."))
+// 			R.desc = "Dried [target.name] rolled up in a thin piece of paper."
+// 		else
+// 			to_chat(user, span_warning("You need to dry this first!"))
 
 ///////////////
 //VAPE NATION//

@@ -1473,27 +1473,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		REMOVE_TRAIT(the_atom2,trait,source)
 
 /proc/get_random_food()
-	var/list/blocked = list(/obj/item/food/bread,
-		/obj/item/food/breadslice,
-		/obj/item/food/cake,
-		/obj/item/food/cakeslice,
-		/obj/item/food/pie,
-		/obj/item/food/pieslice,
-		/obj/item/food/kebab,
-		/obj/item/food/pizza,
-		/obj/item/food/pizzaslice,
-		/obj/item/food/salad,
-		/obj/item/food/meat,
-		/obj/item/food/meat/slab,
-		/obj/item/food/soup,
-		/obj/item/food/grown,
-		/obj/item/food/grown/mushroom,
-		/obj/item/food/deepfryholder,
-		/obj/item/food/clothing,
-		/obj/item/food/meat/slab/human/mutant,
-		/obj/item/food/grown/ash_flora,
-		/obj/item/food/grown/nettle,
-		/obj/item/food/grown/shell
+	var/list/blocked = list(
 		)
 
 	return pick(subtypesof(/obj/item/food) - blocked)

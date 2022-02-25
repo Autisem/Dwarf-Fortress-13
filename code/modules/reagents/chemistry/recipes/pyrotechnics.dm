@@ -12,18 +12,6 @@
 	var/power = modifier + round(created_volume/strengthdiv, 1)
 	if(power > 0)
 		var/turf/T = get_turf(holder.my_atom)
-		var/inside_msg
-		if(ismob(holder.my_atom))
-			var/mob/M = holder.my_atom
-			inside_msg = " inside [ADMIN_LOOKUPFLW(M)]"
-		var/lastkey = holder.my_atom?.fingerprintslast //This can runtime (null.fingerprintslast) - due to plumbing?
-		var/touch_msg = "N/A"
-		if(lastkey)
-			var/mob/toucher = get_mob_by_key(lastkey)
-			touch_msg = "[ADMIN_LOOKUPFLW(toucher)]"
-		if(!istype(holder.my_atom, /obj/machinery/plumbing)) //excludes standard plumbing equipment from spamming admins with this shit
-			message_admins("Reagent explosion reaction occurred at [ADMIN_VERBOSEJMP(T)][inside_msg]. Last Fingerprint: [touch_msg].")
-		log_game("Reagent explosion reaction occurred at [AREACOORD(T)]. Last Fingerprint: [lastkey ? lastkey : "N/A"]." )
 		var/datum/effect_system/reagents_explosion/e = new()
 		e.set_up(power , T, 0, 0)
 		e.start()
@@ -175,24 +163,6 @@
 /datum/chemical_reaction/beesplosion
 	required_reagents = list(/datum/reagent/consumable/honey = 1, /datum/reagent/medicine/strange_reagent = 1, /datum/reagent/uranium/radium = 1)
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_EXPLOSIVE | REACTION_TAG_DANGEROUS
-
-/datum/chemical_reaction/beesplosion/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
-	var/location = holder.my_atom.drop_location()
-	if(created_volume < 5)
-		playsound(location,'sound/effects/sparks1.ogg', 100, TRUE)
-	else
-		playsound(location,'sound/creatures/bee.ogg', 100, TRUE)
-		var/list/beeagents = list()
-		for(var/R in holder.reagent_list)
-			if(required_reagents[R])
-				continue
-			beeagents += R
-		var/bee_amount = round(created_volume * 0.2)
-		for(var/i in 1 to bee_amount)
-			var/mob/living/simple_animal/hostile/poison/bees/short/new_bee = new(location)
-			if(LAZYLEN(beeagents))
-				new_bee.assign_reagent(pick(beeagents))
-
 
 /datum/chemical_reaction/stabilizing_agent
 	results = list(/datum/reagent/stabilizing_agent = 3)

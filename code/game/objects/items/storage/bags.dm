@@ -188,11 +188,9 @@
 	STR.max_combined_w_class = 100
 	STR.max_items = 100
 	STR.set_holdable(list(
-		/obj/item/food/grown,
 		/obj/item/seeds,
 		/obj/item/grown,
 		/obj/item/reagent_containers/honeycomb,
-		/obj/item/graft,
 		))
 ////////
 
@@ -207,8 +205,6 @@
 	set desc = "Activate to convert your plants into plantable seeds."
 	if(usr.incapacitated())
 		return
-	for(var/obj/item/O in contents)
-		seedify(O, 1)
 
 // -----------------------------
 //        Sheet Snatcher
@@ -274,7 +270,6 @@
 	STR.max_items = 7
 	STR.display_numerical_stacking = FALSE
 	STR.set_holdable(list(
-		/obj/item/book,
 		/obj/item/storage/book
 		))
 

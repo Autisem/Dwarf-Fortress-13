@@ -11,7 +11,6 @@ SUBSYSTEM_DEF(events)
 	var/frequency_lower = 1800	//3 minutes lower bound.
 	var/frequency_upper = 6000	//10 minutes upper bound. Basically an event will happen every 3 to 10 minutes.
 
-	var/list/holidays			//List of all holidays occuring today or null if no holidays
 	var/wizardmode = FALSE
 
 /datum/controller/subsystem/events/Initialize(time, zlevel)
@@ -21,7 +20,6 @@ SUBSYSTEM_DEF(events)
 			continue				//don't want this one! leave it for the garbage collector
 		control += E				//add it to the list of all events (controls)
 	reschedule()
-	getHoliday()
 	return ..()
 
 
@@ -149,32 +147,6 @@ SUBSYSTEM_DEF(events)
 //ALSO, MOST IMPORTANTLY: Don't add stupid stuff! Discuss bonus content with Project-Heads first please!//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 */
-
-//sets up the holidays and holidays list
-/datum/controller/subsystem/events/proc/getHoliday()
-	if(!CONFIG_GET(flag/allow_holidays))
-		return		// Holiday stuff was not enabled in the config!
-
-	var/YYYY = text2num(time2text(world.timeofday, "YYYY")) // get the current year
-	var/MM = text2num(time2text(world.timeofday, "MM")) 	// get the current month
-	var/DD = text2num(time2text(world.timeofday, "DD")) 	// get the current day
-	var/DDD = time2text(world.timeofday, "DDD")	// get the current weekday
-
-	for(var/H in subtypesof(/datum/holiday))
-		var/datum/holiday/holiday = new H()
-		if(holiday.shouldCelebrate(DD, MM, YYYY, DDD))
-			holiday.celebrate()
-			if(!holidays)
-				holidays = list()
-			holidays[holiday.name] = holiday
-		else
-			qdel(holiday)
-
-	if(holidays)
-		holidays = shuffle(holidays)
-		// regenerate station name because holiday prefixes.
-		set_station_name(new_station_name())
-		world.update_status()
 
 /datum/controller/subsystem/events/proc/toggleWizardmode()
 	wizardmode = !wizardmode

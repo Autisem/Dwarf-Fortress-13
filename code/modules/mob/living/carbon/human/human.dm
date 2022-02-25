@@ -663,9 +663,6 @@
 /mob/living/carbon/human/species/golem/bluespace
 	race = /datum/species/golem/bluespace
 
-/mob/living/carbon/human/species/golem/bananium
-	race = /datum/species/golem/bananium
-
 /mob/living/carbon/human/species/golem/blood_cult
 	race = /datum/species/golem/runic
 
@@ -722,12 +719,6 @@
 
 /mob/living/carbon/human/species/snail
 	race = /datum/species/snail
-
-/mob/living/carbon/human/species/synth
-	race = /datum/species/synth
-
-/mob/living/carbon/human/species/synth/military
-	race = /datum/species/synth/military
 
 /mob/living/carbon/human/species/zombie
 	race = /datum/species/zombie

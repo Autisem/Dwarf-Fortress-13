@@ -8,7 +8,7 @@
 	inhand_icon_state = "gas_alt"
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	flags_cover = MASKCOVERSEYES | MASKCOVERSMOUTH | PEPPERPROOF
+	flags_cover = MASKCOVERSEYES | MASKCOVERSMOUTH
 	resistance_flags = NONE
 	///Max numbers of installable filters
 	var/max_filters = 1
@@ -148,7 +148,6 @@
 	resistance_flags = FLAMMABLE
 	actions_types = list(/datum/action/item_action/adjust)
 	dog_fashion = /datum/dog_fashion/head/clown
-	species_exception = list(/datum/species/golem/bananium)
 	var/list/clownmask_designs = list()
 	has_fov = FALSE
 
@@ -194,7 +193,6 @@
 	inhand_icon_state = "sexyclown"
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
-	species_exception = list(/datum/species/golem/bananium)
 	has_fov = FALSE
 
 /obj/item/clothing/mask/gas/mime

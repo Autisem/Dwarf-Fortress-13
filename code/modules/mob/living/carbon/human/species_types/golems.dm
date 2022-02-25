@@ -525,112 +525,6 @@
 	//action icon looks available again
 	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), cooldown + 5)
 
-
-//honk
-/datum/species/golem/bananium
-	name = "бананиевый голем"
-	id = "bananium golem"
-	fixed_mut_color = "ff0"
-	say_mod = "хонкает"
-	inherent_traits = list(
-		TRAIT_RESISTHEAT,
-		TRAIT_NOBREATH,
-		TRAIT_RESISTCOLD,
-		TRAIT_RESISTHIGHPRESSURE,
-		TRAIT_RESISTLOWPRESSURE,
-		TRAIT_NOFIRE,
-		TRAIT_CHUNKYFINGERS,
-		TRAIT_CLUMSY,
-		TRAIT_RADIMMUNE,
-		TRAIT_GENELESS,
-		TRAIT_PIERCEIMMUNE,
-		TRAIT_NODISMEMBER,
-		TRAIT_CAN_STRIP,
-	)
-	punchdamagelow = 0
-	punchdamagehigh = 1
-	punchstunthreshold = 2 //Harmless and can't stun
-	meat = /obj/item/stack/ore/bananium
-	info_text = "Будучи <span class='danger'>бананиевым големом</span> я сделан для пранков. Моё тело издаёт звуки хонка, из-за чего мои удары почти не вредят остальным. При получении урона, моё тело кровоточит банановыми кожурами."
-	attack_verb = "ХОНКАЕТ"
-	attack_sound = 'sound/items/airhorn2.ogg'
-	prefix = "Бананиумовый"
-	special_names = null
-
-	/// Cooldown for producing honks
-	COOLDOWN_DECLARE(honkooldown)
-	/// Cooldown for producing bananas
-	COOLDOWN_DECLARE(banana_cooldown)
-	/// Time between possible banana productions
-	var/banana_delay = 10 SECONDS
-	/// Same as the uranium golem. I'm pretty sure this is vestigial.
-	var/active = FALSE
-
-/datum/species/golem/bananium/on_species_gain(mob/living/carbon/C, datum/species/old_species)
-	..()
-	COOLDOWN_START(src, honkooldown, 0)
-	COOLDOWN_START(src, banana_cooldown, banana_delay)
-	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
-	var/obj/item/organ/liver/liver = C.getorganslot(ORGAN_SLOT_LIVER)
-	if(liver)
-		ADD_TRAIT(liver, TRAIT_COMEDY_METABOLISM, SPECIES_TRAIT)
-
-/datum/species/golem/bananium/on_species_loss(mob/living/carbon/C)
-	. = ..()
-	UnregisterSignal(C, COMSIG_MOB_SAY)
-
-	var/obj/item/organ/liver/liver = C.getorganslot(ORGAN_SLOT_LIVER)
-	if(liver)
-		REMOVE_TRAIT(liver, TRAIT_COMEDY_METABOLISM, SPECIES_TRAIT)
-
-/datum/species/golem/bananium/random_name(gender, unique, lastname, en_lang)
-	var/clown_name = pick(GLOB.clown_names)
-	var/golem_name = "[uppertext(clown_name)]"
-	return golem_name
-
-/datum/species/golem/bananium/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
-	..()
-	if(COOLDOWN_FINISHED(src, banana_cooldown) && M != H && M.a_intent != INTENT_HELP)
-		new /obj/item/grown/bananapeel/specialpeel(get_turf(H))
-		COOLDOWN_START(src, banana_cooldown, banana_delay)
-
-/datum/species/golem/bananium/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
-	..()
-	if((user != H) && COOLDOWN_FINISHED(src, banana_cooldown))
-		new /obj/item/grown/bananapeel/specialpeel(get_turf(H))
-		COOLDOWN_START(src, banana_cooldown, banana_delay)
-
-/datum/species/golem/bananium/on_hit(obj/projectile/P, mob/living/carbon/human/H)
-	..()
-	if(COOLDOWN_FINISHED(src, banana_cooldown))
-		new /obj/item/grown/bananapeel/specialpeel(get_turf(H))
-		COOLDOWN_START(src, banana_cooldown, banana_delay)
-
-/datum/species/golem/bananium/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
-	..()
-	var/obj/item/I
-	if(istype(AM, /obj/item))
-		I = AM
-		if(I.thrownby == WEAKREF(H)) //No throwing stuff at yourself to make bananas
-			return 0
-		else
-			new/obj/item/grown/bananapeel/specialpeel(get_turf(H))
-			COOLDOWN_START(src, banana_cooldown, banana_delay)
-
-/datum/species/golem/bananium/spec_life(mob/living/carbon/human/H, delta_time, times_fired)
-	if(!active && COOLDOWN_FINISHED(src, honkooldown))
-		active = TRUE
-		playsound(get_turf(H), 'sound/items/bikehorn.ogg', 50, TRUE)
-		COOLDOWN_START(src, honkooldown, rand(2 SECONDS, 8 SECONDS))
-		active = FALSE
-	..()
-
-/datum/species/golem/bananium/spec_death(gibbed, mob/living/carbon/human/H)
-	playsound(get_turf(H), 'sound/misc/sadtrombone.ogg', 70, FALSE)
-
-/datum/species/golem/bananium/proc/handle_speech(datum/source, list/speech_args)
-	speech_args[SPEECH_SPANS] |= SPAN_CLOWN
-
 /datum/species/golem/runic
 	name = "рунический голем"
 	id = "runic golem"
@@ -690,11 +584,6 @@
 /datum/species/golem/cloth/on_species_loss(mob/living/carbon/C)
 	REMOVE_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 	..()
-
-/datum/species/golem/cloth/check_roundstart_eligible()
-	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
-		return TRUE
-	return ..()
 
 /datum/species/golem/cloth/random_name(gender,unique,lastname, en_lang = FALSE)
 	var/pharaoh_name = pick("Neferkare", "Hudjefa", "Khufu", "Mentuhotep", "Ahmose", "Amenhotep", "Thutmose", "Hatshepsut", "Tutankhamun", "Ramses", "Seti", \
@@ -1046,7 +935,6 @@
 		H.dropItemToGround(W)
 	for(var/i=1, i <= rand(3,5), i++)
 		new /obj/item/stack/sheet/mineral/snow(get_turf(H))
-	new /obj/item/food/grown/carrot(get_turf(H))
 	qdel(H)
 
 /datum/species/golem/mhydrogen

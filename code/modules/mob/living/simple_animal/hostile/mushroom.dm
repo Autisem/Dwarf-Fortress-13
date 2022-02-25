@@ -159,16 +159,7 @@
 		bruised = 1
 
 /mob/living/simple_animal/hostile/mushroom/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/food/grown/mushroom))
-		if(stat == DEAD && !recovery_cooldown)
-			Recover()
-			qdel(I)
-		else
-			to_chat(user, span_warning("[capitalize(src.name)] won't eat it!"))
-		return
-	if(I.force)
-		Bruise()
-	..()
+	. = ..()
 
 /mob/living/simple_animal/hostile/mushroom/attack_hand(mob/living/carbon/human/M)
 	..()

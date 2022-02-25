@@ -1,41 +1,15 @@
 /obj/item/seeds/tower
 	name = "Пачка мицелия древошляпника"
 	desc = "Этот мицелий вырастает в древошляпника."
-	icon_state = "mycelium-tower"
-	species = "towercap"
-	plantname = "Tower Caps"
-	product = /obj/item/grown/log
-	lifespan = 80
-	endurance = 50
-	maturation = 15
-	production = 1
-	yield = 5
-	potency = 50
-	growthstages = 3
-	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	icon_dead = "towercap-dead"
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
-	mutatelist = list(/obj/item/seeds/tower/steel)
-	reagents_add = list(/datum/reagent/cellulose = 0.05)
-	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism
 
 /obj/item/seeds/tower/steel
 	name = "Пачка мицелия металлошляпника"
 	desc = "Этот мицелий вырастает в металлические брёвна."
-	icon_state = "mycelium-steelcap"
-	species = "steelcap"
-	plantname = "Steel Caps"
-	product = /obj/item/grown/log/steel
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
-	mutatelist = list()
-	reagents_add = list(/datum/reagent/cellulose = 0.05, /datum/reagent/iron = 0.05)
-	rarity = 20
 
 
 
 
 /obj/item/grown/log
-	seed = /obj/item/seeds/tower
 	name = "Бревно древошляпника"
 	desc = "Это лучше, чем плохо, это хорошо!"
 	icon_state = "logs"
@@ -48,18 +22,12 @@
 	attack_verb_simple = list("колотит", "бьёт", "ударяет", "вмазывает")
 	var/plank_type = /obj/item/stack/sheet/mineral/wood
 	var/plank_name = "wooden planks"
-	var/static/list/accepted = typecacheof(list(/obj/item/food/grown/tobacco,
-	/obj/item/food/grown/tea,
-	/obj/item/food/grown/ambrosia/vulgaris,
-	/obj/item/food/grown/ambrosia/deus,
-	/obj/item/food/grown/wheat))
+	var/static/list/accepted = typecacheof(list())
 
 /obj/item/grown/log/attackby(obj/item/W, mob/user, params)
 	if(W.get_sharpness())
 		user.show_message(span_notice("Заготавливаю [plank_name] из <b>[src.name]</b>!") , MSG_VISUAL)
 		var/seed_modifier = 0
-		if(seed)
-			seed_modifier = round(seed.potency / 25)
 		var/obj/item/stack/plank = new plank_type(user.loc, 1 + seed_modifier)
 		var/old_plank_amount = plank.amount
 		for(var/obj/item/stack/ST in user.loc)
@@ -68,19 +36,6 @@
 		if(plank.amount > old_plank_amount)
 			to_chat(user, span_notice("Добавляю новую [plank_name] в кучу. Теперь тут [plank.amount] [plank_name]."))
 		qdel(src)
-
-	if(CheckAccepted(W))
-		var/obj/item/food/grown/leaf = W
-		if(HAS_TRAIT(leaf, TRAIT_DRIED))
-			user.show_message(span_notice("Оборачиваю [W] вокруг бревна и получаю факел!"))
-			var/obj/item/flashlight/flare/torch/T = new /obj/item/flashlight/flare/torch(user.loc)
-			usr.dropItemToGround(W)
-			usr.put_in_active_hand(T)
-			qdel(leaf)
-			qdel(src)
-			return
-		else
-			to_chat(usr, span_warning("Сначала надо высушить!"))
 	else
 		return ..()
 
@@ -88,12 +43,10 @@
 	return is_type_in_typecache(I, accepted)
 
 /obj/item/grown/log/tree
-	seed = null
 	name = "Деревянное бревно"
 	desc = "ДЕ-РЕ-ВО!"
 
 /obj/item/grown/log/steel
-	seed = /obj/item/seeds/tower/steel
 	name = "Металлическое бревно"
 	desc = "Это сделано из металла."
 	icon_state = "steellogs"
@@ -106,23 +59,8 @@
 /obj/item/seeds/bamboo
 	name = "Пачка семян бамбука"
 	desc = "Растение, знаменитое его быстрым ростом и ассоциацией с пандами."
-	icon_state = "seed-bamboo"
-	species = "bamboo"
-	plantname = "Bamboo"
-	product = /obj/item/grown/log/bamboo
-	lifespan = 80
-	endurance = 70
-	maturation = 15
-	production = 2
-	yield = 5
-	potency = 50
-	growthstages = 2
-	growing_icon = 'icons/obj/hydroponics/growing.dmi'
-	icon_dead = "bamboo-dead"
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
 
 /obj/item/grown/log/bamboo
-	seed = /obj/item/seeds/bamboo
 	name = "Бревно бамбука"
 	desc = "Длинное и прочное бамбуковое бревно."
 	icon_state = "bamboo"

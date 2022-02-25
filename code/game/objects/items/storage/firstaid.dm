@@ -156,7 +156,6 @@
 		return
 	var/static/items_inside = list(
 		/obj/item/reagent_containers/pill/patch/aiuri = 3,
-		/obj/item/reagent_containers/spray/hercuri = 1,
 		/obj/item/reagent_containers/hypospray/medipen/oxandrolone = 1,
 		/obj/item/reagent_containers/hypospray/medipen = 1)
 	generate_items_inside(items_inside,src)
@@ -583,12 +582,6 @@
 		if(units)
 			to_chat(user, span_notice("You transfer [units] units of the solution to [src]."))
 			return
-	if(istype(I, /obj/item/plunger))
-		to_chat(user, span_notice("You start furiously plunging [name]."))
-		if(do_after(user, 10, target = src))
-			to_chat(user, span_notice("You finish plunging the [name]."))
-			reagents.clear_reagents()
-		return
 	return ..()
 
 /obj/item/storage/organbox/suicide_act(mob/living/carbon/user)

@@ -286,7 +286,6 @@
 	return TRUE
 
 /obj/structure/reagent_dispensers/plumbed/ComponentInitialize()
-	AddComponent(/datum/component/plumbing/simple_supply)
 
 /obj/structure/reagent_dispensers/plumbed/storage
 	name = "стационарный бак"

@@ -91,7 +91,7 @@
 		return
 	switch(initial(R.true_name))
 		if("seeds")
-			for(var/seed in list(/obj/item/seeds/plump, /obj/item/seeds/tower))
+			for(var/seed in list(/obj/item/seeds/tower))
 				for(var/i in 1 to 2)
 					new seed(loc)
 		if("dwarf")

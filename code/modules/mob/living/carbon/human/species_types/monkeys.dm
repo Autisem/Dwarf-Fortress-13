@@ -93,8 +93,3 @@
 	if(H.radiation > RAD_MOB_MUTATE * 2 && prob(50))
 		H.gorillize()
 		return
-
-/datum/species/monkey/check_roundstart_eligible()
-	if(SSevents.holidays && SSevents.holidays[MONKEYDAY])
-		return TRUE
-	return ..()
