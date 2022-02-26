@@ -188,7 +188,7 @@
 	STR.max_combined_w_class = 100
 	STR.max_items = 100
 	STR.set_holdable(list(
-		/obj/item/seeds,
+		/obj/item/growable/seeds,
 		/obj/item/grown,
 		/obj/item/reagent_containers/honeycomb,
 		))

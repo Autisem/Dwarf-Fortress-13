@@ -1,14 +1,3 @@
-/obj/item/seeds/tower
-	name = "Пачка мицелия древошляпника"
-	desc = "Этот мицелий вырастает в древошляпника."
-
-/obj/item/seeds/tower/steel
-	name = "Пачка мицелия металлошляпника"
-	desc = "Этот мицелий вырастает в металлические брёвна."
-
-
-
-
 /obj/item/grown/log
 	name = "Бревно древошляпника"
 	desc = "Это лучше, чем плохо, это хорошо!"
@@ -55,11 +44,6 @@
 
 /obj/item/grown/log/steel/CheckAccepted(obj/item/I)
 	return FALSE
-
-/obj/item/seeds/bamboo
-	name = "Пачка семян бамбука"
-	desc = "Растение, знаменитое его быстрым ростом и ассоциацией с пандами."
-
 /obj/item/grown/log/bamboo
 	name = "Бревно бамбука"
 	desc = "Длинное и прочное бамбуковое бревно."

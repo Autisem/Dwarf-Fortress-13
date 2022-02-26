@@ -5,7 +5,7 @@
 // 	// var/max_water = 100
 // 	var/fertilizer_level = 100
 // 	var/max_fertilizer = 100
-// 	var/obj/item/seeds/seed
+// 	var/obj/item/growable/seeds/seed
 // 	var/list/allowed_seeds
 // 	icon = 'icons/obj/hydroponics/equipment.dmi'
 // 	icon_state = "soil"
@@ -13,15 +13,15 @@
 /obj/structure/farm_plot/muddy
 	name = "muddy plot"
 	desc = "A pile of mud collected together to grow cave plants in."
-	allowed_seeds = list()
+	allowed_species = list("sample")
 
 /obj/structure/farm_plot/soil
 	name = "soil plot"
 	desc = "A pile of dirt collected together to grow surface plants in."
-	allowed_seeds = list()
+	allowed_species = list()
 
 // /obj/structure/farm_plot/attackby(obj/item/I, mob/user, params)
-// 	if(istype(I, /obj/item/seeds))
+// 	if(istype(I, /obj/item/growable/seeds))
 // 		if(seed)
 // 			to_chat(user, span_warning("\A [seed] is already growing here!"))
 // 			return
@@ -44,11 +44,11 @@
 	var/fertlevel = 0
 	var/fertmax = 100
 	var/fertrate = 1
-	var/list/allowed_seeds
+	var/list/allowed_species
 	///Used for timing of cycles.
 	var/lastcycle = 0
 	///The currently planted seed
-	var/obj/item/seeds/myseed = null
+	var/obj/item/growable/seeds/myseed = null
 	///Have we been visited by a bee recently, so bees dont overpollinate one plant
 	// var/recent_bee_visit = FALSE
 	///The last user to add a reagent to the tray, mostly for logging purposes.
@@ -104,6 +104,8 @@
 		if(fertlevel)
 			time_until = time_until*0.8 // fertilizer makes plants grow 20% faster
 		if(world.time >= time_until && myseed.health>0)
+			if(myseed.growthstage == myseed.growthstages)
+				myseed.grow_harvestebles()
 			// Advance age
 			myseed.growthstage = clamp(myseed.growthstage+1, 1, myseed.growthstages)
 			myseed.age++
@@ -135,7 +137,7 @@
 		if(myseed.health <= 0 && !myseed.dead)
 			plantdies()
 
-		if(!(myseed.type in allowed_seeds))
+		if(!(myseed.type in allowed_species))
 			myseed.health-= rand(1,3)
 
 		// If the plant is too old, lose health fast
@@ -148,6 +150,8 @@
 	var/mutable_appearance/plant_overlay = mutable_appearance(myseed.growing_icon, layer = OBJ_LAYER + 0.01)
 	if(!myseed.health)
 		plant_overlay.icon_state = myseed.icon_dead
+	else if(length(myseed.harvestables))
+		plant_overlay.icon_state = "[myseed.icon_ripe]"
 	else
 		plant_overlay.icon_state = "[myseed.species][myseed.growthstage]"
 	return plant_overlay
@@ -173,7 +177,7 @@
 
 /obj/structure/farm_plot/attackby(obj/item/O, mob/user, params)
 	//Called when mob user "attacks" it with object O
-	if(istype(O, /obj/item/seeds))
+	if(istype(O, /obj/item/growable/seeds))
 		if(!myseed)
 			if(!user.transferItemToLoc(O, src))
 				return

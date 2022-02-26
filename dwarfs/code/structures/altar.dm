@@ -91,9 +91,10 @@
 		return
 	switch(initial(R.true_name))
 		if("seeds")
-			for(var/seed in list(/obj/item/seeds/tower))
-				for(var/i in 1 to 2)
-					new seed(loc)
+			to_chat(user, span_notice("No seeds!"))
+			// for(var/seed in list(/obj/item/seeds/tower))
+			// 	for(var/i in 1 to 2)
+			// 		new seed(loc)
 		if("dwarf")
 			active = TRUE
 			notify_ghosts("New dwarf is ready.", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Dwarf spawn available.")

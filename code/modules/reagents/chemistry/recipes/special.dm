@@ -11,9 +11,9 @@ GLOBAL_LIST_INIT(medicine_reagents, build_medicine_reagents())
 			.[r] += type
 		qdel(item)
 	//dang plant snowflake
-	for (var/type in subtypesof(/obj/item/seeds))
-		var/obj/item/seeds/item = new type()
-		qdel(item)
+	// for (var/type in subtypesof(/obj/item/seeds))
+	// 	var/obj/item/seeds/item = new type()
+	// 	qdel(item)
 
 ///Just grab every craftable medicine you can think off
 /proc/build_medicine_reagents()

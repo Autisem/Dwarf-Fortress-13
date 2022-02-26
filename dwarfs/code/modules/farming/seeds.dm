@@ -1,8 +1,4 @@
-// ********************************************************
-// Here's all the seeds (plants) that can be used in hydro
-// ********************************************************
-
-/obj/item/seeds
+/obj/item/growable/seeds
 	icon = 'dwarfs/icons/farming/seeds.dmi'
 	icon_state = "seed"				// Unknown plant seed - these shouldn't exist in-game.
 	worn_icon_state = "seed"
@@ -10,13 +6,14 @@
 	resistance_flags = FLAMMABLE
 	/// Name of plant when planted.
 	var/plantname = "Plants"
-	/// A type path. The thing that is created when the plant is harvested.
-	var/obj/item/product
-	var/list/harvestables
+	/// A type path. The thing that are grown in each growthstage of a plant
+	var/list/products = list()
+	/// list of products ready to be harvested
+	var/list/harvestables = list()
 	/// Used to update icons. Should match the name in the sprites unless all icon_* are overridden.
 	var/growing_icon = 'dwarfs/icons/farming/growing.dmi'
 	/// Used to override grow icon (default is `"[species]-grow"`). You can use one grow icon for multiple closely related plants with it.
-	var/icon_grow
+	var/icon_ripe
 	/// Used to override dead icon (default is `"[species]-dead"`). You can use one dead icon for multiple closely related plants with it.
 	var/icon_dead
 	var/species
@@ -37,41 +34,34 @@
 	/// to prevent spamming
 	var/dead = FALSE
 
-/obj/item/seeds/Initialize(mapload, nogenes = 0)
+/obj/item/growable/seeds/Initialize(mapload, nogenes = 0)
 	. = ..()
 	pixel_x = base_pixel_x + rand(-8, 8)
 	pixel_y = base_pixel_y + rand(-8, 8)
 
-	// if(!icon_grow)
-	// 	icon_grow = "[species]-grow"
+	if(!icon_ripe)
+		icon_ripe = "[species]-ripe"
 
 	if(!icon_dead)
 		icon_dead = "[species]-dead"
 
-/obj/item/seeds/proc/get_gene(typepath)
+/obj/item/growable/seeds/proc/get_gene(typepath)
 	return (locate(typepath) in genes)
 
-// Harvest procs
-/obj/item/seeds/proc/getYield(mob/living/user)
-	var/return_yield = yield
-
-	return return_yield
-
-
-/obj/item/seeds/proc/harvest(mob/user)
+/obj/item/growable/seeds/proc/harvest(mob/user)
 	return
 /// Setters procs ///
 
 /**
  * Adjusts seed lifespan up or down according to adjustamt. (Max 100)
  */
-/obj/item/seeds/proc/adjust_lifespan(adjustamt)
+/obj/item/growable/seeds/proc/adjust_lifespan(adjustamt)
 	lifespan = clamp(lifespan + adjustamt, 10, MAX_PLANT_LIFESPAN)
 
 /**
  * Adjusts seed health up or down according to adjustamt. (Max 100)
  */
-/obj/item/seeds/proc/adjust_health(adjustamt)
+/obj/item/growable/seeds/proc/adjust_health(adjustamt)
 	health = clamp(health + adjustamt, MIN_PLANT_ENDURANCE, MAX_PLANT_ENDURANCE)
 
 //Directly setting stats
@@ -79,7 +69,7 @@
 /**
  * Sets the plant's yield stat to the value of adjustamt. (Max 10, or 5 with some traits)
  */
-/obj/item/seeds/proc/set_yield(adjustamt)
+/obj/item/growable/seeds/proc/set_yield(adjustamt)
 	if(yield != -1) // Unharvestable shouldn't suddenly turn harvestable
 		/// Our plant's max yield
 		var/max_yield = MAX_PLANT_YIELD
@@ -89,27 +79,32 @@
 /**
  * Sets the plant's lifespan stat to the value of adjustamt. (Max 100)
  */
-/obj/item/seeds/proc/set_lifespan(adjustamt)
+/obj/item/growable/seeds/proc/set_lifespan(adjustamt)
 	lifespan = clamp(adjustamt, 10, MAX_PLANT_LIFESPAN)
 
 /**
  * Sets the plant's health stat to the value of adjustamt. (Max 100)
  */
-/obj/item/seeds/proc/set_health(adjustamt)
+/obj/item/growable/seeds/proc/set_health(adjustamt)
 	health = clamp(adjustamt, MIN_PLANT_ENDURANCE, MAX_PLANT_ENDURANCE)
-
-/*
- * Both `/item/food/grown` and `/item/grown` implement a seed variable which tracks
- * plant statistics, genes, traits, etc. This proc gets the seed for either grown food or
- * grown inedibles and returns it, or returns null if it's not a plant.
- *
- * Returns an `/obj/item/seeds` ref for grown foods or grown inedibles.
- *  - returned seed CAN be null in weird cases but in all applications it SHOULD NOT be.
- * Returns null if it is not a plant.
- */
 
 // /obj/item/food/grown/get_plant_seed()
 // 	return seed
 
 // /obj/item/grown/get_plant_seed()
 // 	return seed
+
+/obj/item/growable/seeds/proc/grow_harvestebles()
+	if(growthstage in products)
+
+
+	harvestables.Add(/obj/item/growable/seeds/sample)
+
+/obj/item/growable/seeds/crop
+	name = "crop seed"
+
+/obj/item/growable/seeds/tree
+	name = "tree seed"
+
+/obj/item/growable/seeds/grass
+	name = "grass seed"
