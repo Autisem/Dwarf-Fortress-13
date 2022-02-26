@@ -21,7 +21,7 @@
 
 /// -- Hydroponics tray defines. --
 /// Macro for updating the tray name.
-#define TRAY_NAME_UPDATE name = myseed ? "[initial(name)] ([myseed.plantname])" : initial(name)
+#define TRAY_NAME_UPDATE name = myplant ? "[initial(name)] ([initial(myplant.name)])" : initial(name)
 ///  Base amount of nutrients a tray can old.
 #define STATIC_NUTRIENT_CAPACITY 10
 /// Maximum amount of toxins a tray can reach.

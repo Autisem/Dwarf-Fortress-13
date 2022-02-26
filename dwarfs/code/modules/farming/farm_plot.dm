@@ -45,10 +45,8 @@
 	var/fertmax = 100
 	var/fertrate = 1
 	var/list/allowed_species
-	///Used for timing of cycles.
-	var/lastcycle = 0
-	///The currently planted seed
-	var/obj/item/growable/seeds/myseed = null
+	///The currently planted plant
+	var/obj/structure/plant/myplant = null
 	///Have we been visited by a bee recently, so bees dont overpollinate one plant
 	// var/recent_bee_visit = FALSE
 	///The last user to add a reagent to the tray, mostly for logging purposes.
@@ -58,8 +56,8 @@
 /obj/structure/farm_plot/examine(mob/user)
 	. = ..()
 	.+="<hr>"
-	if(myseed)
-		.+="There is \a [myseed.plantname] growing here."
+	if(myplant)
+		.+="There is \a [myplant] growing here."
 	else
 		.+="It's empty."
 	var/fert_text = "<br>"
@@ -85,107 +83,25 @@
 	// 		water_text+="Looks extremely dry."
 	// .+=water_text
 
-/obj/structure/farm_plot/Initialize()
-	. = ..()
-	START_PROCESSING(SSprocessing, src)
-
 /obj/structure/farm_plot/Destroy()
-	if(myseed)
-		QDEL_NULL(myseed)
-	STOP_PROCESSING(SSprocessing, src)
+	if(myplant)
+		QDEL_NULL(myplant)
 	return ..()
 
-/obj/structure/farm_plot/process(delta_time)
-	var/needs_update = 0 // Checks if the icon needs updating so we don't redraw empty trays every time
-	if(myseed)
-		if(myseed.loc != src)
-			myseed.forceMove(src)
-		var/time_until = lastcycle+myseed.growth_delta // time to advance age
-		if(fertlevel)
-			time_until = time_until*0.8 // fertilizer makes plants grow 20% faster
-		if(world.time >= time_until && myseed.health>0)
-			if(myseed.growthstage == myseed.growthstages)
-				myseed.grow_harvestebles()
-			// Advance age
-			myseed.growthstage = clamp(myseed.growthstage+1, 1, myseed.growthstages)
-			myseed.age++
-			lastcycle = world.time
-			needs_update = 1
-
-
-//Fertilizer//////////////////////////////////////////////////////////////
-			// Fertilizer depletes at a constant rate, since new nutrients can boost stats far easier.
-			fertlevel = clamp(fertlevel-fertrate, 0, fertmax)
-
-//Water//////////////////////////////////////////////////////////////////
-			// // Drink random amount of water
-			// waterlevel = clamp(waterlevel-waterrate, 0, watermax)
-
-			// // If the plant is dry, it loses health pretty fast
-			// if(waterlevel <= 10)
-			// 	adjustHealth(-rand(0,1) / rating)
-			// 	if(waterlevel <= 0)
-			// 		adjustHealth(-rand(0,2) / rating)
-
-			// // Sufficient water level and nutrient level = plant healthy
-			// else if(waterlevel > 10 && reagents.total_volume > 0)
-			// 	adjustHealth(rand(1,2) / rating)
-
-//Health & Age///////////////////////////////////////////////////////////
-
-		// Plant dies if plant_health <= 0
-		if(myseed.health <= 0 && !myseed.dead)
-			plantdies()
-
-		if(!(myseed.type in allowed_species))
-			myseed.health-= rand(1,3)
-
-		// If the plant is too old, lose health fast
-		if(myseed.age > myseed.lifespan)
-			myseed.health-= rand(1,3)
-		if (needs_update)
-			update_appearance()
-
-/obj/structure/farm_plot/proc/update_plant_overlay()
-	var/mutable_appearance/plant_overlay = mutable_appearance(myseed.growing_icon, layer = OBJ_LAYER + 0.01)
-	if(!myseed.health)
-		plant_overlay.icon_state = myseed.icon_dead
-	else if(length(myseed.harvestables))
-		plant_overlay.icon_state = "[myseed.icon_ripe]"
-	else
-		plant_overlay.icon_state = "[myseed.species][myseed.growthstage]"
-	return plant_overlay
-
-/obj/structure/farm_plot/update_overlays()
-	. = ..()
-	if(myseed)
-		.+=update_plant_overlay()
-
-/obj/structure/farm_plot/update_appearance(updates)
-	. = ..()
-	update_overlays()
-
-/**
- * Plant Death Proc.
- * Cleans up various stats for the plant upon death, including pests, harvestability, and plant health.
- */
-/obj/structure/farm_plot/proc/plantdies()
-	src.visible_message(span_warning("[myseed.plantname] dies!"))
-	myseed.health = 0
-	myseed.dead = TRUE
-	update_appearance()
 
 /obj/structure/farm_plot/attackby(obj/item/O, mob/user, params)
 	//Called when mob user "attacks" it with object O
 	if(istype(O, /obj/item/growable/seeds))
-		if(!myseed)
+		if(!myplant)
+			var/obj/item/growable/seeds/S = O
 			if(!user.transferItemToLoc(O, src))
 				return
 			to_chat(user, span_notice("You plant [O]."))
-			myseed = O
+			var/obj/structure/plant/P = new S.planttype(loc)
+			myplant = P
+			P.plot = src
 			TRAY_NAME_UPDATE
-			lastcycle = world.time
-			update_appearance()
+			myplant.update_appearance()
 			return
 		else
 			to_chat(user, span_warning("[capitalize(src.name)] already has seeds in it!"))
@@ -194,12 +110,10 @@
 	else if(istype(O, /obj/item/shovel/spade))
 		user.visible_message(span_notice("[user] starts digging out [src]'s plants...") ,
 			span_notice("You start digging out [src]'s plants..."))
-		if(O.use_tool(src, user, 50, volume=50) || !myseed)
+		if(O.use_tool(src, user, 50, volume=50) || !myplant)
 			user.visible_message(span_notice("[user] digs out the plants in [src]!") , span_notice("You dig out all of [src]'s plants!"))
-			if(myseed) //Could be that they're just using it as a de-weeder
-				myseed.age = 0
-				myseed.health = 0
-				QDEL_NULL(myseed)
+			if(myplant) //Could be that they're just using it as a de-weeder
+				QDEL_NULL(myplant)
 				name = initial(name)
 				desc = initial(desc)
 			update_appearance()
@@ -211,15 +125,12 @@
 	. = ..()
 	if(.)
 		return
-	if(myseed)
-		if(length(myseed.harvestables))
-			return myseed.harvest(user)
-
-	else if(!myseed.health)
-		to_chat(user, span_notice("You remove the dead plant from [src]."))
-		QDEL_NULL(myseed)
-		update_appearance()
-		TRAY_NAME_UPDATE
+	if(myplant)
+		if(myplant.dead)
+			to_chat(user, span_notice("You remove the dead plant from [src]."))
+			QDEL_NULL(myplant)
+			update_appearance()
+			TRAY_NAME_UPDATE
 	else
 		if(user)
 			user.examinate(src)
