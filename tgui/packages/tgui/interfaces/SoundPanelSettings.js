@@ -20,79 +20,79 @@ export const SoundPanelSettings = (props, context) => {
     <Window
       width={250}
       height={430}
-      title="Настройки звука">
+      title="Sound settings">
       <Window.Content>
-        <Section title="Основное">
+        <Section title="Main">
           <Button
             icon={midi ? 'volume-up' : 'volume-mute'}
             color={midi ? 'green' : 'transparent'}
-            content="Админские мидис"
+            content="Admin midis"
             fluid
             onClick={() => act('midi')} />
           <Button
             icon={lobby ? 'volume-up' : 'volume-mute'}
             color={lobby ? 'green' : 'transparent'}
-            content="Музыка в лобби"
+            content="Lobby music"
             fluid
             onClick={() => act('lobby')} />
           <Button
             icon={instruments ? 'volume-up' : 'volume-mute'}
             color={instruments ? 'green' : 'transparent'}
-            content="Музыкальные инструменты"
+            content="Music instruments"
             fluid
             onClick={() => act('instruments')} />
           <Button
             icon={announcements ? 'volume-up' : 'volume-mute'}
             color={announcements ? 'green' : 'transparent'}
-            content="Оповещения (Announcements)"
+            content="Announcements"
             fluid
             onClick={() => act('announcements')} />
           <Button
             icon={endofround ? 'volume-up' : 'volume-mute'}
             color={endofround ? 'green' : 'transparent'}
-            content="Звук конца раунда"
+            content="Endround sound"
             fluid
             onClick={() => act('endofround')} />
           <Button
             icon={jukebox ? 'volume-up' : 'volume-mute'}
             color={jukebox ? 'green' : 'transparent'}
-            content="Музыкальный автомат"
+            content="Jukebox"
             fluid
             onClick={() => act('jukebox')} />
           <Button
             icon={ambience ? 'volume-up' : 'volume-mute'}
             color={ambience ? 'green' : 'transparent'}
-            content="Окружение (Ambience)"
+            content="Ambience"
             fluid
             onClick={() => act('ambience')} />
           <Button
             icon={ship_ambience ? 'volume-up' : 'volume-mute'}
             color={ship_ambience ? 'green' : 'transparent'}
-            content="Шум корабля (Ambience)"
+            content="Ship Ambience"
             fluid
             onClick={() => act('ship_ambience')} />
           <Button
             icon="wrench"
-            content="Настроить Battletension"
+            content="Battletension Settings"
             fluid
             onClick={() => act('bt_customize')} />
           <Button
             icon="play"
-            content="Следующий Battletension"
+            content="Next Battletension"
             fluid
             onClick={() => act('switch_track')} />
         </Section>
-        <Section title="Педальное">
+        <Section title="Admin">
           <Button
             icon={adminhelp ? 'volume-up' : 'volume-mute'}
             color={adminhelp ? 'green' : 'transparent'}
-            content="Ахелпы"
+            content="Ahelps"
             fluid
             onClick={() => act('adminhelp')} />
           <Button
             icon={prayers ? 'volume-up' : 'volume-mute'}
             color={prayers ? 'green' : 'transparent'}
-            content="Молитвы"
+            content="Prayers"
             fluid
             onClick={() => act('prayers')} />
         </Section>

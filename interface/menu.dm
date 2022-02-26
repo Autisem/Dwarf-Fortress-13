@@ -63,20 +63,20 @@ GLOBAL_LIST_EMPTY(menulist)
 		return
 	M.Set_checked(src, verbpath)
 
-/datum/verbs/menu/help
-	name = "Помощь"
+// /datum/verbs/menu/help
+// 	name = "Help"
 
-/datum/verbs/menu/help/verb/wiki()
-	set name = "Вики"
-	set desc = "Вики"
-	usr.client.wiki()
+// /datum/verbs/menu/help/verb/wiki()
+// 	set name = "Вики"
+// 	set desc = "Вики"
+// 	usr.client.wiki()
 
-/datum/verbs/menu/help/verb/discord()
-	set name = "Discord"
-	set desc = "Discord"
-	usr.client.forum()
+// /datum/verbs/menu/help/verb/discord()
+// 	set name = "Discord"
+// 	set desc = "Discord"
+// 	usr.client.forum()
 
-/datum/verbs/menu/help/verb/donate()
-	set name = "Магазин"
-	set desc = "Магазин"
-	usr.client.new_donates_panel()
+// /datum/verbs/menu/help/verb/donate()
+// 	set name = "Магазин"
+// 	set desc = "Магазин"
+// 	usr.client.new_donates_panel()

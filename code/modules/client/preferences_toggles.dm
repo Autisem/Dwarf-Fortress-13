@@ -4,7 +4,7 @@
 //Example usage TOGGLE_CHECKBOX(datum/verbs/menu/settings/Ghost/chatterbox, toggle_ghost_ears)()
 
 /datum/verbs/menu/settings
-	name = "Настройки"
+	name = "Settings"
 
 //override because we don't want to save preferences twice.
 /datum/verbs/menu/settings/Set_checked(client/C, verbpath)
@@ -17,20 +17,20 @@
 
 /datum/verbs/menu/settings/verb/setup_character()
 	set name = " ! Main"
-	set category = "Настройки"
+	set category = "Settings"
 	set desc = "Main"
 	usr.client.prefs.current_tab = 2
 	usr.client.prefs.ShowChoices(usr)
 
 /datum/verbs/menu/settings/verb/setup_sound()
 	set name = " ! Sound"
-	set category = "Настройки"
+	set category = "Settings"
 	set desc = "Sound"
 	new /datum/sound_panel(usr)
 
 /datum/verbs/menu/settings/verb/setup_chat()
 	set name = " ! Chat"
-	set category = "Настройки"
+	set category = "Settings"
 	set desc = "Chat"
 	new /datum/chat_settings_panel(usr)
 
@@ -98,10 +98,10 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	set name = "Вид других призраков"
 	set category = null
 	set desc = "Change display settings for the ghosts of other players."
-	var/new_ghost_others = tgui_alert(usr, "Хочешь изменить других призраков или же просто убрать их побрякушки?",,list("Их настройки", "Стандартные спрайты", "Белые призраки"))
+	var/new_ghost_others = tgui_alert(usr, "Хочешь изменить других призраков или же просто убрать их побрякушки?",,list("Их Settings", "Стандартные спрайты", "Белые призраки"))
 	if(new_ghost_others)
 		switch(new_ghost_others)
-			if("Их настройки")
+			if("Их Settings")
 				prefs.ghost_others = GHOST_OTHERS_THEIR_SETTING
 			if("Стандартные спрайты")
 				prefs.ghost_others = GHOST_OTHERS_DEFAULT_SPRITE
@@ -147,7 +147,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 //Admin Preferences
 /client/proc/toggleadminhelpsound()
 	set name = "Hear/Silence Adminhelps"
-	set category = "Настройки.Адм"
+	set category = "Settings.Адм"
 	set desc = "Toggle hearing a notification when admin PMs are received"
 	if(!holder)
 		return
@@ -158,7 +158,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 
 /client/proc/toggleannouncelogin()
 	set name = "Do/Don't Announce Login"
-	set category = "Настройки.Адм"
+	set category = "Settings.Адм"
 	set desc = "Toggle if you want an announcement to admins when you login during a round"
 	if(!holder)
 		return
@@ -169,7 +169,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 
 /client/proc/toggle_hear_radio()
 	set name = "Show/Hide Radio Chatter"
-	set category = "Настройки.Адм"
+	set category = "Settings.Адм"
 	set desc = "Toggle seeing radiochatter from nearby radios and speakers"
 	if(!holder)
 		return
@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 
 /client/proc/deadchat()
 	set name = "Show/Hide Deadchat"
-	set category = "Настройки.Адм"
+	set category = "Settings.Адм"
 	set desc ="Toggles seeing deadchat"
 	if(!holder)
 		return
@@ -191,7 +191,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 
 /client/proc/toggleprayers()
 	set name = "Show/Hide Prayers"
-	set category = "Настройки.Адм"
+	set category = "Settings.Адм"
 	set desc = "Toggles seeing prayers"
 	if(!holder)
 		return
@@ -202,7 +202,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 
 /client/proc/toggle_prayer_sound()
 	set name = "Hear/Silence Prayer Sounds"
-	set category = "Настройки.Адм"
+	set category = "Settings.Адм"
 	set desc = "Hear Prayer Sounds"
 	if(!holder)
 		return
@@ -213,7 +213,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 
 /client/proc/colorasay()
 	set name = "Set Admin Say Color"
-	set category = "Настройки.Адм"
+	set category = "Settings.Адм"
 	set desc = "Set the color of your ASAY messages"
 	if(!holder)
 		return
@@ -230,7 +230,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 /client/proc/resetasaycolor()
 	set name = "Reset your Admin Say Color"
 	set desc = "Returns your ASAY Color to default"
-	set category = "Настройки.Адм"
+	set category = "Settings.Адм"
 	if(!holder)
 		return
 	if(!CONFIG_GET(flag/allow_admin_asaycolor))

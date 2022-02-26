@@ -42,11 +42,11 @@ export const ChatSettingsPanel = (props, context) => {
   });
   return (
     <Window
-      title="Настройка чата"
+      title="Chat Settings"
       width={250}
       height={460}>
       <Window.Content scrollable>
-        <Section title="Основное">
+        <Section title="Main">
           {chat.map(a => (
             <Button
               fluid
@@ -68,7 +68,7 @@ export const ChatSettingsPanel = (props, context) => {
               onClick={() => act(a.type, { key: a.key })} />
           ))}
         </Section>
-        <Section title="Призрак">
+        <Section title="Ghost">
           {ghost.map(a => (
             <Button
               fluid

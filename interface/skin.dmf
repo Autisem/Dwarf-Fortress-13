@@ -10,33 +10,33 @@ macro "default"
 
 menu "menu"
 	elem
-		name = "&Меню"
+		name = "&Menu"
 		command = ""
 		saved-params = "is-checked"
 	elem
-		name = "&Скриншот\tF2"
+		name = "&Quick Screenshot\tF2"
 		command = ".screenshot auto"
-		category = "&Меню"
+		category = "&Menu"
 		saved-params = "is-checked"
 	elem
-		name = "&Сделать скриншот...\tShift+F2"
+		name = "&Save Screenshot...\tShift+F2"
 		command = ".screenshot"
-		category = "&Меню"
+		category = "&Menu"
 		saved-params = "is-checked"
 	elem
 		name = ""
 		command = ""
-		category = "&Меню"
+		category = "&Menu"
 		saved-params = "is-checked"
 	elem "reconnectbutton"
-		name = "&Переподключиться"
+		name = "&Reconnect"
 		command = ".reconnect"
-		category = "&Меню"
+		category = "&Menu"
 		saved-params = "is-checked"
 	elem
-		name = "&Выход\tAlt-F4"
+		name = "&Exit\tAlt-F4"
 		command = ".quit"
-		category = "&Меню"
+		category = "&Menu"
 		saved-params = "is-checked"
 
 
