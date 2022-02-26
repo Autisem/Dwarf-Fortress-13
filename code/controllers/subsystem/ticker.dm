@@ -435,16 +435,17 @@ SUBSYSTEM_DEF(ticker)
 		L.notransform = FALSE
 
 /datum/controller/subsystem/ticker/proc/send_tip_of_the_round()
-	var/m
-	if(selected_tip)
-		m = selected_tip
-	else
-		var/list/randomtips = world.file2list("strings/tips.txt")
-		var/list/memetips = world.file2list("strings/sillytips.txt")
-		if(randomtips.len && prob(95))
-			m = pick(randomtips)
-		else if(memetips.len)
-			m = pick(memetips)
+	return
+	// var/m
+	// if(selected_tip)
+	// 	m = selected_tip
+	// else
+	// 	var/list/randomtips = world.file2list("strings/tips.txt")
+	// 	var/list/memetips = world.file2list("strings/sillytips.txt")
+	// 	if(randomtips.len && prob(95))
+	// 		m = pick(randomtips)
+	// 	else if(memetips.len)
+	// 		m = pick(memetips)
 
 	// if(m)
 	// 	to_chat(world, span_purple("<b>Заметка: </b>[html_encode(m)]"))

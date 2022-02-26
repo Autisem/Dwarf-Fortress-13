@@ -36,13 +36,13 @@
 			to_chat(src, span_danger("LOOC disabled."))
 			return
 		if(!GLOB.dlooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, span_danger("LOOC для мёртвых не разрешен."))
+			to_chat(usr, span_danger("LOOC disabled for ghosts."))
 			return
 		if(prefs.muted & MUTE_LOOC)
-			to_chat(src, span_danger("Не хочу писать в LOOC."))
+			to_chat(src, span_danger("You are muted from LOOC."))
 			return
 		if(is_banned_from(ckey, "OOC"))
-			to_chat(src, span_danger("Точно не хочу писать в LOOC."))
+			to_chat(src, span_danger("You are banned form OOC."))
 			return
 
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
@@ -120,4 +120,4 @@
 			return
 	else //otherwise just toggle it
 		GLOB.looc_allowed = !GLOB.looc_allowed
-	message_admins(span_bold("LOOC [GLOB.looc_allowed ? "включен" : "выключен"]."))
+	message_admins(span_bold("LOOC [GLOB.looc_allowed ? "enabled" : "disabled"]."))

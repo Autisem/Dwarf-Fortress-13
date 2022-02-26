@@ -167,20 +167,10 @@
 /obj/machinery/torch_fixture,
 /turf/open/floor/stone/raw,
 /area/dwarf/fortress)
-"mn" = (
-/obj/structure/table/stone,
-/obj/item/food/grown/mushroom/plumphelmet,
-/obj/item/food/grown/mushroom/plumphelmet,
-/turf/open/floor/stone,
-/area/dwarf/fortress)
 "ns" = (
 /obj/structure/table/stone,
 /obj/item/clothing/mask/cigarette/pipe,
 /turf/open/floor/stone,
-/area/dwarf/fortress)
-"nC" = (
-/obj/structure/fermenting_barrel,
-/turf/open/floor/stone/raw,
 /area/dwarf/fortress)
 "nG" = (
 /obj/machinery/torch_fixture{
@@ -258,7 +248,7 @@
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "uV" = (
-/obj/machinery/hydroponics/soil,
+/obj/structure/farm_plot/muddy,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "vf" = (
@@ -360,17 +350,6 @@
 /obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
-"Gu" = (
-/obj/structure/closet/crate/wooden,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/wheat,
-/obj/item/seeds/wheat,
-/obj/item/seeds/ambrosia/gaia,
-/obj/item/seeds/grape,
-/obj/item/seeds/grape,
-/turf/open/floor/stone,
-/area/dwarf/fortress)
 "GJ" = (
 /obj/structure/bed,
 /turf/open/floor/stone,
@@ -418,17 +397,7 @@
 /area/dwarf/fortress)
 "QJ" = (
 /obj/structure/table/stone,
-/obj/item/cultivator/rake,
 /obj/item/shovel/spade,
-/turf/open/floor/stone,
-/area/dwarf/fortress)
-"Sb" = (
-/obj/structure/closet/crate/wooden,
-/obj/item/seeds/plump,
-/obj/item/seeds/plump,
-/obj/item/seeds/cotton,
-/obj/item/seeds/cotton,
-/obj/item/seeds/tobacco,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "Sc" = (
@@ -91592,7 +91561,7 @@ nV
 el
 lW
 lZ
-mn
+oI
 el
 gc
 gc
@@ -92097,7 +92066,7 @@ nV
 nV
 nV
 cK
-nC
+iq
 gc
 iq
 cK
@@ -92349,7 +92318,7 @@ nV
 nV
 nV
 cK
-nC
+iq
 oN
 qu
 cK
@@ -92605,7 +92574,7 @@ el
 el
 cK
 el
-Sb
+gr
 gc
 gc
 iq
@@ -92857,7 +92826,7 @@ nV
 nV
 nV
 el
-Gu
+gr
 gc
 II
 gc

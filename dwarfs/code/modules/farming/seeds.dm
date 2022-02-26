@@ -3,7 +3,7 @@
 // ********************************************************
 
 /obj/item/seeds
-	icon = 'dwarfs/icons/faming/seeds.dmi'
+	icon = 'dwarfs/icons/farming/seeds.dmi'
 	icon_state = "seed"				// Unknown plant seed - these shouldn't exist in-game.
 	worn_icon_state = "seed"
 	w_class = WEIGHT_CLASS_TINY
@@ -12,38 +12,38 @@
 	var/plantname = "Plants"
 	/// A type path. The thing that is created when the plant is harvested.
 	var/obj/item/product
+	var/list/harvestables
 	/// Used to update icons. Should match the name in the sprites unless all icon_* are overridden.
-	var/growing_icon = 'icons/obj/hydroponics/growing.dmi'
+	var/growing_icon = 'dwarfs/icons/farming/growing.dmi'
 	/// Used to override grow icon (default is `"[species]-grow"`). You can use one grow icon for multiple closely related plants with it.
 	var/icon_grow
 	/// Used to override dead icon (default is `"[species]-dead"`). You can use one dead icon for multiple closely related plants with it.
 	var/icon_dead
 	var/species
-	/// Used to override harvest icon (default is `"[species]-harvest"`). If null, plant will use `[icon_grow][growthstages]`.
-	var/icon_harvest
 	/// How long before the plant begins to take damage from age.
 	var/lifespan = 25
+	var/age = 1
 	/// Amount of health the plant has.
 	var/health = 15
 	/// Used to determine which sprite to switch to when growing.
 	var/growth_delta = 1 MINUTES
-	/// Changes the amount of time needed for a plant to become harvestable.
-	var/production = 6
 	/// Amount of growns created per harvest. If is -1, the plant/shroom/weed is never meant to be harvested.
 	var/yield = 3
-	var/growthstage = 0
+	var/growthstage = 1
 	/// Amount of growth sprites the plant has.
-	var/growthstages = 6
+	var/growthstages = 5
 	/// Plant genes are stored here, see plant_genes.dm for more info.
 	var/list/genes = list()
+	/// to prevent spamming
+	var/dead = FALSE
 
 /obj/item/seeds/Initialize(mapload, nogenes = 0)
 	. = ..()
 	pixel_x = base_pixel_x + rand(-8, 8)
 	pixel_y = base_pixel_y + rand(-8, 8)
 
-	if(!icon_grow)
-		icon_grow = "[species]-grow"
+	// if(!icon_grow)
+	// 	icon_grow = "[species]-grow"
 
 	if(!icon_dead)
 		icon_dead = "[species]-dead"

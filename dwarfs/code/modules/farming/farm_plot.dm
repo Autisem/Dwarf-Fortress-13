@@ -10,15 +10,15 @@
 // 	icon = 'icons/obj/hydroponics/equipment.dmi'
 // 	icon_state = "soil"
 
-// /obj/structure/farm_plot/muddy
-// 	name = "muddy plot"
-// 	desc = "A pile of mud collected together to grow cave plants in."
-// 	allowed_seeds = list()
+/obj/structure/farm_plot/muddy
+	name = "muddy plot"
+	desc = "A pile of mud collected together to grow cave plants in."
+	allowed_seeds = list()
 
-// /obj/structure/farm_plot/soil
-// 	name = "soil plot"
-// 	desc = "A pile of dirt collected together to grow surface plants in."
-// 	allowed_seeds = list()
+/obj/structure/farm_plot/soil
+	name = "soil plot"
+	desc = "A pile of dirt collected together to grow surface plants in."
+	allowed_seeds = list()
 
 // /obj/structure/farm_plot/attackby(obj/item/I, mob/user, params)
 // 	if(istype(I, /obj/item/seeds))
@@ -34,7 +34,7 @@
 /obj/structure/farm_plot
 	name = "hydroponics tray"
 	icon = 'icons/obj/hydroponics/equipment.dmi'
-	icon_state = "hydrotray"
+	icon_state = "soil"
 	anchored = TRUE
 	pixel_z = 8
 	///The amount of water in the tray (max 100)
@@ -45,20 +45,8 @@
 	var/fertmax = 100
 	var/fertrate = 1
 	var/list/allowed_seeds
-	///Current age
-	var/age = 0
-	///Is it dead?
-	var/dead = FALSE
-	///Its health
-	var/plant_health
-	///Last time it was harvested
-	var/lastproduce = 0
 	///Used for timing of cycles.
 	var/lastcycle = 0
-	///About 10 seconds / cycle
-	var/cycledelay = 200
-	///Ready to harvest?
-	var/harvest = FALSE
 	///The currently planted seed
 	var/obj/item/seeds/myseed = null
 	///Have we been visited by a bee recently, so bees dont overpollinate one plant
@@ -84,6 +72,7 @@
 			fert_text+="There is almost no fertilizer in it."
 		else
 			fert_text+="There is no fertilizer in it."
+	.+=fert_text
 	// var/water_text = "<br>"
 	// switch(waterlevel)
 	// 	if(60 to 100)
@@ -94,7 +83,6 @@
 	// 		water_text+="Looks a bit dry."
 	// 	else
 	// 		water_text+="Looks extremely dry."
-	.+=fert_text
 	// .+=water_text
 
 /obj/structure/farm_plot/Initialize()
@@ -109,16 +97,17 @@
 
 /obj/structure/farm_plot/process(delta_time)
 	var/needs_update = 0 // Checks if the icon needs updating so we don't redraw empty trays every time
-
-	if(myseed && (myseed.loc != src))
-		myseed.forceMove(src)
-
-	if(world.time >= (lastcycle + cycledelay))
-		lastcycle = world.time
-		if(myseed && !dead)
+	if(myseed)
+		if(myseed.loc != src)
+			myseed.forceMove(src)
+		var/time_until = lastcycle+myseed.growth_delta // time to advance age
+		if(fertlevel)
+			time_until = time_until*0.8 // fertilizer makes plants grow 20% faster
+		if(world.time >= time_until && myseed.health>0)
 			// Advance age
-			age++
-
+			myseed.growthstage = clamp(myseed.growthstage+1, 1, myseed.growthstages)
+			myseed.age++
+			lastcycle = world.time
 			needs_update = 1
 
 
@@ -142,50 +131,45 @@
 
 //Health & Age///////////////////////////////////////////////////////////
 
-			// Plant dies if plant_health <= 0
-			if(plant_health <= 0)
-				plantdies()
+		// Plant dies if plant_health <= 0
+		if(myseed.health <= 0 && !myseed.dead)
+			plantdies()
 
-			// If the plant is too old, lose health fast
-			if(age > myseed.lifespan)
-				adjustHealth(-rand(1,3))
+		if(!(myseed.type in allowed_seeds))
+			myseed.health-= rand(1,3)
 
-			// Harvest code
-			if(age > myseed.production && (age - lastproduce) > myseed.production && (!harvest && !dead))
-				if(myseed && myseed.yield != -1) // Unharvestable shouldn't be harvested
-					harvest = TRUE
-				else
-					lastproduce = age
-
+		// If the plant is too old, lose health fast
+		if(myseed.age > myseed.lifespan)
+			myseed.health-= rand(1,3)
 		if (needs_update)
 			update_appearance()
-	return
 
 /obj/structure/farm_plot/proc/update_plant_overlay()
 	var/mutable_appearance/plant_overlay = mutable_appearance(myseed.growing_icon, layer = OBJ_LAYER + 0.01)
-	if(dead)
+	if(!myseed.health)
 		plant_overlay.icon_state = myseed.icon_dead
-	else if(harvest)
-		if(!myseed.icon_harvest)
-			plant_overlay.icon_state = "[myseed.icon_grow][myseed.growthstages]"
-		else
-			plant_overlay.icon_state = myseed.icon_harvest
 	else
-		var/t_growthstate = clamp(round((age / myseed.growthstage) * myseed.growthstages), 1, myseed.growthstages)
-		plant_overlay.icon_state = "[myseed.icon_grow][t_growthstate]"
+		plant_overlay.icon_state = "[myseed.species][myseed.growthstage]"
 	return plant_overlay
+
+/obj/structure/farm_plot/update_overlays()
+	. = ..()
+	if(myseed)
+		.+=update_plant_overlay()
+
+/obj/structure/farm_plot/update_appearance(updates)
+	. = ..()
+	update_overlays()
 
 /**
  * Plant Death Proc.
  * Cleans up various stats for the plant upon death, including pests, harvestability, and plant health.
  */
 /obj/structure/farm_plot/proc/plantdies()
-	plant_health = 0
-	harvest = FALSE
-	lastproduce = 0
-	if(!dead)
-		update_appearance()
-		dead = TRUE
+	src.visible_message(span_warning("[myseed.plantname] dies!"))
+	myseed.health = 0
+	myseed.dead = TRUE
+	update_appearance()
 
 /obj/structure/farm_plot/attackby(obj/item/O, mob/user, params)
 	//Called when mob user "attacks" it with object O
@@ -194,11 +178,8 @@
 			if(!user.transferItemToLoc(O, src))
 				return
 			to_chat(user, span_notice("You plant [O]."))
-			dead = FALSE
 			myseed = O
 			TRAY_NAME_UPDATE
-			age = 1
-			plant_health = myseed.health
 			lastcycle = world.time
 			update_appearance()
 			return
@@ -212,13 +193,9 @@
 		if(O.use_tool(src, user, 50, volume=50) || !myseed)
 			user.visible_message(span_notice("[user] digs out the plants in [src]!") , span_notice("You dig out all of [src]'s plants!"))
 			if(myseed) //Could be that they're just using it as a de-weeder
-				age = 0
-				plant_health = 0
-				lastproduce = 0
-				if(harvest)
-					harvest = FALSE //To make sure they can't just put in another seed and insta-harvest it
-				qdel(myseed)
-				myseed = null
+				myseed.age = 0
+				myseed.health = 0
+				QDEL_NULL(myseed)
 				name = initial(name)
 				desc = initial(desc)
 			update_appearance()
@@ -230,11 +207,11 @@
 	. = ..()
 	if(.)
 		return
-	if(harvest)
-		return myseed.harvest(user)
+	if(myseed)
+		if(length(myseed.harvestables))
+			return myseed.harvest(user)
 
-	else if(dead)
-		dead = FALSE
+	else if(!myseed.health)
 		to_chat(user, span_notice("You remove the dead plant from [src]."))
 		QDEL_NULL(myseed)
 		update_appearance()
@@ -242,38 +219,3 @@
 	else
 		if(user)
 			user.examinate(src)
-
-/**
- * Update Tray Proc
- * Handles plant harvesting on the tray side, by clearing the sead, names, description, and dead stat.
- * Shuts off autogrow if enabled.
- * Sends messages to the cleaer about plants harvested, or if nothing was harvested at all.
- * * User - The mob who clears the tray.
- */
-/obj/structure/farm_plot/proc/update_tray(mob/user)
-	harvest = FALSE
-	lastproduce = age
-	if(myseed.getYield() <= 0)
-		to_chat(user, span_warning("You fail to harvest anything useful!"))
-	else
-		to_chat(user, span_notice("You harvest [myseed.getYield()] items from the [myseed.plantname]."))
-	update_appearance()
-
-/**
- * Adjust Health.
- * Raises the tray's plant_health stat by a given amount, with total health determined by the seed's endurance.
- * * adjustamt - Determines how much the plant_health will be adjusted upwards or downwards.
- */
-/obj/structure/farm_plot/proc/adjustHealth(adjustamt)
-	if(myseed && !dead)
-		plant_health = clamp(plant_health + adjustamt, 0, myseed.health)
-
-/**
- * Spawn Plant.
- * Upon using strange reagent on a tray, it will spawn a killer tomato or killer tree at random.
- */
-/obj/structure/farm_plot/proc/spawnplant() // why would you put strange reagent in a hydro tray you monster I bet you also feed them blood
-	var/list/livingplants = list(/mob/living/simple_animal/hostile/tree, /mob/living/simple_animal/hostile/killertomato)
-	var/chosen = pick(livingplants)
-	var/mob/living/simple_animal/hostile/C = new chosen
-	C.faction = list("plants")
