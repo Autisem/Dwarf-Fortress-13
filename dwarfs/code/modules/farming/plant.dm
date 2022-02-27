@@ -4,8 +4,6 @@
 	icon = 'dwarfs/icons/farming/growing.dmi'
 	icon_state = "sample"
 	var/species = "plant"
-	var/lifespan = 25 // age in cycles
-	var/age = 1
 	var/health = 15
 	var/list/produced = list()
 	var/list/harvestables = list()
@@ -39,7 +37,6 @@
 			update_appearance()
 		// Advance age
 		growthstage = clamp(growthstage+1, 1, growthstages)
-		age++
 		lastcycle = world.time
 		needs_update = 1
 
@@ -70,9 +67,6 @@
 		if(!(species in plot.allowed_species))
 			health-= rand(1,3)
 
-	// If the plant is too old, lose health fast
-	if(age > lifespan)
-		health-= rand(1,3)
 	if (needs_update)
 		update_appearance()
 
