@@ -294,7 +294,7 @@ SUBSYSTEM_DEF(ticker)
 	round_start_time = world.time
 	SSdbcore.SetRoundStart()
 
-	to_chat(world, span_notice("Fortress <B>[station_name()]</B> is accepting guests!"))
+	to_chat(world, span_notice("<B>[station_name()]</B> is accepting guests!"))
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
