@@ -145,27 +145,6 @@
 				msg += "\t[C] - [C.holder.rank]\n"
 		msg += span_info("No jannies online.\n")
 
-	msg += "<b>Mentors:</b>\n"
-	for(var/X in GLOB.mentors)
-		var/client/C = X
-		if(!C)
-			GLOB.mentors -= C
-			continue
-		if(C in GLOB.admins) // мы уже это вывели
-			continue
-		var/suffix = ""
-		if(holder)
-			if(isobserver(C.mob))
-				suffix += " - Следит"
-			else if(istype(C.mob,/mob/dead/new_player))
-				suffix += " - Лобби"
-			else
-				suffix += " - <b>Играет</b>"
-
-			if(C.is_afk())
-				suffix += " (AFK)"
-		msg += "\t[C][suffix]\n"
-
 	to_chat(src, msg)
 
 /client/proc/inactivity2text()

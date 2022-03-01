@@ -345,7 +345,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Призрак"
-	set name = "Вернуться в тело"
+	set name = "Return to body"
 	if(!client)
 		return
 	if(!mind || QDELETED(mind.current))
@@ -368,7 +368,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/verb/stay_dead()
 	set category = "Призрак"
-	set name = "Не хочу воскресать"
+	set name = "DNR"
 	if(!client)
 		return
 	if(!can_reenter_corpse)
@@ -513,7 +513,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/verb/change_view_range()
 	set category = "Призрак"
-	set name = "Радиус обзора"
+	set name = "View range"
 	set desc = "Change your view range."
 
 	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !client?.holder)
@@ -568,7 +568,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	to_chat(src, span_danger("You are dead! You have no mind to store memory!"))
 
 /mob/dead/observer/verb/toggle_ghostsee()
-	set name = " 🔄 Видеть других"
+	set name = " 🔄 See others"
 	set desc = "Toggles your ability to see things only ghosts can see, like other ghosts"
 	set category = "Призрак"
 	ghostvision = !(ghostvision)
@@ -576,7 +576,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	to_chat(usr, span_boldnotice("You [(ghostvision?"now":"no longer")] have ghost vision."))
 
 /mob/dead/observer/verb/toggle_darkness()
-	set name = " 🔄 Видеть тьму"
+	set name = " 🔄 See darkness"
 	set category = "Призрак"
 	switch(lighting_alpha)
 		if (LIGHTING_PLANE_ALPHA_VISIBLE)
@@ -728,7 +728,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		data_huds_on = 1
 
 /mob/dead/observer/verb/restore_ghost_appearance()
-	set name = "❌ Сбросить внешность призрака"
+	set name = "❌ Restore Appearance"
 	set desc = "Sets your deadchat name and ghost appearance to your \
 		roundstart character."
 	set category = "Призрак"
@@ -795,7 +795,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			hud_used.show_hud(hud_used.hud_version)
 
 /mob/dead/observer/verb/observe()
-	set name = "Следить за..."
+	set name = "Follow..."
 	set category = "OOC"
 
 	if(!isobserver(usr)) //Make sure they're an observer!

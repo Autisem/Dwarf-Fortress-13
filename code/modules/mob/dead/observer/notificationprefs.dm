@@ -1,6 +1,6 @@
 /mob/dead/observer/verb/show_notificationprefs()
 	set category = "Призрак"
-	set name = "Настроить уведомления"
+	set name = "Notifications"
 	set desc = "Notification preferences"
 
 	var/datum/notificationpanel/panel = new(usr)
