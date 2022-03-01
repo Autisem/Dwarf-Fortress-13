@@ -60,7 +60,7 @@ GLOBAL_VAR(command_name)
 	if (prob(10))
 		new_station_name = pick(GLOB.fortress_prefixes) + " "
 	else
-		new_station_name = "Крепость "
+		new_station_name = "Fortress "
 
 	new_station_name += capitalize(pick(GLOB.fortress_names))
 
