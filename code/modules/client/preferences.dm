@@ -194,15 +194,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 #define SETUP_START_NODE(L)  		  	 		 	 		"<div class='csetup_character_node'><div class='csetup_character_label'>[L]</div><div class='csetup_character_input'>"
 
 #define SETUP_GET_LINK(pref, task, task_type, value) 		"<a href='?_src_=prefs;preference=[pref][task ? ";[task_type]=[task]" : ""]'>[value]</a>"
-#define SETUP_GET_LINK_RANDOM(random_type) 		  	 		"<a href='?_src_=prefs;preference=toggle_random;random_type=[random_type]'>[randomise[random_type] ? "Случайно" : "Фиксированно"]</a>"
+#define SETUP_GET_LINK_RANDOM(random_type) 		  	 		"<a href='?_src_=prefs;preference=toggle_random;random_type=[random_type]'>[randomise[random_type] ? "Random" : "Fixed"]</a>"
 #define SETUP_COLOR_BOX(color) 				  	 	 		"<span style='border: 1px solid #161616; background-color: #[color];'>&nbsp;&nbsp;&nbsp;</span>"
 
 #define SETUP_NODE_SWITCH(label, pref, value)		  		"[SETUP_START_NODE(label)][SETUP_GET_LINK(pref, null, null, value)][SETUP_CLOSE_NODE]"
 #define SETUP_NODE_INPUT(label, pref, value)		  		"[SETUP_START_NODE(label)][SETUP_GET_LINK(pref, "input", "task", value)][SETUP_CLOSE_NODE]"
-#define SETUP_NODE_COLOR(label, pref, color, random)  		"[SETUP_START_NODE(label)][SETUP_COLOR_BOX(color)][SETUP_GET_LINK(pref, "input", "task", "Изменить")][random ? "[SETUP_GET_LINK_RANDOM(random)]" : ""][SETUP_CLOSE_NODE]"
+#define SETUP_NODE_COLOR(label, pref, color, random)  		"[SETUP_START_NODE(label)][SETUP_COLOR_BOX(color)][SETUP_GET_LINK(pref, "input", "task", "Change")][random ? "[SETUP_GET_LINK_RANDOM(random)]" : ""][SETUP_CLOSE_NODE]"
 #define SETUP_NODE_RANDOM(label, random)		  	  		"[SETUP_START_NODE(label)][SETUP_GET_LINK_RANDOM(random)][SETUP_CLOSE_NODE]"
 #define SETUP_NODE_INPUT_RANDOM(label, pref, value, random) "[SETUP_START_NODE(label)][SETUP_GET_LINK(pref, "input", "task", value)][SETUP_GET_LINK_RANDOM(random)][SETUP_CLOSE_NODE]"
-#define SETUP_NODE_COLOR_RANDOM(label, pref, color, random) "[SETUP_START_NODE(label)][SETUP_COLOR_BOX(color)][SETUP_GET_LINK(pref, "input", "task", "Изменить")][SETUP_GET_LINK_RANDOM(random)][SETUP_CLOSE_NODE]"
+#define SETUP_NODE_COLOR_RANDOM(label, pref, color, random) "[SETUP_START_NODE(label)][SETUP_COLOR_BOX(color)][SETUP_GET_LINK(pref, "input", "task", "Change")][SETUP_GET_LINK_RANDOM(random)][SETUP_CLOSE_NODE]"
 
 #define SETUP_CLOSE_NODE 	  			  			  		"</div></div>"
 
@@ -575,6 +575,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	popup.set_content(dat.Join())
 	popup.open(FALSE)
 	onclose(user, "preferences_window", src)
+
+#undef SETUP_START_NODE
+#undef SETUP_GET_LINK
+#undef SETUP_GET_LINK_RANDOM
+#undef SETUP_COLOR_BOX
+#undef SETUP_NODE_SWITCH
+#undef SETUP_NODE_INPUT
+#undef SETUP_NODE_COLOR
+#undef SETUP_NODE_RANDOM
+#undef SETUP_NODE_INPUT_RANDOM
+#undef SETUP_NODE_COLOR_RANDOM
+#undef SETUP_CLOSE_NODE
 
 /datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, old_key)
 	var/HTML = {"
