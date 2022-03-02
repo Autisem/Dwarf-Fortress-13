@@ -307,9 +307,9 @@ if (!String.prototype.trim) {
 }())
 
 // Status panel implementation ------------------------------------------------
-var status_tab_parts = ["Загрузка..."];
+var status_tab_parts = ["Loading..."];
 var current_tab = null;
-var mc_tab_parts = [["Загрузка...", ""]];
+var mc_tab_parts = [["Loading...", ""]];
 var href_token = null;
 var spells = [];
 var spell_tabs = [];
@@ -725,7 +725,7 @@ function tab_change(tab) {
 	}else if(tab == turfname) {
 		draw_listedturf();
 	} else {
-		statcontentdiv[textContentKey] = "Загрузка...";
+		statcontentdiv[textContentKey] = "Loading...";
 	}
 	window.location.href = "byond://winset?statbrowser.is-visible=true";
 }
