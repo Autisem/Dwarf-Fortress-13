@@ -51,17 +51,17 @@
 
 	if(href_list["late_join"]) //This still exists for queue messages in chat
 		if(!SSticker?.IsRoundInProgress())
-			to_chat(usr, span_boldwarning("Раунд ещё не начался или уже завершился..."))
+			to_chat(usr, span_boldwarning("The round is either not ready or has already finished..."))
 			return
 		LateChoices()
 
 	if(href_list["SelectedJob"])
 		if(!SSticker?.IsRoundInProgress())
-			to_chat(usr, span_danger("Раунд ещё не начался или уже завершился..."))
+			to_chat(usr, span_danger("The round is either not ready or has already finished..."))
 			return
 
 		if(SSlag_switch.measures[DISABLE_NON_OBSJOBS])
-			to_chat(usr, span_notice("Нельзя!"))
+			to_chat(usr, span_notice("Not allowed!"))
 			return
 
 		//Determines Relevent Population Cap
@@ -75,7 +75,7 @@
 
 		if(SSticker.queued_players.len && !(ckey(key) in GLOB.admin_datums))
 			if((living_player_count() >= relevant_cap) || (src != SSticker.queued_players[1]))
-				to_chat(usr, span_warning("Полновато здесь."))
+				to_chat(usr, span_warning("Already full."))
 				return
 
 		AttemptLateSpawn(href_list["SelectedJob"])
@@ -97,10 +97,10 @@
 
 	var/less_input_message
 	if(SSlag_switch.measures[DISABLE_DEAD_KEYLOOP])
-		less_input_message = " - Заметка: Призраки на данный момент ограничены."
-	var/this_is_like_playing_right = tgui_alert(usr, "Действительно хочешь следить? У меня не будет возможности зайти в этот раунд (исключая частые ивенты и спаунеры)![less_input_message]","Странный господин",list("Да","Нет"))
+		less_input_message = " - Notice: ghosts are currenly restricted."
+	var/this_is_like_playing_right = tgui_alert(usr, "Are you sure you wish to observe? You will not be able to play this round![less_input_message]","Player Setup",list("Yes","No"))
 
-	if(QDELETED(src) || !src.client || this_is_like_playing_right != "Да")
+	if(QDELETED(src) || !src.client || this_is_like_playing_right != "Yes")
 		ready = PLAYER_NOT_READY
 		src << browse(null, "window=playersetup") //closes the player setup window
 		return FALSE
@@ -113,11 +113,11 @@
 	observer.started_as_observer = TRUE
 	close_spawn_windows()
 	var/obj/effect/landmark/observer_start/O = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list
-	to_chat(src, span_notice("Телепортируемся!"))
+	to_chat(src, span_notice("Now teleporting."))
 	if (O)
 		observer.forceMove(O.loc)
 	else
-		to_chat(src, span_notice("Что-то сломалось и тебя забросило немного не там, где нужно. Ничего страшного."))
+		to_chat(src, span_notice("Teleporting failed. Ahelp an admin please."))
 		stack_trace("There's no freaking observer landmark available on this map or you're making observers before the map is initialised")
 	observer.key = key
 	observer.client = client
@@ -128,7 +128,7 @@
 		observer.client.init_verbs()
 	observer.update_icon()
 	observer.stop_sound_channel(CHANNEL_LOBBYMUSIC)
-	deadchat_broadcast(" становится призраком.", "<b>[observer.real_name]</b>", follow_target = observer, turf_target = get_turf(observer), message_type = DEADCHAT_DEATHRATTLE)
+	deadchat_broadcast(" has observed.", "<b>[observer.real_name]</b>", follow_target = observer, turf_target = get_turf(observer), message_type = DEADCHAT_DEATHRATTLE)
 	QDEL_NULL(mind)
 	qdel(src)
 
@@ -139,19 +139,19 @@
 /proc/get_job_unavailable_error_message(retval, jobtitle)
 	switch(retval)
 		if(JOB_AVAILABLE)
-			return "[jobtitle] доступен."
+			return "[jobtitle] is available."
 		if(JOB_UNAVAILABLE_GENERIC)
-			return "[jobtitle] недоступен."
+			return "[jobtitle] is unavailable."
 		if(JOB_UNAVAILABLE_BANNED)
-			return "Тебе нельзя быть [jobtitle]."
+			return "You are currently banned from [jobtitle]."
 		if(JOB_UNAVAILABLE_UNBUYED)
-			return "Роль [jobtitle] сначала нужно купить."
+			return "You have to buy [jobtitle] to play it."
 		if(JOB_UNAVAILABLE_PLAYTIME)
-			return "Ты не наиграл достаточно времени для [jobtitle]."
+			return "You do not have enough relevant playtime for [jobtitle]."
 		if(JOB_UNAVAILABLE_ACCOUNTAGE)
-			return "Твой аккаунт слишком молодой для [jobtitle]."
+			return "Your account is not old enough for [jobtitle]."
 		if(JOB_UNAVAILABLE_SLOTFULL)
-			return "[jobtitle] уже достаточно на станции."
+			return "[jobtitle] is already filled to capacity."
 	return "Error: Unknown job availability."
 
 /mob/dead/new_player/proc/IsJobUnavailable(rank, latejoin = FALSE)
@@ -233,7 +233,7 @@
 /mob/dead/new_player/proc/LateChoices()
 	var/list/dat = list()
 	if(SSlag_switch.measures[DISABLE_NON_OBSJOBS])
-		dat += "<div class='notice red' style='font-size: 125%'>Разрешено только следить на данный момент.</div><br>"
+		dat += "<div class='notice red' style='font-size: 125%'>You can only observe right now.</div><br>"
 	dat += "<div class='notice'>Round duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>"
 	for(var/datum/job/prioritized_job in SSjob.prioritized_jobs)
 		if(prioritized_job.current_positions >= prioritized_job.total_positions)
@@ -329,7 +329,7 @@
 	client.crew_manifest_delay = world.time + (1 SECONDS)
 
 	var/dat = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><body>"
-	dat += "<h4>Список персонала</h4>"
+	dat += "<h4>Crew Manifest</h4>"
 
 	src << browse(dat, "window=manifest;size=387x420;can_close=1")
 
