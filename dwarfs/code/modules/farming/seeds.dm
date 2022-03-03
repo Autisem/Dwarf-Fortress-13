@@ -4,10 +4,9 @@
 	worn_icon_state = "seed"
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
-	/// Name of plant when planted.
 	var/planttype
 
-/obj/item/growable/seeds/Initialize(mapload, nogenes = 0)
+/obj/item/growable/seeds/Initialize(mapload)
 	. = ..()
 	pixel_x = base_pixel_x + rand(-8, 8)
 	pixel_y = base_pixel_y + rand(-8, 8)
@@ -16,7 +15,7 @@
 	name = "crop seed"
 
 /obj/item/growable/seeds/tree
-	name = "tree seed"
+	name = "tree sapling"
 
 /obj/item/growable/seeds/grass
 	name = "grass seed"
