@@ -3,6 +3,10 @@
 	name = "leafy plant"
 	desc = "Leafy green?"
 
+/obj/structure/plant/leafy/Initialize()
+	. = ..()
+	icon_ripe = "[species][growthstages]"
+
 /obj/structure/plant/leafy/can_grow_harvestable()
 	if(length(harvestables))
 		return FALSE
