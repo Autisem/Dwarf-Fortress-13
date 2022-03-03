@@ -1,6 +1,8 @@
 /obj/structure/plant/tree
 	name = "tree"
 	desc = "Big green?"
+	icon = 'dwarfs/icons/farming/growing_tree.dmi'
+	growthstages = 6
 	density = TRUE
 
 /obj/structure/plant/tree/try_grow_harvestebles()
