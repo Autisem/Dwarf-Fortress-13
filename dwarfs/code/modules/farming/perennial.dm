@@ -1,12 +1,20 @@
-/obj/structure/plant/tree
-	name = "tree"
-	desc = "Big green?"
-	icon = 'dwarfs/icons/farming/growing_tree.dmi'
-	growthstages = 6
+// perennial plants don't die when harvested
+/obj/structure/plant/garden/perennial
+	name = "perennial plant"
+	desc = "Long green?"
 	density = TRUE
 
+/obj/structure/plant/garden/perennial/can_grow_harvestable()
+	if(!length(produced))
+		return FALSE
+	if(length(harvestables) >= max_harvestables)
+		return FALSE // no space for more stuff
+	if(growthstage != growthstages)
+		return FALSE
+	return TRUE
+
 /obj/structure/plant/tree/try_grow_harvestebles()
-	if(!..())
+	if(!can_grow_harvestable())
 		return
 	var/list/eharvestables = list() // list of existing harvestable types and their amount
 	for(var/obj/item/H in harvestables)
@@ -24,8 +32,3 @@
 	I = new I (src)
 	harvestables.Add(I)
 	visible_message(span_notice("[src] grows \a [I]."))
-
-/obj/structure/plant/tree/apple
-	name = "apple tree"
-	produced = list(/obj/item/growable/fruit/apple)
-	species = "sample"

@@ -14,7 +14,7 @@
 	var/max_harvestables = 10 // max amount of products a plant can have in total
 	var/icon_ripe // max growth stage and has harvestables on it
 	var/icon_dead
-	var/growthstages = 5 // how many growth stages it has
+	var/growthstages = 6 // how many growth stages it has
 	var/growthdelta = 5 SECONDS // how long between two growth stages
 	var/growthstage = 1 // current 'age' of the plant
 	var/dead = FALSE // to prevent spam in plantdies()

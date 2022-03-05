@@ -1,18 +1,18 @@
 // leaf plants can be collected only once; once they grow up they grow everything they can at once
-/obj/structure/plant/leafy
-	name = "leafy plant"
-	desc = "Leafy green?"
+/obj/structure/plant/garden
+	name = "garden plant"
+	desc = "garden green?"
 
-/obj/structure/plant/leafy/Initialize()
+/obj/structure/plant/garden/Initialize()
 	. = ..()
 	icon_ripe = "[species][growthstages]"
 
-/obj/structure/plant/leafy/can_grow_harvestable()
+/obj/structure/plant/garden/can_grow_harvestable()
 	if(length(harvestables))
 		return FALSE
 	return ..()
 
-/obj/structure/plant/leafy/try_grow_harvestebles()
+/obj/structure/plant/garden/try_grow_harvestebles()
 	if(!can_grow_harvestable())
 		return
 	for(var/I in produced)
@@ -21,11 +21,11 @@
 			harvestables.Add(P)
 	update_appearance()
 
-/obj/structure/plant/leafy/harvest(mob/user)
+/obj/structure/plant/garden/harvest(mob/user)
 	. = ..()
 	qdel(src)
 
-/obj/structure/plant/leafy/cabbage
+/obj/structure/plant/garden/cabbage
 	name = "cabbage"
 	species = "sample"
 	produced = list(/obj/item/growable/leaf/cabbage)
