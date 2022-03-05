@@ -11,11 +11,11 @@
 	pixel_x = base_pixel_x + rand(-8, 8)
 	pixel_y = base_pixel_y + rand(-8, 8)
 
-/obj/item/growable/seeds/crop
-	name = "crop seed"
+/obj/item/growable/seeds/garden
+	name = "garden seed"
 
 /obj/item/growable/seeds/tree
-	name = "tree sapling"
+	name = "tree seed"
 
-/obj/item/growable/seeds/grass
-	name = "grass seed"
+/obj/item/growable/seeds/sapling
+	name = "tree sapling"
