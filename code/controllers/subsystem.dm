@@ -242,7 +242,7 @@
 /datum/controller/subsystem/Initialize(start_timeofday)
 	initialized = TRUE
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
-	to_chat(world, span_green(" -- Загружено: <b>[name]</b>:> <b>[time]с</b> -- "))
+	to_chat(world, span_green(" -- Initialized: <b>[name]</b>:> <b>[time]с</b> -- "))
 	log_world("Init [name] for [time]s!")
 	return time
 

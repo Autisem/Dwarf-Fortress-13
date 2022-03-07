@@ -17,8 +17,8 @@
 	nuke_chat()
 
 	// Failed to fix
-	action = tgalert(usr, "Сработало?", "", "Да", "Нет, хочу вырвиглазный чат")
-	if (action == "Нет, хочу вырвиглазный чат")
+	action = tgalert(usr, "Fixed?", "", "Yes", "No, give me retro chat")
+	if (action == "No, give me retro chat")
 		winset(src, "output", "on-show=&is-disabled=0&is-visible=1")
 		winset(src, "browseroutput", "is-disabled=1;is-visible=0")
 		log_tgui(src, "Failed to fix.", context = "verb/fix_tgui_panel")

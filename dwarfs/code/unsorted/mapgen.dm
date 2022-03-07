@@ -33,7 +33,7 @@
 	name = "Bottom Dwarfs"
 
 /area/dwarf/cavesgen
-	name = "Подземелье"
+	name = "Caverns"
 	icon_state = "cavesgen"
 	outdoors = TRUE
 	static_lighting = TRUE
