@@ -5,7 +5,7 @@
 	icon_state = "sample"
 	anchored = TRUE
 	var/species = "plant" // used for icons and to whitelist plants in plots
-	var/health = 15
+	var/health = 40
 	var/list/produced = list() // path type list of items that can be produced at the last growth stage
 	var/list/harvestables = list() // list of objects that can be harvested
 	var/lastcycle_produce // last time it tried to grow something
@@ -13,7 +13,7 @@
 	var/max_per_harvestable = 3 // a limit to a single type of harvestable a plant can have in harvestables
 	var/max_harvestables = 10 // max amount of products a plant can have in total
 	var/icon_ripe // max growth stage and has harvestables on it
-	var/icon_dead
+	var/icon_dead // icon when plant dies
 	var/growthstages = 6 // how many growth stages it has
 	var/growthdelta = 5 SECONDS // how long between two growth stages
 	var/growthstage = 1 // current 'age' of the plant
