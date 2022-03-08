@@ -526,170 +526,23 @@ Turf and target are separate in case you want to teleport some distance from a t
 
 /proc/parse_zone(zone)	// Именительный
 	if(zone == BODY_ZONE_PRECISE_R_HAND)
-		return "правая кисть"
+		return "right hand"
 	else if (zone == BODY_ZONE_PRECISE_L_HAND)
-		return "левая кисть"
+		return "left hand"
 	else if (zone == BODY_ZONE_L_ARM)
-		return "левая рука"
+		return "left arm"
 	else if (zone == BODY_ZONE_R_ARM)
-		return "правая рука"
+		return "right arm"
 	else if (zone == BODY_ZONE_L_LEG)
-		return "левая нога"
+		return "left leg"
 	else if (zone == BODY_ZONE_R_LEG)
-		return "правая нога"
+		return "right leg"
 	else if (zone == BODY_ZONE_PRECISE_L_FOOT)
-		return "левая ступня"
+		return "left foot"
 	else if (zone == BODY_ZONE_PRECISE_R_FOOT)
-		return "правая ступня"
-	else if (zone == "chest")
-		return "грудь"
-	else if (zone == "mouth")
-		return "рот"
-	else if (zone == "groin")
-		return "пах"
-	else if (zone == "head")
-		return "голова"
-	else if (zone == "eyes")
-		return "глаза"
+		return "right foot"
 	else
 		return zone
-
-/proc/ru_parse_zone(zone)	// Винительный
-	if(zone == "правая кисть")
-		return "правую кисть"
-	else if (zone == "левая кисть")
-		return "левую кисть"
-	else if (zone == "левая рука")
-		return "левую руку"
-	else if (zone == "правая рука")
-		return "правую руку"
-	else if (zone == "левая нога")
-		return "левую ногу"
-	else if (zone == "правая нога")
-		return "правую ногу"
-	else if (zone == "левая ступня")
-		return "левую ступню"
-	else if (zone == "правая ступня")
-		return "правую ступню"
-	else if (zone == "грудь")
-		return "грудь"
-	else if (zone == "рот")
-		return "рот"
-	else if (zone == "пах")
-		return "пах"
-	else if (zone == "голова")
-		return "голову"
-	else
-		return zone
-
-/proc/ru_gde_zone(zone)	// Дательный
-	if(zone == "правая кисть")
-		return "правой кисти"
-	else if (zone == "левая кисть")
-		return "левой кисти"
-	else if (zone == "левая рука")
-		return "левой руке"
-	else if (zone == "правая рука")
-		return "правой руке"
-	else if (zone == "левая нога")
-		return "левой ноге"
-	else if (zone == "правая нога")
-		return "правой ноге"
-	else if (zone == "левая ступня")
-		return "левой ступне"
-	else if (zone == "правая ступня")
-		return "правой ступне"
-	else if (zone == "грудь")
-		return "груди"
-	else if (zone == "рот")
-		return "ротовой полости"
-	else if (zone == "пах")
-		return "паховой области"
-	else if (zone == "голова")
-		return "голове"
-	else
-		return zone
-
-/proc/ru_otkuda_zone(zone)	// Родительный
-	if(zone == "правая кисть")
-		return "правой кисти"
-	else if (zone == "левая кисть")
-		return "левой кисти"
-	else if (zone == "левая рука")
-		return "левой руки"
-	else if (zone == "правая рука")
-		return "правой руки"
-	else if (zone == "левая нога")
-		return "левой ноги"
-	else if (zone == "правая нога")
-		return "правой ноги"
-	else if (zone == "левая ступня")
-		return "левой ступни"
-	else if (zone == "правая ступня")
-		return "правой ступни"
-	else if (zone == "грудь")
-		return "груди"
-	else if (zone == "рот")
-		return "ротовой полости"
-	else if (zone == "пах")
-		return "паховой области"
-	else if (zone == "голова")
-		return "головы"
-	else
-		return zone
-
-/proc/ru_exam_parse_zone(zone)
-	if (zone == "chest")
-		return "грудь"
-	else if (zone == "mouth")
-		return "рот"
-	else if (zone == "groin")
-		return "пах"
-	else if (zone == "head")
-		return "голова"
-	else
-		return zone
-
-/proc/jumpsuit_to_ru_conversion(jumpsuit)
-	switch(jumpsuit)
-		if("Jumpsuit")
-			return "Комбез"
-		if("Jumpskirt")
-			return "Юбкомбез"
-		else
-			return jumpsuit
-
-/proc/backpack_to_ru_conversion(backpack)
-	switch(backpack)
-		if("Grey Backpack")
-			return "Серый рюкзак"
-		if("Grey Satchel")
-			return "Серая сумка"
-		if("Grey Duffel Bag")
-			return "Серый вещмешок"
-		if("Leather Satchel")
-			return "Кожаная сумка"
-		if("Department Backpack")
-			return "Рюкзак отдела"
-		if("Department Satchel")
-			return "Сумка отдела"
-		if("Department Duffel Bag")
-			return "Вещмешок отдела"
-		else
-			return backpack
-
-/proc/uplink_to_ru_conversion(uplink)
-	switch(uplink)
-		if("PDA")
-			return "ПДА"
-		if("Radio")
-			return "Наушник"
-		if("Pen")
-			return "Ручка"
-		if("Implant")
-			return "Имплант"
-		else
-			return uplink
 
 /*
 

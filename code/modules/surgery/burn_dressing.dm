@@ -31,13 +31,13 @@
 	if(surgery.operated_wound)
 		var/datum/wound/burn/burn_wound = surgery.operated_wound
 		if(burn_wound.infestation <= 0)
-			to_chat(user, span_notice(" На [ru_gde_zone(parse_zone(user.zone_selected))] [skloname(target.name, RODITELNI, target.gender)] нет инфицированной плоти, которую можно удалить!"))
+			to_chat(user, span_notice(" На [parse_zone(user.zone_selected)] [skloname(target.name, RODITELNI, target.gender)] нет инфицированной плоти, которую можно удалить!"))
 			surgery.status++
 			repeatable = FALSE
 			return
-		display_results(user, target, span_notice("Начинаю удалять инфицированную плоть с [ru_otkuda_zone(parse_zone(user.zone_selected))] [skloname(target.name, RODITELNI, target.gender)] ...") ,
-			span_notice("[user] начинает удалять инфицированную плоть с [ru_otkuda_zone(parse_zone(user.zone_selected))] [skloname(target.name, RODITELNI, target.gender)] при помощи [tool].") ,
-			span_notice("[user] начинает удалять инфицированную плоть с [ru_otkuda_zone(parse_zone(user.zone_selected))] [skloname(target.name, RODITELNI, target.gender)].") ,
+		display_results(user, target, span_notice("Начинаю удалять инфицированную плоть с [parse_zone(user.zone_selected)] [skloname(target.name, RODITELNI, target.gender)] ...") ,
+			span_notice("[user] начинает удалять инфицированную плоть с [parse_zone(user.zone_selected)] [skloname(target.name, RODITELNI, target.gender)] при помощи [tool].") ,
+			span_notice("[user] начинает удалять инфицированную плоть с [parse_zone(user.zone_selected)] [skloname(target.name, RODITELNI, target.gender)].") ,
 			playsound(get_turf(target), 'sound/surgery/scalpel1.ogg', 75, TRUE, falloff_exponent = 12, falloff_distance = 1))
 		display_pain(target, "The infection in your [parse_zone(user.zone_selected)] stings like hell! It feels like you're being stabbed!")
 	else
@@ -46,9 +46,9 @@
 /datum/surgery_step/debride/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/datum/wound/burn/burn_wound = surgery.operated_wound
 	if(burn_wound)
-		display_results(user, target, span_notice("Успешно удалил некоторую инфицированную плоть с [ru_otkuda_zone(parse_zone(target_zone))] [skloname(target.name, RODITELNI, target.gender)] .") ,
-			span_notice("[user] успешно удалил некоторую инфицированную плоть с [ru_otkuda_zone(parse_zone(target_zone))] [skloname(target.name, RODITELNI, target.gender)] при помощи [tool]!") ,
-			span_notice("[user] успешно удалил некоторую инфицированную плоть с [ru_otkuda_zone(parse_zone(target_zone))] [skloname(target.name, RODITELNI, target.gender)]!") ,
+		display_results(user, target, span_notice("Успешно удалил некоторую инфицированную плоть с [parse_zone(target_zone)] [skloname(target.name, RODITELNI, target.gender)] .") ,
+			span_notice("[user] успешно удалил некоторую инфицированную плоть с [parse_zone(target_zone)] [skloname(target.name, RODITELNI, target.gender)] при помощи [tool]!") ,
+			span_notice("[user] успешно удалил некоторую инфицированную плоть с [parse_zone(target_zone)] [skloname(target.name, RODITELNI, target.gender)]!") ,
 			playsound(get_turf(target), 'sound/surgery/retractor2.ogg', 75, TRUE, falloff_exponent = 12, falloff_distance = 1))
 		log_combat(user, target, "excised infected flesh in", addition="INTENT: [uppertext(user.a_intent)]")
 		surgery.operated_bodypart.receive_damage(brute=3, wound_bonus=CANT_WOUND)
@@ -62,9 +62,9 @@
 
 /datum/surgery_step/debride/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, fail_prob = 0)
 	..()
-	display_results(user, target, span_notice("Отрезал немного здоровой плоти с [ru_otkuda_zone(parse_zone(target_zone))] [skloname(target.name, RODITELNI, target.gender)].") ,
-		span_notice("[user] отрезал немного здоровой плоти с [ru_otkuda_zone(parse_zone(target_zone))] [skloname(target.name, RODITELNI, target.gender)] при помощи [tool]!") ,
-		span_notice("[user] отрезал немного здоровой плоти с [ru_otkuda_zone(parse_zone(target_zone))] [skloname(target.name, RODITELNI, target.gender)]!") ,
+	display_results(user, target, span_notice("Отрезал немного здоровой плоти с [parse_zone(target_zone)] [skloname(target.name, RODITELNI, target.gender)].") ,
+		span_notice("[user] отрезал немного здоровой плоти с [parse_zone(target_zone)] [skloname(target.name, RODITELNI, target.gender)] при помощи [tool]!") ,
+		span_notice("[user] отрезал немного здоровой плоти с [parse_zone(target_zone)] [skloname(target.name, RODITELNI, target.gender)]!") ,
 		playsound(get_turf(target), 'sound/surgery/organ1.ogg', 75, TRUE, falloff_exponent = 12, falloff_distance = 1))
 	surgery.operated_bodypart.receive_damage(brute=rand(4,8), sharpness=TRUE)
 
@@ -85,9 +85,9 @@
 /datum/surgery_step/dress/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/datum/wound/burn/burn_wound = surgery.operated_wound
 	if(burn_wound)
-		display_results(user, target, span_notice("Начинаю перевязку ожогов на [ru_gde_zone(parse_zone(user.zone_selected))] [skloname(target.name, RODITELNI, target.gender)]...") ,
-			span_notice("[user] начинает перевязку ожогов на [ru_gde_zone(parse_zone(user.zone_selected))] [skloname(target.name, RODITELNI, target.gender)] при помощи [tool].") ,
-			span_notice("[user] начинает перевязку ожогов на [ru_gde_zone(parse_zone(user.zone_selected))] [skloname(target.name, RODITELNI, target.gender)]."))
+		display_results(user, target, span_notice("Начинаю перевязку ожогов на [parse_zone(user.zone_selected)] [skloname(target.name, RODITELNI, target.gender)]...") ,
+			span_notice("[user] начинает перевязку ожогов на [parse_zone(user.zone_selected)] [skloname(target.name, RODITELNI, target.gender)] при помощи [tool].") ,
+			span_notice("[user] начинает перевязку ожогов на [parse_zone(user.zone_selected)] [skloname(target.name, RODITELNI, target.gender)]."))
 		display_pain(target, "The burns on your [parse_zone(user.zone_selected)] sting like hell!")
 	else
 		user.visible_message(span_notice("[user] ищет [parse_zone(user.zone_selected)] [skloname(target.name, RODITELNI, target.gender)].") , span_notice("Ищу [parse_zone(user.zone_selected)] [skloname(target.name, RODITELNI, target.gender)]..."))
@@ -95,9 +95,9 @@
 /datum/surgery_step/dress/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/datum/wound/burn/burn_wound = surgery.operated_wound
 	if(burn_wound)
-		display_results(user, target, span_notice("Успешно обернул [ru_parse_zone(parse_zone(target_zone))] при помощи [tool].") ,
-			span_notice("[user] успешно обернул [ru_parse_zone(parse_zone(target_zone))] при помощи [tool]!") ,
-			span_notice("[user] спешно обернул [ru_parse_zone(parse_zone(target_zone))]!"))
+		display_results(user, target, span_notice("Успешно обернул [parse_zone(target_zone)] при помощи [tool].") ,
+			span_notice("[user] успешно обернул [parse_zone(target_zone)] при помощи [tool]!") ,
+			span_notice("[user] спешно обернул [parse_zone(target_zone)]!"))
 		log_combat(user, target, "dressed burns in", addition="INTENT: [uppertext(user.a_intent)]")
 		burn_wound.sanitization += 3
 		burn_wound.flesh_healing += 5

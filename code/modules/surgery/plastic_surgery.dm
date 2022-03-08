@@ -40,7 +40,7 @@
 	return ..()
 
 /datum/surgery_step/reshape_face/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, span_warning("[gvorno(TRUE)], но я облажался, изуродовав внешность [skloname(target.name, RODITELNI, target.gender)]!") ,
+	display_results(user, target, span_warning("Я облажался, изуродовав внешность [skloname(target.name, RODITELNI, target.gender)]!") ,
 		span_notice("[user] облажался, изуродовав внешность [skloname(target.name, RODITELNI, target.gender)]!") ,
 		span_notice("[user] заверщил операцию на лице [skloname(target.name, RODITELNI, target.gender)]."))
 	display_pain(target, "Your face feels horribly scarred and deformed!")

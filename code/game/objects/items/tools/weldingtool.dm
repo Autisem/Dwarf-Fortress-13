@@ -124,8 +124,8 @@
 	if(affecting && affecting.status == BODYPART_ROBOTIC && user.a_intent != INTENT_HARM)
 		if(src.use_tool(H, user, 0, volume=50, amount=1))
 			if(user == H)
-				user.visible_message(span_notice("[user] начинает чинить вмятины [H] на [ru_exam_parse_zone(affecting.name)].") ,
-					span_notice("Начинаю чинить вмятины [H == user ? "своей" : "[H]"] на [ru_exam_parse_zone(affecting.name)]."))
+				user.visible_message(span_notice("[user] начинает чинить вмятины [H] на [affecting.name].") ,
+					span_notice("Начинаю чинить вмятины [H == user ? "своей" : "[H]"] на [affecting.name]."))
 				if(!do_mob(user, H, 50))
 					return
 			item_heal_robotic(H, user, 15, 0)

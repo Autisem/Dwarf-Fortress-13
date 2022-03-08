@@ -43,7 +43,7 @@
 
 /datum/surgery_step/fix_brain/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(target.getorganslot(ORGAN_SLOT_BRAIN))
-		display_results(user, target, span_warning("[gvorno(TRUE)], но я облажался, нанеся еще больший ущерб!") ,
+		display_results(user, target, span_warning("Я облажался, нанеся еще больший ущерб!") ,
 			span_warning("[user] облажался, нанеся урон мозгу!") ,
 			span_notice("[user] завершил операцию на мозге [skloname(target.name, RODITELNI, target.gender)]."))
 		display_pain(target, "Your head throbs with horrible pain; thinking hurts!")

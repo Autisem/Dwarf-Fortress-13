@@ -184,8 +184,8 @@
 			R.updateEmbedding()
 			R.tryEmbed(BP, TRUE, TRUE)
 			H.update_damage_overlays()
-			visible_message(span_warning("<b>[capitalize(R.name)]</b> проникает в [ru_parse_zone(BP)] <b>[H]</b>!") ,
-							span_userdanger("Ох! <b>[capitalize(R.name)]</b> проникает в <b>[ru_parse_zone(BP)]</b>!"))
+			visible_message(span_warning("<b>[capitalize(R.name)]</b> проникает в [BP] <b>[H]</b>!") ,
+							span_userdanger("Ох! <b>[capitalize(R.name)]</b> проникает в <b>[BP]</b>!"))
 			playsound(H, impale_sound, 50, 1)
 			H.emote("agony")
 

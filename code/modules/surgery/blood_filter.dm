@@ -40,7 +40,7 @@
 	return ..()
 
 /datum/surgery_step/filter_blood/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, span_warning("[gvorno(TRUE)], но [gvorno(TRUE)], но я облажался, оставив синяк на груди [skloname(target.name, RODITELNI, target.gender)]!") ,
+	display_results(user, target, span_warning("Я облажался, оставив синяк на груди [skloname(target.name, RODITELNI, target.gender)]!") ,
 		span_warning("[user] облажался, оставив синяк на груди [skloname(target.name, RODITELNI, target.gender)]!") ,
 		span_warning("[user] облажался!"))
 	target.adjustBruteLoss(5)

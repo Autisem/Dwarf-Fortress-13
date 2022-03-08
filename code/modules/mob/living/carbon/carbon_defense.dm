@@ -117,7 +117,7 @@
 
 	var/message_hit_area = ""
 	if(hit_area)
-		message_hit_area = "в [ru_parse_zone(hit_area)]"
+		message_hit_area = "в [hit_area]"
 	var/attack_message_spectator = "<b>[src]</b> [message_verb_continuous] [message_hit_area] <b>[skloname(I.name, TVORITELNI, I.gender)][extra_wound_details]</b>!"
 	var/attack_message_victim = "[capitalize(message_verb_continuous)] [message_hit_area] <b>[skloname(I.name, TVORITELNI, I.gender)][extra_wound_details]</b>!"
 	var/attack_message_attacker = "Моя атака [message_verb_simple] <b>[src]</b> [message_hit_area] <b>[skloname(I.name, TVORITELNI, I.gender)]</b>!"
@@ -492,9 +492,9 @@
 				visible_message(span_notice("[capitalize(src.name)] осматривает себя.") , \
 					span_notice("Осматриваю себя в поисках осколков."))
 			if(I.isEmbedHarmless())
-				to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>Здесь [I] застрявший в [ru_gde_zone(LB.name)]!</a>")
+				to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>Здесь [I] застрявший в [LB.name]!</a>")
 			else
-				to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>Здесь [I] впившийся в [ru_gde_zone(LB.name)]!</a>")
+				to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>Здесь [I] впившийся в [LB.name]!</a>")
 
 	return embeds
 

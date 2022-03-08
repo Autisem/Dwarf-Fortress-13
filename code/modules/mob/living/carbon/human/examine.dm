@@ -17,8 +17,7 @@
 
 	. = list("")
 
-	var/racetext = get_race_text()
-	. += "<span class='info'>This is <EM>[!obscure_name ? name : "Unknown"]</EM>, [racetext ? "<big class='interface'>[racetext]</big>" : "[get_age_text()]"]!<hr>"
+	. += "<span class='info'>This is <EM>[!obscure_name ? name : "Unknown"]</EM>!<hr>"
 
 	if(user?.stat == CONSCIOUS && ishuman(user))
 		user.visible_message(span_small("<b>[user]</b> looks at <b>[!obscure_name ? name : "Unknown"]</b>.") , span_small("You look at <b>[!obscure_name ? name : "Unknown"]</b>.") , null, COMBAT_MESSAGE_RANGE)
@@ -278,7 +277,7 @@
 			if(3 to INFINITY)
 				for(var/i in 1 to (num_bleeds - 1))
 					var/obj/item/bodypart/body_part = bleeding_limbs[i]
-					bleed_text += " [ru_otkuda_zone(body_part.name)],"
+					bleed_text += " [body_part.name],"
 				bleed_text += " and [bleeding_limbs[num_bleeds].name]"
 
 		if(appears_dead)

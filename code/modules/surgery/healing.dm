@@ -91,7 +91,7 @@
 	return ..()
 
 /datum/surgery_step/heal/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, span_warning("[gvorno(TRUE)], но я облажался!") ,
+	display_results(user, target, span_warning("Я облажался!") ,
 		span_warning("[user] облажался!") ,
 		span_notice("[user] залатывает некоторые раны [skloname(target.name, RODITELNI, target.gender)].") , TRUE,
 		playsound(get_turf(target), 'sound/surgery/organ2.ogg', 75, TRUE, falloff_exponent = 12, falloff_distance = 1),)
@@ -223,7 +223,7 @@
 	missinghpbonus = 2.5
 
 /datum/surgery_step/heal/combo/upgraded/femto/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, span_warning("[gvorno(TRUE)], но я облажался!") ,
+	display_results(user, target, span_warning("Я облажался!") ,
 		span_warning("[user] облажался!") ,
 		span_notice("[user] залатывает некоторые раны [skloname(target.name, RODITELNI, target.gender)].") , TRUE)
 	target.take_bodypart_damage(5,5)

@@ -95,7 +95,7 @@
 						span_userdanger("В <b>меня</b> попадает [thrown_item.name]!"))
 		if(!thrown_item.throwforce)
 			return
-		var/armor = run_armor_check(zone, MELEE, "Броня отражает попадание в [ru_parse_zone(parse_zone(zone))].", "Броня смягчает попадание в [ru_parse_zone(parse_zone(zone))].", thrown_item.armour_penetration)
+		var/armor = run_armor_check(zone, MELEE, "Броня отражает попадание в [parse_zone(zone)].", "Броня смягчает попадание в [parse_zone(zone)].", thrown_item.armour_penetration)
 		apply_damage(thrown_item.throwforce, thrown_item.damtype, zone, armor, sharpness = thrown_item.get_sharpness(), wound_bonus = (nosell_hit * CANT_WOUND))
 		if(QDELETED(src)) //Damage can delete the mob.
 			return

@@ -44,7 +44,7 @@
 /datum/surgery_step/incise_heart/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		display_results(user, target, span_warning("[gvorno(TRUE)], но я облажался, сделав слишком глубокий надрез в сердце!") ,
+		display_results(user, target, span_warning("Я облажался, сделав слишком глубокий надрез в сердце!") ,
 			span_warning("[user] облажался, из-за чего из груди [H] брызгает кровь!") ,
 			span_warning("[user] облажался, из-за чего из груди [H] брызгает кровь!") ,
 			playsound(get_turf(target), 'sound/surgery/organ2.ogg', 75, TRUE, falloff_exponent = 12, falloff_distance = 1))
@@ -81,7 +81,7 @@
 /datum/surgery_step/coronary_bypass/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		display_results(user, target, span_warning("[gvorno(TRUE)], но я облажался, выполняя штунирование, разорвав часть сердца!") ,
+		display_results(user, target, span_warning("Я облажался, выполняя штунирование, разорвав часть сердца!") ,
 			span_warning("[user] облажался, из-за чего из груди [H] обильно льётся кровь!") ,
 			span_warning("[user] облажался, из-за чего из груди [H] обильно льётся кровь!") ,
 			playsound(get_turf(target), 'sound/surgery/organ2.ogg', 75, TRUE, falloff_exponent = 12, falloff_distance = 1))

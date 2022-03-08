@@ -33,6 +33,7 @@
 	desc = "Yummy! They also contain seeds."
 	edible = TRUE
 	icon = 'dwarfs/icons/farming/fruit.dmi'
+	food_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 5)
 
 /obj/item/growable/fruit/Initialize()
 	. = ..()

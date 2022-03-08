@@ -69,8 +69,8 @@
 	if(!(P.original == src && P.firer == src)) //can't block or reflect when shooting yourself
 		if(P.reflectable & REFLECT_NORMAL)
 			if(check_reflect(def_zone)) // Checks if you've passed a reflection% check
-				visible_message(span_danger("[capitalize(src.name)] отражает [P.name]!") , \
-								span_userdanger("[capitalize(src.name)] отражает [P.name]!"))
+				visible_message(span_danger("[capitalize(src.name)] reflects [P.name]!") , \
+								span_userdanger("[capitalize(src.name)] reflects [P.name]!"))
 				// Find a turf near or on the original location to bounce to
 				if(!isturf(loc)) //Open canopy mech (ripley) check. if we're inside something and still got hit
 					P.force_hit = TRUE //The thing we're in passed the bullet to us. Pass it back, and tell it to take the damage.
@@ -113,7 +113,7 @@
 			return TRUE
 	return FALSE
 
-/mob/living/carbon/human/proc/check_shields(atom/AM, damage, attack_text = "атака", attack_type = MELEE_ATTACK, armour_penetration = 0)
+/mob/living/carbon/human/proc/check_shields(atom/AM, damage, attack_text = "attacks", attack_type = MELEE_ATTACK, armour_penetration = 0)
 	var/block_chance_modifier = round(damage / -3)
 
 	for(var/obj/item/I in held_items)
@@ -217,7 +217,7 @@
 		if(I && !(I.item_flags & ABSTRACT) && dropItemToGround(I))
 			playsound(loc, 'sound/weapons/slash.ogg', 25, TRUE, -1)
 			visible_message(span_danger("[M] disarmed [src]!") , \
-							span_userdanger("[M] disarmed you!") , span_hear("Слышу агрессивную потасовку!") , null, M)
+							span_userdanger("[M] disarmed you!") , span_hear("You hear aggressive shuffling!") , null, M)
 			to_chat(M, span_danger("You disarm [src]!"))
 		else if(!M.client || prob(5)) // only natural monkeys get to stun reliably, (they only do it occasionaly)
 			playsound(loc, 'sound/weapons/pierce.ogg', 25, TRUE, -1)
@@ -231,7 +231,7 @@
 				Knockdown(30)
 				log_combat(M, src, "tackled")
 				visible_message(span_danger("[M] tackles [src] down!") , \
-								span_userdanger("[M] tackles you down!") , span_hear("Слышу агрессивную потасовку сопровождающуюся громким стуком!") , null, M)
+								span_userdanger("[M] tackles you down!") , span_hear("You hear aggressive shuffling followed by a loud thud!") , null, M)
 				to_chat(M, span_danger("You tackle [src] down!"))
 
 	if(M.limb_destroyer)
@@ -362,7 +362,7 @@
 		if(shock_damage * siemens_coeff >= 1 && prob(25))
 			var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
 			if(heart.Restart() && stat == CONSCIOUS)
-				to_chat(src, span_notice("Моё сердце бьётся снова!"))
+				to_chat(src, span_notice("You feel your heart beating again!"))
 	electrocution_animation(40)
 
 /mob/living/carbon/human/emp_act(severity)
@@ -373,7 +373,7 @@
 	for(var/obj/item/bodypart/L in src.bodyparts)
 		if(L.status == BODYPART_ROBOTIC)
 			if(!informed)
-				to_chat(src, span_userdanger("Ощущаю острую боль в области моей роботизированной конечности."))
+				to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
 				informed = TRUE
 			switch(severity)
 				if(1)
@@ -406,7 +406,7 @@
 				update_inv_neck()
 				update_inv_head()
 			else
-				to_chat(src, span_notice("[capitalize(head_clothes.name)] защищает моё лицо от кислоты!"))
+				to_chat(src, span_notice("Your [head_clothes.name] protects your head and face from the acid!"))
 		else
 			. = get_bodypart(BODY_ZONE_HEAD)
 			if(.)
@@ -427,7 +427,7 @@
 				update_inv_w_uniform()
 				update_inv_wear_suit()
 			else
-				to_chat(src, span_notice("[capitalize(chest_clothes.name)] защищает моё тело от кислоты!"))
+				to_chat(src, span_notice("Your [chest_clothes.name] protects your body from the acid!"))
 		else
 			. = get_bodypart(BODY_ZONE_CHEST)
 			if(.)
@@ -459,7 +459,7 @@
 				update_inv_w_uniform()
 				update_inv_wear_suit()
 			else
-				to_chat(src, span_notice("[capitalize(arm_clothes.name)] защищают мои руки от кислоты!"))
+				to_chat(src, span_notice("Your [arm_clothes.name] protects your arms and hands from the acid!"))
 		else
 			. = get_bodypart(BODY_ZONE_R_ARM)
 			if(.)
@@ -485,7 +485,7 @@
 				update_inv_w_uniform()
 				update_inv_wear_suit()
 			else
-				to_chat(src, span_notice("[capitalize(leg_clothes.name)] защищают мои ноги от кислоты!"))
+				to_chat(src, span_notice("Your [leg_clothes.name] protects your legs and feet from the acid!"))
 		else
 			. = get_bodypart(BODY_ZONE_R_LEG)
 			if(.)
@@ -530,9 +530,9 @@
 
 	if(src == M)
 		if(has_status_effect(STATUS_EFFECT_CHOKINGSTRAND))
-			to_chat(src, span_notice("Пытаюсь снять прядь дюраткани со своей шеи."))
+			to_chat(src, span_notice("You attempt to remove the durathread strand from around your neck."))
 			if(do_after(src, 3.5 SECONDS, src))
-				to_chat(src, span_notice("Успешно снимаю прядь дюраткани со своей шеи."))
+				to_chat(src, span_notice("You succesfuly remove the durathread strand."))
 				remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 			return
 		check_self_for_injuries()
@@ -552,11 +552,12 @@
 		return
 	var/list/combined_msg = list()
 
-	visible_message(span_notice("<b>[src]</b> осматривает себя.") , null)
+	visible_message(span_notice("[src] examines [p_them()]self."), \
+		span_notice("You check yourself for injuries."))
 
 	var/list/missing = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 
-	combined_msg += "<div class='examine_block'><span class='info'>Моё состояние примерно такое:</span><hr><table>"
+	combined_msg += "<div class='examine_block'><span class='info'>My current condition:</span><hr><table>"
 
 	for(var/obj/item/bodypart/body_part as anything in bodyparts)
 		missing -= body_part.body_zone
@@ -573,9 +574,9 @@
 				burndamage += rand(30,40)
 
 		if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
-			status = "ФИЗИЧЕСКИЙ: [brutedamage]</span>\] И \[<span class='warning'>ОЖОГИ: [burndamage]"
+			status = "BRUTE: [brutedamage]</span>\] И \[<span class='warning'>BURN: [burndamage]"
 			if(!brutedamage && !burndamage)
-				status = "НЕТ УРОНА"
+				status = "OK"
 
 		else
 			if(body_part.type in hal_screwydoll)//Are we halucinating?
@@ -598,17 +599,17 @@
 				status += body_part.light_burn_msg
 
 			if(status == "")
-				status = "ЦЕЛАЯ"
+				status = "OK"
 		var/no_damage
-		if(status == "ЦЕЛАЯ" || status == "НЕТ УРОНА")
+		if(status == "OK")
 			no_damage = TRUE
 		var/isdisabled = ""
 		if(body_part.bodypart_disabled)
-			isdisabled = "\[ПАРАЛИЗОВАНА\]"
+			isdisabled = "\[PARALYZED\]"
 			if(no_damage)
-				isdisabled += " но"
+				isdisabled += " but otherwise"
 			else
-				isdisabled += " и"
+				isdisabled += " and"
 		var/partmsg = "<tr><td><b>[uppertext(body_part.name)]:</b></td><td>[isdisabled] \[<span class='[no_damage ? "info" : "red"]'>[uppertext(status)]</span>\] "
 
 		for(var/thing in body_part.wounds)
@@ -622,7 +623,7 @@
 					partmsg += "\[<span class='red'><b>[uppertext(W.name)]</b></span>\] "
 
 		if(body_part.get_bleed_rate())
-			partmsg += "\[<span class='red'>КРОВОТЕЧЕНИЕ</span>\] "
+			partmsg += "\[<span class='red'>BLEEDING</span>\] "
 
 		for(var/obj/item/I in body_part.embedded_objects)
 			if(I.isEmbedHarmless())
@@ -633,7 +634,7 @@
 		combined_msg += "[partmsg]</td></tr>"
 
 	for(var/t in missing)
-		combined_msg += "<tr><td><b>[uppertext(ru_exam_parse_zone(parse_zone(t)))]:</b></td><td>\[<span class='boldannounce'>ОТСУТСТВУЕТ</span>\]</td></tr>"
+		combined_msg += "<tr><td><b>[uppertext(parse_zone(t))]:</b></td><td>\[<span class='boldannounce'>IS MISSING</span>\]</td></tr>"
 
 	combined_msg += "</table>"
 
@@ -645,33 +646,33 @@
 	if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
 		if(toxloss)
 			if(toxloss > 10)
-				combined_msg += span_danger("Мне плохо.")
+				combined_msg += span_danger("You feel sick.")
 			else if(toxloss > 20)
-				combined_msg += span_danger("Меня тошнит.")
+				combined_msg += span_danger("You feel nauseated.")
 			else if(toxloss > 40)
-				combined_msg += span_danger("Сейчас блевану!")
+				combined_msg += span_danger("You feel very unwell!")
 		if(oxyloss)
 			if(oxyloss > 10)
-				combined_msg += span_danger("Ощущаю головкружение.")
+				combined_msg += span_danger("You feel lightheaded.")
 			else if(oxyloss > 20)
-				combined_msg += span_danger("Всё такое мутное в дали.")
+				combined_msg += span_danger("Your thinking is clouded and distant.")
 			else if(oxyloss > 30)
-				combined_msg += span_danger("Задыхаюсь!")
+				combined_msg += span_danger("You're choking!")
 
 	if(!HAS_TRAIT(src, TRAIT_NOHUNGER))
 		switch(nutrition)
 			if(NUTRITION_LEVEL_FULL to INFINITY)
-				combined_msg += span_info("Мне вообще не хочется есть!")
+				combined_msg += "<span class='info'>You're completely stuffed!</span>"
 			if(NUTRITION_LEVEL_WELL_FED to NUTRITION_LEVEL_FULL)
-				combined_msg += span_info("Почти наелся!")
+				combined_msg += "<span class='info'>You're well fed!</span>"
 			if(NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
-				combined_msg += span_info("Не голоден.")
+				combined_msg += "<span class='info'>You're not hungry.</span>"
 			if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
-				combined_msg += span_info("Надо бы покушать.")
+				combined_msg += "<span class='info'>You could use a bite to eat.</span>"
 			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-				combined_msg += span_info("Еда?")
+				combined_msg += "<span class='info'>You feel quite hungry.</span>"
 			if(0 to NUTRITION_LEVEL_STARVING)
-				combined_msg += span_danger("Умираю от голода!")
+				combined_msg += "<span class='danger'>You're starving!</span>"
 
 	//Compiles then shows the list of damaged organs and broken organs
 	var/list/broken = list()
@@ -694,7 +695,7 @@
 	//Checks to enforce proper grammar, inserts words as necessary into the list
 	if(broken.len)
 		if(broken.len > 1)
-			broken.Insert(broken.len, "и ")
+			broken.Insert(broken.len, "and ")
 			broken_plural = TRUE
 		else
 			var/holder = broken[1]	//our one and only element
@@ -703,10 +704,10 @@
 		//Put the items in that list into a string of text
 		for(var/B in broken)
 			broken_message += B
-		combined_msg += span_warning("<hr>Похоже [broken_message] не [broken_plural ? "работает" : "работают"]!")
+		combined_msg += span_warning("<hr>Your [broken_message] [broken_plural ? "are" : "is"] non-functional!")
 	if(damaged.len)
 		if(damaged.len > 1)
-			damaged.Insert(damaged.len, "и ")
+			damaged.Insert(damaged.len, "and ")
 			damaged_plural = TRUE
 		else
 			var/holder = damaged[1]
@@ -714,7 +715,7 @@
 				damaged_plural = TRUE
 		for(var/D in damaged)
 			damaged_message += D
-		combined_msg += span_info("Похоже [damaged_message] [damaged_plural ? "имеет" : "имеют"] повреждения.")
+		combined_msg += span_info("Your [damaged_message] [damaged_plural ? "are" : "is"] hurt.")
 
 	to_chat(src, combined_msg.Join("\n"))
 

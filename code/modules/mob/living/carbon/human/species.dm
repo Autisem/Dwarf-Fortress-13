@@ -1567,7 +1567,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(!affecting) //Something went wrong. Maybe the limb is missing?
 		affecting = H.bodyparts[1]
 
-	hit_area = ru_parse_zone(affecting.name)
+	hit_area = affecting.name
 	var/def_zone = affecting.body_zone
 
 	var/armor_block = H.run_armor_check(affecting, MELEE, span_notice("Броня защищает меня от удара в [hit_area]!") , span_warning("Броня смягчает удар в [hit_area]!") ,I.armour_penetration)

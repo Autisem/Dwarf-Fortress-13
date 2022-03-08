@@ -183,7 +183,7 @@
 		return
 
 	if(force && HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("Не хочу вредить живым существам!"))
+		to_chat(user, span_warning("You don't want to harm other living beings!"))
 		return
 
 	if(!force)
@@ -233,8 +233,8 @@
 			no_damage = FALSE
 		//only witnesses close by and the victim see a hit message.
 		log_combat(user, src, "attacked", I)
-		user.visible_message(span_danger("<b>[user]</b> бьёт <b>[src]</b> используя <b>[I]</b>[no_damage ? ", не оставляя даже царапины" : ""]!"), \
-			span_danger("Бью <b>[src]</b> используя <b>[I]</b>[no_damage ? ", не оставляя даже царапины" : ""]!"), null, COMBAT_MESSAGE_RANGE)
+		user.visible_message(span_danger("<b>[user]</b> hits <b>[src]</b> with <b>[I]</b>[no_damage ? ", without leaving a scratch" : ""]!"), \
+			span_danger("You hit <b>[src]</b> with <b>[I]</b>[no_damage ? ", without leaving a scratch" : ""]!"), null, COMBAT_MESSAGE_RANGE)
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)
 	send_item_attack_message(I, user)
@@ -295,19 +295,19 @@
 /mob/living/proc/send_item_attack_message(obj/item/I, mob/living/user, hit_area, obj/item/bodypart/hit_bodypart)
 	if(!I.force && !length(I.attack_verb_simple) && !length(I.attack_verb_continuous))
 		return
-	var/message_verb_continuous = length(I.attack_verb_continuous) ? "[pick(I.attack_verb_continuous)]" : "бьёт"
-	var/message_verb_simple = length(I.attack_verb_simple) ? "[pick(I.attack_verb_simple)]" : "бьёт"
+	var/message_verb_continuous = length(I.attack_verb_continuous) ? "[pick(I.attack_verb_continuous)]" : "hits"
+	var/message_verb_simple = length(I.attack_verb_simple) ? "[pick(I.attack_verb_simple)]" : "hit"
 	var/message_hit_area = ""
 	if(hit_area)
-		message_hit_area = " в [ru_parse_zone(hit_area)]"
-	var/attack_message_spectator = "<b>[src]</b> [message_verb_continuous][message_hit_area] <b>[skloname(I.name, TVORITELNI, I.gender)]</b>!"
-	var/attack_message_victim = "[capitalize(message_verb_continuous)][message_hit_area] <b>[skloname(I.name, TVORITELNI, I.gender)]</b>!"
-	var/attack_message_attacker = "Моя атака [message_verb_simple] <b>[src]</b>[message_hit_area] <b>[skloname(I.name, TVORITELNI, I.gender)]</b>!"
+		message_hit_area = " in the [hit_area]"
+	var/attack_message_spectator = "[src] [message_verb_continuous][message_hit_area] with [I]!"
+	var/attack_message_victim = "You're [message_verb_continuous][message_hit_area] with [I]!"
+	var/attack_message_attacker = "You [message_verb_simple] [src][message_hit_area] with [I]!"
 	if(user in viewers(src, null))
-		attack_message_spectator = "<b>[user]</b> [message_verb_continuous] <b>[skloname(src.name, VINITELNI, gender)]</b>[message_hit_area] [skloname(I.name, TVORITELNI, I.gender)]!"
-		attack_message_victim = "<b>[user]</b> [message_verb_continuous] меня[message_hit_area] [skloname(I.name, TVORITELNI, I.gender)]!"
+		attack_message_spectator = "[user] [message_verb_continuous] [src][message_hit_area] with [I]!"
+		attack_message_victim = "[user] [message_verb_continuous] you[message_hit_area] with [I]!"
 	if(user == src)
-		attack_message_victim = "Моя атака [message_verb_simple] меня[message_hit_area] [skloname(I.name, TVORITELNI, I.gender)]"
+		attack_message_victim = "You [message_verb_simple] yourself[message_hit_area] with [I]"
 	visible_message(span_danger("[attack_message_spectator]") ,\
 		span_userdanger("[attack_message_victim]") , null, COMBAT_MESSAGE_RANGE, user)
 	to_chat(user, span_danger("[attack_message_attacker]"))

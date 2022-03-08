@@ -18,10 +18,10 @@
 /obj/item/organ/cyberimp/emp_act(severity)
 	. = ..()
 	if(severity == EMP_HEAVY && prob(5))
-		to_chat(owner,"<span class = 'danger'>НЕЙРОЛИНК: ERR03 ОБНАРУЖЕНА СЕРЬЕЗНАЯ ЭЛЕКТРОМАГНИТНАЯ НЕИСПРАВНОСТЬ В [uppertext(ru_gde_zone(name))]. ОБНАРУЖЕН УРОН, ВНУТРЕННЯЯ ПАМЯТЬ ПОВРЕЖДЕНА.</span>")
+		to_chat(owner,"<span class = 'danger'>НЕЙРОЛИНК: ERR03 ОБНАРУЖЕНА СЕРЬЕЗНАЯ ЭЛЕКТРОМАГНИТНАЯ НЕИСПРАВНОСТЬ В [uppertext(name)]. ОБНАРУЖЕН УРОН, ВНУТРЕННЯЯ ПАМЯТЬ ПОВРЕЖДЕНА.</span>")
 		random_encode()
 	else
-		to_chat(owner,"<span class = 'danger'>НЕЙРОЛИНК: ERR02 ОБНАРУЖЕНА ЭЛЕКТРОМАГНИТНАЯ НЕИСПРАВНОСТЬ В [uppertext(ru_gde_zone(name))].</span>")
+		to_chat(owner,"<span class = 'danger'>НЕЙРОЛИНК: ERR02 ОБНАРУЖЕНА ЭЛЕКТРОМАГНИТНАЯ НЕИСПРАВНОСТЬ В [uppertext(name)].</span>")
 
 
 /obj/item/organ/cyberimp/New(mob/M = null)

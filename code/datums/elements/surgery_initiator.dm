@@ -64,7 +64,7 @@
 
 		if(!available_surgeries.len)
 			return
-		var/pick_your_surgery = tgui_input_list(user, "Операция?", "Хирургия", sort_list(available_surgeries))
+		var/pick_your_surgery = tgui_input_list(user, "Begin which procedure?", "Surgery", sort_list(available_surgeries))
 		//var/pick_your_surgery = input("Begin which procedure?", "Surgery", null, null) as null|anything in sort_list(available_surgeries)
 		if(pick_your_surgery && user?.Adjacent(livingtarget) && (source in user))
 			var/datum/surgery/surgeryinstance_notonmob = available_surgeries[pick_your_surgery]
@@ -91,12 +91,12 @@
 
 			if(surgeryinstance_notonmob.ignore_clothes || get_location_accessible(livingtarget, selected_zone))
 				var/datum/surgery/procedure = new surgeryinstance_notonmob.type(livingtarget, selected_zone, affecting)
-				user.visible_message(span_notice("[user] накладывает [source] на [ru_parse_zone(parse_zone(selected_zone))] [skloname(livingtarget.name, RODITELNI, livingtarget.gender)] для подготовки к операции."), \
-					span_notice("Вы накладываете [source] на [ru_parse_zone(parse_zone(selected_zone))] [skloname(livingtarget.name, RODITELNI, livingtarget.gender)] для подготовки к операции - \an [procedure.name]."))
+				user.visible_message(span_notice("[user] drapes [source] over [livingtarget]'s [parse_zone(selected_zone)] to prepare for surgery."), \
+					span_notice("You drape [source] over [livingtarget]'s [parse_zone(selected_zone)] to prepare for \an [procedure.name]."))
 
 				log_combat(user, livingtarget, "operated on", null, "(OPERATION TYPE: [procedure.name]) (TARGET AREA: [selected_zone])")
 			else
-				to_chat(user, span_warning("Для того, чтобы начать операцию на [ru_parse_zone(parse_zone(selected_zone))] [skloname(livingtarget.name, RODITELNI, livingtarget.gender)] вам необходимо оголить ее!"))
+				to_chat(user, span_warning("You need to expose [livingtarget]'s [parse_zone(selected_zone)] first!"))
 
 	else if(!current_surgery.step_in_progress)
 		attempt_cancel_surgery(current_surgery, source, livingtarget, user)
@@ -107,8 +107,8 @@
 
 	if(the_surgery.status == 1)
 		the_patient.surgeries -= the_surgery
-		user.visible_message(span_notice("[user] убирает [the_item] с [ru_otkuda_zone(parse_zone(selected_zone))] [skloname(the_patient.name, RODITELNI, the_patient.gender)]."), \
-			span_notice("Вы убираете [the_item] с [ru_otkuda_zone(parse_zone(selected_zone))] [skloname(the_patient.name, RODITELNI, the_patient.gender)]."))
+		user.visible_message(span_notice("[user] removes [the_item] from [the_patient]'s [parse_zone(selected_zone)]."), \
+			span_notice("You remove [the_item] from [the_patient]'s [parse_zone(selected_zone)]."))
 		qdel(the_surgery)
 		return
 
@@ -123,13 +123,13 @@
 		required_tool_type = TOOL_SCREWDRIVER
 
 	if(!close_tool || close_tool.tool_behaviour != required_tool_type)
-		to_chat(user, span_warning("Вам необходимо экипировать [is_robotic ? "отвертку" : "прижигатель"] в неактивный слот для завершения операции на [skloname(the_patient.name, RODITELNI, the_patient.gender)]!"))
+		to_chat(user, span_warning("You need to equip a [is_robotic ? "screwdriwer" : "cautery"] in an inactive slot to stop [the_patient]'s surgery!"))
 		return
 
 	if(the_surgery.operated_bodypart)
 		the_surgery.operated_bodypart.generic_bleedstacks -= 5
 
 	the_patient.surgeries -= the_surgery
-	user.visible_message(span_notice("[user] завершает операцию на [ru_gde_zone(parse_zone(selected_zone))] [skloname(the_patient.name, RODITELNI, the_patient.gender)] при помощи [close_tool] и убирает [the_item]."), \
-		span_notice("Вы завершаете операцию на [ru_gde_zone(parse_zone(selected_zone))] [skloname(the_patient.name, RODITELNI, the_patient.gender)] при помощи [close_tool] и убираете [the_item]."))
+	user.visible_message(span_notice("[user] closes [the_patient]'s [parse_zone(selected_zone)] with [close_tool] and removes [the_item]."), \
+		span_notice("You close [the_patient]'s [parse_zone(selected_zone)] with [close_tool] and remove [the_item]."))
 	qdel(the_surgery)

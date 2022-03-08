@@ -37,7 +37,7 @@
 
 /datum/surgery_step/fold_cortex/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(target.getorganslot(ORGAN_SLOT_BRAIN))
-		display_results(user, target, span_warning("[gvorno(TRUE)], но я облажался, повредив мозг!") ,
+		display_results(user, target, span_warning("Я облажался, повредив мозг!") ,
 			span_warning("[user] облажался, повредив мозг!") ,
 			span_notice("[user] завершил операцию на мозге [skloname(target.name, RODITELNI, target.gender)]."))
 		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 60)

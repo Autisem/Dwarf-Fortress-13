@@ -105,7 +105,7 @@
 	if(!. && (injection_flags & INJECT_TRY_SHOW_ERROR_MESSAGE) && user)
 		var/obj/item/bodypart/the_part = get_bodypart(target_zone) || get_bodypart(BODY_ZONE_CHEST)
 
-		to_chat(user, span_alert("Нет открытой плоти или тонкого материала на [ru_gde_zone(the_part.name)]."))
+		to_chat(user, span_alert("Нет открытой плоти или тонкого материала на [the_part.name]."))
 
 
 //Used for new human mobs created by cloning/goleming/podding

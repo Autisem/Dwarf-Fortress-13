@@ -5,7 +5,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer
 	name = "ghost"
-	desc = "Это призрак. Бу!" //jinkies!
+	desc = "It's a ghost. Boo!" //jinkies!
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "ghost"
 	stat = DEAD
@@ -288,7 +288,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 */
 /mob/living/verb/ghost()
 	set category = "OOC"
-	set name = "❗ Покинуть тело"
+	set name = "❗ Ghost"
 	set desc = "Relinquish your life and enter the land of the dead."
 
 	if(stat != DEAD)
@@ -303,7 +303,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/camera/verb/ghost()
 	set category = "OOC"
-	set name = "❗ Покинуть тело"
+	set name = "❗ Ghost"
 	set desc = "Relinquish your life and enter the land of the dead."
 
 	var/response = tgui_alert(usr, "Are you -sure- you want to ghost?\n(You are alive. If you ghost whilst still alive you may not play again this round! You can't change your mind so choose wisely!!)","Are you sure you want to ghost?",list("Ghost","Stay in body"))
@@ -349,19 +349,19 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!client)
 		return
 	if(!mind || QDELETED(mind.current))
-		to_chat(src, span_warning("А тела то и нет. Червь!"))
+		to_chat(src, span_warning("You have no body!"))
 		return
 	if(!can_reenter_corpse)
-		to_chat(src, span_warning("Не могу вернуться в тело."))
+		to_chat(src, span_warning("Can't return to body."))
 		return
 	if(mind.current.key && mind.current.key[1] != "@")	//makes sure we don't accidentally kick any clients
-		to_chat(usr, span_warning("Кто-то уже копается в моём теле... Оно отвергает меня."))
+		to_chat(usr, span_warning("Your body is already occupied by something else."))
 		return
 	client.view_size.setDefault(getScreenSize(client.prefs.widescreenpref))//Let's reset so people can't become allseeing gods
 	client.view = "[client.prefs.widescreenwidth]x15"
 	SStgui.on_transfer(src, mind.current) // Transfer NanoUIs.
 	if(mind.current.stat == DEAD && SSlag_switch.measures[DISABLE_DEAD_KEYLOOP])
-		to_chat(src, span_warning("Чтобы покинуть тело используй кнопку Призрак."))
+		to_chat(src, span_warning("To leave your body use Ghost button."))
 	mind.current.key = key
 	mind.current.client.init_verbs()
 	return TRUE
@@ -372,11 +372,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!client)
 		return
 	if(!can_reenter_corpse)
-		to_chat(usr, span_warning("Да я как бы уже!"))
+		to_chat(usr, span_warning("Already done!"))
 		return FALSE
 
-	var/response = tgui_alert(usr, "Отменяем возможность возраждаться? Это нельзя отменить и лишает тебя права голоса на этот раунда.","Умираем?",list("НХВ","Я передумал"))
-	if(response != "НХВ")
+	var/response = tgui_alert(usr, "Disable revive possibility? You cannot cancel this and it makes you unable to further participate in the round.","Die?",list("DNR","Cancel"))
+	if(response != "DNR")
 		return
 
 	can_reenter_corpse = FALSE
@@ -386,7 +386,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	// Disassociates observer mind from the body mind
 	mind = null
 
-	inc_metabalance(src, METACOIN_DNR_REWARD, reason="Соединение с телом прервано. Приятного времяпрепровождения.")
+	// inc_metabalance(src, METACOIN_DNR_REWARD, reason="Соединение с телом прервано. Приятного времяпрепровождения.")
 	return TRUE
 
 /mob/dead/observer/proc/notify_cloning(message, sound, atom/source, flashwindow = TRUE)
@@ -407,13 +407,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				A.add_overlay(source)
 				source.layer = old_layer
 				source.plane = old_plane
-	to_chat(src, span_ghostalert("<a href=?src=[REF(src)];reenter=1>(Нажми для входа)</a>"))
+	to_chat(src, span_ghostalert("<a href=?src=[REF(src)];reenter=1>(Press to enter)</a>"))
 	if(sound)
 		SEND_SOUND(src, sound(sound))
 
 /mob/dead/observer/proc/dead_tele()
 	set category = null
-	set name = "Телепортироваться в..."
+	set name = "Teleport to..."
 	if(!isobserver(usr))
 		to_chat(usr, span_warning("Not when you're not dead!"))
 		return
@@ -422,7 +422,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/area/A = V
 		if(!(A.area_flags & HIDDEN_AREA))
 			filtered += A
-	var/area/thearea  = tgui_input_list(usr, "Куда прыгаем?", "БУ!", filtered)
+	var/area/thearea  = tgui_input_list(usr, "Where to teleport?", "Boo!", filtered)
 
 	if(!thearea)
 		return
@@ -440,7 +440,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/verb/follow()
 	set category = null
-	set name = "Кружить около..." // "Haunt"
+	set name = "Follow..." // "Haunt"
 	set desc = "Follow and orbit a mob."
 
 	GLOB.orbit_menu.show(src)
@@ -483,7 +483,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/verb/jumptomob() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = null
-	set name = "Переместиться к..."
+	set name = "Jump to mob..."
 
 	if(!isobserver(usr)) //Make sure they're an observer!
 		return
@@ -517,7 +517,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Change your view range."
 
 	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !client?.holder)
-		to_chat(usr, span_notice("Запрещено."))
+		to_chat(usr, span_notice("Currently disabled."))
 		return
 
 	var/max_view = client.prefs.unlock_content ? GHOST_MAX_VIEW_RANGE_MEMBER : GHOST_MAX_VIEW_RANGE_DEFAULT
@@ -536,7 +536,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set hidden = TRUE
 
 	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !client?.holder)
-		to_chat(usr, span_notice("Запрещено."))
+		to_chat(usr, span_notice("Currently disabled."))
 		return
 
 	var/max_view = client.prefs.unlock_content ? GHOST_MAX_VIEW_RANGE_MEMBER : GHOST_MAX_VIEW_RANGE_DEFAULT
@@ -664,7 +664,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/pointed(atom/A as mob|obj|turf in view(client.view, src))
 	if(!..())
 		return FALSE
-	usr.visible_message(span_deadsay("<b>[src]</b> показывает на [skloname(A.name, VINITELNI, A.gender)]."))
+	usr.visible_message(span_deadsay("<b>[src]</b> points at [A]."))
 	return TRUE
 
 
@@ -842,12 +842,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/examine(mob/user)
 	. = ..()
 	if(!invisibility)
-		. += "<hr>Выглядит достаточно реалистично."
+		. += "<hr>Looks pretty realistic."
 
 /mob/dead/observer/examine_more(mob/user)
 	if(!isAdminObserver(user))
 		return ..()
-	. = list("<span class='notice'><i>Изучаю <b>[src.name]</b> ближе и замечаю следующее...</i></span>\n")
+	. = list("<span class='notice'><i>You observe <b>[src.name]</b> closer and see following...</i></span>\n")
 	. += list(span_admin("[ADMIN_FULLMONTY(src)]"))
 
 
@@ -873,7 +873,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	GLOB.observer_default_invisibility = amount
 
 /mob/dead/observer/proc/open_spawners_menu()
-	set name = "Меню перерождений"
+	set name = "Respawn menu"
 	set category = null
 	if(!spawners_menu)
 		spawners_menu = new(src)

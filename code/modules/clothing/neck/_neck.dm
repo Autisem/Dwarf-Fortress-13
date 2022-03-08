@@ -77,7 +77,7 @@
 						lung_strength = "здоровый звук"
 
 			var/diagnosis = (body_part == BODY_ZONE_CHEST ? "Слышу [heart_strength] пульса и [lung_strength] дыхания." : "Я еле слышу [heart_strength] пульса.")
-			user.visible_message(span_notice("[user] пристраивает [src] в [ru_exam_parse_zone(body_part)] [M] и слушает внимательно.") , span_notice("Прикладываю [src] к [ru_exam_parse_zone(body_part)] [M]. [diagnosis]"))
+			user.visible_message(span_notice("[user] пристраивает [src] в [body_part] [M] и слушает внимательно.") , span_notice("Прикладываю [src] к [body_part] [M]. [diagnosis]"))
 			return
 	return ..(M,user)
 

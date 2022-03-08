@@ -1,7 +1,7 @@
 
 /obj/item/bodypart/chest
-	name = "грудь"
-	desc = "Неправильно смотреть на чью-то грудь."
+	name = "chest"
+	desc = "It's impolite to stare at a person's chest."
 	icon_state = "default_human_chest"
 	max_damage = 200
 	body_zone = BODY_ZONE_CHEST
@@ -61,8 +61,11 @@
 	animal_origin = DEVIL_BODYPART
 
 /obj/item/bodypart/l_arm
-	name = "левая рука"
-	desc = "Этой штукой можно пощекотать свою жопу."
+	name = "left arm"
+	desc = "Did you know that the word 'sinister' stems originally from the \
+		Latin 'sinestra' (left hand), because the left hand was supposed to \
+		be possessed by the devil? This arm appears to be possessed by no \
+		one though."
 	icon_state = "default_human_l_arm"
 	attack_verb_continuous = list("slaps", "punches")
 	attack_verb_simple = list("slap", "punch")
@@ -125,7 +128,7 @@
 		if(bodypart_disabled)
 			owner.set_usable_hands(owner.usable_hands - 1)
 			if(owner.stat < UNCONSCIOUS)
-				to_chat(owner, span_userdanger("Не чувствую свою [skloname(name, VINITELNI, FEMALE)]!"))
+				to_chat(owner, span_userdanger("You can't feel your [name]!"))
 			if(held_index)
 				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	else if(!bodypart_disabled)
@@ -155,8 +158,9 @@
 	animal_origin = ALIEN_BODYPART
 
 /obj/item/bodypart/r_arm
-	name = "правая рука"
-	desc = "А вот этой вот дрочу."
+	name = "right arm"
+	desc = "Over 87% of humans are right handed. That figure is much lower \
+		among humans missing their right arm."
 	icon_state = "default_human_r_arm"
 	attack_verb_continuous = list("slaps", "punches")
 	attack_verb_simple = list("slap", "punch")
@@ -219,7 +223,7 @@
 		if(bodypart_disabled)
 			owner.set_usable_hands(owner.usable_hands - 1)
 			if(owner.stat < UNCONSCIOUS)
-				to_chat(owner, span_userdanger("Не чувствую свою [skloname(name, VINITELNI, FEMALE)]!"))
+				to_chat(owner, span_userdanger("You can't feel your [name]!"))
 			if(held_index)
 				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	else if(!bodypart_disabled)
@@ -255,8 +259,9 @@
 	animal_origin = DEVIL_BODYPART
 
 /obj/item/bodypart/l_leg
-	name = "левая нога"
-	desc = "Вставать с этой ноги не круто."
+	name = "left leg"
+	desc = "Some athletes prefer to tie their left shoelaces first for good \
+		luck. In this instance, it probably would not have helped."
 	icon_state = "default_human_l_leg"
 	attack_verb_continuous = list("kicks", "stomps")
 	attack_verb_simple = list("kick", "stomp")
@@ -316,13 +321,13 @@
 		if(bodypart_disabled)
 			owner.set_usable_legs(owner.usable_legs - 1)
 			if(owner.stat < UNCONSCIOUS)
-				to_chat(owner, span_userdanger("Не чувствую свою [skloname(name, VINITELNI, FEMALE)]!"))
+				to_chat(owner, span_userdanger("You can't feel your [name]!"))
 	else if(!bodypart_disabled)
 		owner.set_usable_legs(owner.usable_legs + 1)
 
 
 /obj/item/bodypart/l_leg/digitigrade
-	name = "левая искусственная нога"
+	name = "left digitigrade leg"
 	use_digitigrade = FULL_DIGITIGRADE
 
 /obj/item/bodypart/l_leg/monkey
@@ -349,8 +354,10 @@
 	animal_origin = DEVIL_BODYPART
 
 /obj/item/bodypart/r_leg
-	name = "правая нога"
-	desc = "А вот с этой ноги стоит вставать."
+	name = "right leg"
+	desc = "You put your right leg in, your right leg out. In, out, in, out, \
+		shake it all about. And apparently then it detaches.\n\
+		The hokey pokey has certainly changed a lot since space colonisation."
 	icon_state = "default_human_r_leg"
 	attack_verb_continuous = list("kicks", "stomps")
 	attack_verb_simple = list("kick", "stomp")
@@ -410,13 +417,13 @@
 		if(bodypart_disabled)
 			owner.set_usable_legs(owner.usable_legs - 1)
 			if(owner.stat < UNCONSCIOUS)
-				to_chat(owner, span_userdanger("Не чувствую свою [skloname(name, VINITELNI, FEMALE)]!"))
+				to_chat(owner, span_userdanger("You can't feel your [name]!"))
 	else if(!bodypart_disabled)
 		owner.set_usable_legs(owner.usable_legs + 1)
 
 
 /obj/item/bodypart/r_leg/digitigrade
-	name = "правая искусственная нога"
+	name = "right digitigrade leg"
 	use_digitigrade = FULL_DIGITIGRADE
 
 /obj/item/bodypart/r_leg/monkey

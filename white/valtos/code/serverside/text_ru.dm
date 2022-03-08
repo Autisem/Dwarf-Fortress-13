@@ -164,36 +164,6 @@
 	message = replacetextEx(message, "Ы", "И")
 	return message
 
-/mob/living/carbon/human/proc/get_race_text()
-	switch(skin_tone)
-		if("asian1", "asian2")
-			return pick("ускоглазый", "узкопленочный", "чалма", "чурка", "чучмек", "кырдым-бырдым", "самурай")
-		if("arab")
-			return pick("хач", "сарацин", "палестинец")
-		if("indian")
-			return pick("цыган", "индус")
-		if("african1", "african2")
-			return pick("негр", "черномазый", "уголёк", "черножопая гнида", "негативчик", "сникерс", "черный", "копченый", "негритос", "мумба-юмба", "трюфель")
-		else
-			return null
-
-/mob/living/carbon/human/proc/get_age_text()
-	switch(age)
-		if(-INFINITY to 16)
-			return "ребёнок"
-		if(17 to 21)
-			return "подросток"
-		if(22 to 35)
-			return gender == FEMALE ? "девушка" : "парень"
-		if(36 to 44)
-			return gender == FEMALE ? "женщина" : "мужчина"
-		if(45 to 60)
-			return gender == FEMALE ? "зрелая женщина" : "зрелый мужчина"
-		if(61 to 75)
-			return gender == FEMALE ? "пожилая женщина" : "пожилой мужчина"
-		if(76 to INFINITY)
-			return gender == FEMALE ? "старушка" : "старик"
-
 /proc/ddlc_text(text)
 	var/t = ""
 	for(var/i = 1, i <= length_char(text), i++)

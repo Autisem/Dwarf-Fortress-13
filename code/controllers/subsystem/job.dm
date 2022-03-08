@@ -414,7 +414,7 @@ SUBSYSTEM_DEF(job)
 	if(living_mob.mind)
 		living_mob.mind.assigned_role = rank
 
-	to_chat(M, "\n<big><b>You are the [rank]. [gvorno(TRUE)].</b></big>\n")
+	to_chat(M, "\n<big><b>You are the [rank].</b></big>\n")
 	if(job)
 		var/new_mob = job.equip(living_mob, null, null, joined_late , null, M.client, is_captain)//silicons override this proc to return a mob
 		if(ismob(new_mob))
@@ -434,9 +434,6 @@ SUBSYSTEM_DEF(job)
 	var/related_policy = get_policy(rank)
 	if(related_policy)
 		to_chat(M,"\n[related_policy]")
-	if(ishuman(living_mob))
-		var/mob/living/carbon/human/wageslave = living_mob
-		living_mob.add_memory("Мой номер аккаунта: [wageslave.account_id].")
 	if(job && living_mob)
 		job.after_spawn(living_mob, M, joined_late) // note: this happens before the mob has a key! M will always have a client, H might not.
 

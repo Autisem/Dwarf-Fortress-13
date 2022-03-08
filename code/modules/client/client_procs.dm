@@ -55,10 +55,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			topiclimiter[MINUTE_COUNT] = 0
 		topiclimiter[MINUTE_COUNT] += 1
 		if (topiclimiter[MINUTE_COUNT] > mtl)
-			var/msg = "Действия игнорируются. Слишком много действий было совершено до этого за секунду."
+			var/msg = "Action ignored. Too many actions were done at the last minute."
 			if (minute != topiclimiter[ADMINSWARNED_AT]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
 				topiclimiter[ADMINSWARNED_AT] = minute
-				msg += " Педали были проинформированы и уже выехали давать тебе пизды, крепись."
+				msg += " Admins have been notified."
 				log_game("[key_name(src)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
 				message_admins("[ADMIN_LOOKUPFLW(usr)] [ADMIN_KICK(usr)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
 			to_chat(src, span_userdanger("[msg]"))
@@ -74,7 +74,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			topiclimiter[SECOND_COUNT] = 0
 		topiclimiter[SECOND_COUNT] += 1
 		if (topiclimiter[SECOND_COUNT] > stl)
-			to_chat(src, span_userdanger("Действия игнорируются. Слишком много действий было совершено до этого за секунду."))
+			to_chat(src, span_userdanger("Action ignored. Too many actions were done at the last second."))
 			return
 
 	// Tgui Topic middleware
@@ -389,7 +389,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		var/stealth_admin = mob.client?.holder?.fakekey
 		var/announce_leave = mob.client?.prefs?.broadcast_login_logout
 		if (!stealth_admin)
-			deadchat_broadcast(" переподключается.", "<b>[mob][mob.get_realname_string()]</b>", follow_target = mob, turf_target = get_turf(mob), message_type = DEADCHAT_LOGIN_LOGOUT, admin_only=!announce_leave)
+			deadchat_broadcast(" reconnects.", "<b>[mob][mob.get_realname_string()]</b>", follow_target = mob, turf_target = get_turf(mob), message_type = DEADCHAT_LOGIN_LOGOUT, admin_only=!announce_leave)
 	add_verbs_from_config()
 	var/cached_player_age = set_client_age_from_db(tdata) //we have to cache this because other shit may change it and we need it's current value now down below.
 
