@@ -29,10 +29,10 @@
 	if(!has_active_hand()) //can't attack without a hand.
 		var/obj/item/bodypart/check_arm = get_active_hand()
 		if(check_arm?.bodypart_disabled)
-			to_chat(src, span_warning("Моя [check_arm.name] слишком сильно повреждена! Надо бы поскорее починить её или хотя бы перевязать!"))
+			to_chat(src, span_warning("My [check_arm.name] is too damaged!"))
 			return
 
-		to_chat(src, span_notice("Смотрю на свою руку и вздыхаю."))
+		to_chat(src, span_notice("You look at your arm with a sigh."))
 		return
 
 	// Special glove functions:
@@ -80,7 +80,7 @@
 	if(!user.can_interact_with(src))
 		return FALSE
 	if((interaction_flags_atom & INTERACT_ATOM_REQUIRES_DEXTERITY) && !ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning("У меня не хватает ловкости для этого!"))
+		to_chat(user, span_warning("Not enough dexterity to do this!"))
 		return FALSE
 	if(!(interaction_flags_atom & INTERACT_ATOM_IGNORE_INCAPACITATED) && user.incapacitated((interaction_flags_atom & INTERACT_ATOM_IGNORE_RESTRAINED), !(interaction_flags_atom & INTERACT_ATOM_CHECK_GRAB)))
 		return FALSE

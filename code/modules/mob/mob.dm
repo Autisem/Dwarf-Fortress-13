@@ -142,7 +142,7 @@
 	// voice muffling
 	if(stat == UNCONSCIOUS || stat == HARD_CRIT)
 		if(type & MSG_AUDIBLE) //audio
-			to_chat(src, "<I>... кто-то что-то говорит ...</I>")
+			to_chat(src, "<I>... You can almost hear something ...</I>")
 		return
 	to_chat(src, msg, avoid_highlighting = avoid_highlighting)
 
@@ -317,7 +317,7 @@
 		if(qdel_on_fail)
 			qdel(W)
 		else if(!disable_warning)
-			to_chat(src, span_warning("Не могу себя снарядить этим!"))
+			to_chat(src, span_warning("You are unable to equip that!"))
 		return FALSE
 	equip_to_slot(W, slot, initial, redraw_mob) //This proc should not ever fail.
 	return TRUE
@@ -426,7 +426,7 @@
  * for why this isn't atom/verb/examine()
  */
 /mob/verb/examinate(atom/A as mob|obj|turf in view()) //It used to be oview(12), but I can't really say why
-	set name = "Осмотреть"
+	set name = "Examine"
 	set category = null
 
 	if(isturf(A) && !(sight & SEE_TURFS) && !(A in view(client ? client.view : world.view, src)))
@@ -463,29 +463,29 @@
 /mob/living/blind_examine_check(atom/examined_thing)
 	//need to be next to something and awake
 	if(!Adjacent(examined_thing) || incapacitated())
-		to_chat(src, span_warning("Здесь что-то есть, но я не вижу этого!"))
+		to_chat(src, span_warning("Something is there, but you can't see it!"))
 		return FALSE
 
 	//you can examine things you're holding directly, but you can't examine other things if your hands are full
 	/// the item in our active hand
 	var/active_item = get_active_held_item()
 	if(active_item && active_item != examined_thing)
-		to_chat(src, span_warning("Мне нужна свободная рука для правильного осмотра!"))
+		to_chat(src, span_warning("Your hands are too full to examine this!"))
 		return FALSE
 
 	//you can only initiate exaimines if you have a hand, it's not disabled, and only as many examines as you have hands
 	/// our active hand, to check if it's disabled/detatched
 	var/obj/item/bodypart/active_hand = has_active_hand()? get_active_hand() : null
 	if(!active_hand || active_hand.bodypart_disabled || LAZYLEN(do_afters) >= usable_hands)
-		to_chat(src, span_warning("Мне нужна свободная рука для правильного осмотра!"))
+		to_chat(src, span_warning("You don't have a free hand to examine this!"))
 		return FALSE
 
 	//you can only queue up one examine on something at a time
 	if(DOING_INTERACTION_WITH_TARGET(src, examined_thing))
 		return FALSE
 
-	to_chat(src, span_notice("Начинаю осматривать что-то..."))
-	visible_message(span_notice("[name] щупает [examined_thing.name]..."))
+	to_chat(src, span_notice("You start feeling around for something..."))
+	visible_message(span_notice("[name] begins feeling around for \the [examined_thing.name]..."))
 
 	/// how long it takes for the blind person to find the thing they're examining
 	var/examine_delay_length = rand(1 SECONDS, 2 SECONDS)
@@ -497,7 +497,7 @@
 		examine_delay_length *= 2
 
 	if(examine_delay_length > 0 && !do_after(src, examine_delay_length, target = examined_thing))
-		to_chat(src, span_notice("Начинаю осматривать что-то... ДА КАК ОН НАЗВАЛ МОЮ МАТЬ?!"))
+		to_chat(src, span_notice("You can't get a good feel for what is there."))
 		return FALSE
 
 	//now we touch the thing we're examining
@@ -536,11 +536,11 @@
 
 	// check to see if their face is blocked or, if not, a signal blocks it
 	if(examined_mob.is_face_visible() && SEND_SIGNAL(src, COMSIG_MOB_EYECONTACT, examined_mob, TRUE) != COMSIG_BLOCK_EYECONTACT)
-		var/msg = span_smallnotice("[capitalize(examined_mob.name)] смотрит прямо на меня.")
+		var/msg = span_smallnotice("You make eye contact with [examined_mob].")
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, src, msg), 3) // so the examine signal has time to fire and this will print after
 
 	if(is_face_visible() && SEND_SIGNAL(examined_mob, COMSIG_MOB_EYECONTACT, src, FALSE) != COMSIG_BLOCK_EYECONTACT)
-		var/msg = span_smallnotice("[capitalize(src.name)] смотрит прямо на меня.")
+		var/msg = span_smallnotice("[src] makes eye contact with you.")
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, examined_mob, msg), 3)
 
 /**
@@ -557,7 +557,7 @@
  * overridden here and in /mob/dead/observer for different point span classes and sanity checks
  */
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
-	set name = "Показать на..."
+	set name = "Point To"
 	set category = null
 
 	if(client && !(A in view(client.view, src)))
@@ -621,7 +621,7 @@
  * Calls attack self on the item and updates the inventory hud for hands
  */
 /mob/verb/mode()
-	set name = "Использовать предмет в руке"
+	set name = "Activate Help Object"
 	set category = null
 	set src = usr
 
@@ -649,7 +649,7 @@
 	if(mind)
 		mind.show_memory(src)
 	else
-		to_chat(src, "По какой-то причине у вас нет данных разума, поэтому вы не можете смотреть свои записи, если они у вас были.")
+		to_chat(src, "You don't have a mind datum for some reason, so you can't look at your notes, if you had any.")
 
 /**
  * Add a note to the mind datum
@@ -658,7 +658,7 @@
 	set name = "📘 Add note"
 	set category = "IC"
 
-	msg = input("", "Добавить заметку") as null|message
+	msg = input("", "Add Note") as null|message
 	if(msg)
 		add_memory(msg)
 
@@ -674,7 +674,7 @@
 
 		mind.store_memory(msg)
 	else
-		to_chat(src, "По какой-то причине у вас нет данных разума, поэтому вы не можете добавить к нему ещё записи.")
+		to_chat(src, "You don't have a mind datum for some reason, so you can't add a note to it.")
 
 /**
  * Allows you to respawn, abandoning your current mob
@@ -691,14 +691,14 @@
 		return
 
 	if ((stat != DEAD || !( SSticker )))
-		to_chat(usr, span_boldnotice("Живу!"))
+		to_chat(usr, span_boldnotice("You must be dead to use this!"))
 		return
 
 	client.is_respawned = TRUE
 
 	log_game("[key_name(usr)] used abandon mob.")
 
-	to_chat(usr, span_boldnotice("Поменяй имя или я приду к тебе ночью и вырву твою печень!"))
+	to_chat(usr, span_boldnotice("Please change your name!"))
 
 	if(!client)
 		log_game("[key_name(usr)] AM failed due to disconnect.")
@@ -874,7 +874,7 @@
 /mob/proc/swap_hand()
 	var/obj/item/held_item = get_active_held_item()
 	if(SEND_SIGNAL(src, COMSIG_MOB_SWAP_HANDS, held_item) & COMPONENT_BLOCK_SWAP)
-		to_chat(src, span_warning("Другая рука слишком занята тем, чтобы держать [held_item]."))
+		to_chat(src, span_warning("Your other hand is too busy holding [held_item]."))
 		return FALSE
 	return TRUE
 
@@ -890,7 +890,7 @@
 		return mind.get_ghost(even_if_they_cant_reenter, ghosts_with_clients)
 
 ///Notify a ghost that it's body is being cloned
-/mob/proc/notify_ghost_cloning(message = "Кто-то пытается меня откачать. Стоит войти в тело!", sound = 'sound/effects/genetics.ogg', atom/source = null, flashwindow)
+/mob/proc/notify_ghost_cloning(message = "Someone is trying to revive you. Re-enter your corpse if you want to be revived!", sound = 'sound/effects/genetics.ogg', atom/source = null, flashwindow)
 	var/mob/dead/observer/ghost = get_ghost()
 	if(ghost)
 		ghost.notify_cloning(message, sound, source, flashwindow)
@@ -1071,10 +1071,10 @@
 ///Can this mob read (is literate and not blind)
 /mob/proc/can_read(obj/O)
 	if(is_blind())
-		to_chat(src, span_warning("Пытаясь прочитать [O], но внезапно чувствую себя слишком тупым!"))
+		to_chat(src, span_warning("As you are trying to read [O], you suddenly feel very stupid!"))
 		return
 	if(!is_literate())
-		to_chat(src, span_notice("Пытаюсь прочитать [O], но внезапно понимаю, что не умею читать."))
+		to_chat(src, span_notice("You try to read [O], but can't comprehend any of it."))
 		return
 	return TRUE
 
@@ -1156,7 +1156,7 @@
 
 ///Show the language menu for this mob
 /mob/verb/open_language_menu()
-	set name = "Мои языки"
+	set name = "Open Language Menu"
 	set category = "IC"
 	set category = null
 
