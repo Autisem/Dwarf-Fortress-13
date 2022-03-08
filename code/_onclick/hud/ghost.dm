@@ -5,7 +5,7 @@
 	flick(icon_state + "_anim", src)
 
 /atom/movable/screen/ghost/jumptomob
-	name = "Перейти к"
+	name = "Jump to mob"
 	icon_state = "jumptomob"
 
 /atom/movable/screen/ghost/jumptomob/Click()
@@ -13,7 +13,7 @@
 	G.jumptomob()
 
 /atom/movable/screen/ghost/orbit
-	name = "Следить"
+	name = "Orbit"
 	icon_state = "orbit"
 
 /atom/movable/screen/ghost/orbit/Click()
@@ -21,7 +21,7 @@
 	G.follow()
 
 /atom/movable/screen/ghost/reenter_corpse
-	name = "Вернуться в тело"
+	name = "Back to body"
 	icon_state = "reenter_corpse"
 
 /atom/movable/screen/ghost/reenter_corpse/Click()
@@ -29,7 +29,7 @@
 	G.reenter_corpse()
 
 /atom/movable/screen/ghost/teleport
-	name = "Телепорт"
+	name = "Teleport"
 	icon_state = "teleport"
 
 /atom/movable/screen/ghost/teleport/Click()
