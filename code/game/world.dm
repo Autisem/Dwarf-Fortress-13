@@ -71,9 +71,9 @@ GLOBAL_VAR(restart_counter)
 		return
 
 	Master.Initialize(10, FALSE, TRUE)
-
 	#ifdef UNIT_TESTS
-	HandleTestRun()
+	spawn(10)
+		HandleTestRun()
 	#endif
 
 /world/proc/HandleTestRun()
