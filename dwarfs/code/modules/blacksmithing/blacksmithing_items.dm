@@ -44,7 +44,10 @@
 /obj/item/blacksmith/chisel
 	name = "chisel"
 	desc = "Used for carving on stone."
+	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "chisel"
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_SMALL
@@ -343,7 +346,10 @@
 /obj/item/blacksmith/shpatel
 	name = "trowel"
 	desc = "Used for building purposes."
-	icon_state = "shpatel"
+	icon = 'dwarfs/icons/items/tools.dmi'
+	icon_state = "trowel"
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	force = 8
 	throwforce = 12
@@ -425,7 +431,7 @@
 	..()
 	var/list/choices = list(
 		"Floor" = image(icon = 'white/kacherkin/icons/dwarfs/obj/turfs1.dmi', icon_state = "stone_floor"),
-		"Wall" = image(icon = 'white/valtos/icons/stonewall.dmi', icon_state = "wallthefuck")
+		"Wall" = image(icon = 'dwarfs/icons/turf/walls_dwarven.dmi', icon_state = "rich_wall-12")
 	)
 	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
@@ -438,8 +444,11 @@
 
 /obj/item/blacksmith/scepter
 	name = "scepter"
-	desc = "Comes with a crown."
-	icon_state = "scepter"
+	desc = "Scepter of Armok chosen."
+	icon = 'dwarfs/icons/items/weapons.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	icon_state = "king_scepter"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 9
 	throwforce = 4
@@ -536,6 +545,7 @@
 
 /obj/item/blacksmith/partial
 	desc = "Looks like a part of something bigger."
+	icon = 'dwarfs/icons/items/parts.dmi'
 	var/item_grade = "*"
 
 /obj/item/blacksmith/partial/Initialize()
@@ -564,7 +574,7 @@
 
 /obj/item/blacksmith/partial/crown_empty
 	name = "empty crown"
-	icon_state = "crown_empty"
+	icon_state = "crown_part"
 
 /obj/item/blacksmith/partial/scepter_part
 	name = "scepter part"
@@ -572,5 +582,4 @@
 
 /obj/item/scepter_shaft
 	name = "scepter shaft"
-	icon = 'white/valtos/icons/objects.dmi'
 	icon_state = "scepter_shaft"

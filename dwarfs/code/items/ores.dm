@@ -54,7 +54,7 @@
 	name = "uncut gem"
 	desc = "Крутой"
 	w_class = WEIGHT_CLASS_TINY
-	icon = 'white/rashcat/icons/dwarfs/objects/gems.dmi'
+	icon = 'dwarfs/icons/items/ores_gems.dmi'
 	var/cut_type = /obj/item/gem/cut
 	var/scan_state
 	var/max_amount = 3
@@ -68,7 +68,7 @@
 
 /obj/item/gem/diamond
 	name = "uncut diamond"
-	desc = "Diamond. Uncut"
+	desc = "Diamond. Might require some polishing"
 	icon_state = "diamond_uncut"
 	cut_type = /obj/item/gem/cut/diamond
 	scan_state = "diamond"
@@ -77,19 +77,19 @@
 /obj/item/gem/cut/diamond
 	name = "diamond"
 	desc = "Diamond"
-	icon_state = "diamond"
+	icon_state = "diamond_cut"
 
 /obj/item/gem/ruby
 	name = "uncut ruby"
-	desc = "Ruby. Uncut."
+	desc = "A valuable gem, bright and red"
 	icon_state = "ruby_uncut"
 	cut_type = /obj/item/gem/cut/ruby
 	scan_state = "ruby"
 
 /obj/item/gem/cut/ruby
 	name = "ruby"
-	desc = "Ruby."
-	icon_state = "ruby"
+	desc = "Gemcutting masterwork, would fit for jewelry"
+	icon_state = "ruby_cut"
 
 /obj/item/gem/saphire
 	name = "uncut saphire"
@@ -100,5 +100,5 @@
 
 /obj/item/gem/cut/saphire
 	name = "saphire"
-	icon_state = "Saphire."
-	desc = "Такой камень подошел бы королю."
+	icon_state = "saphire_cut"
+	desc = "Those could fit the crown"

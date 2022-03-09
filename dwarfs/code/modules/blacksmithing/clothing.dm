@@ -108,10 +108,10 @@
 
 /obj/item/clothing/head/helmet/dwarf_crown
 	name = "crown"
-	desc = "Worthy of a real king."
-	worn_icon = 'white/valtos/icons/clothing/mob/hat.dmi'
-	icon = 'white/valtos/icons/clothing/hats.dmi'
-	icon_state = "dwarf_king"
+	desc = "To show the royal status."
+	worn_icon = 'dwarfs/icons/mob/clothing.dmi'
+	icon = 'dwarfs/icons/items/clothing.dmi'
+	icon_state = "king_crown"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10,"energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 5, "wound" = 15)
 	custom_materials = list(/datum/material/gold = 10000)

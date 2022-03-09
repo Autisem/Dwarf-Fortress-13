@@ -442,9 +442,9 @@ GLOBAL_LIST_INIT(snow_recipes, list ( \
  */
 
 /obj/item/stack/sheet/mineral/coal
-	name = "уголь"
-	icon = 'white/valtos/icons/prison/prison.dmi'
-	desc = "Черный как негр."
+	name = "coal lump"
+	icon = 'dwarfs/icons/items/ores_gems.dmi'
+	desc = "Black gold of the mountains, used to fuel furnaces"
 	icon_state = "coal"
 	singular_name = "кусок угля"
 	merge_type = /obj/item/stack/sheet/mineral/coal
