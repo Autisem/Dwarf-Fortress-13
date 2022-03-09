@@ -90,6 +90,14 @@
 		var/datum/smithing_recipe/SR = new item()
 		allowed_things += SR
 
+/obj/structure/anvil/proc/load_slider(var/obj/item/blacksmith/smithing_hammer/hammer, var/mob/living/carbon/human/H)
+	var/html = file2text('dwarfs/code/modules/blacksmithing/minigames/slider.html')
+	var/list/to_replace = list("HITHERE", "MISSHERE", "SPEEDHERE", "WIDTHHERE")
+	var/list/replaceble = list("byond://?src=[REF(src)];hit=1", "byond://?src=[REF(src)];miss=1", "[1+current_ingot.mod_grade]", "[20+H.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SMITHING_MODIFIER)+hammer.level*3]")
+	for(var/i in 1 to length(to_replace))
+		html = replacetext(html, to_replace[i], replaceble[i])
+	return html
+
 /obj/structure/anvil/attackby(obj/item/I, mob/living/user, params)
 
 	if(user.a_intent == INTENT_HARM)
@@ -116,7 +124,8 @@
 				return
 			if(current_ingot.recipe)
 				var/height = 30
-				var/html = file2text("dwarfs/code/modules/blacksmithing/minigames/slider.txt")
+				var/html = load_slider(hammer, H)
+				html = format_text(html)
 				if(current_ingot.progress_current <= current_ingot.progress_need)
 					var/datum/browser/popup = new(user, "Anvil", "Anvil", 500, height+120)
 					popup.set_content(html)

@@ -17,12 +17,12 @@
             score++;
             cooldownlast=0;
             cooldown=true;
-			window.location = ("byond://?src=[REF(src)];hit=1")
+			window.location = ("HITHERE")
         }
         else if (!c && !cooldown){
             cooldownlast=0;
             cooldown=true;
-			window.location = ("byond://?src=[REF(src)];miss=1")
+			window.location = ("MISSHERE")
         }
     }
 
@@ -30,12 +30,12 @@
     let ctx = canvas.getContext("2d");
     let linewidth = 1
     let x = 0
-	let speed = [1+current_ingot.mod_grade];
+	let speed = SPEEDHERE;
     let right = true;
     let cooldown = false;
     let cooldownlast = 0
     let score = 0;
-    let fieldwidth = [20+H.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SMITHING_MODIFIER)+hammer.level*3];
+    let fieldwidth = WIDTHHERE;
     let fx1 = 50
     let fx2 = 250-fieldwidth
     let cooldown_m = 30;
