@@ -1,6 +1,6 @@
 /turf/closed/mineral/random/dwarf_lustress
-	icon = 'white/valtos/icons/rockwall.dmi'
-	smooth_icon = 'white/valtos/icons/rockwall.dmi'
+	icon = 'dwarfs/icons/turf/walls_cavern.dmi'
+	smooth_icon = 'dwarfs/icons/turf/walls_cavern.dmi'
 	icon_state = "rockwall-0"
 	base_icon_state = "rockwall"
 	environment_type = "stone_raw"

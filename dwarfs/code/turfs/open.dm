@@ -36,7 +36,7 @@
 /turf/open/floor/stone/raw
 	name = "ugly stone floor"
 	desc = "Terrible."
-	icon = 'white/kacherkin/icons/dwarfs/obj/turfs1.dmi'
+	icon = 'dwarfs/icons/turf/floors_cavern.dmi'
 	icon_state = "stone"
 	slowdown = 1
 	baseturfs = /turf/open/floor/stone/raw
