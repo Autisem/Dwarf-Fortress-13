@@ -1,7 +1,7 @@
 /turf/open/floor/stone
 	name = "stone floor"
 	desc = "Classic."
-	icon = 'white/kacherkin/icons/dwarfs/obj/turfs1.dmi'
+	icon = 'dwarfs/icons/turf/floors_dwarven.dmi'
 	icon_state = "stone_floor"
 	footstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
