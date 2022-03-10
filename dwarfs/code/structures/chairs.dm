@@ -23,6 +23,7 @@
 /obj/structure/chair/comfy/stone/throne
 	name = "stone throne"
 	desc = "Amazing looks, still not very comfy."
+	icon = 'dwarfs/icons/structures/throne.dmi'
 	icon_state = "throne"
 	max_integrity = 650
 
