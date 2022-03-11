@@ -66,14 +66,6 @@
 	category = CAT_STRUCTURE
 	always_available = TRUE
 
-/datum/crafting_recipe/smithman/furnace_cook
-	name = "Печь для готовки"
-	result = /obj/machinery/microwave/furnace
-	reqs = list(/obj/item/stack/sheet/stone = 8, /obj/item/stack/sheet/mineral/wood = 6)
-	time = 200
-	category = CAT_STRUCTURE
-	always_available = TRUE
-
 /datum/crafting_recipe/smithman/forge
 	name = "Кузница"
 	result = /obj/structure/forge

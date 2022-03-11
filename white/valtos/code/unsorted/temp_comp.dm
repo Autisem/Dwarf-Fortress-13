@@ -135,11 +135,6 @@ PROCESSING_SUBSYSTEM_DEF(realtemp)
 			temp_to_adjust += 5
 
 	for(var/obj/structure/heat_source in view(3, owner))
-		if(istype(heat_source, /obj/structure/bonfire))
-			var/obj/structure/bonfire/B = heat_source
-			if(B.burning)
-				temp_sources += "Костёр согревает меня."
-				temp_to_adjust += 3
 		if(istype(heat_source, /obj/structure/fireplace))
 			var/obj/structure/fireplace/F = heat_source
 			if(F.lit)

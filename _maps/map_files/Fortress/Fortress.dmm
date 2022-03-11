@@ -133,16 +133,8 @@
 	},
 /turf/open/floor/stone/raw,
 /area/dwarf/fortress)
-"lv" = (
-/obj/structure/bonfire/prelit,
-/turf/open/floor/stone,
-/area/dwarf/fortress)
 "lH" = (
 /obj/item/stack/rods/ten,
-/turf/open/floor/stone,
-/area/dwarf/fortress)
-"lP" = (
-/obj/machinery/microwave/furnace,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "lW" = (
@@ -199350,7 +199342,7 @@ nV
 nV
 nV
 cK
-lv
+gc
 gc
 iq
 el
@@ -199954,7 +199946,7 @@ nV
 nV
 nV
 el
-lP
+gc
 iq
 iq
 kL

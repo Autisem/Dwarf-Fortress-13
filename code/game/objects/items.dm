@@ -701,12 +701,6 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		MO.desc = "Looks like this was <b>[src.name]</b> some time ago."
 		..()
 
-/obj/item/proc/microwave_act(obj/machinery/microwave/M)
-	if(SEND_SIGNAL(src, COMSIG_ITEM_MICROWAVE_ACT, M) & COMPONENT_SUCCESFUL_MICROWAVE)
-		return TRUE
-	if(istype(M) && M.dirty < 100)
-		M.dirty++
-
 /obj/item/proc/grind_requirements(obj/machinery/reagentgrinder/R) //Used to check for extra requirements for grinding an object
 	return TRUE
 

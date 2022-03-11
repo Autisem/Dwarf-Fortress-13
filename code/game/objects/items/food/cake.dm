@@ -186,10 +186,6 @@
 /obj/item/food/cake/birthday/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cakeslice/birthday, 5, 30)
 
-/obj/item/food/cake/birthday/microwave_act(obj/machinery/microwave/M) //super sekrit club
-	new /obj/item/clothing/head/hardhat/cakehat(get_turf(src))
-	qdel(src)
-
 /obj/item/food/cakeslice/birthday
 	name = "birthday cake slice"
 	desc = "A slice of your birthday."
@@ -220,10 +216,6 @@
 	if(HAS_TRAIT(user, TRAIT_PACIFISM) && M != user) //Prevents pacifists from attacking others directly
 		return
 	energy_bite(M, user)
-
-/obj/item/food/cake/birthday/energy/microwave_act(obj/machinery/microwave/M) //super sekriter club
-	new /obj/item/clothing/head/hardhat/cakehat/energycake(get_turf(src))
-	qdel(src)
 
 /obj/item/food/cakeslice/birthday/energy
 	name = "energy cake slice"

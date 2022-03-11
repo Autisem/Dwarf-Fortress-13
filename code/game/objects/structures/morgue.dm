@@ -305,17 +305,6 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	name = "крем-а-торий"
 	desc = "Хотите мороженку?"
 
-/obj/structure/bodycontainer/crematorium/creamatorium/cremate(mob/user)
-	var/list/icecreams = new()
-	for(var/i_scream in get_all_contents_type(/mob/living))
-		var/obj/item/food/icecream/IC = new()
-		IC.set_cone_type("waffle")
-		IC.add_mob_flavor(i_scream)
-		icecreams += IC
-	. = ..()
-	for(var/obj/IC in icecreams)
-		IC.forceMove(src)
-
 /*
  * Generic Tray
  * Parent class for morguetray and crematoriumtray

@@ -260,8 +260,3 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 //Step two - washing..... it's actually in washing machine code.
 
 //Step three - drying
-
-/obj/item/stack/sheet/wethide/microwave_act(obj/machinery/microwave/MW)
-	..()
-	new /obj/item/stack/sheet/leather(drop_location(), amount)
-	qdel(src)

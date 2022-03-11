@@ -23,10 +23,10 @@
 				user.visible_message(span_notice("[user] срубает [src] используя [W].") ,span_notice("Срубаю [src] используя [W].") , span_hear("Слышу громкий звук падения дерева."))
 				playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , FALSE, FALSE)
 				user.log_message("cut down [src] at [AREACOORD(src)]", LOG_ATTACK)
-				for(var/i=1 to log_amount)
-					new /obj/item/grown/log/tree(get_turf(src))
-				var/obj/structure/flora/stump/S = new(loc)
-				S.name = "пенёк [skloname(name, VINITELNI, gender)]"
+				// for(var/i=1 to log_amount)
+				// 	new /obj/item/grown/log/tree(get_turf(src))
+				// var/obj/structure/flora/stump/S = new(loc)
+				// S.name = "пенёк [skloname(name, VINITELNI, gender)]"
 				qdel(src)
 	else
 		return ..()

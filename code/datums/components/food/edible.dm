@@ -42,8 +42,6 @@ Behavior that's still missing from this component that original food items had t
 	var/volume
 	///The flavortext for taste (haha get it flavor text)
 	var/list/tastes
-	///The type of atom this creates when the object is microwaved.
-	var/atom/microwaved_type
 
 
 /datum/component/edible/Initialize(
@@ -55,7 +53,6 @@ Behavior that's still missing from this component that original food items had t
 	list/tastes,
 	list/eatverbs = list("ест","вкушает","поедает","пожирает","наяривает","кушает"),
 	bite_consumption = 2,
-	microwaved_type,
 	junkiness,
 	datum/callback/after_eat,
 	datum/callback/on_consume,
@@ -68,7 +65,6 @@ Behavior that's still missing from this component that original food items had t
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_ANIMAL, .proc/UseByAnimal)
 	RegisterSignal(parent, COMSIG_ATOM_CHECKPARTS, .proc/OnCraft)
 	RegisterSignal(parent, COMSIG_ATOM_CREATEDBY_PROCESSING, .proc/OnProcessed)
-	RegisterSignal(parent, COMSIG_ITEM_MICROWAVE_COOKED, .proc/OnMicrowaveCooked)
 	RegisterSignal(parent, COMSIG_EDIBLE_INGREDIENT_ADDED, .proc/edible_ingredient_added)
 
 	var/static/list/loc_connections = list(
@@ -79,7 +75,6 @@ Behavior that's still missing from this component that original food items had t
 	if(isitem(parent))
 		RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/UseFromHand)
 		RegisterSignal(parent, COMSIG_ITEM_FRIED, .proc/OnFried)
-		RegisterSignal(parent, COMSIG_ITEM_MICROWAVE_ACT, .proc/OnMicrowaved)
 		RegisterSignal(parent, COMSIG_ITEM_USED_AS_INGREDIENT, .proc/used_to_customize)
 
 		var/obj/item/item = parent
@@ -99,7 +94,6 @@ Behavior that's still missing from this component that original food items had t
 	src.on_consume = on_consume
 	src.initial_reagents = string_assoc_list(initial_reagents)
 	src.tastes = string_assoc_list(tastes)
-	src.microwaved_type = microwaved_type
 	src.check_liked = check_liked
 
 	var/atom/owner = parent
@@ -122,9 +116,8 @@ Behavior that's still missing from this component that original food items had t
 	volume = 50,
 	eat_time = 10,
 	list/tastes,
-	list/eatverbs = list("ест","вкушает","поедает","пожирает","наяривает","кушает"),
+	list/eatverbs = list("eats","bites","tastes"),
 	bite_consumption = 2,
-	microwaved_type,
 	junkiness,
 	datum/callback/after_eat,
 	datum/callback/on_consume,
@@ -149,19 +142,14 @@ Behavior that's still missing from this component that original food items had t
 	SIGNAL_HANDLER
 	var/atom/A = parent
 
-	if(microwaved_type)
-		examine_list += "\n[capitalize(A.name)] можно засунуть в <b>микроволновку</b>!"
-
 	if(!(food_flags & FOOD_IN_CONTAINER))
 		switch (bitecount)
 			if (0)
 				return
 			if(1)
-				examine_list += "\n[capitalize(A.name)] был[A.ru_a()] кем-то покусан[A.ru_a()]!"
-			if(2,3)
-				examine_list += "\n[capitalize(A.name)] был[A.ru_a()] покусан[A.ru_a()] [bitecount] раз!"
-			else
-				examine_list += "\n[capitalize(A.name)] был[A.ru_a()] покусан[A.ru_a()] множество раз!"
+				examine_list += "\n[A] was bitten!"
+			if(2 to INFINITY)
+				examine_list += "\n[A] was bitted [bitecount] times!"
 
 /datum/component/edible/proc/UseFromHand(obj/item/source, mob/living/M, mob/living/user)
 	SIGNAL_HANDLER
@@ -220,38 +208,6 @@ Behavior that's still missing from this component that original food items had t
 	this_food.reagents.maximum_volume = ROUND_UP(this_food.reagents.maximum_volume) // Just because I like whole numbers for this.
 
 	SSblackbox.record_feedback("tally", "food_made", 1, type)
-
-/datum/component/edible/proc/OnMicrowaved(datum/source, obj/machinery/microwave/used_microwave)
-	SIGNAL_HANDLER
-
-	var/turf/parent_turf = get_turf(parent)
-
-	if(!microwaved_type)
-		new /obj/item/food/badrecipe(parent_turf)
-		qdel(parent)
-		return
-
-	var/obj/item/result
-
-	result = new microwaved_type(parent_turf)
-
-	var/efficiency = istype(used_microwave) ? used_microwave.efficiency : 1
-
-	SEND_SIGNAL(result, COMSIG_ITEM_MICROWAVE_COOKED, parent, efficiency)
-
-	SSblackbox.record_feedback("tally", "food_made", 1, result.type)
-	qdel(parent)
-	return COMPONENT_SUCCESFUL_MICROWAVE
-
-///Corrects the reagents on the newly cooked food
-/datum/component/edible/proc/OnMicrowaveCooked(datum/source, obj/item/source_item, cooking_efficiency = 1)
-	SIGNAL_HANDLER
-
-	var/atom/this_food = parent
-
-	this_food.reagents.multiply_reagents(cooking_efficiency * CRAFTED_FOOD_BASE_REAGENT_MODIFIER)
-
-	source_item.reagents?.trans_to(this_food, source_item.reagents.total_volume)
 
 ///Makes sure the thing hasn't been destroyed or fully eaten to prevent eating phantom edibles
 /datum/component/edible/proc/IsFoodGone(atom/owner, mob/living/feeder)

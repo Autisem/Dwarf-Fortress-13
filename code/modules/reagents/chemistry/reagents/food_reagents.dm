@@ -168,7 +168,7 @@
 		return
 	if(!isitem(exposed_obj) || istype(exposed_obj, /obj/item/food/deepfryholder))
 		return
-	if(is_type_in_typecache(exposed_obj, GLOB.oilfry_blacklisted_items) || (exposed_obj.resistance_flags & INDESTRUCTIBLE))
+	if(exposed_obj.resistance_flags & INDESTRUCTIBLE)
 		exposed_obj.loc.visible_message(span_notice("Горячее масло не оказало эффекта на [exposed_obj]!"))
 		return
 	exposed_obj.loc.visible_message(span_warning("[exposed_obj] быстро обжарился благодаря вылитому горячему маслу! Каким то образом."))
