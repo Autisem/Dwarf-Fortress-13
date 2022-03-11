@@ -1859,6 +1859,7 @@
 #include "code\modules\unit_tests\_unit_tests.dm"
 #include "code\modules\zombie\items.dm"
 #include "code\modules\zombie\organs.dm"
+#include "dwarfs\code\_DEFINES\plants.dm"
 #include "dwarfs\code\area\area.dm"
 #include "dwarfs\code\items\misc.dm"
 #include "dwarfs\code\items\ores.dm"

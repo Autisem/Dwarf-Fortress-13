@@ -14,12 +14,15 @@
 	var/max_harvestables = 10 // max amount of products a plant can have in total
 	var/icon_ripe // max growth stage and has harvestables on it
 	var/icon_dead // icon when plant dies
-	var/growthstages = 6 // how many growth stages it has
+	var/growthstages = 5 // how many growth stages it has
 	var/growthdelta = 5 SECONDS // how long between two growth stages
 	var/growthstage = 1 // current 'age' of the plant
 	var/dead = FALSE // to prevent spam in plantdies()
 	var/lastcycle_growth // last time it advanced in growth
+	var/growthstart
+	var/growthtime = 40 SECONDS
 	var/obj/structure/farm_plot/plot // if planted via seeds will have a plot assigned to it
+	var/growth_mode = PLANTS_GROWTH_PERCENT
 
 /obj/structure/plant/Initialize()
 	. = ..()
@@ -31,21 +34,35 @@
 		icon_dead = "[species]-dead"
 	lastcycle_growth = world.time
 	lastcycle_produce = world.time
+	if(growth_mode == PLANTS_GROWTH_PERCENT)
+		growthstart = world.time
+		icon_state = "[species]-[growthstages]"
 	update_appearance()
 
 /obj/structure/plant/process(delta_time)
 	if(dead)
 		return
 	var/needs_update = 0 // Checks if the icon needs updating so we don't redraw empty trays every time
-	var/time_until_growth = lastcycle_growth+growthdelta // time to advance age
-	if(plot?.fertlevel)
-		time_until_growth = time_until_growth*0.8 // fertilizer makes plants grow 20% faster
-	if(world.time >= time_until_growth && health>0)
-		// Advance age
-		growthstage = clamp(growthstage+1, 1, growthstages)
-		lastcycle_growth = world.time
-		needs_update = 1
+	if(growth_mode == PLANTS_GROWTH_STAGES)
+		var/time_until_growth = lastcycle_growth+growthdelta // time to advance age
+		if(plot?.fertlevel)
+			time_until_growth = time_until_growth*0.8 // fertilizer makes plants grow 20% faster
+		if(world.time >= time_until_growth && health>0)
+			// Advance age
+			growthstage = clamp(growthstage+1, 1, growthstages)
+			lastcycle_growth = world.time
+			needs_update = 1
+	else if(growth_mode == PLANTS_GROWTH_PERCENT)
+		var/scale = (world.time-growthstart)/(growthstart+growthtime)
+		if(scale >= 1)
+			icon_state = icon_ripe
+			growthstage = growthstages
+		else
+			var/matrix/M = matrix()
+			M.Scale(scale, scale)
+			transform = M
 	if(world.time >= lastcycle_produce+produce_delta)
+		lastcycle_produce = world.time
 		try_grow_harvestebles()
 		needs_update = 1
 
@@ -93,8 +110,8 @@
 		icon_state = icon_dead
 	else if(length(harvestables) && growthstage == growthstages)
 		icon_state = icon_ripe
-	else
-		icon_state = "[species][growthstage]"
+	else if(growth_mode == PLANTS_GROWTH_STAGES)
+		icon_state = "[species]-[growthstage]"
 
 /obj/structure/plant/proc/try_grow_harvestebles()
 	return can_grow_harvestable()
