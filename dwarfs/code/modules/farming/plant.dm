@@ -4,7 +4,7 @@
 	icon = 'dwarfs/icons/farming/growing.dmi'
 	icon_state = "sample"
 	anchored = TRUE
-	layer = ABOVE_OBJ_LAYER
+	layer = ABOVE_ALL_MOB_LAYER
 	var/species = "plant" // used for icons and to whitelist plants in plots
 	var/health = 40
 	var/list/produced = list() // path type list of items that can be produced at the last growth stage
@@ -19,7 +19,7 @@
 	var/growthstart // world.time when plant starts growing
 	var/growthtime = 40 SECONDS // how long it takes to grow fully (no harvestables)
 	var/scale // plant size
-	var/state_change = 0.3
+	var/state_change = 0.5 // number when the plant changes its state, if it has another one
 	var/obj/structure/farm_plot/plot // if planted via seeds will have a plot assigned to it
 	var/growth_mode = PLANTS_GROWTH_PERCENT
 
