@@ -51,7 +51,7 @@ Behavior that's still missing from this component that original food items had t
 	volume = 50,
 	eat_time = 10,
 	list/tastes,
-	list/eatverbs = list("ест","вкушает","поедает","пожирает","наяривает","кушает"),
+	list/eatverbs = list("eats","bites","tastes"),
 	bite_consumption = 2,
 	junkiness,
 	datum/callback/after_eat,

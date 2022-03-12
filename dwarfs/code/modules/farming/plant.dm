@@ -4,6 +4,7 @@
 	icon = 'dwarfs/icons/farming/growing.dmi'
 	icon_state = "sample"
 	anchored = TRUE
+	layer = ABOVE_OBJ_LAYER
 	var/species = "plant" // used for icons and to whitelist plants in plots
 	var/health = 40
 	var/list/produced = list() // path type list of items that can be produced at the last growth stage
@@ -81,7 +82,7 @@
 		if(!(species in plot.allowed_species))
 			health-= rand(1,3)
 
-	if (needs_update)
+	if(needs_update)
 		update_appearance()
 
 
