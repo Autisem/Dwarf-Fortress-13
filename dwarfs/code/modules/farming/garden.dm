@@ -5,7 +5,7 @@
 
 /obj/structure/plant/garden/Initialize()
 	. = ..()
-	icon_ripe = "[species]-[growthstages]"
+	icon_ripe = "[species]-1"
 
 /obj/structure/plant/garden/can_grow_harvestable()
 	if(length(harvestables))

@@ -2,12 +2,11 @@
 	name = "tree"
 	desc = "Big green?"
 	icon = 'dwarfs/icons/farming/growing_tree.dmi'
-	growthstages = 6
 	density = TRUE
 
 /obj/structure/plant/tree/Initialize()
 	. = ..()
-	pixel_x = -32
+	pixel_x = -20
 
 /obj/structure/plant/tree/try_grow_harvestebles()
 	if(!..())
@@ -33,7 +32,7 @@
 	name = "apple tree"
 	desc = ""
 	species = "apple"
-	produced = list()
+	produced = list(/obj/item/growable/fruit/apple)
 	// growthdelta = 1 MINUTES
 	// produce_delta = 1 MINUTES
 	// max_harvestables =

@@ -9,7 +9,7 @@
 		return FALSE
 	if(length(harvestables) >= max_harvestables)
 		return FALSE // no space for more stuff
-	if(growthstage != growthstages)
+	if(scale < 1)
 		return FALSE
 	return TRUE
 
