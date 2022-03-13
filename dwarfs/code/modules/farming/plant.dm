@@ -7,24 +7,40 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	var/species = "plant" // used for icons and to whitelist plants in plots
 	var/health = 40
-	var/list/produced = list() // path type list of items that can be produced at the last growth stage
-	var/list/harvestables = list() // list of objects that can be harvested
+	var/maxhealth = 40
+	var/list/produced = list() // path type list of items and their max quantity that can be produced at the last growth stage
 	var/lastcycle_produce // last time it tried to grow something
 	var/produce_delta = 10 SECONDS // amount of time between each try to grow new stuff
-	var/max_per_harvestable = 3 // a limit to a single type of harvestable a plant can have in harvestables
-	var/max_harvestables = 10 // max amount of products a plant can have in total
+	var/harvestable = FALSE // whether a plant is ready for harvest
 	var/icon_ripe // max growth stage and has harvestables on it
 	var/icon_dead // icon when plant dies
-	var/growthstages = 6 // how many growth stages it has
+	var/growthstages = 5 // how many growth stages it has
 	var/growthdelta = 5 SECONDS // how long between two growth stages
 	var/growthstage = 1 // current 'age' of the plant
 	var/dead = FALSE // to prevent spam in plantdies()
 	var/lastcycle_growth // last time it advanced in growth
+	var/lifespan = 4 // plant's max age in cycles + amount of cycles to grow up
+	var/age = 1
 	var/obj/structure/farm_plot/plot // if planted via seeds will have a plot assigned to it
+
+/obj/structure/plant/examine(mob/user)
+	. = ..()
+	var/healthtext = "<br>"
+	switch(health)
+		if(maxhealth/2 to INFINITY)
+			healthtext += "[src] looks healthy."
+		if(1 to maxhealth/2)
+			healthtext += "[src] looks unhealthy."
+		else
+			healthtext += "[src] is dead!"
+	. += healthtext
 
 /obj/structure/plant/Initialize()
 	. = ..()
+	pixel_x = base_pixel_x + rand(-8, 8)
+	pixel_y = base_pixel_y + rand(-8, 8)
 	START_PROCESSING(SSplants, src)
+	lifespan += growthstages
 	if(!icon_ripe)
 		icon_ripe = "[species]-ripe"
 
@@ -40,14 +56,18 @@
 	var/time_until_growth = lastcycle_growth+growthdelta // time to advance age
 	if(plot?.fertlevel)
 		time_until_growth = time_until_growth*0.8 // fertilizer makes plants grow 20% faster
-	if(world.time >= time_until_growth && health>0)
+	if(world.time >= time_until_growth)
 		// Advance age
+		age++
 		growthstage = clamp(growthstage+1, 1, growthstages)
 		lastcycle_growth = world.time
 		needs_update = 1
+
 	if(world.time >= lastcycle_produce+produce_delta)
-		try_grow_harvestebles()
-		needs_update = 1
+		lastcycle_produce = world.time
+		if(can_grow_harvestable())
+			harvestable = TRUE
+			needs_update = 1
 
 //Water//////////////////////////////////////////////////////////////////
 		// // Drink random amount of water
@@ -68,6 +88,9 @@
 		plantdies()
 		dead = TRUE
 		update_appearance()
+
+	if(age > lifespan)
+		health -= rand(1,3)
 
 	if(plot)
 		plot.fertlevel = clamp(plot.fertlevel-plot.fertrate, 0, plot.fertmax)
@@ -91,38 +114,41 @@
 	. = ..()
 	if(dead)
 		icon_state = icon_dead
-	else if(length(harvestables))
+	else if(harvestable)
 		icon_state = icon_ripe
 	else
-		icon_state = "[species][growthstage]"
-
-/obj/structure/plant/proc/try_grow_harvestebles()
-	return can_grow_harvestable()
+		icon_state = "[species]-[growthstage]"
 
 /obj/structure/plant/proc/can_grow_harvestable()
 	if(!length(produced))
 		return FALSE
-	if(length(harvestables) >= max_harvestables)
-		return FALSE // no space for more stuff
 	if(growthstage != growthstages)
 		return FALSE
 	return TRUE
 
 /obj/structure/plant/proc/harvest(var/mob/user)
-	if(!length(harvestables))
-		to_chat(user, span_warning("There is nothing to harvest!"))
+	if(!do_after(user, 1 SECONDS, src)) // TODO: tweak time according to skill
 		return
-	for(var/obj/I in harvestables)
-		if(!do_after(user, 1 SECONDS, src)) // TODO: tweak time according to skill
-			return
-		if(prob(95)) // TODO: tweak chance according to skill; higher skill can give additional harvestables
-			to_chat(user, span_notice("You harvest [I] from [src]."))
-			I.forceMove(get_turf(user))
+	for(var/obj/P in produced)
+		var/harvested = rand(0, produced[P])// TODO: tweak numbers according to skill; higher skill can give additional harvestables
+		if(harvested)
+			for(var/i in 1 to harvested)
+				new P(loc)
+			to_chat(user, span_notice("You harvest [initial(P.name)] from [src]."))
 		else
-			to_chat(user, span_warning("You fail to harvest [I] from [src]."))
-			qdel(I)
-		harvestables.Remove(I)
+			to_chat(user, span_warning("You fail to harvest [initial(P.name)] from [src]."))
 	update_appearance()
+	harvestable = FALSE
 
 /obj/structure/plant/attack_hand(mob/user)
-	harvest(user)
+	if(!harvestable)
+		to_chat(user, span_warning("There is nothing to harvest!"))
+		return
+	if(!dead)
+		harvest(user)
+	else
+		if(plot)
+			plot.attack_hand(user)
+		else
+			to_chat(user, span_notice("You remove the dead plant."))
+			qdel(src)

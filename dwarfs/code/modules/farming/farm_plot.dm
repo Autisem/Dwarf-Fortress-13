@@ -1,42 +1,18 @@
-// /obj/structure/farm_plot
-// 	name = "farm plot"
-// 	anchored = TRUE
-// 	// var/water_level = 100
-// 	// var/max_water = 100
-// 	var/fertilizer_level = 100
-// 	var/max_fertilizer = 100
-// 	var/obj/item/growable/seeds/seed
-// 	var/list/allowed_seeds
-// 	icon = 'icons/obj/hydroponics/equipment.dmi'
-// 	icon_state = "soil"
-
 /obj/structure/farm_plot/muddy
 	name = "muddy plot"
 	desc = "A pile of mud collected together to grow cave plants in."
-	allowed_species = list("sample")
+	allowed_species = list("cave_wheat", "pig_tail", "plump_helmet")
 
 /obj/structure/farm_plot/soil
 	name = "soil plot"
 	desc = "A pile of dirt collected together to grow surface plants in."
-	allowed_species = list()
-
-// /obj/structure/farm_plot/attackby(obj/item/I, mob/user, params)
-// 	if(istype(I, /obj/item/growable/seeds))
-// 		if(seed)
-// 			to_chat(user, span_warning("\A [seed] is already growing here!"))
-// 			return
-// 		seed = I
-// 		I.forceMove(src)
-// 		to_chat(user, span_notice("You plant \the [seed]."))
-
-
+	allowed_species = list("barley", "sweet_pod", "cotton", "turnip", "carrot")
 
 /obj/structure/farm_plot
 	name = "hydroponics tray"
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "soil"
 	anchored = TRUE
-	pixel_z = 8
 	///The amount of water in the tray (max 100)
 	// var/waterlevel = 100
 	// var/watermax = 100

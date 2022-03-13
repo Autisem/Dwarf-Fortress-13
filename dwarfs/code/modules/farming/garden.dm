@@ -3,28 +3,12 @@
 	name = "garden plant"
 	desc = "garden green?"
 
-/obj/structure/plant/garden/Initialize()
-	. = ..()
-	icon_ripe = "[species][growthstages]"
-
 /obj/structure/plant/garden/can_grow_harvestable()
-	if(length(harvestables))
+	if(harvestable)
 		return FALSE
 	return ..()
 
-/obj/structure/plant/garden/try_grow_harvestebles()
-	if(!can_grow_harvestable())
-		return
-	for(var/I in produced)
-		for(var/i in 1 to max_per_harvestable)
-			var/obj/item/P = new I (src)
-			harvestables.Add(P)
-	update_appearance()
-
-/obj/structure/plant/garden/harvest(mob/user)
-	. = ..()
-	qdel(src)
-
+/*
 /obj/structure/plant/garden/artichoke
 	name = "artichoke"
 	desc = "A relatively tall plant with arching, deeply lobed, silvery, glaucous-green leaves. The flowers develop in a large head from an edible bud."
@@ -415,3 +399,4 @@
 	// growthdelta = 1 MINUTES
 	// produce_delta = 1 MINUTES
 	// max_harvestables =
+*/
