@@ -97,7 +97,7 @@
 			if(!user.transferItemToLoc(O, src))
 				return
 			to_chat(user, span_notice("You plant [O]."))
-			var/obj/structure/plant/P = new S.planttype(loc)
+			var/obj/structure/plant/P = new S.plant(loc)
 			myplant = P
 			P.plot = src
 			TRAY_NAME_UPDATE
