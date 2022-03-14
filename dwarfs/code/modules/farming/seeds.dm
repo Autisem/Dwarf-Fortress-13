@@ -1,6 +1,5 @@
 /obj/item/growable/seeds
 	icon = 'dwarfs/icons/farming/seeds.dmi'
-	icon_state = "sample"			// Unknown plant seed - these shouldn't exist in-game.
 	desc = "A bag of seeds."
 	worn_icon_state = "seeds"
 	w_class = WEIGHT_CLASS_TINY
