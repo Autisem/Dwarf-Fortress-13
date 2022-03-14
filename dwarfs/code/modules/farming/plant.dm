@@ -49,6 +49,13 @@
 	lastcycle_produce = world.time
 	update_appearance()
 
+/obj/structure/plant/Destroy()
+	. = ..()
+	STOP_PROCESSING(SSplants, src)
+	if(plot)
+		plot.myplant = null
+		plot.name = initial(plot.name)
+
 /obj/structure/plant/process(delta_time)
 	if(dead)
 		return
@@ -62,7 +69,8 @@
 		growthstage = clamp(growthstage+1, 1, growthstages)
 		lastcycle_growth = world.time
 		needs_update = 1
-
+		if(istype(src, /obj/structure/plant/garden/crop) && can_grow_harvestable())
+			harvestable = TRUE
 	if(world.time >= lastcycle_produce+produce_delta)
 		lastcycle_produce = world.time
 		if(can_grow_harvestable())
@@ -129,7 +137,8 @@
 /obj/structure/plant/proc/harvest(var/mob/user)
 	if(!do_after(user, 1 SECONDS, src)) // TODO: tweak time according to skill
 		return
-	for(var/obj/P in produced)
+	for(var/_P in produced)
+		var/obj/P = _P
 		var/harvested = rand(0, produced[P])// TODO: tweak numbers according to skill; higher skill can give additional harvestables
 		if(harvested)
 			for(var/i in 1 to harvested)
