@@ -40,7 +40,6 @@
 	pixel_x = base_pixel_x + rand(-8, 8)
 	pixel_y = base_pixel_y + rand(-8, 8)
 	START_PROCESSING(SSplants, src)
-	lifespan += growthstages
 	if(!icon_ripe)
 		icon_ripe = "[species]-ripe"
 
