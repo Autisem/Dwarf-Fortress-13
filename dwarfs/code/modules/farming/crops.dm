@@ -12,42 +12,77 @@
 
 /obj/structure/plant/garden/crop/plump_helmet
 	name = "plump helmet"
-	desc = ""
+	desc = "A well known round-head mushroom. Looks tasty"
 	species = "plump_helmet"
+	health = 40
+	maxhealth = 40
+	growthstages = 5
+	growthdelta = 90 SECONDS
+	lifespan = 6
 	produced = list(/obj/item/growable/plump_helmet=3)
 
 /obj/structure/plant/garden/crop/pig_tail
 	name = "pig tail"
-	desc = ""
+	desc = "Twisting stalk which can be made into thread"
 	species = "pig_tail"
-	produced = list(/obj/item/growable/pig_tail=3)
+	health = 40
+	maxhealth = 40
+	growthstages = 5
+	growthdelta = 90 SECONDS
+	lifespan = 6
+	produced = list(/obj/item/growable/pig_tail=2)
 
 /obj/structure/plant/garden/crop/barley
 	name = "barley"
-	desc = ""
+	desc = "One of the most common grains you can find in human settlement"
 	species = "barley"
-	produced = list(/obj/item/growable/barley=3)
+	health = 40
+	maxhealth = 40
+	growthstages = 5
+	growthdelta = 70 SECONDS
+	lifespan = 6
+	produced = list(/obj/item/growable/barley=4)
 
 /obj/structure/plant/garden/crop/cotton
 	name = "cotton"
-	desc = ""
+	desc = "Its smooth buds is useful for a thread processing"
 	species = "cotton"
-	produced = list(/obj/item/growable/cotton=3)
+	health = 40
+	maxhealth = 40
+	growthstages = 5
+	growthdelta = 120 SECONDS
+	lifespan = 6
+	produced = list(/obj/item/growable/cotton=2)
 
 /obj/structure/plant/garden/crop/turnip
 	name = "turnip"
-	desc = ""
+	desc = "A plump root which can be eated raw or cooked"
 	species = "turnip"
-	produced = list(/obj/item/growable/turnip=3, /obj/item/growable/seeds/turnip=3)
+	health = 40
+	maxhealth = 40
+	growthstages = 5
+	growthdelta = 100 SECONDS
+	lifespan = 6
+	produced = list(/obj/item/growable/turnip=2, /obj/item/growable/seeds/turnip=4)
 
 /obj/structure/plant/garden/crop/carrot
 	name = "carrot"
-	desc = ""
+	desc = "White flowering plant with eadible root"
 	species = "carrot"
-	produced = list(/obj/item/growable/carrot=3, /obj/item/growable/seeds/carrot=3)
+	health = 40
+	maxhealth = 40
+	growthstages = 5
+	growthdelta = 100 SECONDS
+	lifespan = 6
+	produced = list(/obj/item/growable/carrot=2, /obj/item/growable/seeds/carrot=4)
 
 /obj/structure/plant/garden/crop/cave_wheat
 	name = "cave wheat"
-	desc = ""
+	desc = "Grain adapted to lack of sunlight and harsh soils of underground dwarven farms"
 	species = "cave_wheat"
-	produced = list(/obj/item/growable/cave_wheat=3)
+	health = 40
+	maxhealth = 40
+	growthstages = 5
+	growthdelta = 90 SECONDS
+	lifespan = 6
+	produced = list(/obj/item/growable/cave_wheat=4)

@@ -106,6 +106,6 @@
 /obj/item/growable/plump_helmet
 	name = "plump helmet"
 	desc = ""
-	icon_state = "plump helmet"
+	icon_state = "plump_helmet"
 	seed_type = /obj/item/growable/seeds/plump_helmet
 	edible = TRUE

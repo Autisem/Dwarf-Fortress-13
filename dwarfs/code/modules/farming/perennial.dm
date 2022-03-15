@@ -13,9 +13,15 @@
 
 /obj/structure/plant/garden/perennial/sweet_pod
 	name = "sweet_pod"
-	desc = ""
+	desc = "As it goes from its name - sweet plant used by dwarves in many different ways"
 	species = "sweet_pod"
-	produced = list(/obj/item/growable/sweet_pod=3)
+	health = 40
+	maxhealth = 40
+	growthstages = 5
+	produce_delta = 90 SECONDS
+	growthdelta = 60 SECONDS
+	lifespan = 9
+	produced = list(/obj/item/growable/sweet_pod=5)
 /*
 /obj/structure/plant/garden/perennial/grape
 	name = "grape"
