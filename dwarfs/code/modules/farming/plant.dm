@@ -69,6 +69,8 @@
 		growthstage = clamp(growthstage+1, 1, growthstages)
 		lastcycle_growth = world.time
 		needs_update = 1
+		if(growthstage == growthstages)
+			produce_delta = world.time
 		if(istype(src, /obj/structure/plant/garden/crop) && can_grow_harvestable())
 			harvestable = TRUE
 	if(world.time >= lastcycle_produce+produce_delta)
@@ -140,6 +142,8 @@
 	for(var/_P in produced)
 		var/obj/P = _P
 		var/harvested = rand(0, produced[P])// TODO: tweak numbers according to skill; higher skill can give additional harvestables
+		if(plot?.fertlevel)
+			harvested += 3
 		if(harvested)
 			for(var/i in 1 to harvested)
 				new P(loc)
