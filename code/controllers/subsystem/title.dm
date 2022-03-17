@@ -104,12 +104,12 @@ SUBSYSTEM_DEF(title)
 	cached_title = tcc
 
 /client/proc/show_lobby()
-	usr << browse(file('html/lobby.html'), "window=pdec;display=1;is-visible=false;size=300x650;border=0;can_close=1;can_resize=1;can_minimize=1;titlebar=1;is-disabled=false;")
-	winset(usr, "pdec", "pos=10,60")
+	src << browse(file('html/lobby.html'), "window=pdec;display=1;is-visible=false;size=300x650;border=0;can_close=1;can_resize=1;can_minimize=1;titlebar=1;is-disabled=false;")
+	winset(src, "pdec", "pos=10,60")
 	update_lobby()
 	spawn(100)
-		if(usr)
-			winset(usr, "pdec", "is-visible=true;pos=10,60")
+		if(src)
+			winset(src, "pdec", "is-visible=true;pos=10,60")
 		SStitle.update_lobby()
 
 /client/proc/kill_lobby()
