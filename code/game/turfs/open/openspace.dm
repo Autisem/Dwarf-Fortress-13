@@ -124,7 +124,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	if(isopenturf(turf_below))
 		if(do_after(user, 3 SECONDS, target = src))
 			user.forceMove(turf_below)
-			to_chat(user, span_notice("Аккуратно спускаюсь вниз..."))
+			to_chat(user, span_notice("You carefully climb down..."))
 			if(!HAS_TRAIT(user, TRAIT_FREERUNNING))
 				if(ishuman(user))
 					var/mob/living/carbon/human/H = user
