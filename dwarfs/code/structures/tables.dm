@@ -1,7 +1,7 @@
 /obj/structure/table/stone
 	name = "stone table"
 	desc = "Caveman technology."
-	icon = 'white/valtos/icons/stone_table.dmi'
+	icon = 'dwarfs/icons/structures/stone_table.dmi'
 	icon_state = "stone_table-0"
 	base_icon_state = "stone_table"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
