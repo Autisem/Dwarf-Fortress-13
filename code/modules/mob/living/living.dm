@@ -61,8 +61,8 @@
 	return ..()
 
 /mob/living/proc/ZImpactDamage(turf/T, levels)
-	visible_message(span_danger("<b>[capitalize(src.name)]</b> влетает в <b>[T]</b> с хрустящим звуком!") , \
-					span_userdanger("Влетаю в [T] с хрустящим звуком!"))
+	visible_message(span_danger("<b>[capitalize(src.name)]</b> flies into <b>[T]</b> voilently!") , \
+					span_userdanger("You fly into [T] violently!"))
 	adjustBruteLoss((levels * 5) ** 1.5)
 	Knockdown(levels * 50)
 
@@ -115,7 +115,7 @@
 		//Should stop you pushing a restrained person out of the way
 		if(L.pulledby && L.pulledby != src && HAS_TRAIT(L, TRAIT_RESTRAINED))
 			if(!(world.time % 5))
-				to_chat(src, span_warning("<b>[L]</b> не может дать тебе пройти."))
+				to_chat(src, span_warning("<b>[L]</b> can't let you pass through."))
 			return TRUE
 
 		if(L.pulling)
@@ -123,7 +123,7 @@
 				var/mob/P = L.pulling
 				if(HAS_TRAIT(P, TRAIT_RESTRAINED))
 					if(!(world.time % 5))
-						to_chat(src, span_warning("<b>[L]</b> удерживает <b>[P]</b> и не даёт тебе пройти."))
+						to_chat(src, span_warning("<b>[L]</b> is pulling <b>[P]</b> and doesn't let you pass through."))
 					return TRUE
 
 	if(moving_diagonally)//no mob swap during diagonal moves.
@@ -257,9 +257,9 @@
 
 	if(AM.pulledby)
 		if(!supress_message)
-			AM.visible_message(span_danger("<b>[src]</b> оттягивает <b>[AM]</b> у <b>[AM.pulledby]</b>.") , \
-							span_danger("<b>[src]</b> оттягивает меня из захвата <b>[AM.pulledby]</b>.") , null, null, src)
-			to_chat(src, span_notice("Оттягиваю <b>[AM]</b> из захвата <b>[AM.pulledby]</b>!"))
+			AM.visible_message(span_danger("<b>[src]</b> pulls away <b>[AM]</b> from <b>[AM.pulledby]</b>.") , \
+							span_danger("<b>[src]</b> pulls you away from <b>[AM.pulledby]'s</b> grip.") , null, null, src)
+			to_chat(src, span_notice("You pull <b>[AM]</b> from <b>[AM.pulledby]'s</b> grip!"))
 		log_combat(AM, AM.pulledby, "pulled from", src)
 		AM.pulledby.stop_pulling() //an object can't be pulled by two mobs at once.
 
@@ -284,9 +284,9 @@
 
 		log_combat(src, M, "grabbed", addition="passive grab")
 		if(!supress_message && !(iscarbon(AM) && HAS_TRAIT(src, TRAIT_STRONG_GRABBER)))
-			M.visible_message(span_warning("[capitalize(src.name)] хватает [M][(zone_selected == "l_arm" || zone_selected == "r_arm" && ishuman(M))? " за руку":""]!") , \
-							span_warning("[capitalize(src.name)] хватает меня[(zone_selected == "l_arm" || zone_selected == "r_arm" && ishuman(M))? " за руку":""]!") , null, null, src)
-			to_chat(src, span_notice("Хватаю [M][(zone_selected == "l_arm" || zone_selected == "r_arm" && ishuman(M))? " за руку":""]!"))
+			M.visible_message(span_warning("[capitalize(src.name)] grabs [M][(zone_selected == "l_arm" || zone_selected == "r_arm" && ishuman(M))? "'s hand":""]!") , \
+							span_warning("[capitalize(src.name)] grabs your[(zone_selected == "l_arm" || zone_selected == "r_arm" && ishuman(M))? " hand":""]!") , null, null, src)
+			to_chat(src, span_notice("You grab [M][(zone_selected == "l_arm" || zone_selected == "r_arm" && ishuman(M))? "'s hand":""]!"))
 		if(!iscarbon(src))
 			M.LAssailant = null
 		else
@@ -378,8 +378,8 @@
 		return FALSE
 	if(!..())
 		return FALSE
-	visible_message(span_name("[capitalize(src.name)]</span> показывает на <b>[skloname(A.name, VINITELNI, A.gender)]</b>."),
-					span_notice("Показываю на <b>[skloname(A.name, VINITELNI, A.gender)]</b>."))
+	visible_message(span_name("[capitalize(src.name)]</span> points at <b>[A]</b>."),
+					span_notice("You point at <b>[A]</b>."))
 	return TRUE
 
 
@@ -389,16 +389,15 @@
 		to_chat(src, text="You are unable to succumb to death! This life continues.", type=MESSAGE_TYPE_INFO)
 		return FALSE
 	if(!whispered)
-		var/response = tgui_alert(usr, "Преждевременный выход из тела отбирает у меня право на донос.\nОно мне нужно?", "Ты УВЕРЕН?", list("Да", "Нет"))
-		if(response != "Да")
-			to_chat(src, span_boldnotice("Пока ещё живу."))
+		var/response = tgui_alert(usr, "Are you sure you want to leave your body?", "Ghost", list("Yes", "No"))
+		if(response != "Yes")
+			to_chat(src, span_boldnotice("You stay in your body."))
 			return
 	log_message("Has [whispered ? "whispered his final words" : "succumbed to death"] with [round(health, 0.1)] points of health!", LOG_ATTACK)
 	adjustOxyLoss(health - HEALTH_THRESHOLD_DEAD)
 	updatehealth()
 	if(!whispered)
-		to_chat(src, span_notice("Сдаюсь смерти. Позорно."))
-	inc_metabalance(src, METACOIN_SUCC_REWARD, reason="А стоило ли вообще жить?")
+		to_chat(src, span_notice("You leave your body."))
 	death()
 	return TRUE
 
@@ -436,17 +435,17 @@
 	set category = "IC"
 
 	if(IsSleeping())
-		to_chat(src, span_warning("Уже сплю!"))
+		to_chat(src, span_warning("You are already asleep!"))
 		return
 	else
-		switch(tgui_alert(src, "Сколько будем спать?", "Мяу?", list("30 секунд", "45 секунд", "60 секунд"), timeout = 15 SECONDS))
-			if("30 секунд")
+		switch(tgui_alert(src, "How long do you want to sleep?", "Sleep", list("30 seconds", "45 seconds", "60 seconds"), timeout = 15 SECONDS))
+			if("30 seconds")
 				SetSleeping(30 SECONDS)
 				return
-			if("45 секунд")
+			if("45 seconds")
 				SetSleeping(45 SECONDS)
 				return
-			if("60 секунд")
+			if("60 seconds")
 				SetSleeping(60 SECONDS)
 				return
 			else
@@ -472,24 +471,24 @@
 	if(new_resting)
 		if(body_position == LYING_DOWN)
 			if(!silent)
-				to_chat(src, span_notice("Постараюсь всегда лежать."))
+				to_chat(src, span_notice("You keep lying down."))
 		else if(HAS_TRAIT(src, TRAIT_FORCED_STANDING) || (buckled && buckled.buckle_lying != NO_BUCKLE_LYING))
 			if(!silent)
-				to_chat(src, span_notice("Лягу как только смогу."))
+				to_chat(src, span_notice("You will lie down ASAP."))
 		else
 			if(!silent)
-				to_chat(src, span_notice("Ложусь."))
+				to_chat(src, span_notice("You lie down."))
 			set_lying_down()
 	else
 		if(body_position == STANDING_UP)
 			if(!silent)
-				to_chat(src, span_notice("Постараюсь всегда стоять."))
+				to_chat(src, span_notice("You keep standing."))
 		else if(HAS_TRAIT(src, TRAIT_FLOORED) || (buckled && buckled.buckle_lying != NO_BUCKLE_LYING))
 			if(!silent)
-				to_chat(src, span_notice("Встану как только смогу."))
+				to_chat(src, span_notice("You will stand up ASAP."))
 		else
 			if(!silent)
-				to_chat(src, span_notice("Встаю."))
+				to_chat(src, span_notice("You stand up."))
 			get_up(instant)
 
 	update_resting()
@@ -862,17 +861,17 @@
 		var/resist_chance = BASE_GRAB_RESIST_CHANCE /// see defines/combat.dm, this should be baseline 60%
 		resist_chance = (resist_chance/altered_grab_state) ///Resist chance divided by the value imparted by your grab state. It isn't until you reach neckgrab that you gain a penalty to escaping a grab.
 		if(prob(resist_chance))
-			visible_message(span_danger("<b>[src]</b> вырывается из захвата <b>[pulledby]</b>!") , \
-							span_danger("Вырываюсь из захвата <b>[pulledby]</b>!") , null, null, pulledby)
-			to_chat(pulledby, span_warning("<b>[src]</b> вырывается из моего захвата!"))
+			visible_message(span_danger("<b>[src]</b> breaks out of <b>[pulledby]'s</b> grip!") , \
+							span_danger("You break out of <b>[pulledby]'s</b> grip!") , null, null, pulledby)
+			to_chat(pulledby, span_warning("<b>[src]</b> breaks out of your grip!"))
 			log_combat(pulledby, src, "broke grab")
 			pulledby.stop_pulling()
 			return FALSE
 		else
 			adjustStaminaLoss(rand(15,20))//failure to escape still imparts a pretty serious penalty
-			visible_message(span_danger("<b>[src]</b> пытается вырваться из захвата <b>[pulledby]</b>!") , \
-							span_warning("Пытаюсь вырваться из захвата <b>[pulledby]</b>!") , null, null, pulledby)
-			to_chat(pulledby, span_danger("<b>[src]</b> пытается вырваться из моего захвата!"))
+			visible_message(span_danger("<b>[src]</b> fails to break out of <b>[pulledby]'s</b> grip!") , \
+							span_warning("You fail to break out of <b>[pulledby]'s</b> grip!") , null, null, pulledby)
+			to_chat(pulledby, span_danger("<b>[src]</b> fail to break out of your grip!"))
 		if(moving_resist && client) //we resisted by trying to move
 			client.move_delay = world.time + 40
 	else
@@ -915,11 +914,11 @@
 // Override if a certain type of mob should be behave differently when stripping items (can't, for example)
 /mob/living/stripPanelUnequip(obj/item/what, mob/who, where)
 	if(!what.canStrip(who))
-		to_chat(src, span_warning("Не получается снять <b>[what.name]</b>, похоже оно приделано намертво!"))
+		to_chat(src, span_warning("You fail to strip <b>[what.name]</b>, looks like it's glued!"))
 		return
-	who.visible_message(span_warning("<b>[src]</b> пытается снять <b>[what.name]</b> с <b>[who]</b>.") , \
-					span_userdanger("<b>[src]</b> пытается снять с меня <b>[what.name]</b>.") , null, null, src)
-	to_chat(src, span_danger("Пытаюсь снять <b>[what.name]</b> с <b>[who]</b>..."))
+	who.visible_message(span_warning("<b>[src]</b> attempts to strip <b>[what.name]</b> from <b>[who]</b>.") , \
+					span_userdanger("<b>[src]</b> attempts to strip your <b>[what.name]</b>.") , null, null, src)
+	to_chat(src, span_danger("You attempt to strip <b>[what.name]</b> from <b>[who]</b>..."))
 	who.log_message("[key_name(who)] is being stripped of [what] by [key_name(src)]", LOG_ATTACK, color="red")
 	log_message("[key_name(who)] is being stripped of [what] by [key_name(src)]", LOG_ATTACK, color="red", log_globally=FALSE)
 	what.add_fingerprint(src)
@@ -941,7 +940,7 @@
 /mob/living/stripPanelEquip(obj/item/what, mob/who, where)
 	what = src.get_active_held_item()
 	if(what && (HAS_TRAIT(what, TRAIT_NODROP)))
-		to_chat(src, span_warning("Не могу надеть <b>[what.name]</b> на <b>[who]</b>, оно застряло в моей руке!"))
+		to_chat(src, span_warning("You are unable to put <b>[what.name]</b> on <b>[who]</b>, looks like it's stuck to your hand!"))
 		return
 	if(what)
 		var/list/where_list
@@ -954,17 +953,17 @@
 			final_where = where
 
 		if(!what.mob_can_equip(who, src, final_where, TRUE, TRUE))
-			to_chat(src, span_warning("Похоже <b>[what.name]</b> не подходит к этому месту!"))
+			to_chat(src, span_warning("Can't put <b>[what.name]</b> here!"))
 			return
 		if(istype(what,/obj/item/clothing))
 			var/obj/item/clothing/c = what
 			if(c.clothing_flags & DANGEROUS_OBJECT)
-				who.visible_message(span_danger("<b>[src]</b> пытается надеть <b>[what]</b> на <b>[who]</b>.") , \
-							span_userdanger("<b>[src]</b> пытается надеть <b>[what]</b> на меня.") , null, null, src)
+				who.visible_message(span_danger("<b>[src]</b> attempts to put <b>[what]</b> on <b>[who]</b>.") , \
+							span_userdanger("<b>[src]</b> attempts to put <b>[what]</b> on you.") , null, null, src)
 			else
-				who.visible_message(span_notice("<b>[src]</b> пытается надеть <b>[what]</b> на <b>[who]</b>.") , \
-							span_notice("<b>[src]</b> пытается надеть <b>[what]</b> на меня.") , null, null, src)
-		to_chat(src, span_notice("Пытаюсь надеть <b>[what]</b> на <b>[who]</b>..."))
+				who.visible_message(span_notice("<b>[src]</b> attempts to put <b>[what]</b> on <b>[who]</b>.") , \
+							span_notice("<b>[src]</b> attempts to put <b>[what]</b> on you.") , null, null, src)
+		to_chat(src, span_notice("You attempt to put <b>[what]</b> on <b>[who]</b>..."))
 		who.log_message("[key_name(who)] is having [what] put on them by [key_name(src)]", LOG_ATTACK, color="red")
 		log_message("[key_name(who)] is having [what] put on them by [key_name(src)]", LOG_ATTACK, color="red", log_globally=FALSE)
 		if(do_mob(src, who, what.equip_delay_other))
@@ -1016,30 +1015,30 @@
 
 /mob/living/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE, need_hands = FALSE, floor_okay=FALSE)
 	if(!(mobility_flags & MOBILITY_UI) && !floor_okay)
-		to_chat(src, span_warning("Не хочу это делать прямо сейчас!"))
+		to_chat(src, span_warning("You can't do it right now!"))
 		return FALSE
 	if(be_close && !Adjacent(M) && (M.loc != src))
 		if(no_tk)
-			to_chat(src, span_warning("Слишком далеко!"))
+			to_chat(src, span_warning("Too far away!"))
 			return FALSE
 		var/datum/dna/D = has_dna()
 		if(!D)
-			to_chat(src, span_warning("Слишком далеко!"))
+			to_chat(src, span_warning("Too far away!"))
 			return FALSE
 	if(need_hands && !can_hold_items(isitem(M) ? M : null)) //almost redundant if it weren't for mobs,
-		to_chat(src, span_warning("Нет физической возможности для этого!"))
+		to_chat(src, span_warning("You are unable to do this!"))
 		return FALSE
 	if(!no_dexterity && !ISADVANCEDTOOLUSER(src))
-		to_chat(src, span_warning("Не хватает ловкости для этого!"))
+		to_chat(src, span_warning("You lack the dexterity to do this!"))
 		return FALSE
 	return TRUE
 
 /mob/living/proc/can_use_guns(obj/item/G)//actually used for more than guns!
 	if(G.trigger_guard == TRIGGER_GUARD_NONE)
-		to_chat(src, span_warning("Из этого невозможно стрелять!"))
+		to_chat(src, span_warning("It is unable to shoot!"))
 		return FALSE
 	if(G.trigger_guard != TRIGGER_GUARD_ALLOW_ALL && !ISADVANCEDTOOLUSER(src))
-		to_chat(src, span_warning("Пытаюсь выстрелить из [G.name], но ничего не выходит!"))
+		to_chat(src, span_warning("You try to shoot from [G.name], but nothing happens!"))
 		return FALSE
 	return TRUE
 
@@ -1087,8 +1086,8 @@
 /mob/living/proc/IgniteMob()
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
-		src.visible_message(span_warning("<b>[src]</b> горит!") , \
-						span_userdanger("ГОРЮ!!! Вот это да!"))
+		src.visible_message(span_warning("<b>[src]</b> is on fire!") , \
+						span_userdanger("You are on fire!"))
 		new/obj/effect/dummy/lighting_obj/moblight/fire(src)
 		throw_alert("fire", /atom/movable/screen/alert/fire)
 		update_fire()
@@ -1172,12 +1171,12 @@
 /mob/living/proc/knockOver(mob/living/carbon/C)
 	if(C.key) //save us from monkey hordes
 		C.visible_message("<span class='warning'>[pick( \
-						"[C] спотыкается об [skloname(name, VINITELNI, gender)]!", \
-						"[C] перепрыгивает через [skloname(name, VINITELNI, gender)]!", \
-						"[C] сальтует через [skloname(name, VINITELNI, gender)]!", \
-						"[C] делает тактический кувырок через [skloname(name, VINITELNI, gender)] и падает!", \
-						"[C] стукается об [skloname(name, VINITELNI, gender)]!", \
-						"[C] резко отскакивает от [skloname(name, VINITELNI, gender)]!")]</span>")
+						"[C] stumbles over [name]!", \
+						"[C] jumps over [name]!", \
+						"[C] flies over  [name]!", \
+						"[C] performs a tactical somersault over [name] and falls!", \
+						"[C] knocks over [name]!", \
+						"[C] bounces from [name]!")]</span>")
 	C.Paralyze(40)
 
 /mob/living/can_be_pulled()
@@ -1243,7 +1242,7 @@
 
 /mob/living/proc/mob_pickup(mob/living/L)
 	var/obj/item/clothing/head/mob_holder/holder = new(get_turf(src), src, held_state, head_icon, held_lh, held_rh, worn_slot_flags)
-	L.visible_message(span_warning("[L] собирает [src]!"))
+	L.visible_message(span_warning("[L] picks up [src]!"))
 	L.put_in_hands(holder)
 
 /mob/living/proc/set_name()
@@ -1255,14 +1254,14 @@
 	if(!ishuman(user))
 		return
 	if(user.get_active_held_item())
-		to_chat(user, span_warning("Нет свободных рук!"))
+		to_chat(user, span_warning("No free hands!"))
 		return FALSE
 	if(buckled)
-		to_chat(user, span_warning("<b>[src]</b> прикован к чему-то!"))
+		to_chat(user, span_warning("<b>[src]</b> is buckled to something!"))
 		return FALSE
-	user.visible_message(span_warning("<b>[user]</b> начинает подбирать <b>[src]</b>!") , \
-					span_danger("Начинаю подбирать <b>[src]</b>...") , null, null, src)
-	to_chat(src, span_userdanger("<b>[user]</b> начинает подбирать меня!"))
+	user.visible_message(span_warning("<b>[user]</b> starts to pick up <b>[src]</b>!") , \
+					span_danger("You start to pick up <b>[src]</b>...") , null, null, src)
+	to_chat(src, span_userdanger("<b>[user]</b> is starting to pick you up!"))
 	if(!do_after(user, 20, target = src))
 		return FALSE
 	mob_pickup(user)
@@ -1458,7 +1457,7 @@
 	SIGNAL_HANDLER
 	var/turf/ceiling = get_step_multiz(src, UP)
 	if(!ceiling) //We are at the highest z-level.
-		to_chat(src, span_warning("А как смотреть через потолок?"))
+		to_chat(src, span_warning("There is a ceiling?"))
 		return
 	else if(!istransparentturf(ceiling)) //There is no turf we can look through above us
 		var/turf/front_hole = get_step(ceiling, dir)
@@ -1471,7 +1470,7 @@
 					ceiling = checkhole
 					break
 		if(!istransparentturf(ceiling))
-			to_chat(src, span_warning("А как смотреть через пол?"))
+			to_chat(src, span_warning("The ceiling is opaque."))
 			return
 
 	reset_perspective(ceiling)
@@ -1506,7 +1505,7 @@
 	var/turf/floor = get_turf(src)
 	var/turf/lower_level = get_step_multiz(floor, DOWN)
 	if(!lower_level) //We are at the lowest z-level.
-		to_chat(src, span_warning("А как смотреть через пол?"))
+		to_chat(src, span_warning("Nothing to see."))
 		return
 	else if(!istransparentturf(floor)) //There is no turf we can look through below us
 		var/turf/front_hole = get_step(floor, dir)
@@ -1521,7 +1520,7 @@
 					lower_level = get_step_multiz(checkhole, DOWN)
 					break
 		if(!istransparentturf(floor))
-			to_chat(src, span_warning("А как смотреть через пол?"))
+			to_chat(src, span_warning("The floor is opaque."))
 			return
 
 	reset_perspective(lower_level)

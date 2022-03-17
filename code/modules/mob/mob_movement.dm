@@ -163,7 +163,7 @@
 		return TRUE
 	else if(HAS_TRAIT(mob, TRAIT_RESTRAINED))
 		COOLDOWN_START(src, move_delay, 1 SECONDS)
-		to_chat(src, span_warning("Урод держит меня! Не могу двигаться!"))
+		to_chat(src, span_warning("You are unable to move! Someone is restraining you!"))
 		return TRUE
 	return mob.resist_grab(TRUE)
 
@@ -284,7 +284,7 @@
 	if(backup)
 		if(istype(backup) && movement_dir && !backup.anchored)
 			if(backup.newtonian_move(turn(movement_dir, 180))) //You're pushing off something movable, so it moves
-				to_chat(src, span_info("Отталкиваю [backup] от себя, чтобы двигаться дальше."))
+				to_chat(src, span_info("You push [backup] away to move further."))
 		return TRUE
 	return FALSE
 
@@ -491,31 +491,31 @@
 
 ///Moves a mob upwards in z level
 /mob/verb/up()
-	set name = "Выше"
+	set name = "Upwards"
 	set category = null
 
 	var/turf/current_turf = get_turf(src)
 	var/turf/above_turf = SSmapping.get_turf_above(current_turf)
 
 	if(!above_turf)
-		to_chat(src, span_warning("НЕКУДА!"))
+		to_chat(src, span_warning("NOWHERE!"))
 		return
 
 	if(can_z_move(DOWN, above_turf, current_turf, ZMOVE_FALL_FLAGS)) //Will we fall down if we go up?
 		if(buckled)
-			to_chat(src, span_notice("[buckled] не умеет летать."))
+			to_chat(src, span_notice("[buckled] can't fly."))
 		else
-			to_chat(src, span_notice("Не умею летать."))
+			to_chat(src, span_notice("You are unable to fly."))
 		return
 
 	if(zMove(UP, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK))
-		to_chat(src, span_notice("Поднимаюсь наверх."))
+		to_chat(src, span_notice("You move upwards."))
 
 ///Moves a mob down a z level
 /mob/verb/down()
-	set name = "Ниже"
+	set name = "Downwards"
 	set category = null
 
 	if(zMove(DOWN, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK))
-		to_chat(src, span_notice("Спускаюсь вниз."))
+		to_chat(src, span_notice("You move downwards."))
 	return FALSE
