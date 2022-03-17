@@ -24,7 +24,7 @@ export const InputButtons = (props: InputButtonsProps, context) => {
       pt={0.33}
       textAlign="center"
       tooltip={inputIsValid?.error}>
-      ОТПРАВИТЬ
+      CONFIRM
     </Button>
   );
   const cancelButton = (
@@ -35,7 +35,7 @@ export const InputButtons = (props: InputButtonsProps, context) => {
       onClick={() => act('cancel')}
       pt={0.33}
       textAlign="center">
-      ОТМЕНА
+      CANCEL
     </Button>
   );
   const leftButton = cancelButton;
