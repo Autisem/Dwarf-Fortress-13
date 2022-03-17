@@ -18,7 +18,7 @@
 
 	if(!length(key_emotes))
 		if(intentional)
-			to_chat(src, span_notice("'[act]' не существует. Напиши <b>*help</b> для вывода списка доступных."))
+			to_chat(src, span_notice("'[act]' does not exist. Write <b>*help</b> to show available emotes."))
 		return FALSE
 	var/silenced = FALSE
 	for(var/datum/emote/P in key_emotes)
@@ -30,12 +30,11 @@
 			SEND_SIGNAL(src, COMSIG_MOB_EMOTED(P.key))
 			return TRUE
 	if(intentional && !silenced)
-		to_chat(src, span_notice("Эмоция '[act]' невозможна. Напиши <b>*help</b> для вывода списка доступных."))
+		to_chat(src, span_notice("Emote '[act]' is impossible. Write <b>*help</b> to show available emotes."))
 	return FALSE
 
 /datum/emote/spin
 	key = "spin"
-	ru_name = "крутиться"
 	key_third_person = "spins"
 	hands_use_check = TRUE
 	mob_type_allowed_typecache = list(/mob/living, /mob/dead/observer)

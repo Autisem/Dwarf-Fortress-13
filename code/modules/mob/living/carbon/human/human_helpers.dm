@@ -11,10 +11,10 @@
 		return name_override
 	if(face_name)
 		return face_name
-	return "Неизвестный"
+	return "Unknown"
 
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when Fluacided or when updating a human's name variable
-/mob/living/carbon/human/proc/get_face_name(if_no_face="Неизвестный")
+/mob/living/carbon/human/proc/get_face_name(if_no_face="Unknown")
 	if( wear_mask && (wear_mask.flags_inv&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
 		return if_no_face
 	if( head && (head.flags_inv&HIDEFACE) )

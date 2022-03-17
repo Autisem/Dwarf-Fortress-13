@@ -3,7 +3,6 @@
 
 /datum/emote
 	var/key = "" //What calls the emote
-	var/ru_name = null
 	var/key_third_person = "" //This will also call the emote
 	var/message = "" //Message displayed when emote is used
 	var/message_mime = "" //Message displayed if the user is a mime
@@ -41,9 +40,6 @@
 	mob_type_blacklist_typecache = typecacheof(mob_type_blacklist_typecache)
 	mob_type_ignore_stat_typecache = typecacheof(mob_type_ignore_stat_typecache)
 
-	if(!ru_name)
-		ru_name = key
-
 /datum/emote/proc/run_emote(mob/user, params, type_override, intentional = FALSE)
 	. = TRUE
 	if(!can_run_emote(user, TRUE, intentional))
@@ -51,8 +47,6 @@
 	var/msg = select_message_type(user, intentional)
 	if(params && message_param)
 		msg = select_param(user, params)
-
-	msg = replace_pronoun(user, msg)
 
 	if(!msg)
 		return
@@ -104,19 +98,10 @@
 /datum/emote/proc/get_sound(mob/living/user)
 	return sound //by default just return this var.
 
-/datum/emote/proc/replace_pronoun(mob/user, message)
-	if(findtext(message, "their"))
-		message = replacetext(message, "their", user.ru_ego())
-	if(findtext(message, "them"))
-		message = replacetext(message, "them", user.ru_na())
-	if(findtext(message, "%s"))
-		message = replacetext(message, "%s", user.p_s())
-	return message
-
 /datum/emote/proc/select_message_type(mob/user, intentional)
 	. = message
 	if(!muzzle_ignore && user.is_muzzled() && emote_type == EMOTE_AUDIBLE)
-		return "издаёт [pick("громкий ", "слабый ", "")]звук."
+		return "makes a [pick("loud ", "weak ", "")]noise."
 	if(user.mind && user.mind.miming && message_mime)
 		. = message_mime
 	else if(ismonkey(user) && message_monkey)
@@ -139,16 +124,16 @@
 				return FALSE
 			switch(user.stat)
 				if(SOFT_CRIT)
-					to_chat(user, span_warning("Не могу сделать [key] в критическом состоянии!"))
+					to_chat(user, span_warning("You cannot [key] while in a critical condition!"))
 				if(UNCONSCIOUS, HARD_CRIT)
-					to_chat(user, span_warning("Не могу сделать [key] без сознания!"))
+					to_chat(user, span_warning("You cannot [key] while unconscious!"))
 				if(DEAD)
-					to_chat(user, span_warning("Не могу сделать [key] в мёртвом состоянии!"))
+					to_chat(user, span_warning("You cannot [key] while dead!"))
 			return FALSE
 		if(hands_use_check && HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
 			if(!intentional)
 				return FALSE
-			to_chat(user, span_warning("Могу сделать [key] сейчас!"))
+			to_chat(user, span_warning("You cannot [key] right now!"))
 			return FALSE
 
 	if(isliving(user))
@@ -164,10 +149,6 @@
 */
 /mob/proc/manual_emote(text) //Just override the song and dance
 	. = TRUE
-	if(findtext(text, "their"))
-		text = replacetext(text, "their", ru_ego())
-	if(findtext(text, "them"))
-		text = replacetext(text, "them", ru_na())
 	if(findtext(text, "%s"))
 		text = replacetext(text, "%s", p_s())
 

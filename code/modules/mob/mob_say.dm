@@ -7,7 +7,7 @@
 	set instant = TRUE
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_danger("Не могу говорить."))
+		to_chat(usr, span_danger("Say is currently disabled."))
 		return
 
 	//queue this message because verbs are scheduled to process after SendMaps in the tick and speech is pretty expensive when it happens.
@@ -22,7 +22,7 @@
 	set instant = TRUE
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_danger("Не могу шептать."))
+		to_chat(usr, span_danger("Whisper is currently disabled."))
 		return
 	if(message && proverka_na_detey(message, src))
 		SSspeech_controller.queue_say_for_mob(src, message, SPEECH_CONTROLLER_QUEUE_WHISPER_VERB)
@@ -37,7 +37,7 @@
 	set category = "IC"
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_danger("Не могу изображать."))
+		to_chat(usr, span_danger("Emote is currently disabled."))
 		return
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
@@ -53,7 +53,7 @@
 	var/alt_name = ""
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_danger("Не могу говорить"))
+		to_chat(usr, span_danger("Say is currently disabled"))
 		return
 
 	var/jb = is_banned_from(ckey, "Deadchat")
@@ -61,12 +61,12 @@
 		return
 
 	if(jb)
-		to_chat(src, span_danger("Мне нельзя говорить."))
+		to_chat(src, span_danger("You cannot talk."))
 		return
 
 	if (src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
-			to_chat(src, span_danger("Не хочу говорить."))
+			to_chat(src, span_danger("You are currently muted from deadchat."))
 			return
 /*
 		if(SSlag_switch.measures[SLOWMODE_SAY] && !HAS_TRAIT(src, TRAIT_BYPASS_MEASURES) && src == usr)
@@ -87,10 +87,10 @@
 		else
 			name = real_name
 		if(name != real_name)
-			alt_name = " (как [real_name])"
+			alt_name = " (as [real_name])"
 
 	var/spanned = say_quote(message)
-	var/source = "<span class='game'><span class='prefix'>Призрак</span> <span class='name'>[name]</span>[alt_name]"
+	var/source = "<span class='game'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name]"
 	var/rendered = " <span class='message'>[emoji_parse(spanned)]</span></span>"
 	log_talk(message, LOG_SAY, tag="DEAD")
 	if(SEND_SIGNAL(src, COMSIG_MOB_DEADSAY, message) & MOB_DEADSAY_SIGNAL_INTERCEPT)

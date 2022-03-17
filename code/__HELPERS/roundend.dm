@@ -44,7 +44,7 @@
 					if(H.mind)
 						mob_data["job"] = H.mind.assigned_role
 					else
-						mob_data["job"] = "Неизвестный"
+						mob_data["job"] = "Unknown"
 					mob_data["species"] = H.dna.species.name
 				else
 					category = "others"

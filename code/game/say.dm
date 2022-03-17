@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		else
 			return no_quote ? raw_message : speaker.say_quote(raw_message, spans, message_mods)
 	else
-		return "издаёт странный звук."
+		return "makes a strange sound."
 
 /proc/get_radio_span(freq)
 	var/returntext = GLOB.freqtospan["[freq]"]
@@ -208,13 +208,13 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 
 	// The mob's job identity
 	if(ishuman(M))
-		job = "Неизвестный"
+		job = "Unknown"
 	else if(iscarbon(M))  // Carbon nonhuman
 		job = "No ID"
 	else if(isobj(M))  // Cold, emotionless machines
 		job = "Machine"
 	else  // Unidentifiable mob
-		job = "Неизвестный"
+		job = "Unknown"
 
 /atom/movable/virtualspeaker/GetJob()
 	return job

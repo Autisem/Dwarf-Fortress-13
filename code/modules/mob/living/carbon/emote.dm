@@ -3,20 +3,17 @@
 
 /datum/emote/living/carbon/blink
 	key = "blink"
-	ru_name = "моргнуть"
 	key_third_person = "blinks"
-	message = "моргает."
+	message = "blinks."
 
 /datum/emote/living/carbon/blink_r
 	key = "blink_r"
-	ru_name = "быстро моргнуть"
-	message = "быстро моргает."
+	message = "blinks rapidly."
 
 /datum/emote/living/carbon/clap
 	key = "clap"
-	ru_name = "хлопать"
 	key_third_person = "claps"
-	message = "хлопает."
+	message = "claps."
 	muzzle_ignore = TRUE
 	hands_use_check = TRUE
 	emote_type = EMOTE_AUDIBLE
@@ -34,9 +31,8 @@
 
 /datum/emote/living/carbon/crack
 	key = "crack"
-	ru_name = "крэкать"
 	key_third_person = "cracks"
-	message = "хрустит своими пальцами."
+	message = "cracks their fingers."
 	sound = 'sound/misc/knuckles.ogg'
 	cooldown = 6 SECONDS
 
@@ -48,10 +44,9 @@
 
 /datum/emote/living/carbon/moan
 	key = "moan"
-	ru_name = "стонать"
 	key_third_person = "moans"
-	message = "стонет!"
-	message_mime = "изображает стон!"
+	message = "moans!"
+	message_mime = "appears to moan!"
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/moan/get_sound(mob/living/user)
@@ -79,23 +74,20 @@
 
 /datum/emote/living/carbon/roll
 	key = "roll"
-	ru_name = "перекатываться"
 	key_third_person = "rolls"
-	message = "перекатывается."
+	message = "rolls."
 	hands_use_check = TRUE
 
 /datum/emote/living/carbon/scratch
 	key = "scratch"
-	ru_name = "чесаться"
 	key_third_person = "scratches"
-	message = "чешется."
+	message = "scratches."
 	hands_use_check = TRUE
 
 /datum/emote/living/carbon/sign
 	key = "sign"
-	ru_name = "петь"
 	key_third_person = "signs"
-	message_param = "поёт ноту %t."
+	message_param = "signs the number %t."
 	hands_use_check = TRUE
 
 /datum/emote/living/carbon/sign/select_param(mob/user, params)
@@ -105,20 +97,17 @@
 
 /datum/emote/living/carbon/sign/signal
 	key = "signal"
-	ru_name = "сигнал"
 	key_third_person = "signals"
-	message_param = "поднимает %t палец."
+	message_param = "raises %t fingers."
 	hands_use_check = TRUE
 
 /datum/emote/living/carbon/wink
 	key = "wink"
-	ru_name = "подмигнуть"
 	key_third_person = "winks"
-	message = "подмигивает."
+	message = "winks."
 
 /datum/emote/living/carbon/slap
 	key = "slap"
-	ru_name = "шлёпать"
 	key_third_person = "slaps"
 	hands_use_check = TRUE
 
@@ -128,8 +117,8 @@
 		return
 	var/obj/item/slapper/N = new(user)
 	if(user.put_in_hands(N))
-		to_chat(user, span_notice("Готовлюсь шлёпать."))
+		to_chat(user, span_notice("You prepare to slap."))
 	else
 		qdel(N)
-		to_chat(user, span_warning("Пока не могу шлёпать."))
+		to_chat(user, span_warning("Cannot slap right now."))
 
