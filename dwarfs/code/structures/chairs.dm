@@ -1,8 +1,8 @@
 /obj/structure/chair/comfy/stone
 	name = "stone chair"
 	desc = "Not so comfy."
-	icon = 'white/valtos/icons/objects.dmi'
-	icon_state = "stoool"
+	icon = 'dwarfs/icons/structures/chairs.dmi'
+	icon_state = "sandstonechair"
 	color = rgb(255,255,255)
 	resistance_flags = LAVA_PROOF
 	max_integrity = 150

@@ -8,7 +8,7 @@
 
 /obj/structure/stairs
 	name = "stairs"
-	icon = 'icons/obj/stairs.dmi'
+	icon = 'dwarfs/icons/structures/stone_stairs.dmi'
 	icon_state = "stairs"
 	anchored = TRUE
 
