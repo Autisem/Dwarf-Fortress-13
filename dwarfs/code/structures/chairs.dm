@@ -9,7 +9,7 @@
 	buildstacktype = /obj/item/stack/sheet/stone
 
 /obj/structure/chair/comfy/stone/GetArmrest()
-	return mutable_appearance('white/valtos/icons/objects.dmi', "stoool_armrest")
+	return mutable_appearance('dwarfs/icons/structures/chairs.dmi', "sandstonechair_armrest")
 
 /obj/structure/chair/comfy/stone/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH && !(flags_1&NODECONSTRUCT_1))
@@ -23,9 +23,9 @@
 /obj/structure/chair/comfy/stone/throne
 	name = "stone throne"
 	desc = "Amazing looks, still not very comfy."
-	icon = 'dwarfs/icons/structures/throne.dmi'
+	icon = 'dwarfs/icons/structures/chairs.dmi'
 	icon_state = "throne"
 	max_integrity = 650
 
 /obj/structure/chair/comfy/stone/throne/GetArmrest()
-	return mutable_appearance('white/valtos/icons/objects.dmi', "throne_armrest")
+	return mutable_appearance('dwarfs/icons/structures/chairs.dmi', "throne_armrest")
