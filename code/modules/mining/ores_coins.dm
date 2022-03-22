@@ -21,6 +21,8 @@
 	var/list/stack_overlays
 	var/scan_state = "" //Used by mineral turfs for their scan overlay.
 	var/spreadChance = 0 //Also used by mineral turfs for spreading veins
+	var/ore_icon  //icons for ore overlays
+	var/ore_basename //sus?
 
 /obj/item/stack/ore/update_overlays()
 	. = ..()
@@ -201,6 +203,8 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	scan_state = "rock_Gold"
 	spreadChance = 5
 	merge_type = /obj/item/stack/ore/gold
+	ore_icon = 'dwarfs/icons/turf/gold_ore.dmi'
+	ore_basename = "gold_ore"
 
 /obj/item/stack/ore/diamond
 	name = "diamond ore"

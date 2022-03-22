@@ -27,6 +27,15 @@
 	transform = M
 	icon = smooth_icon
 
+/turf/closed/mineral/set_smoothed_icon_state(new_junction)
+	. = ..()
+	draw_ore(new_junction)
+
+/turf/closed/mineral/proc/draw_ore(var/new_junction)
+	if(mineralType && mineralAmt)
+		overlays.Cut()
+		var/icon/ore = new(initial(mineralType.ore_icon), "[initial(mineralType.ore_basename)]-[new_junction]")
+		overlays += ore
 
 /turf/closed/mineral/proc/Spread_Vein()
 	var/spreadChance = initial(mineralType.spreadChance)
@@ -177,6 +186,7 @@
 		else
 			Change_Ore(path, 1)
 			Spread_Vein(path)
+		name = initial(mineralType.name)
 
 /turf/closed/mineral/random/high_chance
 	icon_state = "rock_highchance"
