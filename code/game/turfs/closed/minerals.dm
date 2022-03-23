@@ -31,7 +31,7 @@
 	. = ..()
 	draw_ore(new_junction)
 
-/turf/closed/mineral/proc/draw_ore(var/new_junction)
+/turf/closed/mineral/proc/draw_ore(new_junction)
 	if(mineralType && mineralAmt)
 		overlays.Cut()
 		var/icon/ore = new(initial(mineralType.ore_icon), "[initial(mineralType.ore_basename)]-[new_junction]")
