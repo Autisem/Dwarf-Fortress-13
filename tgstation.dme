@@ -1873,6 +1873,7 @@
 #include "dwarfs\code\modules\blacksmithing\waterbarrel.dm"
 #include "dwarfs\code\modules\blacksmithing\weapons.dm"
 #include "dwarfs\code\modules\blacksmithing\workbench.dm"
+#include "dwarfs\code\modules\brewing\press.dm"
 #include "dwarfs\code\modules\farming\crops.dm"
 #include "dwarfs\code\modules\farming\farm_plot.dm"
 #include "dwarfs\code\modules\farming\garden.dm"

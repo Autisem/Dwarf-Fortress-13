@@ -12,6 +12,9 @@
 	var/list/tastes
 	// var/list/eatverbs
 	var/bite_consumption
+	// PROCESSING VARS
+	var/juice_type // can it be made into juice?
+	var/juice_volume = 10
 
 /obj/item/growable/Initialize()
 	. = ..()
@@ -109,3 +112,8 @@
 	icon_state = "plump_helmet"
 	seed_type = /obj/item/growable/seeds/plump_helmet
 	edible = TRUE
+	juice_type = /datum/reagent/plumpjuice
+
+/datum/reagent/plumpjuice
+	name = "plump juice"
+	color = "#b35313"
