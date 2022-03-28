@@ -8,6 +8,8 @@
 	var/species = "plant" // used for icons and to whitelist plants in plots
 	var/health = 40
 	var/maxhealth = 40
+	var/health_delta = 5 SECONDS // how often plant takes damage when it has to
+	var/lastcycle_health // last time it took damage
 	var/list/produced = list() // path type list of items and their max quantity that can be produced at the last growth stage
 	var/lastcycle_produce // last time it tried to grow something
 	var/produce_delta = 10 SECONDS // amount of time between each try to grow new stuff
@@ -19,8 +21,8 @@
 	var/growthstage = 1 // current 'age' of the plant
 	var/dead = FALSE // to prevent spam in plantdies()
 	var/lastcycle_growth // last time it advanced in growth
-	var/lifespan = 4 // plant's max age in cycles + amount of cycles to grow up
-	var/age = 1
+	var/lifespan = 4 // plant's max age in cycles
+	var/age = 1 // plants age in cycles; cycle's length is growthdelta
 	var/obj/structure/farm_plot/plot // if planted via seeds will have a plot assigned to it
 
 /obj/structure/plant/examine(mob/user)
@@ -46,6 +48,7 @@
 	if(!icon_dead)
 		icon_dead = "[species]-dead"
 	lastcycle_produce = world.time
+	lastcycle_health = world.time
 	update_appearance()
 
 /obj/structure/plant/Destroy()
@@ -98,12 +101,14 @@
 		dead = TRUE
 		update_appearance()
 
-	if(age > lifespan)
+	if(age > lifespan && world.time >= lastcycle_health+health_delta)
+		lastcycle_health = world.time
 		health -= rand(1,3)
 
 	if(plot)
 		plot.fertlevel = clamp(plot.fertlevel-plot.fertrate, 0, plot.fertmax)
-		if(!(species in plot.allowed_species))
+		if(!(species in plot.allowed_species) && world.time >= lastcycle_health+health_delta)
+			lastcycle_health = world.time
 			health-= rand(1,3)
 
 	if(needs_update)
