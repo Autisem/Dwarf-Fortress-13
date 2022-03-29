@@ -143,14 +143,14 @@
 	. += "<hr>"
 	if(singular_name)
 		if(get_amount()>1)
-			. += "Всего здесь [get_amount()] [singular_name] в куче."
+			. += "There are [get_amount()] [singular_name]\s in the stack."
 		else
-			. += "Всего здесь [get_amount()] [singular_name] в куче."
+			. += "There is [get_amount()] [singular_name] in the stack."
 	else if(get_amount()>1)
-		. += "Здесь [get_amount()] в куче."
+		. += "There are [get_amount()] in the stack."
 	else
-		. += "Здесь [get_amount()] в куче."
-	. += "<hr><span class='notice'>ПКМ для изъятия произвольного количества.</span>"
+		. += "There is [get_amount()] in the stack."
+	. += "<hr><span class='notice'><b>Right-click</b> with an empty hand to take a custom amount.</span>"
 
 /obj/item/stack/proc/get_amount()
 	. = (amount)
@@ -239,7 +239,7 @@
 				return
 			if(recipe.time)
 				var/adjusted_time = 0
-				usr.visible_message(span_notice("[usr] начинает строить [recipe.title].") , span_notice("Начинаю строить [recipe.title]..."))
+				usr.visible_message(span_notice("[usr] starts building \a [recipe.title].") , span_notice("You start building \a [recipe.title]..."))
 				if(HAS_TRAIT(usr, recipe.trait_booster))
 					adjusted_time = (recipe.time * recipe.trait_modifier)
 				else
@@ -365,11 +365,11 @@
 	if(get_amount() < amount)
 		if(singular_name)
 			if(amount > 1)
-				to_chat(user, span_warning("Мне потребуется [amount] [singular_name] для этого!"))
+				to_chat(user, span_warning("You need at least [amount] [singular_name]\s to do this!"))
 			else
-				to_chat(user, span_warning("Мне потребуется [amount] [singular_name] для этого!"))
+				to_chat(user, span_warning("You need at least [amount] [singular_name] to do this!"))
 		else
-			to_chat(user, span_warning("Мне потребуется [amount] для этого!"))
+			to_chat(user, span_warning("You need at least [amount] to do this!"))
 
 		return FALSE
 
@@ -498,7 +498,7 @@
 	if(stackmaterial == null || stackmaterial <= 0 || !user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE))
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
 	split_stack(user, stackmaterial)
-	to_chat(user, span_notice("Достаю [stackmaterial] листов из кучи."))
+	to_chat(user, span_notice("You take [stackmaterial] sheets out of the stack."))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /** Splits the stack into two stacks.
@@ -525,7 +525,7 @@
 	if(can_merge(W))
 		var/obj/item/stack/S = W
 		if(merge(S))
-			to_chat(user, span_notice("Моя куча <b>[S.name]</b> теперь содержит [S.get_amount()] [S.singular_name]."))
+			to_chat(user, span_notice("Your [S.name] stack now contains [S.get_amount()] [S.singular_name]\s."))
 	else
 		. = ..()
 
