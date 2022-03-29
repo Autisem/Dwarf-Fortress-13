@@ -26,7 +26,9 @@
 			return
 		held_items.Add(G)
 		G.forceMove(src)
+		to_chat(user, span_notice("You add [G] to [src]."))
 		icon_state = "press_open_item"
+		update_appearance()
 	else
 		return ..()
 
@@ -48,14 +50,25 @@
 	reagents.add_reagent(R, volume)
 	if(G.juice_volume <= 0)
 		held_items.Remove(G)
+		for(var/i in 1 to rand(1, 2))
+			new G.seed_type(get_turf(src))
 		qdel(G)
 
-// /obj/structure/press/update_appearance(updates)
-// 	. = ..()
-// 	if(length(held_items))
-// 		icon_state = "press_open_item"
-// 	else if(reagents.total_volume)
-// 		icon_state = "press_finished"
+/obj/structure/press/update_overlays()
+	. = ..()
+	switch(icon_state)
+		if("press_working")
+			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/FluidPress.dmi', "working_overlay")
+			M.color = initial(held_items[length(held_items)].juice_type.color)
+			. += M
+		if("press_open_item")
+			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/FluidPress.dmi', "item_overlay")
+			M.color = initial(held_items[length(held_items)].juice_type.color)
+			. += M
+		if("press_finished")
+			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/FluidPress.dmi', "finished_overlay")
+			M.color = mix_color_from_reagents(reagents.reagent_list)
+			. += M
 
 /obj/structure/press/attack_hand(mob/user)
 	var/list/choices = list("Juice"=icon('icons/hud/radial.dmi', "radial_juice"), "Eject"=icon('icons/hud/radial.dmi', "radial_eject"))
@@ -68,6 +81,7 @@
 			held_items.Remove(I)
 			I.forceMove(get_turf(src))
 		icon_state = "press_open"
+		update_appearance()
 		to_chat(user, span_notice("You remove everything from [src]."))
 	else if(answer == "Juice")
 		if(!length(held_items))
@@ -77,6 +91,7 @@
 			to_chat(user, span_warning("[src] is already being used!"))
 			return
 		icon_state = "press_working"
+		update_appearance()
 		to_chat(user, span_notice("You start juicing [src]'s contents..."))
 		while(length(held_items))
 			if(!do_after(user, time_to_juice, src))
@@ -85,3 +100,7 @@
 		to_chat(user, span_notice("You finish working at [src]..."))
 		if(!length(held_items))
 			icon_state = "press_finished"
+			update_appearance()
+		else
+			icon_state = "press_open_item"
+			update_appearance()
