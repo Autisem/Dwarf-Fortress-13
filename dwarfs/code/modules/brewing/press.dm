@@ -68,15 +68,20 @@
 	switch(icon_state)
 		if("press_working")
 			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/FluidPress.dmi', "working_overlay")
-			M.color = initial(held_items[length(held_items)].juice_type.color)
+			var/obj/item/growable/G = held_items[length(held_items)]
+			var/_color = initial(G.juice_type.color)
+			M.color = _color
 			. += M
 		if("press_open_item")
 			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/FluidPress.dmi', "item_overlay")
-			M.color = initial(held_items[length(held_items)].juice_type.color)
+			var/obj/item/growable/G = held_items[length(held_items)]
+			var/_color = initial(G.juice_type.color)
+			M.color = _color
 			. += M
 		if("press_finished")
 			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/FluidPress.dmi', "finished_overlay")
-			M.color = mix_color_from_reagents(reagents.reagent_list)
+			var/_color = mix_color_from_reagents(reagents.reagent_list)
+			M.color = _color
 			. += M
 
 /obj/structure/press/attack_hand(mob/user)
