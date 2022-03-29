@@ -5,6 +5,7 @@
 	icon_state = "press_open"
 	density = 1
 	anchored = 1
+	layer = ABOVE_MOB_LAYER
 	var/max_items = 10 // how much fruits it can hold
 	var/list/held_items = list() // list of held items
 	var/max_volume = 500 // sus
