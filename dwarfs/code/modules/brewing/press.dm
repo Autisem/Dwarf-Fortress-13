@@ -15,6 +15,15 @@
 	. = ..()
 	create_reagents(max_volume)
 
+/obj/structure/press/examine(mob/user)
+	. = ..()
+	if(length(held_items))
+		.+="<br>It has [jointext(held_items, ", ")] in it."
+	if(reagents.total_volume)
+		.+="<br>It has [reagents.get_reagent_names()] in it."
+	if(!length(held_items) && !reagents.total_volume)
+		.+="<br>It's empty."
+
 /obj/structure/press/attacked_by(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/growable))
 		var/obj/item/growable/G = I
