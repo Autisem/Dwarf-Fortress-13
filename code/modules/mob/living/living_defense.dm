@@ -13,18 +13,18 @@
 		if(penetrated_text)
 			to_chat(src, span_userdanger("[penetrated_text]"))
 		else
-			to_chat(src, span_userdanger("Броня пробита!"))
+			to_chat(src, span_userdanger("Your armor was penetrated!"))
 	else if(armor >= 100)
 		if(absorb_text)
 			to_chat(src, span_notice("[absorb_text]"))
 		else
-			to_chat(src, span_notice("Броня поглотила удар!"))
+			to_chat(src, span_notice("Your armor absorbs the blow!"))
 		playsound(src, "ricochet_armor", 60)
 	else
 		if(soften_text)
 			to_chat(src, span_warning("[soften_text]"))
 		else
-			to_chat(src, span_warning("Броня смягчает удар!"))
+			to_chat(src, span_warning("Your armor softens the blow!"))
 	return armor
 
 /mob/living/proc/getarmor(def_zone, type)
@@ -91,11 +91,11 @@
 			log_combat(thrown_by, src, "threw and hit", thrown_item)
 		if(nosell_hit)
 			return ..()
-		visible_message(span_danger("В <b>[skloname(name, VINITELNI, gender)]</b> попадает <b>[thrown_item.name]</b>!") , \
-						span_userdanger("В <b>меня</b> попадает [thrown_item.name]!"))
+		visible_message(span_danger("<b>[name]</b> is hit by <b>[thrown_item.name]</b>!") , \
+						span_userdanger("<b>You're</b> hit by [thrown_item.name]!"))
 		if(!thrown_item.throwforce)
 			return
-		var/armor = run_armor_check(zone, MELEE, "Броня отражает попадание в [parse_zone(zone)].", "Броня смягчает попадание в [parse_zone(zone)].", thrown_item.armour_penetration)
+		var/armor = run_armor_check(zone, MELEE, "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].", thrown_item.armour_penetration)
 		apply_damage(thrown_item.throwforce, thrown_item.damtype, zone, armor, sharpness = thrown_item.get_sharpness(), wound_bonus = (nosell_hit * CANT_WOUND))
 		if(QDELETED(src)) //Damage can delete the mob.
 			return
@@ -118,11 +118,11 @@
 		return
 
 	if(!(status_flags & CANPUSH) || HAS_TRAIT(src, TRAIT_PUSHIMMUNE))
-		to_chat(user, span_warning("Не могу схватить <b>[skloname(name, VINITELNI, gender)]</b> сильнее!"))
+		to_chat(user, span_warning("[src] can't be grabbed more aggressively!"))
 		return FALSE
 
 	if(user.grab_state >= GRAB_AGGRESSIVE && HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("Не хочу случайно навредить <b>[skloname(name, VINITELNI, gender)]</b>!"))
+		to_chat(user, span_warning("You don't want to risk hurting [src]!"))
 		return FALSE
 	grippedby(user)
 
@@ -140,9 +140,9 @@
 		if(user.grab_state) //only the first upgrade is instantaneous
 			var/old_grab_state = user.grab_state
 			var/grab_upgrade_time = instant ? 0 : 30
-			visible_message(span_danger("<b>[user]</b> начинает брать <b>[skloname(name, VINITELNI, gender)]</b> в более крепкий захват!") , \
-				span_userdanger("<b>[user]</b> начинает брать меня <b>[skloname(name, VINITELNI, gender)]</b> в более крепкий захват!") , span_hear("Слышу агрессивную потасовку!") , null, user)
-			to_chat(user, span_danger("Начинаю брать [skloname(name, VINITELNI, gender)] в более крепкий захват!"))
+			visible_message(span_danger("<b>[user]</b> starts to tighten [user.p_their()] grip on <b>[name]</b>!") , \
+				span_userdanger("<b>[user]</b> starts to tighten [user.p_their()] grip on you!") , span_hear("You hear aggressive shuffling!") , null, user)
+			to_chat(user, span_danger("You start to tighten your grip on [name]!"))
 			switch(user.grab_state)
 				if(GRAB_AGGRESSIVE)
 					log_combat(user, src, "attempted to neck grab", addition="neck grab")
@@ -153,36 +153,36 @@
 			if(!user.pulling || user.pulling != src || user.grab_state != old_grab_state)
 				return FALSE
 			if(user.a_intent != INTENT_GRAB)
-				to_chat(user, span_warning("Надо бы сосредоточиться на захвате, чтобы схватить сильнее!"))
+				to_chat(user, span_warning("You have to focus on grabbing to tighten your grip!"))
 				return 0
 		user.setGrabState(user.grab_state + 1)
 		switch(user.grab_state)
 			if(GRAB_AGGRESSIVE)
 				var/add_log = ""
 				if(HAS_TRAIT(user, TRAIT_PACIFISM))
-					visible_message(span_danger("<b>[user]</b> крепко хватает <b>[skloname(name, VINITELNI, gender)]</b>!") ,
-									span_danger("<b>[user]</b> крепко держит меня!") , span_hear("Слышу агрессивную потасовку!") , null, user)
-					to_chat(user, span_danger("Крепко хватаю [skloname(name, VINITELNI, gender)]!"))
+					visible_message(span_danger("<b>[user]</b> firmly grips <b>[name]</b>!") ,
+									span_danger("<b>[user]</b> firmly grips you!") , span_hear("You hear aggressive shuffling!") , null, user)
+					to_chat(user, span_danger("You firmly grip [name]!"))
 					add_log = " (pacifist)"
 				else
-					visible_message(span_danger("<b>[user]</b> хватает <b>[skloname(name, VINITELNI, gender)]</b> крепче!") , \
-									span_userdanger("<b>[user]</b> хватает меня крепче!") , span_hear("Слышу агрессивную потасовку!") , null, user)
-					to_chat(user, span_danger("Хватаю [skloname(name, VINITELNI, gender)] крепче!"))
+					visible_message(span_danger("<b>[user]</b> grabs <b>[name]</b> aggressively!") , \
+									span_userdanger("<b>[user]</b> grabs you aggressively!") , span_hear("You hear aggressive shuffling!") , null, user)
+					to_chat(user, span_danger("You grab [name] aggressively!"))
 				drop_all_held_items()
 				stop_pulling()
 				log_combat(user, src, "grabbed", addition="aggressive grab[add_log]")
 			if(GRAB_NECK)
 				log_combat(user, src, "grabbed", addition="neck grab")
-				visible_message(span_danger("<b>[user]</b> хватает <b>[skloname(name, VINITELNI, gender)]</b> за шею!") ,\
-								span_userdanger("<b>[user]</b> хватает меня за шею!") , span_hear("Слышу агрессивную потасовку!") , null, user)
-				to_chat(user, span_danger("Хватаю [skloname(name, VINITELNI, gender)] за шею!"))
+				visible_message(span_danger("<b>[user]</b> grabs <b>[name]</b> by the neck!") ,\
+								span_userdanger("<b>[user]</b> grabs you by the neck!") , span_hear("You hear aggressive shuffling!") , null, user)
+				to_chat(user, span_danger("You grab [name] by the neck!"))
 				if(!buckled && !density)
 					Move(user.loc)
 			if(GRAB_KILL)
 				log_combat(user, src, "strangled", addition="kill grab")
-				visible_message(span_danger("<b>[user]</b> душит <b>[skloname(name, VINITELNI, gender)]</b>!") , \
-								span_userdanger("<b>[user]</b> душит меня!") , span_hear("Слышу агрессивную потасовку!") , null, user)
-				to_chat(user, span_danger("Душу [skloname(name, VINITELNI, gender)]!"))
+				visible_message(span_danger("<b>[user]</b> is strangling <b>[name]</b>!") , \
+								span_userdanger("<b>[user]</b> is strangling you!") , span_hear("You hear aggressive shuffling!") , null, user)
+				to_chat(user, span_danger("You're strangling [name]!"))
 				if(!buckled && !density)
 					Move(user.loc)
 		user.set_pull_offsets(src, grab_state)
@@ -191,21 +191,21 @@
 /mob/living/attack_animal(mob/living/simple_animal/M)
 	M.face_atom(src)
 	if(M.melee_damage_upper == 0)
-		visible_message(span_notice("<b>[M]</b> [M.friendly_verb_continuous] <b>[skloname(name, VINITELNI, gender)]</b>!") , \
-						span_notice("<b>[M]</b> [M.friendly_verb_continuous] меня!") , null, COMBAT_MESSAGE_RANGE, M)
-		to_chat(M, span_notice("[M.friendly_verb_simple] <b>[skloname(name, VINITELNI, gender)]</b>!"))
+		visible_message(span_notice("<b>[M]</b> [M.friendly_verb_continuous] <b>[name]</b>!") , \
+						span_notice("<b>[M]</b> [M.friendly_verb_continuous] you!") , null, COMBAT_MESSAGE_RANGE, M)
+		to_chat(M, span_notice("[M.friendly_verb_simple] <b>[name]</b>!"))
 		return FALSE
 	if(HAS_TRAIT(M, TRAIT_PACIFISM))
-		to_chat(M, span_warning("Не хочу вредить!"))
+		to_chat(M, span_warning("You don't want to harm anyone!"))
 		return FALSE
 
 
 	if(M.attack_sound)
 		playsound(loc, M.attack_sound, 50, TRUE, TRUE)
 	M.do_attack_animation(src)
-	visible_message(span_danger("<b>[M]</b> [M.attack_verb_continuous] <b>[skloname(name, VINITELNI, gender)]</b>!") , \
-					span_userdanger("<b>[M]</b> [M.attack_verb_continuous] меня!") , null, COMBAT_MESSAGE_RANGE, M)
-	to_chat(M, span_danger("[M.attack_verb_simple] <b>[skloname(name, VINITELNI, gender)]</b>!"))
+	visible_message(span_danger("<b>[M]</b> [M.attack_verb_continuous] <b>[name]</b>!") , \
+					span_userdanger("<b>[M]</b> [M.attack_verb_continuous] you!") , null, COMBAT_MESSAGE_RANGE, M)
+	to_chat(M, span_danger("[M.attack_verb_simple] <b>[name]</b>!"))
 	log_combat(M, src, "attacked")
 	return TRUE
 
@@ -230,24 +230,24 @@
 	switch (M.a_intent)
 		if (INTENT_HARM)
 			if(HAS_TRAIT(M, TRAIT_PACIFISM))
-				to_chat(M, span_warning("Не хочу вредить!"))
+				to_chat(M, span_warning("You don't want to hurt anyone!"))
 				return FALSE
 
 			if(M.is_muzzled() || M.is_mouth_covered(FALSE, TRUE))
-				to_chat(M, span_warning("Ротик закрыт!"))
+				to_chat(M, span_warning("You can't bite when your mouth is covered!"))
 				return FALSE
 			M.do_attack_animation(src, ATTACK_EFFECT_BITE)
 			if (prob(75))
 				log_combat(M, src, "attacked")
 				playsound(loc, 'sound/weapons/bite.ogg', 50, TRUE, -1)
-				visible_message(span_danger("<b>[M.name]</b> кусает <b>[skloname(name, VINITELNI, gender)]</b>!") , \
-								span_userdanger("<b>[M.name]</b> кусает меня!") , span_hear("Слышу кусь!") , COMBAT_MESSAGE_RANGE, M)
-				to_chat(M, span_danger("Кусаю [skloname(name, VINITELNI, gender)]!"))
+				visible_message(span_danger("<b>[M.name]</b> bites <b>[name]</b>!") , \
+								span_userdanger("<b>[M.name]</b> bites you!") , span_hear("You hear a chomp!") , COMBAT_MESSAGE_RANGE, M)
+				to_chat(M, span_danger("You bite [name]!"))
 				return TRUE
 			else
-				visible_message(span_danger("<b>[M.name]</b> пытается укусить <b>[skloname(name, VINITELNI, gender)]</b>!") , \
-								span_danger("<b>[M.name]</b> пытается укусить меня!") , span_hear("Слышу как защелкиваются челюсти!") , COMBAT_MESSAGE_RANGE, M)
-				to_chat(M, span_warning("Пытаюсь укусить [skloname(name, VINITELNI, gender)]!"))
+				visible_message(span_danger("<b>[M.name]</b> bite misses <b>[name]</b>!") , \
+								span_danger("You avoid <b>[M.name]'s</b> bite!") , span_hear("You hear the sound of jaws snapping shut!") , COMBAT_MESSAGE_RANGE, M)
+				to_chat(M, span_warning("Your bite misses [name]!"))
 		if (INTENT_GRAB)
 			grabbedby(M)
 			return FALSE
@@ -281,9 +281,9 @@
 	else
 		adjustStaminaLoss(shock_damage)
 	visible_message(
-		span_danger("<b>[src]</b> ловит разряд тока от <b>[source]</b>!") , \
-		span_userdanger("Меня ударило током! <b>ЭТО ОЧЕНЬ БОЛЬНО!</b>") , \
-		span_italics("Слышу щёлканье электрических разрядов.")  \
+		span_danger("<b>[src]</b> was shocked by \the <b>[source]</b>!") , \
+		span_userdanger("You feel a powerful shock coursing through your body!") , \
+		span_italics("You hear a heavy electrical crack.")  \
 	)
 	return shock_damage
 

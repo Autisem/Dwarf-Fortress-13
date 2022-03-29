@@ -38,9 +38,9 @@
 	. = ..()
 	if(!(resistance_flags & INDESTRUCTIBLE))
 		if(resistance_flags & ON_FIRE)
-			. += "<hr><span class='warning'>Оно горит!</span>"
+			. += "<hr><span class='warning'>It's on fire!</span>"
 		if(broken)
-			. += "<hr><span class='notice'>Оно сломано.</span>"
+			. += "<hr><span class='notice'>It's broken.</span>"
 		var/examine_status = examine_status(user)
 		if(examine_status)
 			. += "<hr>"
@@ -50,12 +50,12 @@
 	var/healthpercent = (obj_integrity/max_integrity) * 100
 	switch(healthpercent)
 		if(50 to 99)
-			return  "Виднеются следы царапин."
+			return  "There are scratches visible on it."
 		if(25 to 50)
-			return  "Вмятины видны невооруженным глазом."
+			return  "There are dents visible on it."
 		if(0 to 25)
 			if(!broken)
-				return span_warning("Кажется эта штука сейчас развалится!")
+				return span_warning("It looks like it's about to break!")
 
 /obj/structure/zap_act(power, zap_flags)
 	if(zap_flags & ZAP_OBJ_DAMAGE)

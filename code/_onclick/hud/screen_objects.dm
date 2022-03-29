@@ -57,7 +57,7 @@
 
 /atom/movable/screen/swap_hand
 	plane = HUD_PLANE
-	name = "сменить руки"
+	name = "swap hands"
 
 /atom/movable/screen/swap_hand/Click()
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
@@ -74,7 +74,7 @@
 	return 1
 
 /atom/movable/screen/skills
-	name = "навыки"
+	name = "skills"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "skills"
 	screen_loc = ui_skill_menu
@@ -85,13 +85,13 @@
 		H.mind.print_levels(H)
 
 /atom/movable/screen/craft
-	name = "создание предметов"
+	name = "craft"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "craft"
 	screen_loc = ui_crafting
 
 /atom/movable/screen/area_creator
-	name = "новая зона"
+	name = "new area"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "area_edit"
 	screen_loc = ui_building
@@ -106,7 +106,7 @@
 	create_area(usr)
 
 /atom/movable/screen/language_menu
-	name = "языки"
+	name = "languages"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "talk_wheel"
 	screen_loc = ui_language_menu
@@ -237,7 +237,7 @@
 	return TRUE
 
 /atom/movable/screen/close
-	name = "закрыть"
+	name = "close"
 	plane = ABOVE_HUD_PLANE
 	icon_state = "backpack_close"
 
@@ -251,7 +251,7 @@
 	return TRUE
 
 /atom/movable/screen/drop
-	name = "бросить"
+	name = "drop"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "act_drop"
 	plane = HUD_PLANE
@@ -261,7 +261,7 @@
 		usr.dropItemToGround(usr.get_active_held_item())
 
 /atom/movable/screen/act_intent
-	name = "взаимодействие"
+	name = "intents"
 	icon_state = "help"
 	screen_loc = ui_acti
 
@@ -296,13 +296,13 @@
 	screen_loc = ui_borg_intents
 
 /atom/movable/screen/spacesuit
-	name = "Состояние батареи костюма"
+	name = "spacesuit battery"
 	icon = 'white/valtos/icons/hud.dmi'
 	icon_state = "spacesuit_0"
 	screen_loc = ui_spacesuit
 
 /atom/movable/screen/mov_intent
-	name = "бег/шаг"
+	name = "run/walk"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "running"
 
@@ -325,7 +325,7 @@
 	user.toggle_move_intent(user)
 
 /atom/movable/screen/pull
-	name = "перестать тащить"
+	name = "stop pulling"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "pull"
 	base_icon_state = "pull"
@@ -371,7 +371,7 @@
 
 
 /atom/movable/screen/storage
-	name = "хранилище"
+	name = "storage"
 	icon_state = "block"
 	screen_loc = "7,7 to 10,8"
 	plane = HUD_PLANE
@@ -392,7 +392,7 @@
 	return TRUE
 
 /atom/movable/screen/throw_catch
-	name = "кидать/ловить"
+	name = "throw/catch"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "act_throw_off"
 
@@ -402,7 +402,7 @@
 		C.toggle_throw_mode()
 
 /atom/movable/screen/zone_sel
-	name = "целевая зона"
+	name = "zone selection"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
 	var/overlay_icon = 'icons/hud/screen_gen.dmi'
@@ -538,7 +538,7 @@
 	plane = FULLSCREEN_PLANE
 
 /atom/movable/screen/healths
-	name = "здоровье"
+	name = "health"
 	icon_state = "health0"
 	screen_loc = ui_health
 
@@ -551,25 +551,25 @@
 	screen_loc = ui_borg_health
 
 /atom/movable/screen/healths/blob
-	name = "масса"
+	name = "mass"
 	icon_state = "block"
 	screen_loc = ui_internal
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /atom/movable/screen/healths/blob/overmind
-	name = "ядро"
+	name = "core"
 	icon = 'icons/hud/blob.dmi'
 	icon_state = "corehealth"
 	screen_loc = ui_blobbernaut_overmind_health
 
 /atom/movable/screen/healths/guardian
-	name = "мастер"
+	name = "master"
 	icon = 'icons/mob/guardian.dmi'
 	icon_state = "base"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /atom/movable/screen/healths/revenant
-	name = "эссенция"
+	name = "essense"
 	icon = 'icons/mob/actions/backgrounds.dmi'
 	icon_state = "bg_revenant"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -581,7 +581,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /atom/movable/screen/healthdoll
-	name = "тело"
+	name = "body"
 	screen_loc = ui_healthdoll
 
 /atom/movable/screen/healthdoll/Click()
@@ -595,7 +595,7 @@
 	var/filtered = FALSE //so we don't repeatedly create the mask of the mob every update
 
 /atom/movable/screen/mood
-	name = "настроение"
+	name = "mood"
 	icon_state = "mood5"
 	screen_loc = ui_mood
 
@@ -707,6 +707,6 @@
 	return cooldown
 
 /atom/movable/screen/stamina
-	name = "Выносливость"
+	name = "stamina"
 	icon_state = "stamina0"
 	screen_loc = ui_stamina

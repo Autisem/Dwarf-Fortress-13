@@ -8,9 +8,9 @@
 		if("help")
 			if (stat == DEAD)
 				return
-			visible_message(span_notice("[M] [response_help_continuous] [skloname(name, VINITELNI, gender)].") , \
-							span_notice("[M] [response_help_continuous] меня.") , null, null, M)
-			to_chat(M, span_notice("[M] [response_help_simple] [skloname(name, VINITELNI, gender)]."))
+			visible_message(span_notice("[M] [response_help_continuous] [name].") , \
+							span_notice("[M] [response_help_continuous] you.") , null, null, M)
+			to_chat(M, span_notice("[M] [response_help_simple] you."))
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 			if(pet_bonus)
 				funpet(M)
@@ -24,27 +24,27 @@
 			var/shove_dir = get_dir(M, src)
 			if(!Move(get_step(src, shove_dir), shove_dir))
 				log_combat(M, src, "shoved", "failing to move it")
-				M.visible_message(span_danger("[M.name] толкает [skloname(name, VINITELNI, gender)]!") ,
-					span_danger("Толкаю [skloname(name, VINITELNI, gender)]!") , span_hear("Слышу агрессивную потасовку!") , COMBAT_MESSAGE_RANGE, list(src))
-				to_chat(src, span_userdanger("Меня толкает [M.name]!"))
+				M.visible_message(span_danger("[M.name] shoves [name]!") ,
+					span_danger("You shove [name]!") , span_hear("You hear aggressive shuffling!") , COMBAT_MESSAGE_RANGE, list(src))
+				to_chat(src, span_userdanger("You're shoved by [M.name]!"))
 				return TRUE
 			log_combat(M, src, "shoved", "pushing it")
-			M.visible_message(span_danger("[M.name] толкает [skloname(name, VINITELNI, gender)] достаточно сильно!") ,
-				span_danger("Толкаю [skloname(name, VINITELNI, gender)] достаточно сильно!") , span_hear("Слышу агрессивную потасовку!") , COMBAT_MESSAGE_RANGE, list(src))
-			to_chat(src, span_userdanger("Меня толкает [name]!"))
+			M.visible_message(span_danger("[M.name] shoves [name], pushing [p_them()]!") ,
+				span_danger("You shove [name], pushing [p_them()]!") , span_hear("You hear aggressive shuffling!") , COMBAT_MESSAGE_RANGE, list(src))
+			to_chat(src, span_userdanger("You're pushed by [name]!"))
 			return TRUE
 
 		if("harm")
 			if(HAS_TRAIT(M, TRAIT_PACIFISM))
-				to_chat(M, span_warning("Не хочу вредить [skloname(name, VINITELNI, gender)]!"))
+				to_chat(M, span_warning("You don't want to hurt [name]!"))
 				return
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-			visible_message(span_danger("[M] [response_harm_continuous] [skloname(name, VINITELNI, gender)]!") ,\
-							span_userdanger("[M] [response_harm_continuous] меня!") , null, COMBAT_MESSAGE_RANGE, M)
-			to_chat(M, span_danger("Моя атака [response_harm_simple] [skloname(name, VINITELNI, gender)]!"))
+			visible_message(span_danger("[M] [response_harm_continuous] [name]!") ,\
+							span_userdanger("[M] [response_harm_continuous] you!") , null, COMBAT_MESSAGE_RANGE, M)
+			to_chat(M, span_danger("You [response_harm_simple] [name]!"))
 			playsound(loc, attacked_sound, 25, TRUE, -1)
 			attack_threshold_check(harm_intent_damage)
-			log_combat(M, src, "атакует")
+			log_combat(M, src, "attacked")
 			updatehealth()
 			return TRUE
 
@@ -66,9 +66,9 @@
 			return 1
 	if (M.a_intent == INTENT_HELP)
 		if (health > 0)
-			visible_message(span_notice("[M.name] [response_help_continuous] [skloname(name, VINITELNI, gender)].") , \
-							span_notice("[M.name] [response_help_continuous] меня.") , null, COMBAT_MESSAGE_RANGE, M)
-			to_chat(M, span_notice("Моя атака [response_help_simple] [skloname(name, VINITELNI, gender)]."))
+			visible_message(span_notice("[M.name] [response_help_continuous] [name].") , \
+							span_notice("[M.name] [response_help_continuous] you.") , null, COMBAT_MESSAGE_RANGE, M)
+			to_chat(M, span_notice("You [response_help_simple] [name]."))
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 
 /mob/living/simple_animal/attack_animal(mob/living/simple_animal/M)
@@ -85,7 +85,7 @@
 		temp_damage *= damage_coeff[damagetype]
 
 	if(temp_damage >= 0 && temp_damage <= force_threshold)
-		visible_message(span_warning("[capitalize(src.name)] выглядит целым!"))
+		visible_message(span_warning("[capitalize(src.name)] looks unharmed!"))
 		return FALSE
 	else
 		if(actuallydamage)
