@@ -108,7 +108,7 @@ SUBSYSTEM_DEF(title)
 	winset(src, "pdec", "pos=10,60")
 	update_lobby()
 	spawn(100)
-		if(src)
+		if(src && istype(mob, /mob/dead/new_player))
 			winset(src, "pdec", "is-visible=true;pos=10,60")
 		SStitle.update_lobby()
 
