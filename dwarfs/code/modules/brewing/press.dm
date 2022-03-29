@@ -94,7 +94,10 @@
 		for(var/obj/item/I in held_items)
 			held_items.Remove(I)
 			I.forceMove(get_turf(src))
-		icon_state = "press_open"
+		if(reagents.maximum_volume)
+			icon_state = "press_finished"
+		else
+			icon_state = "press_open"
 		update_appearance()
 		to_chat(user, span_notice("You remove everything from [src]."))
 	else if(answer == "Juice")
