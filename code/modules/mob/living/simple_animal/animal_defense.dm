@@ -10,7 +10,7 @@
 				return
 			visible_message(span_notice("[M] [response_help_continuous] [name].") , \
 							span_notice("[M] [response_help_continuous] you.") , null, null, M)
-			to_chat(M, span_notice("[M] [response_help_simple] you."))
+			to_chat(M, span_notice("You [response_help_simple] [name]."))
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 			if(pet_bonus)
 				funpet(M)
