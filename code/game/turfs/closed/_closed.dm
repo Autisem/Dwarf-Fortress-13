@@ -91,7 +91,7 @@
 	icon_state = "corner"
 
 /turf/closed/indestructible/splashscreen
-	name = "White Dream"
+	name = "Dwarf Fortress"
 	desc = "Поколение странных увлечений."
 	icon = 'icons/runtime/default_title.dmi'
 	icon_state = "station_intact"

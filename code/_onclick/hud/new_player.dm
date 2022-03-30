@@ -126,6 +126,9 @@
 	if(!.)
 		return
 	var/mob/dead/new_player/new_player = hud.mymob
+	if(!(new_player?.client?.holder))
+		to_chat(hud.mymob, span_boldwarning("Disabled for testing."))
+		return
 	ready = !ready
 	if(ready)
 		new_player.ready = PLAYER_READY_TO_PLAY
@@ -190,7 +193,7 @@
 		if(check_whitelist(new_player?.client?.ckey) || new_player?.client?.holder)
 			new_player.LateChoices()
 		else
-			to_chat(hud.mymob, span_boldwarning("You are not invited. Just stay in lobby."))
+			to_chat(hud.mymob, span_boldwarning("Disabled for testing."))
 	else
 		new_player.make_me_an_observer(TRUE)
 
@@ -228,7 +231,7 @@
 	if(new_player?.client?.holder)
 		new_player.make_me_an_observer()
 	else
-		to_chat(hud.mymob, span_boldwarning("Тебе нельзя."))
+		to_chat(hud.mymob, span_boldwarning("Disabled for testing."))
 
 /atom/movable/screen/lobby/button/observe/proc/enable_observing()
 	SIGNAL_HANDLER

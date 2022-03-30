@@ -5,6 +5,7 @@
 	icon_state = "forge_on"
 	light_range = 9
 	light_color = "#BB661E"
+	layer = ABOVE_MOB_LAYER
 	density = TRUE
 	anchored = TRUE
 	var/fuel = 180
