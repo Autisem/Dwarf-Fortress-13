@@ -9,7 +9,6 @@
 		/obj/effect/gibspawner/generic = 1,
 		/obj/effect/spawner/structure/window/hollow = 5,
 		/mob/living/simple_animal/hostile/cockroach = 1,
-		/obj/effect/decal/cleanable/cum = 1,
 	)
 
 	///Unique ID for this spawner

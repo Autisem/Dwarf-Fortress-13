@@ -31,8 +31,6 @@
 			//heart attack stuff
 			handle_heart(delta_time, times_fired)
 			handle_liver(delta_time, times_fired)
-			if(dancing_period)
-				dancing_period--
 			if(prob(2))
 				if(nutrition < NUTRITION_LEVEL_STARVING)
 					to_chat(src, span_warning("[pick("Голодно...", "Кушать хочу...", "Вот бы что-нибудь съесть...", "Мой живот урчит...")]"))
