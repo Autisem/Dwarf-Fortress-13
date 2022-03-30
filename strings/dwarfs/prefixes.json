@@ -1,0 +1,114 @@
+{
+    "After-": {
+        "English": "After-",
+        "Dwarven": "Nicol-",
+        "Elvish": "Ifife-",
+        "Goblin": "Lûbu-",
+        "Human": "Agtha-"
+    },
+    "Arch-": {
+        "English": "Arch-",
+        "Dwarven": "Gost-",
+        "Elvish": "Ÿaniye-",
+        "Goblin": "Sasne-",
+        "Human": "Icmon-"
+    },
+    "Ecto-": {
+        "English": "Ecto-",
+        "Dwarven": "Shuthraz-",
+        "Elvish": "Anama-",
+        "Goblin": "Reku-",
+        "Human": "Thren-"
+    },
+    "Ever-": {
+        "English": "Ever-",
+        "Dwarven": "Im-",
+        "Elvish": "Ele-",
+        "Goblin": "Aslu-",
+        "Human": "Op-"
+    },
+    "Many-": {
+        "English": "Many-",
+        "Dwarven": "Shàmman-",
+        "Elvish": "Eda-",
+        "Goblin": "Ek-",
+        "Human": "Taca-"
+    },
+    "Necro-": {
+        "English": "Necro-",
+        "Dwarven": "Ugith-",
+        "Elvish": "Athoma-",
+        "Goblin": "Got-",
+        "Human": "Nir-"
+    },
+    "Neo-": {
+        "English": "Neo-",
+        "Dwarven": "Lärim-",
+        "Elvish": "Ami-",
+        "Goblin": "Solu-",
+        "Human": "Amo-"
+    },
+    "Never-": {
+        "English": "Never-",
+        "Dwarven": "Nanoth-",
+        "Elvish": "Eramu-",
+        "Goblin": "Ustab-",
+        "Human": "Usmo-"
+    },
+    "One-": {
+        "English": "One-",
+        "Dwarven": "Nir-",
+        "Elvish": "Ime-",
+        "Goblin": "Obngot-",
+        "Human": "Ist-"
+    },
+    "Over-": {
+        "English": "Over-",
+        "Dwarven": "Ág-",
+        "Elvish": "Ani-",
+        "Goblin": "Ox-",
+        "Human": "In-"
+    },
+    "Three-": {
+        "English": "Three-",
+        "Dwarven": "Mez-",
+        "Elvish": "Sara-",
+        "Goblin": "Rugol-",
+        "Human": "Akku-"
+    },
+    "Two-": {
+        "English": "Two-",
+        "Dwarven": "Nob-",
+        "Elvish": "Teme-",
+        "Goblin": "Stazgud-",
+        "Human": "Lad-"
+    },
+    "Ultra-": {
+        "English": "Ultra-",
+        "Dwarven": "Ishëm-",
+        "Elvish": "Irani-",
+        "Goblin": "Altög-",
+        "Human": "Ishra-"
+    },
+    "Un-": {
+        "English": "Un-",
+        "Dwarven": "Nas-",
+        "Elvish": "Seno-",
+        "Goblin": "Rot-",
+        "Human": "Ob-"
+    },
+    "Under-": {
+        "English": "Under-",
+        "Dwarven": "Arôl-",
+        "Elvish": "Tari-",
+        "Goblin": "Sumspa-",
+        "Human": "Ngir-"
+    },
+    "Were-": {
+        "English": "Were-",
+        "Dwarven": "Senel-",
+        "Elvish": "Rivi-",
+        "Goblin": "Bem-",
+        "Human": "Hixur-"
+    }
+}

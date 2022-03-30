@@ -10,6 +10,15 @@
 		tempname += random_capital_letter()
 	return tempname
 
+/proc/dwarf_name()
+	var/first = pick(GLOB.dwarf_first)
+	var/last = ""
+	for(var/i in 1 to 2)
+		var/list/T = pick(GLOB.language_nouns ,GLOB.language_adjectives ,GLOB.language_verbs ,GLOB.language_prefixes)
+		var/picked = pick(T)
+		last+=lowertext(T[picked]["Dwarven"])
+	return "[capitalize(first)] [capitalize(last)]"
+
 /proc/plasmaman_name()
 	return "[pick(GLOB.plasmaman_names)] \Roman[rand(1,99)]"
 

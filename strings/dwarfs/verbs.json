@@ -1,0 +1,4881 @@
+{
+    "Abate": {
+        "English": "Abate",
+        "Dwarven": "Med",
+        "Elvish": "Vithi",
+        "Goblin": "Xubok",
+        "Human": "Nogu"
+    },
+    "Ache": {
+        "English": "Ache",
+        "Dwarven": "Agseth",
+        "Elvish": "Balane",
+        "Goblin": "Môklo",
+        "Human": "Kitew"
+    },
+    "Act": {
+        "English": "Act",
+        "Dwarven": "Bidok",
+        "Elvish": "Aró",
+        "Goblin": "Lâsm",
+        "Human": "Use"
+    },
+    "Admire": {
+        "English": "Admire",
+        "Dwarven": "Nebél",
+        "Elvish": "Thitathi",
+        "Goblin": "Agsmông",
+        "Human": "Emsi"
+    },
+    "Adore": {
+        "English": "Adore",
+        "Dwarven": "Salir",
+        "Elvish": "Emofe",
+        "Goblin": "Loma",
+        "Human": "Emim"
+    },
+    "Adventure": {
+        "English": "Adventure",
+        "Dwarven": "Cenäth",
+        "Elvish": "Thela",
+        "Goblin": "Musör",
+        "Human": "Rithod"
+    },
+    "Afflict": {
+        "English": "Afflict",
+        "Dwarven": "Thokit",
+        "Elvish": "Eca",
+        "Goblin": "Smestre",
+        "Human": "Doge"
+    },
+    "Age": {
+        "English": "Age",
+        "Dwarven": "Anam",
+        "Elvish": "Eyo",
+        "Goblin": "Abo",
+        "Human": "Thad"
+    },
+    "Ally": {
+        "English": "Ally",
+        "Dwarven": "Astel",
+        "Elvish": "Çuthè",
+        "Goblin": "Oslem",
+        "Human": "Abba"
+    },
+    "Amaze": {
+        "English": "Amaze",
+        "Dwarven": "Edos",
+        "Elvish": "Vole",
+        "Goblin": "Kangsu",
+        "Human": "Zilta"
+    },
+    "Amuse": {
+        "English": "Amuse",
+        "Dwarven": "Ïdath",
+        "Elvish": "Mase",
+        "Goblin": "Odsnun",
+        "Human": "Theñi"
+    },
+    "Anguish": {
+        "English": "Anguish",
+        "Dwarven": "Roldeth",
+        "Elvish": "Cifano",
+        "Goblin": "Sasmok",
+        "Human": "Ñod"
+    },
+    "Appear": {
+        "English": "Appear",
+        "Dwarven": "Asrer",
+        "Elvish": "Uli",
+        "Goblin": "Arur",
+        "Human": "Uñir"
+    },
+    "Assault": {
+        "English": "Assault",
+        "Dwarven": "Arist",
+        "Elvish": "Irafe",
+        "Goblin": "Kök",
+        "Human": "Okgush"
+    },
+    "Assemble": {
+        "English": "Assemble",
+        "Dwarven": "Fidgam",
+        "Elvish": "Wemathè",
+        "Goblin": "Ngod",
+        "Human": "Corust"
+    },
+    "Attack": {
+        "English": "Attack",
+        "Dwarven": "Rashgur",
+        "Elvish": "Irithe",
+        "Goblin": "Umuz",
+        "Human": "Nashra"
+    },
+    "Author": {
+        "English": "Author",
+        "Dwarven": "Ardes",
+        "Elvish": "Cofari",
+        "Goblin": "Ulxe",
+        "Human": "Sorus"
+    },
+    "Bait": {
+        "English": "Bait",
+        "Dwarven": "Geshak",
+        "Elvish": "Eyó",
+        "Goblin": "Zestto",
+        "Human": "Edquek"
+    },
+    "Bake": {
+        "English": "Bake",
+        "Dwarven": "Nel",
+        "Elvish": "Cenopu",
+        "Goblin": "Osm",
+        "Human": "Hiñer"
+    },
+    "Balance": {
+        "English": "Balance",
+        "Dwarven": "Neth",
+        "Elvish": "Rame",
+        "Goblin": "Olos",
+        "Human": "Zostra"
+    },
+    "Bald": {
+        "English": "Bald",
+        "Dwarven": "Roder",
+        "Elvish": "Dinade",
+        "Goblin": "Bor",
+        "Human": "Rostfen"
+    },
+    "Barricade": {
+        "English": "Barricade",
+        "Dwarven": "Tholtig",
+        "Elvish": "Iwa",
+        "Goblin": "Uros",
+        "Human": "Gosath"
+    },
+    "Bathe": {
+        "English": "Bathe",
+        "Dwarven": "Olmul",
+        "Elvish": "Amama",
+        "Goblin": "Ugas",
+        "Human": "Bepa"
+    },
+    "Beach": {
+        "English": "Beach",
+        "Dwarven": "Mìshos",
+        "Elvish": "Rofa",
+        "Goblin": "Stasno",
+        "Human": "Thefin"
+    },
+    "Bear": {
+        "English": "Bear",
+        "Dwarven": "Nóton",
+        "Elvish": "Ÿemi",
+        "Goblin": "Egu",
+        "Human": "Onru"
+    },
+    "Begin": {
+        "English": "Begin",
+        "Dwarven": "Ritan",
+        "Elvish": "Ricì",
+        "Goblin": "Uslôx",
+        "Human": "Dujan"
+    },
+    "Beguile": {
+        "English": "Beguile",
+        "Dwarven": "Enir",
+        "Elvish": "Mathúva",
+        "Goblin": "Osmze",
+        "Human": "Kaslal"
+    },
+    "Bend": {
+        "English": "Bend",
+        "Dwarven": "Mat",
+        "Elvish": "Thiyo",
+        "Goblin": "Asu",
+        "Human": "Puja"
+    },
+    "Betray": {
+        "English": "Betray",
+        "Dwarven": "Oshnïl",
+        "Elvish": "Slerima",
+        "Goblin": "Tông",
+        "Human": "Zewoth"
+    },
+    "Bewilder": {
+        "English": "Bewilder",
+        "Dwarven": "Zutshosh",
+        "Elvish": "Iÿe",
+        "Goblin": "Ostrug",
+        "Human": "Quamun"
+    },
+    "Bewitch": {
+        "English": "Bewitch",
+        "Dwarven": "Nonshut",
+        "Elvish": "Efaÿi",
+        "Goblin": "Sner",
+        "Human": "Mithrup"
+    },
+    "Bind": {
+        "English": "Bind",
+        "Dwarven": "Estun",
+        "Elvish": "Avera",
+        "Goblin": "Xedub",
+        "Human": "Uti"
+    },
+    "Bite": {
+        "English": "Bite",
+        "Dwarven": "Nitig",
+        "Elvish": "Imici",
+        "Goblin": "Ngul",
+        "Human": "Guki"
+    },
+    "Blame": {
+        "English": "Blame",
+        "Dwarven": "Nulom",
+        "Elvish": "Abama",
+        "Goblin": "Ragu",
+        "Human": "Shen"
+    },
+    "Blanch": {
+        "English": "Blanch",
+        "Dwarven": "Enoz",
+        "Elvish": "Cepe",
+        "Goblin": "Snod",
+        "Human": "Oprig"
+    },
+    "Blaze": {
+        "English": "Blaze",
+        "Dwarven": "Sákrith",
+        "Elvish": "Mifava",
+        "Goblin": "Uxzo",
+        "Human": "Asri"
+    },
+    "Bleach": {
+        "English": "Bleach",
+        "Dwarven": "Satneng",
+        "Elvish": "Fataba",
+        "Goblin": "Snorbû",
+        "Human": "Thremlu"
+    },
+    "Bleed": {
+        "English": "Bleed",
+        "Dwarven": "Sut",
+        "Elvish": "Vathe",
+        "Goblin": "Stonu",
+        "Human": "Siser"
+    },
+    "Blench": {
+        "English": "Blench",
+        "Dwarven": "Rotig",
+        "Elvish": "Wiritha",
+        "Goblin": "Osum",
+        "Human": "Vesh"
+    },
+    "Blight": {
+        "English": "Blight",
+        "Dwarven": "Sharsid",
+        "Elvish": "Voma",
+        "Goblin": "Stungo",
+        "Human": "Seroc"
+    },
+    "Blind": {
+        "English": "Blind",
+        "Dwarven": "Nural",
+        "Elvish": "Nanotha",
+        "Goblin": "Ostad",
+        "Human": "Odu"
+    },
+    "Block": {
+        "English": "Block",
+        "Dwarven": "Rifot",
+        "Elvish": "Canara",
+        "Goblin": "Zemkom",
+        "Human": "Eslik"
+    },
+    "Blockade": {
+        "English": "Blockade",
+        "Dwarven": "Medtob",
+        "Elvish": "Yathine",
+        "Goblin": "Slos",
+        "Human": "Sothbod"
+    },
+    "Blossom": {
+        "English": "Blossom",
+        "Dwarven": "Âtrid",
+        "Elvish": "Lolama",
+        "Goblin": "Zöslu",
+        "Human": "Shibbi"
+    },
+    "Blot": {
+        "English": "Blot",
+        "Dwarven": "Kod",
+        "Elvish": "Enade",
+        "Goblin": "Goslust",
+        "Human": "Nastrisp"
+    },
+    "Blow": {
+        "English": "Blow",
+        "Dwarven": "Etes",
+        "Elvish": "Futhile",
+        "Goblin": "Dök",
+        "Human": "Uslig"
+    },
+    "Blunt": {
+        "English": "Blunt",
+        "Dwarven": "Unâl",
+        "Elvish": "Thiruri",
+        "Goblin": "Ulxa",
+        "Human": "Honu"
+    },
+    "Blush": {
+        "English": "Blush",
+        "Dwarven": "Umer",
+        "Elvish": "Veri",
+        "Goblin": "Aslan",
+        "Human": "Doñas"
+    },
+    "Board": {
+        "English": "Board",
+        "Dwarven": "Gåkïz",
+        "Elvish": "Celi",
+        "Goblin": "Slongus",
+        "Human": "Sagmo"
+    },
+    "Boil": {
+        "English": "Boil",
+        "Dwarven": "Themor",
+        "Elvish": "Afatha",
+        "Goblin": "Asttu",
+        "Human": "Birta"
+    },
+    "Bolt": {
+        "English": "Bolt",
+        "Dwarven": "Alåth",
+        "Elvish": "Ene",
+        "Goblin": "Okom",
+        "Human": "Thora"
+    },
+    "Bore (into)": {
+        "English": "Bore (into)",
+        "Dwarven": "Atêk",
+        "Elvish": "Ewe",
+        "Goblin": "Edzum",
+        "Human": "Aguv"
+    },
+    "Bore (from tedium)": {
+        "English": "Bore (from tedium)",
+        "Dwarven": "Edod",
+        "Elvish": "Fife",
+        "Goblin": "Nuslu",
+        "Human": "Roñad"
+    },
+    "Bother": {
+        "English": "Bother",
+        "Dwarven": "Selsten",
+        "Elvish": "Bareca",
+        "Goblin": "Asa",
+        "Human": "Umac"
+    },
+    "Bottle": {
+        "English": "Bottle",
+        "Dwarven": "Shomad",
+        "Elvish": "Ithe",
+        "Goblin": "Ostox",
+        "Human": "Ceru"
+    },
+    "Bow": {
+        "English": "Bow",
+        "Dwarven": "Othsin",
+        "Elvish": "Thiwa",
+        "Goblin": "Uku",
+        "Human": "Sodu"
+    },
+    "Braid": {
+        "English": "Braid",
+        "Dwarven": "Nakuth",
+        "Elvish": "Quali",
+        "Goblin": "Bûku",
+        "Human": "Bugi"
+    },
+    "Brand": {
+        "English": "Brand",
+        "Dwarven": "Zes",
+        "Elvish": "Thali",
+        "Goblin": "Uslot",
+        "Human": "Ebbak"
+    },
+    "Brave": {
+        "English": "Brave",
+        "Dwarven": "Âtast",
+        "Elvish": "Imase",
+        "Goblin": "Rukku",
+        "Human": "Egu"
+    },
+    "Breach": {
+        "English": "Breach",
+        "Dwarven": "Ùst",
+        "Elvish": "Fecaci",
+        "Goblin": "Stratâb",
+        "Human": "Ostsi"
+    },
+    "Break": {
+        "English": "Break",
+        "Dwarven": "Okab",
+        "Elvish": "Rire",
+        "Goblin": "Astrum",
+        "Human": "Tet"
+    },
+    "Bridge": {
+        "English": "Bridge",
+        "Dwarven": "Sazir",
+        "Elvish": "Valóna",
+        "Goblin": "Romnu",
+        "Human": "Ori"
+    },
+    "Bristle": {
+        "English": "Bristle",
+        "Dwarven": "Lek",
+        "Elvish": "Femeli",
+        "Goblin": "Gorno",
+        "Human": "Spishab"
+    },
+    "Broil": {
+        "English": "Broil",
+        "Dwarven": "Stumäm",
+        "Elvish": "Facicé",
+        "Goblin": "Kusmke",
+        "Human": "Mintut"
+    },
+    "Brush": {
+        "English": "Brush",
+        "Dwarven": "Nosing",
+        "Elvish": "Ecéna",
+        "Goblin": "Stato",
+        "Human": "Puji"
+    },
+    "Brutalize": {
+        "English": "Brutalize",
+        "Dwarven": "Tîrdug",
+        "Elvish": "Iÿami",
+        "Goblin": "Entust",
+        "Human": "Mogsut"
+    },
+    "Buckle": {
+        "English": "Buckle",
+        "Dwarven": "Rozsed",
+        "Elvish": "Lete",
+        "Goblin": "Ast",
+        "Human": "Iddim"
+    },
+    "Bud": {
+        "English": "Bud",
+        "Dwarven": "Enshal",
+        "Elvish": "Alisa",
+        "Goblin": "Slospo",
+        "Human": "Nifih"
+    },
+    "Burn": {
+        "English": "Burn",
+        "Dwarven": "Nïng",
+        "Elvish": "Cilole",
+        "Goblin": "Mugub",
+        "Human": "Istro"
+    },
+    "Burst": {
+        "English": "Burst",
+        "Dwarven": "Instol",
+        "Elvish": "Ivatha",
+        "Goblin": "Om",
+        "Human": "Bupe"
+    },
+    "Bury": {
+        "English": "Bury",
+        "Dwarven": "Ostar",
+        "Elvish": "Nula",
+        "Goblin": "Uno",
+        "Human": "Donu"
+    },
+    "Bust": {
+        "English": "Bust",
+        "Dwarven": "Stal",
+        "Elvish": "Thaba",
+        "Goblin": "Star",
+        "Human": "Mosmik"
+    },
+    "Butter": {
+        "English": "Butter",
+        "Dwarven": "Reked",
+        "Elvish": "Necitho",
+        "Goblin": "Lel",
+        "Human": "Rozmo"
+    },
+    "Button": {
+        "English": "Button",
+        "Dwarven": "Sidos",
+        "Elvish": "Vaca",
+        "Goblin": "Uze",
+        "Human": "Atek"
+    },
+    "Cackle": {
+        "English": "Cackle",
+        "Dwarven": "Ethbesh",
+        "Elvish": "Noca",
+        "Goblin": "Urog",
+        "Human": "Ejá"
+    },
+    "Call": {
+        "English": "Call",
+        "Dwarven": "Idos",
+        "Elvish": "Mivere",
+        "Goblin": "Nonu",
+        "Human": "Uce"
+    },
+    "Calm": {
+        "English": "Calm",
+        "Dwarven": "Betan",
+        "Elvish": "Valo",
+        "Goblin": "Spet",
+        "Human": "Er"
+    },
+    "Camp": {
+        "English": "Camp",
+        "Dwarven": "Ogîk",
+        "Elvish": "Imené",
+        "Goblin": "Ustthut",
+        "Human": "Muthe"
+    },
+    "Carry": {
+        "English": "Carry",
+        "Dwarven": "Ozkak",
+        "Elvish": "Elaye",
+        "Goblin": "Uta",
+        "Human": "Ucaf"
+    },
+    "Catch": {
+        "English": "Catch",
+        "Dwarven": "Åkum",
+        "Elvish": "Ewi",
+        "Goblin": "Smabek",
+        "Human": "Ñik"
+    },
+    "Cavort": {
+        "English": "Cavort",
+        "Dwarven": "Nastid",
+        "Elvish": "Liqui",
+        "Goblin": "Smal",
+        "Human": "Bihe"
+    },
+    "Celebrate": {
+        "English": "Celebrate",
+        "Dwarven": "Fazís",
+        "Elvish": "Yipi",
+        "Goblin": "Axngu",
+        "Human": "Shanum"
+    },
+    "Chain": {
+        "English": "Chain",
+        "Dwarven": "Nicat",
+        "Elvish": "Oséfi",
+        "Goblin": "Ugo",
+        "Human": "Ekul"
+    },
+    "Chance": {
+        "English": "Chance",
+        "Dwarven": "Tenshed",
+        "Elvish": "Ceÿeca",
+        "Goblin": "Onga",
+        "Human": "Ishas"
+    },
+    "Channel": {
+        "English": "Channel",
+        "Dwarven": "Catten",
+        "Elvish": "Teze",
+        "Goblin": "Osnaz",
+        "Human": "Innah"
+    },
+    "Chant": {
+        "English": "Chant",
+        "Dwarven": "Onshen",
+        "Elvish": "Ayilo",
+        "Goblin": "Slonu",
+        "Human": "Umci"
+    },
+    "Char": {
+        "English": "Char",
+        "Dwarven": "Sid",
+        "Elvish": "Imida",
+        "Goblin": "Ustgu",
+        "Human": "Aquig"
+    },
+    "Charm": {
+        "English": "Charm",
+        "Dwarven": "Ìtdùn",
+        "Elvish": "Methila",
+        "Goblin": "Dông",
+        "Human": "Mel"
+    },
+    "Cherish": {
+        "English": "Cherish",
+        "Dwarven": "Emad",
+        "Elvish": "Çòme",
+        "Goblin": "Komu",
+        "Human": "Isha"
+    },
+    "Chew": {
+        "English": "Chew",
+        "Dwarven": "Zursùl",
+        "Elvish": "Elethe",
+        "Goblin": "Smumub",
+        "Human": "Mipbi"
+    },
+    "Chill": {
+        "English": "Chill",
+        "Dwarven": "Îtat",
+        "Elvish": "Pini",
+        "Goblin": "Xama",
+        "Human": "Nalki"
+    },
+    "Chip": {
+        "English": "Chip",
+        "Dwarven": "Dib",
+        "Elvish": "Amirí",
+        "Goblin": "Ub",
+        "Human": "Sistru"
+    },
+    "Chirp": {
+        "English": "Chirp",
+        "Dwarven": "Oril",
+        "Elvish": "Rira",
+        "Goblin": "Nub",
+        "Human": "Pib"
+    },
+    "Choke": {
+        "English": "Choke",
+        "Dwarven": "Bukog",
+        "Elvish": "Oneca",
+        "Goblin": "Slësla",
+        "Human": "Thrislat"
+    },
+    "Chop": {
+        "English": "Chop",
+        "Dwarven": "Atot",
+        "Elvish": "Riquethi",
+        "Goblin": "Eg",
+        "Human": "Kupko"
+    },
+    "Chuck": {
+        "English": "Chuck",
+        "Dwarven": "Imik",
+        "Elvish": "Ladatha",
+        "Goblin": "Dunosp",
+        "Human": "Cok"
+    },
+    "Circle": {
+        "English": "Circle",
+        "Dwarven": "Oshur",
+        "Elvish": "Zocisa",
+        "Goblin": "Strox",
+        "Human": "Aslu"
+    },
+    "Clap": {
+        "English": "Clap",
+        "Dwarven": "Rag",
+        "Elvish": "Ora",
+        "Goblin": "Kuda",
+        "Human": "Cengi"
+    },
+    "Clarify": {
+        "English": "Clarify",
+        "Dwarven": "Merig",
+        "Elvish": "Icila",
+        "Goblin": "Studu",
+        "Human": "Luc"
+    },
+    "Clash": {
+        "English": "Clash",
+        "Dwarven": "Lisid",
+        "Elvish": "Esala",
+        "Goblin": "Exuz",
+        "Human": "Osush"
+    },
+    "Clasp": {
+        "English": "Clasp",
+        "Dwarven": "Dodók",
+        "Elvish": "Lama",
+        "Goblin": "Ozad",
+        "Human": "Rákfil"
+    },
+    "Clean": {
+        "English": "Clean",
+        "Dwarven": "Lecad",
+        "Elvish": "Reya",
+        "Goblin": "Ustu",
+        "Human": "Enil"
+    },
+    "Cleanse": {
+        "English": "Cleanse",
+        "Dwarven": "Fushur",
+        "Elvish": "Nemine",
+        "Goblin": "Dugut",
+        "Human": "Lelku"
+    },
+    "Clear": {
+        "English": "Clear",
+        "Dwarven": "Es",
+        "Elvish": "Thema",
+        "Goblin": "Ug",
+        "Human": "Ilid"
+    },
+    "Cleave": {
+        "English": "Cleave",
+        "Dwarven": "Gast",
+        "Elvish": "Rathì",
+        "Goblin": "Ostôk",
+        "Human": "Kud"
+    },
+    "Clench": {
+        "English": "Clench",
+        "Dwarven": "Egast",
+        "Elvish": "Fare",
+        "Goblin": "Susnû",
+        "Human": "Thuslax"
+    },
+    "Clinch": {
+        "English": "Clinch",
+        "Dwarven": "Akgos",
+        "Elvish": "Lothe",
+        "Goblin": "Nûng",
+        "Human": "Dipug"
+    },
+    "Cling": {
+        "English": "Cling",
+        "Dwarven": "Élmeth",
+        "Elvish": "Nefuÿe",
+        "Goblin": "Usno",
+        "Human": "Gumun"
+    },
+    "Clobber": {
+        "English": "Clobber",
+        "Dwarven": "Avéd",
+        "Elvish": "Naci",
+        "Goblin": "Ûsp",
+        "Human": "Ejed"
+    },
+    "Cloister": {
+        "English": "Cloister",
+        "Dwarven": "Oddom",
+        "Elvish": "Nethale",
+        "Goblin": "Rötstong",
+        "Human": "Coñu"
+    },
+    "Close": {
+        "English": "Close",
+        "Dwarven": "Urol",
+        "Elvish": "Eru",
+        "Goblin": "Er",
+        "Human": "Adis"
+    },
+    "Clout": {
+        "English": "Clout",
+        "Dwarven": "Zatam",
+        "Elvish": "Naco",
+        "Goblin": "Snosstrosp",
+        "Human": "Obol"
+    },
+    "Cluster": {
+        "English": "Cluster",
+        "Dwarven": "Shatag",
+        "Elvish": "Nali",
+        "Goblin": "Gadu",
+        "Human": "Itke"
+    },
+    "Clutch": {
+        "English": "Clutch",
+        "Dwarven": "Sholid",
+        "Elvish": "Afedi",
+        "Goblin": "Kasta",
+        "Human": "Cero"
+    },
+    "Clutter": {
+        "English": "Clutter",
+        "Dwarven": "Om",
+        "Elvish": "Ifeta",
+        "Goblin": "Ozma",
+        "Human": "Rufo"
+    },
+    "Coil": {
+        "English": "Coil",
+        "Dwarven": "Balad",
+        "Elvish": "Yila",
+        "Goblin": "Ngosm",
+        "Human": "Leti"
+    },
+    "Color": {
+        "English": "Color",
+        "Dwarven": "Dakas",
+        "Elvish": "Mima",
+        "Goblin": "Zon",
+        "Human": "Rusna"
+    },
+    "Combat": {
+        "English": "Combat",
+        "Dwarven": "Zoluth",
+        "Elvish": "Moÿira",
+        "Goblin": "Nur",
+        "Human": "Thec"
+    },
+    "Combine": {
+        "English": "Combine",
+        "Dwarven": "Artob",
+        "Elvish": "Menadi",
+        "Goblin": "Bosu",
+        "Human": "Abpa"
+    },
+    "Compete": {
+        "English": "Compete",
+        "Dwarven": "Âgoth",
+        "Elvish": "Iwe",
+        "Goblin": "Zex",
+        "Human": "Cadap"
+    },
+    "Confederate": {
+        "English": "Confederate",
+        "Dwarven": "Mulåsh",
+        "Elvish": "Yedéle",
+        "Goblin": "Dukxong",
+        "Human": "Pesor"
+    },
+    "Confine": {
+        "English": "Confine",
+        "Dwarven": "Kacoth",
+        "Elvish": "Cara",
+        "Goblin": "Otak",
+        "Human": "Tokda"
+    },
+    "Confuse": {
+        "English": "Confuse",
+        "Dwarven": "Shadmal",
+        "Elvish": "Ifebo",
+        "Goblin": "Stestrak",
+        "Human": "Devsem"
+    },
+    "Conjure": {
+        "English": "Conjure",
+        "Dwarven": "Tusung",
+        "Elvish": "Nera",
+        "Goblin": "Smob",
+        "Human": "Ispran"
+    },
+    "Connect": {
+        "English": "Connect",
+        "Dwarven": "Kezkíg",
+        "Elvish": "Camòre",
+        "Goblin": "Äkon",
+        "Human": "Geb"
+    },
+    "Construct": {
+        "English": "Construct",
+        "Dwarven": "Aban",
+        "Elvish": "Arabe",
+        "Goblin": "Rom",
+        "Human": "Gisu"
+    },
+    "Contain": {
+        "English": "Contain",
+        "Dwarven": "Etost",
+        "Elvish": "Thale",
+        "Goblin": "Ustêx",
+        "Human": "Puti"
+    },
+    "Contest": {
+        "English": "Contest",
+        "Dwarven": "Ágesh",
+        "Elvish": "Ita",
+        "Goblin": "Ugu",
+        "Human": "Caslu"
+    },
+    "Control": {
+        "English": "Control",
+        "Dwarven": "Egul",
+        "Elvish": "Ade",
+        "Goblin": "Ngure",
+        "Human": "Kas"
+    },
+    "Cook": {
+        "English": "Cook",
+        "Dwarven": "Rafar",
+        "Elvish": "Othi",
+        "Goblin": "Kengku",
+        "Human": "Lem"
+    },
+    "Cooperate": {
+        "English": "Cooperate",
+        "Dwarven": "Etnàr",
+        "Elvish": "Lace",
+        "Goblin": "Oknus",
+        "Human": "Ame"
+    },
+    "Corrupt": {
+        "English": "Corrupt",
+        "Dwarven": "Shusug",
+        "Elvish": "Fadethe",
+        "Goblin": "Ngot",
+        "Human": "Roth"
+    },
+    "Counsel": {
+        "English": "Counsel",
+        "Dwarven": "Amkol",
+        "Elvish": "Anomi",
+        "Goblin": "Raslost",
+        "Human": "Nisam"
+    },
+    "Cover": {
+        "English": "Cover",
+        "Dwarven": "Laltur",
+        "Elvish": "Thefama",
+        "Goblin": "Oslu",
+        "Human": "Opi"
+    },
+    "Crack": {
+        "English": "Crack",
+        "Dwarven": "Obot",
+        "Elvish": "Fíra",
+        "Goblin": "Kol",
+        "Human": "Emat"
+    },
+    "Cradle": {
+        "English": "Cradle",
+        "Dwarven": "Arban",
+        "Elvish": "Mapi",
+        "Goblin": "Dusmun",
+        "Human": "Wuspin"
+    },
+    "Craft": {
+        "English": "Craft",
+        "Dwarven": "Rigòth",
+        "Elvish": "Nedu",
+        "Goblin": "Odan",
+        "Human": "Specut"
+    },
+    "Crawl": {
+        "English": "Crawl",
+        "Dwarven": "Dunan",
+        "Elvish": "Awidi",
+        "Goblin": "Olo",
+        "Human": "Quiba"
+    },
+    "Create": {
+        "English": "Create",
+        "Dwarven": "Dôbar",
+        "Elvish": "Wene",
+        "Goblin": "Sluda",
+        "Human": "Sekur"
+    },
+    "Creep": {
+        "English": "Creep",
+        "Dwarven": "Shadkik",
+        "Elvish": "Coni",
+        "Goblin": "Gudo",
+        "Human": "Sagam"
+    },
+    "Cremate": {
+        "English": "Cremate",
+        "Dwarven": "Orshet",
+        "Elvish": "Enafe",
+        "Goblin": "Ukas",
+        "Human": "Thrimes"
+    },
+    "Crest": {
+        "English": "Crest",
+        "Dwarven": "Zim",
+        "Elvish": "Thami",
+        "Goblin": "Ubspu",
+        "Human": "Pirni"
+    },
+    "Crew": {
+        "English": "Crew",
+        "Dwarven": "Ginet",
+        "Elvish": "Nonu",
+        "Goblin": "Ezrû",
+        "Human": "Ñesik"
+    },
+    "Cross": {
+        "English": "Cross",
+        "Dwarven": "Than",
+        "Elvish": "Cuna",
+        "Goblin": "Aruz",
+        "Human": "Zov"
+    },
+    "Crowd": {
+        "English": "Crowd",
+        "Dwarven": "Thad",
+        "Elvish": "Deca",
+        "Goblin": "Okmo",
+        "Human": "Gospo"
+    },
+    "Crucify": {
+        "English": "Crucify",
+        "Dwarven": "Memrut",
+        "Elvish": "Afica",
+        "Goblin": "Stun",
+        "Human": "Darek"
+    },
+    "Crumble": {
+        "English": "Crumble",
+        "Dwarven": "Usal",
+        "Elvish": "Celedo",
+        "Goblin": "Dasnur",
+        "Human": "Meral"
+    },
+    "Crush": {
+        "English": "Crush",
+        "Dwarven": "Ôm",
+        "Elvish": "Utha",
+        "Goblin": "Åd",
+        "Human": "Inut"
+    },
+    "Cry": {
+        "English": "Cry",
+        "Dwarven": "Cagith",
+        "Elvish": "Nunera",
+        "Goblin": "Nobde",
+        "Human": "Cema"
+    },
+    "Cuddle": {
+        "English": "Cuddle",
+        "Dwarven": "Deshlir",
+        "Elvish": "Thefefe",
+        "Goblin": "Sledsmuz",
+        "Human": "Orspa"
+    },
+    "Culminate": {
+        "English": "Culminate",
+        "Dwarven": "Avum",
+        "Elvish": "Òne",
+        "Goblin": "Koro",
+        "Human": "Ospram"
+    },
+    "Curl": {
+        "English": "Curl",
+        "Dwarven": "Amem",
+        "Elvish": "Ewirè",
+        "Goblin": "Ose",
+        "Human": "Luki"
+    },
+    "Dabble": {
+        "English": "Dabble",
+        "Dwarven": "Gikut",
+        "Elvish": "Aquane",
+        "Goblin": "Naxôb",
+        "Human": "Bekdil"
+    },
+    "Dance": {
+        "English": "Dance",
+        "Dwarven": "Matul",
+        "Elvish": "Rimame",
+        "Goblin": "Mutog",
+        "Human": "Casser"
+    },
+    "Dangle": {
+        "English": "Dangle",
+        "Dwarven": "Irtir",
+        "Elvish": "Fathe",
+        "Goblin": "Speslu",
+        "Human": "Shimdo"
+    },
+    "Dash": {
+        "English": "Dash",
+        "Dwarven": "Rutod",
+        "Elvish": "Varano",
+        "Goblin": "Umkost",
+        "Human": "Atra"
+    },
+    "Date": {
+        "English": "Date",
+        "Dwarven": "Lodel",
+        "Elvish": "Rale",
+        "Goblin": "Rusnung",
+        "Human": "Lon"
+    },
+    "Daub": {
+        "English": "Daub",
+        "Dwarven": "Ag",
+        "Elvish": "Wama",
+        "Goblin": "Ogzu",
+        "Human": "Legu"
+    },
+    "Dawn": {
+        "English": "Dawn",
+        "Dwarven": "Kodor",
+        "Elvish": "Alino",
+        "Goblin": "Sagus",
+        "Human": "Thran"
+    },
+    "Die": {
+        "English": "Die",
+        "Dwarven": "Råsh",
+        "Elvish": "Rethi",
+        "Goblin": "Os",
+        "Human": "Ura"
+    },
+    "Decide": {
+        "English": "Decide",
+        "Dwarven": "Ros",
+        "Elvish": "Thira",
+        "Goblin": "Rosmat",
+        "Human": "Secen"
+    },
+    "Decline": {
+        "English": "Decline",
+        "Dwarven": "Inir",
+        "Elvish": "Tona",
+        "Goblin": "Slol",
+        "Human": "Zengtho"
+    },
+    "Defend": {
+        "English": "Defend",
+        "Dwarven": "Nadak",
+        "Elvish": "Apalì",
+        "Goblin": "Stexusm",
+        "Human": "Joddo"
+    },
+    "Deify": {
+        "English": "Deify",
+        "Dwarven": "Arbost",
+        "Elvish": "Sefa",
+        "Goblin": "Nul",
+        "Human": "Shadu"
+    },
+    "Delight": {
+        "English": "Delight",
+        "Dwarven": "Amith",
+        "Elvish": "Ìbe",
+        "Goblin": "Zån",
+        "Human": "Kemus"
+    },
+    "Dent": {
+        "English": "Dent",
+        "Dwarven": "Geb",
+        "Elvish": "Mothida",
+        "Goblin": "Saslu",
+        "Human": "Dof"
+    },
+    "Depress": {
+        "English": "Depress",
+        "Dwarven": "Ozon",
+        "Elvish": "Eyuca",
+        "Goblin": "Ostest",
+        "Human": "Bowu"
+    },
+    "Desert": {
+        "English": "Desert",
+        "Dwarven": "Galthor",
+        "Elvish": "Abita",
+        "Goblin": "Kul",
+        "Human": "Rulku"
+    },
+    "Deteriorate": {
+        "English": "Deteriorate",
+        "Dwarven": "Sîbosh",
+        "Elvish": "Femiyó",
+        "Goblin": "Gesnö",
+        "Human": "Sulak"
+    },
+    "Dim": {
+        "English": "Dim",
+        "Dwarven": "Arösh",
+        "Elvish": "Ethili",
+        "Goblin": "Sloslud",
+        "Human": "Oñir"
+    },
+    "Diminish": {
+        "English": "Diminish",
+        "Dwarven": "Lunrud",
+        "Elvish": "Ike",
+        "Goblin": "Lômû",
+        "Human": "Mota"
+    },
+    "Dimple": {
+        "English": "Dimple",
+        "Dwarven": "Storlut",
+        "Elvish": "Thace",
+        "Goblin": "Nor",
+        "Human": "Lapip"
+    },
+    "Dine": {
+        "English": "Dine",
+        "Dwarven": "Ub",
+        "Elvish": "Esi",
+        "Goblin": "Ngubung",
+        "Human": "Izrol"
+    },
+    "Dip": {
+        "English": "Dip",
+        "Dwarven": "Bekar",
+        "Elvish": "Icitha",
+        "Goblin": "Spamo",
+        "Human": "Irne"
+    },
+    "Direct": {
+        "English": "Direct",
+        "Dwarven": "Ôtthat",
+        "Elvish": "Aca",
+        "Goblin": "Sog",
+        "Human": "Cor"
+    },
+    "Disappear": {
+        "English": "Disappear",
+        "Dwarven": "Ozleb",
+        "Elvish": "Éfafú",
+        "Goblin": "Slole",
+        "Human": "Norod"
+    },
+    "Discover": {
+        "English": "Discover",
+        "Dwarven": "Thazor",
+        "Elvish": "Overe",
+        "Goblin": "Omzom",
+        "Human": "Shosá"
+    },
+    "Disembowel": {
+        "English": "Disembowel",
+        "Dwarven": "Gorroth",
+        "Elvish": "Eleri",
+        "Goblin": "Spus",
+        "Human": "Cawcul"
+    },
+    "Disgust": {
+        "English": "Disgust",
+        "Dwarven": "Shungmag",
+        "Elvish": "Quema",
+        "Goblin": "Eblak",
+        "Human": "Mesgel"
+    },
+    "Disperse": {
+        "English": "Disperse",
+        "Dwarven": "Olum",
+        "Elvish": "Ivire",
+        "Goblin": "Ägngu",
+        "Human": "Jori"
+    },
+    "Dissolve": {
+        "English": "Dissolve",
+        "Dwarven": "Etath",
+        "Elvish": "Etawe",
+        "Goblin": "Gasm",
+        "Human": "Xat"
+    },
+    "Distinguish": {
+        "English": "Distinguish",
+        "Dwarven": "Tastrod",
+        "Elvish": "Leneli",
+        "Goblin": "Snosm",
+        "Human": "Thili"
+    },
+    "Distract": {
+        "English": "Distract",
+        "Dwarven": "Ashzos",
+        "Elvish": "Riraci",
+        "Goblin": "Nanå",
+        "Human": "Pesli"
+    },
+    "Distrust": {
+        "English": "Distrust",
+        "Dwarven": "Gingim",
+        "Elvish": "Paca",
+        "Goblin": "Snadbo",
+        "Human": "Smoh"
+    },
+    "Dive": {
+        "English": "Dive",
+        "Dwarven": "Shoduk",
+        "Elvish": "Fayoba",
+        "Goblin": "Lustot",
+        "Human": "Odi"
+    },
+    "Divert": {
+        "English": "Divert",
+        "Dwarven": "Birir",
+        "Elvish": "Mìfo",
+        "Goblin": "Gorost",
+        "Human": "Sliri"
+    },
+    "Divide": {
+        "English": "Divide",
+        "Dwarven": "Lozlok",
+        "Elvish": "Acira",
+        "Goblin": "Gâmasm",
+        "Human": "Ralsud"
+    },
+    "Dominate": {
+        "English": "Dominate",
+        "Dwarven": "Akest",
+        "Elvish": "Rayathi",
+        "Goblin": "Zuko",
+        "Human": "Utast"
+    },
+    "Douse": {
+        "English": "Douse",
+        "Dwarven": "Rem",
+        "Elvish": "Refa",
+        "Goblin": "Spudta",
+        "Human": "Togir"
+    },
+    "Drain": {
+        "English": "Drain",
+        "Dwarven": "Fak",
+        "Elvish": "Fana",
+        "Goblin": "Rost",
+        "Human": "Gare"
+    },
+    "Drawl": {
+        "English": "Drawl",
+        "Dwarven": "Ogon",
+        "Elvish": "Paru",
+        "Goblin": "Strubu",
+        "Human": "Ogra"
+    },
+    "Dread": {
+        "English": "Dread",
+        "Dwarven": "Zêvut",
+        "Elvish": "Luthaÿè",
+        "Goblin": "Ngebzo",
+        "Human": "Lodraz"
+    },
+    "Dream": {
+        "English": "Dream",
+        "Dwarven": "Nåzom",
+        "Elvish": "Tharama",
+        "Goblin": "Ongas",
+        "Human": "Kamca"
+    },
+    "Dredge": {
+        "English": "Dredge",
+        "Dwarven": "Avog",
+        "Elvish": "Nevele",
+        "Goblin": "Tulo",
+        "Human": "Sethag"
+    },
+    "Drench": {
+        "English": "Drench",
+        "Dwarven": "Thikthog",
+        "Elvish": "Cedo",
+        "Goblin": "Oslosm",
+        "Human": "Ispsug"
+    },
+    "Dress": {
+        "English": "Dress",
+        "Dwarven": "Zag",
+        "Elvish": "Alame",
+        "Goblin": "Utgub",
+        "Human": "Upu"
+    },
+    "Drill (into)": {
+        "English": "Drill (into)",
+        "Dwarven": "Monang",
+        "Elvish": "Weni",
+        "Goblin": "Oslar",
+        "Human": "Strul"
+    },
+    "Drill (to train)": {
+        "English": "Drill (to train)",
+        "Dwarven": "Thosbut",
+        "Elvish": "Ecefe",
+        "Goblin": "Ruspzuz",
+        "Human": "Arat"
+    },
+    "Drink": {
+        "English": "Drink",
+        "Dwarven": "Ór",
+        "Elvish": "Vafice",
+        "Goblin": "Dôrku",
+        "Human": "Dirlu"
+    },
+    "Drip": {
+        "English": "Drip",
+        "Dwarven": "Sub",
+        "Elvish": "Céwi",
+        "Goblin": "Storur",
+        "Human": "Kacu"
+    },
+    "Drive": {
+        "English": "Drive",
+        "Dwarven": "Sterus",
+        "Elvish": "Iyilo",
+        "Goblin": "Dospo",
+        "Human": "Ratheg"
+    },
+    "Droop": {
+        "English": "Droop",
+        "Dwarven": "Shuk",
+        "Elvish": "Eÿi",
+        "Goblin": "Zoslu",
+        "Human": "Smoma"
+    },
+    "Drown": {
+        "English": "Drown",
+        "Dwarven": "Addor",
+        "Elvish": "Iÿitho",
+        "Goblin": "Xek",
+        "Human": "Burde"
+    },
+    "Drum": {
+        "English": "Drum",
+        "Dwarven": "Asdûg",
+        "Elvish": "Ilila",
+        "Goblin": "Smusmtä",
+        "Human": "Arad"
+    },
+    "Dry": {
+        "English": "Dry",
+        "Dwarven": "Zin",
+        "Elvish": "Sari",
+        "Goblin": "Otsta",
+        "Human": "Ushix"
+    },
+    "Dull": {
+        "English": "Dull",
+        "Dwarven": "Rumad",
+        "Elvish": "Esa",
+        "Goblin": "Ngest",
+        "Human": "Nid"
+    },
+    "Dump": {
+        "English": "Dump",
+        "Dwarven": "Åmmeb",
+        "Elvish": "Catha",
+        "Goblin": "Korar",
+        "Human": "Ucshug"
+    },
+    "Dwell": {
+        "English": "Dwell",
+        "Dwarven": "Kokeb",
+        "Elvish": "Icice",
+        "Goblin": "Lustu",
+        "Human": "Etus"
+    },
+    "Dwindle": {
+        "English": "Dwindle",
+        "Dwarven": "Ôler",
+        "Elvish": "Ÿofe",
+        "Goblin": "Dusp",
+        "Human": "Dugvur"
+    },
+    "Eat": {
+        "English": "Eat",
+        "Dwarven": "Deb",
+        "Elvish": "Mika",
+        "Goblin": "Susmat",
+        "Human": "Ot"
+    },
+    "Echo": {
+        "English": "Echo",
+        "Dwarven": "Sárek",
+        "Elvish": "Sanene",
+        "Goblin": "Rusmo",
+        "Human": "Simo"
+    },
+    "Elevate": {
+        "English": "Elevate",
+        "Dwarven": "Todör",
+        "Elvish": "Madi",
+        "Goblin": "Snûsnad",
+        "Human": "Geral"
+    },
+    "Emancipate": {
+        "English": "Emancipate",
+        "Dwarven": "Kastol",
+        "Elvish": "Thimire",
+        "Goblin": "Sledsa",
+        "Human": "Quesa"
+    },
+    "Embrace": {
+        "English": "Embrace",
+        "Dwarven": "Kurol",
+        "Elvish": "Thilu",
+        "Goblin": "Rombu",
+        "Human": "Cusith"
+    },
+    "Empty": {
+        "English": "Empty",
+        "Dwarven": "Kisat",
+        "Elvish": "Cobesi",
+        "Goblin": "Atob",
+        "Human": "Esh"
+    },
+    "Enchant": {
+        "English": "Enchant",
+        "Dwarven": "Minbaz",
+        "Elvish": "Ewè",
+        "Goblin": "Xestsu",
+        "Human": "Tadin"
+    },
+    "End": {
+        "English": "End",
+        "Dwarven": "Lushôn",
+        "Elvish": "Bicana",
+        "Goblin": "Xano",
+        "Human": "Zuso"
+    },
+    "Enjoy": {
+        "English": "Enjoy",
+        "Dwarven": "Nakas",
+        "Elvish": "Niceci",
+        "Goblin": "Sluz",
+        "Human": "Almo"
+    },
+    "Ensorcel": {
+        "English": "Ensorcel",
+        "Dwarven": "Mizês",
+        "Elvish": "Icibe",
+        "Goblin": "Uslog",
+        "Human": "Cenan"
+    },
+    "Entangle": {
+        "English": "Entangle",
+        "Dwarven": "Stistmig",
+        "Elvish": "Nícawe",
+        "Goblin": "Oxang",
+        "Human": "Spepip"
+    },
+    "Entrance": {
+        "English": "Entrance",
+        "Dwarven": "Desor",
+        "Elvish": "Afaya",
+        "Goblin": "Atngal",
+        "Human": "Ulo"
+    },
+    "Enter": {
+        "English": "Enter",
+        "Dwarven": "Sefol",
+        "Elvish": "Eco",
+        "Goblin": "Spâspo",
+        "Human": "Neni"
+    },
+    "Equal": {
+        "English": "Equal",
+        "Dwarven": "Tinöth",
+        "Elvish": "Laco",
+        "Goblin": "Xûngu",
+        "Human": "Emoth"
+    },
+    "Erase": {
+        "English": "Erase",
+        "Dwarven": "Othör",
+        "Elvish": "Emefe",
+        "Goblin": "Ubosm",
+        "Human": "Slecol"
+    },
+    "Escort": {
+        "English": "Escort",
+        "Dwarven": "Ninur",
+        "Elvish": "Rala",
+        "Goblin": "Astu",
+        "Human": "Thrut"
+    },
+    "Esteem": {
+        "English": "Esteem",
+        "Dwarven": "Ostath",
+        "Elvish": "Ayi",
+        "Goblin": "Usêk",
+        "Human": "Anlar"
+    },
+    "Evaporate": {
+        "English": "Evaporate",
+        "Dwarven": "Esäst",
+        "Elvish": "Èla",
+        "Goblin": "Alum",
+        "Human": "Kelkif"
+    },
+    "Even": {
+        "English": "Even",
+        "Dwarven": "Dèg",
+        "Elvish": "Nila",
+        "Goblin": "Kango",
+        "Human": "Dasmir"
+    },
+    "Eviscerate": {
+        "English": "Eviscerate",
+        "Dwarven": "Egståk",
+        "Elvish": "Eve",
+        "Goblin": "Slospka",
+        "Human": "Mogast"
+    },
+    "Exalt": {
+        "English": "Exalt",
+        "Dwarven": "Thasdoth",
+        "Elvish": "Ÿiwere",
+        "Goblin": "Ozok",
+        "Human": "Zoka"
+    },
+    "Excavate": {
+        "English": "Excavate",
+        "Dwarven": "Zamnuth",
+        "Elvish": "Inó",
+        "Goblin": "Dudspung",
+        "Human": "Menung"
+    },
+    "Execute": {
+        "English": "Execute",
+        "Dwarven": "Ramtak",
+        "Elvish": "Quara",
+        "Goblin": "Komsto",
+        "Human": "Slasfed"
+    },
+    "Exit": {
+        "English": "Exit",
+        "Dwarven": "Onrel",
+        "Elvish": "Quabifé",
+        "Goblin": "Osnor",
+        "Human": "Suwu"
+    },
+    "Extricate": {
+        "English": "Extricate",
+        "Dwarven": "Ruzos",
+        "Elvish": "Lasi",
+        "Goblin": "Takuk",
+        "Human": "Bushik"
+    },
+    "Fade": {
+        "English": "Fade",
+        "Dwarven": "Öndin",
+        "Elvish": "Mèfi",
+        "Goblin": "Snung",
+        "Human": "Lomu"
+    },
+    "Fail": {
+        "English": "Fail",
+        "Dwarven": "Ungèg",
+        "Elvish": "Owe",
+        "Goblin": "Stul",
+        "Human": "Nusko"
+    },
+    "Faint": {
+        "English": "Faint",
+        "Dwarven": "Ildom",
+        "Elvish": "Webana",
+        "Goblin": "Zumu",
+        "Human": "Ohu"
+    },
+    "Fall": {
+        "English": "Fall",
+        "Dwarven": "Umid",
+        "Elvish": "Enothó",
+        "Goblin": "Osku",
+        "Human": "Pop"
+    },
+    "Fancy": {
+        "English": "Fancy",
+        "Dwarven": "Nefek",
+        "Elvish": "Dita",
+        "Goblin": "Rëkusm",
+        "Human": "Pim"
+    },
+    "Farm": {
+        "English": "Farm",
+        "Dwarven": "Ivom",
+        "Elvish": "Tòbafí",
+        "Goblin": "Gotåm",
+        "Human": "Ab"
+    },
+    "Fasten": {
+        "English": "Fasten",
+        "Dwarven": "Thiz",
+        "Elvish": "Thuca",
+        "Goblin": "Rogux",
+        "Human": "Bithar"
+    },
+    "Feed": {
+        "English": "Feed",
+        "Dwarven": "Ked",
+        "Elvish": "Nawi",
+        "Goblin": "Ôngtum",
+        "Human": "Lapa"
+    },
+    "Ferry": {
+        "English": "Ferry",
+        "Dwarven": "Roduk",
+        "Elvish": "Litha",
+        "Goblin": "Xosmreb",
+        "Human": "Cosla"
+    },
+    "Fight": {
+        "English": "Fight",
+        "Dwarven": "Bardum",
+        "Elvish": "Uri",
+        "Goblin": "Asnu",
+        "Human": "Usel"
+    },
+    "Find": {
+        "English": "Find",
+        "Dwarven": "Atöl",
+        "Elvish": "Ciri",
+        "Goblin": "Ötda",
+        "Human": "Pumik"
+    },
+    "Fish": {
+        "English": "Fish",
+        "Dwarven": "Ngitkar",
+        "Elvish": "Nenití",
+        "Goblin": "Sposm",
+        "Human": "Edin"
+    },
+    "Flank": {
+        "English": "Flank",
+        "Dwarven": "Lesast",
+        "Elvish": "Tala",
+        "Goblin": "Spodsta",
+        "Human": "Ic"
+    },
+    "Flash": {
+        "English": "Flash",
+        "Dwarven": "Asiz",
+        "Elvish": "Cayi",
+        "Goblin": "Lesmnast",
+        "Human": "Ejas"
+    },
+    "Flay": {
+        "English": "Flay",
+        "Dwarven": "Gonggash",
+        "Elvish": "Teca",
+        "Goblin": "Zus",
+        "Human": "Kigok"
+    },
+    "Flicker": {
+        "English": "Flicker",
+        "Dwarven": "Nëlas",
+        "Elvish": "Fedí",
+        "Goblin": "Ngob",
+        "Human": "Eve"
+    },
+    "Flinch": {
+        "English": "Flinch",
+        "Dwarven": "Sofûsh",
+        "Elvish": "Ùceÿi",
+        "Goblin": "Âstong",
+        "Human": "Cac"
+    },
+    "Fling": {
+        "English": "Fling",
+        "Dwarven": "Ëtul",
+        "Elvish": "Òciyì",
+        "Goblin": "Zoslo",
+        "Human": "Asna"
+    },
+    "Flood": {
+        "English": "Flood",
+        "Dwarven": "Låluth",
+        "Elvish": "Wikira",
+        "Goblin": "Oda",
+        "Human": "Nonu"
+    },
+    "Flush": {
+        "English": "Flush",
+        "Dwarven": "Ireg",
+        "Elvish": "Ececi",
+        "Goblin": "Tango",
+        "Human": "Thudas"
+    },
+    "Fly": {
+        "English": "Fly",
+        "Dwarven": "Gigin",
+        "Elvish": "Efili",
+        "Goblin": "Ûn",
+        "Human": "Añu"
+    },
+    "Focus": {
+        "English": "Focus",
+        "Dwarven": "Atham",
+        "Elvish": "Ené",
+        "Goblin": "Rosmnu",
+        "Human": "Ahdo"
+    },
+    "Fold": {
+        "English": "Fold",
+        "Dwarven": "Ost",
+        "Elvish": "Ofa",
+        "Goblin": "Logu",
+        "Human": "Gib"
+    },
+    "Fondle": {
+        "English": "Fondle",
+        "Dwarven": "Gatiz",
+        "Elvish": "Fora",
+        "Goblin": "Smur",
+        "Human": "Dapen"
+    },
+    "Ford": {
+        "English": "Ford",
+        "Dwarven": "Atul",
+        "Elvish": "Romimi",
+        "Goblin": "Ongslun",
+        "Human": "Jirdo"
+    },
+    "Fork": {
+        "English": "Fork",
+        "Dwarven": "Ìltang",
+        "Elvish": "Iva",
+        "Goblin": "Tolto",
+        "Human": "Lastrik"
+    },
+    "Fortify": {
+        "English": "Fortify",
+        "Dwarven": "Dumed",
+        "Elvish": "Acene",
+        "Goblin": "Osma",
+        "Human": "Uvno"
+    },
+    "Fragment": {
+        "English": "Fragment",
+        "Dwarven": "Ézneth",
+        "Elvish": "Thesa",
+        "Goblin": "Ustba",
+        "Human": "Pimut"
+    },
+    "Frame": {
+        "English": "Frame",
+        "Dwarven": "Tiklom",
+        "Elvish": "Cúcima",
+        "Goblin": "Ob",
+        "Human": "Struslot"
+    },
+    "Fray": {
+        "English": "Fray",
+        "Dwarven": "Ïsir",
+        "Elvish": "Ithafe",
+        "Goblin": "Äs",
+        "Human": "Esut"
+    },
+    "Freeze": {
+        "English": "Freeze",
+        "Dwarven": "Gishdist",
+        "Elvish": "Thetifì",
+        "Goblin": "Gam",
+        "Human": "Opoc"
+    },
+    "Frighten": {
+        "English": "Frighten",
+        "Dwarven": "Shasar",
+        "Elvish": "Níyo",
+        "Goblin": "Rosusm",
+        "Human": "Umtha"
+    },
+    "Froth": {
+        "English": "Froth",
+        "Dwarven": "Gulgun",
+        "Elvish": "Laceci",
+        "Goblin": "Stuxul",
+        "Human": "Ukla"
+    },
+    "Fill": {
+        "English": "Fill",
+        "Dwarven": "Esmul",
+        "Elvish": "Lema",
+        "Goblin": "Mus",
+        "Human": "Enem"
+    },
+    "Garnish": {
+        "English": "Garnish",
+        "Dwarven": "Kèbmak",
+        "Elvish": "Fefa",
+        "Goblin": "Kast",
+        "Human": "Abuth"
+    },
+    "Gift": {
+        "English": "Gift",
+        "Dwarven": "Egen",
+        "Elvish": "Sema",
+        "Goblin": "Espo",
+        "Human": "Kadi"
+    },
+    "Gild": {
+        "English": "Gild",
+        "Dwarven": "Oltar",
+        "Elvish": "Caci",
+        "Goblin": "Xosna",
+        "Human": "Kamde"
+    },
+    "Glaze": {
+        "English": "Glaze",
+        "Dwarven": "Fikod",
+        "Elvish": "Fifí",
+        "Goblin": "Ul",
+        "Human": "Cango"
+    },
+    "Gleam": {
+        "English": "Gleam",
+        "Dwarven": "Almôsh",
+        "Elvish": "Eÿi",
+        "Goblin": "Unlo",
+        "Human": "Lecit"
+    },
+    "Glide": {
+        "English": "Glide",
+        "Dwarven": "Bavast",
+        "Elvish": "Vari",
+        "Goblin": "Ora",
+        "Human": "Urde"
+    },
+    "Glimmer": {
+        "English": "Glimmer",
+        "Dwarven": "Kåtdir",
+        "Elvish": "Pili",
+        "Goblin": "Ong",
+        "Human": "Ener"
+    },
+    "Glisten": {
+        "English": "Glisten",
+        "Dwarven": "Éthes",
+        "Elvish": "Ali",
+        "Goblin": "Odstron",
+        "Human": "Ices"
+    },
+    "Glitter": {
+        "English": "Glitter",
+        "Dwarven": "Eser",
+        "Elvish": "Fecici",
+        "Goblin": "Dadu",
+        "Human": "Pena"
+    },
+    "Glorify": {
+        "English": "Glorify",
+        "Dwarven": "Anil",
+        "Elvish": "Kara",
+        "Goblin": "Omuk",
+        "Human": "An"
+    },
+    "Gloss": {
+        "English": "Gloss",
+        "Dwarven": "Igest",
+        "Elvish": "Nìno",
+        "Goblin": "Uram",
+        "Human": "Em"
+    },
+    "Glow": {
+        "English": "Glow",
+        "Dwarven": "Rab",
+        "Elvish": "Fone",
+        "Goblin": "Sad",
+        "Human": "Quemer"
+    },
+    "Goad": {
+        "English": "Goad",
+        "Dwarven": "Desgir",
+        "Elvish": "Rathe",
+        "Goblin": "Asesm",
+        "Human": "Osmul"
+    },
+    "Gore": {
+        "English": "Gore",
+        "Dwarven": "Ugzol",
+        "Elvish": "Racenu",
+        "Goblin": "Oddo",
+        "Human": "Odang"
+    },
+    "Gorge": {
+        "English": "Gorge",
+        "Dwarven": "Îgam",
+        "Elvish": "Etathu",
+        "Goblin": "Nolsto",
+        "Human": "Thedle"
+    },
+    "Grasp": {
+        "English": "Grasp",
+        "Dwarven": "Gídthur",
+        "Elvish": "Çomo",
+        "Goblin": "Spubta",
+        "Human": "Asmur"
+    },
+    "Grieve": {
+        "English": "Grieve",
+        "Dwarven": "Nothis",
+        "Elvish": "Comewi",
+        "Goblin": "Ägu",
+        "Human": "Bethás"
+    },
+    "Grill": {
+        "English": "Grill",
+        "Dwarven": "Gommuk",
+        "Elvish": "Fenìtho",
+        "Goblin": "Zot",
+        "Human": "Cec"
+    },
+    "Grind": {
+        "English": "Grind",
+        "Dwarven": "Nerrid",
+        "Elvish": "Lote",
+        "Goblin": "Nêsnub",
+        "Human": "Thetud"
+    },
+    "Grip": {
+        "English": "Grip",
+        "Dwarven": "Zágod",
+        "Elvish": "Casena",
+        "Goblin": "Slon",
+        "Human": "Citu"
+    },
+    "Groove": {
+        "English": "Groove",
+        "Dwarven": "Edtûl",
+        "Elvish": "Racalu",
+        "Goblin": "Loxsnosm",
+        "Human": "Nacu"
+    },
+    "Group": {
+        "English": "Group",
+        "Dwarven": "Tomêm",
+        "Elvish": "Melara",
+        "Goblin": "Snåd",
+        "Human": "Besti"
+    },
+    "Grow": {
+        "English": "Grow",
+        "Dwarven": "Bol",
+        "Elvish": "Ame",
+        "Goblin": "Än",
+        "Human": "Rin"
+    },
+    "Growl": {
+        "English": "Growl",
+        "Dwarven": "Ûz",
+        "Elvish": "Ula",
+        "Goblin": "Kudo",
+        "Human": "Dothan"
+    },
+    "Guard": {
+        "English": "Guard",
+        "Dwarven": "Duthnur",
+        "Elvish": "Ino",
+        "Goblin": "Totsnost",
+        "Human": "Ocgi"
+    },
+    "Gurgle": {
+        "English": "Gurgle",
+        "Dwarven": "Sodzul",
+        "Elvish": "Quadere",
+        "Goblin": "Zok",
+        "Human": "Bebdá"
+    },
+    "Hail (to greet)": {
+        "English": "Hail (to greet)",
+        "Dwarven": "Ïlun",
+        "Elvish": "Bili",
+        "Goblin": "Obu",
+        "Human": "Reme"
+    },
+    "Hail (to shower)": {
+        "English": "Hail (to shower)",
+        "Dwarven": "Râluk",
+        "Elvish": "Eriÿa",
+        "Goblin": "Spostnal",
+        "Human": "Gelu"
+    },
+    "Handle": {
+        "English": "Handle",
+        "Dwarven": "Shameb",
+        "Elvish": "Thawa",
+        "Goblin": "Smor",
+        "Human": "Samo"
+    },
+    "Harmonize": {
+        "English": "Harmonize",
+        "Dwarven": "Thir",
+        "Elvish": "Oyomo",
+        "Goblin": "Älo",
+        "Human": "Ebir"
+    },
+    "Harvest": {
+        "English": "Harvest",
+        "Dwarven": "Ûd",
+        "Elvish": "Civila",
+        "Goblin": "Oso",
+        "Human": "Zoku"
+    },
+    "Hate": {
+        "English": "Hate",
+        "Dwarven": "Lur",
+        "Elvish": "Efacì",
+        "Goblin": "Stosbûb",
+        "Human": "Atac"
+    },
+    "Haunt": {
+        "English": "Haunt",
+        "Dwarven": "Dumur",
+        "Elvish": "Momi",
+        "Goblin": "Smumxu",
+        "Human": "Tuthid"
+    },
+    "Heal": {
+        "English": "Heal",
+        "Dwarven": "Ikal",
+        "Elvish": "Ipiro",
+        "Goblin": "Nozam",
+        "Human": "Asla"
+    },
+    "Heat": {
+        "English": "Heat",
+        "Dwarven": "Vúsh",
+        "Elvish": "Thasa",
+        "Goblin": "Ronux",
+        "Human": "Kara"
+    },
+    "Help": {
+        "English": "Help",
+        "Dwarven": "Usen",
+        "Elvish": "Pavi",
+        "Goblin": "Xusp",
+        "Human": "Sudem"
+    },
+    "Hobble": {
+        "English": "Hobble",
+        "Dwarven": "Kunon",
+        "Elvish": "Epipe",
+        "Goblin": "Ngut",
+        "Human": "Thiso"
+    },
+    "Hoist": {
+        "English": "Hoist",
+        "Dwarven": "Lilum",
+        "Elvish": "Larò",
+        "Goblin": "Aspung",
+        "Human": "Ipom"
+    },
+    "Hold": {
+        "English": "Hold",
+        "Dwarven": "Kegeth",
+        "Elvish": "Eÿa",
+        "Goblin": "Oxstrar",
+        "Human": "Fel"
+    },
+    "Honor": {
+        "English": "Honor",
+        "Dwarven": "Dural",
+        "Elvish": "Fidi",
+        "Goblin": "Rum",
+        "Human": "Uthros"
+    },
+    "Hop": {
+        "English": "Hop",
+        "Dwarven": "Ikus",
+        "Elvish": "Ayefi",
+        "Goblin": "Angnu",
+        "Human": "Buh"
+    },
+    "Hope": {
+        "English": "Hope",
+        "Dwarven": "Zanos",
+        "Elvish": "Befítha",
+        "Goblin": "Osmost",
+        "Human": "Dana"
+    },
+    "Hug": {
+        "English": "Hug",
+        "Dwarven": "Enur",
+        "Elvish": "Ina",
+        "Goblin": "Susp",
+        "Human": "Thomod"
+    },
+    "Hum": {
+        "English": "Hum",
+        "Dwarven": "Kur",
+        "Elvish": "Vora",
+        "Goblin": "Utnu",
+        "Human": "Nongos"
+    },
+    "Hush": {
+        "English": "Hush",
+        "Dwarven": "Thibam",
+        "Elvish": "Sori",
+        "Goblin": "Stut",
+        "Human": "Esprá"
+    },
+    "Hustle": {
+        "English": "Hustle",
+        "Dwarven": "Vostaz",
+        "Elvish": "Narowi",
+        "Goblin": "Umo",
+        "Human": "Istrir"
+    },
+    "Ignite": {
+        "English": "Ignite",
+        "Dwarven": "Anist",
+        "Elvish": "Quala",
+        "Goblin": "Kustro",
+        "Human": "Streti"
+    },
+    "Impale": {
+        "English": "Impale",
+        "Dwarven": "Stòkïd",
+        "Elvish": "Retha",
+        "Goblin": "Nokud",
+        "Human": "Átux"
+    },
+    "Imprison": {
+        "English": "Imprison",
+        "Dwarven": "Ushesh",
+        "Elvish": "Loyara",
+        "Goblin": "Nogek",
+        "Human": "Usmik"
+    },
+    "Inch": {
+        "English": "Inch",
+        "Dwarven": "Meb",
+        "Elvish": "Nipa",
+        "Goblin": "Ngustû",
+        "Human": "Kem"
+    },
+    "Incinerate": {
+        "English": "Incinerate",
+        "Dwarven": "Òrdir",
+        "Elvish": "Corape",
+        "Goblin": "Baxstut",
+        "Human": "Tedaz"
+    },
+    "Infect": {
+        "English": "Infect",
+        "Dwarven": "Avûsh",
+        "Elvish": "Vimaÿi",
+        "Goblin": "Snulmo",
+        "Human": "Fek"
+    },
+    "Influence": {
+        "English": "Influence",
+        "Dwarven": "Immast",
+        "Elvish": "Rede",
+        "Goblin": "Sor",
+        "Human": "Thur"
+    },
+    "Ink": {
+        "English": "Ink",
+        "Dwarven": "Likot",
+        "Elvish": "Forile",
+        "Goblin": "Ngûlo",
+        "Human": "Escu"
+    },
+    "Jest": {
+        "English": "Jest",
+        "Dwarven": "Lumen",
+        "Elvish": "Tede",
+        "Goblin": "Åsmum",
+        "Human": "Bistkash"
+    },
+    "Bejewel": {
+        "English": "Bejewel",
+        "Dwarven": "Istrath",
+        "Elvish": "Nifi",
+        "Goblin": "Etog",
+        "Human": "Cobim"
+    },
+    "Join": {
+        "English": "Join",
+        "Dwarven": "Etas",
+        "Elvish": "Dala",
+        "Goblin": "Ebrog",
+        "Human": "Kicu"
+    },
+    "Joke": {
+        "English": "Joke",
+        "Dwarven": "Maton",
+        "Elvish": "Athini",
+        "Goblin": "Ule",
+        "Human": "Pundik"
+    },
+    "Judge": {
+        "English": "Judge",
+        "Dwarven": "Zatthud",
+        "Elvish": "Afuni",
+        "Goblin": "Amul",
+        "Human": "Ñor"
+    },
+    "Juggle": {
+        "English": "Juggle",
+        "Dwarven": "Abol",
+        "Elvish": "Becaro",
+        "Goblin": "Gex",
+        "Human": "Thratpin"
+    },
+    "Jump": {
+        "English": "Jump",
+        "Dwarven": "Mâtzang",
+        "Elvish": "Efami",
+        "Goblin": "Stoxus",
+        "Human": "Itni"
+    },
+    "Justify": {
+        "English": "Justify",
+        "Dwarven": "Ilned",
+        "Elvish": "Thepolu",
+        "Goblin": "Uspax",
+        "Human": "Amgis"
+    },
+    "Kill": {
+        "English": "Kill",
+        "Dwarven": "Vagúsh",
+        "Elvish": "Macofi",
+        "Goblin": "Ngosnud",
+        "Human": "Cishrat"
+    },
+    "Kindle": {
+        "English": "Kindle",
+        "Dwarven": "Stizash",
+        "Elvish": "Mocuri",
+        "Goblin": "Omngo",
+        "Human": "Radi"
+    },
+    "Kiss": {
+        "English": "Kiss",
+        "Dwarven": "Alis",
+        "Elvish": "Tima",
+        "Goblin": "Snong",
+        "Human": "Furi"
+    },
+    "Knead": {
+        "English": "Knead",
+        "Dwarven": "Inshot",
+        "Elvish": "Yathi",
+        "Goblin": "Sot",
+        "Human": "Márbok"
+    },
+    "Knight": {
+        "English": "Knight",
+        "Dwarven": "Arzes",
+        "Elvish": "Cavère",
+        "Goblin": "Kod",
+        "Human": "Rane"
+    },
+    "Knit": {
+        "English": "Knit",
+        "Dwarven": "Äbor",
+        "Elvish": "Nanathe",
+        "Goblin": "Strosnu",
+        "Human": "Pika"
+    },
+    "Know": {
+        "English": "Know",
+        "Dwarven": "Musar",
+        "Elvish": "Ícena",
+        "Goblin": "Strag",
+        "Human": "Agal"
+    },
+    "Labor": {
+        "English": "Labor",
+        "Dwarven": "Èrith",
+        "Elvish": "Equa",
+        "Goblin": "Akul",
+        "Human": "Ebe"
+    },
+    "Lament": {
+        "English": "Lament",
+        "Dwarven": "Ralâth",
+        "Elvish": "Manari",
+        "Goblin": "Öspuk",
+        "Human": "Uwshe"
+    },
+    "Lance": {
+        "English": "Lance",
+        "Dwarven": "Kûbuk",
+        "Elvish": "Thebi",
+        "Goblin": "Âxstut",
+        "Human": "Angir"
+    },
+    "Languish": {
+        "English": "Languish",
+        "Dwarven": "Merrang",
+        "Elvish": "Amafe",
+        "Goblin": "Slurob",
+        "Human": "Stráth"
+    },
+    "Lash": {
+        "English": "Lash",
+        "Dwarven": "Meng",
+        "Elvish": "Thepa",
+        "Goblin": "Asmrar",
+        "Human": "Ramkal"
+    },
+    "Lather": {
+        "English": "Lather",
+        "Dwarven": "Anban",
+        "Elvish": "Quíleli",
+        "Goblin": "Osno",
+        "Human": "Zangur"
+    },
+    "Laud": {
+        "English": "Laud",
+        "Dwarven": "Gébar",
+        "Elvish": "Fémava",
+        "Goblin": "Osla",
+        "Human": "Ilo"
+    },
+    "Lead": {
+        "English": "Lead",
+        "Dwarven": "Erar",
+        "Elvish": "Raneci",
+        "Goblin": "Öla",
+        "Human": "Sacath"
+    },
+    "Leak": {
+        "English": "Leak",
+        "Dwarven": "Orab",
+        "Elvish": "Èyile",
+        "Goblin": "Susm",
+        "Human": "Genpud"
+    },
+    "Leap": {
+        "English": "Leap",
+        "Dwarven": "Tagùz",
+        "Elvish": "Thití",
+        "Goblin": "Stekug",
+        "Human": "Kupek"
+    },
+    "Learn": {
+        "English": "Learn",
+        "Dwarven": "Turel",
+        "Elvish": "Ridethe",
+        "Goblin": "Sobus",
+        "Human": "Cando"
+    },
+    "Lessen": {
+        "English": "Lessen",
+        "Dwarven": "Gudid",
+        "Elvish": "Ethere",
+        "Goblin": "Snokuz",
+        "Human": "Odod"
+    },
+    "Liberate": {
+        "English": "Liberate",
+        "Dwarven": "Omtäl",
+        "Elvish": "Rama",
+        "Goblin": "Angos",
+        "Human": "Mapo"
+    },
+    "Live": {
+        "English": "Live",
+        "Dwarven": "Thunen",
+        "Elvish": "Eniwa",
+        "Goblin": "Stûmö",
+        "Human": "Kimen"
+    },
+    "Limp": {
+        "English": "Limp",
+        "Dwarven": "Gabet",
+        "Elvish": "Fala",
+        "Goblin": "Snar",
+        "Human": "Ilur"
+    },
+    "Listen": {
+        "English": "Listen",
+        "Dwarven": "Âmid",
+        "Elvish": "Edinu",
+        "Goblin": "Otsmo",
+        "Human": "Alkoc"
+    },
+    "Lock": {
+        "English": "Lock",
+        "Dwarven": "Thak",
+        "Elvish": "Icala",
+        "Goblin": "Sposmo",
+        "Human": "Gisep"
+    },
+    "Love": {
+        "English": "Love",
+        "Dwarven": "Aval",
+        "Elvish": "Enela",
+        "Goblin": "Rato",
+        "Human": "Sana"
+    },
+    "Lull (to soothe)": {
+        "English": "Lull (to soothe)",
+        "Dwarven": "Uvar",
+        "Elvish": "Ibo",
+        "Goblin": "Gôgust",
+        "Human": "Othla"
+    },
+    "Lull (to mislead)": {
+        "English": "Lull (to mislead)",
+        "Dwarven": "Ìnal",
+        "Elvish": "Civeri",
+        "Goblin": "Suxut",
+        "Human": "Toquem"
+    },
+    "Lurch": {
+        "English": "Lurch",
+        "Dwarven": "Gukil",
+        "Elvish": "Ethúni",
+        "Goblin": "Kuk",
+        "Human": "Radsol"
+    },
+    "Lure": {
+        "English": "Lure",
+        "Dwarven": "Lektad",
+        "Elvish": "Lanebe",
+        "Goblin": "Ser",
+        "Human": "Kixi"
+    },
+    "Lurk": {
+        "English": "Lurk",
+        "Dwarven": "Dimol",
+        "Elvish": "Moba",
+        "Goblin": "Spunngu",
+        "Human": "Quogot"
+    },
+    "Malign": {
+        "English": "Malign",
+        "Dwarven": "Tongus",
+        "Elvish": "Mimamu",
+        "Goblin": "Urar",
+        "Human": "Ceku"
+    },
+    "Mark": {
+        "English": "Mark",
+        "Dwarven": "Lised",
+        "Elvish": "Ilefi",
+        "Goblin": "Stam",
+        "Human": "Kesp"
+    },
+    "Martyr": {
+        "English": "Martyr",
+        "Dwarven": "Muzish",
+        "Elvish": "Relìmi",
+        "Goblin": "Mutku",
+        "Human": "Orma"
+    },
+    "Master": {
+        "English": "Master",
+        "Dwarven": "Kôn",
+        "Elvish": "Ithera",
+        "Goblin": "Âs",
+        "Human": "Siñur"
+    },
+    "Match (to oppose)": {
+        "English": "Match (to oppose)",
+        "Dwarven": "Dalzat",
+        "Elvish": "Pare",
+        "Goblin": "Bosteb",
+        "Human": "Luth"
+    },
+    "Match (to equal)": {
+        "English": "Match (to equal)",
+        "Dwarven": "Tad",
+        "Elvish": "Limili",
+        "Goblin": "Uspra",
+        "Human": "Ala"
+    },
+    "Meander": {
+        "English": "Meander",
+        "Dwarven": "Ablish",
+        "Elvish": "Thefaro",
+        "Goblin": "Tun",
+        "Human": "Tapstren"
+    },
+    "Meditate": {
+        "English": "Meditate",
+        "Dwarven": "An",
+        "Elvish": "Neba",
+        "Goblin": "Gotkol",
+        "Human": "Aba"
+    },
+    "Meet": {
+        "English": "Meet",
+        "Dwarven": "Lar",
+        "Elvish": "Awiÿo",
+        "Goblin": "Ugar",
+        "Human": "Jamas"
+    },
+    "Melt": {
+        "English": "Melt",
+        "Dwarven": "Kalal",
+        "Elvish": "Cane",
+        "Goblin": "Luzo",
+        "Human": "Mákath"
+    },
+    "Menace": {
+        "English": "Menace",
+        "Dwarven": "Nalthish",
+        "Elvish": "Sofipù",
+        "Goblin": "Kutsmob",
+        "Human": "Eslul"
+    },
+    "Merge": {
+        "English": "Merge",
+        "Dwarven": "Kir",
+        "Elvish": "Ÿaba",
+        "Goblin": "Zurdos",
+        "Human": "Lecbe"
+    },
+    "Mince": {
+        "English": "Mince",
+        "Dwarven": "Rimuk",
+        "Elvish": "Caca",
+        "Goblin": "Bosm",
+        "Human": "Cuslo"
+    },
+    "Mine": {
+        "English": "Mine",
+        "Dwarven": "Avuz",
+        "Elvish": "Cèthutha",
+        "Goblin": "Ngogngo",
+        "Human": "Bora"
+    },
+    "Mire": {
+        "English": "Mire",
+        "Dwarven": "Sebshos",
+        "Elvish": "Mipo",
+        "Goblin": "Zorsto",
+        "Human": "Moquu"
+    },
+    "Mirror": {
+        "English": "Mirror",
+        "Dwarven": "Ònul",
+        "Elvish": "Opeya",
+        "Goblin": "Ätkust",
+        "Human": "Doto"
+    },
+    "Mob": {
+        "English": "Mob",
+        "Dwarven": "Odgúb",
+        "Elvish": "Efiva",
+        "Goblin": "Nerom",
+        "Human": "Shasttol"
+    },
+    "Moisten": {
+        "English": "Moisten",
+        "Dwarven": "Idash",
+        "Elvish": "Oci",
+        "Goblin": "Ûrer",
+        "Human": "Sedast"
+    },
+    "Mop": {
+        "English": "Mop",
+        "Dwarven": "Ushlub",
+        "Elvish": "Recathu",
+        "Goblin": "Exa",
+        "Human": "Gom"
+    },
+    "Mortify": {
+        "English": "Mortify",
+        "Dwarven": "Osresh",
+        "Elvish": "Minetha",
+        "Goblin": "Stus",
+        "Human": "Ngojo"
+    },
+    "Mourn": {
+        "English": "Mourn",
+        "Dwarven": "Leshal",
+        "Elvish": "Aléthi",
+        "Goblin": "Ômo",
+        "Human": "Ransa"
+    },
+    "Muddle": {
+        "English": "Muddle",
+        "Dwarven": "Shislug",
+        "Elvish": "Memefi",
+        "Goblin": "Akäz",
+        "Human": "Nothra"
+    },
+    "Munch": {
+        "English": "Munch",
+        "Dwarven": "Adesh",
+        "Elvish": "Amafi",
+        "Goblin": "Zut",
+        "Human": "Pibo"
+    },
+    "Murder": {
+        "English": "Murder",
+        "Dwarven": "Usân",
+        "Elvish": "Rathi",
+        "Goblin": "Ustol",
+        "Human": "Gulgud"
+    },
+    "Mute": {
+        "English": "Mute",
+        "Dwarven": "Rul",
+        "Elvish": "Emino",
+        "Goblin": "Gasnasp",
+        "Human": "Oquoh"
+    },
+    "Name": {
+        "English": "Name",
+        "Dwarven": "Kab",
+        "Elvish": "Sofi",
+        "Goblin": "Osnuk",
+        "Human": "Ucim"
+    },
+    "Negate": {
+        "English": "Negate",
+        "Dwarven": "Kez",
+        "Elvish": "Ocithe",
+        "Goblin": "Osu",
+        "Human": "Iggith"
+    },
+    "Nest": {
+        "English": "Nest",
+        "Dwarven": "Ikûl",
+        "Elvish": "Arima",
+        "Goblin": "Smugsasp",
+        "Human": "Ade"
+    },
+    "Nestle": {
+        "English": "Nestle",
+        "Dwarven": "Semtom",
+        "Elvish": "Cina",
+        "Goblin": "Boz",
+        "Human": "Rarses"
+    },
+    "Neutralize": {
+        "English": "Neutralize",
+        "Dwarven": "Necak",
+        "Elvish": "Tithefa",
+        "Goblin": "Ospsâs",
+        "Human": "Quice"
+    },
+    "Nibble": {
+        "English": "Nibble",
+        "Dwarven": "Kezol",
+        "Elvish": "Yade",
+        "Goblin": "Kog",
+        "Human": "Estem"
+    },
+    "Notch": {
+        "English": "Notch",
+        "Dwarven": "Lisat",
+        "Elvish": "Niya",
+        "Goblin": "Nozut",
+        "Human": "Amec"
+    },
+    "Nourish": {
+        "English": "Nourish",
+        "Dwarven": "Katthir",
+        "Elvish": "Memóthi",
+        "Goblin": "Ûmu",
+        "Human": "Apo"
+    },
+    "Nurture": {
+        "English": "Nurture",
+        "Dwarven": "Umel",
+        "Elvish": "Una",
+        "Goblin": "Uxrosp",
+        "Human": "Duqueh"
+    },
+    "Obey": {
+        "English": "Obey",
+        "Dwarven": "Eddud",
+        "Elvish": "Visela",
+        "Goblin": "Ustog",
+        "Human": "Ceshca"
+    },
+    "Oil": {
+        "English": "Oil",
+        "Dwarven": "Uzol",
+        "Elvish": "Ÿivu",
+        "Goblin": "Smatspo",
+        "Human": "Konli"
+    },
+    "Open": {
+        "English": "Open",
+        "Dwarven": "Am",
+        "Elvish": "Ìba",
+        "Goblin": "Uxnu",
+        "Human": "Ule"
+    },
+    "Organize": {
+        "English": "Organize",
+        "Dwarven": "Stegëth",
+        "Elvish": "Efe",
+        "Goblin": "Xaz",
+        "Human": "Jestri"
+    },
+    "Own": {
+        "English": "Own",
+        "Dwarven": "Sanreb",
+        "Elvish": "Athòfe",
+        "Goblin": "Doxon",
+        "Human": "Rodoh"
+    },
+    "Pack": {
+        "English": "Pack",
+        "Dwarven": "Shigós",
+        "Elvish": "Sethe",
+        "Goblin": "Slux",
+        "Human": "Lipi"
+    },
+    "Pad": {
+        "English": "Pad",
+        "Dwarven": "Âgez",
+        "Elvish": "Wani",
+        "Goblin": "Nud",
+        "Human": "Wumu"
+    },
+    "Paddle": {
+        "English": "Paddle",
+        "Dwarven": "Iden",
+        "Elvish": "Apa",
+        "Goblin": "Dak",
+        "Human": "Abe"
+    },
+    "Page": {
+        "English": "Page",
+        "Dwarven": "Mörul",
+        "Elvish": "Epe",
+        "Goblin": "Smox",
+        "Human": "Anir"
+    },
+    "Paint": {
+        "English": "Paint",
+        "Dwarven": "Logem",
+        "Elvish": "Bila",
+        "Goblin": "Estu",
+        "Human": "Mater"
+    },
+    "Pant": {
+        "English": "Pant",
+        "Dwarven": "Lerom",
+        "Elvish": "Thifa",
+        "Goblin": "Zol",
+        "Human": "Rujit"
+    },
+    "Pantomime": {
+        "English": "Pantomime",
+        "Dwarven": "Tetthush",
+        "Elvish": "Taviti",
+        "Goblin": "Olax",
+        "Human": "Dinrit"
+    },
+    "Parch": {
+        "English": "Parch",
+        "Dwarven": "Fash",
+        "Elvish": "Íro",
+        "Goblin": "Lunguk",
+        "Human": "Nesim"
+    },
+    "Partner": {
+        "English": "Partner",
+        "Dwarven": "Thimshur",
+        "Elvish": "Cani",
+        "Goblin": "Smuksmum",
+        "Human": "Zemel"
+    },
+    "Pass": {
+        "English": "Pass",
+        "Dwarven": "Adas",
+        "Elvish": "Rane",
+        "Goblin": "Öxo",
+        "Human": "Duko"
+    },
+    "Pattern": {
+        "English": "Pattern",
+        "Dwarven": "Lîlar",
+        "Elvish": "Lalala",
+        "Goblin": "Spösp",
+        "Human": "Rope"
+    },
+    "Peak": {
+        "English": "Peak",
+        "Dwarven": "Ilrom",
+        "Elvish": "Erena",
+        "Goblin": "Smustum",
+        "Human": "Uquur"
+    },
+    "Peek": {
+        "English": "Peek",
+        "Dwarven": "Thet",
+        "Elvish": "Lera",
+        "Goblin": "Snuzaz",
+        "Human": "Leru"
+    },
+    "Perfect": {
+        "English": "Perfect",
+        "Dwarven": "Ator",
+        "Elvish": "Equuyi",
+        "Goblin": "Mösmlo",
+        "Human": "Esmin"
+    },
+    "Perish": {
+        "English": "Perish",
+        "Dwarven": "Shithath",
+        "Elvish": "More",
+        "Goblin": "Guspû",
+        "Human": "Zulshag"
+    },
+    "Perplex": {
+        "English": "Perplex",
+        "Dwarven": "Sherik",
+        "Elvish": "Ili",
+        "Goblin": "Mällu",
+        "Human": "Dencoth"
+    },
+    "Persuade": {
+        "English": "Persuade",
+        "Dwarven": "Eges",
+        "Elvish": "Amare",
+        "Goblin": "Otar",
+        "Human": "Thram"
+    },
+    "Phrase": {
+        "English": "Phrase",
+        "Dwarven": "Sokan",
+        "Elvish": "Etani",
+        "Goblin": "Obxog",
+        "Human": "Gido"
+    },
+    "Plait": {
+        "English": "Plait",
+        "Dwarven": "Mamot",
+        "Elvish": "Erare",
+        "Goblin": "Gon",
+        "Human": "Aspa"
+    },
+    "Plan": {
+        "English": "Plan",
+        "Dwarven": "Ison",
+        "Elvish": "Nemathe",
+        "Goblin": "Buru",
+        "Human": "Zapas"
+    },
+    "Plant": {
+        "English": "Plant",
+        "Dwarven": "Erok",
+        "Elvish": "Mana",
+        "Goblin": "Tusnas",
+        "Human": "Ona"
+    },
+    "Play (a game)": {
+        "English": "Play (a game)",
+        "Dwarven": "Titthal",
+        "Elvish": "Mithe",
+        "Goblin": "Lungo",
+        "Human": "Beru"
+    },
+    "Play (to perform)": {
+        "English": "Play (to perform)",
+        "Dwarven": "Stisträs",
+        "Elvish": "Quathari",
+        "Goblin": "Osles",
+        "Human": "Stathra"
+    },
+    "Pleat": {
+        "English": "Pleat",
+        "Dwarven": "Udist",
+        "Elvish": "Tefe",
+        "Goblin": "Ngasmä",
+        "Human": "Iki"
+    },
+    "Plot": {
+        "English": "Plot",
+        "Dwarven": "Îm",
+        "Elvish": "Ranitha",
+        "Goblin": "Ngunga",
+        "Human": "Didde"
+    },
+    "Plunge": {
+        "English": "Plunge",
+        "Dwarven": "Tathtat",
+        "Elvish": "Calathi",
+        "Goblin": "Bod",
+        "Human": "Nulce"
+    },
+    "Pocket": {
+        "English": "Pocket",
+        "Dwarven": "Shoner",
+        "Elvish": "Cimere",
+        "Goblin": "Öz",
+        "Human": "Threz"
+    },
+    "Point": {
+        "English": "Point",
+        "Dwarven": "Idok",
+        "Elvish": "Mipa",
+        "Goblin": "Snuddu",
+        "Human": "Es"
+    },
+    "Poke": {
+        "English": "Poke",
+        "Dwarven": "Ïtsas",
+        "Elvish": "Ricowe",
+        "Goblin": "Rul",
+        "Human": "Cobi"
+    },
+    "Polish": {
+        "English": "Polish",
+        "Dwarven": "Deleth",
+        "Elvish": "Canene",
+        "Goblin": "Lubam",
+        "Human": "Eko"
+    },
+    "Ponder": {
+        "English": "Ponder",
+        "Dwarven": "Zoz",
+        "Elvish": "Meco",
+        "Goblin": "Uztob",
+        "Human": "Atem"
+    },
+    "Practice": {
+        "English": "Practice",
+        "Dwarven": "Mubun",
+        "Elvish": "Mefeye",
+        "Goblin": "Nosbu",
+        "Human": "Dopod"
+    },
+    "Praise": {
+        "English": "Praise",
+        "Dwarven": "Libad",
+        "Elvish": "Rafici",
+        "Goblin": "Xôslo",
+        "Human": "On"
+    },
+    "Price": {
+        "English": "Price",
+        "Dwarven": "Teshkad",
+        "Elvish": "Ica",
+        "Goblin": "Uspslôl",
+        "Human": "Owba"
+    },
+    "Proliferate": {
+        "English": "Proliferate",
+        "Dwarven": "Gashcoz",
+        "Elvish": "Irada",
+        "Goblin": "Ngasad",
+        "Human": "Eñasm"
+    },
+    "Prowl": {
+        "English": "Prowl",
+        "Dwarven": "Kasith",
+        "Elvish": "Covace",
+        "Goblin": "Susla",
+        "Human": "Katga"
+    },
+    "Pull": {
+        "English": "Pull",
+        "Dwarven": "Tashem",
+        "Elvish": "Yupe",
+        "Goblin": "Xosno",
+        "Human": "Og"
+    },
+    "Purify": {
+        "English": "Purify",
+        "Dwarven": "Enam",
+        "Elvish": "Elufi",
+        "Goblin": "Rotsmam",
+        "Human": "Kemsa"
+    },
+    "Purge": {
+        "English": "Purge",
+        "Dwarven": "Thetust",
+        "Elvish": "Ebeca",
+        "Goblin": "Dedge",
+        "Human": "Caku"
+    },
+    "Puzzle": {
+        "English": "Puzzle",
+        "Dwarven": "Luslem",
+        "Elvish": "Cuquimo",
+        "Goblin": "Agak",
+        "Human": "Necar"
+    },
+    "Quest": {
+        "English": "Quest",
+        "Dwarven": "Iseth",
+        "Elvish": "Elabe",
+        "Goblin": "Osmod",
+        "Human": "Akul"
+    },
+    "Quiet": {
+        "English": "Quiet",
+        "Dwarven": "Kàs",
+        "Elvish": "Seni",
+        "Goblin": "Slosax",
+        "Human": "Aña"
+    },
+    "Race": {
+        "English": "Race",
+        "Dwarven": "Imsal",
+        "Elvish": "Èbire",
+        "Goblin": "Smoza",
+        "Human": "Tosi"
+    },
+    "Rain": {
+        "English": "Rain",
+        "Dwarven": "Udar",
+        "Elvish": "Imere",
+        "Goblin": "Ugok",
+        "Human": "Sporro"
+    },
+    "Rake": {
+        "English": "Rake",
+        "Dwarven": "Borush",
+        "Elvish": "Nafe",
+        "Goblin": "Smuslo",
+        "Human": "Ronum"
+    },
+    "Rampage": {
+        "English": "Rampage",
+        "Dwarven": "Umoz",
+        "Elvish": "Baslata",
+        "Goblin": "Snos",
+        "Human": "Dahbul"
+    },
+    "Ransack": {
+        "English": "Ransack",
+        "Dwarven": "Vudthar",
+        "Elvish": "Ludè",
+        "Goblin": "Smoslu",
+        "Human": "Gastmar"
+    },
+    "Rasp": {
+        "English": "Rasp",
+        "Dwarven": "Stigaz",
+        "Elvish": "Laba",
+        "Goblin": "Enga",
+        "Human": "Boki"
+    },
+    "Reason": {
+        "English": "Reason",
+        "Dwarven": "Ograd",
+        "Elvish": "Rayo",
+        "Goblin": "Xonzom",
+        "Human": "Kabár"
+    },
+    "Reign": {
+        "English": "Reign",
+        "Dwarven": "Ikud",
+        "Elvish": "Vimeba",
+        "Goblin": "Kusûn",
+        "Human": "Ág"
+    },
+    "Rein": {
+        "English": "Rein",
+        "Dwarven": "Memad",
+        "Elvish": "Reli",
+        "Goblin": "Nusnost",
+        "Human": "Gisla"
+    },
+    "Release": {
+        "English": "Release",
+        "Dwarven": "Sobìr",
+        "Elvish": "Adéma",
+        "Goblin": "Smosm",
+        "Human": "Sasir"
+    },
+    "Relieve": {
+        "English": "Relieve",
+        "Dwarven": "Noram",
+        "Elvish": "Cere",
+        "Goblin": "Mole",
+        "Human": "Slada"
+    },
+    "Rend": {
+        "English": "Rend",
+        "Dwarven": "Eshik",
+        "Elvish": "Feca",
+        "Goblin": "Usmzug",
+        "Human": "Sunre"
+    },
+    "Repute": {
+        "English": "Repute",
+        "Dwarven": "Ennol",
+        "Elvish": "Casowi",
+        "Goblin": "Sluk",
+        "Human": "Thinir"
+    },
+    "Require": {
+        "English": "Require",
+        "Dwarven": "Inem",
+        "Elvish": "Enotho",
+        "Goblin": "Eted",
+        "Human": "Tikes"
+    },
+    "Respect": {
+        "English": "Respect",
+        "Dwarven": "Rirnöl",
+        "Elvish": "Milù",
+        "Goblin": "Ozgël",
+        "Human": "Medon"
+    },
+    "Revere": {
+        "English": "Revere",
+        "Dwarven": "Ebal",
+        "Elvish": "Fiya",
+        "Goblin": "Espbo",
+        "Human": "Zicab"
+    },
+    "Revolt": {
+        "English": "Revolt",
+        "Dwarven": "Emdush",
+        "Elvish": "Rurame",
+        "Goblin": "Udstrum",
+        "Human": "Ishush"
+    },
+    "Reward": {
+        "English": "Reward",
+        "Dwarven": "Akir",
+        "Elvish": "Rethu",
+        "Goblin": "Es",
+        "Human": "Rakel"
+    },
+    "Rhyme": {
+        "English": "Rhyme",
+        "Dwarven": "Nanir",
+        "Elvish": "Ezo",
+        "Goblin": "Osnung",
+        "Human": "Wisho"
+    },
+    "Riddle": {
+        "English": "Riddle",
+        "Dwarven": "Nokgol",
+        "Elvish": "Pife",
+        "Goblin": "Ngôrdax",
+        "Human": "Pestrat"
+    },
+    "Riddle (with holes)": {
+        "English": "Riddle (with holes)",
+        "Dwarven": "Dallith",
+        "Elvish": "Wile",
+        "Goblin": "Ospgu",
+        "Human": "Gigol"
+    },
+    "Ring (to surround)": {
+        "English": "Ring (to surround)",
+        "Dwarven": "Athel",
+        "Elvish": "Mithu",
+        "Goblin": "Utok",
+        "Human": "Curo"
+    },
+    "Ring (to make sound)": {
+        "English": "Ring (to make sound)",
+        "Dwarven": "Seng",
+        "Elvish": "Revé",
+        "Goblin": "Ungong",
+        "Human": "Siña"
+    },
+    "Rinse": {
+        "English": "Rinse",
+        "Dwarven": "Ethab",
+        "Elvish": "Ithaya",
+        "Goblin": "Uxmod",
+        "Human": "Coñe"
+    },
+    "Rise": {
+        "English": "Rise",
+        "Dwarven": "Locun",
+        "Elvish": "Evane",
+        "Goblin": "Orûsp",
+        "Human": "Jir"
+    },
+    "Risk": {
+        "English": "Risk",
+        "Dwarven": "Neshast",
+        "Elvish": "Semili",
+        "Goblin": "Gonguk",
+        "Human": "Sirep"
+    },
+    "Roar": {
+        "English": "Roar",
+        "Dwarven": "Orrun",
+        "Elvish": "Omo",
+        "Goblin": "Oza",
+        "Human": "Budo"
+    },
+    "Roast": {
+        "English": "Roast",
+        "Dwarven": "Ibesh",
+        "Elvish": "Refe",
+        "Goblin": "Uspen",
+        "Human": "Stoltad"
+    },
+    "Romance": {
+        "English": "Romance",
+        "Dwarven": "Âbir",
+        "Elvish": "Lidava",
+        "Goblin": "Luru",
+        "Human": "Bengel"
+    },
+    "Root": {
+        "English": "Root",
+        "Dwarven": "Lulâr",
+        "Elvish": "Dene",
+        "Goblin": "Ostosp",
+        "Human": "Duli"
+    },
+    "Rout": {
+        "English": "Rout",
+        "Dwarven": "Mözir",
+        "Elvish": "Lanisi",
+        "Goblin": "Remzu",
+        "Human": "Lasod"
+    },
+    "Rub": {
+        "English": "Rub",
+        "Dwarven": "Luzat",
+        "Elvish": "Erí",
+        "Goblin": "Bëbro",
+        "Human": "Onu"
+    },
+    "Ruin": {
+        "English": "Ruin",
+        "Dwarven": "Suthån",
+        "Elvish": "Cafu",
+        "Goblin": "Steg",
+        "Human": "Jamak"
+    },
+    "Rule": {
+        "English": "Rule",
+        "Dwarven": "Ilid",
+        "Elvish": "Thène",
+        "Goblin": "Ongno",
+        "Human": "Kastrol"
+    },
+    "Run": {
+        "English": "Run",
+        "Dwarven": "Rur",
+        "Elvish": "Ive",
+        "Goblin": "Duba",
+        "Human": "Baze"
+    },
+    "Rush": {
+        "English": "Rush",
+        "Dwarven": "Sashas",
+        "Elvish": "Vime",
+        "Goblin": "Udat",
+        "Human": "Ete"
+    },
+    "Sacrifice": {
+        "English": "Sacrifice",
+        "Dwarven": "Etom",
+        "Elvish": "Ficeri",
+        "Goblin": "Ungel",
+        "Human": "Mido"
+    },
+    "Save": {
+        "English": "Save",
+        "Dwarven": "Ekast",
+        "Elvish": "Eci",
+        "Goblin": "Uspung",
+        "Human": "Icen"
+    },
+    "Sag": {
+        "English": "Sag",
+        "Dwarven": "Zagug",
+        "Elvish": "Araci",
+        "Goblin": "Smust",
+        "Human": "Bomu"
+    },
+    "Salute": {
+        "English": "Salute",
+        "Dwarven": "Belar",
+        "Elvish": "Risa",
+        "Goblin": "Dungo",
+        "Human": "Ejem"
+    },
+    "Scald": {
+        "English": "Scald",
+        "Dwarven": "Cudïst",
+        "Elvish": "Ethera",
+        "Goblin": "Dusmud",
+        "Human": "Ronik"
+    },
+    "Scale": {
+        "English": "Scale",
+        "Dwarven": "Laz",
+        "Elvish": "Etéwe",
+        "Goblin": "Ûd",
+        "Human": "Thalo"
+    },
+    "Scar": {
+        "English": "Scar",
+        "Dwarven": "Urrïth",
+        "Elvish": "Wami",
+        "Goblin": "Loz",
+        "Human": "Fensast"
+    },
+    "Scintillate": {
+        "English": "Scintillate",
+        "Dwarven": "Girust",
+        "Elvish": "Thineli",
+        "Goblin": "Spasnom",
+        "Human": "Nicast"
+    },
+    "Scold": {
+        "English": "Scold",
+        "Dwarven": "Kikës",
+        "Elvish": "Thoci",
+        "Goblin": "Ura",
+        "Human": "Strepuv"
+    },
+    "Scoop": {
+        "English": "Scoop",
+        "Dwarven": "Gudas",
+        "Elvish": "Narayi",
+        "Goblin": "Uspa",
+        "Human": "Kunod"
+    },
+    "Scorch": {
+        "English": "Scorch",
+        "Dwarven": "Othlest",
+        "Elvish": "Dipí",
+        "Goblin": "Snumnö",
+        "Human": "Belrok"
+    },
+    "Scorn": {
+        "English": "Scorn",
+        "Dwarven": "Tokthat",
+        "Elvish": "Nefethi",
+        "Goblin": "Kaslusp",
+        "Human": "Mitstu"
+    },
+    "Scour": {
+        "English": "Scour",
+        "Dwarven": "Bubnus",
+        "Elvish": "Rìfi",
+        "Goblin": "Äz",
+        "Human": "Iclo"
+    },
+    "Scrape": {
+        "English": "Scrape",
+        "Dwarven": "Igath",
+        "Elvish": "Afí",
+        "Goblin": "Odna",
+        "Human": "Bujit"
+    },
+    "Scream": {
+        "English": "Scream",
+        "Dwarven": "Ubas",
+        "Elvish": "Fiweno",
+        "Goblin": "Slag",
+        "Human": "Uho"
+    },
+    "Scribe": {
+        "English": "Scribe",
+        "Dwarven": "Tathur",
+        "Elvish": "Kema",
+        "Goblin": "Gusno",
+        "Human": "Dosla"
+    },
+    "Scrub": {
+        "English": "Scrub",
+        "Dwarven": "Ïthod",
+        "Elvish": "Varoli",
+        "Goblin": "Gata",
+        "Human": "Desa"
+    },
+    "Scuffle": {
+        "English": "Scuffle",
+        "Dwarven": "Givel",
+        "Elvish": "Thethe",
+        "Goblin": "Rukam",
+        "Human": "Ngosp"
+    },
+    "Sculpt": {
+        "English": "Sculpt",
+        "Dwarven": "Aran",
+        "Elvish": "Cerethe",
+        "Goblin": "Osplu",
+        "Human": "Uthra"
+    },
+    "Sear": {
+        "English": "Sear",
+        "Dwarven": "Ûthir",
+        "Elvish": "Fevu",
+        "Goblin": "Slodse",
+        "Human": "Adoth"
+    },
+    "Search": {
+        "English": "Search",
+        "Dwarven": "Absam",
+        "Elvish": "Sali",
+        "Goblin": "Snungo",
+        "Human": "Uxen"
+    },
+    "Secret": {
+        "English": "Secret",
+        "Dwarven": "Nekut",
+        "Elvish": "Sapi",
+        "Goblin": "Smoxspu",
+        "Human": "Bikdá"
+    },
+    "Seduce": {
+        "English": "Seduce",
+        "Dwarven": "Genlath",
+        "Elvish": "Lerine",
+        "Goblin": "Amxu",
+        "Human": "Lerdi"
+    },
+    "Seize": {
+        "English": "Seize",
+        "Dwarven": "Asol",
+        "Elvish": "Litho",
+        "Goblin": "Tosnak",
+        "Human": "Muk"
+    },
+    "Sell": {
+        "English": "Sell",
+        "Dwarven": "Esdor",
+        "Elvish": "Navise",
+        "Goblin": "Zongsmo",
+        "Human": "Taram"
+    },
+    "Sense": {
+        "English": "Sense",
+        "Dwarven": "Emal",
+        "Elvish": "Cereni",
+        "Goblin": "Zozo",
+        "Human": "Ecsha"
+    },
+    "Sever": {
+        "English": "Sever",
+        "Dwarven": "Zursul",
+        "Elvish": "Sici",
+        "Goblin": "Koxstas",
+        "Human": "Koto"
+    },
+    "Shake": {
+        "English": "Shake",
+        "Dwarven": "Uthmik",
+        "Elvish": "Nurami",
+        "Goblin": "Tuz",
+        "Human": "Aloc"
+    },
+    "Shame": {
+        "English": "Shame",
+        "Dwarven": "Mostod",
+        "Elvish": "Yatha",
+        "Goblin": "Tosp",
+        "Human": "Sur"
+    },
+    "Shatter": {
+        "English": "Shatter",
+        "Dwarven": "Baktus",
+        "Elvish": "Wabe",
+        "Goblin": "Usnem",
+        "Human": "Throm"
+    },
+    "Shear": {
+        "English": "Shear",
+        "Dwarven": "Bithit",
+        "Elvish": "Inithi",
+        "Goblin": "Rungdo",
+        "Human": "Ika"
+    },
+    "Shelter": {
+        "English": "Shelter",
+        "Dwarven": "Lêned",
+        "Elvish": "Fera",
+        "Goblin": "Strolu",
+        "Human": "Jasro"
+    },
+    "Shield": {
+        "English": "Shield",
+        "Dwarven": "Sodel",
+        "Elvish": "Veca",
+        "Goblin": "Ulsa",
+        "Human": "Cemir"
+    },
+    "Shimmer": {
+        "English": "Shimmer",
+        "Dwarven": "Ônam",
+        "Elvish": "Firi",
+        "Goblin": "Lom",
+        "Human": "Ene"
+    },
+    "Shock": {
+        "English": "Shock",
+        "Dwarven": "Otung",
+        "Elvish": "Riqui",
+        "Goblin": "Malduz",
+        "Human": "Osplek"
+    },
+    "Shoot": {
+        "English": "Shoot",
+        "Dwarven": "Keskal",
+        "Elvish": "Sesi",
+        "Goblin": "Sloxuk",
+        "Human": "Oti"
+    },
+    "Shove": {
+        "English": "Shove",
+        "Dwarven": "Tomus",
+        "Elvish": "Amo",
+        "Goblin": "Ngasmuk",
+        "Human": "Bathru"
+    },
+    "Shovel": {
+        "English": "Shovel",
+        "Dwarven": "Dugan",
+        "Elvish": "Nìÿatha",
+        "Goblin": "Ospa",
+        "Human": "Shebi"
+    },
+    "Show": {
+        "English": "Show",
+        "Dwarven": "Nåst",
+        "Elvish": "Rara",
+        "Goblin": "Stongnub",
+        "Human": "Lershi"
+    },
+    "Shower": {
+        "English": "Shower",
+        "Dwarven": "Mesir",
+        "Elvish": "Bali",
+        "Goblin": "Gâxu",
+        "Human": "Ethlal"
+    },
+    "Shrivel": {
+        "English": "Shrivel",
+        "Dwarven": "Istik",
+        "Elvish": "Cice",
+        "Goblin": "Kosto",
+        "Human": "Shasik"
+    },
+    "Shut": {
+        "English": "Shut",
+        "Dwarven": "Éth",
+        "Elvish": "Abo",
+        "Goblin": "Esm",
+        "Human": "Epek"
+    },
+    "Siege": {
+        "English": "Siege",
+        "Dwarven": "Zokun",
+        "Elvish": "Thima",
+        "Goblin": "Etosp",
+        "Human": "Rislu"
+    },
+    "Silence": {
+        "English": "Silence",
+        "Dwarven": "Eshom",
+        "Elvish": "Inori",
+        "Goblin": "Rut",
+        "Human": "Udul"
+    },
+    "Sing": {
+        "English": "Sing",
+        "Dwarven": "Osal",
+        "Elvish": "Ova",
+        "Goblin": "Okum",
+        "Human": "Thruni"
+    },
+    "Singe": {
+        "English": "Singe",
+        "Dwarven": "Nêcik",
+        "Elvish": "Watha",
+        "Goblin": "Stot",
+        "Human": "Thetal"
+    },
+    "Sink": {
+        "English": "Sink",
+        "Dwarven": "Akmam",
+        "Elvish": "Gife",
+        "Goblin": "Sposnu",
+        "Human": "Ewom"
+    },
+    "Sit": {
+        "English": "Sit",
+        "Dwarven": "Mosol",
+        "Elvish": "Direbo",
+        "Goblin": "Kuklur",
+        "Human": "Aslap"
+    },
+    "Sizzle": {
+        "English": "Sizzle",
+        "Dwarven": "Umstiz",
+        "Elvish": "Ofi",
+        "Goblin": "Nosmu",
+        "Human": "Anstrid"
+    },
+    "Skewer": {
+        "English": "Skewer",
+        "Dwarven": "Gecast",
+        "Elvish": "Viye",
+        "Goblin": "Asmu",
+        "Human": "Istpi"
+    },
+    "Skin": {
+        "English": "Skin",
+        "Dwarven": "Udesh",
+        "Elvish": "Feceve",
+        "Goblin": "Olang",
+        "Human": "Kateng"
+    },
+    "Skirt": {
+        "English": "Skirt",
+        "Dwarven": "Dakäl",
+        "Elvish": "Thecere",
+        "Goblin": "Ukong",
+        "Human": "Apa"
+    },
+    "Slap": {
+        "English": "Slap",
+        "Dwarven": "Sezuk",
+        "Elvish": "Laca",
+        "Goblin": "Odom",
+        "Human": "Alat"
+    },
+    "Slide": {
+        "English": "Slide",
+        "Dwarven": "Megid",
+        "Elvish": "Mabo",
+        "Goblin": "Oxstrum",
+        "Human": "Ciro"
+    },
+    "Slink": {
+        "English": "Slink",
+        "Dwarven": "Themthir",
+        "Elvish": "Ilethe",
+        "Goblin": "Nadog",
+        "Human": "Sothi"
+    },
+    "Slip": {
+        "English": "Slip",
+        "Dwarven": "Fôker",
+        "Elvish": "Senawi",
+        "Goblin": "Sluro",
+        "Human": "Gole"
+    },
+    "Slit": {
+        "English": "Slit",
+        "Dwarven": "Sakil",
+        "Elvish": "Ìfi",
+        "Goblin": "Xud",
+        "Human": "Kehe"
+    },
+    "Slither": {
+        "English": "Slither",
+        "Dwarven": "Tekmok",
+        "Elvish": "Mifali",
+        "Goblin": "Sangnosm",
+        "Human": "Ostra"
+    },
+    "Slop": {
+        "English": "Slop",
+        "Dwarven": "Lirér",
+        "Elvish": "Fuvi",
+        "Goblin": "Bul",
+        "Human": "Quihu"
+    },
+    "Slosh": {
+        "English": "Slosh",
+        "Dwarven": "Îlkeb",
+        "Elvish": "Eye",
+        "Goblin": "Ozstur",
+        "Human": "Uki"
+    },
+    "Slow": {
+        "English": "Slow",
+        "Dwarven": "Dezrem",
+        "Elvish": "Cathine",
+        "Goblin": "Agkud",
+        "Human": "Puwun"
+    },
+    "Smash": {
+        "English": "Smash",
+        "Dwarven": "Tob",
+        "Elvish": "Eremo",
+        "Goblin": "Uzest",
+        "Human": "Athroc"
+    },
+    "Smear": {
+        "English": "Smear",
+        "Dwarven": "Duz",
+        "Elvish": "Éÿome",
+        "Goblin": "Onxo",
+        "Human": "Rir"
+    },
+    "Smile": {
+        "English": "Smile",
+        "Dwarven": "Kal",
+        "Elvish": "Lali",
+        "Goblin": "Uspuk",
+        "Human": "Cañi"
+    },
+    "Smoulder": {
+        "English": "Smoulder",
+        "Dwarven": "Zeber",
+        "Elvish": "Caçe",
+        "Goblin": "Xubu",
+        "Human": "Eblow"
+    },
+    "Snack": {
+        "English": "Snack",
+        "Dwarven": "Geles",
+        "Elvish": "Selera",
+        "Goblin": "Gud",
+        "Human": "Sizet"
+    },
+    "Snarl": {
+        "English": "Snarl",
+        "Dwarven": "Desis",
+        "Elvish": "Thithu",
+        "Goblin": "Arôsp",
+        "Human": "Vicu"
+    },
+    "Sneak": {
+        "English": "Sneak",
+        "Dwarven": "Ostuk",
+        "Elvish": "Tabami",
+        "Goblin": "Lozasp",
+        "Human": "Rorkek"
+    },
+    "Snuggle": {
+        "English": "Snuggle",
+        "Dwarven": "Magel",
+        "Elvish": "Meleye",
+        "Goblin": "Smum",
+        "Human": "Woru"
+    },
+    "Soak": {
+        "English": "Soak",
+        "Dwarven": "Adag",
+        "Elvish": "Lafo",
+        "Goblin": "Lod",
+        "Human": "Budzu"
+    },
+    "Soar": {
+        "English": "Soar",
+        "Dwarven": "Umåm",
+        "Elvish": "Aya",
+        "Goblin": "Aksput",
+        "Human": "Peme"
+    },
+    "Socket": {
+        "English": "Socket",
+        "Dwarven": "Sesh",
+        "Elvish": "Nececa",
+        "Goblin": "Usma",
+        "Human": "Inspuz"
+    },
+    "Soothe": {
+        "English": "Soothe",
+        "Dwarven": "Bûnem",
+        "Elvish": "Lawa",
+        "Goblin": "Ormo",
+        "Human": "Gelom"
+    },
+    "Sound": {
+        "English": "Sound",
+        "Dwarven": "Vod",
+        "Elvish": "Caÿa",
+        "Goblin": "Ngoslun",
+        "Human": "Lide"
+    },
+    "Sparkle": {
+        "English": "Sparkle",
+        "Dwarven": "Kebul",
+        "Elvish": "Epeve",
+        "Goblin": "Smaz",
+        "Human": "Tiquo"
+    },
+    "Spatter": {
+        "English": "Spatter",
+        "Dwarven": "Isak",
+        "Elvish": "Aci",
+        "Goblin": "Otkel",
+        "Human": "Samspi"
+    },
+    "Speak": {
+        "English": "Speak",
+        "Dwarven": "Âm",
+        "Elvish": "Lelo",
+        "Goblin": "Astom",
+        "Human": "Mita"
+    },
+    "Spin": {
+        "English": "Spin",
+        "Dwarven": "Esesh",
+        "Elvish": "Thitha",
+        "Goblin": "Osput",
+        "Human": "Famo"
+    },
+    "Spiral": {
+        "English": "Spiral",
+        "Dwarven": "Tishis",
+        "Elvish": "Ireri",
+        "Goblin": "Studam",
+        "Human": "Pictham"
+    },
+    "Spite": {
+        "English": "Spite",
+        "Dwarven": "Zakgol",
+        "Elvish": "Thufi",
+        "Goblin": "Sletbu",
+        "Human": "Mevus"
+    },
+    "Splash": {
+        "English": "Splash",
+        "Dwarven": "Rulush",
+        "Elvish": "Wara",
+        "Goblin": "Ath",
+        "Human": "Ofo"
+    },
+    "Splatter": {
+        "English": "Splatter",
+        "Dwarven": "Kekim",
+        "Elvish": "Idata",
+        "Goblin": "Slaz",
+        "Human": "Gethdaz"
+    },
+    "Split": {
+        "English": "Split",
+        "Dwarven": "Ziksis",
+        "Elvish": "Fenefe",
+        "Goblin": "Stutom",
+        "Human": "Paro"
+    },
+    "Spoil": {
+        "English": "Spoil",
+        "Dwarven": "Usur",
+        "Elvish": "Nimife",
+        "Goblin": "Bur",
+        "Human": "Vuca"
+    },
+    "Spoon": {
+        "English": "Spoon",
+        "Dwarven": "Kob",
+        "Elvish": "Theni",
+        "Goblin": "Somug",
+        "Human": "Tamed"
+    },
+    "Spray": {
+        "English": "Spray",
+        "Dwarven": "Bâsen",
+        "Elvish": "Cirono",
+        "Goblin": "Tostra",
+        "Human": "Taba"
+    },
+    "Spread": {
+        "English": "Spread",
+        "Dwarven": "Koman",
+        "Elvish": "Faÿile",
+        "Goblin": "Unug",
+        "Human": "Pos"
+    },
+    "Spring": {
+        "English": "Spring",
+        "Dwarven": "Magak",
+        "Elvish": "Inere",
+        "Goblin": "Non",
+        "Human": "Pude"
+    },
+    "Sprinkle": {
+        "English": "Sprinkle",
+        "Dwarven": "Imesh",
+        "Elvish": "Omula",
+        "Goblin": "Uslûr",
+        "Human": "Cosin"
+    },
+    "Spurn": {
+        "English": "Spurn",
+        "Dwarven": "Noböt",
+        "Elvish": "Larota",
+        "Goblin": "Zusto",
+        "Human": "Saja"
+    },
+    "Spurt": {
+        "English": "Spurt",
+        "Dwarven": "Guthstak",
+        "Elvish": "Fafire",
+        "Goblin": "Xosun",
+        "Human": "Gopet"
+    },
+    "Squash": {
+        "English": "Squash",
+        "Dwarven": "Stukón",
+        "Elvish": "Thafe",
+        "Goblin": "Assmo",
+        "Human": "Malstral"
+    },
+    "Squat": {
+        "English": "Squat",
+        "Dwarven": "Tumos",
+        "Elvish": "Quequava",
+        "Goblin": "Ebro",
+        "Human": "Smoro"
+    },
+    "Squeeze": {
+        "English": "Squeeze",
+        "Dwarven": "Íkthag",
+        "Elvish": "Ribi",
+        "Goblin": "Sukxusm",
+        "Human": "Laroth"
+    },
+    "Squirm": {
+        "English": "Squirm",
+        "Dwarven": "Dugud",
+        "Elvish": "Étha",
+        "Goblin": "Xunggob",
+        "Human": "Quefo"
+    },
+    "Squirt": {
+        "English": "Squirt",
+        "Dwarven": "Ulåb",
+        "Elvish": "Fòri",
+        "Goblin": "Sur",
+        "Human": "Tuthru"
+    },
+    "Stab": {
+        "English": "Stab",
+        "Dwarven": "Zat",
+        "Elvish": "Ridi",
+        "Goblin": "Gostus",
+        "Human": "Vope"
+    },
+    "Stabilize": {
+        "English": "Stabilize",
+        "Dwarven": "Nulral",
+        "Elvish": "Uyane",
+        "Goblin": "Snulut",
+        "Human": "Manba"
+    },
+    "Stalk": {
+        "English": "Stalk",
+        "Dwarven": "Oltud",
+        "Elvish": "Nala",
+        "Goblin": "Astol",
+        "Human": "Kod"
+    },
+    "Stand": {
+        "English": "Stand",
+        "Dwarven": "Savot",
+        "Elvish": "Rino",
+        "Goblin": "Axod",
+        "Human": "Wur"
+    },
+    "Start": {
+        "English": "Start",
+        "Dwarven": "Kot",
+        "Elvish": "Nesa",
+        "Goblin": "Aspngo",
+        "Human": "Tad"
+    },
+    "Starve": {
+        "English": "Starve",
+        "Dwarven": "Shìstsak",
+        "Elvish": "Theva",
+        "Goblin": "Okal",
+        "Human": "Loslal"
+    },
+    "Steal": {
+        "English": "Steal",
+        "Dwarven": "Risid",
+        "Elvish": "Tafizè",
+        "Goblin": "Uksos",
+        "Human": "Icev"
+    },
+    "Stick": {
+        "English": "Stick",
+        "Dwarven": "Ecut",
+        "Elvish": "Ithó",
+        "Goblin": "Ulo",
+        "Human": "Sipkat"
+    },
+    "Still": {
+        "English": "Still",
+        "Dwarven": "Isan",
+        "Elvish": "Açèya",
+        "Goblin": "Ola",
+        "Human": "Ar"
+    },
+    "Stink": {
+        "English": "Stink",
+        "Dwarven": "Rithog",
+        "Elvish": "Ifalo",
+        "Goblin": "Geng",
+        "Human": "Smath"
+    },
+    "Stir": {
+        "English": "Stir",
+        "Dwarven": "Edan",
+        "Elvish": "Çara",
+        "Goblin": "Oga",
+        "Human": "Lemhuh"
+    },
+    "Stoke": {
+        "English": "Stoke",
+        "Dwarven": "Gusgash",
+        "Elvish": "Ici",
+        "Goblin": "Orar",
+        "Human": "Ezif"
+    },
+    "Stop": {
+        "English": "Stop",
+        "Dwarven": "Tôsed",
+        "Elvish": "Caÿi",
+        "Goblin": "Al",
+        "Human": "Kiros"
+    },
+    "Strangle": {
+        "English": "Strangle",
+        "Dwarven": "Vuknud",
+        "Elvish": "Wareci",
+        "Goblin": "Sunga",
+        "Human": "Rálid"
+    },
+    "Strap": {
+        "English": "Strap",
+        "Dwarven": "Nîles",
+        "Elvish": "Fepa",
+        "Goblin": "Ustå",
+        "Human": "Ini"
+    },
+    "Stray": {
+        "English": "Stray",
+        "Dwarven": "Rêg",
+        "Elvish": "Èle",
+        "Goblin": "Sux",
+        "Human": "Ido"
+    },
+    "Stretch": {
+        "English": "Stretch",
+        "Dwarven": "Äkig",
+        "Elvish": "Fithithe",
+        "Goblin": "Osmum",
+        "Human": "Epru"
+    },
+    "Strike": {
+        "English": "Strike",
+        "Dwarven": "Abod",
+        "Elvish": "Liwa",
+        "Goblin": "Sangösm",
+        "Human": "Casot"
+    },
+    "Stroke": {
+        "English": "Stroke",
+        "Dwarven": "Sat",
+        "Elvish": "Lelu",
+        "Goblin": "Smumu",
+        "Human": "Adi"
+    },
+    "Stutter": {
+        "English": "Stutter",
+        "Dwarven": "Fûbeg",
+        "Elvish": "Afibi",
+        "Goblin": "Sebo",
+        "Human": "Thrithur"
+    },
+    "Style": {
+        "English": "Style",
+        "Dwarven": "Tunur",
+        "Elvish": "Kifino",
+        "Goblin": "Ustgast",
+        "Human": "Gicast"
+    },
+    "Submerge": {
+        "English": "Submerge",
+        "Dwarven": "Rûl",
+        "Elvish": "Tape",
+        "Goblin": "Tomsu",
+        "Human": "Nohus"
+    },
+    "Suck": {
+        "English": "Suck",
+        "Dwarven": "Eb",
+        "Elvish": "Pelese",
+        "Goblin": "Oson",
+        "Human": "Engo"
+    },
+    "Sully": {
+        "English": "Sully",
+        "Dwarven": "Oceg",
+        "Elvish": "Írede",
+        "Goblin": "Ungust",
+        "Human": "Thacsum"
+    },
+    "Sunder": {
+        "English": "Sunder",
+        "Dwarven": "Imgoz",
+        "Elvish": "Rezici",
+        "Goblin": "Ozspu",
+        "Human": "Slun"
+    },
+    "Swallow": {
+        "English": "Swallow",
+        "Dwarven": "Mozib",
+        "Elvish": "Thicera",
+        "Goblin": "Nabok",
+        "Human": "Cocu"
+    },
+    "Sway": {
+        "English": "Sway",
+        "Dwarven": "Êlbem",
+        "Elvish": "Ceye",
+        "Goblin": "Ustub",
+        "Human": "Nagwa"
+    },
+    "Sweat": {
+        "English": "Sweat",
+        "Dwarven": "Sined",
+        "Elvish": "Thelo",
+        "Goblin": "Uxu",
+        "Human": "Gabe"
+    },
+    "Sweep": {
+        "English": "Sweep",
+        "Dwarven": "Ronush",
+        "Elvish": "Oro",
+        "Goblin": "Oslö",
+        "Human": "Begi"
+    },
+    "Swelter": {
+        "English": "Swelter",
+        "Dwarven": "Kêshshak",
+        "Elvish": "Totò",
+        "Goblin": "Sulo",
+        "Human": "Rulu"
+    },
+    "Swim": {
+        "English": "Swim",
+        "Dwarven": "Urmim",
+        "Elvish": "Enolo",
+        "Goblin": "Ato",
+        "Human": "Laslem"
+    },
+    "Taint": {
+        "English": "Taint",
+        "Dwarven": "Ongos",
+        "Elvish": "Poyife",
+        "Goblin": "Ûsud",
+        "Human": "Slera"
+    },
+    "Take": {
+        "English": "Take",
+        "Dwarven": "Enkos",
+        "Elvish": "Nafi",
+        "Goblin": "Xok",
+        "Human": "Lenge"
+    },
+    "Talk": {
+        "English": "Talk",
+        "Dwarven": "Masos",
+        "Elvish": "Mowe",
+        "Goblin": "Zosbag",
+        "Human": "Enna"
+    },
+    "Tame": {
+        "English": "Tame",
+        "Dwarven": "Ôsust",
+        "Elvish": "Bibawe",
+        "Goblin": "Ab",
+        "Human": "Ega"
+    },
+    "Tangle": {
+        "English": "Tangle",
+        "Dwarven": "Lerteth",
+        "Elvish": "Folí",
+        "Goblin": "Uzông",
+        "Human": "Spibsa"
+    },
+    "Taper": {
+        "English": "Taper",
+        "Dwarven": "Timnär",
+        "Elvish": "Mivocì",
+        "Goblin": "Rol",
+        "Human": "Meka"
+    },
+    "Target": {
+        "English": "Target",
+        "Dwarven": "Vetek",
+        "Elvish": "Thòse",
+        "Goblin": "Sûtu",
+        "Human": "Siti"
+    },
+    "Tarnish": {
+        "English": "Tarnish",
+        "Dwarven": "Thilség",
+        "Elvish": "Malabu",
+        "Goblin": "Êbung",
+        "Human": "Rusus"
+    },
+    "Tattoo": {
+        "English": "Tattoo",
+        "Dwarven": "Zeg",
+        "Elvish": "Ilifi",
+        "Goblin": "Stosmû",
+        "Human": "Ñabsiz"
+    },
+    "Tax": {
+        "English": "Tax",
+        "Dwarven": "Stettad",
+        "Elvish": "Fací",
+        "Goblin": "Angot",
+        "Human": "Luto"
+    },
+    "Teach": {
+        "English": "Teach",
+        "Dwarven": "Amal",
+        "Elvish": "Maci",
+        "Goblin": "Ungnô",
+        "Human": "Rossu"
+    },
+    "Tell": {
+        "English": "Tell",
+        "Dwarven": "Asteb",
+        "Elvish": "Séle",
+        "Goblin": "Osnol",
+        "Human": "Arli"
+    },
+    "Tempt": {
+        "English": "Tempt",
+        "Dwarven": "Becor",
+        "Elvish": "Èÿe",
+        "Goblin": "Ukö",
+        "Human": "Riñih"
+    },
+    "Terrify": {
+        "English": "Terrify",
+        "Dwarven": "Angzak",
+        "Elvish": "Asithi",
+        "Goblin": "Nguslu",
+        "Human": "Ost"
+    },
+    "Test": {
+        "English": "Test",
+        "Dwarven": "Okil",
+        "Elvish": "Odata",
+        "Goblin": "Öx",
+        "Human": "Oñust"
+    },
+    "Thin": {
+        "English": "Thin",
+        "Dwarven": "Elis",
+        "Elvish": "Rini",
+        "Goblin": "Spusm",
+        "Human": "Isac"
+    },
+    "Threaten": {
+        "English": "Threaten",
+        "Dwarven": "Gelut",
+        "Elvish": "Uce",
+        "Goblin": "Olgo",
+        "Human": "Cihir"
+    },
+    "Throw": {
+        "English": "Throw",
+        "Dwarven": "Arros",
+        "Elvish": "Ireci",
+        "Goblin": "Slobu",
+        "Human": "Kom"
+    },
+    "Thunder": {
+        "English": "Thunder",
+        "Dwarven": "Amud",
+        "Elvish": "Eletha",
+        "Goblin": "Nust",
+        "Human": "Turot"
+    },
+    "Tick": {
+        "English": "Tick",
+        "Dwarven": "Tan",
+        "Elvish": "Wele",
+        "Goblin": "Gug",
+        "Human": "Puc"
+    },
+    "Tire": {
+        "English": "Tire",
+        "Dwarven": "Kan",
+        "Elvish": "Coru",
+        "Goblin": "Urab",
+        "Human": "Sug"
+    },
+    "Tone": {
+        "English": "Tone",
+        "Dwarven": "Bal",
+        "Elvish": "Wamiwi",
+        "Goblin": "Zukåx",
+        "Human": "Imbo"
+    },
+    "Torment": {
+        "English": "Torment",
+        "Dwarven": "Dostust",
+        "Elvish": "Melici",
+        "Goblin": "Nako",
+        "Human": "Kushet"
+    },
+    "Torture": {
+        "English": "Torture",
+        "Dwarven": "Mugshith",
+        "Elvish": "Umethe",
+        "Goblin": "Goxa",
+        "Human": "Manoth"
+    },
+    "Touch": {
+        "English": "Touch",
+        "Dwarven": "Tat",
+        "Elvish": "Mave",
+        "Goblin": "Sledås",
+        "Human": "Dema"
+    },
+    "Trade": {
+        "English": "Trade",
+        "Dwarven": "Nish",
+        "Elvish": "Lathì",
+        "Goblin": "Otsmor",
+        "Human": "Batow"
+    },
+    "Trail": {
+        "English": "Trail",
+        "Dwarven": "Kälán",
+        "Elvish": "Lanale",
+        "Goblin": "Olgost",
+        "Human": "Fanu"
+    },
+    "Trammel": {
+        "English": "Trammel",
+        "Dwarven": "Rìthar",
+        "Elvish": "Thilini",
+        "Goblin": "Ommul",
+        "Human": "Ushus"
+    },
+    "Trample": {
+        "English": "Trample",
+        "Dwarven": "Tangath",
+        "Elvish": "Talefi",
+        "Goblin": "Ngusa",
+        "Human": "Oxa"
+    },
+    "Trap": {
+        "English": "Trap",
+        "Dwarven": "Ïggal",
+        "Elvish": "Abola",
+        "Goblin": "Stoslo",
+        "Human": "Losric"
+    },
+    "Treat": {
+        "English": "Treat",
+        "Dwarven": "Datlad",
+        "Elvish": "Ini",
+        "Goblin": "Zastuz",
+        "Human": "Giki"
+    },
+    "Trick": {
+        "English": "Trick",
+        "Dwarven": "Vafig",
+        "Elvish": "Merame",
+        "Goblin": "Adsta",
+        "Human": "Engdul"
+    },
+    "Trim": {
+        "English": "Trim",
+        "Dwarven": "Dizesh",
+        "Elvish": "Rene",
+        "Goblin": "Oro",
+        "Human": "Ocda"
+    },
+    "Trot": {
+        "English": "Trot",
+        "Dwarven": "Esis",
+        "Elvish": "Adapi",
+        "Goblin": "Anusp",
+        "Human": "Lofi"
+    },
+    "Trouble": {
+        "English": "Trouble",
+        "Dwarven": "Kobem",
+        "Elvish": "Raliwo",
+        "Goblin": "Osnon",
+        "Human": "Básko"
+    },
+    "Truss": {
+        "English": "Truss",
+        "Dwarven": "Tilesh",
+        "Elvish": "Irecu",
+        "Goblin": "Ngotoz",
+        "Human": "Asthi"
+    },
+    "Trust": {
+        "English": "Trust",
+        "Dwarven": "Gamil",
+        "Elvish": "Thebe",
+        "Goblin": "Zukod",
+        "Human": "Moñol"
+    },
+    "Tug": {
+        "English": "Tug",
+        "Dwarven": "Cavor",
+        "Elvish": "Ifa",
+        "Goblin": "Ursnag",
+        "Human": "Inin"
+    },
+    "Tumble": {
+        "English": "Tumble",
+        "Dwarven": "Segun",
+        "Elvish": "Carethe",
+        "Goblin": "Asmon",
+        "Human": "Slaná"
+    },
+    "Tunnel": {
+        "English": "Tunnel",
+        "Dwarven": "Ód",
+        "Elvish": "Thateme",
+        "Goblin": "Zutôsp",
+        "Human": "Gujeg"
+    },
+    "Tweet": {
+        "English": "Tweet",
+        "Dwarven": "Nilim",
+        "Elvish": "Pipe",
+        "Goblin": "Oxung",
+        "Human": "Esti"
+    },
+    "Twinkle": {
+        "English": "Twinkle",
+        "Dwarven": "Shetbêth",
+        "Elvish": "Icica",
+        "Goblin": "Tod",
+        "Human": "Istra"
+    },
+    "Twist": {
+        "English": "Twist",
+        "Dwarven": "Gim",
+        "Elvish": "Relèpi",
+        "Goblin": "Xost",
+        "Human": "Tokri"
+    },
+    "Unite": {
+        "English": "Unite",
+        "Dwarven": "Semor",
+        "Elvish": "Eva",
+        "Goblin": "Bongnguk",
+        "Human": "Gil"
+    },
+    "Urge": {
+        "English": "Urge",
+        "Dwarven": "Bakust",
+        "Elvish": "Itheca",
+        "Goblin": "Smusla",
+        "Human": "Gasom"
+    },
+    "Utter": {
+        "English": "Utter",
+        "Dwarven": "Gutid",
+        "Elvish": "Ipo",
+        "Goblin": "Utong",
+        "Human": "Getak"
+    },
+    "Vandalize": {
+        "English": "Vandalize",
+        "Dwarven": "Tudrug",
+        "Elvish": "Iróci",
+        "Goblin": "Ëb",
+        "Human": "Acak"
+    },
+    "Vanish": {
+        "English": "Vanish",
+        "Dwarven": "Oshot",
+        "Elvish": "Tathali",
+        "Goblin": "Spastrum",
+        "Human": "Vithba"
+    },
+    "Vault": {
+        "English": "Vault",
+        "Dwarven": "Ronstiz",
+        "Elvish": "Eÿe",
+        "Goblin": "Xagnom",
+        "Human": "Zop"
+    },
+    "Vegetate": {
+        "English": "Vegetate",
+        "Dwarven": "Amluth",
+        "Elvish": "Ènira",
+        "Goblin": "Ngusat",
+        "Human": "Fod"
+    },
+    "Veil": {
+        "English": "Veil",
+        "Dwarven": "Bisek",
+        "Elvish": "Fiso",
+        "Goblin": "Tongmul",
+        "Human": "Naquuv"
+    },
+    "Venerate": {
+        "English": "Venerate",
+        "Dwarven": "Lanzil",
+        "Elvish": "Obe",
+        "Goblin": "Oka",
+        "Human": "Onuth"
+    },
+    "Vise": {
+        "English": "Vise",
+        "Dwarven": "Tost",
+        "Elvish": "Midebí",
+        "Goblin": "Snol",
+        "Human": "Kád"
+    },
+    "Voice": {
+        "English": "Voice",
+        "Dwarven": "Okol",
+        "Elvish": "Léna",
+        "Goblin": "Dod",
+        "Human": "Perad"
+    },
+    "Waddle": {
+        "English": "Waddle",
+        "Dwarven": "Nursher",
+        "Elvish": "Nima",
+        "Goblin": "Ukuz",
+        "Human": "Pima"
+    },
+    "Wade": {
+        "English": "Wade",
+        "Dwarven": "Rodim",
+        "Elvish": "Ethefa",
+        "Goblin": "Muspbo",
+        "Human": "Huro"
+    },
+    "Walk": {
+        "English": "Walk",
+        "Dwarven": "Berdan",
+        "Elvish": "Bírare",
+        "Goblin": "Gobum",
+        "Human": "Oma"
+    },
+    "Wallow": {
+        "English": "Wallow",
+        "Dwarven": "Ngesgäs",
+        "Elvish": "Ònebe",
+        "Goblin": "Nokut",
+        "Human": "Stramo"
+    },
+    "Wander": {
+        "English": "Wander",
+        "Dwarven": "Legon",
+        "Elvish": "Taveve",
+        "Goblin": "Snus",
+        "Human": "Lico"
+    },
+    "Wane": {
+        "English": "Wane",
+        "Dwarven": "Lelum",
+        "Elvish": "Iyicì",
+        "Goblin": "Ulut",
+        "Human": "Dolil"
+    },
+    "Ward": {
+        "English": "Ward",
+        "Dwarven": "Zalìs",
+        "Elvish": "Semabe",
+        "Goblin": "Duzob",
+        "Human": "Kawe"
+    },
+    "Warn": {
+        "English": "Warn",
+        "Dwarven": "Nisûn",
+        "Elvish": "Seti",
+        "Goblin": "Nusta",
+        "Human": "Gistri"
+    },
+    "Wash": {
+        "English": "Wash",
+        "Dwarven": "Stelid",
+        "Elvish": "Lebovo",
+        "Goblin": "Lulo",
+        "Human": "Tega"
+    },
+    "Waste": {
+        "English": "Waste",
+        "Dwarven": "Lidod",
+        "Elvish": "Tholatho",
+        "Goblin": "Dêsmo",
+        "Human": "Tob"
+    },
+    "Watch": {
+        "English": "Watch",
+        "Dwarven": "Azin",
+        "Elvish": "Casatha",
+        "Goblin": "Suru",
+        "Human": "Kiwan"
+    },
+    "Wave": {
+        "English": "Wave",
+        "Dwarven": "Uker",
+        "Elvish": "Iru",
+        "Goblin": "Ustxu",
+        "Human": "Irum"
+    },
+    "Wax": {
+        "English": "Wax",
+        "Dwarven": "Rithlut",
+        "Elvish": "Imepe",
+        "Goblin": "Tungû",
+        "Human": "Ganuh"
+    },
+    "Weaken": {
+        "English": "Weaken",
+        "Dwarven": "Othil",
+        "Elvish": "Eneme",
+        "Goblin": "Tosno",
+        "Human": "Rith"
+    },
+    "Wear": {
+        "English": "Wear",
+        "Dwarven": "Nilun",
+        "Elvish": "Ribe",
+        "Goblin": "Kasprax",
+        "Human": "Damar"
+    },
+    "Weather": {
+        "English": "Weather",
+        "Dwarven": "Edól",
+        "Elvish": "Ecemu",
+        "Goblin": "Ozu",
+        "Human": "Equo"
+    },
+    "Web": {
+        "English": "Web",
+        "Dwarven": "Orshar",
+        "Elvish": "Ilu",
+        "Goblin": "Ngostong",
+        "Human": "Mete"
+    },
+    "Weep": {
+        "English": "Weep",
+        "Dwarven": "Sibnir",
+        "Elvish": "Cedi",
+        "Goblin": "Odgu",
+        "Human": "Oda"
+    },
+    "Wet": {
+        "English": "Wet",
+        "Dwarven": "Kathil",
+        "Elvish": "Bamefa",
+        "Goblin": "Ugust",
+        "Human": "Ukor"
+    },
+    "Wheel": {
+        "English": "Wheel",
+        "Dwarven": "Kol",
+        "Elvish": "Rere",
+        "Goblin": "Sost",
+        "Human": "Pobe"
+    },
+    "Whip": {
+        "English": "Whip",
+        "Dwarven": "Bomrek",
+        "Elvish": "Baci",
+        "Goblin": "Sox",
+        "Human": "Uthret"
+    },
+    "Whirl": {
+        "English": "Whirl",
+        "Dwarven": "Estil",
+        "Elvish": "Elira",
+        "Goblin": "Tud",
+        "Human": "Amil"
+    },
+    "Whisk": {
+        "English": "Whisk",
+        "Dwarven": "Boket",
+        "Elvish": "Óça",
+        "Goblin": "Smosuk",
+        "Human": "Tuc"
+    },
+    "Whisper": {
+        "English": "Whisper",
+        "Dwarven": "Iklist",
+        "Elvish": "Ayíti",
+        "Goblin": "Ugsnor",
+        "Human": "Ithbi"
+    },
+    "Wield": {
+        "English": "Wield",
+        "Dwarven": "Shos",
+        "Elvish": "Mazadi",
+        "Goblin": "Öl",
+        "Human": "Ir"
+    },
+    "Wilt": {
+        "English": "Wilt",
+        "Dwarven": "Othôs",
+        "Elvish": "Rónira",
+        "Goblin": "Ulta",
+        "Human": "Nathob"
+    },
+    "Wind": {
+        "English": "Wind",
+        "Dwarven": "Oslan",
+        "Elvish": "Élitho",
+        "Goblin": "Esmên",
+        "Human": "Kortil"
+    },
+    "Winnow": {
+        "English": "Winnow",
+        "Dwarven": "Lakàl",
+        "Elvish": "Reyine",
+        "Goblin": "Spaspgul",
+        "Human": "Nosta"
+    },
+    "Wipe": {
+        "English": "Wipe",
+        "Dwarven": "Rôber",
+        "Elvish": "Niro",
+        "Goblin": "Slolspo",
+        "Human": "Ladgi"
+    },
+    "Wish": {
+        "English": "Wish",
+        "Dwarven": "Nabår",
+        "Elvish": "Ilifa",
+        "Goblin": "Xoku",
+        "Human": "Quosa"
+    },
+    "Wither": {
+        "English": "Wither",
+        "Dwarven": "Nentuk",
+        "Elvish": "Uthe",
+        "Goblin": "Ngab",
+        "Human": "Omre"
+    },
+    "Wonder": {
+        "English": "Wonder",
+        "Dwarven": "Kulal",
+        "Elvish": "Ibena",
+        "Goblin": "Xomu",
+        "Human": "Cathi"
+    },
+    "Work": {
+        "English": "Work",
+        "Dwarven": "Ducim",
+        "Elvish": "Eyila",
+        "Goblin": "Ngebo",
+        "Human": "Pan"
+    },
+    "Worry": {
+        "English": "Worry",
+        "Dwarven": "Bumal",
+        "Elvish": "Letha",
+        "Goblin": "Omstu",
+        "Human": "Vit"
+    },
+    "Worship": {
+        "English": "Worship",
+        "Dwarven": "Soloz",
+        "Elvish": "Cili",
+        "Goblin": "Örä",
+        "Human": "Isman"
+    },
+    "Wrack": {
+        "English": "Wrack",
+        "Dwarven": "Shoshin",
+        "Elvish": "Yithe",
+        "Goblin": "Tamo",
+        "Human": "Upan"
+    },
+    "Wring": {
+        "English": "Wring",
+        "Dwarven": "Ulzest",
+        "Elvish": "Èni",
+        "Goblin": "Azu",
+        "Human": "Ismig"
+    },
+    "Yawn": {
+        "English": "Yawn",
+        "Dwarven": "Åm",
+        "Elvish": "Eya",
+        "Goblin": "Rösnus",
+        "Human": "Otnge"
+    },
+    "Yell": {
+        "English": "Yell",
+        "Dwarven": "Taron",
+        "Elvish": "Vafe",
+        "Goblin": "Osmoz",
+        "Human": "Alá"
+    }
+}

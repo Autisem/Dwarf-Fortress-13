@@ -219,7 +219,7 @@ SUBSYSTEM_DEF(ticker)
 
 		if(!mode)
 			if(!runnable_modes.len)
-				to_chat(world, span_green("<B>Ничего не вышло!</B> Откатываем таймер назад."))
+				to_chat(world, span_green("<B>Error setting up game!</B> Reverting to pre-game lobby."))
 				return FALSE
 			mode = pickweight(runnable_modes)
 			if(!mode)	//too few roundtypes all run too recently
@@ -228,7 +228,7 @@ SUBSYSTEM_DEF(ticker)
 	else
 		mode = config.pick_mode(GLOB.master_mode)
 		if(!mode.can_start())
-			to_chat(world, span_green("<B>Режим [mode.name] не хочет запускаться.</B> Недостаточно игроков, требуется [mode.required_players] готовых и [mode.required_enemies] антагов. Откатываем таймер назад."))
+			to_chat(world, span_green("<B>Gamemode [mode.name] failed to start.</B> Only [mode.required_players] ready players for [mode.required_enemies] antags. Reverting to pre-game lobby."))
 			qdel(mode)
 			mode = null
 			SSjob.ResetOccupations()
@@ -245,18 +245,18 @@ SUBSYSTEM_DEF(ticker)
 	if(retrycap >= 4)
 		hide_mode = FALSE
 		mode = config.pick_mode("extended")
-		to_chat(world, "<span class='notice big'>Время отдыхать!</span>")
+		to_chat(world, "<span class='notice big'>Enjoy your stay!</span>")
 	else
 		if(!GLOB.Debug2)
 			if(!can_continue)
 				log_game("[mode.name] failed pre_setup, cause: [mode.setup_error]")
 				QDEL_NULL(mode)
 				retrycap++
-				to_chat(world, span_notice("Станция не сможет работать без <B>Капитана</B>. [retrycap]/5 до отдыха."))
+				to_chat(world, span_notice("The game cannot start without a <B>captain</B>. [retrycap]/5 until extended."))
 				SSjob.ResetOccupations()
 				return FALSE
 		else
-			message_admins(span_notice("ДЕБАГ: Обходим стартовые проверки... <b>Не забудьте отключить режим Debug-Game после успешного старта!</b>"))
+			message_admins(span_notice("DEBUG: Bypassing start checks... Don't forget to disable Debug-Game after the game start!"))
 
 	CHECK_TICK
 
@@ -265,7 +265,7 @@ SUBSYSTEM_DEF(ticker)
 		for (var/datum/game_mode/M in runnable_modes)
 			modes += M.name
 		modes = sort_list(modes)
-		to_chat(world, "<b>Режим: секрет!\nВозможные режимы:</B> [english_list(modes)]")
+		to_chat(world, "<b>Gamemode: secret!\nPossible gamemodes:</B> [english_list(modes)]")
 	else
 		mode.announce()
 
@@ -637,20 +637,20 @@ SUBSYSTEM_DEF(ticker)
 
 	var/skip_delay = check_rights()
 	if(delay_end && !skip_delay)
-		to_chat(world, span_boldannounce("Конец продлён."))
+		to_chat(world, span_boldannounce("Restart was delayed."))
 		return
 
 	if(world.system_type == UNIX)
 		WRITE_FILE("nhb/ended", world.time)
 
-	to_chat(world, span_boldannounce("Игра закончится через [DisplayTimeText(delay)]. [reason]"))
+	to_chat(world, span_boldannounce("Game restart in [DisplayTimeText(delay)]. [reason]"))
 
 	var/start_wait = world.time
 	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2))	//don't wait forever
 	sleep(delay - (world.time - start_wait))
 
 	if(delay_end && !skip_delay)
-		to_chat(world, span_boldannounce("Перезагрузка отменена. Веселье продолжается!"))
+		to_chat(world, span_boldannounce("Restart cancelled."))
 		return
 	if(end_string)
 		end_state = end_string
@@ -659,7 +659,7 @@ SUBSYSTEM_DEF(ticker)
 	var/gamelogloc = CONFIG_GET(string/gamelogurl)
 
 	if(statspage)
-		to_chat(world, span_info("Статистику по раундам вы можете найти на <a href=\"[statspage][GLOB.round_id]\">нашем сайте!</a>"))
+		to_chat(world, span_info("Round stats can be located <a href=\"[statspage][GLOB.round_id]\">at this website!</a>"))
 	else if(gamelogloc)
 		to_chat(world, span_info("Round logs can be located <a href=\"[gamelogloc]\">at this website!</a>"))
 
