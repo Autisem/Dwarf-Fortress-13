@@ -190,7 +190,7 @@
 	log = FALSE
 
 /datum/world_topic/adminwho/Run(list/input)
-	var/msg = "Педали:\n"
+	var/msg = "Admins:\n"
 	for(var/adm in GLOB.admins)
 		var/client/C = adm
 		if(!C.holder.fakekey)
@@ -203,7 +203,7 @@
 	log = FALSE
 
 /datum/world_topic/who/Run(list/input)
-	var/msg = "Текущие игроки:\n"
+	var/msg = "Players:\n"
 	var/n = 0
 	for(var/client/C in GLOB.clients)
 		n++
@@ -211,7 +211,7 @@
 			msg += "\t[C.holder.fakekey]\n"
 		else
 			msg += "\t[C.key]\n"
-	msg += "Всего: [n]"
+	msg += "Total: [n]"
 	return msg
 
 /datum/world_topic/asay
@@ -287,7 +287,7 @@
 		return "Error: callproc(): [procpath] does not exist."
 	var/list/lst = r_json_decode(input["args"])
 	if(!lst)
-		return "NO ARGS ARRRRGH NIGGER"
+		return "NO ARGS ARRRRGH"
 
 	log_admin("InCon -> [procname]() -> [lst.len ? "[list2params(lst)]":"0 args"].")
 	message_admins("InCon -> [procname]() -> [lst.len ? "[list2params(lst)]":"0 args"].")
