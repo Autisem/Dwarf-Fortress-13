@@ -98,7 +98,6 @@
 			var/mob/living/L = AM
 			L.notransform = TRUE
 			L.Paralyze(20 SECONDS)
-			inc_metabalance(L, METACOIN_CHASM_REWARD, reason="<b>АААААААААААААААААААААААААААААААААААААААААААА!!!</b>")
 
 		var/oldtransform = AM.transform
 		var/oldcolor = AM.color

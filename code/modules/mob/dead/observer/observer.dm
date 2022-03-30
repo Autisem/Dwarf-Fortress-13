@@ -293,7 +293,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(stat != DEAD)
 		if(incapacitated() && succumb())
-			inc_metabalance(src, METACOIN_GHOSTIZE_REWARD, reason="Откуп за душу стоил много.")
 			ghostize(FALSE)
 			return
 

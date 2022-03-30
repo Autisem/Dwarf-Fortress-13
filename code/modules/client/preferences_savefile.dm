@@ -42,20 +42,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 //if your savefile is 3 months out of date, then 'tough shit'.
 
 /datum/preferences/proc/update_preferences(current_version, savefile/S)
-	if(current_version < 49)
-		var/list/legacy_purchases = purchased_gear.Copy()
-		purchased_gear.Cut()
-		equipped_gear.Cut() //Not gonna bother.
-		for(var/l_gear in legacy_purchases)
-			var/n_gear
-			for(var/rg_nam in GLOB.gear_datums) //this is ugly.
-				var/datum/gear/r_gear = GLOB.gear_datums[rg_nam]
-				if(r_gear.display_name == l_gear)
-					n_gear = r_gear.id
-					break
-			if(n_gear)
-				purchased_gear += n_gear
-
 	if (current_version < 50)
 		LAZYADD(key_bindings["Space"], "hold_throw_mode")
 

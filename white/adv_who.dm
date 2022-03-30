@@ -19,9 +19,6 @@
 			if(!G.started_as_observer)//If you aghost to do this, KorPhaeron will deadmin you in your sleep.
 				log_admin("[key_name(usr)] checked advanced who in-round")
 			for(var/client/C in GLOB.clients)
-				if(C.ckey in GLOB.anonists_deb)
-					continue
-
 				var/entry = "\t"
 
 				if (check_donations(C.ckey))
@@ -85,9 +82,6 @@
 
 		else//If they don't have +ADMIN, only show hidden admins
 			for(var/client/C in GLOB.clients)
-				if(C.ckey in GLOB.anonists_deb)
-					continue
-
 				var/entry = "\t[C.key]"
 				if(C.holder && C.holder.fakekey)
 					entry += " <i>(as [C.holder.fakekey])</i>"
@@ -96,9 +90,6 @@
 				Lines += entry
 	else
 		for(var/client/C in GLOB.clients)
-			if(C.ckey in GLOB.anonists_deb)
-				continue
-
 			if(C.holder && C.holder.fakekey)
 				Lines += "\t[C.holder.fakekey] - ([round(C.avgping, 1)]ms)"
 			else if (C.holder)

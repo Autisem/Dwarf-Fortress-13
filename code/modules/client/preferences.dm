@@ -841,46 +841,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				SetChoices(user)
 		return TRUE
 
-	if(href_list["preference"] == "gear")
-		if(href_list["purchase_gear"])
-			var/datum/gear/TG = GLOB.gear_datums[href_list["purchase_gear"]]
-			if(TG.cost < user.client.get_metabalance())
-				if(TG.purchase(user.client))
-					purchased_gear += TG.id
-					inc_metabalance(user, (TG.cost * -1), TRUE, "You buy [TG.display_name].")
-					save_preferences()
-			else
-				to_chat(user, span_warning("Not enough chronos to buy [TG.display_name]!"))
-		if(href_list["toggle_gear"])
-			var/datum/gear/TG = GLOB.gear_datums[href_list["toggle_gear"]]
-			if(TG.id in equipped_gear)
-				equipped_gear -= TG.id
-			else
-				var/list/type_blacklist = list()
-				var/list/slot_blacklist = list()
-				for(var/gear_id in equipped_gear)
-					var/datum/gear/G = GLOB.gear_datums[gear_id]
-					if(istype(G))
-						if(!(G.subtype_path in type_blacklist))
-							type_blacklist += G.subtype_path
-						if(!(G.slot in slot_blacklist))
-							slot_blacklist += G.slot
-				if((TG.id in purchased_gear))
-					if(!(TG.subtype_path in type_blacklist) || !(TG.slot in slot_blacklist))
-						equipped_gear += TG.id
-					else
-						to_chat(user, span_warning("Not enough space for [TG.display_name]. Something else is already equipped there."))
-			save_preferences()
-
-		else if(href_list["select_category"])
-			gear_tab = href_list["select_category"]
-		else if(href_list["clear_loadout"])
-			equipped_gear.Cut()
-			save_preferences()
-
-		ShowChoices(user)
-		return
-
 	switch(href_list["task"])
 		if("random")
 			switch(href_list["preference"])

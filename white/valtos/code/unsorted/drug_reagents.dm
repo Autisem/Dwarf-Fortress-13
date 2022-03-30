@@ -340,12 +340,6 @@
 			addtimer(CALLBACK(whole_screen, /atom/movable/screen/plane_master/.proc/backdrop, C), 201) //reset backdrop filters so they reappear
 		to_chat(C, "<b><big>Неужели отпустило...</big></b>")
 
-		if(C.client && current_cycle > 100)
-			if(C.client.get_metabalance() < 0)
-				to_chat(C, "<b><big>Эта терапия излечила мой аутизм.</big></b>")
-				C.client.set_metacoin_count(0)
-				return
-
 		if(prob(50) && current_cycle > 50)
 			spawn(30)
 				to_chat(C, "<b><big>Или нет?!</big></b>")

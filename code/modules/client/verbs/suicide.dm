@@ -39,8 +39,6 @@
 					set_suicide(FALSE)
 					return
 
-				inc_metabalance(src, METACOIN_SUICIDE_REWARD, reason="За всё нужно платить.")
-
 				suicide_log()
 
 				var/damage_mod = 0
@@ -120,7 +118,6 @@
 	if(!canSuicide())
 		return
 	if(confirm == "Yes")
-		inc_metabalance(src, METACOIN_SUICIDE_REWARD, reason="За всё нужно платить.")
 		set_suicide(TRUE)
 		visible_message(span_danger("Мозг [capitalize(src.name)] начинает размякать и расслабляться. Похоже, что [ru_who(TRUE)] потерял желание жить.") , \
 						span_userdanger("Мозг [capitalize(src.name)] начинает размякать и расслабляться. Похоже, что [ru_who(TRUE)] потерял желание жить.."))
@@ -138,7 +135,6 @@
 	if(!canSuicide())
 		return
 	if(confirm == "Yes")
-		inc_metabalance(src, METACOIN_SUICIDE_REWARD, reason="За всё нужно платить.")
 		set_suicide(TRUE)
 		visible_message(span_danger("[capitalize(src.name)] начинает падать. Похоже, что [p_theyve()] потерял желание жить.") , \
 						span_userdanger("[capitalize(src.name)] начинает падать. Похоже, что [p_theyve()] потерял желание жить."))

@@ -246,9 +246,6 @@
 	if(sign_choice != "Да")
 		painting_metadata.creator_name = "Аноним"
 
-	if(user.client)
-		inc_metabalance(user, METACOIN_ART_REWARD, reason="Новая картина!")
-
 	SStgui.update_uis(src)
 
 

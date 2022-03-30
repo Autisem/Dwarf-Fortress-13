@@ -105,9 +105,5 @@
 /datum/smite/givexeno/effect(client/user, mob/living/target)
 	. = ..()
 	var/mob/living/simple_animal/xaxi/new_xaxi = new /mob/living/simple_animal/xaxi(target.loc)
-	if(target.ckey in GLOB.anonists_deb)
-		new_xaxi.key = user.key
-		qdel(user)
-	else
-		new_xaxi.key = target.key
-		qdel(target)
+	new_xaxi.key = target.key
+	qdel(target)
