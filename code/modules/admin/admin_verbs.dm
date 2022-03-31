@@ -96,8 +96,6 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/polymorph_all,
 	/client/proc/show_tip,
 	/client/proc/smite,
-	/client/proc/toggle_prikol,
-	/client/proc/anime_voiceover,
 	/client/proc/change_lobby_music,
 	/client/proc/cmd_admin_toggle_fov
 	))
@@ -183,7 +181,7 @@ GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/possess, /proc/r
 GLOBAL_PROTECT(admin_verbs_possess)
 GLOBAL_LIST_INIT(admin_verbs_permissions, list(/client/proc/edit_admin_permissions, /client/proc/add_bug_down))
 GLOBAL_PROTECT(admin_verbs_permissions)
-GLOBAL_LIST_INIT(admin_verbs_secured, list(/client/proc/manage_some_donations, /client/proc/manage_player_ranks))
+GLOBAL_LIST_INIT(admin_verbs_secured, list(/client/proc/manage_player_ranks))
 GLOBAL_PROTECT(admin_verbs_secured)
 GLOBAL_LIST_INIT(admin_verbs_poll, list(/client/proc/poll_panel))
 GLOBAL_PROTECT(admin_verbs_poll)

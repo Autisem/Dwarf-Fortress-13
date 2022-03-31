@@ -94,8 +94,8 @@
 		body += "<a href='?_src_=holder;[HrefToken()];modantagrep=subtract;mob=[REF(M)]'>-</a> "
 		body += "<a href='?_src_=holder;[HrefToken()];modantagrep=set;mob=[REF(M)]'>=</a> "
 		body += "<a href='?_src_=holder;[HrefToken()];modantagrep=zero;mob=[REF(M)]'>0</a>"
-		if(check_donations(M.client.ckey))
-			body += "<br><b>Donator:</b> [check_donations(M.client.ckey)] р."
+		// if(check_donations(M.client.ckey))
+		// 	body += "<br><b>Donator:</b> [check_donations(M.client.ckey)] р."
 		var/full_version = "Unknown"
 		if(M.client.byond_version)
 			full_version = "[M.client.byond_version].[M.client.byond_build ? M.client.byond_build : "xxx"]"

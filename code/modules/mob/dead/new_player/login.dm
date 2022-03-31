@@ -54,7 +54,7 @@
 			postfix = "soon"
 		to_chat(src, "Please, setup your character and press \"Ready\". Story will start in [postfix].")
 
-	if (!GLOB.donators[ckey]) //It doesn't exist yet
-		load_donator(ckey)
+	// if (!GLOB.donators[ckey]) //It doesn't exist yet
+	// 	load_donator(ckey)
 
 	client.show_lobby()

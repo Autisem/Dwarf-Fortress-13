@@ -94,9 +94,9 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 						to_chat(C, span_ooc(span_prefix("[tagmsg]:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]")))
 
 			else if(!(key in C.prefs.ignoring))
-				if(check_donations(ckey) >= 100)
-					to_chat(C, "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'><b><span class='prefix'>[tagmsg]:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>")
-				else if(GLOB.OOC_COLOR)
+				// if(check_donations(ckey) >= 100)
+				// 	to_chat(C, "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'><b><span class='prefix'>[tagmsg]:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>")
+				if(GLOB.OOC_COLOR)
 					to_chat(C, "<font color='[GLOB.OOC_COLOR]'><b><span class='prefix'>[tagmsg]:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>")
 				else
 					to_chat(C, span_ooc(span_prefix("[tagmsg]:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]")))
@@ -166,9 +166,10 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	set category = null
 
 	if(!holder || !check_rights_for(src, R_ADMIN))
-		if(!check_donations(ckey) >= 100)
-			if(!is_content_unlocked())
-				return
+		// if(!check_donations(ckey) >= 100)
+		// 	if(!is_content_unlocked())
+		// 		return
+		return
 
 	var/new_ooccolor = input(src, "Выбирай цвет OOC. Учитывай тёмную и светлую темы.", "Цвет OOC", prefs.ooccolor) as color|null
 	if(isnull(new_ooccolor))
@@ -185,12 +186,13 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	set category = null
 
 	if(!holder || !check_rights_for(src, R_ADMIN))
-		if(!check_donations(ckey) >= 100)
-			if(!is_content_unlocked())
-				return
+		// if(!check_donations(ckey) >= 100)
+		// 	if(!is_content_unlocked())
+		// 		return
+		return
 
-		prefs.ooccolor = initial(prefs.ooccolor)
-		prefs.save_preferences()
+	prefs.ooccolor = initial(prefs.ooccolor)
+	prefs.save_preferences()
 
 //Checks admin notice
 /client/verb/admin_notice()

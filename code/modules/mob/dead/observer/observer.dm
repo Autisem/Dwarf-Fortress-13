@@ -142,10 +142,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	show_data_huds()
 	data_huds_on = 1
 
-	spawn(10)
-		if(fexists("data/custom_ghosts/[ckey].dmi"))
-			swap_icons()
-
 	SSpoints_of_interest.make_point_of_interest(src)
 
 /mob/dead/observer/Destroy()

@@ -21,8 +21,8 @@
 			for(var/client/C in GLOB.clients)
 				var/entry = "\t"
 
-				if (check_donations(C.ckey))
-					entry += "<b>\[$\]</b> "
+				// if (check_donations(C.ckey))
+				// 	entry += "<b>\[$\]</b> "
 
 				entry += "[C.key]"
 				if(C.holder && C.holder.fakekey)
