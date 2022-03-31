@@ -19,7 +19,6 @@
 #define CULT_EYES "cult_eyes"
 #define HOLYWATER_TRAIT "holywater"
 #define VANGUARD_TRAIT "vanguard"
-#define TRAIT_NANITE_MONITORING	"nanite_monitoring" //The mob's nanites are sending a monitoring signal visible on diag HUD
 #define VR_ZONE_TRAIT "vr-zone-trait"
 #define ANTI_DROP_IMPLANT_TRAIT "anti-drop-implant"
 #define GENERIC_ITEM_TRAIT "generic_item"
