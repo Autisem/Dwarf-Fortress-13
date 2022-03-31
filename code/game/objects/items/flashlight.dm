@@ -357,12 +357,13 @@
 	fuel = rand(8000, 9000)
 
 /obj/item/flashlight/lantern
-	name = "lantern"
-	icon_state = "lantern"
+	name = "lamp"
+	icon = 'dwarfs/icons/items/equipment.dmi'
+	icon_state = "lamp"
 	inhand_icon_state = "lantern"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
-	desc = "A mining lantern."
+	desc = "Brother, lamp"
 	light_range = 6			// luminosity when on
 	light_system = MOVABLE_LIGHT
 	light_color = "#e7c16d"

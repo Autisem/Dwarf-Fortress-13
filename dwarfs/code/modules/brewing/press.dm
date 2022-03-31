@@ -1,7 +1,7 @@
 /obj/structure/press
-	name = "juicer"
-	desc = "juicy?"
-	icon = 'dwarfs/icons/structures/FluidPress.dmi'
+	name = "Fluid press"
+	desc = "Used by dwarves (and not only) to extract sweet (and sour) juices"
+	icon = 'dwarfs/icons/structures/32x64.dmi'
 	icon_state = "press_open"
 	density = 1
 	anchored = 1
@@ -68,19 +68,19 @@
 	. = ..()
 	switch(icon_state)
 		if("press_working")
-			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/FluidPress.dmi', "working_overlay")
+			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/32x64.dmi', "working_overlay")
 			var/obj/item/growable/G = held_items[length(held_items)]
 			var/_color = initial(G.juice_type.color)
 			M.color = _color
 			. += M
 		if("press_open_item")
-			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/FluidPress.dmi', "item_overlay")
+			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/32x64.dmi', "item_overlay")
 			var/obj/item/growable/G = held_items[length(held_items)]
 			var/_color = initial(G.juice_type.color)
 			M.color = _color
 			. += M
 		if("press_finished")
-			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/FluidPress.dmi', "finished_overlay")
+			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/32x64.dmi', "finished_overlay")
 			var/_color = mix_color_from_reagents(reagents.reagent_list)
 			M.color = _color
 			. += M
