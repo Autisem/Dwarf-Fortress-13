@@ -58,7 +58,7 @@
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "gD" = (
-/obj/machinery/torch_fixture{
+/obj/structure/torch_fixture{
 	dir = 4;
 	on = 1;
 	pixel_x = 32
@@ -67,7 +67,7 @@
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "gT" = (
-/obj/machinery/torch_fixture{
+/obj/structure/torch_fixture{
 	dir = 8;
 	on = 1;
 	pixel_x = -32
@@ -75,7 +75,7 @@
 /turf/open/floor/stone/raw,
 /area/dwarf/fortress)
 "gW" = (
-/obj/machinery/torch_fixture{
+/obj/structure/torch_fixture{
 	dir = 8;
 	on = 1;
 	pixel_x = -32
@@ -83,7 +83,7 @@
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "ha" = (
-/obj/machinery/torch_fixture{
+/obj/structure/torch_fixture{
 	dir = 4;
 	on = 1;
 	pixel_x = 32
@@ -95,7 +95,7 @@
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "hL" = (
-/obj/machinery/torch_fixture{
+/obj/structure/torch_fixture{
 	dir = 1;
 	on = 1;
 	pixel_y = 32
@@ -126,7 +126,7 @@
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "lq" = (
-/obj/machinery/torch_fixture{
+/obj/structure/torch_fixture{
 	dir = 4;
 	on = 1;
 	pixel_x = 32
@@ -148,7 +148,7 @@
 /turf/open/floor/stone/raw,
 /area/dwarf/fortress)
 "md" = (
-/obj/machinery/torch_fixture{
+/obj/structure/torch_fixture{
 	dir = 2;
 	on = 1;
 	pixel_y = 0
@@ -156,7 +156,7 @@
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "mf" = (
-/obj/machinery/torch_fixture,
+/obj/structure/torch_fixture,
 /turf/open/floor/stone/raw,
 /area/dwarf/fortress)
 "ns" = (
@@ -165,7 +165,7 @@
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "nG" = (
-/obj/machinery/torch_fixture{
+/obj/structure/torch_fixture{
 	dir = 1;
 	on = 1;
 	pixel_y = 32
@@ -221,10 +221,6 @@
 /obj/item/flashlight/flare/torch,
 /obj/item/flashlight/flare/torch,
 /obj/item/flashlight/flare/torch,
-/turf/open/floor/stone/raw,
-/area/dwarf/fortress)
-"rv" = (
-/obj/structure/grille,
 /turf/open/floor/stone/raw,
 /area/dwarf/fortress)
 "rQ" = (
@@ -106949,7 +106945,7 @@ el
 kL
 el
 el
-rv
+iq
 el
 el
 el
@@ -109961,7 +109957,7 @@ cK
 cK
 cK
 cK
-rv
+iq
 cK
 fv
 fv
@@ -195722,7 +195718,7 @@ kJ
 kg
 el
 el
-rv
+iq
 el
 el
 iq
@@ -196049,7 +196045,7 @@ dG
 dG
 dG
 dG
-rv
+iq
 vf
 vf
 vf
@@ -197534,7 +197530,7 @@ gc
 gc
 gc
 el
-rv
+iq
 el
 cK
 cK
@@ -197545,12 +197541,12 @@ el
 el
 kL
 el
-rv
+iq
 el
 el
 el
-rv
-rv
+iq
+iq
 el
 el
 nV
@@ -197861,7 +197857,7 @@ vf
 Tv
 Tv
 dG
-rv
+iq
 vf
 vf
 vf
@@ -198755,8 +198751,8 @@ gc
 cK
 el
 el
-rv
-rv
+iq
+iq
 el
 el
 nV
