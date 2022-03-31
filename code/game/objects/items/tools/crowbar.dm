@@ -62,7 +62,7 @@
 	icon = 'white/valtos/icons/items.dmi'
 	lefthand_file = 'white/valtos/icons/lefthand.dmi'
 	righthand_file = 'white/valtos/icons/righthand.dmi'
-	custom_materials = list(/datum/material/iron=150,/datum/material/silver=50,/datum/material/titanium=25)
+	custom_materials = list(/datum/material/iron=150,/datum/material/silver=50)
 	usesound = 'sound/items/jaws_pry.ogg'
 	force = 15
 	toolspeed = 0.7

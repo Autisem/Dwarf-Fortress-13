@@ -243,15 +243,3 @@
 	toxTolerance = 10 //can shrug off up to 10u of toxins
 	toxLethality = 0.8 * LIVER_DEFAULT_TOX_LETHALITY //20% less damage than a normal liver
 	emp_vulnerability = 20
-
-/obj/item/organ/liver/cybernetic/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	if(!COOLDOWN_FINISHED(src, severe_cooldown)) //So we cant just spam emp to kill people.
-		owner.adjustToxLoss(10)
-		COOLDOWN_START(src, severe_cooldown, 10 SECONDS)
-	if(prob(emp_vulnerability/severity)) //Chance of permanent effects
-		organ_flags |= ORGAN_SYNTHETIC_EMP //Starts organ faliure - gonna need replacing soon.
-
-

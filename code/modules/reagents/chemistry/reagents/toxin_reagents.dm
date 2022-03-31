@@ -58,7 +58,6 @@
 	taste_mult = 1.5
 	color = "#8228A0"
 	toxpwr = 3
-	material = /datum/material/plasma
 	penetrates_skin = NONE
 	ph = 4
 	burning_temperature = 4500//plasma is hot!!

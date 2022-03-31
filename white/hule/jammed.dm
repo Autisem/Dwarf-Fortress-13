@@ -58,15 +58,3 @@
 /datum/component/jammed/energy/on_fix(obj/item/gun/fixed_gun, mob/user)
 	return //не передергивание затвора же у енергооружия проигрываца будет
 
-/datum/component/jammed/energy/jammed_fire(obj/item/gun/source, mob/user)
-	var/obj/item/gun/energy/E = source
-	if(prob(15))
-		if(prob(5))
-			user.visible_message(span_danger("[user] совершает глупую ошибку!"))
-			playsound(get_turf(E), 'white/valtos/sounds/explo.ogg', 80) //лол валера че за звуки из аниме библиотек
-			spawn(1 SECONDS)
-				empulse(get_turf(E), rand(1, 4), rand(4, 8))
-				explosion(get_turf(E), -1, 0, 1, 2)
-				qdel(E)
-		else
-			electrocute_mob(user, E.cell, E) // а ето неработает

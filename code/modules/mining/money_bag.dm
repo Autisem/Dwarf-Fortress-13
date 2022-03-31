@@ -27,4 +27,3 @@
 	new /obj/item/coin/silver(src)
 	new /obj/item/coin/gold(src)
 	new /obj/item/coin/gold(src)
-	new /obj/item/coin/adamantine(src)

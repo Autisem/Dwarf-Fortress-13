@@ -391,12 +391,6 @@
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
-/obj/item/clothing/glasses/thermal/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	thermal_overload()
-
 /obj/item/clothing/glasses/thermal/xray
 	name = "рентгеновские очки синдиката"
 	desc = "Пара рентгеновских очков, изготовленных Синдикатом."

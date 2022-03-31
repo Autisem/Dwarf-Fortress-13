@@ -208,26 +208,6 @@
 	dose_available = TRUE
 	emp_vulnerability = 20
 
-/obj/item/organ/heart/cybernetic/emp_act(severity)
-	. = ..()
-
-	// If the owner doesn't need a heart, we don't need to do anything with it.
-	if(!owner.needs_heart())
-		return
-
-	if(. & EMP_PROTECT_SELF)
-		return
-	if(!COOLDOWN_FINISHED(src, severe_cooldown)) //So we cant just spam emp to kill people.
-		owner.Dizzy(10)
-		owner.losebreath += 10
-		COOLDOWN_START(src, severe_cooldown, 20 SECONDS)
-	if(prob(emp_vulnerability/severity)) //Chance of permanent effects
-		organ_flags |= ORGAN_SYNTHETIC_EMP //Starts organ faliure - gonna need replacing soon.
-		Stop()
-		owner.visible_message(span_danger("[owner] хватается за [owner.ru_ego()] грудь в порыве сердечного приступа!") , \
-			span_userdanger("Чувствую ужасную боль в груди, как будто остановилось сердце!"))
-		addtimer(CALLBACK(src, .proc/Restart), 10 SECONDS)
-
 /obj/item/organ/heart/cybernetic/on_life(delta_time, times_fired)
 	. = ..()
 	if(dose_available && owner.health <= owner.crit_threshold && !owner.reagents.has_reagent(rid))

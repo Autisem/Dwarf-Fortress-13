@@ -1,5 +1,4 @@
 GLOBAL_LIST_INIT(rod_recipes, list ( \
-	new/datum/stack_recipe("решётка", /obj/structure/grille, 2, time = 10, one_per_turf = TRUE, on_floor = FALSE), \
 	new/datum/stack_recipe("рама стола", /obj/structure/table_frame, 2, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("корзина для белья", /obj/structure/bedsheetbin/empty, 2, time = 5, one_per_turf = FALSE), \
 	new/datum/stack_recipe("перила", /obj/structure/railing, 3, time = 18, window_checks = TRUE), \
@@ -92,7 +91,6 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	color = "#5286b9ff"
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_NORMAL
-	mats_per_unit = list(/datum/material/iron=1000, /datum/material/plasma=500, /datum/material/titanium=2000)
 	max_amount = 30
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 	merge_type = /obj/item/stack/rods/lava

@@ -42,7 +42,7 @@
 			if(isopenturf(turf_two))
 				var/obstacles = FALSE
 				for(var/obj/O in turf_two)
-					if(O.density && (istype(O, /obj/structure/window) || istype(O, /obj/machinery/door)))
+					if(O.density && (istype(O, /obj/structure/window)))
 						obstacles = TRUE
 				if(!obstacles)
 					user.forceMove(turf_two)

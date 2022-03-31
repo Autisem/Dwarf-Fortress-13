@@ -89,22 +89,6 @@
 		qdel(AM)
 
 /mob/living/simple_animal/mouse/handle_automated_action()
-	if(prob(chew_probability))
-		var/turf/open/floor/F = get_turf(src)
-		if(istype(F) && !F.intact)
-			var/obj/structure/cable/C = locate() in F
-			if(C && prob(15))
-				var/powered = C.avail()
-				if(powered && !HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
-					visible_message(span_warning("[src] chews through the [C]. It's toast!"))
-					death(toast = TRUE)
-				else
-					visible_message(span_warning("[src] chews through the [C]."))
-
-				C.deconstruct()
-				if(powered)
-					playsound(src, 'sound/effects/sparks2.ogg', 100, TRUE)
-
 	for(var/obj/item/food/cheesewedge/cheese in range(1, src))
 		if(prob(10))
 			be_fruitful()

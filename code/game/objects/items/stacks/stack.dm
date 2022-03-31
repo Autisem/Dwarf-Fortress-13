@@ -111,9 +111,6 @@
 	for(var/i in 1 to length(grind_results)) //This should only call if it's ground, so no need to check if grind_results exists
 		grind_results[grind_results[i]] *= get_amount() //Gets the key at position i, then the reagent amount of that key, then multiplies it by stack size
 
-/obj/item/stack/grind_requirements()
-	return TRUE
-
 /obj/item/stack/proc/get_main_recipes()
 	SHOULD_CALL_PARENT(TRUE)
 	return list()//empty list
@@ -321,8 +318,6 @@
 			return FALSE
 
 		for(var/obj/object in dest_turf)
-			if(istype(object, /obj/structure/grille))
-				continue
 			if(istype(object, /obj/structure/table))
 				continue
 			if(istype(object, /obj/structure/window))

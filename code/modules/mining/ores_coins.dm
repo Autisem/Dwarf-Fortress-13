@@ -68,20 +68,6 @@
 			new refined_type(drop_location(),amountrefined)
 			qdel(src)
 
-/obj/item/stack/ore/uranium
-	name = "uranium ore"
-	icon_state = "Uranium ore"
-	inhand_icon_state = "Uranium ore"
-	singular_name = "uranium ore chunk"
-	points = 30
-	material_flags = MATERIAL_NO_EFFECTS
-	mats_per_unit = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT)
-	refined_type = /obj/item/stack/sheet/mineral/uranium
-	mine_experience = 6
-	scan_state = "rock_Uranium"
-	spreadChance = 5
-	merge_type = /obj/item/stack/ore/uranium
-
 /obj/item/stack/ore/iron
 	name = "iron ore"
 	icon_state = "Iron ore"
@@ -126,15 +112,6 @@
 	mine_experience = 0 //its sand
 	merge_type = /obj/item/stack/ore/glass
 
-GLOBAL_LIST_INIT(sand_recipes, list(\
-		new /datum/stack_recipe("песчаник", /obj/item/stack/sheet/mineral/sandstone, 1, 1, 50),\
-		new /datum/stack_recipe("декоративная вулканическая плитка", /obj/item/stack/tile/basalt, 2, 1, 50)\
-))
-
-/obj/item/stack/ore/glass/get_main_recipes()
-	. = ..()
-	. += GLOB.sand_recipes
-
 /obj/item/stack/ore/glass/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(..() || !ishuman(hit_atom))
 		return
@@ -160,23 +137,6 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	singular_name = "volcanic ash pile"
 	mine_experience = 0
 	merge_type = /obj/item/stack/ore/glass/basalt
-
-/obj/item/stack/ore/plasma
-	name = "plasma ore"
-	icon_state = "Plasma ore"
-	inhand_icon_state = "Plasma ore"
-	singular_name = "plasma ore chunk"
-	points = 15
-	mats_per_unit = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT)
-	refined_type = /obj/item/stack/sheet/mineral/plasma
-	mine_experience = 5
-	scan_state = "rock_Plasma"
-	spreadChance = 8
-	merge_type = /obj/item/stack/ore/plasma
-
-/obj/item/stack/ore/plasma/welder_act(mob/living/user, obj/item/I)
-	to_chat(user, span_warning("You can't hit a high enough temperature to smelt [src] properly!"))
-	return TRUE
 
 /obj/item/stack/ore/silver
 	name = "silver ore"
@@ -217,123 +177,6 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	mine_experience = 10
 	scan_state = "rock_Diamond"
 	merge_type = /obj/item/stack/ore/diamond
-
-/obj/item/stack/ore/bananium
-	name = "bananium ore"
-	icon_state = "Bananium ore"
-	inhand_icon_state = "Bananium ore"
-	singular_name = "bananium ore chunk"
-	points = 60
-	mats_per_unit = list(/datum/material/bananium=MINERAL_MATERIAL_AMOUNT)
-	refined_type = /obj/item/stack/sheet/mineral/bananium
-	mine_experience = 15
-	scan_state = "rock_Bananium"
-	merge_type = /obj/item/stack/ore/bananium
-
-/obj/item/stack/ore/titanium
-	name = "titanium ore"
-	icon_state = "Titanium ore"
-	inhand_icon_state = "Titanium ore"
-	singular_name = "titanium ore chunk"
-	points = 50
-	mats_per_unit = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT)
-	refined_type = /obj/item/stack/sheet/mineral/titanium
-	mine_experience = 3
-	scan_state = "rock_Titanium"
-	spreadChance = 5
-	merge_type = /obj/item/stack/ore/titanium
-
-/obj/item/stack/ore/slag
-	name = "slag"
-	desc = "Completely useless."
-	icon_state = "slag"
-	inhand_icon_state = "slag"
-	singular_name = "slag chunk"
-	merge_type = /obj/item/stack/ore/slag
-
-/obj/item/gibtonite
-	name = "gibtonite ore"
-	desc = "Extremely explosive if struck with mining equipment, Gibtonite is often used by miners to speed up their work by using it as a mining charge. This material is illegal to possess by unauthorized personnel under space law."
-	icon = 'icons/obj/mining.dmi'
-	icon_state = "Gibtonite ore"
-	inhand_icon_state = "Gibtonite ore"
-	w_class = WEIGHT_CLASS_BULKY
-	throw_range = 0
-	var/primed = FALSE
-	var/det_time = 100
-	var/quality = GIBTONITE_QUALITY_LOW //How pure this gibtonite is, determines the explosion produced by it and is derived from the det_time of the rock wall it was taken from, higher value = better
-	var/attacher = "UNKNOWN"
-	var/det_timer
-
-/obj/item/gibtonite/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
-
-/obj/item/gibtonite/Destroy()
-	qdel(wires)
-	wires = null
-	return ..()
-
-/obj/item/gibtonite/attackby(obj/item/I, mob/user, params)
-	if(!wires && istype(I, /obj/item/assembly/igniter))
-		user.visible_message(span_notice("[user] attaches [I] to [src].") , span_notice("You attach [I] to [src]."))
-		attacher = key_name(user)
-		qdel(I)
-		add_overlay("Gibtonite_igniter")
-		return
-
-	if(wires && !primed)
-		if(is_wire_tool(I))
-			wires.interact(user)
-			return
-	..()
-
-/obj/item/gibtonite/attack_self(user)
-	if(wires)
-		wires.interact(user)
-	else
-		..()
-
-/obj/item/gibtonite/bullet_act(obj/projectile/P)
-	GibtoniteReaction(P.firer)
-	. = ..()
-
-/obj/item/gibtonite/ex_act()
-	GibtoniteReaction(null, 1)
-
-/obj/item/gibtonite/proc/GibtoniteReaction(mob/user, triggered_by = 0)
-	if(!primed)
-		primed = TRUE
-		playsound(src,'sound/effects/hit_on_shattered_glass.ogg',50,TRUE)
-		icon_state = "Gibtonite active"
-		var/notify_admins = FALSE
-		if(z != 5)//Only annoy the admins ingame if we're triggered off the mining zlevel
-			notify_admins = TRUE
-
-		if(triggered_by == 1)
-			log_bomber(null, "An explosion has primed a", src, "for detonation", notify_admins)
-		else if(triggered_by == 2)
-			var/turf/bombturf = get_turf(src)
-			if(notify_admins)
-				message_admins("A signal has triggered a [name] to detonate at [ADMIN_VERBOSEJMP(bombturf)]. Igniter attacher: [ADMIN_LOOKUPFLW(attacher)]")
-			var/bomb_message = "A signal has primed a [name] for detonation at [AREACOORD(bombturf)]. Igniter attacher: [key_name(attacher)]."
-			log_game(bomb_message)
-			GLOB.bombers += bomb_message
-		else
-			user.visible_message(span_warning("[user] strikes <b>[src.name]</b>, causing a chain reaction!") , span_danger("You strike <b>[src.name]</b>, causing a chain reaction."))
-			log_bomber(user, "has primed a", src, "for detonation", notify_admins)
-		det_timer = addtimer(CALLBACK(src, .proc/detonate, notify_admins), det_time, TIMER_STOPPABLE)
-
-/obj/item/gibtonite/proc/detonate(notify_admins)
-	if(primed)
-		switch(quality)
-			if(GIBTONITE_QUALITY_HIGH)
-				explosion(src,2,4,9,adminlog = notify_admins)
-			if(GIBTONITE_QUALITY_MEDIUM)
-				explosion(src,1,2,5,adminlog = notify_admins)
-			if(GIBTONITE_QUALITY_LOW)
-				explosion(src,0,1,3,adminlog = notify_admins)
-		qdel(src)
 
 /obj/item/stack/ore/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
 	. = ..()
@@ -408,34 +251,6 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	. = ..()
 	. += "<hr><span class='info'>It's worth [value] credit\s.</span>"
 
-/obj/item/coin/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/CC = W
-		if(string_attached)
-			to_chat(user, span_warning("There already is a string attached to this coin!"))
-			return
-
-		if (CC.use(1))
-			add_overlay("coin_string_overlay")
-			string_attached = 1
-			to_chat(user, span_notice("You attach a string to the coin."))
-		else
-			to_chat(user, span_warning("You need one length of cable to attach a string to the coin!"))
-			return
-	else
-		..()
-
-/obj/item/coin/wirecutter_act(mob/living/user, obj/item/I)
-	..()
-	if(!string_attached)
-		return TRUE
-
-	new /obj/item/stack/cable_coil(drop_location(), 1)
-	overlays = list()
-	string_attached = null
-	to_chat(user, span_notice("You detach the string from the coin."))
-	return TRUE
-
 /obj/item/coin/attack_self(mob/user)
 	if(cooldown < world.time)
 		if(string_attached) //does the coin have a wire attached
@@ -463,30 +278,6 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coin/diamond
 	custom_materials = list(/datum/material/diamond = 400)
 
-/obj/item/coin/plasma
-	custom_materials = list(/datum/material/plasma = 400)
-
-/obj/item/coin/uranium
-	custom_materials = list(/datum/material/uranium = 400)
-
-/obj/item/coin/titanium
-	custom_materials = list(/datum/material/titanium = 400)
-
-/obj/item/coin/bananium
-	custom_materials = list(/datum/material/bananium = 400)
-
-/obj/item/coin/adamantine
-	custom_materials = list(/datum/material/adamantine = 400)
-
-/obj/item/coin/mythril
-	custom_materials = list(/datum/material/mythril = 400)
-
-/obj/item/coin/plastic
-	custom_materials = list(/datum/material/plastic = 400)
-
-/obj/item/coin/runite
-	custom_materials = list(/datum/material/runite = 400)
-
 /obj/item/coin/twoheaded
 	desc = "Hey, this coin's the same on both sides!"
 	sideslist = list("heads")
@@ -495,7 +286,6 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	name = "antag token"
 	desc = "A novelty coin that helps the heart know what hard evidence cannot prove."
 	icon_state = "coin_valid"
-	custom_materials = list(/datum/material/plastic = 400)
 	sideslist = list("valid", "salad")
 	material_flags = NONE
 

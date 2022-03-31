@@ -210,8 +210,6 @@
 		do_sparks(1, FALSE, src)
 		to_chat(user,("[src.name] дематериализуется и удар пролетает насквозь!"))
 		safe = world.time
-		if(prob(20))
-			empulse(src, 2, 5)
 		return
 	else
 		return ..()

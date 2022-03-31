@@ -401,11 +401,6 @@
 			var/turf/target = get_turf(loc)
 			I.safe_throw_at(target,I.throw_range,I.throw_speed,src, force = move_force)
 
-/mob/living/carbon/get_status_tab_items()
-	. = ..()
-	if(locate(/obj/item/assembly/health) in src)
-		. += "Health: [health]"
-
 /mob/living/carbon/attack_ui(slot)
 	if(!has_hand_for_held_index(active_hand_index))
 		return 0
@@ -1207,9 +1202,6 @@
 /// Returns whether or not the carbon should be able to be shocked
 /mob/living/carbon/proc/should_electrocute(power_source)
 	if (wearing_shock_proof_gloves())
-		return FALSE
-
-	if(!get_powernet_info_from_source(power_source))
 		return FALSE
 
 	if (HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))

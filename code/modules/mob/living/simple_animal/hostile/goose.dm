@@ -57,21 +57,12 @@
 
 /mob/living/simple_animal/hostile/retaliate/goose/vomit/handle_automated_action()
 	for(var/obj/item/eat_it_motherfucker in loc)
-		if(!eat_it_motherfucker.has_material_type(/datum/material/plastic))
-			continue
 		feed(eat_it_motherfucker)
 		break
 
 /mob/living/simple_animal/hostile/retaliate/goose/proc/feed(obj/item/suffocator)
 	if(stat == DEAD || choking) // plapatin I swear to god
 		return FALSE
-	if(suffocator.has_material_type(/datum/material/plastic)) // dumb goose'll swallow food or drink with plastic in it
-		visible_message(span_danger("[src] hungrily gobbles up \the [suffocator]! "))
-		visible_message(span_boldwarning("[src] is choking on \the [suffocator]! "))
-		suffocator.forceMove(src)
-		choke(suffocator)
-		choking = TRUE
-		return TRUE
 
 /mob/living/simple_animal/hostile/retaliate/goose/vomit
 	name = "Birdboat"

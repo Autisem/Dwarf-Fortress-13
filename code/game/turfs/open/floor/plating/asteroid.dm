@@ -140,7 +140,6 @@
 	flags_1 = NONE
 	bullet_sizzle = TRUE
 	bullet_bounce_sound = null
-	digResult = /obj/item/stack/sheet/mineral/snow
 
 /turf/open/floor/plating/asteroid/snow/setup_broken_states()
 	return list("snow_dug")

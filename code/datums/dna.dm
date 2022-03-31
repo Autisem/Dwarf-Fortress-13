@@ -428,8 +428,6 @@
 					O.Remove(src)
 					visible_message(span_danger("[capitalize(src.name)] выблёвывает [O.name]!") , span_danger("Выблёвываю [O.name]")) //no "vomit up your the heart"
 					O.forceMove(drop_location())
-					if(prob(20))
-						O.animate_atom_living()
 			if(9 to 10)
 				ForceContractDisease(new/datum/disease/gastrolosis())
 				to_chat(src, span_notice("О, да!"))

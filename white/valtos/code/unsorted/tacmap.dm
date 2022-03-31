@@ -12,8 +12,6 @@
 				if(isplatingturf(T))
 					if(locate(/obj/structure/window) in T)
 						tacmap_icon.DrawBox(rgb(0, 60, 255), xx, yy, xx, yy)
-					else if(locate(/obj/machinery/door) in T)
-						tacmap_icon.DrawBox(rgb(255, 0, 0), xx, yy, xx, yy)
 					else
 						tacmap_icon.DrawBox(rgb(109, 42, 128), xx, yy, xx, yy)
 					continue

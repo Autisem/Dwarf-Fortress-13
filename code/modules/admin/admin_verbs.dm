@@ -101,7 +101,6 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
 GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom,
-										/datum/admins/proc/spawn_objasmob,
 										/client/proc/respawn_character, /datum/admins/proc/beaker_panel))
 GLOBAL_PROTECT(admin_verbs_spawn)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVerbsServer())
@@ -133,7 +132,6 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/restart_controller,
 	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/Debug2,
-	/client/proc/cmd_debug_make_powernets,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_admin_delete,
 	/client/proc/cmd_debug_del_all_wrapper,
@@ -152,7 +150,6 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/kaboom,
 	/client/proc/smooth_fucking_z_level,
 	/client/proc/get_tacmap_for_test,
-	/proc/machine_upgrade,
 	/client/proc/populate_world,
 	/client/proc/get_dynex_power,		//*debug verbs for dynex explosions.
 	/client/proc/get_dynex_range,		//*debug verbs for dynex explosions.
@@ -232,7 +229,6 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/callproc_datum,
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
-	/client/proc/cmd_debug_make_powernets,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_debug_del_all_wrapper,
 	/client/proc/enable_debug_verbs,

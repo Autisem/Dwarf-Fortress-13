@@ -115,9 +115,3 @@
 	icon_state = "ears-c-u"
 	desc = "Усовершенствованное кибернетическое ухо, превосходящее по характеристикам обычные уши."
 	damage_multiplier = 0.5
-
-/obj/item/organ/ears/cybernetic/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	damage += 40/severity

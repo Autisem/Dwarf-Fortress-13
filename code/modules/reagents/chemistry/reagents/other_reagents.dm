@@ -936,7 +936,6 @@
 	taste_description = "внутренности реактора"
 	var/irradiation_level = 0.5 * REM
 	ph = 4
-	material = /datum/material/uranium
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/uranium/on_mob_life(mob/living/carbon/M, delta_time, times_fired)

@@ -30,7 +30,6 @@
 		bounds = parsed?.bounds
 		z_offset += bounds[MAP_MAXZ] - bounds[MAP_MINZ] + 1
 
-	var/list/obj/structure/cable/cables = list()
 	var/list/atom/atoms = list()
 
 	repopulate_sorted_areas()
@@ -42,12 +41,8 @@
 		atoms += B
 		for(var/A in B)
 			atoms += A
-			if(istype(A,/obj/structure/cable))
-				cables += A
-				continue
 
 	SSatoms.InitializeAtoms(atoms)
-	SSmachines.setup_template_powernets(cables)
 	GLOB.reloading_map = FALSE
 
 /datum/map_generator/repair

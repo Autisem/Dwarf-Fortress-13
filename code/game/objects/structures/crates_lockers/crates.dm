@@ -114,18 +114,3 @@
 	new /obj/item/reagent_containers/blood/ethereal(src)
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/blood/random(src)
-
-/obj/structure/closet/crate/freezer/surplus_limbs
-	name = "бюджетные протезы конечностей"
-	desc = "Ящик с набором бюджетных протезов."
-
-/obj/structure/closet/crate/freezer/surplus_limbs/PopulateContents()
-	. = ..()
-	new /obj/item/bodypart/l_arm/robot/surplus(src)
-	new /obj/item/bodypart/l_arm/robot/surplus(src)
-	new /obj/item/bodypart/r_arm/robot/surplus(src)
-	new /obj/item/bodypart/r_arm/robot/surplus(src)
-	new /obj/item/bodypart/l_leg/robot/surplus(src)
-	new /obj/item/bodypart/l_leg/robot/surplus(src)
-	new /obj/item/bodypart/r_leg/robot/surplus(src)
-	new /obj/item/bodypart/r_leg/robot/surplus(src)

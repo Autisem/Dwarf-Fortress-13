@@ -79,15 +79,5 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	is_tree = FALSE
 
-/mob/living/simple_animal/hostile/tree/festivus/attack_hand(mob/living/carbon/human/M)
-	. = ..()
-	if(M.a_intent == "help")
-		visible_message(span_warning("[capitalize(src.name)] crackles with static electricity!"))
-		for(var/obj/item/stock_parts/cell/C in range(2, get_turf(src)))
-			C.give(75)
-		for(var/obj/machinery/power/apc/A in range(2, get_turf(src)))
-			if(A.cell)
-				A.cell.give(75)
-
 /mob/living/simple_animal/hostile/tree/festivus/add_cell_sample()
 	return

@@ -37,7 +37,6 @@
 	return bounds
 
 /datum/parsed_map/proc/initTemplateBounds(datum/map_template/template)
-	var/list/obj/structure/cable/cables = list()
 	var/list/atom/atoms = list()
 	var/list/area/areas = list()
 	var/list/turfs = block(
@@ -60,9 +59,6 @@
 			continue
 		for(var/A in B)
 			atoms += A
-			if(istype(A, /obj/structure/cable))
-				cables += A
-				continue
 	// Not sure if there is some importance here to make sure the area is in z
 	// first or not.  Its defined In Initialize yet its run first in templates
 	// BEFORE so... hummm
@@ -72,16 +68,11 @@
 		return
 	SSatoms.InitializeAtoms(areas + turfs + atoms)
 
-	// NOTE, now that Initialize and LateInitialize run correctly, do we really
-	// need these two below?
-	SSmachines.setup_template_powernets(cables)
-
 /datum/map_template/proc/initTemplateBounds(list/bounds)
 	if (!bounds) //something went wrong
 		stack_trace("[name] template failed to initialize correctly!")
 		return
 
-	var/list/obj/structure/cable/cables = list()
 	var/list/atom/movable/movables = list()
 	var/list/area/areas = list()
 
@@ -105,9 +96,6 @@
 
 		for(var/movable_in_turf in current_turf)
 			movables += movable_in_turf
-			if(istype(movable_in_turf, /obj/structure/cable))
-				cables += movable_in_turf
-				continue
 	// Not sure if there is some importance here to make sure the area is in z
 	// first or not.  Its defined In Initialize yet its run first in templates
 	// BEFORE so... hummm
@@ -116,18 +104,6 @@
 		return
 
 	SSatoms.InitializeAtoms(areas + turfs + movables, returns_created_atoms ? created_atoms : null)
-
-	for(var/turf/unlit as anything in turfs)
-		if(unlit.always_lit)
-			continue
-		var/area/loc_area = unlit.loc
-		if(!loc_area.static_lighting)
-			continue
-		unlit.lighting_build_overlay()
-
-	// NOTE, now that Initialize and LateInitialize run correctly, do we really
-	// need these two below?
-	SSmachines.setup_template_powernets(cables)
 
 /datum/map_template/proc/load_new_z(list/level_traits = list(ZTRAIT_AWAY = TRUE))
 	var/x = round((world.maxx - width) * 0.5) + 1

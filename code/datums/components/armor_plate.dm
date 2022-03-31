@@ -73,7 +73,6 @@
 	name = "Бронепластина из пластали"
 	result =  /obj/item/stack/sheet/plasteel_armor_plate
 	time = 80
-	reqs = list(/obj/item/stack/sheet/plasteel = 10)
 	tool_behaviors = list(TOOL_WELDER)
 	category = CAT_PRIMAL
 

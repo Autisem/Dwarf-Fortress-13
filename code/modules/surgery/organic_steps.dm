@@ -41,7 +41,7 @@
 //clamp bleeders
 /datum/surgery_step/clamp_bleeders
 	name = "зажать источник кровотечения"
-	implements = list(TOOL_HEMOSTAT = 100, TOOL_WIRECUTTER = 60, /obj/item/stack/package_wrap = 35, /obj/item/stack/cable_coil = 15)
+	implements = list(TOOL_HEMOSTAT = 100, TOOL_WIRECUTTER = 60)
 	time = 24
 
 /datum/surgery_step/clamp_bleeders/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -87,7 +87,7 @@
 //close incision
 /datum/surgery_step/close
 	name = "прижечь надрез"
-	implements = list(TOOL_CAUTERY = 100, /obj/item/gun/energy/laser = 90, TOOL_WELDER = 70,
+	implements = list(TOOL_CAUTERY = 100, TOOL_WELDER = 70,
 		/obj/item = 30) // 30% success with any hot item.
 	time = 24
 

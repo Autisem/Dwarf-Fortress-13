@@ -92,15 +92,6 @@
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, .proc/ui_action_click)
 
-/obj/item/organ/cyberimp/arm/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF || status == ORGAN_ROBOTIC)
-		return
-	if(prob(15/severity) && owner)
-		to_chat(owner, span_warning("Электромагнитный импульс вызвал неисправность [src]!"))
-		// give the owner an idea about why his implant is glitching
-		Retract()
-
 /**
  * Called when the mob uses the "drop item" hotkey
  *
@@ -187,40 +178,6 @@
 				Extend(choice)
 	else
 		Retract()
-
-
-/obj/item/organ/cyberimp/arm/gun/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	if(prob(30/severity) && owner && !(organ_flags & ORGAN_FAILING))
-		Retract()
-		owner.visible_message(span_danger(" Из [owner] [zone == BODY_ZONE_R_ARM ? "правой" : "левой"] руки [owner] раздался громкий хлопок!"))
-		playsound(get_turf(owner), 'sound/weapons/flashbang.ogg', 100, TRUE)
-		to_chat(owner, span_userdanger("Чувствую взрыв в моей [zone == BODY_ZONE_R_ARM ? "правой" : "левой"] руке, сломался имплант!"))
-		owner.adjust_fire_stacks(20)
-		owner.IgniteMob()
-		owner.adjustFireLoss(25)
-		organ_flags |= ORGAN_FAILING
-
-
-/obj/item/organ/cyberimp/arm/gun/laser
-	name = "встроенный в руку лазерный имплант"
-	desc = "Вариация импланта ручной пушки которая стреляет смертоносными лазернами лучами. Если не используется то пушка остается внутри руки, при стрельбе высовывается из неё."
-	icon_state = "arm_laser"
-	items_to_create = list(/obj/item/gun/energy/laser/mounted/augment)
-
-/obj/item/organ/cyberimp/arm/gun/laser/l
-	zone = BODY_ZONE_L_ARM
-
-/obj/item/organ/cyberimp/arm/gun/taser
-	name = "встроенный в руку тазер"
-	desc = "Вариация импланта ручной пушки, которая стреляет электродами и вырубающими снарядами. Если не используется то пушка остается внутри руки, при стрельбе высовывается из неё."
-	icon_state = "arm_taser"
-	items_to_create = list(/obj/item/gun/energy/e_gun/advtaser/mounted)
-
-/obj/item/organ/cyberimp/arm/gun/taser/l
-	zone = BODY_ZONE_L_ARM
 
 /obj/item/organ/cyberimp/arm/toolset
 	name = "имплант встроенного набора инструментов"

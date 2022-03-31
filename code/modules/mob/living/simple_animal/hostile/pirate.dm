@@ -67,29 +67,3 @@
 /mob/living/simple_animal/hostile/pirate/melee/Initialize()
 	. = ..()
 	set_light(2)
-
-/mob/living/simple_animal/hostile/pirate/ranged
-	name = "Pirate Gunner"
-	icon_state = "pirateranged"
-	icon_living = "pirateranged"
-	icon_dead = "pirateranged_dead"
-	projectilesound = 'sound/weapons/laser.ogg'
-	ranged = 1
-	rapid = 2
-	rapid_fire_delay = 6
-	retreat_distance = 5
-	minimum_distance = 5
-	projectiletype = /obj/projectile/beam/laser
-
-/mob/living/simple_animal/hostile/pirate/ranged/space
-	name = "Space Pirate Gunner"
-	icon_state = "piratespaceranged"
-	icon_living = "piratespaceranged"
-	icon_dead = "piratespaceranged_dead"
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	minbodytemp = 0
-	speed = 1
-
-/mob/living/simple_animal/hostile/pirate/ranged/space/Initialize()
-	. = ..()
-	ADD_TRAIT(src, TRAIT_SPACEWALK, INNATE_TRAIT)

@@ -39,7 +39,7 @@
 /datum/element/decal/blood/proc/get_examine_name(datum/source, mob/user, list/override)
 	SIGNAL_HANDLER
 
-	override[EXAMINE_POSITION_BEFORE] = "<small class='red'>(в крови)</small> "
+	override[EXAMINE_POSITION_BEFORE] = "<small class='red'>(bloody)</small> "
 	/*
 	var/atom/A = source
 	override[EXAMINE_POSITION_ARTICLE] = A.gender == PLURAL? "some" : "a"

@@ -71,31 +71,3 @@
 	reqs = list(/obj/item/stack/sheet/cloth = 2, /obj/item/stack/license_plates = 1)
 	time = 10
 	category = CAT_CLOTHING
-
-/datum/crafting_recipe/rainbowbunchcrown
-	name = "Rainbow Flower Crown"
-	result = /obj/item/clothing/head/rainbowbunchcrown/
-	time = 20
-	reqs = list(/obj/item/stack/cable_coil = 3)
-	category = CAT_CLOTHING
-
-/datum/crafting_recipe/sunflowercrown
-	name = "Sunflower Crown"
-	result = /obj/item/clothing/head/sunflowercrown/
-	time = 20
-	reqs = list(/obj/item/stack/cable_coil = 3)
-	category = CAT_CLOTHING
-
-/datum/crafting_recipe/poppycrown
-	name = "Poppy Crown"
-	result = /obj/item/clothing/head/poppycrown/
-	time = 20
-	reqs = list(/obj/item/stack/cable_coil = 3)
-	category = CAT_CLOTHING
-
-/datum/crafting_recipe/lilycrown
-	name = "Lily Crown"
-	result = /obj/item/clothing/head/lilycrown/
-	time = 20
-	reqs = list(/obj/item/stack/cable_coil = 3)
-	category = CAT_CLOTHING

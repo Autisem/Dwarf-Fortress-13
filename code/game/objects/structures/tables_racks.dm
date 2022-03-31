@@ -479,7 +479,6 @@
 	icon_state = "reinforced_table-0"
 	base_icon_state = "reinforced_table"
 	deconstruction_ready = 0
-	buildstack = /obj/item/stack/sheet/plasteel
 	max_integrity = 200
 	integrity_failure = 0.25
 	armor = list(MELEE = 10, BULLET = 30, LASER = 30, ENERGY = 100, BOMB = 20, BIO = 0, RAD = 0, FIRE = 80, ACID = 70)

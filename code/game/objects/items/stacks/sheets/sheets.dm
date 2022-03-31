@@ -1,5 +1,5 @@
 /obj/item/stack/sheet
-	name = "лист"
+	name = "sheet"
 	lefthand_file = 'icons/mob/inhands/misc/sheets_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/sheets_righthand.dmi'
 	full_w_class = WEIGHT_CLASS_NORMAL
@@ -8,8 +8,8 @@
 	max_amount = 50
 	throw_speed = 1
 	throw_range = 3
-	attack_verb_continuous = list("лупит", "бьёт", "разбивает", "вмазывает", "атакует")
-	attack_verb_simple = list("лупит", "бьёт", "разбивает", "вмазывает", "атакует")
+	attack_verb_continuous = list("bashes", "batters", "bludgeons", "thrashes", "smashes")
+	attack_verb_simple = list("bash", "batter", "bludgeon", "thrash", "smash")
 	novariants = FALSE
 	var/sheettype = null //this is used for girders in the creation of walls/false walls
 	var/point_value = 0 //turn-in value for the gulag stacker - loosely relative to its rarity.
@@ -42,6 +42,6 @@
 	user.do_attack_animation(src, ATTACK_EFFECT_BOOP)
 	playsound(src, "shatter", 70, TRUE)
 	use(1)
-	user.visible_message(span_notice("[user] разбивает лист [name] об пол, оставляя [english_list(shards)].") , \
-		span_notice("Разбиваю лист [name] об пол, оставляя [english_list(shards)]."))
+	user.visible_message(span_notice("[user] shatters the sheet of [name] on the floor, leaving [english_list(shards)]."), \
+		span_notice("You shatter the sheet of [name] on the floor, leaving [english_list(shards)]."))
 	return TRUE

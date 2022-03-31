@@ -357,7 +357,6 @@
 	name = "растение в горшке из пластика"
 	desc = "Поддельное, дешевое, пластиковое дерево. Идеально подходит для людей, которые убивают каждое растение, к которому прикасаются."
 	icon_state = "plant-26"
-	custom_materials = (list(/datum/material/plastic = 8000))
 	trimmable = FALSE
 
 /obj/item/kirbyplants/fullysynthetic/Initialize()

@@ -5,7 +5,7 @@
 	icon_state = "altar_inactive"
 	density = TRUE
 	anchored = TRUE
-	layer = FLY_LAYER
+	layer = ABOVE_MOB_LAYER
 	var/busy = FALSE
 	var/active = FALSE
 	var/resources = 0

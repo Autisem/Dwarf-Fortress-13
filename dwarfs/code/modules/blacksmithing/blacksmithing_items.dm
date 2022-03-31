@@ -1,3 +1,8 @@
+#define LIGHT_OK 0
+#define LIGHT_EMPTY 1
+#define LIGHT_BROKEN 2
+#define LIGHT_BURNED 3
+
 /obj/item/blacksmith
 	name = "item"
 	icon = 'white/valtos/icons/objects.dmi'
@@ -186,7 +191,7 @@
 	icon_state = "torch_handle"
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron = 10000)
-	var/result_path = /obj/machinery/torch_fixture
+	var/result_path = /obj/structure/torch_fixture
 
 /obj/item/blacksmith/torch_handle/proc/try_build(turf/on_wall, mob/user)
 	if(get_dist(on_wall, user)>1)
@@ -198,7 +203,7 @@
 	if(!isfloorturf(T))
 		to_chat(user, span_warning("You can't place [src] on the floor!"))
 		return
-	if(locate(/obj/machinery/torch_fixture) in view(1))
+	if(locate(/obj/structure/torch_fixture) in view(1))
 		to_chat(user, span_warning("There is something already attached to it!"))
 		return
 
@@ -215,20 +220,19 @@
 		new result_path(get_turf(user), ndir, TRUE)
 	qdel(src)
 
-/obj/machinery/torch_fixture
+/obj/structure/torch_fixture
 	name = "torch"
 	desc = "Provides light."
 	icon = 'white/valtos/icons/objects.dmi'
 	icon_state = "torch_handle_wall"
 	layer = BELOW_MOB_LAYER
 	max_integrity = 100
-	use_power = NO_POWER_USE
 	var/light_type = /obj/item/flashlight/flare/torch
 	var/status = LIGHT_EMPTY
 	var/fuel = 0
 	var/on = FALSE
 
-/obj/machinery/torch_fixture/Initialize(mapload, ndir)
+/obj/structure/torch_fixture/Initialize(mapload, ndir)
 	if(on)
 		fuel = 5000
 		status = LIGHT_OK
@@ -240,16 +244,16 @@
 		if(NORTH)	pixel_y = 32
 	. = ..()
 
-/obj/machinery/torch_fixture/process(delta_time)
+/obj/structure/torch_fixture/process(delta_time)
 	if(on)
 		fuel = max(fuel -= delta_time, 0)
 		recalculate_light()
 
-/obj/machinery/torch_fixture/Destroy()
+/obj/structure/torch_fixture/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/machinery/torch_fixture/proc/recalculate_light()
+/obj/structure/torch_fixture/proc/recalculate_light()
 	if(status == LIGHT_EMPTY)
 		set_light(0, 0, LIGHT_COLOR_ORANGE)
 		cut_overlays()
@@ -283,7 +287,7 @@
 		if(2001 to INFINITY)
 			set_light(9, 1, LIGHT_COLOR_ORANGE)
 
-/obj/machinery/torch_fixture/attackby(obj/item/W, mob/living/user, params)
+/obj/structure/torch_fixture/attackby(obj/item/W, mob/living/user, params)
 
 	if(istype(W, /obj/item/flashlight/flare/torch))
 		if(status == LIGHT_OK)
@@ -307,7 +311,7 @@
 	else
 		return ..()
 
-/obj/machinery/torch_fixture/attack_hand(mob/living/carbon/human/user)
+/obj/structure/torch_fixture/attack_hand(mob/living/carbon/human/user)
 	. = ..()
 	if(.)
 		return

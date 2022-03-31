@@ -7,22 +7,6 @@
 	flags_1 = NODECONSTRUCT_1
 	var/image/over
 
-/obj/structure/chair/noose/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/wirecutters))
-		user.visible_message("[user] режет вешалку.", span_notice("Режу вешалку."))
-		if(has_buckled_mobs())
-			for(var/m in buckled_mobs)
-				var/mob/living/buckled_mob = m
-				if(buckled_mob.mob_has_gravity())
-					buckled_mob.visible_message(span_danger("[buckled_mob] падает на пол!") ,\
-						span_userdanger("Падаю на пол!"))
-					buckled_mob.adjustBruteLoss(10)
-		var/obj/item/stack/cable_coil/C = new(get_turf(src))
-		C.amount = 25
-		qdel(src)
-		return
-	..()
-
 /obj/structure/chair/noose/Initialize()
 	. = ..()
 	pixel_y += 16 //Noose looks like it's "hanging" in the air

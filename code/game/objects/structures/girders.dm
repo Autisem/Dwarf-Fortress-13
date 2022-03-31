@@ -118,22 +118,7 @@
 					qdel(src)
 				return
 
-		if(istype(S, /obj/item/stack/sheet/plasteel))
-			if(state == GIRDER_DISPLACED)
-				if(S.get_amount() < 2)
-					to_chat(user, span_warning("You need at least two sheets to create a false wall!"))
-					return
-				to_chat(user, span_notice("You start building a reinforced false wall..."))
-				if(do_after(user, 20, target = src))
-					if(S.get_amount() < 2)
-						return
-					S.use(2)
-					to_chat(user, span_notice("You create a reinforced false wall. Push on it to open or close the passage."))
-					var/obj/structure/falsewall/reinforced/FW = new (loc)
-					transfer_fingerprints_to(FW)
-					qdel(src)
-					return
-			else if(state == GIRDER_REINF)
+			if(state == GIRDER_REINF)
 				if(S.get_amount() < 1)
 					return
 				to_chat(user, span_notice("You start finalizing the reinforced wall..."))
@@ -254,7 +239,6 @@
 		to_chat(user, span_notice("You start removing the inner grille..."))
 		if(tool.use_tool(src, user, 40, volume=100))
 			to_chat(user, span_notice("You remove the inner grille."))
-			new /obj/item/stack/sheet/plasteel(get_turf(src))
 			var/obj/structure/girder/G = new (loc)
 			transfer_fingerprints_to(G)
 			qdel(src)
@@ -312,54 +296,6 @@
 	state = GIRDER_REINF
 	girderpasschance = 0
 	max_integrity = 350
-
-
-
-//////////////////////////////////////////// cult girder //////////////////////////////////////////////
-
-/obj/structure/girder/cult
-	name = "runed girder"
-	desc = "Framework made of a strange and shockingly cold metal. It doesn't seem to have any bolts."
-	icon = 'icons/obj/cult.dmi'
-	icon_state= "cultgirder"
-	can_displace = FALSE
-
-/obj/structure/girder/cult/attackby(obj/item/W, mob/user, params)
-	add_fingerprint(user)
-
-	if(W.tool_behaviour == TOOL_WELDER)
-		if(!W.tool_start_check(user, amount=0))
-			return
-
-		to_chat(user, span_notice("You start slicing apart the girder..."))
-		if(W.use_tool(src, user, 40, volume=50))
-			to_chat(user, span_notice("You slice apart the girder."))
-			var/obj/item/stack/sheet/runed_metal/R = new(drop_location(), 1)
-			transfer_fingerprints_to(R)
-			qdel(src)
-
-	else if(istype(W, /obj/item/stack/sheet/runed_metal))
-		var/obj/item/stack/sheet/runed_metal/R = W
-		if(R.get_amount() < 1)
-			to_chat(user, span_warning("You need at least one sheet of runed metal to construct a runed wall!"))
-			return
-		user.visible_message(span_notice("[user] begins laying runed metal on [src]...") , span_notice("You begin constructing a runed wall..."))
-		if(do_after(user, 50, target = src))
-			if(R.get_amount() < 1)
-				return
-			user.visible_message(span_notice("[user] plates [src] with runed metal.") , span_notice("You construct a runed wall."))
-			R.use(1)
-			var/turf/T = get_turf(src)
-			T.PlaceOnTop(/turf/closed/wall/mineral/cult)
-			qdel(src)
-
-	else
-		return ..()
-
-/obj/structure/girder/cult/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		new /obj/item/stack/sheet/runed_metal(drop_location(), 1)
-	qdel(src)
 
 /obj/structure/girder/bronze
 	name = "wall gear"

@@ -206,8 +206,6 @@
 
 /obj/item/pizzabox/proc/unprocess()
 	STOP_PROCESSING(SSobj, src)
-	qdel(wires)
-	wires = null
 	update_appearance()
 
 /obj/item/pizzabox/margherita

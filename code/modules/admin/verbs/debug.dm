@@ -76,15 +76,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		message_admins("[key_name_admin(src)] has deleted all ([counter]) instances of [hsbitem].")
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delete All") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
-/client/proc/cmd_debug_make_powernets()
-	set category = "Дбг"
-	set name = "Make Powernets"
-	SSmachines.makepowernets()
-	log_admin("[key_name(src)] has remade the powernet. makepowernets() called.")
-	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.")
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Make Powernets") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 /client/proc/cmd_assume_direct_control(mob/M in GLOB.mob_list)
 	set category = "Адм.Игра"
 	set name = "Assume direct control"

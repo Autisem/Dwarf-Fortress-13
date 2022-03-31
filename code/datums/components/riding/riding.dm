@@ -62,7 +62,6 @@
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, .proc/vehicle_mob_unbuckle)
 	RegisterSignal(parent, COMSIG_MOVABLE_BUCKLE, .proc/vehicle_mob_buckle)
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/vehicle_moved)
-	RegisterSignal(parent, COMSIG_MOVABLE_BUMP, .proc/vehicle_bump)
 	RegisterSignal(parent, COMSIG_BUCKLED_CAN_Z_MOVE, .proc/riding_can_z_move)
 
 /**
@@ -219,14 +218,6 @@
 /datum/component/riding/proc/driver_move(atom/movable/movable_parent, mob/living/user, direction)
 	SIGNAL_HANDLER
 	return
-
-/// So we can check all occupants when we bump a door to see if anyone has access
-/datum/component/riding/proc/vehicle_bump(atom/movable/movable_parent, obj/machinery/door/possible_bumped_door)
-	SIGNAL_HANDLER
-	if(!istype(possible_bumped_door))
-		return
-	for(var/occupant in movable_parent.buckled_mobs)
-		INVOKE_ASYNC(possible_bumped_door, /obj/machinery/door/.proc/bumpopen, occupant)
 
 /datum/component/riding/proc/Unbuckle(atom/movable/M)
 	addtimer(CALLBACK(parent, /atom/movable/.proc/unbuckle_mob, M), 0, TIMER_UNIQUE)

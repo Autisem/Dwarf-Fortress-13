@@ -19,23 +19,3 @@
 	w_class = WEIGHT_CLASS_BULKY
 	wound_bonus = 20
 	grind_results = list(/datum/reagent/lead = 20)
-
-//A good battery early in the shift. Source of lead & sulphuric acid reagents.
-//Add lead material to this once implemented.
-/obj/item/stock_parts/cell/lead
-	name = "lead-acid battery"
-	desc = "A type of primitive battery. It is quite large feels unexpectedly heavy."
-	icon = 'icons/obj/maintenance_loot.dmi'
-	icon_state = "lead_battery"
-	throwforce = 10
-	maxcharge = 20000 //decent max charge
-	chargerate = 1400 //charging is about 30% less efficient compared lithium batteries.
-	rating = 2 //Kind of a mid-tier battery
-	w_class = WEIGHT_CLASS_NORMAL
-	grind_results = list(/datum/reagent/lead = 15, /datum/reagent/toxin/acid = 15, /datum/reagent/water = 20)
-
-//starts partially discharged
-/obj/item/stock_parts/cell/lead/Initialize()
-	AddElement(/datum/element/update_icon_blocker)
-	. = ..()
-	charge = rand(0.2,0.8) * maxcharge

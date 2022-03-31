@@ -2,9 +2,7 @@
 	var/name = "Техтоннели"
 	var/list/turf_types = list(/turf/open/floor/plating = 90, /turf/open/floor/plasteel = 1, /turf/open/floor/plasteel/dark = 1, /turf/closed/wall = 1)
 	var/list/garbage_types = list(
-		/obj/structure/grille = 80,
 		/obj/structure/girder = 5,
-		/obj/structure/grille/broken = 10,
 		/obj/item/shard = 10,
 		/obj/effect/gibspawner/generic = 1,
 		/obj/effect/spawner/structure/window/hollow = 5,

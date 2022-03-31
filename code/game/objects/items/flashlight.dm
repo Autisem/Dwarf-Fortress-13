@@ -398,60 +398,6 @@
 	light_range = 7 //luminosity when on
 	light_system = MOVABLE_LIGHT
 
-/obj/item/flashlight/emp
-	var/emp_max_charges = 4
-	var/emp_cur_charges = 4
-	var/charge_timer = 0
-	/// How many seconds between each recharge
-	var/charge_delay = 20
-
-/obj/item/flashlight/emp/New()
-	..()
-	START_PROCESSING(SSobj, src)
-
-/obj/item/flashlight/emp/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	. = ..()
-
-/obj/item/flashlight/emp/process(delta_time)
-	charge_timer += delta_time
-	if(charge_timer < charge_delay)
-		return FALSE
-	charge_timer -= charge_delay
-	emp_cur_charges = min(emp_cur_charges+1, emp_max_charges)
-	return TRUE
-
-/obj/item/flashlight/emp/attack(mob/living/M, mob/living/user)
-	if(on && (user.zone_selected in list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH))) // call original attack when examining organs
-		..()
-	return
-
-/obj/item/flashlight/emp/afterattack(atom/movable/A, mob/user, proximity)
-	. = ..()
-	if(!proximity)
-		return
-
-	if(emp_cur_charges > 0)
-		emp_cur_charges -= 1
-
-		if(ismob(A))
-			var/mob/M = A
-			log_combat(user, M, "атакует", "EMP-light")
-			M.visible_message(span_danger("[user] щёлкает фонариком в сторону [A.name].") , \
-								span_userdanger("[user] щёлкает фонариком в меня."))
-		else
-			A.visible_message(span_danger("[user] щёлкает фонариком в сторону [A]."))
-		to_chat(user, span_notice("О, да! [capitalize(src.name)] теперь имеет [emp_cur_charges] зарядов."))
-		A.emp_act(EMP_HEAVY)
-	else
-		to_chat(user, span_warning("[capitalize(src.name)] скоро перезарядится!"))
-	return
-
-/obj/item/flashlight/emp/debug //for testing emp_act()
-	name = "debug EMP flashlight"
-	emp_max_charges = 100
-	emp_cur_charges = 100
-
 // Glowsticks, in the uncomfortable range of similar to flares,
 // but not similar enough to make it worth a refactor
 /obj/item/flashlight/glowstick

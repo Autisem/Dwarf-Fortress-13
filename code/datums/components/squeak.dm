@@ -37,7 +37,6 @@
 		RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_IMPACT, COMSIG_PROJECTILE_BEFORE_FIRE), .proc/play_squeak)
 
 		AddComponent(/datum/component/connect_loc_behalf, parent, item_connections)
-		RegisterSignal(parent, COMSIG_MOVABLE_DISPOSING, .proc/disposing_react)
 		if(isitem(parent))
 			RegisterSignal(parent, list(COMSIG_ITEM_ATTACK, COMSIG_ITEM_ATTACK_OBJ, COMSIG_ITEM_HIT_REACT), .proc/play_squeak)
 			RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, .proc/use_squeak)
@@ -113,7 +112,6 @@
 /datum/component/squeak/proc/on_equip(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
 	holder = equipper
-	RegisterSignal(holder, COMSIG_MOVABLE_DISPOSING, .proc/disposing_react, override=TRUE)
 	RegisterSignal(holder, COMSIG_PARENT_PREQDELETED, .proc/holder_deleted, override=TRUE)
 	//override for the preqdeleted is necessary because putting parent in hands sends the signal that this proc is registered towards,
 	//so putting an object in hands and then equipping the item on a clothing slot (without dropping it first)
@@ -130,13 +128,6 @@
 	SIGNAL_HANDLER
 	if(possible_holder == holder)
 		holder = null
-
-// Disposal pipes related shits
-/datum/component/squeak/proc/disposing_react(datum/source, obj/structure/disposalholder/holder, obj/machinery/disposal/source)
-	SIGNAL_HANDLER
-
-	//We don't need to worry about unregistering this signal as it will happen for us automaticaly when the holder is qdeleted
-	RegisterSignal(holder, COMSIG_ATOM_DIR_CHANGE, .proc/holder_dir_change)
 
 /datum/component/squeak/proc/holder_dir_change(datum/source, old_dir, new_dir)
 	SIGNAL_HANDLER

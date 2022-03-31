@@ -484,7 +484,7 @@
 		A.attack_animal(src)//Bang on it till we get out
 
 /mob/living/simple_animal/hostile/proc/FindHidden()
-	if(istype(target.loc, /obj/structure/closet) || istype(target.loc, /obj/machinery/disposal))
+	if(istype(target.loc, /obj/structure/closet))
 		var/atom/A = target.loc
 		var/atom/target_from = GET_TARGETS_FROM(src)
 		Goto(A,move_to_delay,minimum_distance)

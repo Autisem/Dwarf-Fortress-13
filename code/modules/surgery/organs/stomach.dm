@@ -252,15 +252,4 @@
 	emp_vulnerability = 20
 	metabolism_efficiency = 0.01
 
-/obj/item/organ/stomach/cybernetic/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	if(!COOLDOWN_FINISHED(src, severe_cooldown)) //So we cant just spam emp to kill people.
-		owner.vomit(stun = FALSE)
-		COOLDOWN_START(src, severe_cooldown, 10 SECONDS)
-	if(prob(emp_vulnerability/severity))	//Chance of permanent effects
-		organ_flags |= ORGAN_SYNTHETIC_EMP //Starts organ faliure - gonna need replacing soon.
-
-
 #undef STOMACH_METABOLISM_CONSTANT

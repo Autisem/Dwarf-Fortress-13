@@ -86,7 +86,6 @@
 	name = "плазма голем"
 	id = "plasma golem"
 	fixed_mut_color = "a3d"
-	meat = /obj/item/stack/ore/plasma
 	//Can burn and takes damage from heat
 	inherent_traits = list(TRAIT_CAN_STRIP,TRAIT_ADVANCEDTOOLUSER,TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_CHUNKYFINGERS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER) //no RESISTHEAT, NOFIRE
 	info_text = "Будучи <span class='danger'>плазма големом</span>, я легко воспламеняюсь. Нужно быть осторожным, если я перегреюсь, пока горю, я взорвусь!"
@@ -216,7 +215,6 @@
 	name = "титановый голем"
 	id = "titanium golem"
 	fixed_mut_color = "fff"
-	meat = /obj/item/stack/ore/titanium
 	info_text = "Будучи <span class='danger'>титановым големом</span> мне не страшны пыльные бури, и я более стойкий к урону от ожогов."
 	burnmod = 0.9
 	prefix = "Титановый"
@@ -235,7 +233,6 @@
 	name = "пластитановый голем"
 	id = "plastitanium golem"
 	fixed_mut_color = "888"
-	meat = /obj/item/stack/ore/titanium
 	info_text = "Будучи <span class='danger'>пластитановым големом</span> мне не страшны пыльные бури и лавовые реки, и я более стойкий к урону от ожогов."
 	burnmod = 0.8
 	prefix = "Пластитановый"
@@ -256,7 +253,6 @@
 	name = "Alien Alloy Golem"
 	id = "alloy golem"
 	fixed_mut_color = "333"
-	meat = /obj/item/stack/sheet/mineral/abductor
 	mutanttongue = /obj/item/organ/tongue/abductor
 	speedmod = 1 //faster
 	info_text = "Будучи <span class='danger'>големом из инопланетного сплава</span> я быстрее и могу регенерировать со временем. Однако, можно только слышать големов, сделанных из такого-же сплава, что и я."
@@ -318,7 +314,6 @@
 	name = "урановый голем"
 	id = "uranium golem"
 	fixed_mut_color = "7f0"
-	meat = /obj/item/stack/ore/uranium
 	info_text = "Будучи <span class='danger'>урановым големом</span> мои касания сжигают и облучают органические формы жизни. Мои атаки слабее, чем у других големов, но я более стойкий к ударам тупого предмета."
 	attack_verb = "burn"
 	attack_sound = 'sound/weapons/sear.ogg'
@@ -436,7 +431,6 @@
 	name = "блюспейс голем"
 	id = "bluespace golem"
 	fixed_mut_color = "33f"
-	meat = /obj/item/stack/ore/bluespace_crystal
 	info_text = "Будучи <span class='danger'>блюспейс големом</span> моё тело пространственно нестабильно. При ударе по мне, я телепортируюсь в случайное место, а также могу вручную телепортироваться на далёкие расстояния."
 	attack_verb = "блюспейс бьёт"
 	attack_sound = 'sound/effects/phasein.ogg'
@@ -933,8 +927,6 @@
 	H.visible_message(span_danger("[H] turns into a pile of snow!"))
 	for(var/obj/item/W in H)
 		H.dropItemToGround(W)
-	for(var/i=1, i <= rand(3,5), i++)
-		new /obj/item/stack/sheet/mineral/snow(get_turf(H))
 	qdel(H)
 
 /datum/species/golem/mhydrogen

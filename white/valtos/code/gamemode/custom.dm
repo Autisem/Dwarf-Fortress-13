@@ -259,7 +259,7 @@
 /obj/effect/spawner/structure/window/reinforced/partyhard
 	icon = 'icons/obj/smooth_structures/pod_window.dmi'
 	icon_state = "pod_window-0"
-	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/fulltile/partyhard)
+	spawn_list = list(/obj/structure/window/reinforced/fulltile/partyhard)
 
 /turf/closed/mineral/partyhard
 	name = "камень"

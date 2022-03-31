@@ -63,18 +63,6 @@
 /obj/structure/lattice/catwalk/deconstruction_hints(mob/user)
 	return span_notice("Эти стержни можно <b>отрезать</b>.")
 
-/obj/structure/lattice/catwalk/Move()
-	var/turf/T = loc
-	for(var/obj/structure/cable/C in T)
-		C.deconstruct()
-	..()
-
-/obj/structure/lattice/catwalk/deconstruct()
-	var/turf/T = loc
-	for(var/obj/structure/cable/C in T)
-		C.deconstruct()
-	..()
-
 /obj/structure/lattice/lava
 	name = "жаропрочная балка"
 	desc = "Специализированная опорная балка для строительства на лаве. Смотри куда идёшь."

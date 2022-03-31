@@ -26,14 +26,6 @@
 	zone = BODY_ZONE_HEAD
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/organ/cyberimp/brain/emp_act(severity)
-	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
-		return
-	var/stun_amount = 200/severity
-	owner.Stun(stun_amount)
-	to_chat(owner, span_warning("Моё тело обездвижено!"))
-
 
 /obj/item/organ/cyberimp/brain/anti_drop
 	name = "имплант крепкого хвата"
@@ -63,22 +55,6 @@
 	else
 		release_items()
 		to_chat(owner, span_notice("Руки расслабляются..."))
-
-
-/obj/item/organ/cyberimp/brain/anti_drop/emp_act(severity)
-	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
-		return
-	var/range = severity ? 10 : 5
-	var/atom/A
-	if(active)
-		release_items()
-	for(var/obj/item/I in stored_items)
-		A = pick(oview(range))
-		I.throw_at(A, range, 2)
-		to_chat(owner, span_warning("Моя [owner.get_held_index_name(owner.get_held_index_of_item(I))] спазмирует и [I.name] вылетает из неё!"))
-	stored_items = list()
-
 
 /obj/item/organ/cyberimp/brain/anti_drop/proc/release_items()
 	for(var/obj/item/I in stored_items)
@@ -125,13 +101,6 @@
 		owner.SetImmobilized(0)
 		owner.SetParalyzed(0)
 
-/obj/item/organ/cyberimp/brain/anti_stun/emp_act(severity)
-	. = ..()
-	if((organ_flags & ORGAN_FAILING) || . & EMP_PROTECT_SELF)
-		return
-	organ_flags |= ORGAN_FAILING
-	addtimer(CALLBACK(src, .proc/reboot), 90 / severity)
-
 /obj/item/organ/cyberimp/brain/anti_stun/proc/reboot()
 	organ_flags &= ~ORGAN_FAILING
 
@@ -145,11 +114,3 @@
 	icon_state = "implant_mask"
 	slot = ORGAN_SLOT_BREATHING_TUBE
 	w_class = WEIGHT_CLASS_TINY
-
-/obj/item/organ/cyberimp/mouth/breathing_tube/emp_act(severity)
-	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
-		return
-	if(prob(60/severity))
-		to_chat(owner, span_warning("НЕ МОГУ ДЫШАТЬ!"))
-		owner.losebreath += 2

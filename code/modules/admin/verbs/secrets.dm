@@ -166,46 +166,11 @@
 				for(var/i in GLOB.human_list)
 					var/mob/living/carbon/human/H = i
 					H.set_species(newtype)
-		if("power")
-			if(!is_funmin)
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Power All APCs"))
-			log_admin("[key_name(holder)] made all areas powered", 1)
-			message_admins(span_adminnotice("[key_name_admin(holder)] made all areas powered"))
-			power_restore()
-		if("unpower")
-			if(!is_funmin)
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Depower All APCs"))
-			log_admin("[key_name(holder)] made all areas unpowered", 1)
-			message_admins(span_adminnotice("[key_name_admin(holder)] made all areas unpowered"))
-			power_failure()
-		if("quickpower")
-			if(!is_funmin)
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Power All SMESs"))
-			log_admin("[key_name(holder)] made all SMESs powered", 1)
-			message_admins(span_adminnotice("[key_name_admin(holder)] made all SMESs powered"))
-			power_restore_quick()
 		if("anon_name")
 			if(!is_funmin)
 				return
 			holder.anon_names()
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Anonymous Names"))
-		if("blackout")
-			if(!is_funmin)
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Break All Lights"))
-			message_admins("[key_name_admin(holder)] broke all lights")
-			for(var/obj/machinery/light/L in GLOB.machines)
-				L.break_light_tube()
-		if("whiteout")
-			if(!is_funmin)
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Fix All Lights"))
-			message_admins("[key_name_admin(holder)] fixed all lights")
-			for(var/obj/machinery/light/L in GLOB.machines)
-				L.fix()
 		if("customportal")
 			if(!is_funmin)
 				return

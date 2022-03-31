@@ -35,14 +35,6 @@
 /obj/item/organ/cyberimp/chest/nutriment/proc/synth_cool()
 	synthesizing = FALSE
 
-/obj/item/organ/cyberimp/chest/nutriment/emp_act(severity)
-	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
-		return
-	owner.reagents.add_reagent(/datum/reagent/toxin/bad_food, poison_amount / severity)
-	to_chat(owner, span_warning("Чувствую будто мои внутренности горят."))
-
-
 /obj/item/organ/cyberimp/chest/nutriment/plus
 	name = "имплант \"питательный насос ПЛЮС\""
 	desc = "Этот имплант полностью перекрывает все ваши потребности в пище и жидкости."
@@ -97,23 +89,6 @@
 	if(owner.getToxLoss())
 		owner.adjustToxLoss(-1)
 		revive_cost += 40
-
-/obj/item/organ/cyberimp/chest/reviver/emp_act(severity)
-	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
-		return
-
-	if(reviving)
-		revive_cost += 200
-	else
-		reviver_cooldown += 20 SECONDS
-
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		if(H.stat != DEAD && prob(50 / severity) && H.can_heartattack())
-			H.set_heartattack(TRUE)
-			to_chat(H, span_userdanger("Чувствую ужасную боль в груди!"))
-			addtimer(CALLBACK(src, .proc/undo_heart_attack), 600 / severity)
 
 /obj/item/organ/cyberimp/chest/reviver/proc/undo_heart_attack()
 	var/mob/living/carbon/human/H = owner

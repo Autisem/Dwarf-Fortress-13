@@ -36,15 +36,6 @@
 	var/mob/new_body = wabbajack(user, randomize)
 	balloon_alert(new_body, "wabbajack, wabbajack!")
 
-/obj/item/gun/magic/staff/animate
-	name = "посох анимации"
-	desc = "Артефакт испускающий лучи жизненной силы, которая анимирует и оживляет коснувшиеся её объекты! Эта магия не действует на механизмы."
-	fire_sound = 'sound/magic/staff_animation.ogg'
-	ammo_type = /obj/item/ammo_casing/magic/animate
-	icon_state = "staffofanimation"
-	inhand_icon_state = "staffofanimation"
-	school = SCHOOL_EVOCATION
-
 /obj/item/gun/magic/staff/healing
 	name = "посох исцеления"
 	desc = "Артефакт испускающий лучи восстанавливающей магии, способной исцелять все известные недуги и даже воскрешать мертвых."
@@ -90,7 +81,7 @@
 	max_charges = 10
 	recharge_rate = 2
 	school = SCHOOL_FORBIDDEN //this staff is evil. okay? it just is. look at this projectile type list. this is wrong.
-	var/allowed_projectile_types = list(/obj/projectile/magic/change, /obj/projectile/magic/animate, /obj/projectile/magic/resurrection,
+	var/allowed_projectile_types = list(/obj/projectile/magic/change, /obj/projectile/magic/resurrection,
 	/obj/projectile/magic/death, /obj/projectile/magic/teleport, /obj/projectile/magic/door, /obj/projectile/magic/aoe/fireball,
 	/obj/projectile/magic/spellblade, /obj/projectile/magic/arcane_barrage, /obj/projectile/magic/locker, /obj/projectile/magic/flying,
 	/obj/projectile/magic/antimagic, /obj/projectile/magic/fetch, /obj/projectile/magic/sapping,

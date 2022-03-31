@@ -1,32 +1,9 @@
 /*
  * Contains:
- *		Lasertag
  *		Costume
  *		Misc
  */
 
-/*
- * Lasertag
- */
-/obj/item/clothing/suit/bluetag
-	name = "синяя броня лазер-тэга"
-	desc = "Кусок пластиковой брони. У него есть датчики, которые реагируют на красный свет." //Lasers are concentrated light
-	icon_state = "bluetag"
-	inhand_icon_state = "bluetag"
-	blood_overlay_type = "armor"
-	body_parts_covered = CHEST
-	allowed = list (/obj/item/gun/energy/laser/bluetag)
-	resistance_flags = NONE
-
-/obj/item/clothing/suit/redtag
-	name = "красная броня лазер-тэга"
-	desc = "Кусок пластиковой брони. У него есть датчики, которые реагируют на синий свет."
-	icon_state = "redtag"
-	inhand_icon_state = "redtag"
-	blood_overlay_type = "armor"
-	body_parts_covered = CHEST
-	allowed = list (/obj/item/gun/energy/laser/redtag)
-	resistance_flags = NONE
 
 /*
  * Costume

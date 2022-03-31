@@ -145,23 +145,17 @@ GLOBAL_LIST_INIT(detective_vest_allowed, typecacheof(list(
 	/obj/item/detective_scanner,
 	/obj/item/flashlight,
 	/obj/item/gun/ballistic,
-	/obj/item/gun/energy,
 	/obj/item/lighter,
 	/obj/item/restraints/handcuffs,
-	/obj/item/storage/fancy/cigarettes,
-	/obj/item/storage/belt/holster/detective,
-	/obj/item/storage/belt/holster/nukie,)))
+	/obj/item/storage/fancy/cigarettes,)))
 
 GLOBAL_LIST_INIT(security_vest_allowed, typecacheof(list(
 	/obj/item/ammo_box,
 	/obj/item/ammo_casing,
 	/obj/item/flashlight,
 	/obj/item/gun/ballistic,
-	/obj/item/gun/energy,
 	/obj/item/kitchen/knife/combat,
-	/obj/item/restraints/handcuffs,
-	/obj/item/storage/belt/holster/detective,
-	/obj/item/storage/belt/holster/nukie,)))
+	/obj/item/restraints/handcuffs,)))
 
 GLOBAL_LIST_INIT(security_wintercoat_allowed, typecacheof(list(
 	/obj/item/ammo_box,
@@ -169,9 +163,6 @@ GLOBAL_LIST_INIT(security_wintercoat_allowed, typecacheof(list(
 	/obj/item/flashlight,
 	/obj/item/storage/fancy/cigarettes,
 	/obj/item/gun/ballistic,
-	/obj/item/gun/energy,
 	/obj/item/lighter,
 	/obj/item/restraints/handcuffs,
-	/obj/item/toy,
-	/obj/item/storage/belt/holster/detective,
-	/obj/item/storage/belt/holster/nukie,)))
+	/obj/item/toy,)))

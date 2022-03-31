@@ -249,25 +249,8 @@
 		if(living_pawn.Adjacent(target) && isturf(target.loc))
 			target.grabbedby(living_pawn)
 		return //Do the rest next turn
-
-	var/obj/machinery/disposal/disposal = controller.blackboard[disposal_target_key]
-	controller.current_movement_target = disposal
-
-	if(living_pawn.Adjacent(disposal))
-		INVOKE_ASYNC(src, .proc/try_disposal_mob, controller, attack_target_key, disposal_target_key) //put him in!
 	else //This means we might be getting pissed!
 		return
-
-/datum/ai_behavior/disposal_mob/proc/try_disposal_mob(datum/ai_controller/controller, attack_target_key, disposal_target_key)
-	var/mob/living/living_pawn = controller.pawn
-	var/mob/living/target = controller.blackboard[attack_target_key]
-	var/obj/machinery/disposal/disposal = controller.blackboard[disposal_target_key]
-
-	controller.blackboard[BB_MONKEY_DISPOSING] = TRUE
-
-	if(target && disposal?.stuff_mob_in(target, living_pawn))
-		disposal.flush()
-	finish_action(controller, TRUE, attack_target_key, disposal_target_key)
 
 
 /datum/ai_behavior/recruit_monkeys/perform(delta_time, datum/ai_controller/controller)

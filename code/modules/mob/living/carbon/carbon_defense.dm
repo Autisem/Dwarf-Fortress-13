@@ -238,7 +238,6 @@
 	var/turf/target_shove_turf = get_step(target.loc, shove_dir)
 	var/mob/living/carbon/target_collateral_carbon
 	var/obj/structure/table/target_table
-	var/obj/machinery/disposal/bin/target_disposal_bin
 	var/shove_blocked = FALSE //Used to check if a shove is blocked so that if it is knockdown logic can be applied
 
 	//Thank you based whoneedsspace
@@ -254,7 +253,6 @@
 		target.Move(target_shove_turf, shove_dir)
 		if(get_turf(target) == target_oldturf)
 			target_table = locate(/obj/structure/table) in target_shove_turf.contents
-			target_disposal_bin = locate(/obj/machinery/disposal/bin) in target_shove_turf.contents
 			shove_blocked = TRUE
 
 	if(target.IsKnockdown() && !target.IsParalyzed())
@@ -289,13 +287,6 @@
 				span_userdanger("<b>[name]</b> shoves you into [target_collateral_carbon.name]!") , span_hear("You hear aggressive shuffling followed by a loud thud!") , COMBAT_MESSAGE_RANGE, src)
 			to_chat(src, span_danger("You shove <b>[target.name]</b> into [target_collateral_carbon.name]!"))
 			log_combat(src, target, "shoved", "into [target_collateral_carbon.name]")
-		else if(target_disposal_bin)
-			target.Knockdown(SHOVE_KNOCKDOWN_SOLID)
-			target.forceMove(target_disposal_bin)
-			target.visible_message(span_danger("<b>[name]</b> shoves <b>[target.name]</b> into [target_disposal_bin]!") ,
-				span_userdanger("<b>[name]</b> shoves you into [target_disposal_bin]!</span>!") , span_hear("You hear aggressive shuffling followed by a loud thud!") , COMBAT_MESSAGE_RANGE, src)
-			to_chat(src, span_danger("You shove <b>[target.name]</b> into [target_disposal_bin]!"))
-			log_combat(src, target, "shoved", "into [target_disposal_bin] (disposal bin)")
 	else
 		target.visible_message(span_danger("<b>[name]</b> pushes <b>[target.name]</b>!") ,
 						span_userdanger("<b>[name]</b> pushes you!") , span_hear("You hear aggressive shuffling!") , COMBAT_MESSAGE_RANGE, src)
@@ -334,14 +325,6 @@
 	var/active_item = get_active_held_item()
 	if(is_type_in_typecache(active_item, GLOB.shove_disarming_types))
 		visible_message(span_warning("[name] regains their grip on [active_item]!") , span_warning("You regain your grip on [active_item]") , null, COMBAT_MESSAGE_RANGE)
-
-/mob/living/carbon/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_CONTENTS)
-		return
-	for(var/X in internal_organs)
-		var/obj/item/organ/O = X
-		O.emp_act(severity)
 
 ///Adds to the parent by also adding functionality to propagate shocks through pulling and doing some fluff effects.
 /mob/living/carbon/electrocute_act(shock_damage, source, siemens_coeff = 1, flags = NONE)

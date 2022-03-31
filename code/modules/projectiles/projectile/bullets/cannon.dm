@@ -37,16 +37,6 @@
 	explosion(target, 2, 3, 4)
 	. = ..()
 
-/obj/projectile/bullet/cannonball/emp
-	name = "malfunction shot"
-	icon_state = "emp_cannonball"
-	projectile_piercing = NONE
-	damage = 15 //very low
-
-/obj/projectile/bullet/cannonball/emp/on_hit(atom/target, blocked = FALSE)
-	empulse(src, 4, 10)
-	. = ..()
-
 /obj/projectile/bullet/cannonball/biggest_one
 	name = "\"The Biggest One\""
 	icon_state = "biggest_one"

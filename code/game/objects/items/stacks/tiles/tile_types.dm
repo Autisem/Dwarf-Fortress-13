@@ -448,7 +448,6 @@
 	singular_name = "plastic floor tile"
 	desc = "Плитка из дешевого хлипкого пластика."
 	icon_state = "tile_plastic"
-	mats_per_unit = list(/datum/material/plastic=500)
 	turf_type = /turf/open/floor/plastic
 	merge_type = /obj/item/stack/tile/plastic
 

@@ -191,7 +191,6 @@
 	name = "пассажирское сиденье"
 	desc = "Удобное, безопасное сиденье. У него есть более крепко выглядящая система ремней, для более гладких полетов."
 	icon_state = "shuttle_chair"
-	buildstacktype = /obj/item/stack/sheet/mineral/titanium
 
 /obj/structure/chair/comfy/shuttle/GetArmrest()
 	return mutable_appearance('icons/obj/chairs.dmi', "shuttle_chair_armrest", plane = ABOVE_GAME_PLANE)
@@ -459,8 +458,6 @@
 	icon_state = "plastic_chair"
 	resistance_flags = FLAMMABLE
 	max_integrity = 50
-	custom_materials = list(/datum/material/plastic = 2000)
-	buildstacktype = /obj/item/stack/sheet/plastic
 	buildstackamount = 2
 	item_chair = /obj/item/chair/plastic
 
@@ -492,87 +489,5 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 7
 	throw_range = 5 //Lighter Weight --> Flies Farther.
-	custom_materials = list(/datum/material/plastic = 2000)
 	break_chance = 25
 	origin_type = /obj/structure/chair/plastic
-
-
-/obj/machinery/painmachine
-	name = "машина боли"
-	desc = "Какая разница как она работает, если это необходимо для безопасности?"
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "pain_machine"
-	max_integrity = 5000
-	idle_power_usage = 200
-	active_power_usage = 4000
-	anchored = TRUE
-	can_buckle = TRUE
-	buckle_lying = 0 //you sit in a chair, not lay
-	layer = OBJ_LAYER
-	var/charge = 0
-	var/max_charge = 6
-
-/obj/machinery/painmachine/proc/handle_layer()
-	if(has_buckled_mobs() && dir == NORTH)
-		layer = ABOVE_MOB_LAYER
-		plane = ABOVE_GAME_PLANE
-	else
-		layer = OBJ_LAYER
-		plane = GAME_PLANE
-
-/obj/machinery/painmachine/post_buckle_mob(mob/living/M)
-	. = ..()
-	handle_layer()
-	set_occupant(M)
-
-/obj/machinery/painmachine/post_unbuckle_mob()
-	. = ..()
-	handle_layer()
-	set_occupant(null)
-
-
-
-/obj/machinery/painmachine/process()
-	if((occupant && iscarbon(occupant)))
-		var/mob/living/carbon/L_occupant = occupant
-		if ((L_occupant.health > 0)&&(L_occupant.key != null) && (charge < max_charge))
-			icon_state = "pain_machine_active"
-			playsound(src.loc, 'sound/machines/juicer.ogg', 50, TRUE)
-			L_occupant.adjustBruteLoss(5)
-			if (prob(10))
-				L_occupant.gain_trauma_type(BRAIN_TRAUMA_MILD)
-			if (prob(5))
-				L_occupant.gain_trauma_type(BRAIN_TRAUMA_SEVERE)
-			if (prob(1))
-				L_occupant.gain_trauma_type(BRAIN_TRAUMA_SPECIAL)
-			L_occupant.emote("agony")
-			addtimer(CALLBACK(L_occupant, /mob/living/carbon.proc/do_jitter_animation, 20), 5)
-			charge += 1
-			sleep(30)
-			if (charge == 6)
-				new /obj/item/ammo_casing/caseless/pissball(src.loc)
-				playsound(src.loc, 'sound/machines/ding.ogg', 50, TRUE)
-				charge = 0
-	update_icon()
-
-
-/obj/machinery/painmachine/can_be_occupant(atom/movable/am)
-	return occupant_typecache ? is_type_in_typecache(am, occupant_typecache) : iscarbon(am)
-
-/obj/machinery/painmachine/update_icon_state()
-	switch(charge)
-		if(0)
-			icon_state = "[initial(icon_state)]"
-		if(1)
-			icon_state = "[initial(icon_state)]1"
-		if(2)
-			icon_state = "[initial(icon_state)]2"
-		if(3)
-			icon_state = "[initial(icon_state)]3"
-		if(4)
-			icon_state = "[initial(icon_state)]4"
-		if(5)
-			icon_state = "[initial(icon_state)]5"
-		if(6)
-			icon_state = "[initial(icon_state)]6"
-	return ..()

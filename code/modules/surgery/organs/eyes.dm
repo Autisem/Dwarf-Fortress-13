@@ -153,15 +153,6 @@
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
 
-/obj/item/organ/eyes/robotic/emp_act(severity)
-	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
-		return
-	if(prob(10 * severity))
-		return
-	to_chat(owner, span_warning("Статика затуманивает моё зрение!"))
-	owner.flash_act(visual = 1)
-
 /obj/item/organ/eyes/robotic/xray
 	name = "рентгеновские глаза"
 	desc = "Эти кибернетические глаза дадут вам рентгеновское зрение. Моргать бесполезно."
@@ -188,9 +179,6 @@
 	tint = INFINITY
 	var/obj/item/flashlight/eyelight/eye
 
-/obj/item/organ/eyes/robotic/flashlight/emp_act(severity)
-	return
-
 /obj/item/organ/eyes/robotic/flashlight/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
 	..()
 	if(!eye)
@@ -213,9 +201,6 @@
 	name = "кибернетические глаза"
 	desc = "Встроенные светофильтры защитят вас от сварки и вспышек, не ограничивая обзор."
 	flash_protect = FLASH_PROTECTION_WELDER
-
-/obj/item/organ/eyes/robotic/shield/emp_act(severity)
-	return
 
 #define RGB2EYECOLORSTRING(definitionvar) ("[copytext_char(definitionvar, 2, 3)][copytext_char(definitionvar, 4, 5)][copytext_char(definitionvar, 6, 7)]")
 
@@ -296,12 +281,6 @@
 /obj/item/organ/eyes/robotic/glow/proc/remove_mob_overlay()
 	if(!QDELETED(owner))
 		owner.cut_overlay(mob_overlay)
-
-/obj/item/organ/eyes/robotic/glow/emp_act()
-	. = ..()
-	if(!active || . & EMP_PROTECT_SELF)
-		return
-	deactivate(silent = TRUE)
 
 /obj/item/organ/eyes/robotic/glow/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
 	. = ..()

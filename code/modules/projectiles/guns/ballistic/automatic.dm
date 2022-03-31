@@ -390,23 +390,6 @@
 	actions_types = list()
 	mag_display = TRUE
 
-// Laser rifle (rechargeable magazine) //
-
-/obj/item/gun/ballistic/automatic/laser
-	name = "лазерная винтовка"
-	desc = "Несмотря на ее слабость в огне, её достоинство - самоперезаряжающийся магазин. Это оружие сделало немало побед НТ"
-	icon_state = "oldrifle"
-	w_class = WEIGHT_CLASS_BULKY
-	inhand_icon_state = "arg"
-	mag_type = /obj/item/ammo_box/magazine/recharge
-	mag_display_ammo = TRUE
-	fire_delay = 2
-	can_suppress = FALSE
-	burst_size = 0
-	actions_types = list()
-	fire_sound = 'sound/weapons/laser.ogg'
-	casing_ejector = FALSE
-
 /obj/item/gun/ballistic/automatic/evgenii
 	name = "автоматический дробовик \"Евгений\""
 	desc = "Простая винтовка, которая разорвёт твоего противника нахуй."

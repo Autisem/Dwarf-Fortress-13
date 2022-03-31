@@ -159,7 +159,6 @@
 	icon = 'icons/turf/snow.dmi'
 	desc = "Выглядит холодным."
 	icon_state = "snow"
-	ore_type = /obj/item/stack/sheet/mineral/snow
 	floor_tile = null
 	slowdown = 2
 	bullet_sizzle = TRUE

@@ -275,23 +275,6 @@
 				return TRUE
 	return ..()
 
-/mob/living/simple_animal/hostile/rat/handle_automated_action()
-	. = ..()
-	if(prob(40))
-		var/turf/open/floor/F = get_turf(src)
-		if(istype(F) && !F.intact)
-			var/obj/structure/cable/C = locate() in F
-			if(C && prob(15))
-				if(C.avail())
-					visible_message(span_warning("[capitalize(src.name)] chews through the [C]. It's toast!"))
-					playsound(src, 'sound/effects/sparks2.ogg', 100, TRUE)
-					C.deconstruct()
-					death()
-			else if(C?.avail())
-				visible_message(span_warning("[capitalize(src.name)] chews through the [C]. It looks unharmed!"))
-				playsound(src, 'sound/effects/sparks2.ogg', 100, TRUE)
-				C.deconstruct()
-
 /mob/living/simple_animal/hostile/rat/AttackingTarget()
 	. = ..()
 	if(istype(target, /obj/item/food/cheesewedge))

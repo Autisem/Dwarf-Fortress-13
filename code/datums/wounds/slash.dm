@@ -9,7 +9,6 @@
 	processes = TRUE
 	wound_type = WOUND_SLASH
 	treatable_by = list(/obj/item/stack/medical/suture)
-	treatable_by_grabbed = list(/obj/item/gun/energy/laser)
 	treatable_tool = TOOL_CAUTERY
 	base_treat_time = 3 SECONDS
 	wound_flags = (FLESH_WOUND | ACCEPTS_GAUZE)
@@ -137,15 +136,11 @@
 /* BEWARE, THE BELOW NONSENSE IS MADNESS. bones.dm looks more like what I have in mind and is sufficiently clean, don't pay attention to this messiness */
 
 /datum/wound/slash/check_grab_treatments(obj/item/I, mob/user)
-	if(istype(I, /obj/item/gun/energy/laser))
-		return TRUE
 	if(I.get_temperature()) // if we're using something hot but not a cautery, we need to be aggro grabbing them first, so we don't try treating someone we're eswording
 		return TRUE
 
 /datum/wound/slash/treat(obj/item/I, mob/user)
-	if(istype(I, /obj/item/gun/energy/laser))
-		las_cauterize(I, user)
-	else if(I.tool_behaviour == TOOL_CAUTERY || I.get_temperature())
+	if(I.tool_behaviour == TOOL_CAUTERY || I.get_temperature())
 		tool_cauterize(I, user)
 	else if(istype(I, /obj/item/stack/medical/suture))
 		suture(I, user)
@@ -196,21 +191,6 @@
 /datum/wound/slash/on_synthflesh(power)
 	. = ..()
 	blood_flow -= 0.075 * power // 20u * 0.075 = -1.5 blood flow, pretty good for how little effort it is
-
-/// If someone's putting a laser gun up to our cut to cauterize it
-/datum/wound/slash/proc/las_cauterize(obj/item/gun/energy/laser/lasgun, mob/user)
-	var/self_penalty_mult = (user == victim ? 1.25 : 1)
-	user.visible_message(span_warning("<b>[user]</b> начинает наводить [lasgun] прямо на [limb.name] <b>[victim]</b>...") , span_userdanger("Начинаю наводить [lasgun] прямо на [user == victim ? "свою " : " "][limb.name][user == victim ? "" : " <b>[victim]</b>"]..."))
-	if(!do_after(user, base_treat_time  * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
-		return
-	var/damage = lasgun.chambered.loaded_projectile.damage
-	lasgun.chambered.loaded_projectile.wound_bonus -= 30
-	lasgun.chambered.loaded_projectile.damage *= self_penalty_mult
-	if(!lasgun.process_fire(victim, victim, TRUE, null, limb.body_zone))
-		return
-	victim.emote("agony")
-	blood_flow -= damage / (5 * self_penalty_mult) // 20 / 5 = 4 bloodflow removed, p good
-	victim.visible_message(span_warning("Порезы на [limb.name] <b>[victim]</b> превращаются в ужасные шрамы!"))
 
 /// If someone is using either a cautery tool or something with heat to cauterize this cut
 /datum/wound/slash/proc/tool_cauterize(obj/item/I, mob/user)

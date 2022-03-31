@@ -141,13 +141,11 @@
 /obj/item/firing_pin/tag/red
 	name = "красный ударник лазертага"
 	icon_state = "firing_pin_red"
-	suit_requirement = /obj/item/clothing/suit/redtag
 	tagcolor = "red"
 
 /obj/item/firing_pin/tag/blue
 	name = "синий ударник лазертага"
 	icon_state = "firing_pin_blue"
-	suit_requirement = /obj/item/clothing/suit/bluetag
 	tagcolor = "blue"
 
 /obj/item/firing_pin/Destroy()

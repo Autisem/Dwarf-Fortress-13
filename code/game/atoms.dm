@@ -86,8 +86,6 @@
 	///Modifier that raises/lowers the effect of the amount of a material, prevents small and easy to get items from being death machines.
 	var/material_modifier = 1
 
-	var/datum/wires/wires = null
-
 	var/list/alternate_appearances
 
 	///Light systems, both shouldn't be active at the same time.
@@ -461,22 +459,6 @@
 ///Is this atom within 1 tile of another atom
 /atom/proc/HasProximity(atom/movable/AM as mob|obj)
 	return
-
-/**
- * React to an EMP of the given severity
- *
- * Default behaviour is to send the [COMSIG_ATOM_EMP_ACT] signal
- *
- * If the signal does not return protection, and there are attached wires then we call
- * [emp_pulse][/datum/wires/proc/emp_pulse] on the wires
- *
- * We then return the protection value
- */
-/atom/proc/emp_act(severity)
-	var/protection = SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity)
-	if(!(protection & EMP_PROTECT_WIRES) && istype(wires))
-		wires.emp_pulse()
-	return protection // Pass the protection value collected here upwards
 
 /**
  * React to a hit by a projectile object
@@ -1125,9 +1107,6 @@
 
 	if(href_list[VV_HK_TRIGGER_EXPLOSION] && check_rights(R_FUN))
 		usr.client.cmd_admin_explosion(src)
-
-	if(href_list[VV_HK_TRIGGER_EMP] && check_rights(R_FUN))
-		usr.client.cmd_admin_emp(src)
 
 	if(href_list[VV_HK_SHOW_HIDDENPRINTS] && check_rights(R_ADMIN))
 		usr.client.cmd_show_hiddenprints(src)

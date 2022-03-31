@@ -110,25 +110,19 @@
 	damage = 0
 	damage_type = OXY
 	nodamage = TRUE
-	var/list/door_types = list(/obj/structure/mineral_door/wood, /obj/structure/mineral_door/iron, /obj/structure/mineral_door/silver, /obj/structure/mineral_door/gold, /obj/structure/mineral_door/uranium, /obj/structure/mineral_door/sandstone, /obj/structure/mineral_door/transparent/diamond)
+	var/list/door_types = list(/obj/structure/mineral_door/wood, /obj/structure/mineral_door/iron, /obj/structure/mineral_door/silver, /obj/structure/mineral_door/gold, /obj/structure/mineral_door/transparent/diamond)
 
 /obj/projectile/magic/door/on_hit(atom/target)
 	. = ..()
-	if(istype(target, /obj/machinery/door))
-		OpenDoor(target)
-	else
-		var/turf/T = get_turf(target)
-		if(isclosedturf(T) && !isindestructiblewall(T))
-			CreateDoor(T)
+	var/turf/T = get_turf(target)
+	if(isclosedturf(T) && !isindestructiblewall(T))
+		CreateDoor(T)
 
 /obj/projectile/magic/door/proc/CreateDoor(turf/T)
 	var/door_type = pick(door_types)
 	var/obj/structure/mineral_door/D = new door_type(T)
 	T.ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 	D.Open()
-
-/obj/projectile/magic/door/proc/OpenDoor(obj/machinery/door/D)
-	D.open()
 
 /obj/projectile/magic/change
 	name = "заряд изменений"
@@ -246,31 +240,6 @@
 
 	qdel(M)
 	return new_mob
-
-/obj/projectile/magic/animate
-	name = "заряд анимации"
-	icon_state = "red_1"
-	damage = 0
-	damage_type = BURN
-	nodamage = TRUE
-
-/obj/projectile/magic/animate/on_hit(atom/target, blocked = FALSE)
-	target.animate_atom_living(firer)
-	..()
-
-/atom/proc/animate_atom_living(mob/living/owner = null)
-	if((isitem(src) || isstructure(src)) && !is_type_in_list(src, GLOB.protected_objects))
-		var/obj/O = src
-		if(istype(O, /obj/item/gun))
-			new /mob/living/simple_animal/hostile/mimic/copy/ranged(drop_location(), src, owner)
-		else
-			new /mob/living/simple_animal/hostile/mimic/copy(drop_location(), src, owner)
-
-	else if(istype(src, /mob/living/simple_animal/hostile/mimic/copy))
-		// Change our allegiance!
-		var/mob/living/simple_animal/hostile/mimic/copy/C = src
-		if(owner)
-			C.ChangeOwner(owner)
 
 /obj/projectile/magic/spellblade
 	name = "энергия лезвия"

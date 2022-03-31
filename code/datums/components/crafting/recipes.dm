@@ -78,21 +78,6 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/mousetrap
-	name = "Mouse Trap"
-	result = /obj/item/assembly/mousetrap
-	time = 10
-	reqs = list(/obj/item/stack/sheet/cardboard = 1,
-				/obj/item/stack/rods = 1)
-	category = CAT_MISC
-
-/datum/crafting_recipe/papersack
-	name = "Paper Sack"
-	result = /obj/item/storage/box/papersack
-	time = 10
-	reqs = list(/obj/item/paper = 5)
-	category = CAT_MISC
-
 /datum/crafting_recipe/paperframes
 	name = "Paper Frames"
 	result = /obj/item/stack/sheet/paperframes/five
@@ -250,9 +235,7 @@
 	name = "Guillotine"
 	result = /obj/structure/guillotine
 	time = 150 // Building a functioning guillotine takes time
-	reqs = list(/obj/item/stack/sheet/plasteel = 3,
-				/obj/item/stack/sheet/mineral/wood = 20,
-				/obj/item/stack/cable_coil = 10)
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 20)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
 	category = CAT_MISC
 
@@ -285,17 +268,6 @@
 	result = /obj/item/storage/basket
 	category = CAT_MISC
 	additional_req_text = " being underwater, underwater basketweaving mastery"
-
-/datum/crafting_recipe/underwater_basket/check_requirements(mob/user, list/collected_requirements)
-	. = ..()
-	if(!HAS_TRAIT(user,TRAIT_UNDERWATER_BASKETWEAVING_KNOWLEDGE))
-		return FALSE
-	var/turf/T = get_turf(user)
-	if(istype(T,/turf/open/water))
-		return TRUE
-	var/obj/machinery/shower/S = locate() in T
-	if(S?.on)
-		return TRUE
 
 //Same but with wheat
 /datum/crafting_recipe/alcohol_burner

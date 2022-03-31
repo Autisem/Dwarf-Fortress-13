@@ -191,22 +191,6 @@
 	sheetType = /obj/item/stack/sheet/mineral/gold
 	rad_insulation = RAD_HEAVY_INSULATION
 
-/obj/structure/mineral_door/uranium
-	name = "uranium door"
-	icon_state = "uranium"
-	sheetType = /obj/item/stack/sheet/mineral/uranium
-	max_integrity = 300
-	light_range = 2
-
-/obj/structure/mineral_door/uranium/ComponentInitialize()
-	return
-
-/obj/structure/mineral_door/sandstone
-	name = "sandstone door"
-	icon_state = "sandstone"
-	sheetType = /obj/item/stack/sheet/mineral/sandstone
-	max_integrity = 100
-
 /obj/structure/mineral_door/transparent
 	opacity = FALSE
 	rad_insulation = RAD_VERY_LIGHT_INSULATION

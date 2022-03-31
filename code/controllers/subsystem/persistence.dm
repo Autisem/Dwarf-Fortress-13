@@ -24,7 +24,6 @@ SUBSYSTEM_DEF(persistence)
 	LoadRecentMaps()
 	if(CONFIG_GET(flag/use_antag_rep))
 		LoadAntagReputation()
-	LoadRandomizedRecipes()
 	return ..()
 
 /datum/controller/subsystem/persistence/proc/LoadPoly()
@@ -77,7 +76,6 @@ SUBSYSTEM_DEF(persistence)
 	CollectMaps()
 	if(CONFIG_GET(flag/use_antag_rep))
 		CollectAntagReputation()
-	SaveRandomizedRecipes()
 	SaveScars()
 
 /datum/controller/subsystem/persistence/proc/remove_duplicate_trophies(list/trophies)
@@ -129,52 +127,6 @@ SUBSYSTEM_DEF(persistence)
 
 	fdel(FILE_ANTAG_REP)
 	text2file(json_encode(antag_rep), FILE_ANTAG_REP)
-
-
-/datum/controller/subsystem/persistence/proc/LoadRandomizedRecipes()
-	var/json_file = file("data/RandomizedChemRecipes.json")
-	var/json
-	if(fexists(json_file))
-		json = r_json_decode(file2text(json_file))
-
-	for(var/randomized_type in subtypesof(/datum/chemical_reaction/randomized))
-		var/datum/chemical_reaction/randomized/R = new randomized_type
-		var/loaded = FALSE
-		if(R.persistent && json)
-			var/list/recipe_data = json["[R.type]"]
-			if(recipe_data)
-				if(R.LoadOldRecipe(recipe_data) && (daysSince(R.created) <= R.persistence_period))
-					loaded = TRUE
-		if(!loaded) //We do not have information for whatever reason, just generate new one
-			if(R.persistent)
-				log_game("Resetting persistent [randomized_type] random recipe.")
-			R.GenerateRecipe()
-
-		if(!R.HasConflicts()) //Might want to try again if conflicts happened in the future.
-			add_chemical_reaction(R)
-		else
-			log_game("Randomized recipe [randomized_type] resulted in conflicting recipes.")
-
-/datum/controller/subsystem/persistence/proc/SaveRandomizedRecipes()
-	var/json_file = file("data/RandomizedChemRecipes.json")
-	var/list/file_data = list()
-
-	//asert globchems done
-	for(var/randomized_type in subtypesof(/datum/chemical_reaction/randomized))
-		var/datum/chemical_reaction/randomized/R = get_chemical_reaction(randomized_type) //ew, would be nice to add some simple tracking
-		if(R?.persistent)
-			var/recipe_data = list()
-			recipe_data["timestamp"] = R.created
-			recipe_data["required_reagents"] = R.required_reagents
-			recipe_data["required_catalysts"] = R.required_catalysts
-			recipe_data["required_temp"] = R.required_temp
-			recipe_data["is_cold_recipe"] = R.is_cold_recipe
-			recipe_data["results"] = R.results
-			recipe_data["required_container"] = "[R.required_container]"
-			file_data["[R.type]"] = recipe_data
-
-	fdel(json_file)
-	WRITE_FILE(json_file, json_encode(file_data))
 
 /datum/controller/subsystem/persistence/proc/SaveScars()
 	for(var/i in GLOB.joined_player_list)

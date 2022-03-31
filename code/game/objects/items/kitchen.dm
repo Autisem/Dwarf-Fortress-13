@@ -70,7 +70,6 @@
 	force = 0
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
-	custom_materials = list(/datum/material/plastic=80)
 	custom_price = PAYCHECK_PRISONER * 2
 	var/break_chance = 25
 
@@ -127,7 +126,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	throw_range = 5
-	custom_materials = list(/datum/material/plastic = 100)
 	attack_verb_continuous = list("prods", "whiffs", "scratches", "pokes")
 	attack_verb_simple = list("prod", "whiff", "scratch", "poke")
 	sharpness = SHARP_EDGED
@@ -308,7 +306,6 @@
 	name = "пластиковая ложка"
 	icon_state = "plastic_spoon"
 	force = 0
-	custom_materials = list(/datum/material/plastic=120)
 	custom_price = PAYCHECK_PRISONER * 2
 	toolspeed = 75 // The plastic spoon takes 5 minutes to dig through a single mineral turf... It's one, continuous, breakable, do_after...
 

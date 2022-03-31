@@ -55,15 +55,6 @@
 	icon_state = "mshell"
 	projectile_type = /obj/projectile/bullet/shotgun_meteorslug
 
-/obj/item/ammo_casing/shotgun/pulseslug
-	name = "12 Калибр: Импульсный патрон"
-	desc = "Деликатное устройство, которое можно загрузить в ружье. Праймер действует как кнопка, \
-	которая запускает среду усиления и запускает мощный энергетический взрыв. Хотя отвод тепла и \
-	энергии ограничивает одно использование, он все же может позволить оператору поражать цели, \
-	с которыми у баллистических боеприпасов возникнут трудности."
-	icon_state = "pshell"
-	projectile_type = /obj/projectile/beam/pulse/shotgun
-
 /obj/item/ammo_casing/shotgun/frag12
 	name = "12 Калибр: FRAG-12"
 	desc = "Выстрел из взрывчатого вещества с большой взрывчаткой для дробовика 12 калибра."
@@ -104,23 +95,6 @@
 	custom_materials = list(/datum/material/iron=250)
 	pellets = 10
 	variance = 25
-
-/obj/item/ammo_casing/shotgun/ion
-	name = "12 Калибр: Ионная Картечь"
-	desc = "Усовершенствованная пуля, в которой используется подпространственный кристалл для создания эффекта, аналогичного стандартной ионной винтовке. \
-	Уникальные свойства кристалла разбивают импульс на множество индивидуально более слабых болтов."
-	icon_state = "ionshell"
-	projectile_type = /obj/projectile/ion/weak
-	pellets = 4
-	variance = 35
-
-/obj/item/ammo_casing/shotgun/laserslug
-	name = "12 Калибр: Лазерная картечь"
-	desc = "Усовершенствованная пуля, которая использует микро-лазер для воспроизведения эффектов лазерного оружия рассеяния в баллистической упаковке."
-	icon_state = "lshell"
-	projectile_type = /obj/projectile/beam/weak
-	pellets = 6
-	variance = 35
 
 /obj/item/ammo_casing/shotgun/techshell
 	name = "12 Калибр: Пустой высокотехнологичный патрон"

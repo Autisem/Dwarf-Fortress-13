@@ -3,7 +3,7 @@
 	///Weighted list of the types that spawns if the turf is open
 	var/open_turf_types = list(/turf/open/floor/plating/asteroid = 1)
 	///Weighted list of the types that spawns if the turf is closed
-	var/closed_turf_types =  list(/turf/closed/mineral/random/volcanic = 1)
+	var/closed_turf_types =  list(/turf/closed/mineral/random = 1)
 
 
 	///Weighted list of extra features that can spawn in the area, such as geysers.
@@ -12,7 +12,7 @@
 	var/list/mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast/random = 50, \
 		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 40, \
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random = 30, \
-		SPAWN_MEGAFAUNA = 4, /mob/living/simple_animal/hostile/asteroid/goldgrub = 10)
+		SPAWN_MEGAFAUNA = 4)
 	///Weighted list of flora that can spawn in the area.
 	var/list/flora_spawn_list
 

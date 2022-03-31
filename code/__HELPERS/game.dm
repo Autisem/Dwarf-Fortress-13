@@ -513,13 +513,6 @@
 	if((character.mind.assigned_role == "Cyborg") || (character.mind.assigned_role == character.mind.special_role))
 		return
 
-/proc/ispipewire(item)
-	var/static/list/pire_wire = list(
-		/obj/structure/disposalpipe,
-		/obj/structure/cable
-	)
-	return (is_type_in_list(item, pire_wire))
-
 // Find an obstruction free turf that's within the range of the center. Can also condition on if it is of a certain area type.
 /proc/find_obstruction_free_location(range, atom/center, area/specific_area)
 	var/list/turfs = RANGE_TURFS(range, center)
@@ -543,9 +536,3 @@
 		return FALSE
 
 	return pick(possible_loc)
-
-/proc/power_fail(duration_min, duration_max)
-	for(var/P in GLOB.apcs_list)
-		var/obj/machinery/power/apc/C = P
-		if(C.cell && SSmapping.level_trait(C.z, ZTRAIT_FORTRESS))
-			C.energy_fail(rand(duration_min,duration_max))

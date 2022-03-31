@@ -35,31 +35,3 @@
 	new /obj/item/clothing/mask/luchador(src)
 	new /obj/item/clothing/mask/luchador/rudos(src)
 	new /obj/item/clothing/mask/luchador/tecnicos(src)
-
-
-/obj/structure/closet/lasertag/red
-	name = "красный комплект снаряжения для лазертага"
-	desc = "Это хранилище оборудования для лазертага."
-	icon_door = "red"
-
-/obj/structure/closet/lasertag/red/PopulateContents()
-	..()
-	for(var/i in 1 to 3)
-		new /obj/item/gun/energy/laser/redtag(src)
-	for(var/i in 1 to 3)
-		new /obj/item/clothing/suit/redtag(src)
-	new /obj/item/clothing/head/helmet/redtaghelm(src)
-
-
-/obj/structure/closet/lasertag/blue
-	name = "синий комплект снаряжения для лазертага"
-	desc = "Это хранилище оборудования для лазертага."
-	icon_door = "blue"
-
-/obj/structure/closet/lasertag/blue/PopulateContents()
-	..()
-	for(var/i in 1 to 3)
-		new /obj/item/gun/energy/laser/bluetag(src)
-	for(var/i in 1 to 3)
-		new /obj/item/clothing/suit/bluetag(src)
-	new /obj/item/clothing/head/helmet/bluetaghelm(src)

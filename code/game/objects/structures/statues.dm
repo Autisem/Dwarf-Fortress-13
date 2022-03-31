@@ -63,7 +63,6 @@
 /obj/structure/statue/uranium
 	max_integrity = 300
 	light_range = 2
-	custom_materials = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT*5)
 	impressiveness = 25 // radiation makes an impression
 	abstract_type = /obj/structure/statue/uranium
 
@@ -83,7 +82,6 @@
 	max_integrity = 200
 	impressiveness = 20
 	desc = "This statue is suitably made from plasma."
-	custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT*5)
 	abstract_type = /obj/structure/statue/plasma
 
 /obj/structure/statue/plasma/scientist
@@ -175,7 +173,6 @@
 	max_integrity = 300
 	impressiveness = 50
 	desc = "A bananium statue with a small engraving:'HOOOOOOONK'."
-	custom_materials = list(/datum/material/bananium=MINERAL_MATERIAL_AMOUNT*5)
 	abstract_type = /obj/structure/statue/bananium
 
 /obj/structure/statue/bananium/clown
@@ -187,7 +184,6 @@
 /obj/structure/statue/sandstone
 	max_integrity = 50
 	impressiveness = 15
-	custom_materials = list(/datum/material/sandstone=MINERAL_MATERIAL_AMOUNT*5)
 	abstract_type = /obj/structure/statue/sandstone
 
 /obj/structure/statue/sandstone/assistant
@@ -206,7 +202,6 @@
 
 /obj/structure/statue/snow
 	max_integrity = 50
-	custom_materials = list(/datum/material/snow=MINERAL_MATERIAL_AMOUNT*5)
 	abstract_type = /obj/structure/statue/snow
 
 /obj/structure/statue/snow/snowman
@@ -222,7 +217,6 @@
 ///////////////////////////////bronze///////////////////////////////////
 
 /obj/structure/statue/bronze
-	custom_materials = list(/datum/material/bronze=MINERAL_MATERIAL_AMOUNT*5)
 	abstract_type = /obj/structure/statue/bronze
 
 ///////////Elder Atmosian///////////////////////////////////////////
@@ -231,7 +225,6 @@
 	name = "Elder Atmosian"
 	desc = "A statue of an Elder Atmosian, capable of bending the laws of thermodynamics to their will."
 	icon_state = "eng"
-	custom_materials = list(/datum/material/metalhydrogen = MINERAL_MATERIAL_AMOUNT*10)
 	max_integrity = 1000
 	impressiveness = 100
 	abstract_type = /obj/structure/statue/elder_atmosian //This one is uncarvable

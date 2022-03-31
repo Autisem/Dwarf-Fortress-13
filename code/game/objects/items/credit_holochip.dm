@@ -99,14 +99,5 @@
 		H.add_fingerprint(user)
 		to_chat(user, span_notice("You extract [split_amount] credits into a new holochip."))
 
-/obj/item/holochip/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	var/wipe_chance = 60 / severity
-	if(prob(wipe_chance))
-		visible_message(span_warning("[capitalize(src.name)] fizzles and disappears!"))
-		qdel(src) //rip cash
-
 /obj/item/holochip/thousand
 	credits = 1000

@@ -210,16 +210,6 @@
 
 /proc/rename_area(a, new_name)
 	var/area/A = get_area(a)
-	var/prevname = "[A.name]"
-	set_area_machinery_title(A, new_name, prevname)
 	A.name = new_name
 	A.update_areasize()
 	return TRUE
-
-
-/proc/set_area_machinery_title(area/A, title, oldtitle)
-	if(!oldtitle) // or replacetext goes to infinite loop
-		return
-	for(var/obj/machinery/door/M in A)
-		M.name = replacetext(M.name,oldtitle,title)
-	//TODO: much much more. Unnamed airlocks, cameras, etc.

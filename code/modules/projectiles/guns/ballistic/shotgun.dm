@@ -196,18 +196,6 @@
 	unique_reskin = null
 	var/slung = FALSE
 
-/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/attackby(obj/item/A, mob/user, params)
-	..()
-	if(istype(A, /obj/item/stack/cable_coil) && !sawn_off)
-		var/obj/item/stack/cable_coil/C = A
-		if(C.use(10))
-			slot_flags = ITEM_SLOT_BACK
-			to_chat(user, span_notice("Привязываю кабель к дробовику, теперь можно носить дробовик на спине."))
-			slung = TRUE
-			update_icon()
-		else
-			to_chat(user, span_warning("Требуется минимум десять длин кабеля, если мне нужно сделать стропу!"))
-
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/update_icon_state()
 	. = ..()
 	if(slung)
@@ -221,15 +209,6 @@
 		. += "ishotgunsling"
 	if(sawn_off)
 		. += "ishotgun_sawn"
-
-/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawoff(mob/user)
-	. = ..()
-	if(. && slung) //sawing off the gun removes the sling
-		new /obj/item/stack/cable_coil(get_turf(src), 10)
-		slung = FALSE
-		update_icon()
-		lefthand_file = 'icons/mob/inhands/weapons/64x_guns_left.dmi'
-		righthand_file = 'icons/mob/inhands/weapons/64x_guns_right.dmi'
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawn
 	name = "импровизированный обрез"

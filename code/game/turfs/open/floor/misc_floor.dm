@@ -130,7 +130,6 @@
 	name = "пластмассовый пол"
 	desc = "Дешевый, легкий пол. Легко плавится."
 	icon_state = "plastic"
-	custom_materials = list(/datum/material/plastic=500)
 	floor_tile = /obj/item/stack/tile/plastic
 
 /turf/open/floor/plastic/setup_broken_states()

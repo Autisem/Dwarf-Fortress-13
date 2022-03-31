@@ -255,34 +255,6 @@ Turf and target are separate in case you want to teleport some distance from a t
 		moblist += mob_to_sort
 	return moblist
 
-// Format a power value in W, kW, MW, or GW.
-/proc/DisplayPower(powerused)
-	if(powerused < 1000) //Less than a kW
-		return "[powerused] W"
-	else if(powerused < 1000000) //Less than a MW
-		return "[round((powerused * 0.001),0.01)] kW"
-	else if(powerused < 1000000000) //Less than a GW
-		return "[round((powerused * 0.000001),0.001)] MW"
-	return "[round((powerused * 0.000000001),0.0001)] GW"
-
-// Format an energy value in J, kJ, MJ, or GJ. 1W = 1J/s.
-/proc/DisplayJoules(units)
-	if (units < 1000) // Less than a kJ
-		return "[round(units, 0.1)] J"
-	else if (units < 1000000) // Less than a MJ
-		return "[round(units * 0.001, 0.01)] kJ"
-	else if (units < 1000000000) // Less than a GJ
-		return "[round(units * 0.000001, 0.001)] MJ"
-	return "[round(units * 0.000000001, 0.0001)] GJ"
-
-// Format an energy value measured in Power Cell units.
-/proc/DisplayEnergy(units)
-	// APCs process every (SSmachines.wait * 0.1) seconds, and turn 1 W of
-	// excess power into GLOB.CELLRATE energy units when charging cells.
-	// With the current configuration of wait=20 and CELLRATE=0.002, this
-	// means that one unit is 1 kJ.
-	return DisplayJoules(units * SSmachines.wait * 0.1 / GLOB.CELLRATE)
-
 /proc/get_mob_by_ckey(key)
 	if(!key)
 		return
@@ -619,34 +591,16 @@ GLOBAL_LIST_INIT(WALLITEMS, typecacheof(list(
 	/obj/structure/mirror, /obj/structure/fireaxecabinet
 	)))
 
-GLOBAL_LIST_INIT(WALLITEMS_EXTERNAL, typecacheof(list(
-	/obj/structure/light_construct, /obj/machinery/light)))
-
-GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(
-	/obj/structure/light_construct, /obj/machinery/light)))
-
-
 /proc/gotwallitem(loc, dir, check_external = 0)
 	var/locdir = get_step(loc, dir)
 	for(var/obj/O in loc)
 		if(is_type_in_typecache(O, GLOB.WALLITEMS) && check_external != 2)
-			//Direction works sometimes
-			if(is_type_in_typecache(O, GLOB.WALLITEMS_INVERSE))
-				if(O.dir == turn(dir, 180))
-					return TRUE
-			else if(O.dir == dir)
+			if(O.dir == dir)
 				return TRUE
 
 			//Some stuff doesn't use dir properly, so we need to check pixel instead
 			//That's exactly what get_turf_pixel() does
 			if(get_turf_pixel(O) == locdir)
-				return TRUE
-
-		if(is_type_in_typecache(O, GLOB.WALLITEMS_EXTERNAL) && check_external)
-			if(is_type_in_typecache(O, GLOB.WALLITEMS_INVERSE))
-				if(O.dir == turn(dir, 180))
-					return TRUE
-			else if(O.dir == dir)
 				return TRUE
 
 	//Some stuff is placed directly on the wallturf (signs)

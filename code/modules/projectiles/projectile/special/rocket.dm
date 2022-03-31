@@ -74,7 +74,6 @@
 	shrapnel_type = null
 	var/sturdy = list(
 	/turf/closed,
-	/obj/machinery/door,
 	)
 
 /obj/item/broken_missile

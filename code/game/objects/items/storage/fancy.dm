@@ -353,23 +353,6 @@
 	icon_state = "shadyjim"
 	spawn_type = /obj/item/clothing/mask/cigarette/rollie/mindbreaker
 
-/obj/item/storage/fancy/rollingpapers
-	name = "rolling paper pack"
-	desc = "A pack of Nanotrasen brand rolling papers."
-	w_class = WEIGHT_CLASS_TINY
-	icon = 'icons/obj/cigarettes.dmi'
-	icon_state = "cig_paper_pack"
-	///The value in here has NOTHING to do with icons. It needs to be this for the proper examine.
-	icon_type = "rolling paper"
-	spawn_type = /obj/item/rollingpaper
-	custom_price = PAYCHECK_PRISONER
-
-/obj/item/storage/fancy/rollingpapers/ComponentInitialize()
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 10
-	STR.set_holdable(list(/obj/item/rollingpaper))
-
 ///Overrides to do nothing because fancy boxes are fucking insane.
 /obj/item/storage/fancy/rollingpapers/update_icon_state()
 	return ..()

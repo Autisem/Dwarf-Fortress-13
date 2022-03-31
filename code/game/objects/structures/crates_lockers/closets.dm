@@ -363,21 +363,6 @@
 		user.visible_message(span_notice("<b>[user]</b> [anchored ? "прикручивает" : "откручивает"] <b>[src.name]</b> [anchored ? "к полу" : "от пола"].") , \
 						span_notice("[anchored ? "Прикручиваю" : "Откручиваю"] <b>[src.name]</b> [anchored ? "к полу" : "от полу"].") , \
 						span_hear("Слышу трещотку."))
-	else if(istype(W, /obj/item/stack/sheet/plasteel) && secure)
-		if(reinforced)
-			to_chat(user, span_warning("Уже укреплено. Если поставить больше, то шкаф развалится."))
-			return
-		var/obj/item/stack/S = W
-		if(!S.use(5))
-			to_chat(user, span_warning("Нужно 5 листов пластали для укрепления шкафа."))
-			return
-		user.visible_message(span_notice("<b>[user]</b> укрепляет <b>[src.name]</b> пласталью.") , \
-						span_notice("Укрепляю <b>[src.name]</b> пласталью. Теперь ему не страшны копья.") , \
-						span_hear("Слышу лязг метала."))
-		armor = armor.modifyRating(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, fire = 10)
-		reinforced = TRUE
-		update_icon()
-		return
 	else
 		return FALSE
 
@@ -547,21 +532,6 @@
 /obj/structure/closet/get_remote_view_fullscreens(mob/user)
 	if(user.stat == DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
 		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 1)
-
-/obj/structure/closet/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	if (!(. & EMP_PROTECT_CONTENTS))
-		for(var/obj/O in src)
-			O.emp_act(severity)
-	if(secure && !broken && !(. & EMP_PROTECT_SELF))
-		if(prob(50 / severity))
-			locked = !locked
-			update_icon()
-		if(prob(20 / severity) && !opened)
-			if(!locked)
-				open()
 
 /obj/structure/closet/contents_explosion(severity, target)
 	for(var/thing in contents)

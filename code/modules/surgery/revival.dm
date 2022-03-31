@@ -27,19 +27,11 @@
 
 /datum/surgery_step/revive
 	name = "разряд"
-	implements = list(/obj/item/gun/energy = 60)
 	repeatable = TRUE
 	time = 5 SECONDS
 
 /datum/surgery_step/revive/tool_check(mob/user, obj/item/tool)
 	. = TRUE
-	if(istype(tool, /obj/item/gun/energy))
-		var/obj/item/gun/energy/E = tool
-		if(E.chambered && istype(E.chambered, /obj/item/ammo_casing/energy/electrode))
-			return TRUE
-		else
-			to_chat(user, span_warning("Неоткуда взять разряд!"))
-			return FALSE
 
 /datum/surgery_step/revive/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("Вы готовитесь послать разряд в мозг [skloname(target.name, RODITELNI, target.gender)] при помощи [tool].") ,

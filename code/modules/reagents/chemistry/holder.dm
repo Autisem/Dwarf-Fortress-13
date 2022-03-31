@@ -28,13 +28,13 @@
 	//For chemical reactions list lookup list - creates a bit list of info passed to the UI. This is saved to reduce lag from new windows opening, since it's a lot of data.
 
 	//Prevent these reactions from appearing in lookup tables (UI code)
-	var/list/blacklist = (/datum/chemical_reaction/randomized)
+	var/list/blacklist = list()
 
 	if(GLOB.chemical_reactions_list)
 		return
 
 	//Randomized need to go last since they need to check against conflicts with normal recipes
-	var/paths = subtypesof(/datum/chemical_reaction) - typesof(/datum/chemical_reaction/randomized) + subtypesof(/datum/chemical_reaction/randomized)
+	var/paths = subtypesof(/datum/chemical_reaction)
 	GLOB.chemical_reactions_list = list() //reagents to reaction list
 	GLOB.chemical_reactions_results_lookup_list = list() //UI glob
 	GLOB.chemical_reactions_list_product_index = list() //product to reaction list

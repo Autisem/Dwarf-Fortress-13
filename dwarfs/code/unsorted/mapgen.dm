@@ -10,10 +10,7 @@
 		/mob/living/simple_animal/hostile/shrooman/fighter=20, /mob/living/simple_animal/hostile/froggernaut=5
 	)
 
-	flora_spawn_list = list(
-		/obj/structure/flora/tree/boxplanet/glikodil=1, /obj/structure/flora/tree/boxplanet/svetosvin=1,
-		/obj/structure/flora/tree/boxplanet/kartoshmel=1
-	)
+	flora_spawn_list = null
 
 	mob_spawn_chance = 1
 	flora_spawn_chance = 2

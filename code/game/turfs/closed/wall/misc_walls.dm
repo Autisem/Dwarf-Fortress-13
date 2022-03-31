@@ -1,33 +1,3 @@
-/turf/closed/wall/mineral/cult
-	name = "стена с рунами"
-	desc = "Стена с непонятными рунами на ней, которые вызывают боли в голове если долго смотреть на них. Холодная на ощупь."
-	icon = 'icons/turf/walls/cult_wall.dmi'
-	icon_state = "cult_wall-0"
-	base_icon_state = "cult_wall"
-	smoothing_flags = SMOOTH_BITMASK
-	canSmoothWith = null
-	sheet_type = /obj/item/stack/sheet/runed_metal
-	sheet_amount = 1
-	girder_type = /obj/structure/girder/cult
-
-/turf/closed/wall/mineral/cult/Initialize()
-	new /obj/effect/temp_visual/cult/turf(src)
-	. = ..()
-
-/turf/closed/wall/mineral/cult/devastate_wall()
-	new sheet_type(get_turf(src), sheet_amount)
-
-/turf/closed/wall/mineral/cult/artificer
-	name = "стена с рунами"
-	desc = "Стена с непонятными рунами на ней, которые вызывают боли в голове если долго смотреть на них. Холодная на ощупь."
-
-/turf/closed/wall/mineral/cult/artificer/break_wall()
-	new /obj/effect/temp_visual/cult/turf(get_turf(src))
-	return null //excuse me we want no runed metal here
-
-/turf/closed/wall/mineral/cult/artificer/devastate_wall()
-	new /obj/effect/temp_visual/cult/turf(get_turf(src))
-
 /turf/closed/wall/vault
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rockvault"

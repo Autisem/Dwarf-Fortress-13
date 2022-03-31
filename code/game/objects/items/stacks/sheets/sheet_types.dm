@@ -85,43 +85,6 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	return BRUTELOSS
 
 /*
- * Plasteel
- */
-GLOBAL_LIST_INIT(plasteel_recipes, list ( \
-	new/datum/stack_recipe("Баррикада", /obj/structure/deployable_barricade/plasteel, 2, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
-))
-
-/obj/item/stack/sheet/plasteel
-	name = "пласталь"
-	singular_name = "лист пластали"
-	desc = "Это лист из сплава железа и плазмы"
-	icon = 'white/valtos/icons/items.dmi'
-	icon_state = "sheet-plasteel"
-	inhand_icon_state = "sheet-plasteel"
-	mats_per_unit = list(/datum/material/alloy/plasteel=MINERAL_MATERIAL_AMOUNT)
-	material_type = /datum/material/alloy/plasteel
-	throwforce = 10
-	flags_1 = CONDUCT_1
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 80)
-	resistance_flags = FIRE_PROOF
-	merge_type = /obj/item/stack/sheet/plasteel
-	grind_results = list(/datum/reagent/iron = 20, /datum/reagent/toxin/plasma = 20)
-	point_value = 23
-	tableVariant = /obj/structure/table/reinforced
-	material_flags = MATERIAL_NO_EFFECTS
-	matter_amount = 12
-
-/obj/item/stack/sheet/plasteel/get_main_recipes()
-	. = ..()
-	. += GLOB.plasteel_recipes
-
-/obj/item/stack/sheet/plasteel/twenty
-	amount = 20
-
-/obj/item/stack/sheet/plasteel/fifty
-	amount = 50
-
-/*
  * Wood
  */
 GLOBAL_LIST_INIT(wood_recipes, list ( \
@@ -139,7 +102,6 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("собачья кровать", /obj/structure/bed/dogbed, 10, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("комод", /obj/structure/dresser, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("рамка для рисунка", /obj/item/wallframe/painting, 1, time = 10),\
-	new/datum/stack_recipe("деревянный щит", /obj/item/shield/riot/buckler, 20, time = 40), \
 	new/datum/stack_recipe("маска Тики", /obj/item/clothing/mask/gas/tiki_mask, 2), \
 	new/datum/stack_recipe("деревянное ведро", /obj/item/reagent_containers/glass/bucket/wooden, 3, time = 10),\
 	new/datum/stack_recipe("ящик для руды", /obj/structure/ore_box, 4, time = 50, one_per_turf = TRUE, on_floor = TRUE),\
@@ -245,7 +207,6 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	new/datum/stack_recipe("импровизированная марля", /obj/item/stack/medical/gauze/improvised, 1, 2, 6), \
 	new/datum/stack_recipe("тряпка", /obj/item/reagent_containers/glass/rag, 1), \
 	new/datum/stack_recipe("простыня", /obj/item/bedsheet, 3), \
-	new/datum/stack_recipe("пустой мешок для песка", /obj/item/emptysandbag, 4), \
 	null, \
 	new/datum/stack_recipe("перчатки без пальцев", /obj/item/clothing/gloves/fingerless, 1), \
 	new/datum/stack_recipe("белые перчатки", /obj/item/clothing/gloves/color/white, 3), \
@@ -360,34 +321,6 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (					 \
 	amount = 50
 
 /*
- * Runed Metal
- */
-
-
-/obj/item/stack/sheet/runed_metal
-	name = "рунический металл"
-	desc = "Листы холодного, покрытого меняющимися надписями, металла."
-	singular_name = "лист рунического металла"
-	icon_state = "sheet-runed"
-	inhand_icon_state = "sheet-runed"
-	icon = 'icons/obj/stack_objects.dmi'
-	mats_per_unit = list(/datum/material/runedmetal = MINERAL_MATERIAL_AMOUNT)
-	sheettype = "runed"
-	merge_type = /obj/item/stack/sheet/runed_metal
-	novariants = TRUE
-	grind_results = list(/datum/reagent/iron = 5, /datum/reagent/blood = 15)
-	material_type = /datum/material/runedmetal
-
-/obj/item/stack/sheet/runed_metal/fifty
-	amount = 50
-
-/obj/item/stack/sheet/runed_metal/ten
-	amount = 10
-
-/obj/item/stack/sheet/runed_metal/five
-	amount = 5
-
-/*
  * Bronze
  */
 
@@ -398,7 +331,6 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (					 \
 	icon_state = "sheet-brass"
 	inhand_icon_state = "sheet-brass"
 	icon = 'white/valtos/icons/items.dmi'
-	mats_per_unit = list(/datum/material/bronze = MINERAL_MATERIAL_AMOUNT)
 	lefthand_file = 'icons/mob/inhands/misc/sheets_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/sheets_righthand.dmi'
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -412,7 +344,6 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (					 \
 	grind_results = list(/datum/reagent/iron = 5, /datum/reagent/copper = 3) //we have no "tin" reagent so this is the closest thing
 	merge_type = /obj/item/stack/tile/bronze
 	tableVariant = /obj/structure/table/bronze
-	material_type = /datum/material/bronze
 
 /obj/item/stack/sheet/paperframes/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
 	. = ..()
@@ -467,38 +398,6 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (					 \
 	grind_results = list(/datum/reagent/carbon = 10)
 	merge_type = /obj/item/stack/sheet/bone
 	material_type = /datum/material/bone
-
-GLOBAL_LIST_INIT(plastic_recipes, list(
-	new /datum/stack_recipe("пластиковый пол", /obj/item/stack/tile/plastic, 1, 4, 20), \
-	new /datum/stack_recipe("складной пластиковый стул", /obj/structure/chair/plastic, 2), \
-	new /datum/stack_recipe("бутылка для воды", /obj/item/reagent_containers/food/drinks/waterbottle/empty), \
-	new /datum/stack_recipe("большая бутылка для воды", /obj/item/reagent_containers/food/drinks/waterbottle/large/empty, 3), \
-	new /datum/stack_recipe("пластиковый стакан", /obj/item/reagent_containers/food/drinks/colocup, 1), \
-	new /datum/stack_recipe("знак мокрый пол", /obj/item/clothing/suit/caution, 2), \
-	new /datum/stack_recipe("пустой настенный знак", /obj/item/sign, 1), \
-	new /datum/stack_recipe("конус", /obj/item/clothing/head/cone, 2)))
-
-/obj/item/stack/sheet/plastic
-	name = "пластик"
-	desc = "Сжимайте динозавров более миллиона лет, затем очистите, разделите и формируйте и Вуаля! Вот он пластик."
-	singular_name = "лист пластика"
-	icon = 'white/valtos/icons/items.dmi'
-	icon_state = "sheet-plastic"
-	inhand_icon_state = "sheet-plastic"
-	mats_per_unit = list(/datum/material/plastic=MINERAL_MATERIAL_AMOUNT)
-	throwforce = 7
-	material_type = /datum/material/plastic
-	merge_type = /obj/item/stack/sheet/plastic
-
-/obj/item/stack/sheet/plastic/fifty
-	amount = 50
-
-/obj/item/stack/sheet/plastic/five
-	amount = 5
-
-/obj/item/stack/sheet/plastic/get_main_recipes()
-	. = ..()
-	. += GLOB.plastic_recipes
 
 GLOBAL_LIST_INIT(paperframe_recipes, list(
 new /datum/stack_recipe("paper frame separator", /obj/structure/window/paperframe, 2, one_per_turf = TRUE, on_floor = TRUE, time = 10), \
