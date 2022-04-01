@@ -1,8 +1,8 @@
 /obj/structure/gemcutter
 	name = "gem cutter"
 	desc = "Makes items that don't shine to do so."
-	icon = 'white/rashcat/icons/dwarfs/objects/tools.dmi'
-	icon_state = "gemcutter_off"
+	icon = 'dwarfs/icons/structures/32x48.dmi'
+	icon_state = "gemcutter"
 	anchored = TRUE
 	density = TRUE
 	layer = TABLE_LAYER
@@ -17,13 +17,13 @@
 		busy = TRUE
 		if(!do_after(user, 15 SECONDS, target = src))
 			busy = FALSE
-			icon_state = "gemcutter_off"
+			icon_state = "gemcutter"
 			return
 		busy = FALSE
 		var/obj/item/gem/G = I
 		new G.cut_type(loc)
 		to_chat(user, span_notice("You process [G] on \a [src]"))
 		qdel(G)
-		icon_state = "gemcutter_off"
+		icon_state = "gemcutter"
 	else
 		..()

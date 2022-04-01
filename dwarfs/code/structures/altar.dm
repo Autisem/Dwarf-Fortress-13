@@ -1,8 +1,8 @@
 /obj/structure/dwarf_altar
 	name = "Altar"
-	desc = "Mysterious."
-	icon = 'white/rashcat/icons/dwarfs/objects/altar.dmi'
-	icon_state = "altar_inactive"
+	desc = "A place to praise The God of Blood"
+	icon = 'dwarfs/icons/structures/32x64.dmi'
+	icon_state = "altarus_off"
 	density = TRUE
 	anchored = TRUE
 	layer = ABOVE_MOB_LAYER
@@ -21,7 +21,7 @@
 	set_light(1)
 
 /obj/structure/dwarf_altar/proc/activate()
-	icon_state = "altar_active"
+	icon_state = "altarus_on"
 
 /obj/structure/dwarf_altar/attack_ghost(mob/user)
 	summon_dwarf(user)
@@ -45,7 +45,7 @@
 	deactivate()
 
 /obj/structure/dwarf_altar/proc/deactivate()
-	icon_state = "altar_inactive"
+	icon_state = "altarus_off"
 
 /obj/structure/dwarf_altar/attackby(obj/item/I, mob/living/user, params)
 	if((I.type in allowed_resources))
