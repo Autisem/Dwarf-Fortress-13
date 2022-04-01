@@ -1,7 +1,7 @@
 /obj/structure/dwarf_waterbarrel
 	name = "barrel with dirty water"
 	desc = "Do. Not. Drink."
-	icon = 'dwarfs/icons/workshops.dmi'
+	icon = 'dwarfs/icons/structures/workshops.dmi'
 	icon_state = "barrel_water_1"
 	anchored = TRUE
 	density = TRUE
