@@ -18,7 +18,11 @@
 /obj/structure/press/examine(mob/user)
 	. = ..()
 	if(length(contents))
-		.+="<br>It has [jointext(contents, ", ")] in it."
+		.+="<br>It has "
+		for(var/obj/O in uniquePathList(contents))
+			var/amt = count_by_type(contents, O.type)
+			.+="[amt] [O.name][amt > 1 ? "s" : ""]"
+		.+=" in it."
 	if(reagents.total_volume)
 		.+="<br>It has [reagents.get_reagent_names()] in it."
 	if(!length(contents) && !reagents.total_volume)

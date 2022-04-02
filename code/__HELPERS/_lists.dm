@@ -355,6 +355,16 @@
 	for(var/i in L)
 		. |= i
 
+//Return a list of items with no dublicate paths
+/proc/uniquePathList(list/L)
+	. = list()
+	var/list/typesList = list()
+	for(var/atom/A in L)
+		if(A.type in typesList)
+			continue
+		typesList+=A.type
+		.+=A
+
 //same, but returns nothing and acts on list in place (also handles associated values properly)
 /proc/uniqueList_inplace(list/L)
 	var/temp = L.Copy()
