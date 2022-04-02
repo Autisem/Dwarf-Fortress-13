@@ -7,7 +7,6 @@
 	anchored = 1
 	layer = ABOVE_MOB_LAYER
 	var/max_items = 10 // how much fruits it can hold
-	var/list/held_items = list() // list of held items
 	var/max_volume = 500 // sus
 	var/time_to_juice = 1 SECONDS
 	var/busy_juicing = FALSE
@@ -18,11 +17,11 @@
 
 /obj/structure/press/examine(mob/user)
 	. = ..()
-	if(length(held_items))
-		.+="<br>It has [jointext(held_items, ", ")] in it."
+	if(length(contents))
+		.+="<br>It has [jointext(contents, ", ")] in it."
 	if(reagents.total_volume)
 		.+="<br>It has [reagents.get_reagent_names()] in it."
-	if(!length(held_items) && !reagents.total_volume)
+	if(!length(contents) && !reagents.total_volume)
 		.+="<br>It's empty."
 
 /obj/structure/press/attacked_by(obj/item/I, mob/living/user)
@@ -31,10 +30,9 @@
 		if(!G.juice_type)
 			to_chat(user, span_warning("[G] cannot be juiced."))
 			return
-		if(length(held_items) > max_items)
+		if(length(contents) >= max_items)
 			to_chat(user, span_warning("[G] doesn't fit anymore!"))
 			return
-		held_items.Add(G)
 		G.forceMove(src)
 		to_chat(user, span_notice("You add [G] to [src]."))
 		icon_state = "press_open_item"
@@ -43,15 +41,15 @@
 		return ..()
 
 /obj/structure/press/proc/squeeze()
-	if(!length(held_items))
+	if(!length(contents))
 		return
 	var/list/item_types = list()
 	var/types_amount = 0
-	for(var/obj/item/I in held_items)
+	for(var/obj/item/I in contents)
 		if(!(I.type in item_types))
 			item_types.Add(I.type)
 			types_amount++
-	var/obj/item/growable/G = held_items[length(held_items)]
+	var/obj/item/growable/G = contents[length(contents)]
 	var/datum/reagent/R = G.juice_type
 	if(types_amount > 1)
 		R = /datum/reagent/blood
@@ -59,7 +57,6 @@
 	G.juice_volume -= volume
 	reagents.add_reagent(R, volume)
 	if(G.juice_volume <= 0)
-		held_items.Remove(G)
 		for(var/i in 1 to rand(1, 2))
 			new G.seed_type(get_turf(src))
 		qdel(G)
@@ -69,13 +66,13 @@
 	switch(icon_state)
 		if("press_working")
 			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/32x64.dmi', "working_overlay")
-			var/obj/item/growable/G = held_items[length(held_items)]
+			var/obj/item/growable/G = contents[length(contents)]
 			var/_color = initial(G.juice_type.color)
 			M.color = _color
 			. += M
 		if("press_open_item")
 			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/32x64.dmi', "item_overlay")
-			var/obj/item/growable/G = held_items[length(held_items)]
+			var/obj/item/growable/G = contents[length(contents)]
 			var/_color = initial(G.juice_type.color)
 			M.color = _color
 			. += M
@@ -89,12 +86,11 @@
 	var/list/choices = list("Juice"=icon('icons/hud/radial.dmi', "radial_juice"), "Eject"=icon('icons/hud/radial.dmi', "radial_eject"))
 	var/answer = show_radial_menu(user, src, choices)
 	if(answer == "Eject")
-		if(!length(held_items))
+		if(!length(contents))
 			to_chat(user, span_warning("[src] is empty!"))
 			return
-		for(var/obj/item/I in held_items)
-			held_items.Remove(I)
-			I.forceMove(get_turf(src))
+		for(var/obj/item/I in contents)
+			I.forceMove(get_turf(user))
 		if(reagents.maximum_volume)
 			icon_state = "press_finished"
 		else
@@ -102,7 +98,7 @@
 		update_appearance()
 		to_chat(user, span_notice("You remove everything from [src]."))
 	else if(answer == "Juice")
-		if(!length(held_items))
+		if(!length(contents))
 			to_chat(user, span_warning("There is nothing to juice!"))
 			return
 		if(busy_juicing)
@@ -111,12 +107,12 @@
 		icon_state = "press_working"
 		update_appearance()
 		to_chat(user, span_notice("You start juicing [src]'s contents..."))
-		while(length(held_items))
+		while(length(contents))
 			if(!do_after(user, time_to_juice, src))
 				break
 			squeeze()
 		to_chat(user, span_notice("You finish working at [src]..."))
-		if(!length(held_items))
+		if(!length(contents))
 			icon_state = "press_finished"
 			update_appearance()
 		else

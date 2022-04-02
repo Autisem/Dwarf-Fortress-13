@@ -6,7 +6,6 @@
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
-	var/list/inventory = list()
 	var/datum/workbench_recipe/recipe
 	var/ready = FALSE
 	var/busy = FALSE
@@ -27,16 +26,15 @@
 	if(busy)
 		to_chat(user, span_notice("Currently busy."))
 		return
-	if(recipe && inventory.len && !ready)
+	if(recipe && contents.len && !ready)
 		var/answer = tgui_alert(user, "Cancel current assembly?", "Workbench", list("Yes", "No"))
 		if(answer != "Yes" || !answer)
 			return
-		for(var/I in inventory)
+		for(var/I in contents)
 			var/atom/movable/M = I
 			M.forceMove(drop_location())
 		qdel(recipe)
 		recipe = null
-		inventory.Cut()
 		to_chat(user, span_notice("You cancel the assembly of [recipe]."))
 		return
 	if(ready)
@@ -56,7 +54,6 @@
 				B.level = P.level
 		to_chat(user, span_notice("You assemble [O]."))
 		qdel(recipe)
-		inventory.Cut()
 		recipe = null
 		ready = FALSE
 		return
@@ -95,7 +92,7 @@
 
 /obj/structure/workbench/proc/amount(obj/item/I)
 	. = 0
-	for(var/obj/O in inventory)
+	for(var/obj/O in contents)
 		if(istype(O, I.type))
 			.+=1
 
@@ -109,7 +106,7 @@
 
 /obj/structure/workbench/proc/get_primary()
 	. = null
-	for(var/obj/I in inventory)
+	for(var/obj/I in contents)
 		if(istype(I, recipe.primary))
 			. = I
 
@@ -136,7 +133,6 @@
 				if(S.amount<1)
 					qdel(S)
 			user.transferItemToLoc(I, src)
-			inventory+=I
 			visible_message(span_notice("[user] places [I] on \the [src].") ,span_notice("You place [I] on \the [src]."))
 			check_ready()
 		else
