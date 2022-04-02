@@ -535,15 +535,6 @@
 	taste_description = "дыхание дракона, но не так круто"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
-/datum/reagent/mutationtoxin/fly
-	name = "Токсин Мутации в Муху"
-	enname = "Fly Mutation Toxin"
-	description = "An insectifying toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/fly
-	taste_description = "мусор"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
 /datum/reagent/mutationtoxin/moth
 	name = "Токсин Мутации в Мотылька"
 	enname = "Moth Mutation Toxin"

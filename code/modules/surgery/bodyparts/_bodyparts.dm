@@ -1,7 +1,7 @@
 
 /obj/item/bodypart
-	name = "конечность"
-	desc = "Почему так получилось?"
+	name = "bodypart"
+	desc = "How did this happen?"
 	gender = FEMALE
 	force = 3
 	throwforce = 3
@@ -65,13 +65,13 @@
 	var/dmg_overlay_type //the type of damage overlay (if any) to use when this bodypart is bruised/burned.
 
 	//Damage messages used by help_shake_act()
-	var/light_brute_msg = "травмирована"
-	var/medium_brute_msg = "повреждена"
-	var/heavy_brute_msg = "разорвана"
+	var/light_brute_msg = "traumatized"
+	var/medium_brute_msg = "damaged"
+	var/heavy_brute_msg = "torn"
 
-	var/light_burn_msg = "обгорела"
-	var/medium_burn_msg = "поджарена"
-	var/heavy_burn_msg = "отваливается"
+	var/light_burn_msg = "burnt"
+	var/medium_burn_msg = "cooked"
+	var/heavy_burn_msg = "falling off"
 
 	/// The wounds currently afflicting this body part
 	var/list/wounds

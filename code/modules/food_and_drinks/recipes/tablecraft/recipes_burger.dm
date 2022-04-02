@@ -36,15 +36,6 @@
 	result = /obj/item/food/burger/corgi
 	subcategory = CAT_BURGER
 
-/datum/crafting_recipe/food/appendixburger
-	name = "Appendix burger"
-	reqs = list(
-		/obj/item/organ/appendix = 1,
-		/obj/item/food/bun = 1
-	)
-	result = /obj/item/food/burger/appendix
-	subcategory = CAT_BURGER
-
 /datum/crafting_recipe/food/brainburger
 	name = "Brain burger"
 	reqs = list(

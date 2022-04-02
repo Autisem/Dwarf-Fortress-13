@@ -58,16 +58,6 @@
 	foodtypes = GRAIN | MEAT | GROSS
 	venue_value = FOOD_PRICE_EXOTIC
 
-
-/obj/item/food/burger/appendix
-	name = "appendix burger"
-	desc = "Tastes like appendicitis."
-	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
-	icon_state = "appendixburger"
-	tastes = list("bun" = 4, "grass" = 2)
-	foodtypes = GRAIN | MEAT | GROSS
-	venue_value = FOOD_PRICE_NORMAL
-
 /obj/item/food/burger/fish
 	name = "fillet -o- carp sandwich"
 	desc = "Almost like a carp is yelling somewhere... Give me back that fillet -o- carp, give me that carp."
