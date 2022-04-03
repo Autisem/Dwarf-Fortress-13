@@ -266,10 +266,10 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	if(!LAZYLEN(embedding))
 		if(GLOB.embedpocalypse)
 			embedding = EMBED_POINTY
-			name = "острый [name]"
+			name = "sharp [name]"
 		else if(GLOB.stickpocalypse)
 			embedding = EMBED_HARMLESS
-			name = "липкий [name]"
+			name = "sticky [name]"
 
 	updateEmbedding()
 
@@ -310,7 +310,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		righthand_file = SSgreyscale.GetColoredIconByType(greyscale_config_inhand_right, greyscale_colors)
 
 /obj/item/verb/move_to_top()
-	set name = "Переместить наверх"
+	set name = "move to top"
 	set category = "Объект"
 	set src in oview(1)
 
@@ -379,9 +379,9 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 		if(can_handle_hot)
 			extinguish()
-			to_chat(user, span_notice("Тушу [src]."))
+			to_chat(user, span_notice("You extinguish [src]."))
 		else
-			to_chat(user, span_warning("Обжигаюсь дотронувшись до [src]!"))
+			to_chat(user, span_warning("You burn your hand touching [src]!"))
 			var/obj/item/bodypart/affecting = C.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
 			if(affecting?.receive_damage( 0, 5 ))		// 5 burn damage
 				C.update_damage_overlays()
@@ -394,7 +394,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	var/grav = user.has_gravity()
 	if(grav > STANDARD_GRAVITY)
 		var/grav_power = min(3,grav - STANDARD_GRAVITY)
-		to_chat(user,span_notice("С трудом начинаю поднимать [src]..."))
+		to_chat(user,span_notice("You slowly start picking up [src]..."))
 		if(!do_mob(user,src,30*grav_power))
 			return
 
@@ -449,7 +449,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		return TRUE
 
 	if(prob(final_block_chance))
-		owner.visible_message(span_danger("<b>[owner]</b> блокирует [attack_text] при помощи <b>[src.name]</b>!"))
+		owner.visible_message(span_danger("<b>[owner]</b> blocks [attack_text] using <b>[src.name]</b>!"))
 		return TRUE
 
 /obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language, list/message_mods)
@@ -529,7 +529,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 /obj/item/verb/verb_pickup()
 	set src in oview(1)
 	set category = "Объект"
-	set name = "Подобрать"
+	set name = "pick up"
 
 	if(usr.incapacitated() || !Adjacent(usr))
 		return
@@ -670,7 +670,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 /obj/item/proc/ignition_effect(atom/A, mob/user)
 	if(get_temperature())
-		. = span_notice("[user] поджигает [A] при помощи [src].")
+		. = span_notice("[user] ignites [A] using [src].")
 	else
 		. = ""
 
