@@ -34,11 +34,12 @@
 		return ..()
 
 /obj/structure/demijohn/attackby_secondary(obj/item/weapon, mob/user, params)
+	. = SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(istype(weapon, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/C = weapon
 		var/transfered = reagents.trans_to(C, 10, transfered_by=user)
 		if(!transfered)
-			return TRUE // SECONDARY_ATTACK_CALL_NORMAL
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 		start_conv = world.time // each time you take something the timer will reset
 		to_chat(user, span_notice("You take [transfered]u from [src]."))
 		if(!reagents.total_volume)
