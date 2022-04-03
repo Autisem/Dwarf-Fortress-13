@@ -50,7 +50,7 @@
 // 	if(reagents.total_volume)
 // 		var/mutable_appearance/M = mutable_appearance('', "demijohn_liquid_overlay")
 // 		M.color = mix_color_from_reagents(reagents.reagent_list)
-		. += M
+// 		. += M
 
 /obj/structure/demijohn/update_icon(updates)
 	. = ..()
