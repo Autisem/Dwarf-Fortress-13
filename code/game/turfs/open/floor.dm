@@ -5,7 +5,7 @@
 	name = "плитка"
 	icon = 'icons/turf/floors.dmi'
 	base_icon_state = "floor"
-	baseturfs = /turf/open/floor/plating
+	baseturfs = /turf/open/floor/stone/raw
 
 	footstep = FOOTSTEP_FLOOR
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
