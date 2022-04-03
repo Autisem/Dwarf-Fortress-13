@@ -3,7 +3,7 @@
 	sight = 0
 	see_in_dark = 2
 	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD)
-	plane = GAME_PLANE_FOV_HIDDEN
+	plane = GAME_PLANE
 
 	hud_type = /datum/hud/living
 

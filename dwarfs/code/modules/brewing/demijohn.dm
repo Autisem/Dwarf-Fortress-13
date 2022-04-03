@@ -3,8 +3,8 @@
 	desc = "A rigid container used in brewing."
 	density = 1
 	layer = ABOVE_MOB_LAYER
-	// icon = ''
-	// icon_state = ""
+	icon = 'dwarfs/icons/structures/workshops.dmi'
+	icon_state = "demijohn"
 	var/max_volume = 300
 	var/datum/reagent/target_reagent // what are we making right now; block everything else
 	var/datum/reagent/conv_reagent // what are we converting right now
@@ -21,14 +21,14 @@
 	. = ..()
 	STOP_PROCESSING(SSprocessing, src)
 
-/obj/structure/demijohn/attacked_by(obj/item/I, mob/living/user)
+/obj/structure/demijohn/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/C = I
 		var/transfered = C.reagents.trans_to(src, C.amount_per_transfer_from_this, transfered_by=user)
 		if(!transfered)
-			return
+			return FALSE
 		start_conv = world.time // each time you add something the timer will reset
-		to_chat(user, "You transfer [transfered]u to [src].")
+		to_chat(user, span_notice("You transfer [transfered]u to [src]."))
 		update_appearance()
 	else
 		return ..()
@@ -38,26 +38,20 @@
 		var/obj/item/reagent_containers/C = weapon
 		var/transfered = reagents.trans_to(C, 10, transfered_by=user)
 		if(!transfered)
-			return
+			return FALSE
 		start_conv = world.time // each time you take something the timer will reset
-		to_chat(user, "You take [transfered]u from [src].")
+		to_chat(user, span_notice("You take [transfered]u from [src]."))
 		update_appearance()
 	else
 		return ..()
 
-// /obj/structure/demijohn/update_overlays()
-// 	. = ..()
-// 	if(reagents.total_volume)
-// 		var/mutable_appearance/M = mutable_appearance('', "demijohn_liquid_overlay")
-// 		M.color = mix_color_from_reagents(reagents.reagent_list)
-// 		. += M
-
-/obj/structure/demijohn/update_icon(updates)
+/obj/structure/demijohn/update_overlays()
 	. = ..()
 	if(reagents.total_volume)
-		icon_state = "demijohn_liquid"
-	else
-		icon_state = "demijohn_empty"
+		underlays.Cut()
+		var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/workshops.dmi', "demijohn_overlay", FLOAT_LAYER)
+		M.color = mix_color_from_reagents(reagents.reagent_list)
+		underlays += M
 
 /obj/structure/demijohn/process(delta_time)
 	if(!reagents.total_volume)
@@ -75,7 +69,7 @@
 	if(world.time >= last_conv+conv_reagent.conv_delta)
 		last_conv = world.time
 		var/to_conv = conv_reagent.conv_amt * conv_reagent.conv_rate
-		reagents.remove_reagent(conv_reagent, to_conv)
+		reagents.remove_reagent(conv_reagent.type, to_conv)
 		reagents.add_reagent(target_reagent, to_conv)
 		update_appearance()
 		if(!reagents.get_reagent(conv_reagent.type))

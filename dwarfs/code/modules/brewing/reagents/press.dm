@@ -28,18 +28,25 @@
 	if(!length(contents) && !reagents.total_volume)
 		.+="<br>It's empty."
 
-/obj/structure/press/attacked_by(obj/item/I, mob/living/user)
+/obj/structure/press/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/growable))
 		var/obj/item/growable/G = I
 		if(!G.juice_type)
 			to_chat(user, span_warning("[G] cannot be juiced."))
-			return
+			return FALSE
 		if(length(contents) >= max_items)
 			to_chat(user, span_warning("[G] doesn't fit anymore!"))
-			return
+			return FALSE
 		G.forceMove(src)
 		to_chat(user, span_notice("You add [G] to [src]."))
 		icon_state = "press_open_item"
+		update_appearance()
+	else if(istype(I, /obj/item/reagent_containers))
+		var/obj/item/reagent_containers/C = I
+		var/transfered = reagents.trans_to(C, 10, transfered_by=user)
+		if(!transfered)
+			return FALSE
+		to_chat(user, span_notice("You take [transfered]u from [src]."))
 		update_appearance()
 	else
 		return ..()

@@ -14,7 +14,7 @@
 	var/bite_consumption
 	// PROCESSING VARS
 	var/datum/reagent/juice_type // can it be made into juice?
-	var/juice_volume = 10
+	var/juice_volume = 10 // how much juice per growable can we get?
 
 /obj/item/growable/Initialize()
 	. = ..()
