@@ -47,6 +47,12 @@
 		if(!transfered)
 			return FALSE
 		to_chat(user, span_notice("You take [transfered]u from [src]."))
+		if(!reagents.total_volume && !contents.len)
+			icon_state = "press_open"
+		else if(contents.len)
+			icon_state = "press_open_item"
+		else if(reagents.total_volume)
+			icon_state = "press_finished"
 		update_appearance()
 	else
 		return ..()

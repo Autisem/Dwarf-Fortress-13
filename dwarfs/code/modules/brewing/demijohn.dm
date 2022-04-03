@@ -38,17 +38,20 @@
 		var/obj/item/reagent_containers/C = weapon
 		var/transfered = reagents.trans_to(C, 10, transfered_by=user)
 		if(!transfered)
-			return FALSE
+			return TRUE // SECONDARY_ATTACK_CALL_NORMAL
 		start_conv = world.time // each time you take something the timer will reset
 		to_chat(user, span_notice("You take [transfered]u from [src]."))
+		if(!reagents.total_volume)
+			conv_reagent = null
+			target_reagent = null
 		update_appearance()
 	else
 		return ..()
 
 /obj/structure/demijohn/update_overlays()
 	. = ..()
+	underlays.Cut()
 	if(reagents.total_volume)
-		underlays.Cut()
 		var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/workshops.dmi', "demijohn_overlay", FLOAT_LAYER)
 		M.color = mix_color_from_reagents(reagents.reagent_list)
 		underlays += M
