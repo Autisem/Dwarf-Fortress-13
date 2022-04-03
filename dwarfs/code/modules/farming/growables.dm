@@ -112,4 +112,4 @@
 	icon_state = "plump_helmet"
 	seed_type = /obj/item/growable/seeds/plump_helmet
 	edible = TRUE
-	juice_type = /datum/reagent/plumpjuice
+	juice_type = /datum/reagent/consumable/juice/plump

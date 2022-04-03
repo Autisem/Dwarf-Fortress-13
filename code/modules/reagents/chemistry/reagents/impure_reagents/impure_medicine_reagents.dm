@@ -33,7 +33,6 @@
 	description = "A viscous mess of various medicines. Will heal a damage type at random"
 	metabolization_rate = 1 * REM//This is fast
 	addiction_types = list(/datum/addiction/medicine = 7.5)
-	ph = 11
 
 //Random healing of the 4 main groups
 /datum/reagent/impurity/healing/medicine_failure/on_mob_life(mob/living/carbon/owner, delta_time, times_fired)
@@ -58,7 +57,6 @@
 	description = "This rare and forbidden concoction is thought to bring you closer to the grasp of the Norse goddess Hel."
 	metabolization_rate = 1*REM //This is fast
 	tox_damage = 0.25
-	ph = 14
 	//Compensates for delta_time lag by spawning multiple hands at the end
 	var/lag_compensate = 0
 
@@ -105,7 +103,6 @@
 	enname = "Libitoil"
 	description = "Temporarilly interferes a patient's ability to process alcohol."
 	chemical_flags = REAGENT_DONOTSPLIT
-	ph = 13.5
 	liver_damage = 0.1
 	addiction_types = list(/datum/addiction/medicine = 4)
 
@@ -151,7 +148,6 @@
 	reagent_state = SOLID
 	color = "#b3ff00"
 	overdose_threshold = 10
-	ph = 1
 	addiction_types = list(/datum/addiction/medicine = 5)
 	liver_damage = 0
 
@@ -164,7 +160,6 @@
 	enname = "Prion peptides"
 	taste_description = "spearmint frosting"
 	description = "These inhibitory peptides cause cellular damage and cost nutrition to the patient!"
-	ph = 2.1
 
 /datum/reagent/peptides_failed/on_mob_life(mob/living/carbon/owner, delta_time, times_fired)
 	owner.adjustCloneLoss(0.25 * delta_time)
@@ -195,7 +190,6 @@
 	description = "Prolonged exposure to this chemical can cause an overwhelming urge to itch oneself."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
-	ph = 1.7
 	addiction_types = list(/datum/addiction/medicine = 2.5)
 	tox_damage = 0.1
 	///Probability of scratch - increases as a function of time
@@ -223,7 +217,6 @@
 	name = "Aivime"
 	enname = "Aivime"
 	description = "This reagent is known to interfere with the eyesight of a patient."
-	ph = 3.1
 	addiction_types = list(/datum/addiction/medicine = 1.5)
 	liver_damage = 0.1
 	//blurriness at the start of taking the med
@@ -246,7 +239,6 @@
 	name = "Herignis"
 	enname = "Herignis"
 	description = "This reagent causes a dramatic raise in a patient's body temperature."
-	ph = 0.8
 	tox_damage = 0
 	color = "#ff1818"
 	taste_description = "heat! Ouch!"
@@ -283,7 +275,6 @@
 	name = "Super Melatonin"
 	enname = "Super Melatonin"//It's melatonin, but super!
 	description = "This will send the patient to sleep, adding a bonus to the efficacy of all reagents administered."
-	ph = 12.5 //sleeping is a basic need of all lifeformsa
 	self_consuming = TRUE //No pesky liver shenanigans
 	chemical_flags = REAGENT_DONOTSPLIT | REAGENT_DEAD_PROCESS
 	var/cached_reagent_list = list()
@@ -331,7 +322,6 @@
 	name = "Coveroli"
 	enname = "Coveroli"
 	description = "This reagent is known to coat the inside of a patient's lungs, providing greater protection against hot or cold air."
-	ph = 3.82
 	tox_damage = 0
 	addiction_types = list(/datum/addiction/medicine = 2.3)
 	//The heat damage levels of lungs when added (i.e. heat_level_1_threshold on lungs)
@@ -457,7 +447,6 @@
 	name = "Monover"
 	enname = "Monover"
 	description = "A toxin treating reagent, that only is effective if it's the only reagent present in the patient."
-	ph = 0.5
 	addiction_types = list(/datum/addiction/medicine = 3.5)
 
 //Heals toxins if it's the only thing present - kinda the oposite of multiver! Maybe that's why it's inverse!
@@ -478,7 +467,6 @@
 	name = "Nooartrium"
 	enname = "Nooartrium"
 	description = "A reagent that is known to stimulate the heart in a dead patient, temporarily bringing back recently dead patients at great cost to their heart."
-	ph = 14
 	metabolization_rate = 0.05 * REM
 	addiction_types = list(/datum/addiction/medicine = 12)
 	overdose_threshold = 20

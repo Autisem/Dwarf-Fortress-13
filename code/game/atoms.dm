@@ -549,7 +549,7 @@
 						. += "\n[round(R.volume, 0.01)] units [R.name]"
 					if(reagents.is_reacting)
 						. += "\n<span class='warning'>Is reacting!</span>"
-					. += "\n<span class='notice'>Solution acidity [round(reagents.ph, 0.01)], its temperature is [reagents.chem_temp]K.</span>"
+					. += "\n<span class='notice'>its temperature is [reagents.chem_temp]K.</span>"
 				else //Otherwise, just show the total volume
 					var/total_volume = 0
 					for(var/datum/reagent/R in reagents.reagent_list)

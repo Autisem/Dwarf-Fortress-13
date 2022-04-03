@@ -9,7 +9,6 @@
 	description = "Impure chemical isomers made from inoptimal reactions. Causes mild liver damage"
 	//by default, it will stay hidden on splitting, but take the name of the source on inverting. Cannot be fractioned down either if the reagent is somehow isolated.
 	chemical_flags = REAGENT_SNEAKYNAME | REAGENT_DONOTSPLIT | REAGENT_CAN_BE_SYNTHESIZED //impure can be synthed, and is one of the only ways to get almost pure impure
-	ph = 3
 	impure_chem = null
 	inverse_chem = null
 	inverse_chem_val = 0
@@ -30,7 +29,6 @@
 	name = "Toxic monomers"
 	enname = "Toxic monomers"
 	description = "Inverse reagents are created when a reagent's purity is below it's inverse threshold. The are created either during ingestion - which will then replace their associated reagent, or some can be created during the reaction process."
-	ph = 2
 	chemical_flags = REAGENT_SNEAKYNAME | REAGENT_DONOTSPLIT //Inverse generally cannot be synthed - they're difficult to get
 	//Mostly to be safe - but above flags will take care of this. Also prevents it from showing these on reagent lookups in the ui
 	impure_chem = null
@@ -52,7 +50,6 @@
 	description = "A off smelling sludge that's created when a reaction gets too impure."
 	nutriment_factor = -1
 	quality = -1
-	ph = 1.5
 	taste_description = "an awful, strongly chemical taste"
 	color = "#270d03"
 
@@ -62,7 +59,6 @@
 	name = "Eigenswap"
 	enname = "Eigenswap"
 	description = "This reagent is known to swap the handedness of a patient."
-	ph = 3.3
 	chemical_flags = REAGENT_DONOTSPLIT
 
 /datum/reagent/impurity/eigenswap/on_mob_life(mob/living/carbon/carbon_mob)
@@ -94,7 +90,6 @@
 	reagent_state = LIQUID
 	color = "#03dbfc"
 	taste_description = "your tongue freezing, shortly followed by your thoughts. Brr!"
-	ph = 14
 	chemical_flags = REAGENT_DEAD_PROCESS | REAGENT_IGNORE_STASIS | REAGENT_DONOTSPLIT
 	metabolization_rate = 1 * REM
 	///The cube we're stasis'd in

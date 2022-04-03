@@ -21,7 +21,6 @@
 	enname = "Strong acidic buffer"
 	description = "This reagent will consume itself and move the pH of a beaker towards acidity when added to another."
 	color = "#fbc314"
-	ph = 0
 	impure_chem = null
 	inverse_chem = null
 	failed_chem = null
@@ -33,13 +32,6 @@
 	. = ..()
 	if(!.)
 		return
-	if(target.ph <= ph)
-		target.my_atom.audible_message(span_warning("The beaker froths as the buffer is added, to no effect."))
-		playsound(target.my_atom, 'sound/chemistry/bufferadd.ogg', 50, TRUE)
-		holder.remove_reagent(type, amount)//Remove from holder because it's not transfered
-		return
-	var/ph_change = -((amount/target.total_volume)*strength)
-	target.adjust_all_reagents_ph(ph_change, ph, 14)
 	target.my_atom.audible_message(span_warning("The beaker fizzes as the ph changes!"))
 	playsound(target.my_atom, 'sound/chemistry/bufferadd.ogg', 50, TRUE)
 	holder.remove_reagent(type, amount)
@@ -49,7 +41,6 @@
 	enname = "Strong basic buffer"
 	description = "This reagent will consume itself and move the pH of a beaker towards alkalinity when added to another."
 	color = "#3853a4"
-	ph = 14
 	impure_chem = null
 	inverse_chem = null
 	failed_chem = null
@@ -60,13 +51,6 @@
 	. = ..()
 	if(!.)
 		return
-	if(target.ph >= ph)
-		target.my_atom.audible_message(span_warning("The beaker froths as the buffer is added, to no effect."))
-		playsound(target.my_atom, 'sound/chemistry/bufferadd.ogg', 50, TRUE)
-		holder.remove_reagent(type, amount)//Remove from holder because it's not transfered
-		return
-	var/ph_change = (amount/target.total_volume)*strength
-	target.adjust_all_reagents_ph(ph_change, 0, ph)
 	target.my_atom.audible_message(span_warning("The beaker froths as the ph changes!"))
 	playsound(target.my_atom, 'sound/chemistry/bufferadd.ogg', 50, TRUE)
 	holder.remove_reagent(type, amount)
@@ -89,7 +73,6 @@
 	name = "Purity tester"
 	enname = "Purity tester"
 	description = "This reagent will consume itself and violently react if there is a highly impure reagent in the beaker."
-	ph = 3
 	color = "#ffffff"
 
 /datum/reagent/reaction_agent/purity_tester/intercept_reagents_transfer(datum/reagents/target, amount)
@@ -112,7 +95,6 @@
 	name = "Tempomyocin"
 	enname = "Tempomyocin"
 	description = "This reagent will consume itself and speed up an ongoing reaction, modifying the current reaction's purity by it's own."
-	ph = 10
 	color = "#e61f82"
 	///How much the reaction speed is sped up by - for 5u added to 100u, an additional step of 1 will be done up to a max of 2x
 	var/strength = 20

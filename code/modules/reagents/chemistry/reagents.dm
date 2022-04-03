@@ -59,8 +59,6 @@ GLOBAL_LIST_INIT(enname2reagent, build_enname2reagent())
 	var/current_cycle = 0
 	///pretend this is moles
 	var/volume = 0
-	/// pH of the reagent
-	var/ph = 7
 	///Purity of the reagent - for use with internal reaction mechanics only. Use below (creation_purity) if you're writing purity effects into a reagent's use mechanics.
 	var/purity = 1
 	///the purity of the reagent on creation (i.e. when it's added to a mob and it's purity split it into 2 chems; the purity of the resultant chems are kept as 1, this tracks what the purity was before that)
@@ -113,6 +111,11 @@ GLOBAL_LIST_INIT(enname2reagent, build_enname2reagent())
 	var/sound/special_sound = null
 	///hydration factor to restore thirst
 	var/hydration_factor = 0
+	///dwarf brewing stuff
+	var/datum/reagent/convtype
+	var/conv_delta = 5 SECONDS // time it takes for conv_amt to convert into convtype
+	var/conv_amt = 10 // volume to be converted in conv_delta time
+	var/conv_rate = 1 // rate of conversion. 1 is 100% of juice volume becomes wine (same volume)
 
 
 /datum/reagent/New()

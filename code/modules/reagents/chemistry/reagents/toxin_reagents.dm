@@ -27,7 +27,6 @@
 	color = "#792300" // rgb: 121, 35, 0
 	toxpwr = 2.5
 	taste_description = "грибы"
-	ph = 13
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/mutagen
@@ -40,7 +39,6 @@
 	toxpwr = 0
 	taste_description = "слайм"
 	taste_mult = 0.9
-	ph = 2.3
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/mutagen/on_mob_life(mob/living/carbon/C, delta_time, times_fired)
@@ -59,7 +57,6 @@
 	color = "#8228A0"
 	toxpwr = 3
 	penetrates_skin = NONE
-	ph = 4
 	burning_temperature = 4500//plasma is hot!!
 	burning_volume = 0.3//But burns fast
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -129,7 +126,6 @@
 	purity = REAGENT_STANDARD_PURITY
 	toxpwr = 0
 	taste_description = "кислота"
-	ph = 1.2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/carbon/C, delta_time, times_fired)
@@ -153,7 +149,6 @@
 	toxpwr = 0
 	taste_description = "слайм"
 	taste_mult = 1.3
-	ph = 10
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/slimejelly/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
@@ -173,7 +168,6 @@
 	color = "#CF3600" // rgb: 207, 54, 0
 	toxpwr = 0
 	taste_description = "мята"
-	ph = 8
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/minttoxin/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
@@ -189,7 +183,6 @@
 	color = "#003333" // rgb: 0, 51, 51
 	toxpwr = 2
 	taste_description = "рыба"
-	ph = 12
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/carpotoxin/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
@@ -210,7 +203,6 @@
 	taste_description = "смерть"
 	penetrates_skin = NONE
 	var/fakedeath_active = FALSE
-	ph = 13
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/zombiepowder/on_mob_metabolize(mob/living/L)
@@ -256,7 +248,6 @@
 	purity = REAGENT_STANDARD_PURITY
 	toxpwr = 0.8
 	taste_description = "смерть"
-	ph = 14.5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/ghoulpowder/on_mob_metabolize(mob/living/L)
@@ -281,7 +272,6 @@
 	taste_description = "кислотность"
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
-	ph = 11
 	impure_chem = /datum/reagent/impurity/rosenol
 	inverse_chem = null
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -299,7 +289,6 @@
 	toxpwr = 1
 	taste_mult = 1
 	penetrates_skin = NONE
-	ph = 2.7
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/plantbgone/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
@@ -315,7 +304,6 @@
 	enname = "Weed Killer"
 	description = "A harmful toxic mixture to kill weeds. Do not ingest!"
 	color = "#4B004B" // rgb: 75, 0, 75
-	ph = 3
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/pestkiller
@@ -324,7 +312,6 @@
 	description = "A harmful toxic mixture to kill pests. Do not ingest!"
 	color = "#4B004B" // rgb: 75, 0, 75
 	toxpwr = 1
-	ph = 3.2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/pestkiller/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
@@ -347,7 +334,6 @@
 	description = "A natural toxin produced by blob spores that inhibits vision when ingested."
 	color = "#9ACD32"
 	toxpwr = 1
-	ph = 11
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/spore/on_mob_life(mob/living/carbon/C, delta_time, times_fired)
@@ -363,7 +349,6 @@
 	color = "#9ACD32"
 	toxpwr = 0.5
 	taste_description = "сжигание"
-	ph = 13
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/spore_burning/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
@@ -382,7 +367,6 @@
 	color = "#000067" // rgb: 0, 0, 103
 	toxpwr = 0
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
-	ph = 11
 	impure_chem = /datum/reagent/impurity/chloralax
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -410,7 +394,6 @@
 	glass_icon_state = "beerglass"
 	glass_name = "glass of beer"
 	glass_desc = "A freezing pint of beer."
-	ph = 2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/fakebeer/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
@@ -429,7 +412,6 @@
 	reagent_state = SOLID
 	color = "#5B2E0D" // rgb: 91, 46, 13
 	toxpwr = 0.5
-	ph = 4.2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/teapowder
@@ -440,7 +422,6 @@
 	color = "#7F8400" // rgb: 127, 132, 0
 	toxpwr = 0.1
 	taste_description = "зелёный чай"
-	ph = 4.9
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/mutetoxin //the new zombie powder.
@@ -453,7 +434,6 @@
 	color = "#F0F8FF" // rgb: 240, 248, 255
 	toxpwr = 0
 	taste_description = "молчание"
-	ph = 12.2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/mutetoxin/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
@@ -537,7 +517,6 @@
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
 	toxpwr = 1
-	ph = 2.0
 	impure_chem = /datum/reagent/impurity/methanol
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -578,7 +557,6 @@
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
 	toxpwr = 0
-	ph = 9
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	addiction_types = list(/datum/addiction/opiods = 25)
 
@@ -603,7 +581,6 @@
 	purity = REAGENT_STANDARD_PURITY
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	toxpwr = 1.25
-	ph = 9.3
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
@@ -637,7 +614,6 @@
 	color = "#C8C8C8"
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
 	toxpwr = 0
-	ph = 7
 	penetrates_skin = TOUCH|VAPOR
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -750,7 +726,6 @@
 	color = "#7DC3A0"
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	toxpwr = 0.5
-	ph = 6
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/sulfonal/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
@@ -787,7 +762,6 @@
 	color = "#F0FFF0"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	toxpwr = 0
-	ph = 6
 	impure_chem = /datum/reagent/impurity/ipecacide
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -867,7 +841,6 @@
 	color = "#C8C8C8" //RGB: 200, 200, 200
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	toxpwr = 0
-	ph = 11.6
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/heparin/on_mob_metabolize(mob/living/M)
@@ -889,7 +862,6 @@
 	color = "#AC88CA" //RGB: 172, 136, 202
 	metabolization_rate = 0.6 * REAGENTS_METABOLISM
 	toxpwr = 0.5
-	ph = 6.2
 	taste_description = "крутилка"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -921,7 +893,6 @@
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
 	toxpwr = 0.15
-	ph = 8
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/anacea/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
@@ -944,7 +915,6 @@
 	var/acidpwr = 10 //the amount of protection removed from the armour
 	taste_description = "кислота"
 	self_consuming = TRUE
-	ph = 2.75
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/acid/expose_mob(mob/living/carbon/exposed_carbon, methods=TOUCH, reac_volume)
@@ -983,7 +953,6 @@
 	purity = REAGENT_STANDARD_PURITY
 	toxpwr = 2
 	acidpwr = 42.0
-	ph = 0.0
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/acid/fluacid/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
@@ -1000,7 +969,6 @@
 	purity = REAGENT_STANDARD_PURITY
 	toxpwr = 3
 	acidpwr = 5.0
-	ph = 1.3
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/acid/nitracid/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
@@ -1038,7 +1006,6 @@
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
 	toxpwr = 0
-	ph = 1.7
 	taste_description = "неподвижность"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -1057,7 +1024,6 @@
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
 	toxpwr = 0
-	ph = 3.1
 	taste_description = "костянка"
 	overdose_threshold = 50
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED

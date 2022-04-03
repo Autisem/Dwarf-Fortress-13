@@ -101,8 +101,6 @@
 	var/atom/my_atom = null
 	/// Current temp of the holder volume
 	var/chem_temp = 150
-	///pH of the whole system
-	var/ph = CHEMICAL_NORMAL_PH
 	/// unused
 	var/last_tick = 1
 	/// various flags, see code\__DEFINES\reagents.dm
@@ -159,7 +157,7 @@
  * * override_base_ph - ingore the present pH of the reagent, and instead use the default (i.e. if buffers/reactions alter it)
  * * ignore splitting - Don't call the process that handles reagent spliting in a mob (impure/inverse) - generally leave this false unless you care about REAGENTS_DONOTSPLIT flags (see reagent defines)
  */
-/datum/reagents/proc/add_reagent(reagent, amount, list/data=null, reagtemp = DEFAULT_REAGENT_TEMPERATURE, added_purity = null, added_ph, no_react = FALSE, override_base_ph = FALSE, ignore_splitting = FALSE)
+/datum/reagents/proc/add_reagent(reagent, amount, list/data=null, reagtemp = DEFAULT_REAGENT_TEMPERATURE, added_purity = null, no_react = FALSE, ignore_splitting = FALSE)
 	if(!isnum(amount) || !amount)
 		return FALSE
 
@@ -172,8 +170,6 @@
 		return FALSE
 	if(isnull(added_purity)) //Because purity additions can be 0
 		added_purity = glob_reagent.creation_purity //Usually 1
-	if(!added_ph)
-		added_ph = glob_reagent.ph
 
 	//Split up the reagent if it's in a mob
 	var/has_split = FALSE
@@ -203,11 +199,8 @@
 	//add the reagent to the existing if it exists
 	for(var/datum/reagent/iter_reagent as anything in cached_reagents)
 		if(iter_reagent.type == reagent)
-			if(override_base_ph)
-				added_ph = iter_reagent.ph
 			iter_reagent.purity = ((iter_reagent.creation_purity * iter_reagent.volume) + (added_purity * amount)) /(iter_reagent.volume + amount) //This should add the purity to the product
 			iter_reagent.creation_purity = iter_reagent.purity
-			iter_reagent.ph = ((iter_reagent.ph*(iter_reagent.volume))+(added_ph*amount))/(iter_reagent.volume+amount)
 			iter_reagent.volume += round(amount, CHEMICAL_QUANTISATION_LEVEL)
 			update_total()
 
@@ -231,7 +224,6 @@
 	new_reagent.volume = amount
 	new_reagent.purity = added_purity
 	new_reagent.creation_purity = added_purity
-	new_reagent.ph = added_ph
 	if(data)
 		new_reagent.data = data
 		new_reagent.on_new(data)
@@ -480,7 +472,7 @@
 				trans_data = copy_data(reagent)
 			if(reagent.intercept_reagents_transfer(R, cached_amount))//Use input amount instead.
 				continue
-			R.add_reagent(reagent.type, transfer_amount * multiplier, trans_data, chem_temp, reagent.purity, reagent.ph, no_react = TRUE, ignore_splitting = reagent.chemical_flags & REAGENT_DONOTSPLIT) //we only handle reaction after every reagent has been transfered.
+			R.add_reagent(reagent.type, transfer_amount * multiplier, trans_data, chem_temp, reagent.purity, no_react = TRUE, ignore_splitting = reagent.chemical_flags & REAGENT_DONOTSPLIT) //we only handle reaction after every reagent has been transfered.
 			if(methods)
 				if(istype(target_atom, /obj/item/organ))
 					R.expose_single(reagent, target, methods, part, show_message)
@@ -504,7 +496,7 @@
 				transfer_amount = reagent.volume
 			if(reagent.intercept_reagents_transfer(R, cached_amount))//Use input amount instead.
 				continue
-			R.add_reagent(reagent.type, transfer_amount * multiplier, trans_data, chem_temp, reagent.purity, reagent.ph, no_react = TRUE, ignore_splitting = reagent.chemical_flags & REAGENT_DONOTSPLIT) //we only handle reaction after every reagent has been transfered.
+			R.add_reagent(reagent.type, transfer_amount * multiplier, trans_data, chem_temp, reagent.purity, no_react = TRUE, ignore_splitting = reagent.chemical_flags & REAGENT_DONOTSPLIT) //we only handle reaction after every reagent has been transfered.
 			to_transfer = max(to_transfer - transfer_amount , 0)
 			if(methods)
 				if(istype(target_atom, /obj/item/organ))
@@ -555,7 +547,7 @@
 			if(current_reagent.intercept_reagents_transfer(holder, cached_amount))//Use input amount instead.
 				break
 			force_stop_reagent_reacting(current_reagent)
-			holder.add_reagent(current_reagent.type, amount, trans_data, chem_temp, current_reagent.purity, current_reagent.ph, no_react = TRUE, ignore_splitting = current_reagent.chemical_flags & REAGENT_DONOTSPLIT)
+			holder.add_reagent(current_reagent.type, amount, trans_data, chem_temp, current_reagent.purity, no_react = TRUE, ignore_splitting = current_reagent.chemical_flags & REAGENT_DONOTSPLIT)
 			remove_reagent(current_reagent.type, amount, 1)
 			break
 
@@ -588,7 +580,7 @@
 		var/copy_amount = reagent.volume * part
 		if(preserve_data)
 			trans_data = reagent.data
-		R.add_reagent(reagent.type, copy_amount * multiplier, trans_data, added_purity = reagent.purity, added_ph = reagent.ph, no_react = TRUE, ignore_splitting = reagent.chemical_flags & REAGENT_DONOTSPLIT)
+		R.add_reagent(reagent.type, copy_amount * multiplier, trans_data, added_purity = reagent.purity, no_react = TRUE, ignore_splitting = reagent.chemical_flags & REAGENT_DONOTSPLIT)
 
 	//pass over previous ongoing reactions before handle_reactions is called
 	transfer_reactions(R)
@@ -877,9 +869,6 @@
 			if(required_temp == 0 || (is_cold_recipe && chem_temp <= required_temp) || (!is_cold_recipe && chem_temp >= required_temp))
 				meets_temp_requirement = TRUE
 
-			if(((ph >= (reaction.optimal_ph_min - reaction.determin_ph_range)) && (ph <= (reaction.optimal_ph_max + reaction.determin_ph_range))))
-				meets_ph_requirement = TRUE
-
 			if(total_matching_reagents == total_required_reagents && total_matching_catalysts == total_required_catalysts && matching_container && matching_other)
 				if(meets_temp_requirement && meets_ph_requirement)
 					possible_reactions  += reaction
@@ -1086,8 +1075,6 @@
 		else
 			if(reaction.required_temp < chem_temp)
 				return TRUE
-		if(((ph >= (reaction.optimal_ph_min - reaction.determin_ph_range)) && (ph <= (reaction.optimal_ph_max + reaction.determin_ph_range))))
-			return TRUE
 	return FALSE
 
 /datum/reagents/proc/update_previous_reagent_list()
@@ -1158,7 +1145,6 @@
 			del_reagent(reagent.type)
 		else
 			total_volume += reagent.volume
-	recalculate_sum_ph()
 
 /**
  * Applies the relevant expose_ proc for every reagent in this holder
@@ -1363,63 +1349,6 @@
 	chem_temp = clamp(_temperature, 0, CHEMICAL_MAXIMUM_TEMPERATURE)
 	SEND_SIGNAL(src, COMSIG_REAGENTS_TEMP_CHANGE, _temperature, .)
 
-/*
-* Adjusts the base pH of all of the reagents in a beaker
-*
-* - moves it towards acidic
-* + moves it towards basic
-* Arguments:
-* * value - How much to adjust the base pH by
-*/
-/datum/reagents/proc/adjust_all_reagents_ph(value, lower_limit = 0, upper_limit = 14)
-	for(var/datum/reagent/reagent as anything in reagent_list)
-		reagent.ph = clamp(reagent.ph + value, lower_limit, upper_limit)
-
-/*
-* Adjusts the base pH of all of the listed types
-*
-* - moves it towards acidic
-* + moves it towards basic
-* Arguments:
-* * input_reagents_list - list of reagent objects to adjust
-* * value - How much to adjust the base pH by
-*/
-/datum/reagents/proc/adjust_specific_reagent_list_ph(list/input_reagents_list, value, lower_limit = 0, upper_limit = 14)
-	for(var/datum/reagent/reagent as anything in input_reagents_list)
-		if(!reagent) //We can call this with missing reagents.
-			continue
-		reagent.ph = clamp(reagent.ph + value, lower_limit, upper_limit)
-
-/*
-* Adjusts the base pH of a specific type
-*
-* - moves it towards acidic
-* + moves it towards basic
-* Arguments:
-* * input_reagent - type path of the reagent
-* * value - How much to adjust the base pH by
-* * lower_limit - how low the pH can go
-* * upper_limit - how high the pH can go
-*/
-/datum/reagents/proc/adjust_specific_reagent_ph(input_reagent, value, lower_limit = 0, upper_limit = 14)
-	var/datum/reagent/reagent = get_reagent(input_reagent)
-	if(!reagent) //We can call this with missing reagents.
-		return FALSE
-	reagent.ph = clamp(reagent.ph + value, lower_limit, upper_limit)
-
-/*
-* Updates the reagents datum pH based off the volume weighted sum of the reagent_list's reagent pH
-*/
-/datum/reagents/proc/recalculate_sum_ph()
-	if(!reagent_list || !total_volume) //Ensure that this is true
-		ph = CHEMICAL_NORMAL_PH
-		return
-	var/total_ph = 0
-	for(var/datum/reagent/reagent as anything in reagent_list)
-		total_ph += (reagent.ph * reagent.volume)
-	//Keep limited
-	ph = clamp(total_ph/total_volume, 0, 14)
-
 /**
  * Used in attack logs for reagents in pills and such
  *
@@ -1611,7 +1540,7 @@
 			to_chat(user, "Could not find reagent!")
 			ui_reagent_id = null
 		else
-			data["reagent_mode_reagent"] = list("name" = reagent.name, "id" = reagent.type, "desc" = reagent.description, "reagentCol" = reagent.color, "pH" = reagent.ph, "pHCol" = convert_ph_to_readable_color(reagent.ph), "metaRate" = (reagent.metabolization_rate/2), "OD" = reagent.overdose_threshold)
+			data["reagent_mode_reagent"] = list("name" = reagent.name, "id" = reagent.type, "desc" = reagent.description, "reagentCol" = reagent.color, "metaRate" = (reagent.metabolization_rate/2), "OD" = reagent.overdose_threshold)
 			data["reagent_mode_reagent"]["addictions"] = list()
 			data["reagent_mode_reagent"]["addictions"] = parse_addictions(reagent)
 

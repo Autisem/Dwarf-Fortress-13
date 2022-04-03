@@ -269,7 +269,6 @@
 	description = "A special oil that noticeably chills the body. Extracted from chilly peppers and slimes."
 	color = "#8BA6E9" // rgb: 139, 166, 233
 	taste_description = "мята"
-	ph = 13 //HMM! I wonder
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	hydration_factor = DRINK_HYDRATION_FACTOR_SALTY
 
@@ -307,7 +306,6 @@
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "жгучая агония"
 	penetrates_skin = NONE
-	ph = 7.4
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	hydration_factor = DRINK_HYDRATION_FACTOR_SALTY
 
@@ -403,7 +401,6 @@
 	color = "#E700E7" // rgb: 231, 0, 231
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	taste_description = "грибы"
-	ph = 11
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	addiction_types = list(/datum/addiction/hallucinogens = 12)
 	hydration_factor = DRINK_HYDRATION_FACTOR_SALTY
@@ -666,7 +663,6 @@
 	description = "A blinding substance extracted from certain onions."
 	color = "#c0c9a0"
 	taste_description = "горечь"
-	ph = 5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	hydration_factor = DRINK_HYDRATION_FACTOR_SALTY
 
@@ -714,7 +710,6 @@
 	description = "An ichor, derived from a certain mushroom, makes for a bad time."
 	color = "#1d043d"
 	taste_description = "горький гриб"
-	ph = 12
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	hydration_factor = DRINK_HYDRATION_FACTOR_SALTY
 
@@ -737,7 +732,6 @@
 	description = "A stimulating ichor which causes luminescent fungi to grow on the skin. "
 	color = "#b5a213"
 	taste_description = "покалывающий гриб"
-	ph = 11.2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	//Lazy list of mobs affected by the luminosity of this reagent.
 	var/list/mobs_affected
@@ -773,7 +767,6 @@
 	color = "#d3a308"
 	nutriment_factor = 3 * REAGENTS_METABOLISM
 	taste_description = "фруктовый гриб"
-	ph = 10.4
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	hydration_factor = DRINK_HYDRATION_FACTOR_LOW
 
@@ -790,7 +783,6 @@
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#eef442" // rgb: 238, 244, 66
 	taste_description = "скорбный гудок"
-	ph = 9.2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	hydration_factor = DRINK_HYDRATION_FACTOR_LOW
 
@@ -831,7 +823,6 @@
 	taste_description = "... неописуемо"
 	quality = FOOD_AMAZING
 	taste_mult = 100
-	ph = 6.1
 	hydration_factor = DRINK_HYDRATION_FACTOR_LOW
 
 /datum/reagent/consumable/nutriment/peptides
