@@ -14,12 +14,13 @@
 	var/spillable = FALSE
 	var/list/fill_icon_thresholds = null
 	var/fill_icon_state = null // Optional custom name for reagent fill icon_state prefix
+	var/allowed_reagents // Optional: whitelisted reagents for this container
 
 /obj/item/reagent_containers/Initialize(mapload, vol)
 	. = ..()
 	if(isnum(vol) && vol > 0)
 		volume = vol
-	create_reagents(volume, reagent_flags)
+	create_reagents(volume, reagent_flags, allowed_reagents)
 	if(spawned_disease)
 		var/datum/disease/F = new spawned_disease()
 		var/list/data = list("viruses"= list(F))
@@ -27,7 +28,7 @@
 
 	add_initial_reagents()
 
-/obj/item/reagent_containers/create_reagents(max_vol, flags)
+/obj/item/reagent_containers/create_reagents(max_vol, flags, _allowed_reagents)
 	. = ..()
 	RegisterSignal(reagents, list(COMSIG_REAGENTS_NEW_REAGENT, COMSIG_REAGENTS_ADD_REAGENT, COMSIG_REAGENTS_DEL_REAGENT, COMSIG_REAGENTS_REM_REAGENT), .proc/on_reagent_change)
 	RegisterSignal(reagents, COMSIG_PARENT_QDELETING, .proc/on_reagents_del)

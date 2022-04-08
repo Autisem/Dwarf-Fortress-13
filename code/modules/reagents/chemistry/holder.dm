@@ -124,10 +124,13 @@
 	var/ui_reaction_index = 1
 	///If we're syncing with the beaker - so return reactions that are actively happening
 	var/ui_beaker_sync = FALSE
+	///Allowed reagents for specific reagent containers like sack
+	var/list/allowed_reagents
 
-/datum/reagents/New(maximum=100, new_flags=0)
+/datum/reagents/New(maximum=100, new_flags=0, _allowed_reagents=null)
 	maximum_volume = maximum
 	flags = new_flags
+	allowed_reagents = _allowed_reagents
 
 /datum/reagents/Destroy()
 	//We're about to delete all reagents, so lets cleanup
@@ -170,6 +173,10 @@
 		return FALSE
 	if(isnull(added_purity)) //Because purity additions can be 0
 		added_purity = glob_reagent.creation_purity //Usually 1
+
+	if(allowed_reagents?.len)
+		if(!is_type_in_list(reagent))
+			return FALSE
 
 	//Split up the reagent if it's in a mob
 	var/has_split = FALSE
@@ -410,6 +417,27 @@
 					return holder_reagent
 	return FALSE
 
+
+/**
+ * Check if this holder contains this reagent subtype.
+ * Reagent takes a PATH to a reagent.
+ * Amount checks for having a specific amount of that chemical.
+ * Needs matabolizing takes into consideration if the chemical is matabolizing when it's checked.
+ */
+/datum/reagents/proc/has_reagent_subtype(reagent, amount = -1, needs_metabolizing = FALSE)
+	var/list/cached_reagents = reagent_list
+	for(var/datum/reagent/holder_reagent as anything in cached_reagents)
+		if (istype(holder_reagent, reagent))
+			if(!amount)
+				if(needs_metabolizing && !holder_reagent.metabolizing)
+					return FALSE
+				return holder_reagent
+			else
+				if(round(holder_reagent.volume, CHEMICAL_QUANTISATION_LEVEL) >= amount)
+					if(needs_metabolizing && !holder_reagent.metabolizing)
+						return FALSE
+					return holder_reagent
+	return FALSE
 
 /**
  * Transfer some stuff from this holder to a target object
@@ -1841,8 +1869,8 @@
  * * max_vol - maximum volume of holder
  * * flags - flags to pass to the holder
  */
-/atom/proc/create_reagents(max_vol, flags)
+/atom/proc/create_reagents(max_vol, flags, _allowed_reagents)
 	if(reagents)
 		qdel(reagents)
-	reagents = new /datum/reagents(max_vol, flags)
+	reagents = new /datum/reagents(max_vol, flags, _allowed_reagents)
 	reagents.my_atom = src

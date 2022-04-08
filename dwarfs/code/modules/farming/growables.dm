@@ -15,6 +15,9 @@
 	// PROCESSING VARS
 	var/datum/reagent/juice_type // can it be made into juice?
 	var/juice_volume = 10 // how much juice per growable can we get?
+	// KITCHEN
+	var/grain_type
+	var/grain_volume = 10
 
 /obj/item/growable/Initialize()
 	. = ..()
@@ -66,12 +69,14 @@
 	desc = ""
 	icon_state = "cave_wheat"
 	seed_type = /obj/item/growable/seeds/cave_wheat
+	grain_type = /datum/reagent/grain/cave_wheat
 
 /obj/item/growable/barley
 	name = "barley"
 	desc = ""
 	icon_state = "barley"
 	seed_type = /obj/item/growable/seeds/barley
+	grain_type = /datum/reagent/grain/barley
 
 /obj/item/growable/turnip
 	name = "turnip"
