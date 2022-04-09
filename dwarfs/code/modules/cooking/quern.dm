@@ -3,6 +3,8 @@
 	desc = "Rotational sus."
 	icon = 'dwarfs/icons/structures/workshops.dmi'
 	icon_state = "millstone"
+	density = TRUE
+	anchored = TRUE
 	var/max_volume = 150
 	var/work_time = 10 SECONDS
 	var/open = FALSE
@@ -76,4 +78,4 @@
 		else
 			icon_state = "millstone_open"
 	else
-		icon_state = "milltone"
+		icon_state = "millstone"
