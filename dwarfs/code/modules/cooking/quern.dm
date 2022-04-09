@@ -37,7 +37,10 @@
 	update_appearance()
 
 /obj/structure/quern/attack_hand(mob/user)
-	if(!contents.len || !reagents.has_reagent_subtype(/datum/reagent/grain))
+	if(open)
+		to_chat(user, span_warning("[src] has to be closed first."))
+		return
+	if(!contents.len && !reagents.has_reagent_subtype(/datum/reagent/grain))
 		to_chat(user, span_warning("[src] has nothing to grind."))
 		return
 	if(busy_operating)
@@ -64,9 +67,18 @@
 
 /obj/structure/quern/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
+	if(busy_operating)
+		to_chat(user, span_warning("Cannot open [src] while it's rotating."))
 	open = !open
-	to_chat(user, span_notice("You [open?"close":"open"] [src]."))
+	to_chat(user, span_notice("You [open?"open":"close"] [src]."))
 	update_appearance()
+
+/obj/structure/quern/CtrlClick(mob/user)
+	. = ..()
+	if(contents.len)
+		to_chat(user, span_notice("You empty [src]."))
+	for(var/obj/item/I in contents)
+		I.forceMove(get_turf(src))
 
 /obj/structure/quern/update_icon(updates)
 	. = ..()
