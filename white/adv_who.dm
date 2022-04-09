@@ -37,25 +37,25 @@
 					entry += " <i>(as [C.holder.fakekey])</i>"
 
 				if (isnewplayer(C.mob))
-					entry += " - <font color='darkgray'><b>Лобби</b></font>"
+					entry += " - <font color='darkgray'><b>Lobby</b></font>"
 					lobby++
 				else
 					entry += " - [C.mob.real_name]"
 					switch(C.mob.stat)
 						if(UNCONSCIOUS)
-							entry += " - <font color='darkgray'><b>Без сознания</b></font>"
+							entry += " - <font color='darkgray'><b>Unconscious</b></font>"
 							living++
 						if(DEAD)
 							if(isobserver(C.mob))
 								var/mob/dead/observer/O = C.mob
 								if(O.started_as_observer)
-									entry += " - <font color='gray'>Наблюдает</font>"
+									entry += " - <font color='gray'>Observing</font>"
 									observers++
 								else
-									entry += " - <font color='black'><b>МЁРТВ</b></font>"
+									entry += " - <font color='black'><b>DEAD</b></font>"
 									dead++
 							else
-								entry += " - <font color='black'><b>МЁРТВ</b></font>"
+								entry += " - <font color='black'><b>DEAD</b></font>"
 								dead++
 						else
 							living++
@@ -67,7 +67,7 @@
 						age = "<font color='#ff8c00'><b>[age]</b></font>"
 					entry += " - [age]"
 				if(is_special_character(C.mob))
-					entry += " - <b><font color='red'>Антагонист</font></b>"
+					entry += " - <b><font color='red'>Antagonist</font></b>"
 					if(!C.mob.mind.current || C.mob.mind.current?.stat == DEAD)
 						dead_antags++
 					else
@@ -110,20 +110,20 @@
 	set category = "Адм"
 	set name = "Adminwho"
 
-	var/msg = "<b>Pedals:</b>\n"
+	var/msg = "<b>Admins:</b>\n"
 	if(holder)
 		for(var/client/C in GLOB.admins)
 			msg += "\t[C] - [C.holder.rank]"
 
 			if(C.holder.fakekey)
-				msg += " <i>(как [C.holder.fakekey])</i>"
+				msg += " <i>(as [C.holder.fakekey])</i>"
 
 			if(isobserver(C.mob))
-				msg += " - Следит"
+				msg += " - Obsirving"
 			else if(isnewplayer(C.mob))
-				msg += " - Лобби"
+				msg += " - Lobby"
 			else
-				msg += " - <b>Играет с педалями</b>"
+				msg += " - <b>Playing</b>"
 
 			if(C.is_afk())
 				msg += " (AFK)"
@@ -140,4 +140,4 @@
 
 /client/proc/inactivity2text()
 	var/seconds = inactivity/10
-	return "[round(seconds / 60)] минут, [seconds % 60] секунд"
+	return "[round(seconds / 60)] minutes, [seconds % 60] seconds"
