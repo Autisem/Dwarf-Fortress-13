@@ -12,7 +12,7 @@
 
 /obj/structure/quern/Initialize()
 	. = ..()
-	create_reagents(max_volume)
+	create_reagents(max_volume, _allowed_reagents=list(/datum/reagent/grain))
 
 /obj/structure/quern/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/growable))
@@ -39,6 +39,22 @@
 			to_chat(user, span_notice("You scoop [vol]u from [src]"))
 		S.update_appearance()
 	update_appearance()
+
+/obj/structure/quern/attackby_secondary(obj/item/I, mob/user, params)
+	. = SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	if(istype(I, /obj/item/reagent_containers/sack))
+		var/obj/item/reagent_containers/sack/S = I
+		if(!S.reagents.total_volume)
+			to_chat(user, span_warning("[S] is empty."))
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+		if(!open)
+			to_chat(user, span_warning("[src] has to be opened first."))
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+		var/vol = S.reagents.trans_to(src, S.amount_per_transfer_from_this, transfered_by=user)
+		if(vol)
+			to_chat(user, span_notice("You transfer [vol]u to [src]"))
+		S.update_appearance()
+		update_appearance()
 
 /obj/structure/quern/attack_hand(mob/user)
 	if(open)
