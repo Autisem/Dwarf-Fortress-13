@@ -14,6 +14,19 @@
 	. = ..()
 	create_reagents(max_volume, _allowed_reagents=list(/datum/reagent/grain))
 
+/obj/structure/quern/examine(mob/user)
+	. = ..()
+	if(length(contents))
+		.+="<br>It has "
+		for(var/obj/O in uniquePathList(contents))
+			var/amt = count_by_type(contents, O.type)
+			.+="[amt] [O.name][amt > 1 ? "s" : ""]"
+		.+=" in it."
+	if(reagents.total_volume)
+		.+="<br>It has [reagents.get_reagent_names()] in it."
+	if(!length(contents) && !reagents.total_volume)
+		.+="<br>It's empty."
+
 /obj/structure/quern/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/growable))
 		var/obj/item/growable/G = I

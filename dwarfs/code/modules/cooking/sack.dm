@@ -8,9 +8,16 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list()
 
+/obj/item/reagent_containers/sack/examine(mob/user)
+	. = ..()
+	if(!reagents.total_volume)
+		.+="<br>It's empty."
+	else
+		.+="<br>It has [reagents.get_reagent_names()] in it."
+
 /obj/item/reagent_containers/sack/update_icon(updates)
 	. = ..()
-	if(contents.len || reagents.has_reagent_subtype(/datum/reagent/grain))
+	if(reagents.has_reagent_subtype(/datum/reagent/grain))
 		icon_state = "bag_grain"
 	else if(reagents.has_reagent_subtype(/datum/reagent/flour))
 		icon_state = "bag_flour"
