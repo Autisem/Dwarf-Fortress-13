@@ -175,7 +175,7 @@
 		added_purity = glob_reagent.creation_purity //Usually 1
 
 	if(allowed_reagents?.len)
-		if(!is_type_in_list(reagent))
+		if(!is_type_in_list(glob_reagent, allowed_reagents))
 			return FALSE
 
 	//Split up the reagent if it's in a mob
@@ -456,7 +456,7 @@
  * * ignore_stomach - when using methods INGEST will not use the stomach as the target
  */
 /datum/reagents/proc/trans_to(obj/target, amount = 1, multiplier = 1, preserve_data = TRUE, no_react = FALSE, mob/transfered_by, remove_blacklisted = FALSE, methods = NONE, show_message = TRUE, round_robin = FALSE, ignore_stomach = FALSE)
-	var/list/cached_reagents = reagent_list
+	var/list/cached_reagents = list()
 	if(!target || !total_volume)
 		return
 	if(amount < 0)
@@ -483,6 +483,16 @@
 			R = target.reagents
 			target_atom = target
 
+	//Set cached reagents to only usable reagents
+	if(!R.allowed_reagents?.len)
+		cached_reagents = reagent_list
+	else
+		for(var/datum/reagent/_reagent in reagent_list)
+			if(is_type_in_list(_reagent, R.allowed_reagents))
+				cached_reagents+=_reagent
+	if(!cached_reagents.len)
+		return
+
 	//Set up new reagents to inherit the old ongoing reactions
 	if(!no_react)
 		transfer_reactions(R)
@@ -495,12 +505,16 @@
 		for(var/datum/reagent/reagent as anything in cached_reagents)
 			if(remove_blacklisted && !(reagent.chemical_flags & REAGENT_CAN_BE_SYNTHESIZED))
 				continue
+			if(!is_type_in_list(reagent, R.allowed_reagents))
+				continue
 			var/transfer_amount = reagent.volume * part
 			if(preserve_data)
 				trans_data = copy_data(reagent)
 			if(reagent.intercept_reagents_transfer(R, cached_amount))//Use input amount instead.
 				continue
-			R.add_reagent(reagent.type, transfer_amount * multiplier, trans_data, chem_temp, reagent.purity, no_react = TRUE, ignore_splitting = reagent.chemical_flags & REAGENT_DONOTSPLIT) //we only handle reaction after every reagent has been transfered.
+			var/added = R.add_reagent(reagent.type, transfer_amount * multiplier, trans_data, chem_temp, reagent.purity, no_react = TRUE, ignore_splitting = reagent.chemical_flags & REAGENT_DONOTSPLIT) //we only handle reaction after every reagent has been transfered.
+			if(!added)
+				continue
 			if(methods)
 				if(istype(target_atom, /obj/item/organ))
 					R.expose_single(reagent, target, methods, part, show_message)

@@ -19,6 +19,9 @@
 		var/obj/item/growable/G = I
 		if(!G.grain_type)
 			return TRUE
+		if(!open)
+			to_chat(user, span_warning("[src] has to be opened first."))
+			return TRUE
 		if(contents.len || reagents.total_volume)
 			to_chat(user, span_warning("[src] is already full."))
 			return TRUE
@@ -34,6 +37,7 @@
 		var/vol = reagents.trans_to(S, S.amount_per_transfer_from_this, transfered_by=user)
 		if(vol)
 			to_chat(user, span_notice("You scoop [vol]u from [src]"))
+		S.update_appearance()
 	update_appearance()
 
 /obj/structure/quern/attack_hand(mob/user)
@@ -44,7 +48,7 @@
 		to_chat(user, span_warning("[src] has nothing to grind."))
 		return
 	if(busy_operating)
-		to_chat(user, "Somebody is already working on [src].")
+		to_chat(user, span_warning("Somebody is already working on [src]."))
 		return
 	busy_operating = TRUE
 	icon_state = "millstone_working"
@@ -69,6 +73,7 @@
 	. = ..()
 	if(busy_operating)
 		to_chat(user, span_warning("Cannot open [src] while it's rotating."))
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	open = !open
 	to_chat(user, span_notice("You [open?"open":"close"] [src]."))
 	update_appearance()
@@ -83,9 +88,9 @@
 /obj/structure/quern/update_icon(updates)
 	. = ..()
 	if(open)
-		if(contents.len)
+		if(contents.len || reagents.has_reagent_subtype(/datum/reagent/grain))
 			icon_state = "millstone_open_grain"
-		else if(reagents.total_volume)
+		else if(reagents.has_reagent_subtype(/datum/reagent/flour))
 			icon_state = "millstone_open_flour"
 		else
 			icon_state = "millstone_open"
