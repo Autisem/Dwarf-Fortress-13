@@ -36,20 +36,10 @@
 	var/optimal_temp = 500
 	/// Temperature at which reaction explodes - If any reaction is this hot, it explodes!
 	var/overheat_temp = 900
-	/// Lowest value of pH determining pH a 1 value for pH based rate reactions (Plateu phase)
-	var/optimal_ph_min = 5
-	/// Higest value for above
-	var/optimal_ph_max = 9
-	/// How far out pH wil react, giving impurity place (Exponential phase)
-	var/determin_ph_range = 4
 	/// How sharp the temperature exponential curve is (to the power of value)
 	var/temp_exponent_factor = 2
-	/// How sharp the pH exponential curve is (to the power of value)
-	var/ph_exponent_factor = 2
 	/// How much the temperature will change (with no intervention) (i.e. for 30u made the temperature will increase by 100, same with 300u. The final temp will always be start + this value, with the exception con beakers with different specific heats)
 	var/thermic_constant = 50
-	/// pH change per 1u reaction
-	var/H_ion_release = 0.01
 	/// Optimal/max rate possible if all conditions are perfect
 	var/rate_up_lim = 30
 	/// If purity is below 0.15, it calls OverlyImpure() too. Set to 0 to disable this.
@@ -108,7 +98,7 @@
  * Outputs:
  * * returning END_REACTION will end the associated reaction - flagging it for deletion and preventing any reaction in that timestep from happening. Make sure to set the vars in the holder to one that can't start it from starting up again.
  */
-/datum/chemical_reaction/proc/reaction_step(datum/reagents/holder, datum/equilibrium/reaction, delta_t, delta_ph, step_reaction_vol)
+/datum/chemical_reaction/proc/reaction_step(datum/reagents/holder, datum/equilibrium/reaction, delta_t, step_reaction_vol)
 	return
 
 /**
