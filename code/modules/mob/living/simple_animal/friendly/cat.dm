@@ -1,4 +1,6 @@
 //Cat
+GLOBAL_LIST_EMPTY(cats)
+#define MAX_CATS 30
 /mob/living/simple_animal/pet/cat
 	name = "cat"
 	desc = "Kitty!!"
@@ -63,12 +65,22 @@
 
 /mob/living/simple_animal/pet/cat/Initialize(_gender=null)
 	. = ..()
+	GLOB.cats+=src
 	add_verb(src, /mob/living/proc/toggle_resting)
 	add_cell_sample()
 	if(_gender in list(FEMALE, MALE, PLURAL))
 		gender = _gender
 	else
 		gender = pick(MALE, FEMALE)
+
+/mob/living/simple_animal/pet/cat/death(gibbed)
+	. = ..()
+	GLOB.cats.Remove(src)
+
+/mob/living/simple_animal/pet/cat/make_babies()
+	if(GLOB.cats.len >= MAX_CATS)
+		return
+	. = ..()
 
 /mob/living/simple_animal/pet/cat/examine(mob/user)
 	. = ..()
@@ -350,3 +362,6 @@
 	if(L.a_intent == INTENT_HARM && L.reagents && !stat)
 		L.reagents.add_reagent(/datum/reagent/consumable/nutriment, 0.4)
 		L.reagents.add_reagent(/datum/reagent/consumable/nutriment/vitamin, 0.4)
+
+
+#undef MAX_CATS
