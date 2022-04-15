@@ -80,7 +80,7 @@
 		to_chat(user, span_warning("Somebody is already working on [src]."))
 		return
 	busy_operating = TRUE
-	icon_state = "millstone_working"
+	update_appearance()
 	to_chat(user, span_notice("You start working at [src]."))
 	if(do_after(user, work_time, src))
 		if(contents.len)
@@ -95,14 +95,13 @@
 			reagents.remove_reagent(G.type, vol)
 			reagents.add_reagent(G.flour_type, vol)
 	busy_operating = FALSE
-	icon_state = "millstone"
+	update_appearance()
 	to_chat(user, span_notice("You finish working at [src]."))
 
-/obj/structure/quern/attack_hand_secondary(mob/user, list/modifiers)
-	. = ..()
+/obj/structure/quern/AltClick(mob/user)
 	if(busy_operating)
 		to_chat(user, span_warning("Cannot open [src] while it's rotating."))
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+		return
 	open = !open
 	to_chat(user, span_notice("You [open?"open":"close"] [src]."))
 	update_appearance()
@@ -114,9 +113,11 @@
 	for(var/obj/item/I in contents)
 		I.forceMove(get_turf(src))
 
-/obj/structure/quern/update_icon(updates)
+/obj/structure/quern/update_icon_state()
 	. = ..()
-	if(open)
+	if(busy_operating)
+		icon_state = "millstone_working"
+	else if(open)
 		if(contents.len || reagents.has_reagent_subtype(/datum/reagent/grain))
 			icon_state = "millstone_open_grain"
 		else if(reagents.has_reagent_subtype(/datum/reagent/flour))
