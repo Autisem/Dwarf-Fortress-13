@@ -1012,7 +1012,7 @@
 		LAZYREMOVE(reaction_list, equilibrium)
 
 	var/reaction_message = equilibrium.reaction.mix_message
-	if(equilibrium.reaction.mix_sound)
+	if(equilibrium.reaction.mix_sound && !equilibrium.reaction.silent)
 		playsound(get_turf(my_atom), equilibrium.reaction.mix_sound, 80, TRUE)
 	qdel(equilibrium)
 	update_total()
@@ -1152,7 +1152,7 @@
 	var/list/seen = viewers(4, get_turf(my_atom))
 	var/iconhtml = icon2html(cached_my_atom, seen)
 	if(cached_my_atom)
-		if(!ismob(cached_my_atom)) // No bubbling mobs
+		if(!ismob(cached_my_atom) && !selected_reaction.silent) // No bubbling mobs
 			if(selected_reaction.mix_sound)
 				playsound(get_turf(cached_my_atom), selected_reaction.mix_sound, 80, TRUE)
 

@@ -22,8 +22,11 @@
 	///Determines if a chemical reaction can occur inside a mob
 	var/mob_react = TRUE
 
+	/// Whether the reaction is visible to observers
+	var/silent = FALSE
+
 	///The message shown to nearby people upon mixing, if applicable
-	var/mix_message = "Раствор начинает бурлить."
+	var/mix_message = "Mixture starts to bubble."
 	///The sound played upon mixing, if applicable
 	var/mix_sound = 'sound/effects/bubbles.ogg'
 
