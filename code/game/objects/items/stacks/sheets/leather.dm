@@ -223,26 +223,6 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	layer = MOB_LAYER
 	merge_type = /obj/item/stack/sheet/animalhide/goliath_hide
 
-/obj/item/stack/sheet/animalhide/goliath_hide/polar_bear_hide
-	name = "шкура полярного медведя"
-	desc = "Кусочки меха белого медведможнот сделать ваш костюм более стойким к атакам местной фауны."
-	icon_state = "polar_bear_hide"
-	singular_name = "шкура медведя"
-	merge_type = /obj/item/stack/sheet/animalhide/goliath_hide/polar_bear_hide
-
-/obj/item/stack/sheet/animalhide/ashdrake
-	name = "шкура пепельного дракона"
-	desc = "Сильная чешуйчатая шкура пепельного дракона."
-	icon = 'icons/obj/mining.dmi'
-	icon_state = "dragon_hide"
-	singular_name = "драконьи пластины"
-	max_amount = 10
-	novariants = FALSE
-	item_flags = NOBLUDGEON
-	w_class = WEIGHT_CLASS_NORMAL
-	layer = MOB_LAYER
-	merge_type = /obj/item/stack/sheet/animalhide/ashdrake
-
 //Step one - dehairing.
 
 /obj/item/stack/sheet/animalhide/attackby(obj/item/W, mob/user, params)

@@ -46,9 +46,5 @@
 /datum/biome/water
 	turf_type = /turf/open/water
 
-/datum/biome/mountain
-	turf_type = /turf/closed/mineral/random/vietnam
-
-
 /datum/biome/snowforest/deep
 	flora_density = 65

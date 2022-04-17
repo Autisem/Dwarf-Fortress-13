@@ -14,12 +14,10 @@
 	inhand_icon_state = "ore"
 	full_w_class = WEIGHT_CLASS_BULKY
 	singular_name = "ore chunk"
-	var/points = 0 //How many points this ore gets you from the ore redemption machine
 	var/refined_type = null //What this ore defaults to being refined into
 	var/mine_experience = 5 //How much experience do you get for mining this ore?
 	novariants = TRUE // Ore stacks handle their icon updates themselves to keep the illusion that there's more going
 	var/list/stack_overlays
-	var/scan_state = "" //Used by mineral turfs for their scan overlay.
 	var/spreadChance = 0 //Also used by mineral turfs for spreading veins
 	var/ore_icon  //icons for ore overlays
 	var/ore_basename //sus?
@@ -73,13 +71,12 @@
 	icon_state = "Iron ore"
 	inhand_icon_state = "Iron ore"
 	singular_name = "iron ore chunk"
-	points = 1
-	mats_per_unit = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/iron
 	mine_experience = 1
-	scan_state = "rock_Iron"
 	spreadChance = 20
 	merge_type = /obj/item/stack/ore/iron
+	ore_icon = 'dwarfs/icons/turf/ores/iron.dmi'
+	ore_basename = "iron"
 
 /obj/item/stack/ore/coal
 	name = "coal ore"
@@ -87,12 +84,12 @@
 	icon_state = "coal"
 	inhand_icon_state = "Iron ore"
 	singular_name = "coal ore chunk"
-	points = 1
 	refined_type = /obj/item/stack/sheet/mineral/coal
 	mine_experience = 1
-	scan_state = "rock_Coal"
 	spreadChance = 20
 	merge_type = /obj/item/stack/ore/coal
+	ore_icon = 'dwarfs/icons/turf/ores/coal.dmi'
+	ore_basename = "coal"
 
 /obj/item/stack/ore/coal/Initialize(mapload, new_amount, merge, list/mat_override, mat_amt)
 	. = ..()
@@ -105,8 +102,6 @@
 	icon_state = "Glass ore"
 	inhand_icon_state = "Glass ore"
 	singular_name = "sand pile"
-	points = 1
-	mats_per_unit = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/glass
 	w_class = WEIGHT_CLASS_TINY
 	mine_experience = 0 //its sand
@@ -143,11 +138,8 @@
 	icon_state = "Silver ore"
 	inhand_icon_state = "Silver ore"
 	singular_name = "silver ore chunk"
-	points = 16
 	mine_experience = 3
-	mats_per_unit = list(/datum/material/silver=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/silver
-	scan_state = "rock_Silver"
 	spreadChance = 5
 	merge_type = /obj/item/stack/ore/silver
 
@@ -156,27 +148,47 @@
 	icon_state = "Gold ore"
 	inhand_icon_state = "Gold ore"
 	singular_name = "gold ore chunk"
-	points = 18
 	mine_experience = 5
-	mats_per_unit = list(/datum/material/gold=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/gold
-	scan_state = "rock_Gold"
 	spreadChance = 5
 	merge_type = /obj/item/stack/ore/gold
-	ore_icon = 'dwarfs/icons/turf/ore/gold.dmi'
-	ore_basename = "gold_ore"
+	ore_icon = 'dwarfs/icons/turf/ores/gold.dmi'
+	ore_basename = "gold"
 
-/obj/item/stack/ore/diamond
+/obj/item/stack/ore/gem
+	max_amount = 1
+/obj/item/stack/ore/gem/diamond
 	name = "diamond ore"
-	icon_state = "Diamond ore"
-	inhand_icon_state = "Diamond ore"
-	singular_name = "diamond ore chunk"
-	points = 50
-	mats_per_unit = list(/datum/material/diamond=MINERAL_MATERIAL_AMOUNT)
-	refined_type = /obj/item/stack/sheet/mineral/diamond
+	icon_state = "diamond_ore"
+	// inhand_icon_state = "Diamond ore"
+	singular_name = "uncut diamond"
+	refined_type = /obj/item/stack/sheet/mineral/gem/diamond
 	mine_experience = 10
-	scan_state = "rock_Diamond"
-	merge_type = /obj/item/stack/ore/diamond
+	merge_type = /obj/item/stack/ore/gem/diamond
+	ore_icon = 'dwarfs/icons/turf/ores/diamond.dmi'
+	ore_basename = "diamond"
+
+/obj/item/stack/ore/gem/sapphire
+	name = "sapphire ore"
+	icon_state = "sapphire_ore"
+	// inhand_icon_state = "Diamond ore"
+	singular_name = "uncut sapphire"
+	refined_type = /obj/item/stack/sheet/mineral/gem/sapphire
+	mine_experience = 10
+	merge_type = /obj/item/stack/ore/gem/sapphire
+	ore_icon = 'dwarfs/icons/turf/ores/sapphire.dmi'
+	ore_basename = "sapphire"
+
+/obj/item/stack/ore/gem/ruby
+	name = "ruby ore"
+	icon_state = "ruby_ore"
+	// inhand_icon_state = "Diamond ore"
+	singular_name = "uncut ruby"
+	refined_type = /obj/item/stack/sheet/mineral/gem/ruby
+	mine_experience = 10
+	merge_type = /obj/item/stack/ore/gem/ruby
+	ore_icon = 'dwarfs/icons/turf/ores/ruby.dmi'
+	ore_basename = "ruby"
 
 /obj/item/stack/ore/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
 	. = ..()

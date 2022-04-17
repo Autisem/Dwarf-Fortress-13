@@ -143,13 +143,13 @@
 /datum/workbench_recipe/crown
 	name = "crown"
 	result = /obj/item/clothing/head/helmet/dwarf_crown
-	reqs = list(/obj/item/gem/cut/saphire = 3, /obj/item/blacksmith/partial/crown_empty = 1)
+	reqs = list(/obj/item/stack/sheet/mineral/gem/sapphire = 3, /obj/item/blacksmith/partial/crown_empty = 1)
 	primary = /obj/item/blacksmith/partial/crown_empty
 
 /datum/workbench_recipe/scepter
 	name = "scepter"
 	result = /obj/item/blacksmith/scepter
-	reqs = list(/obj/item/gem/cut/ruby = 1, /obj/item/blacksmith/partial/scepter_part = 1, /obj/item/scepter_shaft = 1)
+	reqs = list(/obj/item/stack/sheet/mineral/gem/ruby = 1, /obj/item/blacksmith/partial/scepter_part = 1, /obj/item/scepter_shaft = 1)
 	primary = /obj/item/blacksmith/partial/scepter_part
 
 /datum/workbench_recipe/dagger_sneath

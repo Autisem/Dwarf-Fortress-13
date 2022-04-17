@@ -12,20 +12,39 @@ Mineral Sheets
 /*
  * Diamond
  */
-/obj/item/stack/sheet/mineral/diamond
+
+/obj/item/stack/sheet/mineral/gem
+	max_amount = 1
+
+/obj/item/stack/sheet/mineral/gem/diamond
 	name = "diamond"
 	icon = 'white/valtos/icons/items.dmi'
-	icon_state = "sheet-diamond"
-	inhand_icon_state = "sheet-diamond"
-	singular_name = "diamond sheet"
+	icon_state = "diamond"
+	// inhand_icon_state = "sheet-diamond"
+	singular_name = "diamond"
 	sheettype = "diamond"
-	mats_per_unit = list(/datum/material/diamond=MINERAL_MATERIAL_AMOUNT)
-	novariants = TRUE
-	grind_results = list(/datum/reagent/carbon = 20)
 	point_value = 25
-	merge_type = /obj/item/stack/sheet/mineral/diamond
-	material_type = /datum/material/diamond
-	walltype = /turf/closed/wall/mineral/diamond
+	merge_type = /obj/item/stack/sheet/mineral/gem/diamond
+
+/obj/item/stack/sheet/mineral/gem/sapphire
+	name = "sapphire"
+	icon = 'white/valtos/icons/items.dmi'
+	icon_state = "sapphire"
+	// inhand_icon_state = "sheet-sapphire"
+	singular_name = "sapphire"
+	sheettype = "sapphire"
+	point_value = 25
+	merge_type = /obj/item/stack/sheet/mineral/gem/sapphire
+
+/obj/item/stack/sheet/mineral/gem/ruby
+	name = "ruby"
+	icon = 'white/valtos/icons/items.dmi'
+	icon_state = "ruby"
+	// inhand_icon_state = "sheet-ruby"
+	singular_name = "ruby"
+	sheettype = "ruby"
+	point_value = 25
+	merge_type = /obj/item/stack/sheet/mineral/gem/ruby
 
 GLOBAL_LIST_INIT(diamond_recipes, list ())
 

@@ -546,15 +546,6 @@
 	taste_description = "цветы"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
-/datum/reagent/mutationtoxin/golem
-	name = "Токсин Мутации в Голема"
-	enname = "Golem Mutation Toxin"
-	description = "A crystal toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/golem/random
-	taste_description = "камни"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
 /datum/reagent/mutationtoxin/android
 	name = "Токсин Мутации в Андроида"
 	enname = "Android Mutation Toxin"
@@ -2485,15 +2476,3 @@
 	. = ..()
 	kronkus_enjoyer.adjustOrganLoss(ORGAN_SLOT_HEART, 0.1)
 	kronkus_enjoyer.adjustStaminaLoss(-2, FALSE)
-
-/datum/reagent/brimdust
-	name = "Brimdust"
-	description = "A brimdemon's dust. Consumption is not recommended, although plants like it."
-	reagent_state = SOLID
-	color = "#522546"
-	taste_description = "burning"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/brimdust/on_mob_life(mob/living/carbon/carbon, delta_time, times_fired)
-	. = ..()
-	carbon.adjustFireLoss((ispodperson(carbon) ? -1 : 1) * delta_time)

@@ -104,19 +104,6 @@
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
 	desc = "Cracks rocks with sonic blasts."
 
-/obj/item/pickaxe/improvised
-	name = "импровизированная кирка"
-	desc = "Кирка, сделанная из ножа и лома, склеенных вместе, как она не ломается?"
-	icon_state = "ipickaxe"
-	inhand_icon_state = "ipickaxe"
-	worn_icon_state = "pickaxe"
-	force = 10
-	throwforce = 7
-	toolspeed = 3 //3 times slower than a normal pickaxe
-	slot_flags = ITEM_SLOT_BELT
-	w_class = WEIGHT_CLASS_NORMAL
-	custom_materials = list(/datum/material/iron=12050) //metal needed for a crowbar and for a knife, why the FUCK does a knife cost 6 metal sheets while a crowbar costs 0.025 sheets? shit makes no sense fuck this
-
 /obj/item/shovel
 	name = "shovel"
 	desc = "A large tool for digging and moving dirt."

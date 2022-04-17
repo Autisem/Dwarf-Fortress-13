@@ -177,10 +177,6 @@
 	attack_verb_continuous = list("играет","джаззует","трампетирует","горнирует","дудит","спукает")
 	attack_verb_simple = list("играет","джаззует","трампетирует","горнирует","дудит","спукает")
 
-/obj/item/instrument/trumpet/spectral/Initialize()
-	. = ..()
-	AddComponent(/datum/component/spooky)
-
 /obj/item/instrument/trumpet/spectral/attack(mob/living/carbon/C, mob/user)
 	playsound (src, 'sound/runtime/instruments/trombone/En4.mid', 100,1,-1)
 	..()
@@ -201,10 +197,6 @@
 	attack_verb_continuous = list("играет","саксирует","горнирует","дудит","спукает")
 	attack_verb_simple = list("играет","саксирует","горнирует","дудит","спукает")
 
-/obj/item/instrument/saxophone/spectral/Initialize()
-	. = ..()
-	AddComponent(/datum/component/spooky)
-
 /obj/item/instrument/saxophone/spectral/attack(mob/living/carbon/C, mob/user)
 	playsound (src, 'sound/runtime/instruments/saxophone/En4.mid', 100,1,-1)
 	..()
@@ -224,10 +216,6 @@
 	force = 0
 	attack_verb_continuous = list("играет","тромбирует","дудит","спукает")
 	attack_verb_simple = list("играет","тромбирует","дудит","спукает")
-
-/obj/item/instrument/trombone/spectral/Initialize()
-	. = ..()
-	AddComponent(/datum/component/spooky)
 
 /obj/item/instrument/trombone/spectral/attack(mob/living/carbon/C, mob/user)
 	playsound (src, 'sound/runtime/instruments/trombone/Cn4.mid', 100,1,-1)

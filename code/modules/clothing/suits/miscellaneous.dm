@@ -29,7 +29,6 @@
 	icon_state = "pirate"
 	inhand_icon_state = "pirate"
 	allowed = list()
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/pirate/armored
 	armor = list(MELEE = 30, BULLET = 50, LASER = 30,ENERGY = 40, BOMB = 30, BIO = 30, RAD = 30, FIRE = 60, ACID = 75)
@@ -82,7 +81,6 @@
 	icon_state = "overalls"
 	inhand_icon_state = "overalls"
 	body_parts_covered = CHEST|GROIN|LEGS
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/apron/purple_bartender
 	name = "фиолетовый фартук бармена"
@@ -178,7 +176,6 @@
 	desc = "Ваше классическое нерасистское пончо."
 	icon_state = "classicponcho"
 	inhand_icon_state = "classicponcho"
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/poncho/green
 	name = "зелёный пончо"
@@ -287,8 +284,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	allowed = list()
 	actions_types = list(/datum/action/item_action/toggle_human_head)
-	hoodtype = /obj/item/clothing/head/hooded/human_head
-	species_exception = list(/datum/species/golem) //Finally, flesh
+	hoodtype = /obj/item/clothing/head/hooded/human_head //Finally, flesh
 
 
 /obj/item/clothing/head/hooded/human_head
@@ -365,14 +361,12 @@
 	desc = "Изношенная, любопытно удобная футболка с изображением Яна. Вы бы не зашли так далеко, чтобы сказать, что вы чувствуете, что вас обнимают, когда вы его носите, но это довольно близко. Хорошо для сна."
 	icon_state = "ianshirt"
 	inhand_icon_state = "ianshirt"
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/nerdshirt
 	name = "рубашка геймера"
 	desc = "Мешковатая рубашка со старинным игровым персонажем Phanic the Weasel. Зачем кому-то носить это?"
 	icon_state = "nerdshirt"
 	inhand_icon_state = "nerdshirt"
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/vapeshirt //wearing this is asking to get beat.
 	name = "рубашка вейпа нейшена"
@@ -395,7 +389,6 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/jacket/leather
 	name = "кожаный пиджак"
@@ -405,7 +398,6 @@
 	resistance_flags = NONE
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
 	allowed = list()
-	species_exception = list(/datum/species/golem/bone) //bad to the bone
 
 /obj/item/clothing/suit/jacket/leather/overcoat
 	name = "кожаное пальто"
@@ -420,7 +412,6 @@
 	icon_state = "pufferjacket"
 	inhand_icon_state = "hostrench"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 50, RAD = 0, FIRE = 0, ACID = 0)
-	species_exception = list(/datum/species/golem/bone)
 
 /obj/item/clothing/suit/jacket/puffer/vest
 	name = "жилет"
@@ -443,28 +434,24 @@
 	desc = "Классическая коричневая куртка-леттерман. Хорошая вещь."
 	icon_state = "letterman"
 	inhand_icon_state = "letterman"
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/jacket/letterman_red
 	name = "красная куртка леттерман"
 	desc = "Куртка леттерман нездорово-красного цвета. Радикально."
 	icon_state = "letterman_red"
 	inhand_icon_state = "letterman_red"
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/jacket/letterman_syndie
 	name = "кроваво-красная куртка леттерман"
 	desc = "Странно, на спине у этой куртки есть большая S."
 	icon_state = "letterman_s"
 	inhand_icon_state = "letterman_s"
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/jacket/letterman_nanotrasen
 	name = "синяя куртка леттерман"
 	desc = "Синяя курта леттерман с зачетной буквой N на спине. На бирке сказано что её сшили в Космическом Китае."
 	icon_state = "letterman_n"
 	inhand_icon_state = "letterman_n"
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/dracula
 	name = "пальто дракулы"
@@ -514,7 +501,6 @@
 	attack_verb_continuous = list("предупреждает", "предостерегает", "размазывает")
 	attack_verb_simple = list("предупреждает", "предостерегает", "размазывает")
 	armor = list(MELEE = 5, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/changshan_red
 	name = "красный чаншань"
@@ -618,7 +604,6 @@
 	inhand_icon_state = "coatscience"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/science
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/head/hooded/winterhood/science
 	icon_state = "winterhood_science"
@@ -630,7 +615,6 @@
 	inhand_icon_state = "coatengineer"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 20, FIRE = 30, ACID = 45)
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/engineering
-	species_exception = list(/datum/species/golem/uranium)
 
 /obj/item/clothing/head/hooded/winterhood/engineering
 	icon_state = "winterhood_engineer"
@@ -731,7 +715,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	flags_inv = HIDEGLOVES|HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	alternate_worn_layer = UNDER_HEAD_LAYER
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/ghost_sheet/spooky
 	name = "жуткое приведение"
@@ -780,7 +763,6 @@
 	desc = "Клевая рубашка для отдыха на пляже."
 	icon_state = "hawaiian_blue"
 	inhand_icon_state = "hawaiian_blue"
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/yakuza
 	name = "куртка клана донченг"

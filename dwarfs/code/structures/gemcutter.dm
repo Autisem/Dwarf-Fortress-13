@@ -9,7 +9,7 @@
 	var/busy = FALSE
 
 /obj/structure/gemcutter/attacked_by(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/gem) && !istype(I, /obj/item/gem/cut))
+	if(istype(I, /obj/item/stack/ore/gem))
 		icon_state = "gemcutter_on"
 		if(busy)
 			to_chat(user, span_notice("Currently busy."))
@@ -20,8 +20,8 @@
 			icon_state = "gemcutter"
 			return
 		busy = FALSE
-		var/obj/item/gem/G = I
-		new G.cut_type(loc)
+		var/obj/item/stack/ore/gem/G = I
+		new G.refined_type(loc)
 		to_chat(user, span_notice("You process [G] on \a [src]"))
 		qdel(G)
 		icon_state = "gemcutter"

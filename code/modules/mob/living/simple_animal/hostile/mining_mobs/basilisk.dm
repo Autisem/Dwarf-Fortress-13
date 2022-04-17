@@ -32,8 +32,8 @@
 	aggro_vision_range = 9
 	turns_per_move = 5
 	gold_core_spawnable = HOSTILE_SPAWN
-	loot = list(/obj/item/stack/ore/diamond{layer = ABOVE_MOB_LAYER},
-				/obj/item/stack/ore/diamond{layer = ABOVE_MOB_LAYER})
+	loot = list(/obj/item/stack/ore/gem/diamond{layer = ABOVE_MOB_LAYER},
+				/obj/item/stack/ore/gem/diamond{layer = ABOVE_MOB_LAYER})
 	var/lava_drinker = TRUE
 	var/warmed_up = FALSE
 	discovery_points = 2000
@@ -117,10 +117,10 @@
 	robust_searching = 1
 	gold_core_spawnable = NO_SPAWN
 	loot = list()
-	butcher_results = list(/obj/item/stack/ore/diamond = 2, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/bone = 1)
+	butcher_results = list(/obj/item/stack/ore/gem/diamond = 2, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/bone = 1)
 	lava_drinker = FALSE
 	search_objects = 1
-	wanted_objects = list(/obj/item/pen/survival, /obj/item/stack/ore/diamond)
+	wanted_objects = list(/obj/item/pen/survival, /obj/item/stack/ore/gem/diamond)
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/Initialize()
 	. = ..()
@@ -133,7 +133,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/proc/consume_bait()
 	for(var/obj/potential_consumption in view(1, src))
-		if(istype(potential_consumption, /obj/item/stack/ore/diamond))
+		if(istype(potential_consumption, /obj/item/stack/ore/gem/diamond))
 			qdel(potential_consumption)
 			visible_message(span_notice("[src] consumes [potential_consumption], and it disappears! ...At least, you think."))
 		else if(istype(potential_consumption, /obj/item/pen/survival))
@@ -175,7 +175,7 @@
 	maxHealth = 170
 	health = 170
 	projectiletype = /obj/projectile/temp/basilisk/icewing
-	butcher_results = list(/obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/bone = 1) //No sinew; the wings are too fragile to be usable
+	butcher_results = list(/obj/item/stack/ore/gem/diamond = 5, /obj/item/stack/sheet/bone = 1) //No sinew; the wings are too fragile to be usable
 	crusher_drop_mod = 30
 
 /obj/projectile/temp/basilisk/magmawing

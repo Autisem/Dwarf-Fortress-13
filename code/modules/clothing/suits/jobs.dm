@@ -11,7 +11,6 @@
 	blood_overlay_type = "armor"
 	body_parts_covered = CHEST|GROIN
 	allowed = list()
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/apron/waders
 	name = "болотники садовода"
@@ -42,7 +41,6 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	allowed = list()
 	togglename = "sleeves"
-	species_exception = list(/datum/species/golem)
 
 //Cook
 /obj/item/clothing/suit/apron/chef
@@ -91,7 +89,6 @@
 	blood_overlay_type = "armor"
 	allowed = list()
 	resistance_flags = NONE
-	species_exception = list(/datum/species/golem)
 
 //Lawyer
 /obj/item/clothing/suit/toggle/lawyer
@@ -102,7 +99,6 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = CHEST|ARMS
 	togglename = "buttons"
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/toggle/lawyer/purple
 	name = "фиолетовый пиджак"
@@ -126,7 +122,6 @@
 	worn_icon_state = "suspenders"
 	blood_overlay_type = "armor" //it's the less thing that I can put here
 	togglename = "straps"
-	species_exception = list(/datum/species/golem)
 
 //Security
 /obj/item/clothing/suit/security/officer

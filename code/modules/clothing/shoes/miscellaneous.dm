@@ -41,7 +41,6 @@
 	equip_delay_other = 50
 	permeability_coefficient = 0.9
 	can_be_tied = FALSE
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/shoes/sandal/marisa
 	desc = "Пара волшебных чёрных туфель."
@@ -179,7 +178,6 @@
 	equip_delay_other = 40
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	lace_time = 8 SECONDS
-	species_exception = list(/datum/species/golem/uranium)
 
 /obj/item/clothing/shoes/workboots/mining
 	name = "шахтёрские ботинки"
@@ -422,7 +420,6 @@
 	name = "тапочки грильмена"
 	icon_state = "cookflops"
 	can_be_tied = FALSE
-	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/shoes/yakuza
 	name = "обувь клана тодзё"

@@ -123,7 +123,7 @@
 	speed = 2
 	move_to_delay = 2
 	del_on_death = TRUE
-	loot = list(/obj/item/gem/cut/diamond = 5)
+	loot = list(/obj/item/stack/sheet/mineral/gem/diamond = 5)
 	maxHealth = 600
 	health = 600
 	faction = list("mining")

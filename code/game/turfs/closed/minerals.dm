@@ -17,7 +17,6 @@
 	var/obj/item/stack/ore/mineralType = null
 	var/mineralAmt = 3
 	var/last_act = 0
-	var/scan_state = "" //Holder for the image we display when we're pinged by a mining scanner
 	var/defer_change = 0
 
 /turf/closed/mineral/Initialize()
@@ -50,14 +49,7 @@
 /turf/closed/mineral/proc/Change_Ore(ore_type, random = 0)
 	if(random)
 		mineralAmt = rand(1, 5)
-	if(ispath(ore_type, /obj/item/stack/ore)) //If it has a scan_state, switch to it
-		var/obj/item/stack/ore/the_ore = ore_type
-		scan_state = initial(the_ore.scan_state) // I SAID. SWITCH. TO. IT.
 		mineralType = ore_type // Everything else assumes that this is typed correctly so don't set it to non-ores thanks.
-	if(ispath(ore_type, /obj/item/gem))
-		var/obj/item/gem/G = ore_type
-		scan_state = initial(G.scan_state)
-		mineralType = ore_type
 
 /turf/closed/mineral/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	if(turf_type)
@@ -94,13 +86,6 @@
 	if (mineralType && (mineralAmt > 0) && ispath(mineralType, /obj/item/stack))
 		new mineralType(src, mineralAmt)
 		SSblackbox.record_feedback("tally", "ore_mined", mineralAmt, mineralType)
-	if(mineralType && ispath(mineralType, /obj/item/gem))
-		var/obj/item/gem/G = new mineralType(src)
-		var/amount = rand(1, G.max_amount)-1
-		if(amount)
-			for(var/i in 1 to amount)
-				new mineralType(src)
-		SSblackbox.record_feedback("tally", "ore_mined", mineralAmt, mineralType)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(give_exp)
@@ -109,8 +94,6 @@
 			else
 				H.mind.adjust_experience(/datum/skill/mining, 4)
 
-	for(var/obj/effect/temp_visual/mining_overlay/M in src)
-		qdel(M)
 	var/flags = NONE
 	if(defer_change) // TODO: make the defer change var a var for any changeturf flag
 		flags = CHANGETURF_DEFER_CHANGE
@@ -151,7 +134,7 @@
 	return
 
 /turf/closed/mineral/random
-	var/list/mineralSpawnChanceList = list(/obj/item/stack/ore/diamond = 1, /obj/item/stack/ore/gold = 10,
+	var/list/mineralSpawnChanceList = list(/obj/item/stack/ore/gem/diamond = 1, /obj/item/stack/ore/gold = 10,
 		/obj/item/stack/ore/silver = 12, /obj/item/stack/ore/iron = 40)
 	var/mineralChance = 13
 
