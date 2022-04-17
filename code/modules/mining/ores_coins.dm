@@ -163,7 +163,7 @@
 	scan_state = "rock_Gold"
 	spreadChance = 5
 	merge_type = /obj/item/stack/ore/gold
-	ore_icon = 'dwarfs/icons/turf/gold_ore.dmi'
+	ore_icon = 'dwarfs/icons/turf/ore/gold.dmi'
 	ore_basename = "gold_ore"
 
 /obj/item/stack/ore/diamond
