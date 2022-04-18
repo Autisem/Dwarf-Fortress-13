@@ -505,7 +505,7 @@
 		for(var/datum/reagent/reagent as anything in cached_reagents)
 			if(remove_blacklisted && !(reagent.chemical_flags & REAGENT_CAN_BE_SYNTHESIZED))
 				continue
-			if(!is_type_in_list(reagent, R.allowed_reagents))
+			if(!is_type_in_list(reagent, R.allowed_reagents) && R.allowed_reagents?.len)
 				continue
 			var/transfer_amount = reagent.volume * part
 			if(preserve_data)
