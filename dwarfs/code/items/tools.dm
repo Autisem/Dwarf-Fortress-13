@@ -1,7 +1,7 @@
 /*****************Pickaxes & Drills & Shovels****************/
 /obj/item/pickaxe
 	name = "pickaxe"
-	icon = 'icons/obj/mining.dmi'
+	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "pickaxe"
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
@@ -37,7 +37,7 @@
 /obj/item/shovel
 	name = "shovel"
 	desc = "A large tool for digging and moving dirt."
-	icon = 'icons/obj/mining.dmi'
+	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "shovel"
 	worn_icon_state = "shovel"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
