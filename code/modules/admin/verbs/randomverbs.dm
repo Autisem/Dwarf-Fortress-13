@@ -614,39 +614,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("[key_name(usr)] cured all zombies.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Mass Zombie Cure")
 
-/client/proc/polymorph_all()
-	set category = "Адм.Веселье"
-	set name = "Polymorph All"
-	set desc = "Applies the effects of the bolt of change to every single mob."
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	var/confirm = tgui_alert(usr, "Please confirm you want polymorph all mobs?", "Confirm Polymorph", list("Yes", "No"))
-	if(confirm != "Yes")
-		return
-
-	var/list/mobs = shuffle(GLOB.alive_mob_list.Copy()) // might change while iterating
-	var/who_did_it = key_name_admin(usr)
-
-	message_admins("[key_name_admin(usr)] started polymorphed all living mobs.")
-	log_admin("[key_name(usr)] polymorphed all living mobs.")
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Polymorph All")
-
-	for(var/mob/living/M in mobs)
-		CHECK_TICK
-
-		if(!M)
-			continue
-
-		M.audible_message(span_hear("...wabbajack...wabbajack..."))
-		playsound(M.loc, 'sound/magic/staff_change.ogg', 50, TRUE, -1)
-
-		wabbajack(M)
-
-	message_admins("Mass polymorph started by [who_did_it] is complete.")
-
-
 /client/proc/show_tip()
 	set category = "Адм"
 	set name = "Show Tip"

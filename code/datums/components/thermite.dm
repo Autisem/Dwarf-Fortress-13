@@ -20,7 +20,6 @@
 		)
 	///List of turfs that are immune to thermite
 	var/static/list/immunelist = typecacheof(list(
-		/turf/closed/wall/mineral/diamond,
 		/turf/closed/indestructible,
 		/turf/open/indestructible)
 		)

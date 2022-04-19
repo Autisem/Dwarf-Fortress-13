@@ -3,7 +3,7 @@
 
 /turf/open/floor/plating/asteroid //floor piece
 	gender = PLURAL
-	name = "астероидный песок"
+	name = "asteroid floor"
 	baseturfs = /turf/open/floor/plating/asteroid
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
@@ -46,7 +46,7 @@
 	if(!dug)
 		return TRUE
 	if(user)
-		to_chat(user, span_warning("Похоже, здесь кто-то уже копал!"))
+		to_chat(user, span_warning("Looks like somebody already mined this!"))
 
 /turf/open/floor/plating/asteroid/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
 	return
@@ -73,18 +73,15 @@
 			if(!isturf(user.loc))
 				return
 
-			to_chat(user, span_notice("Начинаю копать..."))
+			to_chat(user, span_notice("You start digging..."))
 
 			if(W.use_tool(src, user, 40, volume=50))
 				if(!can_dig(user))
 					return TRUE
-				to_chat(user, span_notice("Выкапываю ямку."))
+				to_chat(user, span_notice("You dig a pit."))
 				getDug()
 				SSblackbox.record_feedback("tally", "pick_used_mining", 1, W.type)
 				return TRUE
-		else if(istype(W, /obj/item/storage/bag/ore))
-			for(var/obj/item/stack/ore/O in src)
-				SEND_SIGNAL(W, COMSIG_PARENT_ATTACKBY, O)
 
 /turf/open/floor/plating/asteroid/ex_act(severity, target)
 	. = SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, target)
@@ -94,7 +91,7 @@
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 
 /turf/open/floor/plating/asteroid/basalt
-	name = "вулканическая поверхность"
+	name = "volcanic floor"
 	baseturfs = /turf/open/floor/plating/asteroid/basalt
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "basalt"
@@ -130,8 +127,8 @@
 
 /turf/open/floor/plating/asteroid/snow
 	gender = PLURAL
-	name = "снег"
-	desc = "Выглядит холодным."
+	name = "snow"
+	desc = "Looks cold."
 	icon = 'icons/turf/snow.dmi'
 	baseturfs = /turf/open/floor/plating/asteroid/snow
 	icon_state = "snow"
@@ -157,8 +154,8 @@
 	baseturfs = /turf/open/lava/plasma/ice_moon
 
 /turf/open/floor/plating/asteroid/snow/ice
-	name = "ледяной снег"
-	desc = "Выглядит ещё холоднее."
+	name = "icy snow"
+	desc = "Looks even colder."
 	baseturfs = /turf/open/floor/plating/asteroid/snow/ice
 	floor_variance = 0
 	icon_state = "snow-ice"

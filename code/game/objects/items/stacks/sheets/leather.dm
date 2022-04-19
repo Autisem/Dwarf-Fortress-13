@@ -182,32 +182,6 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 /obj/item/stack/sheet/leather/get_main_recipes()
 	. = ..()
 	. += GLOB.leather_recipes
-/*
- * Sinew
- */
-/obj/item/stack/sheet/sinew
-	name = "сухожилия стражника"
-	icon = 'icons/obj/mining.dmi'
-	desc = "Длинные волокнистые нити, которые предположительно пришли с крыльев наблюдателя."
-	singular_name = "сухожилие стражника"
-	icon_state = "sinew"
-	novariants = TRUE
-	merge_type = /obj/item/stack/sheet/sinew
-
-/obj/item/stack/sheet/sinew/wolf
-	name = "волчьи сухожилия"
-	desc = "Длинные волокнистые нити, которые пришли изнутри волка."
-	singular_name = "волчье сухожилие"
-	merge_type = /obj/item/stack/sheet/sinew/wolf
-
-GLOBAL_LIST_INIT(sinew_recipes, list ( \
-	new/datum/stack_recipe("сухожильные наручники", /obj/item/restraints/handcuffs/cable/sinew, 1), \
-))
-
-/obj/item/stack/sheet/sinew/get_main_recipes()
-	. = ..()
-	. += GLOB.sinew_recipes
-
 
 /*Plates*/
 /obj/item/stack/sheet/animalhide/goliath_hide

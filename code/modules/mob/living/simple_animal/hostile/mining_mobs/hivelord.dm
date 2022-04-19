@@ -48,9 +48,6 @@
 	OpenFire()
 	return TRUE
 
-/mob/living/simple_animal/hostile/asteroid/hivelord/spawn_crusher_loot()
-	loot += crusher_loot //we don't butcher
-
 /mob/living/simple_animal/hostile/asteroid/hivelord/death(gibbed)
 	mouse_opacity = MOUSE_OPACITY_ICON
 	..(gibbed)
@@ -137,7 +134,6 @@
 	maxHealth = 60
 	health = 60
 	speed = 2 //faster!
-	crusher_drop_mod = 20
 	dwarf_mob = TRUE
 
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/death(gibbed)

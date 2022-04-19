@@ -124,15 +124,6 @@
 		qdel(src)
 	return
 
-/obj/item/restraints/handcuffs/cable/sinew
-	name = "стяжки из сухожилий"
-	desc = "Пара стяжек, сделанных из длинных прядей плоти."
-	icon = 'icons/obj/mining.dmi'
-	icon_state = "sinewcuff"
-	inhand_icon_state = "sinewcuff"
-	custom_materials = null
-	color = null
-
 /obj/item/restraints/handcuffs/cable
 	name = "кабельные стяжки"
 	desc = "Похоже, что какие-то кабели связаны вместе. Может использоваться, чтобы что-то или кого-то связать."

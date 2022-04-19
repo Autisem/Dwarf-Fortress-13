@@ -531,14 +531,12 @@
 	desc = "Используется для сложных медицинских процедур."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "optable"
-	buildstack = /obj/item/stack/sheet/mineral/silver
 	smoothing_flags = NONE
 	smoothing_groups = null
 	canSmoothWith = null
 	can_buckle = 1
 	buckle_lying = 90
 	buckle_requires_restraints = TRUE
-	custom_materials = list(/datum/material/silver = 2000)
 	var/mob/living/carbon/human/patient = null
 
 /obj/structure/table/optable/tablepush(mob/living/user, mob/living/pushed_mob)

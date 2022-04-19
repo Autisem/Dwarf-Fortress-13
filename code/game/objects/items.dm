@@ -1,9 +1,5 @@
 GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/effects/fire.dmi', "fire"))
 
-GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
-// if true, everyone item when created will have its name changed to be
-// more... RPG-like.
-
 GLOBAL_VAR_INIT(stickpocalypse, FALSE) // if true, all non-embeddable items will be able to harmlessly stick to people when thrown
 GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to embed in people, takes precedence over stickpocalypse
 
@@ -272,9 +268,6 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 			name = "sticky [name]"
 
 	updateEmbedding()
-
-	if(GLOB.rpg_loot_items)
-		AddComponent(/datum/component/fantasy)
 
 	if(sharpness && force > 5) //give sharp objects butchering functionality, for consistency
 		AddComponent(/datum/component/butchering, 80 * toolspeed)

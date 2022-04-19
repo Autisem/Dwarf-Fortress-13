@@ -60,7 +60,7 @@
 						return
 					S.use(2)
 					to_chat(user, span_notice("You create a false wall. Push on it to open or close the passage."))
-					var/obj/structure/falsewall/iron/FW = new (loc)
+					var/obj/structure/falsewall/FW = new (loc)
 					transfer_fingerprints_to(FW)
 					qdel(src)
 					return
@@ -75,7 +75,7 @@
 					S.use(5)
 					to_chat(user, span_notice("You add the plating."))
 					var/turf/T = get_turf(src)
-					T.PlaceOnTop(/turf/closed/wall/mineral/iron)
+					T.PlaceOnTop(/turf/closed/wall/mineral)
 					transfer_fingerprints_to(T)
 					qdel(src)
 				return

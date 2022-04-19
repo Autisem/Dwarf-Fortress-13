@@ -106,14 +106,6 @@
 	reqs = list(/obj/item/stack/sheet/bone = 6)
 	category = CAT_PRIMAL
 
-/datum/crafting_recipe/bonetalisman
-	name = "Bone Talisman"
-	result = /obj/item/clothing/accessory/talisman
-	time = 20
-	reqs = list(/obj/item/stack/sheet/bone = 2,
-				/obj/item/stack/sheet/sinew = 1)
-	category = CAT_PRIMAL
-
 /datum/crafting_recipe/bonecodpiece
 	name = "Skull Codpiece"
 	result = /obj/item/clothing/accessory/skullcodpiece
@@ -122,36 +114,11 @@
 				/obj/item/stack/sheet/animalhide/goliath_hide = 1)
 	category = CAT_PRIMAL
 
-/datum/crafting_recipe/skilt
-	name = "Sinew Kilt"
-	result = /obj/item/clothing/accessory/skilt
-	time = 20
-	reqs = list(/obj/item/stack/sheet/bone = 1,
-				/obj/item/stack/sheet/sinew = 2)
-	category = CAT_PRIMAL
-
-/datum/crafting_recipe/bracers
-	name = "Bone Bracers"
-	result = /obj/item/clothing/gloves/bracer
-	time = 20
-	reqs = list(/obj/item/stack/sheet/bone = 2,
-				/obj/item/stack/sheet/sinew = 1)
-	category = CAT_PRIMAL
-
 /datum/crafting_recipe/skullhelm
 	name = "Skull Helmet"
 	result = /obj/item/clothing/head/helmet/skull
 	time = 30
 	reqs = list(/obj/item/stack/sheet/bone = 4)
-	category = CAT_PRIMAL
-
-/datum/crafting_recipe/goliathcloak
-	name = "Goliath Cloak"
-	result = /obj/item/clothing/suit/hooded/cloak/goliath
-	time = 50
-	reqs = list(/obj/item/stack/sheet/leather = 2,
-				/obj/item/stack/sheet/sinew = 2,
-				/obj/item/stack/sheet/animalhide/goliath_hide = 2) //it takes 4 goliaths to make 1 cloak if the plates are skinned
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/firebrand
@@ -166,22 +133,6 @@
 	result = /obj/item/kitchen/knife/combat/bone
 	time = 20
 	reqs = list(/obj/item/stack/sheet/bone = 2)
-	category = CAT_PRIMAL
-
-/datum/crafting_recipe/bonespear
-	name = "Bone Spear"
-	result = /obj/item/spear/bonespear
-	time = 30
-	reqs = list(/obj/item/stack/sheet/bone = 4,
-				/obj/item/stack/sheet/sinew = 1)
-	category = CAT_PRIMAL
-
-/datum/crafting_recipe/boneaxe
-	name = "Bone Axe"
-	result = /obj/item/fireaxe/boneaxe
-	time = 50
-	reqs = list(/obj/item/stack/sheet/bone = 6,
-				/obj/item/stack/sheet/sinew = 3)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/woodbucket
@@ -229,17 +180,6 @@
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 20)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
 	category = CAT_MISC
-
-/datum/crafting_recipe/boneshovel
-	name = "Serrated Bone Shovel"
-	always_available = FALSE
-	reqs = list(
-		/obj/item/stack/sheet/bone = 4,
-		/datum/reagent/fuel/oil = 5,
-		/obj/item/shovel/spade = 1,
-	)
-	result = /obj/item/shovel/serrated
-	category = CAT_PRIMAL
 
 /datum/crafting_recipe/underwater_basket
 	name = "Underwater Basket (Bamboo)"

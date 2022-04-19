@@ -114,7 +114,7 @@
 	attack_verb_simple = "пробивает"
 	attack_sound = 'sound/weapons/sonic_jackhammer.ogg'
 	attack_vis_effect = null // jackhammer moment
-	loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer)
+	loot = list(/obj/effect/decal/remains/plasma)
 
 /mob/living/simple_animal/hostile/skeleton/plasmaminer/Initialize()
 	. = ..()

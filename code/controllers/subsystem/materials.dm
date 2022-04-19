@@ -26,9 +26,7 @@ SUBSYSTEM_DEF(materials)
 		new /datum/stack_recipe("Декоративная плитка", /obj/item/stack/tile/material, 1, 4, 20, applies_mats = TRUE),
 	)
 	///List of stackcrafting recipes for materials using rigid recipes
-	var/list/rigid_stack_recipes = list(
-		new /datum/stack_recipe("Художественный блок", /obj/structure/carving_block, 5, one_per_turf = TRUE, on_floor = TRUE, applies_mats = TRUE),
-	)
+	var/list/rigid_stack_recipes = list()
 
 ///Ran on initialize, populated the materials and materials_by_category dictionaries with their appropiate vars (See these variables for more info)
 /datum/controller/subsystem/materials/proc/InitializeMaterials()

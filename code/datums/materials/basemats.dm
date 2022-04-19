@@ -35,18 +35,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 */
 
 ///Has no special properties. Could be good against vampires in the future perhaps.
-/datum/material/silver
-	name = "silver"
-	desc = "Silver"
-	color = "#bbccff"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
-	sheet_type = /obj/item/stack/sheet/mineral/silver
-	value_per_unit = 0.025
-	beauty_modifier = 0.075
-
-/datum/material/silver/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
-	victim.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = 5)
-	return TRUE
 
 ///Slight force increase
 /datum/material/gold
@@ -62,22 +50,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 
 /datum/material/gold/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = 5)
-	return TRUE
-
-///Has no special properties
-/datum/material/diamond
-	name = "diamond"
-	desc = "Highly pressurized carbon."
-	color = "#48bbff"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
-	sheet_type = /obj/item/stack/sheet/mineral/diamond
-	alpha = 132
-	value_per_unit = 0.25
-	beauty_modifier = 0.3
-	armor_modifiers = list(MELEE = 1.3, BULLET = 1.3, LASER = 0.6, ENERGY = 1, BOMB = 1.2, BIO = 1, RAD = 1, FIRE = 1, ACID = 1)
-
-/datum/material/diamond/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
-	victim.apply_damage(15, BRUTE, BODY_ZONE_HEAD, wound_bonus = 7)
 	return TRUE
 
 ///Can cause bluespace effects on use. (Teleportation) (Not yet implemented)
@@ -132,31 +104,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	victim.reagents.add_reagent(/datum/reagent/cellulose, rand(8, 12))
 	source_item?.reagents?.add_reagent(/datum/reagent/cellulose, source_item.reagents.total_volume*(2/5))
 
-	return TRUE
-
-///RPG Magic.
-/datum/material/mythril
-	name = "mythril"
-	desc = "How this even exists is byond me"
-	color = "#f2d5d7"
-	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
-	value_per_unit = 0.75
-	strength_modifier = 1.2
-	armor_modifiers = list(MELEE = 1.5, BULLET = 1.5, LASER = 1.5, ENERGY = 1.5, BOMB = 1.5, BIO = 1.5, RAD = 1.5, FIRE = 1.5, ACID = 1.5)
-	beauty_modifier = 0.5
-
-/datum/material/mythril/on_applied_obj(atom/source, amount, material_flags)
-	. = ..()
-	if(istype(source, /obj/item))
-		source.AddComponent(/datum/component/fantasy)
-
-/datum/material/mythril/on_removed_obj(atom/source, amount, material_flags)
-	. = ..()
-	if(istype(source, /obj/item))
-		qdel(source.GetComponent(/datum/component/fantasy))
-
-/datum/material/mythril/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
-	victim.apply_damage(20, BRUTE, BODY_ZONE_HEAD, wound_bonus = 10)
 	return TRUE
 
 //formed when freon react with o2, emits a lot of plasma when heated

@@ -15,6 +15,7 @@ Mineral Sheets
 
 /obj/item/stack/sheet/mineral/gem
 	max_amount = 1
+	novariants = TRUE
 
 /obj/item/stack/sheet/mineral/gem/diamond
 	name = "diamond"
@@ -46,13 +47,6 @@ Mineral Sheets
 	point_value = 25
 	merge_type = /obj/item/stack/sheet/mineral/gem/ruby
 
-GLOBAL_LIST_INIT(diamond_recipes, list ())
-
-/obj/item/stack/sheet/mineral/diamond/get_main_recipes()
-	. = ..()
-	. += GLOB.diamond_recipes
-
-
 /*
  * Gold
  */
@@ -68,38 +62,12 @@ GLOBAL_LIST_INIT(diamond_recipes, list ())
 	point_value = 20
 	merge_type = /obj/item/stack/sheet/mineral/gold
 	material_type = /datum/material/gold
-	walltype = /turf/closed/wall/mineral/gold
 
 GLOBAL_LIST_INIT(gold_recipes, list ())
 
 /obj/item/stack/sheet/mineral/gold/get_main_recipes()
 	. = ..()
 	. += GLOB.gold_recipes
-
-/*
- * Silver
- */
-/obj/item/stack/sheet/mineral/silver
-	name = "silver"
-	icon = 'white/valtos/icons/items.dmi'
-	icon_state = "sheet-silver"
-	inhand_icon_state = "sheet-silver"
-	singular_name = "silver sheet"
-	sheettype = "silver"
-	mats_per_unit = list(/datum/material/silver=MINERAL_MATERIAL_AMOUNT)
-	grind_results = list(/datum/reagent/silver = 20)
-	point_value = 20
-	merge_type = /obj/item/stack/sheet/mineral/silver
-	material_type = /datum/material/silver
-	tableVariant = /obj/structure/table/optable
-	walltype = /turf/closed/wall/mineral/silver
-
-GLOBAL_LIST_INIT(silver_recipes, list ())
-
-/obj/item/stack/sheet/mineral/silver/get_main_recipes()
-	. = ..()
-	. += GLOB.silver_recipes
-
 
 /****************************** Others ****************************/
 /*

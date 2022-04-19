@@ -62,24 +62,6 @@
 	. = ..()
 	AddComponent(/datum/component/wet_floor, TURF_WET_LUBE, INFINITY, 0, INFINITY, TRUE)
 
-/turf/open/indestructible/honk
-	name = "бананиумный пол"
-	icon_state = "bananium"
-	footstep = null
-	barefootstep = null
-	clawfootstep = null
-	heavyfootstep = null
-	var/sound = 'sound/effects/clownstep1.ogg'
-
-/turf/open/indestructible/honk/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/wet_floor, TURF_WET_SUPERLUBE, INFINITY, 0, INFINITY, TRUE)
-
-/turf/open/indestructible/honk/Entered(atom/movable/AM)
-	..()
-	if(ismob(AM))
-		playsound(src,sound,50,TRUE)
-
 /turf/open/indestructible/necropolis
 	name = "пол некрополя"
 	desc = "Смотрит на меня с подозрением. Тьфу."

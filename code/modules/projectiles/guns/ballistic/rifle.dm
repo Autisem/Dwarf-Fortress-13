@@ -109,7 +109,7 @@
 	flags_1 = NONE
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted/arcane_barrage
+	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted
 
 /obj/item/gun/ballistic/rifle/boltaction/enchanted/dropped()
 	. = ..()

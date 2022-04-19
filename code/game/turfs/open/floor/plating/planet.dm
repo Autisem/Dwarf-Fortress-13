@@ -69,6 +69,5 @@
 	return list("damaged")
 
 /turf/closed/mineral/random/jungle
-	mineralSpawnChanceList = list(/obj/item/stack/ore/gem/diamond = 1, /obj/item/stack/ore/gold = 10,
-		/obj/item/stack/ore/silver = 12, /obj/item/stack/ore/iron = 40)
+	mineralSpawnChanceList = list(/obj/item/stack/ore/gem/diamond = 1, /obj/item/stack/ore/gold = 10, /obj/item/stack/ore/iron = 40)
 	baseturfs = /turf/open/floor/plating/dirt/dark

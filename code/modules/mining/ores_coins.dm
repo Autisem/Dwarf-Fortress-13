@@ -68,7 +68,7 @@
 
 /obj/item/stack/ore/iron
 	name = "iron ore"
-	icon_state = "Iron ore"
+	icon_state = "iron_ore"
 	inhand_icon_state = "Iron ore"
 	singular_name = "iron ore chunk"
 	refined_type = /obj/item/stack/sheet/iron
@@ -99,7 +99,7 @@
 
 /obj/item/stack/ore/glass
 	name = "sand pile"
-	icon_state = "Glass ore"
+	icon_state = "glass_ore"
 	inhand_icon_state = "Glass ore"
 	singular_name = "sand pile"
 	refined_type = /obj/item/stack/sheet/glass
@@ -133,19 +133,9 @@
 	mine_experience = 0
 	merge_type = /obj/item/stack/ore/glass/basalt
 
-/obj/item/stack/ore/silver
-	name = "silver ore"
-	icon_state = "Silver ore"
-	inhand_icon_state = "Silver ore"
-	singular_name = "silver ore chunk"
-	mine_experience = 3
-	refined_type = /obj/item/stack/sheet/mineral/silver
-	spreadChance = 5
-	merge_type = /obj/item/stack/ore/silver
-
 /obj/item/stack/ore/gold
 	name = "gold ore"
-	icon_state = "Gold ore"
+	icon_state = "gold_ore"
 	inhand_icon_state = "Gold ore"
 	singular_name = "gold ore chunk"
 	mine_experience = 5
@@ -280,15 +270,6 @@
 				span_notice("You flip [src]. It lands on [coinflip].") , \
 				span_hear("You hear the clattering of loose change."))
 	return TRUE//did the coin flip? useful for suicide_act
-
-/obj/item/coin/gold
-	custom_materials = list(/datum/material/gold = 400)
-
-/obj/item/coin/silver
-	custom_materials = list(/datum/material/silver = 400)
-
-/obj/item/coin/diamond
-	custom_materials = list(/datum/material/diamond = 400)
 
 /obj/item/coin/twoheaded
 	desc = "Hey, this coin's the same on both sides!"

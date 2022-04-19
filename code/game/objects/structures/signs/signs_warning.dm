@@ -100,14 +100,6 @@
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'."
 	is_editable = TRUE
 
-/obj/structure/sign/warning/xeno_mining
-	name = "\improper DANGEROUS ALIEN LIFE sign"
-	sign_change_name = "Warning - Xenos"
-	desc = "A sign that warns would-be travellers of hostile alien life in the vicinity."
-	icon = 'icons/obj/mining.dmi'
-	icon_state = "xeno_warning"
-	is_editable = TRUE
-
 /obj/structure/sign/warning/enginesafety
 	name = "\improper ENGINEERING SAFETY sign"
 	sign_change_name = "Warning - Engineering Safety Protocols"

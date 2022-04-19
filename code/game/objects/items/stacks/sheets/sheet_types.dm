@@ -40,7 +40,6 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	null, \
 	new/datum/stack_recipe("каркас стены", /obj/structure/girder, 2, time = 40, one_per_turf = TRUE, on_floor = TRUE, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75), \
 	null, \
-	new/datum/stack_recipe("железная дверь", /obj/structure/mineral_door/iron, 20, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("пестик", /obj/item/pestle, 1, time = 50), \
 	new/datum/stack_recipe("баррикада", /obj/structure/deployable_barricade/metal, 2, time = 1 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
 ))
@@ -96,14 +95,12 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("деревянный стул", /obj/structure/chair/wood/, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("крылатый стул", /obj/structure/chair/wood/wings, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("баррикада", /obj/structure/deployable_barricade/wooden, 2, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("деревянная дверь", /obj/structure/mineral_door/wood, 10, time = 20, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("гроб", /obj/structure/closet/crate/coffin, 5, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("собачья кровать", /obj/structure/bed/dogbed, 10, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("комод", /obj/structure/dresser, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("рамка для рисунка", /obj/item/wallframe/painting, 1, time = 10),\
 	new/datum/stack_recipe("маска Тики", /obj/item/clothing/mask/gas/tiki_mask, 2), \
 	new/datum/stack_recipe("деревянное ведро", /obj/item/reagent_containers/glass/bucket/wooden, 3, time = 10),\
-	new/datum/stack_recipe("ящик для руды", /obj/structure/ore_box, 4, time = 50, one_per_turf = TRUE, on_floor = TRUE),\
 	new/datum/stack_recipe("деревянный ящик", /obj/structure/closet/crate/wooden, 6, time = 50, one_per_turf = TRUE, on_floor = TRUE),\
 	new/datum/stack_recipe("ткацкий станок", /obj/structure/loom, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("ступка", /obj/item/reagent_containers/glass/mortar, 3), \
@@ -136,7 +133,6 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	novariants = TRUE
 	material_type = /datum/material/wood
 	grind_results = list(/datum/reagent/cellulose = 20) //no lignocellulose or lignin reagents yet,
-	walltype = /turf/closed/wall/mineral/wood
 
 /obj/item/stack/sheet/mineral/wood/get_main_recipes()
 	. = ..()
@@ -178,8 +174,6 @@ GLOBAL_LIST_INIT(bamboo_recipes, list ( \
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/sheet/mineral/bamboo
 	grind_results = list(/datum/reagent/cellulose = 10)
-	material_type = /datum/material/bamboo
-	walltype = /turf/closed/wall/mineral/bamboo
 
 /obj/item/stack/sheet/mineral/bamboo/get_main_recipes()
 	. = ..()
@@ -199,7 +193,6 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	null, \
 	new/datum/stack_recipe("сумка для растений", /obj/item/storage/bag/plants, 4), \
 	new/datum/stack_recipe("сумка для книг", /obj/item/storage/bag/books, 4), \
-	new/datum/stack_recipe("ранец шахтера", /obj/item/storage/bag/ore, 4), \
 	new/datum/stack_recipe("сумка для химикатов", /obj/item/storage/bag/chemistry, 4), \
 	new/datum/stack_recipe("строительная сумка", /obj/item/storage/bag/construction, 4), \
 	null, \
@@ -399,8 +392,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (					 \
 	material_type = /datum/material/bone
 
 GLOBAL_LIST_INIT(paperframe_recipes, list(
-new /datum/stack_recipe("paper frame separator", /obj/structure/window/paperframe, 2, one_per_turf = TRUE, on_floor = TRUE, time = 10), \
-new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperframe, 3, one_per_turf = TRUE, on_floor = TRUE, time = 10 )))
+new /datum/stack_recipe("paper frame separator", /obj/structure/window/paperframe, 2, one_per_turf = TRUE, on_floor = TRUE, time = 10)))
 
 /obj/item/stack/sheet/paperframes
 	name = "бумажные рамки"

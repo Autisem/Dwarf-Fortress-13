@@ -93,7 +93,6 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/run_weather,
 	/client/proc/mass_zombie_infection,
 	/client/proc/mass_zombie_cure,
-	/client/proc/polymorph_all,
 	/client/proc/show_tip,
 	/client/proc/smite,
 	/client/proc/change_lobby_music,

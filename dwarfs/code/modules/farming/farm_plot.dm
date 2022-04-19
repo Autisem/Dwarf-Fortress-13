@@ -85,7 +85,7 @@
 			to_chat(user, span_warning("[capitalize(src.name)] already has seeds in it!"))
 			return
 
-	else if(istype(O, /obj/item/shovel/spade))
+	else if(istype(O, /obj/item/shovel))
 		user.visible_message(span_notice("[user] starts digging out [src]'s plants...") ,
 			span_notice("You start digging out [src]'s plants..."))
 		if(O.use_tool(src, user, 50, volume=50) || !myplant)

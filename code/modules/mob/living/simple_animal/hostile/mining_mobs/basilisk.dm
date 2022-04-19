@@ -117,7 +117,7 @@
 	robust_searching = 1
 	gold_core_spawnable = NO_SPAWN
 	loot = list()
-	butcher_results = list(/obj/item/stack/ore/gem/diamond = 2, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/bone = 1)
+	butcher_results = list(/obj/item/stack/ore/gem/diamond = 2, /obj/item/stack/sheet/bone = 1)
 	lava_drinker = FALSE
 	search_objects = 1
 	wanted_objects = list(/obj/item/pen/survival, /obj/item/stack/ore/gem/diamond)
@@ -163,7 +163,6 @@
 	light_power = 2.5
 	light_color = LIGHT_COLOR_LAVA
 	projectiletype = /obj/projectile/temp/basilisk/magmawing
-	crusher_drop_mod = 60
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing
 	name = "icewing watcher"
@@ -176,7 +175,6 @@
 	health = 170
 	projectiletype = /obj/projectile/temp/basilisk/icewing
 	butcher_results = list(/obj/item/stack/ore/gem/diamond = 5, /obj/item/stack/sheet/bone = 1) //No sinew; the wings are too fragile to be usable
-	crusher_drop_mod = 30
 
 /obj/projectile/temp/basilisk/magmawing
 	name = "scorching blast"

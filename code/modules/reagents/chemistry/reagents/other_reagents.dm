@@ -885,7 +885,6 @@
 	reagent_state = SOLID
 	color = "#D0D0D0" // rgb: 208, 208, 208
 	taste_description = "дорогой, но разумный металл"
-	material = /datum/material/silver
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/uranium
