@@ -55,7 +55,7 @@
 			return
 		working = TRUE
 		update_appearance()
-		to_chat(user, "You light up [src].")
+		to_chat(user, span_notice("You light up [src]."))
 	else if(istype(I, /obj/item/blacksmith/tongs))
 		if(!working)
 			to_chat(user, span_warning("[src] has to be lit up first."))
