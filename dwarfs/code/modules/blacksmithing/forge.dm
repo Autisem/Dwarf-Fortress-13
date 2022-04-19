@@ -53,7 +53,7 @@
 					if(do_after(user, 10, src))
 						var/obj/item/blacksmith/ingot/N = I.contents[I.contents.len]
 						N.heattemp = 350
-						I.icon_state = "tongs_hot"
+						I.update_appearance()
 						to_chat(user, span_notice("You heat up [N]."))
 					busy_heating = FALSE
 		else

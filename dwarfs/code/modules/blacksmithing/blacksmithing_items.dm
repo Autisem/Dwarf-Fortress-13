@@ -17,15 +17,14 @@
 /obj/item/blacksmith/smithing_hammer
 	name = "smithing hammer"
 	desc = "Used for forging."
-	icon_state = "molotochek"
+	icon = 'dwarfs/icons/items/tools.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	icon_state = "smithing_hammer"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	throwforce = 25
 	throw_range = 4
-
-/obj/item/blacksmith/smithing_hammer/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/two_handed, require_twohands=TRUE, force_unwielded=20, force_wielded=20)
 
 /obj/item/blacksmith/smithing_hammer/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	..()
@@ -63,29 +62,47 @@
 /obj/item/blacksmith/tongs
 	name = "tongs"
 	desc = "Essential tool for smithing."
-	icon_state = "tongs"
+	icon = 'dwarfs/icons/items/tools.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	inhand_icon_state = "tongs"
+	icon_state = "tongs_open"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 4
 	throwforce = 6
 	throw_range = 7
+
+/obj/item/blacksmith/tongs/update_icon_state()
+	. = ..()
+	if(contents.len)
+		icon_state = "tongs_closed"
+	else
+		icon_state = "tongs_open"
+
+/obj/item/blacksmith/tongs/update_overlays()
+	. = ..()
+	if(contents.len)
+		var/obj/item/blacksmith/ingot/I = contents[1]
+		var/mutable_appearance/Ingot = mutable_appearance('dwarfs/icons/items/tools.dmi', "tongs_ingot")
+		Ingot.color = I.metal_color
+		. += Ingot
+		var/mutable_appearance/Ingot_heat = mutable_appearance('dwarfs/icons/items/tools.dmi', "tongs_ingot")
+		Ingot_heat.color = "#ffb35c"
+		Ingot_heat.alpha =  255 * (I.heattemp / 350)
+		. += Ingot_heat
 
 /obj/item/blacksmith/tongs/attack_self(mob/user)
 	. = ..()
 	if(contents.len)
 		var/obj/O = contents[contents.len]
 		O.forceMove(drop_location())
-		icon_state = "tongs"
-
-/obj/item/blacksmith/tongs/attack(mob/living/carbon/C, mob/user)
-	if(tearoutteeth(C, user))
-		return FALSE
-	else
-		..()
+		update_appearance()
 
 /obj/item/blacksmith/ingot
 	name = "iron ingot"
 	desc = "Can be forged into something."
-	icon_state = "iron_ingot"
+	icon = 'dwarfs/icons/items/ingots.dmi'
+	icon_state = "iron"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 2
 	throwforce = 5
@@ -97,11 +114,13 @@
 	var/heattemp = 0
 	var/type_metal = "iron"
 	var/mod_grade = 1
+	var/metal_color = "#7e7e7e"
 
 /obj/item/blacksmith/ingot/gold
 	name = "golden ingot"
-	icon_state = "gold_ingot"
+	icon_state = "gold"
 	type_metal = "gold"
+	metal_color = "#ffae34"
 
 /obj/item/blacksmith/ingot/examine(mob/user)
 	. = ..()
@@ -127,12 +146,18 @@
 	return ..()
 
 /obj/item/blacksmith/ingot/process()
-	if(heattemp >= 25)
-		heattemp -= 25
-		if(!overlays.len)
-			add_overlay("ingot_hot")
-	else if(overlays.len)
-		cut_overlays()
+	if(!heattemp)
+		return
+	heattemp = clamp(heattemp-25, 0, heattemp)
+	update_appearance()
+	if(isobj(loc))
+		loc.update_appearance()
+
+/obj/item/blacksmith/ingot/update_overlays()
+	. = ..()
+	var/mutable_appearance/heat = mutable_appearance('dwarfs/icons/items/ingots.dmi', initial(icon_state))
+	heat.alpha =  255 * (heattemp / 350)
+	. += heat
 
 
 /obj/item/blacksmith/ingot/attackby(obj/item/I, mob/living/user, params)
@@ -146,10 +171,8 @@
 			return
 		else
 			src.forceMove(I)
-			if(heattemp > 0)
-				I.icon_state = "tongs_hot"
-			else
-				I.icon_state = "tongs_cold"
+			update_appearance()
+			I.update_appearance()
 			to_chat(user, span_notice("You grab \the [src] with \the [I]."))
 			return
 

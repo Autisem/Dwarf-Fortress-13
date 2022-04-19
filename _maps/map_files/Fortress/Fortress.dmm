@@ -14,10 +14,6 @@
 "cK" = (
 /turf/closed/mineral/random/dwarf_lustress,
 /area/dwarf/fortress)
-"cU" = (
-/obj/effect/baseturf_helper/beach/raw_stone,
-/turf/closed/mineral/random/dwarf_lustress,
-/area/dwarf/cavesgen/upper_level)
 "dG" = (
 /turf/open/floor/stone/raw,
 /area/dwarf/cavesgen/upper_level)
@@ -287,9 +283,7 @@
 /turf/open/floor/carpet/black,
 /area/dwarf/fortress)
 "yR" = (
-/obj/structure/anvil/fullsteel{
-	anchored = 1
-	},
+/obj/structure/anvil,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "zx" = (
@@ -182090,7 +182084,7 @@ nV
 nV
 nV
 nV
-cU
+nV
 nV
 nV
 nV

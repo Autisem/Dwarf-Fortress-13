@@ -1,39 +1,24 @@
-/obj/item/blacksmith/anvil_free
-	name = "anvil"
-	desc = "Its hard to forge on it."
-	icon_state = "anvil_free"
-	w_class = WEIGHT_CLASS_HUGE
-	force = 10
-	throwforce = 20
-	throw_range = 2
-
-/obj/item/blacksmith/anvil_free/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/two_handed, require_twohands=TRUE, force_unwielded=10, force_wielded=10)
-
-/obj/item/blacksmith/srub
-	name = "log"
-	desc = "Sturdy enough to hold an anvil."
-	icon_state = "srub"
-	w_class = WEIGHT_CLASS_HUGE
-	force = 7
-	throwforce = 10
-	throw_range = 3
-	custom_materials = null
-
-/obj/item/blacksmith/srub/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/two_handed, require_twohands=TRUE, force_unwielded=7, force_wielded=7)
-
 /obj/structure/anvil
 	name = "anvil"
-	desc = "Hit it really hard."
-	icon = 'white/valtos/icons/objects.dmi'
+	desc = "Can't move."
+	icon = 'dwarfs/icons/structures/workshops.dmi'
 	icon_state = "anvil"
 	density = TRUE
+	anchored = TRUE
 	var/acd = FALSE
 	var/obj/item/blacksmith/ingot/current_ingot = null
 	var/list/allowed_things = list()
+
+/obj/structure/anvil/update_overlays()
+	. = ..()
+	if(current_ingot)
+		var/mutable_appearance/Ingot = mutable_appearance('dwarfs/icons/structures/workshops.dmi', "anvil_ingot")
+		Ingot.color = current_ingot.metal_color
+		. += Ingot
+		var/mutable_appearance/Ingot_heat = mutable_appearance('dwarfs/icons/structures/workshops.dmi', "anvil_ingot")
+		Ingot_heat.color = "#ffb35c"
+		Ingot_heat.alpha =  255 * (current_ingot.heattemp / 350)
+		. += Ingot_heat
 
 /obj/structure/anvil/Topic(href, list/href_list)
 	. = ..()
@@ -71,18 +56,12 @@
 		to_chat(user, span_warning("the ingot crumbles into countless metal pieces..."))
 		current_ingot = null
 		LAZYCLEARLIST(contents)
-		icon_state = "[initial(icon_state)]"
+		update_appearance()
 		user<<browse(null, "window=Anvil")
 	playsound(src, 'dwarfs/sounds/anvil_hit.ogg', 70, TRUE)
 	user.visible_message(span_warning("<b>[user]</b> hits \the anvil with \a hammer incorrectly.") , \
 						span_warning("You hit \the anvil with \a hammer incorrectly."))
 	return
-
-/obj/structure/anvil/fullsteel
-	name = "heavy anvil"
-	desc = "Can't move."
-	icon = 'white/kacherkin/icons/dwarfs/obj/objects.dmi'
-	icon_state = "old_anvil_full"
 
 /obj/structure/anvil/Initialize()
 	. = ..()
@@ -119,7 +98,7 @@
 		var/obj/item/blacksmith/smithing_hammer/hammer = I
 		if(current_ingot)
 			if(current_ingot.heattemp <= 0)
-				icon_state = "[initial(icon_state)]_cold"
+				update_appearance()
 				to_chat(user, span_warning("\the [current_ingot] is to cold too keep working."))
 				return
 			if(current_ingot.recipe)
@@ -138,7 +117,6 @@
 					to_chat(user, span_notice("You hit \the anvil with \a [hammer]."))
 					playsound(src, 'dwarfs/sounds/anvil_hit.ogg', 70, TRUE)
 					to_chat(user, span_notice("You begin to upgrade \the [current_ingot]."))
-					return
 			else
 				var/list/metal_allowed_list = list()
 				for(var/datum/smithing_recipe/SR in allowed_things)
@@ -155,42 +133,32 @@
 				current_ingot.recipe.max_resulting = H.mind.get_skill_modifier(/datum/skill/smithing, SKILL_RANDS_MODIFIER)
 				playsound(src, 'dwarfs/sounds/anvil_hit.ogg', 70, TRUE)
 				to_chat(user, span_notice("You begin to forge..."))
-				return
 		else
 			to_chat(user, span_warning("Nothing to forge here."))
-			return
 
-	if(istype(I, /obj/item/blacksmith/tongs))
+	else if(istype(I, /obj/item/blacksmith/tongs))
 		if(current_ingot)
 			if(I.contents.len)
 				to_chat(user, span_warning("You are already holding something!"))
 				return
 			else
-				if(current_ingot.heattemp > 0)
-					I.icon_state = "tongs_hot"
-				else
-					I.icon_state = "tongs_cold"
 				current_ingot.forceMove(I)
 				current_ingot = null
-				icon_state = "[initial(icon_state)]"
 				to_chat(user, span_notice("You grab the ingot with \the [I]."))
-				return
+				I.update_appearance()
+				update_appearance()
 		else
 			if(I.contents.len)
 				if(current_ingot)
 					to_chat(user, span_warning("You are already holding \a [current_ingot]."))
 					return
 				var/obj/item/blacksmith/ingot/N = I.contents[I.contents.len]
-				if(N.heattemp > 0)
-					icon_state = "[initial(icon_state)]_hot"
-				else
-					icon_state = "[initial(icon_state)]_cold"
 				N.forceMove(src)
 				current_ingot = N
-				I.icon_state = "tongs"
 				to_chat(user, span_notice("You place \the [current_ingot] onto \the [src]."))
-				return
+				update_appearance()
+				I.update_appearance()
 			else
 				to_chat(user, span_warning("Nothing to grab with [I]."))
-				return
-	return ..()
+	else
+		return ..()
