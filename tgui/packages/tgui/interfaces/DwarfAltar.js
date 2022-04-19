@@ -35,7 +35,7 @@ export const DwarfAltar = (props, context) => {
               <Box
                 color={favor < rite.cost ? "red" : "green"}
                 mb={0.5}>
-                <Icon name="star" /> Цена {rite.cost}.
+                <Icon name="star" /> Price {rite.cost}.
               </Box>
               <BlockQuote>
                 {rite.desc}
