@@ -2,6 +2,7 @@
 #define LIGHT_EMPTY 1
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
+#define TORCH_LIGHT_COLOR "#FFE0B3"
 
 /obj/item/blacksmith
 	name = "item"
@@ -278,7 +279,7 @@
 
 /obj/structure/torch_fixture/proc/recalculate_light()
 	if(status == LIGHT_EMPTY)
-		set_light(0, 0, LIGHT_COLOR_ORANGE)
+		set_light(0, 0, TORCH_LIGHT_COLOR)
 		cut_overlays()
 		on = FALSE
 		return
@@ -298,17 +299,17 @@
 		return
 	switch(fuel)
 		if(-INFINITY to 0)
-			set_light(0, 0, LIGHT_COLOR_ORANGE)
+			set_light(0, 0, TORCH_LIGHT_COLOR)
 			var/mutable_appearance/torch_underlay = mutable_appearance(icon, "torch_handle_overlay_burned", HIGH_OBJ_LAYER)
 			cut_overlays()
 			add_overlay(torch_underlay)
 			on = FALSE
 		if(1 to 1000)
-			set_light(4, 1, LIGHT_COLOR_ORANGE)
+			set_light(4, 1, TORCH_LIGHT_COLOR)
 		if(1001 to 2000)
-			set_light(6, 1, LIGHT_COLOR_ORANGE)
+			set_light(6, 1, TORCH_LIGHT_COLOR)
 		if(2001 to INFINITY)
-			set_light(9, 1, LIGHT_COLOR_ORANGE)
+			set_light(9, 1, TORCH_LIGHT_COLOR)
 
 /obj/structure/torch_fixture/attackby(obj/item/W, mob/living/user, params)
 
