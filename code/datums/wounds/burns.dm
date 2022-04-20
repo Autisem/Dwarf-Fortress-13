@@ -209,19 +209,6 @@
 	else
 		try_treating(I, user)
 
-/// Paramedic UV penlights
-/datum/wound/burn/proc/uv(obj/item/flashlight/pen/paramedic/I, mob/user)
-	if(!COOLDOWN_FINISHED(I, uv_cooldown))
-		to_chat(user, span_notice("[I] всё ещё перезаряжается!"))
-		return
-	if(infestation <= 0 || infestation < sanitization)
-		to_chat(user, span_notice("Здесь нет инфекции на [limb.name] <b>[victim]</b>!"))
-		return
-
-	user.visible_message(span_notice("<b>[user]</b> делает серию коротких вспышек на [limb.name] <b>[victim]</b> используя [I].") , span_notice("Начинаю зачищать инфекцию на [user == victim ? " моей" : ""] [limb.name][user == victim ? "" : " <b>[victim]</b>"] используя [I].") , vision_distance=COMBAT_MESSAGE_RANGE)
-	sanitization += I.uv_power
-	COOLDOWN_START(I, uv_cooldown, I.uv_cooldown_length)
-
 /datum/wound/burn/treat(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/medical/ointment))
 		ointmentmesh(I, user)
@@ -231,8 +218,6 @@
 			to_chat(user, span_warning("Нужно открыть [mesh_check] сначала."))
 			return
 		ointmentmesh(mesh_check, user)
-	else if(istype(I, /obj/item/flashlight/pen/paramedic))
-		uv(I, user)
 
 // people complained about burns not healing on stasis beds, so in addition to checking if it's cured, they also get the special ability to very slowly heal on stasis beds if they have the healing effects stored
 /datum/wound/burn/on_stasis(delta_time, times_fired)
@@ -277,7 +262,7 @@
 	threshold_minimum = 80
 	threshold_penalty = 40
 	status_effect_type = /datum/status_effect/wound/burn/severe
-	treatable_by = list(/obj/item/flashlight/pen/paramedic, /obj/item/stack/medical/ointment, /obj/item/stack/medical/mesh)
+	treatable_by = list(/obj/item/stack/medical/ointment, /obj/item/stack/medical/mesh)
 	infestation_rate = 0.07 // appx 9 minutes to reach sepsis without any treatment
 	flesh_damage = 12.5
 	scar_keyword = "burnsevere"
@@ -295,7 +280,7 @@
 	threshold_minimum = 140
 	threshold_penalty = 80
 	status_effect_type = /datum/status_effect/wound/burn/critical
-	treatable_by = list(/obj/item/flashlight/pen/paramedic, /obj/item/stack/medical/ointment, /obj/item/stack/medical/mesh)
+	treatable_by = list(/obj/item/stack/medical/ointment, /obj/item/stack/medical/mesh)
 	infestation_rate = 0.075 // appx 4.33 minutes to reach sepsis without any treatment
 	flesh_damage = 20
 	scar_keyword = "burncritical"

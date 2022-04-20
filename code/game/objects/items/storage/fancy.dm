@@ -153,7 +153,7 @@
 	worn_icon_state = "cigpack"
 	throwforce = 2
 	slot_flags = ITEM_SLOT_BELT
-	spawn_type = /obj/item/candle
+	spawn_type = /obj/item/flashlight/fueled/candle
 	fancy_open = TRUE
 
 /obj/item/storage/fancy/candle_box/ComponentInitialize()

@@ -92,7 +92,6 @@
 		/obj/item/pen,
 		/obj/item/toy/crayon,
 		/obj/item/lipstick,
-		/obj/item/flashlight/pen,
 		/obj/item/clothing/mask/cigarette)
 		)
 

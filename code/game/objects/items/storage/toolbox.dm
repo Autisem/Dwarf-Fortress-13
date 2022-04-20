@@ -41,30 +41,6 @@
 	user.visible_message(span_suicide("[user] robusts [user.ru_na()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS)
 
-/obj/item/storage/toolbox/emergency
-	name = "аварийный ящик"
-	icon_state = "red"
-	inhand_icon_state = "toolbox_red"
-	material_flags = NONE
-
-/obj/item/storage/toolbox/emergency/PopulateContents()
-	new /obj/item/crowbar/red(src)
-	new /obj/item/weldingtool/mini(src)
-	new /obj/item/extinguisher/mini(src)
-	switch(rand(1,3))
-		if(1)
-			new /obj/item/flashlight(src)
-		if(2)
-			new /obj/item/flashlight/glowstick(src)
-		if(3)
-			new /obj/item/flashlight/flare(src)
-
-/obj/item/storage/toolbox/emergency/old
-	name = "ржавый красный ящик"
-	icon_state = "toolbox_red_old"
-	has_latches = FALSE
-	material_flags = NONE
-
 /obj/item/storage/toolbox/mechanical
 	name = "ящик с инструментами"
 	icon_state = "blue"

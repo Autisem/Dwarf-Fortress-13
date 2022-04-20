@@ -362,42 +362,6 @@
 /obj/item/stack/tile/noslip/thirty
 	amount = 30
 
-//Circuit
-/obj/item/stack/tile/circuit
-	name = "синяя электронная плитка"
-	singular_name = "синий circuit tile"
-	desc = "A blue circuit tile."
-	icon_state = "tile_bcircuit"
-	inhand_icon_state = "tile-bcircuit"
-	turf_type = /turf/open/floor/circuit
-	merge_type = /obj/item/stack/tile/circuit
-
-/obj/item/stack/tile/circuit/green
-	name = "зелёная электронная плитка"
-	singular_name = "зелёный circuit tile"
-	desc = "A green circuit tile."
-	icon_state = "tile_gcircuit"
-	inhand_icon_state = "tile-gcircuit"
-	turf_type = /turf/open/floor/circuit/green
-	merge_type = /obj/item/stack/tile/circuit/green
-
-/obj/item/stack/tile/circuit/green/anim
-	turf_type = /turf/open/floor/circuit/green/anim
-	merge_type = /obj/item/stack/tile/circuit/green/anim
-
-/obj/item/stack/tile/circuit/red
-	name = "красная электронная плитка"
-	singular_name = "красная электронная плитка"
-	desc = "Красная плитка схем."
-	icon_state = "tile_rcircuit"
-	inhand_icon_state = "tile-rcircuit"
-	turf_type = /turf/open/floor/circuit/red
-	merge_type = /obj/item/stack/tile/circuit/red
-
-/obj/item/stack/tile/circuit/red/anim
-	turf_type = /turf/open/floor/circuit/red/anim
-	merge_type = /obj/item/stack/tile/circuit/red/anim
-
 //Pod floor
 /obj/item/stack/tile/pod
 	name = "плитка капсулы"

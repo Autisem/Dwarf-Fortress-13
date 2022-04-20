@@ -169,33 +169,6 @@
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	see_in_dark = 8
 
-/obj/item/organ/eyes/robotic/flashlight
-	name = "глаза фонарики"
-	desc = "Это два фонарика, соединенных проволокой. Зачем вы вбиваете это кому-то в голову?"
-	eye_color ="fee5a3"
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "flashlight_eyes"
-	flash_protect = FLASH_PROTECTION_WELDER
-	tint = INFINITY
-	var/obj/item/flashlight/eyelight/eye
-
-/obj/item/organ/eyes/robotic/flashlight/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
-	..()
-	if(!eye)
-		eye = new /obj/item/flashlight/eyelight()
-	eye.on = TRUE
-	eye.forceMove(M)
-	eye.update_brightness(M)
-	M.become_blind("flashlight_eyes")
-
-
-/obj/item/organ/eyes/robotic/flashlight/Remove(mob/living/carbon/M, special = 0)
-	eye.on = FALSE
-	eye.update_brightness(M)
-	eye.forceMove(src)
-	M.cure_blind("flashlight_eyes")
-	..()
-
 // Welding shield implant
 /obj/item/organ/eyes/robotic/shield
 	name = "кибернетические глаза"
@@ -414,50 +387,4 @@
 
 /obj/item/organ/eyes/fly/Remove(mob/living/carbon/M, special = FALSE)
 	REMOVE_TRAIT(M, TRAIT_FLASH_SENSITIVE, ORGAN_TRAIT)
-	return ..()
-
-/obj/item/organ/eyes/night_vision/maintenance_adapted
-	name = "adapted eyes"
-	desc = "These red eyes look like two foggy marbles. They give off a particularly worrying glow in the dark."
-	flash_protect = FLASH_PROTECTION_SENSITIVE
-	eye_color = "f00"
-	icon_state = "adapted_eyes"
-	eye_icon_state = "eyes_glow"
-	overlay_ignore_lighting = TRUE
-	var/obj/item/flashlight/eyelight/adapted/adapt_light
-
-/obj/item/organ/eyes/night_vision/maintenance_adapted/Initialize()
-	. = ..()
-
-/obj/item/organ/eyes/night_vision/maintenance_adapted/Insert(mob/living/carbon/adapted, special = FALSE)
-	. = ..()
-	//add lighting
-	if(!adapt_light)
-		adapt_light = new /obj/item/flashlight/eyelight/adapted()
-	adapt_light.on = TRUE
-	adapt_light.forceMove(adapted)
-	adapt_light.update_brightness(adapted)
-	//traits
-	ADD_TRAIT(adapted, TRAIT_FLASH_SENSITIVE, ORGAN_TRAIT)
-	ADD_TRAIT(adapted, TRAIT_CULT_EYES, ORGAN_TRAIT)
-
-/obj/item/organ/eyes/night_vision/maintenance_adapted/on_life(delta_time, times_fired)
-	var/turf/T = get_turf(owner)
-	var/lums = T.get_lumcount()
-	if(lums > 0.5) //we allow a little more than usual so we can produce light from the adapted eyes
-		to_chat(owner, span_danger("Your eyes! They burn in the light!"))
-		applyOrganDamage(10) //blind quickly
-		playsound(owner, 'sound/machines/grill/grillsizzle.ogg', 50)
-	else
-		applyOrganDamage(-10) //heal quickly
-	. = ..()
-
-/obj/item/organ/eyes/night_vision/maintenance_adapted/Remove(mob/living/carbon/unadapted, special = FALSE)
-	//remove lighting
-	adapt_light.on = FALSE
-	adapt_light.update_brightness(unadapted)
-	adapt_light.forceMove(src)
-	//traits
-	REMOVE_TRAIT(unadapted, TRAIT_FLASH_SENSITIVE, ORGAN_TRAIT)
-	REMOVE_TRAIT(unadapted, TRAIT_CULT_EYES, ORGAN_TRAIT)
 	return ..()

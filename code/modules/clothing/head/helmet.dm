@@ -15,15 +15,9 @@
 
 	dog_fashion = /datum/dog_fashion/head/helmet
 
-	var/can_flashlight = FALSE //if a flashlight can be mounted. if it has a flashlight and this is false, it is permanently attached.
-	var/obj/item/flashlight/seclite/attached_light
-	var/datum/action/item_action/toggle_helmet_flashlight/alight
-
 /obj/item/clothing/head/helmet/Initialize()
 	. = ..()
 	AddComponent(/datum/component/armor_plate/plasteel)
-	if(attached_light)
-		alight = new(src)
 
 /obj/item/clothing/head/helmet/worn_overlays(isinhands)
 	. = ..()
@@ -33,60 +27,12 @@
 			var/mutable_appearance/armor_overlay = mutable_appearance('icons/mob/clothing/head.dmi', "armor_plasteel_[ap.amount]")
 			. += armor_overlay
 
-/obj/item/clothing/head/helmet/Destroy()
-	var/obj/item/flashlight/seclite/old_light = set_attached_light(null)
-	if(old_light)
-		qdel(old_light)
-	return ..()
-
-
-/obj/item/clothing/head/helmet/examine(mob/user)
-	. = ..()
-	if(attached_light)
-		. += "<hr>Имеет [attached_light] [can_flashlight ? "" : "намертво "] прикрученый к нему."
-		if(can_flashlight)
-			. += "<hr><span class='info'>Похоже, что [attached_light] может быть <b>откручен</b> от [src].</span>"
-	else if(can_flashlight)
-		. += "<hr>Имеет точку для монтирования <b>фонарика</b>."
-
-
-/obj/item/clothing/head/helmet/handle_atom_del(atom/A)
-	if(A == attached_light)
-		set_attached_light(null)
-		update_helmlight()
-		update_icon()
-		QDEL_NULL(alight)
-		qdel(A)
-	return ..()
-
-
-///Called when attached_light value changes.
-/obj/item/clothing/head/helmet/proc/set_attached_light(obj/item/flashlight/seclite/new_attached_light)
-	if(attached_light == new_attached_light)
-		return
-	. = attached_light
-	attached_light = new_attached_light
-	if(attached_light)
-		attached_light.set_light_flags(attached_light.light_flags | LIGHT_ATTACHED)
-		if(attached_light.loc != src)
-			attached_light.forceMove(src)
-	else if(.)
-		var/obj/item/flashlight/seclite/old_attached_light = .
-		old_attached_light.set_light_flags(old_attached_light.light_flags & ~LIGHT_ATTACHED)
-		if(old_attached_light.loc == src)
-			old_attached_light.forceMove(get_turf(src))
-
-
-/obj/item/clothing/head/helmet/sec
-	can_flashlight = TRUE
-
 /obj/item/clothing/head/helmet/alt
 	name = "пуленепробиваемый шлем"
 	desc = "Боевой пуленепробиваемый шлем, который в незначительной степени защищает владельца от традиционного стрелкового оружия и взрывчатых веществ."
 	icon_state = "helmetalt"
 	inhand_icon_state = "helmetalt"
 	armor = list(MELEE = 15, BULLET = 60, LASER = 10, ENERGY = 10, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 5)
-	can_flashlight = TRUE
 	dog_fashion = null
 
 /obj/item/clothing/head/helmet/marine
@@ -98,12 +44,9 @@
 	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	clothing_flags = STOPSPRESSUREDAMAGE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	can_flashlight = TRUE
 	dog_fashion = null
 
 /obj/item/clothing/head/helmet/marine/Initialize()
-	set_attached_light(new /obj/item/flashlight/seclite)
-	update_helmlight()
 	update_icon()
 	. = ..()
 
@@ -406,76 +349,5 @@
 
 /obj/item/clothing/head/helmet/update_icon_state()
 	var/state = "[initial(icon_state)]"
-	if(attached_light)
-		if(attached_light.on)
-			state += "-flight-on" //"helmet-flight-on" // "helmet-cam-flight-on"
-		else
-			state += "-flight" //etc.
-
 	icon_state = state
 	return ..()
-
-/obj/item/clothing/head/helmet/ui_action_click(mob/user, action)
-	if(istype(action, alight))
-		toggle_helmlight()
-	else
-		..()
-
-/obj/item/clothing/head/helmet/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/flashlight/seclite))
-		var/obj/item/flashlight/seclite/S = I
-		if(can_flashlight && !attached_light)
-			if(!user.transferItemToLoc(S, src))
-				return
-			to_chat(user, span_notice("Прикрепляю [S] к [src]."))
-			set_attached_light(S)
-			update_icon()
-			update_helmlight()
-			alight = new(src)
-			if(loc == user)
-				alight.Grant(user)
-		return
-	return ..()
-
-/obj/item/clothing/head/helmet/screwdriver_act(mob/living/user, obj/item/I)
-	. = ..()
-	if(can_flashlight && attached_light) //if it has a light but can_flashlight is false, the light is permanently attached.
-		I.play_tool_sound(src)
-		to_chat(user, span_notice("Откручиваю [attached_light] от [src]."))
-		attached_light.forceMove(drop_location())
-		if(Adjacent(user))
-			user.put_in_hands(attached_light)
-
-		var/obj/item/flashlight/removed_light = set_attached_light(null)
-		update_helmlight()
-		removed_light.update_brightness(user)
-		update_icon()
-		user.update_inv_head()
-		QDEL_NULL(alight)
-		return TRUE
-
-/obj/item/clothing/head/helmet/proc/toggle_helmlight()
-	set name = "Переключить нашлемный фонарик"
-	set category = "Объект"
-	set desc = "Нажмите чтобы включить или выключить прикрепленный к шлему фонарик."
-
-	if(!attached_light)
-		return
-
-	var/mob/user = usr
-	if(user.incapacitated())
-		return
-	attached_light.on = !attached_light.on
-	attached_light.update_brightness()
-	to_chat(user, span_notice("[attached_light.on ? "Включаю":"Выключаю"] фонарик на шлеме."))
-
-	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
-	update_helmlight()
-
-/obj/item/clothing/head/helmet/proc/update_helmlight()
-	if(attached_light)
-		update_icon()
-
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.UpdateButtonIcon()

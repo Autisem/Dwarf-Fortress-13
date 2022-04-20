@@ -169,8 +169,6 @@
 #define LIGHT_COLOR_FIRE       "#FAA019"
 /// Very warm yellow, leaning slightly towards orange. rgb(196, 138, 24)
 #define LIGHT_COLOR_LAVA       "#C48A18"
-/// Bright, non-saturated red. Leaning slightly towards pink for visibility. rgb(250, 100, 75)
-#define LIGHT_COLOR_FLARE      "#FA644B"
 /// Weird color, between yellow and green, very slimy. rgb(175, 200, 75)
 #define LIGHT_COLOR_SLIME_LAMP "#AFC84B"
 /// Extremely diluted yellow, close to skin color (for some reason). rgb(250, 225, 175)

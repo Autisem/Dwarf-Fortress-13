@@ -251,7 +251,7 @@
 	icon_state = "torch_handle_wall"
 	layer = BELOW_MOB_LAYER
 	max_integrity = 100
-	var/light_type = /obj/item/flashlight/flare/torch
+	var/light_type = /obj/item/flashlight/fueled/torch
 	var/status = LIGHT_EMPTY
 	var/fuel = 0
 	var/on = FALSE
@@ -313,12 +313,12 @@
 
 /obj/structure/torch_fixture/attackby(obj/item/W, mob/living/user, params)
 
-	if(istype(W, /obj/item/flashlight/flare/torch))
+	if(istype(W, /obj/item/flashlight/fueled/torch))
 		if(status == LIGHT_OK)
 			to_chat(user, span_warning("There is a torch already!"))
 		else
 			src.add_fingerprint(user)
-			var/obj/item/flashlight/flare/torch/L = W
+			var/obj/item/flashlight/fueled/torch/L = W
 			if(istype(L, light_type))
 				if(!user.temporarilyRemoveItemFromInventory(L))
 					return
@@ -346,7 +346,7 @@
 		to_chat(user, span_warning("There is no torch!"))
 		return
 
-	var/obj/item/flashlight/flare/torch/L = new light_type()
+	var/obj/item/flashlight/fueled/torch/L = new light_type()
 
 	L.on = on
 	L.fuel = fuel
