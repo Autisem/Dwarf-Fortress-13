@@ -297,5 +297,6 @@
 		if(C.on)
 			on = TRUE
 			icon_state = "lantern_on"
+		qdel(C)
 	else
 		. = ..()
