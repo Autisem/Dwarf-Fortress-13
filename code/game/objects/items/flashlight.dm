@@ -294,9 +294,11 @@
 			return
 		var/obj/item/flashlight/fueled/candle/C = I
 		fuel += C.fuel
-		if(C.on)
+		if(C.on && !on)
 			on = TRUE
 			icon_state = "lantern_on"
+			damtype = BURN
+			START_PROCESSING(SSobj, src)
 		qdel(C)
 	else
 		. = ..()
