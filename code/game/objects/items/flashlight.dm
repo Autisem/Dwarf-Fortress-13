@@ -278,7 +278,7 @@
 
 /obj/item/flashlight/fueled/lantern
 	name = "lantern"
-	icon_state = "lamp"
+	icon_state = "lantern"
 	inhand_icon_state = "lantern"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
