@@ -20,6 +20,12 @@
 "el" = (
 /turf/closed/wall/stonewall,
 /area/dwarf/fortress)
+"eq" = (
+/obj/structure/sconce/lit{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/dwarf/fortress)
 "eu" = (
 /obj/structure/table/stone,
 /obj/item/kitchen/knife,
@@ -54,48 +60,12 @@
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "gD" = (
-/obj/structure/torch_fixture{
-	dir = 4;
-	on = 1;
-	pixel_x = 32
-	},
+/obj/structure/sconce/lit,
 /obj/structure/gemcutter,
-/turf/open/floor/stone,
-/area/dwarf/fortress)
-"gT" = (
-/obj/structure/torch_fixture{
-	dir = 8;
-	on = 1;
-	pixel_x = -32
-	},
-/turf/open/floor/stone/raw,
-/area/dwarf/fortress)
-"gW" = (
-/obj/structure/torch_fixture{
-	dir = 8;
-	on = 1;
-	pixel_x = -32
-	},
-/turf/open/floor/stone,
-/area/dwarf/fortress)
-"ha" = (
-/obj/structure/torch_fixture{
-	dir = 4;
-	on = 1;
-	pixel_x = 32
-	},
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "hk" = (
 /obj/structure/stairs/south,
-/turf/open/floor/stone,
-/area/dwarf/fortress)
-"hL" = (
-/obj/structure/torch_fixture{
-	dir = 1;
-	on = 1;
-	pixel_y = 32
-	},
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "iq" = (
@@ -103,7 +73,7 @@
 /area/dwarf/fortress)
 "jD" = (
 /obj/structure/table/stone,
-/obj/item/flashlight/lantern,
+/obj/item/flashlight/fueled/lantern,
 /turf/open/floor/carpet/green,
 /area/dwarf/fortress)
 "kg" = (
@@ -121,14 +91,6 @@
 	},
 /turf/open/floor/stone,
 /area/dwarf/fortress)
-"lq" = (
-/obj/structure/torch_fixture{
-	dir = 4;
-	on = 1;
-	pixel_x = 32
-	},
-/turf/open/floor/stone/raw,
-/area/dwarf/fortress)
 "lH" = (
 /obj/item/stack/rods/ten,
 /turf/open/floor/stone,
@@ -139,21 +101,13 @@
 /area/dwarf/fortress)
 "lZ" = (
 /obj/structure/table/stone,
-/obj/item/flashlight/lantern,
+/obj/item/flashlight/fueled/lantern,
 /obj/item/kitchen/knife,
 /turf/open/floor/stone/raw,
 /area/dwarf/fortress)
 "md" = (
-/obj/structure/torch_fixture{
-	dir = 2;
-	on = 1;
-	pixel_y = 0
-	},
+/obj/structure/sconce/lit,
 /turf/open/floor/stone,
-/area/dwarf/fortress)
-"mf" = (
-/obj/structure/torch_fixture,
-/turf/open/floor/stone/raw,
 /area/dwarf/fortress)
 "ns" = (
 /obj/structure/table/stone,
@@ -161,11 +115,7 @@
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "nG" = (
-/obj/structure/torch_fixture{
-	dir = 1;
-	on = 1;
-	pixel_y = 32
-	},
+/obj/structure/sconce/lit,
 /turf/open/floor/stone/raw,
 /area/dwarf/fortress)
 "nH" = (
@@ -211,17 +161,17 @@
 /area/dwarf/fortress)
 "rb" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/flashlight/flare/torch,
-/obj/item/flashlight/flare/torch,
-/obj/item/flashlight/flare/torch,
-/obj/item/flashlight/flare/torch,
-/obj/item/flashlight/flare/torch,
-/obj/item/flashlight/flare/torch,
+/obj/item/flashlight/fueled/torch,
+/obj/item/flashlight/fueled/torch,
+/obj/item/flashlight/fueled/torch,
+/obj/item/flashlight/fueled/torch,
+/obj/item/flashlight/fueled/torch,
+/obj/item/flashlight/fueled/torch,
 /turf/open/floor/stone/raw,
 /area/dwarf/fortress)
 "rQ" = (
 /obj/structure/table/stone,
-/obj/item/flashlight/lantern,
+/obj/item/flashlight/fueled/lantern,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "st" = (
@@ -243,7 +193,7 @@
 /turf/open/floor/carpet/black,
 /area/dwarf/fortress)
 "vK" = (
-/obj/item/flashlight/lantern,
+/obj/item/flashlight/fueled/lantern,
 /turf/open/floor/stone/raw,
 /area/dwarf/fortress)
 "vZ" = (
@@ -299,10 +249,7 @@
 /obj/structure/table/stone,
 /obj/item/blacksmith/smithing_hammer,
 /obj/item/blacksmith/tongs,
-/obj/item/flashlight/lantern{
-	pixel_x = 9;
-	pixel_y = 12
-	},
+/obj/item/flashlight/fueled/lantern,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "DC" = (
@@ -329,6 +276,12 @@
 /obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
+"FQ" = (
+/obj/structure/sconce/lit{
+	dir = 1
+	},
+/turf/open/floor/stone/raw,
+/area/dwarf/fortress)
 "GJ" = (
 /obj/structure/bed,
 /turf/open/floor/stone,
@@ -342,6 +295,12 @@
 /obj/item/blacksmith/ingot,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
+"IQ" = (
+/obj/structure/sconce/lit{
+	dir = 8
+	},
+/turf/open/floor/stone/raw,
+/area/dwarf/fortress)
 "JF" = (
 /obj/structure/table/stone,
 /obj/item/damaz,
@@ -353,6 +312,12 @@
 /area/dwarf/fortress)
 "LG" = (
 /obj/structure/furnace,
+/turf/open/floor/stone,
+/area/dwarf/fortress)
+"LQ" = (
+/obj/structure/sconce/lit{
+	dir = 4
+	},
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "Mu" = (
@@ -375,9 +340,10 @@
 /turf/open/openspace,
 /area/dwarf/fortress)
 "QJ" = (
-/obj/structure/table/stone,
-/obj/item/shovel/spade,
-/turf/open/floor/stone,
+/obj/structure/sconce/lit{
+	dir = 4
+	},
+/turf/open/floor/stone/raw,
 /area/dwarf/fortress)
 "Sc" = (
 /obj/structure/stone_tile/slab/burnt,
@@ -412,6 +378,12 @@
 	},
 /obj/structure/lattice,
 /turf/open/openspace,
+/area/dwarf/fortress)
+"TZ" = (
+/obj/structure/sconce/lit{
+	dir = 8
+	},
+/turf/open/floor/stone,
 /area/dwarf/fortress)
 "Ur" = (
 /obj/structure/stone_tile/block,
@@ -106635,7 +106607,7 @@ fv
 el
 gr
 gc
-ha
+TZ
 el
 MB
 MB
@@ -107239,12 +107211,12 @@ el
 wU
 gc
 gc
-gT
+QJ
 iq
 iq
 iq
 iq
-gT
+QJ
 iq
 eV
 el
@@ -107843,12 +107815,12 @@ el
 wU
 gc
 gc
-ha
+TZ
 gc
 iq
 iq
 iq
-lq
+IQ
 iq
 eV
 el
@@ -108447,7 +108419,7 @@ fv
 el
 el
 gc
-gW
+LQ
 gc
 el
 el
@@ -110550,7 +110522,7 @@ fv
 fv
 el
 iq
-gT
+QJ
 gc
 gc
 gc
@@ -112063,7 +112035,7 @@ iq
 iq
 iq
 iq
-lq
+IQ
 iq
 iq
 el
@@ -195716,7 +195688,7 @@ iq
 el
 el
 iq
-gT
+QJ
 iq
 el
 el
@@ -196310,11 +196282,11 @@ cK
 nV
 nV
 el
-hL
+md
 gc
 II
 gc
-md
+eq
 el
 iq
 el
@@ -196326,7 +196298,7 @@ gc
 el
 zx
 GJ
-gW
+LQ
 GJ
 ns
 el
@@ -197200,7 +197172,7 @@ nV
 el
 el
 gc
-gW
+LQ
 el
 nV
 nV
@@ -197232,14 +197204,14 @@ iq
 el
 gc
 gc
-ha
+TZ
 gc
 gc
 el
 gD
 gc
 gc
-ha
+eq
 el
 nV
 nV
@@ -197809,13 +197781,13 @@ el
 iq
 gc
 gc
-gW
+LQ
 gc
 gc
 gc
 iq
 iq
-gT
+QJ
 gc
 gc
 gc
@@ -198413,13 +198385,13 @@ el
 gc
 gc
 gc
-ha
+TZ
 gc
 gc
 gc
 gc
 gc
-ha
+TZ
 gc
 gc
 gc
@@ -198728,7 +198700,7 @@ el
 el
 iq
 gc
-lq
+IQ
 iq
 gc
 el
@@ -199012,7 +198984,7 @@ nV
 el
 el
 gc
-ha
+TZ
 el
 nV
 nV
@@ -199636,7 +199608,7 @@ nV
 el
 lH
 vx
-mf
+FQ
 cK
 gc
 iq
@@ -199650,7 +199622,7 @@ iq
 gc
 iq
 el
-hL
+TZ
 gc
 gc
 gc
@@ -199946,7 +199918,7 @@ gc
 iq
 iq
 el
-hL
+md
 gc
 gc
 gc
@@ -200244,12 +200216,12 @@ oI
 el
 gc
 gc
-lq
+IQ
 gc
 gc
 el
 iq
-lq
+IQ
 iq
 gc
 iq
@@ -200556,7 +200528,7 @@ el
 kL
 el
 el
-hL
+md
 gc
 el
 vf
@@ -200849,9 +200821,9 @@ iq
 gc
 iq
 cK
-QJ
+oI
 gc
-gT
+QJ
 iq
 iq
 iq

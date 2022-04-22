@@ -263,6 +263,19 @@
 	. = ..()
 	fuel = rand(8000, 9000)
 
+/obj/item/flashlight/fueled/torch/turn_off()
+	. = ..()
+	if(istype(loc, /obj/structure/sconce))
+		loc.update_appearance()
+
+/obj/item/flashlight/fueled/torch/lit
+
+/obj/item/flashlight/fueled/torch/lit/Initialize()
+	. = ..()
+	on = TRUE
+	update_brightness()
+	START_PROCESSING(SSobj, src)
+
 /obj/item/flashlight/fueled/candle
 	name = "candle"
 	desc = "cAndLE"

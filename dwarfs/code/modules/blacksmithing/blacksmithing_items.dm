@@ -1,7 +1,3 @@
-#define LIGHT_OK 0
-#define LIGHT_EMPTY 1
-#define LIGHT_BROKEN 2
-#define LIGHT_BURNED 3
 #define TORCH_LIGHT_COLOR "#FFE0B3"
 
 /obj/item/blacksmith
@@ -215,7 +211,7 @@
 	icon_state = "torch_handle"
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron = 10000)
-	var/result_path = /obj/structure/torch_fixture
+	var/result_path = /obj/structure/sconce
 
 /obj/item/blacksmith/torch_handle/proc/try_build(turf/on_wall, mob/user)
 	if(get_dist(on_wall, user)>1)
@@ -227,7 +223,7 @@
 	if(!isfloorturf(T))
 		to_chat(user, span_warning("You can't place [src] on the floor!"))
 		return
-	if(locate(/obj/structure/torch_fixture) in view(1))
+	if(locate(/obj/structure/sconce) in view(1))
 		to_chat(user, span_warning("There is something already attached to it!"))
 		return
 
@@ -241,129 +237,93 @@
 			span_hear("You hear a metal click."))
 		var/ndir = get_dir(on_wall, user)
 
-		new result_path(get_turf(user), ndir, TRUE)
+		new result_path(get_turf(user), ndir)
 	qdel(src)
 
-/obj/structure/torch_fixture
-	name = "torch"
-	desc = "Provides light."
-	icon = 'white/valtos/icons/objects.dmi'
-	icon_state = "torch_handle_wall"
+/obj/structure/sconce
+	name = "sconce"
+	desc = "A small fixture that can hold torches."
+	icon = 'dwarfs/icons/structures/wall_mount.dmi'
+	icon_state = "sconce_empty"
 	layer = BELOW_MOB_LAYER
 	max_integrity = 100
-	var/light_type = /obj/item/flashlight/fueled/torch
-	var/status = LIGHT_EMPTY
-	var/fuel = 0
-	var/on = FALSE
+	var/obj/item/flashlight/fueled/torch/torch
 
-/obj/structure/torch_fixture/Initialize(mapload, ndir)
-	if(on)
-		fuel = 5000
-		status = LIGHT_OK
-		recalculate_light()
-	dir = turn(ndir, 180)
-	switch(dir)
-		if(WEST)	pixel_x = -32
-		if(EAST)	pixel_x = 32
-		if(NORTH)	pixel_y = 32
+/obj/structure/sconce/Initialize(mapload, ndir=null)
 	. = ..()
+	if(ndir)
+		dir = turn(dir, 180)
+	switch(dir)
+		if(WEST)	pixel_x = 32
+		if(EAST)	pixel_x = -32
+		if(SOUTH)	pixel_y = 32
 
-/obj/structure/torch_fixture/process(delta_time)
-	if(on)
-		fuel = max(fuel -= delta_time, 0)
-		recalculate_light()
+/obj/structure/sconce/lit
+	icon_state = "sconce_on"
 
-/obj/structure/torch_fixture/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
+/obj/structure/sconce/lit/Initialize(mapload, ndir)
+	. = ..()
+	torch = new /obj/item/flashlight/fueled/torch/lit(src)
+	update_appearance()
 
-/obj/structure/torch_fixture/proc/recalculate_light()
-	if(status == LIGHT_EMPTY)
-		set_light(0, 0, TORCH_LIGHT_COLOR)
-		cut_overlays()
-		on = FALSE
-		return
-	if(on)
-		var/mutable_appearance/torch_underlay = mutable_appearance(icon, "torch_handle_overlay_on", HIGH_OBJ_LAYER)
-		cut_overlays()
-		add_overlay(torch_underlay)
-	else if(fuel)
-		var/mutable_appearance/torch_underlay = mutable_appearance(icon, "torch_handle_overlay_off", HIGH_OBJ_LAYER)
-		cut_overlays()
-		add_overlay(torch_underlay)
-		return
+/obj/structure/sconce/update_icon_state()
+	. = ..()
+	if(!torch)
+		icon_state = "sconce_empty"
+	else if(torch.on)
+		icon_state = "sconce_on"
 	else
-		var/mutable_appearance/torch_underlay = mutable_appearance(icon, "torch_handle_overlay_burned", HIGH_OBJ_LAYER)
-		cut_overlays()
-		add_overlay(torch_underlay)
-		return
-	switch(fuel)
-		if(-INFINITY to 0)
-			set_light(0, 0, TORCH_LIGHT_COLOR)
-			var/mutable_appearance/torch_underlay = mutable_appearance(icon, "torch_handle_overlay_burned", HIGH_OBJ_LAYER)
-			cut_overlays()
-			add_overlay(torch_underlay)
-			on = FALSE
-		if(1 to 1000)
-			set_light(4, 1, TORCH_LIGHT_COLOR)
-		if(1001 to 2000)
-			set_light(6, 1, TORCH_LIGHT_COLOR)
-		if(2001 to INFINITY)
-			set_light(9, 1, TORCH_LIGHT_COLOR)
+		if(torch.fuel)
+			icon_state = "sconce_off"
+		else
+			icon_state = "sconce_burned"
 
-/obj/structure/torch_fixture/attackby(obj/item/W, mob/living/user, params)
+/obj/structure/sconce/update_appearance(updates)
+	. = ..()
+	_update_light()
+
+/obj/structure/sconce/proc/_update_light()
+	if(!torch)
+		set_light(0, 0, 0)
+	else
+		if(torch.on)
+			set_light(9, 1, TORCH_LIGHT_COLOR)
+		else
+			set_light(0, 0, 0)
+
+
+/obj/structure/sconce/attackby(obj/item/W, mob/living/user, params)
 
 	if(istype(W, /obj/item/flashlight/fueled/torch))
-		if(status == LIGHT_OK)
+		if(torch)
 			to_chat(user, span_warning("There is a torch already!"))
-		else
-			src.add_fingerprint(user)
-			var/obj/item/flashlight/fueled/torch/L = W
-			if(istype(L, light_type))
-				if(!user.temporarilyRemoveItemFromInventory(L))
-					return
-				src.add_fingerprint(user)
-				to_chat(user, span_notice("You place [L] inside."))
-				status = LIGHT_OK
-				fuel = L.fuel
-				on = L.on
-				recalculate_light()
-				qdel(L)
-				START_PROCESSING(SSobj, src)
-			else
-				to_chat(user, span_warning("It supports regulat torches only!"))
+			return
+		src.add_fingerprint(user)
+		var/obj/item/flashlight/fueled/torch/L = W
+		if(!user.temporarilyRemoveItemFromInventory(L))
+			return
+		src.add_fingerprint(user)
+		to_chat(user, span_notice("You place [L] inside."))
+		torch = L
+		L.forceMove(src)
+		update_appearance()
 	else
 		return ..()
 
-/obj/structure/torch_fixture/attack_hand(mob/living/carbon/human/user)
+/obj/structure/sconce/attack_hand(mob/living/carbon/human/user)
 	. = ..()
 	if(.)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	add_fingerprint(user)
 
-	if(status == LIGHT_EMPTY)
+	if(!torch)
 		to_chat(user, span_warning("There is no torch!"))
 		return
-
-	var/obj/item/flashlight/fueled/torch/L = new light_type()
-
-	L.on = on
-	L.fuel = fuel
-	L.forceMove(loc)
-	L.update_brightness()
-
-	if(!fuel)
-		L.icon_state = "torch-empty"
-
-	if(user)
-		L.add_fingerprint(user)
-		user.put_in_active_hand(L)
-
-	status = LIGHT_EMPTY
-	STOP_PROCESSING(SSobj, src)
-	recalculate_light()
-	return
+	torch.add_fingerprint(user)
+	user.put_in_active_hand(torch)
+	torch = null
+	update_appearance()
 
 #define SHPATEL_BUILD_FLOOR 1
 #define SHPATEL_BUILD_WALL 2
