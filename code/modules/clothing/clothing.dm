@@ -1,7 +1,7 @@
 #define MOTH_EATING_CLOTHING_DAMAGE 15
 
 /obj/item/clothing
-	name = "кусок ткани"
+	name = "clothing"
 	resistance_flags = FLAMMABLE
 	max_integrity = 200
 	integrity_failure = 0.4
@@ -91,7 +91,7 @@
 	// bite_consumption limits how much you actually get, and the take_damage in after eat makes sure you can't abuse this.
 	// ...maybe this was a mistake after all.
 	food_reagents = list(/datum/reagent/consumable/nutriment = INFINITY)
-	tastes = list("пыль" = 1, "волокна" = 1)
+	tastes = list("dust" = 1, "threads" = 1)
 	foodtypes = CLOTH
 
 	/// A weak reference to the clothing that created us
@@ -143,9 +143,9 @@
 		if(CLOTHING_SHREDDED)
 			var/obj/item/stack/cloth_repair = W
 			if(cloth_repair.amount < 3)
-				to_chat(user, span_warning("Мне потребуется 3 единицы [W.name] для починки [src.name]."))
+				to_chat(user, span_warning("You need 3 pieces of [W] to repair [src]."))
 				return TRUE
-			to_chat(user, span_notice("Начинаю чинить повреждения [src.name] используя [cloth_repair]..."))
+			to_chat(user, span_notice("You start fixing [src] using [cloth_repair]..."))
 			if(!do_after(user, 6 SECONDS, src) || !cloth_repair.use(3))
 				return TRUE
 			repair(user, params)
@@ -163,7 +163,7 @@
 	damage_by_parts = null
 	if(user)
 		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-		to_chat(user, span_notice("Чиню повреждения [src]."))
+		to_chat(user, span_notice("You fix [src]."))
 
 /**
  * take_damage_zone() is used for dealing damage to specific bodyparts on a worn piece of clothing, meant to be called from [/obj/item/bodypart/proc/check_woundings_mods]
@@ -225,11 +225,11 @@
 
 	switch(zones_disabled)
 		if(1)
-			name = "поврежденный [initial(name)]"
+			name = "damaged [initial(name)]"
 		if(2)
-			name = "облезший [initial(name)]"
+			name = "severely damaged [initial(name)]"
 		if(3 to INFINITY) // take better care of your shit, dude
-			name = "рваный [initial(name)]"
+			name = "torn [initial(name)]"
 
 	update_clothes_damaged_state(CLOTHING_DAMAGED)
 
@@ -274,76 +274,79 @@
 	. += "<hr>"
 
 	if(damaged_clothes == CLOTHING_SHREDDED)
-		. += span_warning("<b>Полностью разорвано и требует починки!</b>")
+		. += span_warning("<b>Is completely shredded and required fixing!</b>")
 		return
 
 	switch (max_heat_protection_temperature)
 		if (400 to 1000)
-			. += span_smallnotice("[capitalize(src.name)] немного защищает от огня.")
+			. += span_smallnotice("[capitalize(src.name)] has slight protection against fire.")
 		if (1001 to 1600)
-			. += span_notice("[capitalize(src.name)] может защитить от огня.")
+			. += span_notice("[capitalize(src.name)] can protect against fire.")
 		if (1601 to 35000)
-			. += span_smalldanger("[capitalize(src.name)] неплохо защищает от огня.")
+			. += span_smalldanger("[capitalize(src.name)] has good protection against fire.")
 
 	for(var/zone in damage_by_parts)
 		var/pct_damage_part = damage_by_parts[zone] / limb_integrity * 100
 		var/zone_name = parse_zone(zone)
 		switch(pct_damage_part)
 			if(100 to INFINITY)
-				. += span_smalldanger(span_warning("<b>[capitalize(zone_name)] [src.name] разорвана в клочья!</b>"))
+				. += span_smalldanger(span_warning("<b>[capitalize(zone_name)] [src.name] is shredded into pieces!</b>"))
 			if(60 to 99)
-				. += span_notice(span_warning("[capitalize(zone_name)] [src.name] сильно потрёпана!"))
+				. += span_notice(span_warning("[capitalize(zone_name)] [src.name] is significatly damaged!"))
 			if(30 to 59)
-				. += span_smallnotice(span_danger("[capitalize(zone_name)] [src.name] немного порвана."))
+				. += span_smallnotice(span_danger("[capitalize(zone_name)] [src.name] is slightly torn."))
 
 	var/datum/component/storage/pockets = GetComponent(/datum/component/storage)
 	if(pockets)
-		var/list/how_cool_are_your_threads = list("<hr><span class='notice'>")
+		var/list/how_cool_are_your_threads = list("<span class='notice'>")
 		if(pockets.attack_hand_interact)
-			how_cool_are_your_threads += "[capitalize(src.name)] показывает хранилище при клике.\n"
+			how_cool_are_your_threads += "[src]'s storage opens when clicked.\n"
 		else
-			how_cool_are_your_threads += "[capitalize(src.name)] показывает хранилище при перетягивании на себя.\n"
+			how_cool_are_your_threads += "[src]'s storage opens when dragged to yourself.\n"
 		if (pockets.can_hold?.len) // If pocket type can hold anything, vs only specific items
-			how_cool_are_your_threads += "[capitalize(src.name)] может хранить [pockets.max_items] <a href='?src=[REF(src)];show_valid_pocket_items=1'>предметов</a>.\n"
+			how_cool_are_your_threads += "[src] can store [pockets.max_items] <a href='?src=[REF(src)];show_valid_pocket_items=1'>item\s</a>.\n"
 		else
-			how_cool_are_your_threads += "[capitalize(src.name)] может хранить [pockets.max_items] [weightclass2text(pockets.max_w_class)] размера или меньше.\n"
+			how_cool_are_your_threads += "[src] can store [pockets.max_items] item\s that are [weightclass2text(pockets.max_w_class)] or smaller.\n"
 		if(pockets.quickdraw)
-			how_cool_are_your_threads += "Могу быстро вытащить предмет из [src] используя ПКМ.\n"
+			how_cool_are_your_threads += "You can quickly remove an item from [src] using Right-Click.\n"
 		if(pockets.silent)
-			how_cool_are_your_threads += "Добавление или изъятие предметов из [src] не издаёт шума.\n"
+			how_cool_are_your_threads += "Adding or removing items from [src] makes no noise.\n"
 		how_cool_are_your_threads += "</span>"
 		. += how_cool_are_your_threads.Join()
 
+/* Disable the ability to know clothing stats for now, will be tied to a skill later
 	if(LAZYLEN(armor_list))
 		armor_list.Cut()
 	if(armor.bio)
-		armor_list += list("ТОКСИНЫ" = armor.bio)
+		armor_list += list("TOXIN" = armor.bio)
 	if(armor.bomb)
-		armor_list += list("ВЗРЫВЫ" = armor.bomb)
+		armor_list += list("EXPLOSIVE" = armor.bomb)
 	if(armor.bullet)
-		armor_list += list("ПУЛИ" = armor.bullet)
+		armor_list += list("BULLET" = armor.bullet)
 	if(armor.energy)
-		armor_list += list("ЭНЕРГЕТИЧЕСКОЕ" = armor.energy)
+		armor_list += list("ENERGY" = armor.energy)
 	if(armor.laser)
-		armor_list += list("ЛАЗЕР" = armor.laser)
+		armor_list += list("LASER" = armor.laser)
 	if(armor.magic)
-		armor_list += list("МАГИЯ" = armor.magic)
+		armor_list += list("MAGIC" = armor.magic)
 	if(armor.melee)
-		armor_list += list("УДАРЫ" = armor.melee)
+		armor_list += list("MELEE" = armor.melee)
 	if(armor.rad)
-		armor_list += list("РАДИАЦИЯ" = armor.rad)
+		armor_list += list("RADIATION" = armor.rad)
 
 	if(LAZYLEN(durability_list))
 		durability_list.Cut()
 	if(armor.fire)
-		durability_list += list("ОГОНЬ" = armor.fire)
+		durability_list += list("FIRE" = armor.fire)
 	if(armor.acid)
-		durability_list += list("КИСЛОТА" = armor.acid)
+		durability_list += list("ACID" = armor.acid)
 
 	if(LAZYLEN(armor_list) || LAZYLEN(durability_list))
 		. += "<hr><span class='notice'>Здесь есть <a href='?src=[REF(src)];list_armor=1'>бирка</a> с описанием защитных свойств.</span>"
 
-/obj/item/clothing/Topic(href, href_list)
+*/
+
+/obj/item/clothing/Topic(href, href_list) // currently unused
 	. = ..()
 
 	if(href_list["list_armor"])
@@ -401,9 +404,9 @@
 	if(isliving(loc)) //It's not important enough to warrant a message if it's not on someone
 		var/mob/living/M = loc
 		if(src in M.get_equipped_items(FALSE))
-			to_chat(M, span_warning("Мой [name] начинает распадаться на части!"))
-		else
-			to_chat(M, span_warning("[capitalize(src.name)] начинает распадаться на части!"))
+			to_chat(M, span_warning("Your [name] start[p_s()] to fall apart!"))
+		else // why tho
+			to_chat(M, span_warning("[src] start[p_s()] to fall apart!"))
 
 //This mostly exists so subtypes can call appriopriate update icon calls on the wearer.
 /obj/item/clothing/proc/update_clothes_damaged_state(damaged_state = CLOTHING_DAMAGED)
@@ -446,7 +449,7 @@ BLIND     // can't see anything
 
 	visor_toggling()
 
-	to_chat(user, span_notice("[up ? "Поднимаю" : "Опускаю"] забрало [src]."))
+	to_chat(user, span_notice("You adjust \the [src] [up ? "up" : "down"]."))
 
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
@@ -509,7 +512,7 @@ BLIND     // can't see anything
 				M.dropItemToGround(src)
 			else
 				M.visible_message(span_danger("[capitalize(src.name)] fall[p_s()] apart, completely shredded!") , vision_distance = COMBAT_MESSAGE_RANGE)
-		name = "изорванный [initial(name)]" // change the name -after- the message, not before.
+		name = "shredded [initial(name)]" // change the name -after- the message, not before.
 	else
 		..()
 
@@ -520,6 +523,6 @@ BLIND     // can't see anything
 	if(!istype(L))
 		return
 	if(prob(0.2))
-		to_chat(L, span_warning("Порванные нитки на моем [src.name] раздражают!"))
+		to_chat(L, span_warning("The damaged threads on your [src.name] chafe!"))
 
 #undef MOTH_EATING_CLOTHING_DAMAGE

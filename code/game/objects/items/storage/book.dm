@@ -70,14 +70,6 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 		return FALSE
 	icon_state = GLOB.biblestates[bible_index]
 	inhand_icon_state = GLOB.bibleitemstates[bible_index]
-
-	switch(icon_state)
-		if("insuls")
-			var/obj/item/clothing/gloves/color/fyellow/insuls = new
-			insuls.name = "insuls"
-			insuls.desc = "A mere copy of the true insuls."
-			insuls.siemens_coefficient = 0.99999
-			user.equip_to_slot(insuls, ITEM_SLOT_GLOVES)
 	GLOB.bible_icon_state = icon_state
 	GLOB.bible_inhand_icon_state = inhand_icon_state
 	SSblackbox.record_feedback("text", "religion_book", 1, "[choice]")

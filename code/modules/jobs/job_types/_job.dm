@@ -188,9 +188,7 @@
 
 	var/jobtype = null
 
-	uniform = /obj/item/clothing/under/color/grey
 	back = /obj/item/storage/backpack
-	shoes = /obj/item/clothing/shoes/sneakers/black
 
 	var/backpack = /obj/item/storage/backpack
 	var/satchel  = /obj/item/storage/backpack/satchel
@@ -232,10 +230,6 @@
 	var/datum/job/J = SSjob.GetJobType(jobtype)
 	if(!J)
 		J = SSjob.GetJob(H.job)
-
-	if(H.client?.prefs.playtime_reward_cloak)
-		neck = /obj/item/clothing/neck/cloak/skill_reward/playing
-
 
 /datum/outfit/proc/special_equip(mob/living/carbon/human/H)
 	//SS13 WHITE

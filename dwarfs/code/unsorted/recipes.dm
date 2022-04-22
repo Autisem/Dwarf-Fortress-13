@@ -86,11 +86,6 @@
 	max_resulting = 2
 
 /datum/smithing_recipe/scepter
-	name = "golden necklace"
-	result = /obj/item/clothing/neck/necklace/dope
-	metal_type_need = "gold"
-
-/datum/smithing_recipe/scepter
 	name = "scepter"
 	result = /obj/item/blacksmith/scepter
 	metal_type_need = "none"

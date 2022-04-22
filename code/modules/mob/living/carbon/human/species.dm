@@ -1438,10 +1438,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			else
 				miss_chance = min((user.dna.species.punchdamagehigh/user.dna.species.punchdamagelow) + user.getStaminaLoss() + (user.getBruteLoss()*0.5), 100) //old base chance for a miss + various damage. capped at 100 to prevent weirdness in prob()
 
-		if(GLOB.is_tournament_rules)
-			damage = 5
-			miss_chance = 0
-
 		if(!damage || !affecting || prob(miss_chance))//future-proofing for species that have 0 damage/weird cases where no zone is targeted
 			playsound(target.loc, user.dna.species.miss_sound, 25, TRUE, -1)
 			target.visible_message(span_danger("[user] [atk_verb] misses [target]!") ,\
@@ -1581,7 +1577,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/attack_direction = get_dir(user, H)
 	apply_damage(I.force, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness(), attack_direction = attack_direction)
 
-	if(!I.force || GLOB.is_tournament_rules)
+	if(!I.force)
 		return FALSE //item force is zero
 
 	var/bloody = FALSE

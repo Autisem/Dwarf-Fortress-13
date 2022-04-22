@@ -189,13 +189,12 @@
 			SSticker.queued_players += new_player
 			to_chat(new_player, span_notice("Тебя добавили в очередь для захода в игру. Твой номер в очереди: [SSticker.queued_players.len]."))
 		return
-	if(!GLOB.is_tournament_rules)
-		if(check_whitelist(new_player?.client?.ckey) || new_player?.client?.holder)
-			new_player.LateChoices()
-		else
-			to_chat(hud.mymob, span_boldwarning("Disabled for testing."))
+	if(check_whitelist(new_player?.client?.ckey) || new_player?.client?.holder)
+		new_player.LateChoices()
 	else
-		new_player.make_me_an_observer(TRUE)
+		to_chat(hud.mymob, span_boldwarning("Disabled for testing."))
+		return
+	new_player.make_me_an_observer(TRUE)
 
 /atom/movable/screen/lobby/button/join/proc/show_join_button()
 	SIGNAL_HANDLER

@@ -33,20 +33,20 @@
 			var/obj/item/WH = H.head
 			///check if the item has NODROP
 			if(HAS_TRAIT(WH, TRAIT_NODROP))
-				H.visible_message(span_warning("[capitalize(src.name)] отскакивает от [H] [WH.name]!") , span_warning("[capitalize(src.name)] отскакивает от твоей [WH.name] и падает на пол."))
+				H.visible_message(span_warning("[src] bounces off [H]'s [WH.name]!"), span_warning("[src] bounces off your [WH.name], falling to the floor."))
 				return
 			///check if the item is an actual clothing head item, since some non-clothing items can be worn
 			if(istype(WH, /obj/item/clothing/head))
 				var/obj/item/clothing/head/WHH = WH
 				///SNUG_FIT hats are immune to being knocked off
 				if(WHH.clothing_flags & SNUG_FIT)
-					H.visible_message(span_warning("[capitalize(src.name)] отскакивает от [H] [WHH.name]!") , span_warning("[capitalize(src.name)] отскакивает от твоей [WHH.name] и падает на пол."))
+					H.visible_message(span_warning("[src] bounces off [H]'s [WHH.name]!"), span_warning("[src] bounces off your [WHH.name], falling to the floor."))
 					return
 			///if the hat manages to knock something off
 			if(H.dropItemToGround(WH))
-				H.visible_message(span_warning("[capitalize(src.name)] сбита с [WH] [H] головы!") , span_warning("[WH] была внезапно сбита с моей головы [src]!"))
+				H.visible_message(span_warning("[src] knocks [WH] off [H]'s head!"), span_warning("[WH] is suddenly knocked off your head by [src]!"))
 		if(H.equip_to_slot_if_possible(src, ITEM_SLOT_HEAD, 0, 1, 1))
-			H.visible_message(span_notice("[capitalize(src.name)] приземляется аккурат на [H]!") , span_notice("[capitalize(src.name)] приземляется прямо на мою голову!"))
+			H.visible_message(span_notice("[src] lands neatly on [H]'s head!"), span_notice("[src] lands perfectly onto your head!"))
 		return
 
 

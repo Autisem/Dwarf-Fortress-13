@@ -34,7 +34,6 @@ GLOBAL_LIST_EMPTY(cats)
 	mobility_flags = MOBILITY_FLAGS_REST_CAPABLE_DEFAULT
 	var/mob/living/simple_animal/mouse/movement_target
 	gold_core_spawnable = FRIENDLY_SPAWN
-	collar_type = "cat"
 	can_be_held = TRUE
 	held_state = "cat2"
 	pet_bonus = TRUE
@@ -103,7 +102,6 @@ GLOBAL_LIST_EMPTY(cats)
 	icon_state = "breadcat"
 	icon_living = "breadcat"
 	icon_dead = "breadcat_dead"
-	collar_type = null
 	held_state = "breadcat"
 	butcher_results = list(/obj/item/food/meat/slab = 2, /obj/item/organ/ears/cat = 1, /obj/item/organ/tail/cat = 1, /obj/item/food/breadslice/plain = 1)
 
@@ -117,7 +115,6 @@ GLOBAL_LIST_EMPTY(cats)
 	icon_state = "original"
 	icon_living = "original"
 	icon_dead = "original_dead"
-	collar_type = null
 	unique_pet = TRUE
 	held_state = "original"
 
@@ -132,7 +129,6 @@ GLOBAL_LIST_EMPTY(cats)
 	density = FALSE
 	pass_flags = PASSMOB
 	mob_size = MOB_SIZE_SMALL
-	collar_type = "kitten"
 
 /mob/living/simple_animal/pet/cat/kitten/Initialize(_gender=null)
 	. = ..(null)
@@ -238,10 +234,8 @@ GLOBAL_LIST_EMPTY(cats)
 		return
 	if (resting)
 		icon_state = "[icon_living]_rest"
-		collar_type = "[initial(collar_type)]_rest"
 	else
 		icon_state = "[icon_living]"
-		collar_type = "[initial(collar_type)]"
 	regenerate_icons()
 
 
@@ -255,7 +249,6 @@ GLOBAL_LIST_EMPTY(cats)
 			manual_emote(pick("sits down.", "crouches on its hind legs.", "looks alert."))
 			set_resting(TRUE)
 			icon_state = "[icon_living]_sit"
-			collar_type = "[initial(collar_type)]_sit"
 			playsound(src, pick(meowlist), 25, TRUE)
 		else if(DT_PROB(0.5, delta_time))
 			if (resting)

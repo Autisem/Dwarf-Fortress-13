@@ -81,9 +81,7 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/clothing/gloves/,
-		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/mask/breath,
-		/obj/item/clothing/mask/breath/medical,
 		/obj/item/surgical_drapes, //for true paramedics
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
@@ -94,11 +92,9 @@
 		/obj/item/hemostat,
 		/obj/item/blood_filter,
 		/obj/item/shears,
-		/obj/item/clothing/neck/stethoscope,
 		/obj/item/stamp,
 		/obj/item/clothing/glasses,
 		/obj/item/wrench/medical,
-		/obj/item/clothing/mask/muzzle,
 		/obj/item/reagent_containers/blood,
 		/obj/item/gun/syringe/syndicate,
 		/obj/item/stack/sticky_tape, //surgical tape

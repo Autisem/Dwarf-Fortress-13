@@ -47,7 +47,6 @@
 	childtype = list(/mob/living/simple_animal/pet/dog/corgi/puppy = 95, /mob/living/simple_animal/pet/dog/corgi/puppy/void = 5)
 	animal_species = /mob/living/simple_animal/pet/dog
 	gold_core_spawnable = FRIENDLY_SPAWN
-	collar_type = "corgi"
 	var/obj/item/inventory_head
 	var/obj/item/inventory_back
 	var/shaved = FALSE
@@ -80,7 +79,6 @@
 	icon_dead = "pug_dead"
 	butcher_results = list(/obj/item/food/meat/slab/pug = 3)
 	gold_core_spawnable = FRIENDLY_SPAWN
-	collar_type = "pug"
 	held_state = "pug"
 
 /mob/living/simple_animal/pet/dog/pug/mcgriff
@@ -97,7 +95,6 @@
 	icon_dead = "bullterrier_dead"
 	butcher_results = list(/obj/item/food/meat/slab/corgi = 3) // Would feel redundant to add more new dog meats.
 	gold_core_spawnable = FRIENDLY_SPAWN
-	collar_type = "bullterrier"
 	held_state = "bullterrier"
 
 /mob/living/simple_animal/pet/dog/corgi/exoticcorgi
@@ -134,7 +131,6 @@
 GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 	/datum/strippable_item/corgi_head,
 	/datum/strippable_item/corgi_back,
-	/datum/strippable_item/corgi_collar,
 )))
 
 /datum/strippable_item/corgi_head
@@ -211,63 +207,6 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 	corgi_source.inventory_back = null
 	corgi_source.update_corgi_fluff()
 	corgi_source.regenerate_icons()
-
-/datum/strippable_item/corgi_collar
-	key = STRIPPABLE_ITEM_CORGI_COLLAR
-
-/datum/strippable_item/corgi_collar/get_item(atom/source)
-	var/mob/living/simple_animal/pet/dog/corgi/corgi_source = source
-	if (!istype(corgi_source))
-		return
-
-	return corgi_source.pcollar
-
-/datum/strippable_item/corgi_collar/try_equip(atom/source, obj/item/equipping, mob/user)
-	. = ..()
-	if (!.)
-		return FALSE
-
-	if (!istype(equipping, /obj/item/clothing/neck/petcollar))
-		to_chat(user, span_warning("That's not a collar."))
-		return FALSE
-
-	return TRUE
-
-/datum/strippable_item/corgi_collar/finish_equip(atom/source, obj/item/equipping, mob/user)
-	var/mob/living/simple_animal/pet/dog/corgi/corgi_source = source
-	if (!istype(corgi_source))
-		return
-
-	corgi_source.add_collar(equipping, user)
-	corgi_source.update_corgi_fluff()
-
-/datum/strippable_item/corgi_collar/finish_unequip(atom/source, mob/user)
-	var/mob/living/simple_animal/pet/dog/corgi/corgi_source = source
-	if (!istype(corgi_source))
-		return
-
-	user.put_in_hands(corgi_source.pcollar)
-	corgi_source.pcollar = null
-	corgi_source.update_corgi_fluff()
-	corgi_source.regenerate_icons()
-
-/mob/living/simple_animal/pet/dog/corgi/getarmor(def_zone, type)
-	var/armorval = 0
-
-	if(def_zone)
-		if(def_zone == BODY_ZONE_HEAD)
-			if(inventory_head)
-				armorval = inventory_head.armor.getRating(type)
-		else
-			if(inventory_back)
-				armorval = inventory_back.armor.getRating(type)
-		return armorval
-	else
-		if(inventory_head)
-			armorval += inventory_head.armor.getRating(type)
-		if(inventory_back)
-			armorval += inventory_back.armor.getRating(type)
-	return armorval*0.5
 
 /mob/living/simple_animal/pet/dog/corgi/attackby(obj/item/O, mob/user, params)
 	if (istype(O, /obj/item/razor))
@@ -537,7 +476,6 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 	density = FALSE
 	pass_flags = PASSMOB
 	mob_size = MOB_SIZE_SMALL
-	collar_type = "puppy"
 
 //puppies cannot wear anything.
 /mob/living/simple_animal/pet/dog/corgi/puppy/Topic(href, href_list)

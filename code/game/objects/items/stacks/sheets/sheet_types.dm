@@ -87,7 +87,6 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
  * Wood
  */
 GLOBAL_LIST_INIT(wood_recipes, list ( \
-	new/datum/stack_recipe("деревянные сандалии", /obj/item/clothing/shoes/sandal, 1), \
 	new/datum/stack_recipe("деревянный пол", /obj/item/stack/tile/wood, 1, 4, 20), \
 	new/datum/stack_recipe("деревянный корпус стола", /obj/structure/table_frame/wood, 2, time = 10), \
 	new/datum/stack_recipe("приклад винтовки", /obj/item/weaponcrafting/stock, 10, time = 40), \
@@ -99,7 +98,6 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("собачья кровать", /obj/structure/bed/dogbed, 10, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("комод", /obj/structure/dresser, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("рамка для рисунка", /obj/item/wallframe/painting, 1, time = 10),\
-	new/datum/stack_recipe("маска Тики", /obj/item/clothing/mask/gas/tiki_mask, 2), \
 	new/datum/stack_recipe("деревянное ведро", /obj/item/reagent_containers/glass/bucket/wooden, 3, time = 10),\
 	new/datum/stack_recipe("деревянный ящик", /obj/structure/closet/crate/wooden, 6, time = 50, one_per_turf = TRUE, on_floor = TRUE),\
 	new/datum/stack_recipe("ткацкий станок", /obj/structure/loom, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
@@ -182,35 +180,7 @@ GLOBAL_LIST_INIT(bamboo_recipes, list ( \
 /*
  * Cloth
  */
-GLOBAL_LIST_INIT(cloth_recipes, list ( \
-	new/datum/stack_recipe("белый джемпер", /obj/item/clothing/under/color/jumpskirt/white, 3), /*Ladies first*/ \
-	new/datum/stack_recipe("белый комбинезон", /obj/item/clothing/under/color/white, 3), \
-	new/datum/stack_recipe("белые ботинки", /obj/item/clothing/shoes/sneakers/white, 2), \
-	new/datum/stack_recipe("белый шарф", /obj/item/clothing/neck/scarf, 1), \
-	null, \
-	new/datum/stack_recipe("рюкзак", /obj/item/storage/backpack, 4), \
-	new/datum/stack_recipe("вещмешок", /obj/item/storage/backpack/duffelbag, 6), \
-	null, \
-	new/datum/stack_recipe("сумка для растений", /obj/item/storage/bag/plants, 4), \
-	new/datum/stack_recipe("сумка для книг", /obj/item/storage/bag/books, 4), \
-	new/datum/stack_recipe("сумка для химикатов", /obj/item/storage/bag/chemistry, 4), \
-	new/datum/stack_recipe("строительная сумка", /obj/item/storage/bag/construction, 4), \
-	null, \
-	new/datum/stack_recipe("импровизированная марля", /obj/item/stack/medical/gauze/improvised, 1, 2, 6), \
-	new/datum/stack_recipe("тряпка", /obj/item/reagent_containers/glass/rag, 1), \
-	new/datum/stack_recipe("простыня", /obj/item/bedsheet, 3), \
-	null, \
-	new/datum/stack_recipe("перчатки без пальцев", /obj/item/clothing/gloves/fingerless, 1), \
-	new/datum/stack_recipe("белые перчатки", /obj/item/clothing/gloves/color/white, 3), \
-	new/datum/stack_recipe("белая мягкая кепка", /obj/item/clothing/head/soft/mime, 2), \
-	new/datum/stack_recipe("белая шапочка", /obj/item/clothing/head/beanie, 2), \
-	null, \
-	new/datum/stack_recipe("повязка на глаза", /obj/item/clothing/glasses/blindfold, 2), \
-	null, \
-	new/datum/stack_recipe("Холст 19x19", /obj/item/canvas/nineteen_nineteen, 3), \
-	new/datum/stack_recipe("Холст 23x19", /obj/item/canvas/twentythree_nineteen, 4), \
-	new/datum/stack_recipe("Холст 23x23", /obj/item/canvas/twentythree_twentythree, 5), \
-	))
+GLOBAL_LIST_INIT(cloth_recipes, list ())
 
 /obj/item/stack/sheet/cloth
 	name = "ткань"
@@ -236,13 +206,6 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 /obj/item/stack/sheet/cloth/five
 	amount = 5
 
-GLOBAL_LIST_INIT(durathread_recipes, list ( \
-	new/datum/stack_recipe("дюратканевый комбинезон", /obj/item/clothing/under/misc/durathread, 4, time = 40),
-	new/datum/stack_recipe("дюратканевый берет", /obj/item/clothing/head/beret/durathread, 2, time = 40), \
-	new/datum/stack_recipe("дюратканевая шапочка", /obj/item/clothing/head/beanie/durathread, 2, time = 40), \
-	new/datum/stack_recipe("дюратканевая бандана", /obj/item/clothing/mask/bandana/durathread, 1, time = 25), \
-	))
-
 /obj/item/stack/sheet/durathread
 	name = "дюраткань"
 	desc = "Ткань сшитая из невероятно прочных нитей, часто полезна при производстве брони."
@@ -255,10 +218,6 @@ GLOBAL_LIST_INIT(durathread_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/durathread
 	drop_sound = 'sound/items/handling/cloth_drop.ogg'
 	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
-
-/obj/item/stack/sheet/durathread/get_main_recipes()
-	. = ..()
-	. += GLOB.durathread_recipes
 
 /obj/item/stack/sheet/cotton
 	name = "пучок необработанного хлопка"

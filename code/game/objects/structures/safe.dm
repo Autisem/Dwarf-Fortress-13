@@ -75,12 +75,7 @@ FLOOR SAFES
 		else
 			to_chat(user, span_warning("[I] won't fit in [src]."))
 	else
-		if(istype(I, /obj/item/clothing/neck/stethoscope))
-			attack_hand(user)
-			return
-		else
-			to_chat(user, span_warning("You can't put [I] into the safe while it is closed!"))
-			return
+		to_chat(user, span_warning("You can't put [I] into the safe while it is closed!"))
 
 /obj/structure/safe/ex_act(severity, target)
 	if(((severity == 2 && target == src) || severity == 1) && explosion_count < BROKEN_THRESHOLD)
@@ -135,8 +130,6 @@ FLOOR SAFES
 		return
 
 	var/canhear = FALSE
-	if(user.is_holding_item_of_type(/obj/item/clothing/neck/stethoscope))
-		canhear = TRUE
 
 	switch(action)
 		if("open")

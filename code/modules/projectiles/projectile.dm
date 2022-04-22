@@ -406,7 +406,7 @@
 	// 2.
 	impacted[target] = TRUE //hash lookup > in for performance in hit-checking
 	// 3.
-	if(ishuman(target) && target != original && ishuman(firer) && !GLOB.is_tournament_rules)
+	if(ishuman(target) && target != original && ishuman(firer))
 		var/mob/living/carbon/human/H = firer
 		if(H.mind)
 			H.mind.adjust_experience(/datum/skill/ranged, 1)

@@ -1,5 +1,5 @@
 /obj/item/clothing/shoes
-	name = "туфли"
+	name = "shoes"
 	icon = 'icons/obj/clothing/shoes.dmi'
 	desc = "Comfortable-looking shoes."
 	gender = PLURAL //Carn: for grammarically correct text-parsing
@@ -147,17 +147,17 @@
 		return
 
 	if(!in_range(user, our_guy))
-		to_chat(user, span_warning("Слишком далеко чтобы взаимодействовать со шнурками [src]!"))
+		to_chat(user, span_warning("You aren't close enough to interact with [src]'s laces!"))
 		return
 
 	if(user == loc && tied != SHOES_TIED) // if they're our own shoes, go tie-wards
 		if(DOING_INTERACTION_WITH_TARGET(user, our_guy))
-			to_chat(user, span_warning("Уже взаимодействую с [src]!"))
+			to_chat(user, span_warning("You're already interacting with [src]!"))
 			return
-		user.visible_message(span_notice("[user] [tied ? "развязывать" : "завязывать"] шнурки на [user.ru_ego()] [src.name].") , span_notice("You begin [tied ? "unknotting" : "tying"] the laces of your [src.name]..."))
+		user.visible_message(span_notice("[user] [tied ? "unknotting" : "tying"] the laces of [user.p_their()] [src.name].") , span_notice("You begin [tied ? "unknotting" : "tying"] the laces of your [src.name]..."))
 
 		if(do_after(user, lace_time, target = our_guy, extra_checks = CALLBACK(src, .proc/still_shoed, our_guy)))
-			to_chat(user, span_notice("You [tied ? "Развязываю" : "Завязываю"] шнурки на [src.name]."))
+			to_chat(user, span_notice("You [tied ? "unknot" : "tie"] the laces of your [src.name]."))
 			if(tied == SHOES_UNTIED)
 				adjust_laces(SHOES_TIED, user)
 			else
@@ -166,13 +166,13 @@
 	else // if they're someone else's shoes, go knot-wards
 		var/mob/living/L = user
 		if(istype(L) && L.body_position == STANDING_UP)
-			to_chat(user, span_warning("Мне нужно быть на полу чтобы взаимодействовать с [src]!"))
+			to_chat(user, span_warning("You must be on the floor to interact with [src]!"))
 			return
 		if(tied == SHOES_KNOTTED)
-			to_chat(user, span_warning("Шнурки на [loc] [src.name] уже связаны!"))
+			to_chat(user, span_warning("The laces on [loc]'s [src.name] are already a hopelessly tangled mess!"))
 			return
 		if(DOING_INTERACTION_WITH_TARGET(user, our_guy))
-			to_chat(user, span_warning("Уже взаимодействую с [src]!"))
+			to_chat(user, span_warning("You're already interacting with [src]!"))
 			return
 
 		var/mod_time = lace_time
@@ -258,7 +258,7 @@
 	. = ..()
 
 	if(DOING_INTERACTION_WITH_TARGET(user, src))
-		to_chat(user, span_warning("Уже взаимодействую с [src]!"))
+		to_chat(user, span_warning("You're already interacting with [src]!"))
 		return
 
 	to_chat(user, span_notice("You begin [tied ? "untying" : "tying"] the laces on [src]..."))

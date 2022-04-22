@@ -5,7 +5,7 @@
 	var/fixing_time = 1 SECONDS
 
 /datum/component/jammed/Initialize()
-	if(!isgun(parent) || GLOB.is_tournament_rules)
+	if(!isgun(parent))
 		return COMPONENT_INCOMPATIBLE
 
 /datum/component/jammed/RegisterWithParent()

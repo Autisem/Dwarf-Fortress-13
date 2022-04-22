@@ -1,13 +1,13 @@
 /obj/item/clothing/gloves
-	name = "перчатки"
+	name = "gloves"
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/clothing/gloves.dmi'
 	siemens_coefficient = 0.5
 	body_parts_covered = HANDS
 	slot_flags = ITEM_SLOT_GLOVES
-	attack_verb_continuous = list("вызывает на дуэль")
-	attack_verb_simple = list("вызывает на дуэль")
+	attack_verb_continuous = list("challenges")
+	attack_verb_simple = list("challenge")
 	var/transfer_prints = FALSE
 	strip_delay = 20
 	equip_delay_other = 40
@@ -23,7 +23,7 @@
 		return TRUE
 
 /obj/item/clothing/gloves/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("<b>[src.name]</b> заставляют руки [user] схватить его за [user.ru_ego()] шею! Выглядит так, будто перчатки одержимы!"))
+	user.visible_message(span_suicide("<b>\the [src] are forcing [user]'s hands around [user.p_their()] neck! It looks like the gloves are possessed!"))
 	return OXYLOSS
 
 /obj/item/clothing/gloves/worn_overlays(isinhands = FALSE)

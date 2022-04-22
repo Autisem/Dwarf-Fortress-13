@@ -31,13 +31,6 @@
 
 	if(do_after(user, 30, target=I))
 		use(1)
-		if(istype(I, /obj/item/clothing/gloves/fingerless))
-			var/obj/item/clothing/gloves/tackler/offbrand/O = new /obj/item/clothing/gloves/tackler/offbrand
-			to_chat(user, span_notice("Оборачиваю <b>[I]</b> в <b>[O]</b> используя <b>[src]</b>."))
-			QDEL_NULL(I)
-			user.put_in_hands(O)
-			return
-
 		if(I.embedding && I.embedding == conferred_embed)
 			to_chat(user, span_warning("[I] уже покрыт [src]!"))
 			return

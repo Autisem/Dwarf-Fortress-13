@@ -14,8 +14,6 @@
 /obj/item/clothing/suit/armor/Initialize()
 	. = ..()
 	AddComponent(/datum/component/armor_plate/plasteel)
-	if(!allowed)
-		allowed = GLOB.security_vest_allowed
 
 /obj/item/clothing/suit/armor/worn_overlays(isinhands)
 	. = ..()

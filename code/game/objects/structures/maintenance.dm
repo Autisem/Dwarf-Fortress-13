@@ -15,7 +15,6 @@ at the cost of risking a vicious bite.**/
 					/obj/item/food/meat/slab/human/mutant/skeleton = 35,
 					/obj/item/food/meat/slab/human/mutant/zombie = 15,
 					/obj/item/trash/can = 15,
-					/obj/item/clothing/head/helmet/skull = 10,
 					/obj/item/restraints/handcuffs = 4,
 					/obj/item/restraints/handcuffs/cable/red = 1,
 					/obj/item/restraints/handcuffs/cable/blue = 1,

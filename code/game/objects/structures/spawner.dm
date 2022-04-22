@@ -32,20 +32,6 @@
 	spawn_text = "warps in from"
 	mob_types = list(/mob/living/simple_animal/hostile/syndicate/ranged)
 
-/obj/structure/spawner/skeleton
-	name = "bone pit"
-	desc = "A pit full of bones, and some still seem to be moving..."
-	icon_state = "hole"
-	icon = 'icons/mob/nest.dmi'
-	max_integrity = 150
-	max_mobs = 15
-	spawn_time = 150
-	mob_types = list(/mob/living/simple_animal/hostile/skeleton)
-	spawn_text = "climbs out of"
-	faction = list("skeleton")
-
-
-
 /obj/structure/spawner/mining
 	name = "monster den"
 	desc = "A hole dug into the ground, harboring all kinds of monsters found within most caves or mining asteroids."

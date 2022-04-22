@@ -8,7 +8,7 @@
 	var/obj/item/reagent_containers/food/banana = allocate(/obj/item/food/rationpack)
 	var/obj/item/food/the_bread = allocate(/obj/item/food/breadslice)
 	var/obj/item/reagent_containers/food/sugarcookie = allocate(/obj/item/food/cookie/sugar)
-	var/obj/item/clothing/under/jumpsuit = allocate(/obj/item/clothing/under/color/black)
+	var/obj/item/clothing/under/jumpsuit = allocate(/obj/item/clothing/under)
 
 	TEST_ASSERT_EQUAL((the_bread in test_tray.contents), FALSE, "The bread is on the serving tray at test start")
 

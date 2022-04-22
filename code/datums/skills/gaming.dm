@@ -4,7 +4,6 @@
 	desc = "Мой опыт геймера. Это помогает мне с легкостью побеждать боссов, играть в Powergame в Orion Trail и заставляет меня хотеть потратить немного топлива для геймеров."
 	modifiers = list(SKILL_PROBS_MODIFIER = list(0, 5, 10, 15, 15, 20, 25),
 				SKILL_RANDS_MODIFIER = list(0, 1, 2, 3, 4, 5, 7))
-	skill_cape_path = /obj/item/clothing/neck/cloak/skill_reward/gaming
 
 /datum/skill/gaming/New()
 	. = ..()

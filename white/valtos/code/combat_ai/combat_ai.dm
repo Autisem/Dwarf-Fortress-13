@@ -391,9 +391,6 @@
 	name = "Combat AI: Standard .22"
 
 	r_hand = /obj/item/gun/ballistic/automatic/fallout/marksman/service/police22
-	uniform = /obj/item/clothing/under/rank/omon/green
-	gloves = /obj/item/clothing/gloves/color/black
-	head = /obj/item/clothing/head/helmet/gladiator
 	suit = /obj/item/clothing/suit/armor/vest/alt
 	shoes = /obj/item/clothing/shoes/jackboots
 	back = /obj/item/storage/backpack

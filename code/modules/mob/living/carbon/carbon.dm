@@ -207,9 +207,6 @@
 	if(loc)
 		loc.handle_fall(src)//it's loc so it doesn't call the mob's handle_fall which does nothing
 
-/mob/living/carbon/is_muzzled()
-	return(istype(src.wear_mask, /obj/item/clothing/mask/muzzle))
-
 /mob/living/carbon/hallucinating()
 	if(hallucination)
 		return TRUE

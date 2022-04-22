@@ -6,8 +6,6 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 	var/desc = "the art of doing things"
 	///Dictionary of modifier type - list of modifiers (indexed by level). 7 entries in each list for all 7 skill levels.
 	var/modifiers = list(SKILL_SPEED_MODIFIER = list(1, 1, 1, 1, 1, 1, 1)) //Dictionary of modifier type - list of modifiers (indexed by level). 7 entries in each list for all 7 skill levels.
-	///List Path pointing to the skill cape reward that will appear when a user finishes leveling up a skill
-	var/skill_cape_path
 	///List associating different messages that appear on level up with different levels
 	var/list/levelUpMessages = list()
 	///List associating different messages that appear on level up with different levels
@@ -68,9 +66,6 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 /datum/skill/proc/try_skill_reward(datum/mind/mind, new_level)
 	if (new_level != SKILL_LEVEL_LEGENDARY)
 		return
-	if (!ispath(skill_cape_path))
-		to_chat(mind.current, span_nicegreen("My legendary [name] skill is quite impressive."))
-		return
 	if (LAZYFIND(mind.skills_rewarded, src.type))
 		// to_chat(mind.current, span_nicegreen("Похоже,  Ассоциация Профессионалов [title] не хочет давать мне больше символов навыка."))
 		return
@@ -78,7 +73,6 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 		"target" = get_turf(mind.current),
 		"path" = /obj/structure/closet/supplypod,
 		"style" = STYLE_BLUESPACE,
-		"spawn" = skill_cape_path,
 		"delays" = list(POD_TRANSIT = 150, POD_FALLING = 4, POD_OPENING = 30, POD_LEAVING = 30)
 	))
 	LAZYADD(mind.skills_rewarded, src.type)

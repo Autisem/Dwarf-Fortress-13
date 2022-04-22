@@ -106,21 +106,6 @@
 	reqs = list(/obj/item/stack/sheet/bone = 6)
 	category = CAT_PRIMAL
 
-/datum/crafting_recipe/bonecodpiece
-	name = "Skull Codpiece"
-	result = /obj/item/clothing/accessory/skullcodpiece
-	time = 20
-	reqs = list(/obj/item/stack/sheet/bone = 2,
-				/obj/item/stack/sheet/animalhide/goliath_hide = 1)
-	category = CAT_PRIMAL
-
-/datum/crafting_recipe/skullhelm
-	name = "Skull Helmet"
-	result = /obj/item/clothing/head/helmet/skull
-	time = 30
-	reqs = list(/obj/item/stack/sheet/bone = 4)
-	category = CAT_PRIMAL
-
 /datum/crafting_recipe/firebrand
 	name = "Firebrand"
 	result = /obj/item/match/firebrand

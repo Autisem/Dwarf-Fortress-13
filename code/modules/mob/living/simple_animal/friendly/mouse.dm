@@ -85,7 +85,6 @@
 			var/mob/M = AM
 			to_chat(M, span_notice("[icon2html(src, M)] Squeak!"))
 	if(istype(AM, /obj/item/food/royalcheese))
-		evolve()
 		qdel(AM)
 
 /mob/living/simple_animal/mouse/handle_automated_action()
@@ -96,7 +95,6 @@
 			return
 	for(var/obj/item/food/royalcheese/bigcheese in range(1, src))
 		qdel(bigcheese)
-		evolve()
 		return
 
 /mob/living/simple_animal/mouse/UnarmedAttack(atom/A, proximity)
@@ -124,17 +122,6 @@
 	var/mob/living/newmouse = new /mob/living/simple_animal/mouse(loc)
 	SSmobs.cheeserats += newmouse
 	visible_message(span_notice("[capitalize(src.name)] nibbles through the cheese, attracting another mouse!"))
-
-/**
- *Spawns a new regal rat, says some good jazz, and if sentient, transfers the relivant mind.
- */
-/mob/living/simple_animal/mouse/proc/evolve()
-	var/mob/living/simple_animal/hostile/regalrat/regalrat = new /mob/living/simple_animal/hostile/regalrat/controlled(loc)
-	visible_message(span_warning("[src] devours the cheese! He morphs into something... greater!"))
-	INVOKE_ASYNC(regalrat, /atom/movable/proc/say, "RISE, MY SUBJECTS! SCREEEEEEE!")
-	if(mind)
-		mind.transfer_to(regalrat)
-	qdel(src)
 
 /*
  * Mouse types

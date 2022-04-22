@@ -11,9 +11,7 @@
 	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 	limb_integrity = 30
 	var/fitted = FEMALE_UNIFORM_FULL // For use in alternate clothing styles for women
-	var/has_sensor = HAS_SENSORS // For the crew computer
 	var/random_sensor = TRUE
-	var/sensor_mode = NO_SENSORS
 	var/can_adjust = TRUE
 	var/adjusted = NORMAL_STYLE
 	var/alt_covers_chest = FALSE // for adjusted/rolled-down jumpsuits, FALSE = exposes chest and arms, TRUE = exposes arms only
@@ -41,16 +39,6 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		M.update_inv_w_uniform()
-	if(damaged_state == CLOTHING_SHREDDED && has_sensor > NO_SENSORS)
-		has_sensor = BROKEN_SENSORS
-	else if(damaged_state == CLOTHING_PRISTINE && has_sensor == BROKEN_SENSORS)
-		has_sensor = HAS_SENSORS
-
-/obj/item/clothing/under/Initialize()
-	. = ..()
-	if(random_sensor)
-		//make the sensor mode favor higher levels, except coords.
-		sensor_mode = pick(SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS, SENSOR_COORDS)
 
 /obj/item/clothing/under/equipped(mob/user, slot)
 	..()
@@ -85,27 +73,13 @@
 				H.update_inv_wear_suit()
 	..()
 
-/mob/living/carbon/human/update_suit_sensors()
-	. = ..()
-	update_sensor_list()
-
-/mob/living/carbon/human/proc/update_sensor_list()
-	var/obj/item/clothing/under/U = w_uniform
-	if(istype(U) && U.has_sensor > 0 && U.sensor_mode)
-		GLOB.suit_sensors_list |= src
-	else
-		GLOB.suit_sensors_list -= src
-
-/mob/living/carbon/human/dummy/update_sensor_list()
-	return
-
 /obj/item/clothing/under/proc/attach_accessory(obj/item/I, mob/user, notifyAttach = 1, params)
 	. = FALSE
 	if(istype(I, /obj/item/clothing/accessory))
 		var/obj/item/clothing/accessory/A = I
 		if(attached_accessory)
 			if(user)
-				to_chat(user, span_warning("<b>[src.name]</b> уже что-то имеет."))
+				to_chat(user, span_warning("<b>[src.name]</b> already has something attached to it."))
 			return
 		else
 
@@ -117,7 +91,7 @@
 				return
 
 			if(user && notifyAttach)
-				to_chat(user, span_notice("Прикрепляю <b>[I.name]</b> на <b>[src.name]</b>."))
+				to_chat(user, span_notice("You attach <b>[I.name]</b> to <b>[src.name]</b>."))
 
 			var/accessory_color = attached_accessory.icon_state
 			if(I.worn_icon)
@@ -151,9 +125,9 @@
 		var/obj/item/clothing/accessory/A = attached_accessory
 		attached_accessory.detach(src, user)
 		if(user.put_in_hands(A))
-			to_chat(user, span_notice("Снимаю <b>[A.name]</b> с <b>[src.name]</b>."))
+			to_chat(user, span_notice("You remove <b>[A.name]</b> from <b>[src.name]</b>."))
 		else
-			to_chat(user, span_notice("Снимаю <b>[A.name]</b> с <b>[src.name]</b> и она падает на пол."))
+			to_chat(user, span_notice("You remove <b>[A.name]</b> from <b>[src.name]</b> and it falls onto floor."))
 
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
@@ -164,67 +138,14 @@
 /obj/item/clothing/under/examine(mob/user)
 	. = ..()
 	if(freshly_laundered)
-		. += "<hr>Выглядит свежим и чистым."
+		. += "<hr>Looks fresh and clean."
 	if(can_adjust)
 		if(adjusted == ALT_STYLE)
-			. += "<hr>ПКМ на [src.name] чтобы носить нормально."
+			. += "<hr>RMB on [src.name] to wear it normally."
 		else
-			. += "<hr>ПКМ on [src.name] чтобы носить по другому."
-	if (has_sensor == BROKEN_SENSORS)
-		. += "<hr>Похоже, сенсоры на этой штуке повреждены."
-	else if(has_sensor > NO_SENSORS)
-		switch(sensor_mode)
-			if(SENSOR_OFF)
-				. += "<hr>Сенсоры отключены."
-			if(SENSOR_LIVING)
-				. += "<hr>Сенсоры состояния ЖИВ/МЁРТВ работают."
-			if(SENSOR_VITALS)
-				. += "<hr>Сенсоры жизненных показателей работают."
-			if(SENSOR_COORDS)
-				. += "<hr>Сенсоры жизненных показателей и местоположения работают."
+			. += "<hr>RMB on [src.name] to wear it casually."
 	if(attached_accessory)
-		. += "<hr>Вау! На этой штуке есть [attached_accessory]."
-
-/obj/item/clothing/under/verb/toggle()
-	set name = "Переключить сенсоры костюма"
-	set category = "Объект"
-	set src in usr
-	var/mob/M = usr
-	if (istype(M, /mob/dead/))
-		return
-	if (!can_use(M))
-		return
-	if(has_sensor == LOCKED_SENSORS)
-		to_chat(usr, "Элементы управления заблокированы.")
-		return 0
-	if(has_sensor == BROKEN_SENSORS)
-		to_chat(usr, "Датчики замкнули!")
-		return 0
-	if(has_sensor <= NO_SENSORS)
-		to_chat(usr, "Этот костюм не имеет никаких датчиков.")
-		return 0
-
-	var/list/modes = list("Выкл", "Примерные показатели", "Точные показатели", " + отслеживание")
-	var/switchMode = tgui_input_list(M, "Выбери режим работы:", "Режим работы", modes)
-	if(get_dist(usr, src) > 1)
-		to_chat(usr, span_warning("Слишком далеко от станции!"))
-		return
-	sensor_mode = modes.Find(switchMode) - 1
-	if (loc == usr)
-		switch(sensor_mode)
-			if(0)
-				to_chat(usr, span_notice("Отключаю работу сенсоров костюма."))
-			if(1)
-				to_chat(usr, span_notice("Мой костюм теперь будет сообщать только о том, жив я или мёртв."))
-			if(2)
-				to_chat(usr, span_notice("Мой костюм теперь будет сообщать только мои точные жизненные признаки."))
-			if(3)
-				to_chat(usr, span_notice("Мой костюм теперь сообщает о моих точных жизненных знаках, а также о моих координатах."))
-
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.w_uniform == src)
-			H.update_suit_sensors()
+		. += "<hr>Wow! It has [attached_accessory] attached."
 
 /obj/item/clothing/under/AltClick(mob/user)
 	. = ..()
@@ -239,7 +160,7 @@
 		rolldown()
 
 /obj/item/clothing/under/verb/jumpsuit_adjust()
-	set name = "Поправить костюм"
+	set name = "Adjust Suit"
 	set category = null
 	set src in usr
 	rolldown()
@@ -248,12 +169,12 @@
 	if(!can_use(usr))
 		return
 	if(!can_adjust)
-		to_chat(usr, span_warning("А тут некуда поправлять!"))
+		to_chat(usr, span_warning("Cannot adjust this suit!"))
 		return
 	if(toggle_jumpsuit_adjust())
-		to_chat(usr, span_notice("Теперь буду носить его как модник."))
+		to_chat(usr, span_notice("You will wear it casually now."))
 	else
-		to_chat(usr, span_notice("Теперь буду носить как обычно."))
+		to_chat(usr, span_notice("You will wear it normally now."))
 	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		H.update_inv_w_uniform()
