@@ -119,7 +119,7 @@
 				msg += " <i>(as [C.holder.fakekey])</i>"
 
 			if(isobserver(C.mob))
-				msg += " - Obsirving"
+				msg += " - Observing"
 			else if(isnewplayer(C.mob))
 				msg += " - Lobby"
 			else
