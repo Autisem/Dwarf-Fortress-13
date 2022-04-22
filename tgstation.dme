@@ -1833,7 +1833,6 @@
 #include "white\valtos\code\makeshift\ducttape.dm"
 #include "white\valtos\code\particles\exp_emitter.dm"
 #include "white\valtos\code\report\bug.dm"
-#include "white\valtos\code\serverside\crawler.dm"
 #include "white\valtos\code\serverside\fullscreen.dm"
 #include "white\valtos\code\serverside\looc.dm"
 #include "white\valtos\code\serverside\mpr.dm"

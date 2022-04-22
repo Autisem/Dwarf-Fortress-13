@@ -86,7 +86,6 @@
 		body += "<br><b>Multiaccounts: </b> "
 		body += "<a href='?_src_=holder;[HrefToken()];showrelatedacc=cid;client=[REF(M.client)]'>CID</a>"
 		body += "<a href='?_src_=holder;[HrefToken()];showrelatedacc=ip;client=[REF(M.client)]'>IP</a>"
-		body += "<br><b>Crawler:</b> <a href='?_src_=holder;[HrefToken()];pushmetocrawler=[REF(M.client)]'>INFO</a>"
 		var/rep = 0
 		rep += SSpersistence.antag_rep[M.ckey]
 		body += "<br><b>Antag-rep:</b> [rep] "
