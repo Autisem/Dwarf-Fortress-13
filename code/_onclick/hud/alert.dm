@@ -200,18 +200,18 @@
 	icon_state = "gross3"
 
 /atom/movable/screen/alert/overhydrated
-	name = "Перепил"
-	desc = "Слишком много воды!"
+	name = "Overhydrated"
+	desc = "Too much water!"
 	icon_state = "overhydrated"
 
 /atom/movable/screen/alert/thirsty
-	name = "Жажда"
-	desc = "Хочется пить."
+	name = "Thirsty"
+	desc = "You feel like drinking something."
 	icon_state = "thirsty"
 
 /atom/movable/screen/alert/dehydrated
-	name = "Иссушение"
-	desc = "Надо срочно найти воды."
+	name = "Dehydrated"
+	desc = "You're severely dehydrated."
 	icon_state = "dehydrated"
 
 /atom/movable/screen/alert/hot
