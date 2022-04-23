@@ -88,6 +88,24 @@
 		Ingot_heat.alpha =  255 * (I.heattemp / 350)
 		. += Ingot_heat
 
+/obj/item/blacksmith/tongs/worn_overlays(isinhands, icon_file)
+	. = ..()
+	if(contents.len)
+		var/obj/item/blacksmith/ingot/I = contents[1]
+		var/mutable_appearance/Ingot = mutable_appearance(icon_file, "tongs_ingot")
+		Ingot.color = I.metal_color
+		. += Ingot
+		var/mutable_appearance/Ingot_heat = mutable_appearance(icon_file, "tongs_ingot")
+		Ingot_heat.color = "#ffb35c"
+		Ingot_heat.alpha =  255 * (I.heattemp / 350)
+		. += Ingot_heat
+
+/obj/item/blacksmith/tongs/update_appearance(updates)
+	. = ..()
+	if(ismob(loc))
+		var/mob/M = loc
+		M.update_inv_hands()
+
 /obj/item/blacksmith/tongs/attack_self(mob/user)
 	. = ..()
 	if(contents.len)
@@ -145,7 +163,7 @@
 /obj/item/blacksmith/ingot/process()
 	if(!heattemp)
 		return
-	heattemp = clamp(heattemp-25, 0, heattemp)
+	heattemp = max(heattemp-25, 0)
 	update_appearance()
 	if(isobj(loc))
 		loc.update_appearance()
