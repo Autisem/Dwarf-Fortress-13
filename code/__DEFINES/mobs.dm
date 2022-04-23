@@ -173,28 +173,37 @@
 #define SANITY_INSANE 0
 
 //Nutrition levels for humans
-#define NUTRITION_LEVEL_FAT 550
-#define NUTRITION_LEVEL_FULL 400
-#define NUTRITION_LEVEL_WELL_FED 275
-#define NUTRITION_LEVEL_FED 200
-#define NUTRITION_LEVEL_HUNGRY 100
+#define NUTRITION_LEVEL_MAX 1000
+#define NUTRITION_LEVEL_FAT 800
+#define NUTRITION_LEVEL_FULL 600
+#define NUTRITION_LEVEL_WELL_FED 500
+#define NUTRITION_LEVEL_FED 400
+#define NUTRITION_LEVEL_HUNGRY 200
 #define NUTRITION_LEVEL_STARVING 50
 
-#define NUTRITION_LEVEL_START_MIN 175
-#define NUTRITION_LEVEL_START_MAX 400
+#define NUTRITION_LEVEL_START_MAX 550
+#define NUTRITION_LEVEL_START_MIN 300
 
-//Humans get thirsty
-#define HYDRATION_LEVEL_OVERHYDRATED 300
-#define HYDRATION_LEVEL_NORMAL 40
-#define HYDRATION_LEVEL_THIRSTY 20
-#define HYDRATION_LEVEL_DEHYDRATED 0
+//Used as an upper limit for species that continuously gain nutriment
+#define NUTRITION_LEVEL_ALMOST_FULL 590
 
-#define HYDRATION_LEVEL_START_MIN 150
-#define HYDRATION_LEVEL_START_MAX 200
-#define HYDRATION_LEVEL_MIN_CAP -10
+#define NUTRITION_LOSS_PER_SECOND 0.25
+#define NUTRITION_LOSS_PER_MOVE 1
+#define NUTRITION_LOSS_PER_CLICK 1
 
-#define HYDRATION_LOSS_PER_LIFE 0.15
-#define HYDRATION_LOSS_PER_MOVE 0.0025
+//Hydration levels for humans
+#define HYDRATION_LEVEL_MAX 1000
+#define HYDRATION_LEVEL_OVERHYDRATED 800
+#define HYDRATION_LEVEL_NORMAL 500
+#define HYDRATION_LEVEL_THIRSTY 200
+#define HYDRATION_LEVEL_DEHYDRATED 50
+
+#define HYDRATION_LEVEL_START_MAX 700
+#define HYDRATION_LEVEL_START_MIN 500
+
+#define HYDRATION_LOSS_PER_SECOND 0.25
+#define HYDRATION_LOSS_PER_MOVE 1
+#define HYDRATION_LOSS_PER_CLICK 1
 
 #define DRINK_HYDRATION_FACTOR_HIGH 1.5
 #define DRINK_HYDRATION_FACTOR_MEDIUM 1
@@ -208,9 +217,6 @@
 #define DISGUST_LEVEL_DISGUSTED 75
 #define DISGUST_LEVEL_VERYGROSS 50
 #define DISGUST_LEVEL_GROSS 25
-
-//Used as an upper limit for species that continuously gain nutriment
-#define NUTRITION_LEVEL_ALMOST_FULL 395
 
 //Charge levels for Ethereals
 #define ETHEREAL_CHARGE_NONE 0
@@ -358,7 +364,6 @@
 #define POCKET_STRIP_DELAY (4 SECONDS) //time taken to search somebody's pockets
 #define DOOR_CRUSH_DAMAGE 15 //the amount of damage that airlocks deal when they crush you
 
-#define HUNGER_FACTOR 0.05 //factor at which mob nutrition decreases
 #define ETHEREAL_CHARGE_FACTOR 0.8 //factor at which ethereal's charge decreases per second
 #define REAGENTS_METABOLISM 0.2 //How many units of reagent are consumed per second, by default.
 #define REAGENTS_EFFECT_MULTIPLIER (REAGENTS_METABOLISM / 0.4) // By defining the effect multiplier this way, it'll exactly adjust all effects according to how they originally were with the 0.4 metabolism

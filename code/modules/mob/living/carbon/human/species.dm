@@ -1243,9 +1243,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			H.update_inv_wear_suit()
 
 	// nutrition decrease and satiety
-	if (H.nutrition > 0 && H.stat != DEAD && !HAS_TRAIT(H, TRAIT_NOHUNGER))
+	if (H.nutrition > 0 && H.stat != DEAD && !HAS_TRAIT(H, TRAIT_NOHUNGER) && !H.IsSleeping())
 		// THEY HUNGER
-		var/hunger_rate = HUNGER_FACTOR
+		var/hunger_rate = NUTRITION_LOSS_PER_SECOND
 		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
 		if(mood && mood.sanity > SANITY_DISTURBED)
 			hunger_rate *= max(1 - 0.002 * mood.sanity, 0.5) //0.85 to 0.75
@@ -1260,7 +1260,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			H.satiety++
 			if(DT_PROB(round(-H.satiety/77), delta_time))
 				H.Jitter(5)
-			hunger_rate = 3 * HUNGER_FACTOR
+			hunger_rate = 3 * NUTRITION_LOSS_PER_SECOND
 		hunger_rate *= H.physiology.hunger_mod
 		H.adjust_nutrition(-hunger_rate * delta_time)
 

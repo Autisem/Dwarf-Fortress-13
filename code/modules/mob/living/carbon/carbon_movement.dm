@@ -16,13 +16,16 @@
 	. = ..()
 	if(. && !(movement_type & FLOATING)) //floating is easy
 		if(HAS_TRAIT(src, TRAIT_NOHUNGER))
-			set_nutrition(NUTRITION_LEVEL_FED - 1)	//just less than feeling vigorous
+			set_nutrition(NUTRITION_LEVEL_ALMOST_FULL)	//just less than feeling vigorous
+			hydration = HYDRATION_LEVEL_START_MIN
 		else if(nutrition && stat != DEAD)
-			adjust_nutrition(-(HUNGER_FACTOR/10))
-			hydration -= HYDRATION_LOSS_PER_MOVE
 			if(m_intent == MOVE_INTENT_RUN)
-				adjust_nutrition(-(HUNGER_FACTOR/10))
-				hydration -= HYDRATION_LOSS_PER_MOVE
+				adjust_nutrition(-NUTRITION_LOSS_PER_MOVE*1.5)
+				hydration = max(0, hydration-HYDRATION_LOSS_PER_MOVE*1.5)
+			else
+				adjust_nutrition(-NUTRITION_LOSS_PER_MOVE)
+				hydration = max(0, hydration-HYDRATION_LOSS_PER_MOVE)
+
 
 
 /mob/living/carbon/set_usable_legs(new_value)
