@@ -36,7 +36,7 @@
 
 /obj/structure/brewery/l/Initialize()
 	. = ..()
-	create_reagents(150, _allowed_reagents=list(/datum/reagent/wort, /datum/reagent/consumable/ethanol))
+	create_reagents(150, _allowed_reagents=list(/datum/reagent/wort))
 	START_PROCESSING(SSprocessing, src)
 
 /obj/structure/brewery/l/AltClick(mob/user)
@@ -46,7 +46,6 @@
 	open = !open
 	update_appearance()
 	to_chat(user, span_notice("You [open?"open":"close"] [src]."))
-
 
 /obj/structure/brewery/l/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/stack/sheet/mineral/coal))

@@ -12,7 +12,7 @@
 
 /obj/structure/quern/Initialize()
 	. = ..()
-	create_reagents(max_volume, _allowed_reagents=list(/datum/reagent/grain))
+	create_reagents(max_volume)
 
 /obj/structure/quern/examine(mob/user)
 	. = ..()
@@ -108,10 +108,13 @@
 
 /obj/structure/quern/CtrlClick(mob/user)
 	. = ..()
-	if(contents.len)
-		to_chat(user, span_notice("You empty [src]."))
+	if(!contents.len)
+		to_chat(user, span_warning("[src] is empty."))
+		return
+	to_chat(user, span_notice("You empty [src]."))
 	for(var/obj/item/I in contents)
 		I.forceMove(get_turf(src))
+	update_appearance()
 
 /obj/structure/quern/update_icon_state()
 	. = ..()
