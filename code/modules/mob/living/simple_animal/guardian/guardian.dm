@@ -34,7 +34,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	maxHealth = INFINITY //The spirit itself is invincible
 	health = INFINITY
 	healable = FALSE //don't brusepack the guardian
-	damage_coeff = list(BRUTE = 0.5, BURN = 0.5, TOX = 0.5, CLONE = 0.5, STAMINA = 0, OXY = 0.5) //how much damage from each damage type we transfer to the owner
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	obj_damage = 40
 	melee_damage_lower = 15
@@ -263,10 +262,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if(amount > 0)
 			to_chat(summoner, "<span class='danger'><B>Your [name] is under attack! You take damage!</span></B>")
 			summoner.visible_message(span_danger("<B>Blood sprays from [summoner] as [src] takes damage!</B>"))
-			switch(summoner.stat)
-				if(UNCONSCIOUS, HARD_CRIT)
-					to_chat(summoner, "<span class='danger'><B>Your body can't take the strain of sustaining [src] in this condition, it begins to fall apart!</span></B>")
-					summoner.adjustCloneLoss(amount * 0.5) //dying hosts take 50% bonus damage as cloneloss
 		update_health_hud()
 
 /mob/living/simple_animal/hostile/guardian/ex_act(severity, target)

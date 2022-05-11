@@ -40,7 +40,7 @@
 	max_mobs = 3
 	icon = 'icons/mob/nest.dmi'
 	spawn_text = "crawls out of"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goliath, /mob/living/simple_animal/hostile/asteroid/hivelord, /mob/living/simple_animal/hostile/asteroid/basilisk, /mob/living/simple_animal/hostile/asteroid/fugu)
+	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goliath, /mob/living/simple_animal/hostile/asteroid/hivelord, /mob/living/simple_animal/hostile/asteroid/fugu)
 	faction = list("mining")
 
 /obj/structure/spawner/mining/goliath
@@ -52,11 +52,6 @@
 	name = "hivelord den"
 	desc = "A den housing a nest of hivelords."
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/hivelord)
-
-/obj/structure/spawner/mining/basilisk
-	name = "basilisk den"
-	desc = "A den housing a nest of basilisks, bring a coat."
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk)
 
 /obj/structure/spawner/mining/wumborian
 	name = "wumborian fugu den"

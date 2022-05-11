@@ -12,7 +12,6 @@
 	pinless = TRUE
 	max_charges = 1
 	item_flags = NEEDS_PERMIT | NOBLUDGEON
-	sharpness = SHARP_POINTY
 	force = 18
 
 /obj/item/gun/magic/hook/shoot_with_empty_chamber(mob/living/user)

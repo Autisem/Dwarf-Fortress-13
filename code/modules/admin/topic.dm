@@ -758,7 +758,7 @@
 				if(DEAD)
 					status = span_red("<b>Dead</b>")
 			health_description = "Status = [status]"
-			health_description += "<BR>Oxy: [L.getOxyLoss()] - Tox: [L.getToxLoss()] - Fire: [L.getFireLoss()] - Brute: [L.getBruteLoss()] - Clone: [L.getCloneLoss()] - Brain: [L.getOrganLoss(ORGAN_SLOT_BRAIN)] - Stamina: [L.getStaminaLoss()]"
+			health_description += "<BR>Oxy: [L.getOxyLoss()] - Tox: [L.getToxLoss()] - Fire: [L.getFireLoss()] - Brute: [L.getBruteLoss()] - Brain: [L.getOrganLoss(ORGAN_SLOT_BRAIN)] - Stamina: [L.getStaminaLoss()]"
 		else
 			health_description = "This mob type has no health to speak of."
 
@@ -1120,11 +1120,7 @@
 				else
 					target = marked_datum
 
-		var/obj/structure/closet/supplypod/centcompod/pod
-
 		if(target)
-			if(where == "frompod")
-				pod = new()
 
 			for (var/path in paths)
 				for (var/i = 0; i < number; i++)
@@ -1135,10 +1131,7 @@
 							N.name = obj_name
 					else
 						var/atom/O
-						if(where == "frompod")
-							O = new path(pod)
-						else
-							O = new path(target)
+						O = new path(target)
 
 						if(!QDELETED(O))
 							O.flags_1 |= ADMIN_SPAWNED_1
@@ -1153,9 +1146,6 @@
 								var/mob/living/L = usr
 								var/obj/item/I = O
 								L.put_in_hands(I)
-
-		if(pod)
-			new /obj/effect/pod_landingzone(target, pod)
 
 		if (number == 1)
 			log_admin("[key_name(usr)] created a [english_list(paths)]")

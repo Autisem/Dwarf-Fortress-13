@@ -66,7 +66,7 @@
 		span_notice("[user] отрезал немного здоровой плоти с [parse_zone(target_zone)] [skloname(target.name, RODITELNI, target.gender)] при помощи [tool]!") ,
 		span_notice("[user] отрезал немного здоровой плоти с [parse_zone(target_zone)] [skloname(target.name, RODITELNI, target.gender)]!") ,
 		playsound(get_turf(target), 'sound/surgery/organ1.ogg', 75, TRUE, falloff_exponent = 12, falloff_distance = 1))
-	surgery.operated_bodypart.receive_damage(brute=rand(4,8), sharpness=TRUE)
+	surgery.operated_bodypart.receive_damage(brute=rand(4,8), attack_type = tool.atck_type)
 
 /datum/surgery_step/debride/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	if(!..())

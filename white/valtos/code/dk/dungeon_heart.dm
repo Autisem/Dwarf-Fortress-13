@@ -4,7 +4,6 @@
 	icon_state = "heart"
 
 	obj_integrity = 500
-	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 
 	anchored = TRUE
 	density = TRUE

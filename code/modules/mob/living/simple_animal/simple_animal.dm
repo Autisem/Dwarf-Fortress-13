@@ -36,17 +36,17 @@
 
 	///When someone interacts with the simple animal.
 	///Help-intent verb in present continuous tense.
-	var/response_help_continuous = "трогает"
+	var/response_help_continuous = "pokes"
 	///Help-intent verb in present simple tense.
-	var/response_help_simple = "трогает"
+	var/response_help_simple = "poke"
 	///Disarm-intent verb in present continuous tense.
-	var/response_disarm_continuous = "толкает"
+	var/response_disarm_continuous = "pushes"
 	///Disarm-intent verb in present simple tense.
-	var/response_disarm_simple = "толкает"
+	var/response_disarm_simple = "push"
 	///Harm-intent verb in present continuous tense.
-	var/response_harm_continuous = "бьёт"
+	var/response_harm_continuous = "hits"
 	///Harm-intent verb in present simple tense.
-	var/response_harm_simple = "бьёт"
+	var/response_harm_simple = "hit"
 	var/harm_intent_damage = 3
 	///Minimum force required to deal any damage.
 	var/force_threshold = 0
@@ -76,24 +76,26 @@
 	//Defaults to zero so Ian can still be cuddly. Moved up the tree to living! This allows us to bypass some hardcoded stuff.
 	melee_damage_lower = 0
 	melee_damage_upper = 0
+	///attack type of an animal
+	var/atck_type = BLUNT
 	///how much damage this simple animal does to objects, if any.
 	var/obj_damage = 0
 	///How much armour they ignore, as a flat reduction from the targets armour value.
 	var/armour_penetration = 0
 	///Damage type of a simple mob's melee attack, should it do damage.
 	var/melee_damage_type = BRUTE
-	/// 1 for full damage , 0 for none , -1 for 1:1 heal from that source.
-	var/list/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
+	///FUCK damaga_coeff; armor is the only way
+	var/datum/armor/armor
 	///Attacking verb in present continuous tense.
-	var/attack_verb_continuous = "атакует"
+	var/attack_verb_continuous = "attacks"
 	///Attacking verb in present simple tense.
-	var/attack_verb_simple = "атакует"
+	var/attack_verb_simple = "attack"
 	var/attack_sound = null
 	var/attack_vis_effect
 	///Attacking, but without damage, verb in present continuous tense.
-	var/friendly_verb_continuous = "тычет"
+	var/friendly_verb_continuous = "pokes"
 	///Attacking, but without damage, verb in present simple tense.
-	var/friendly_verb_simple = "тычет"
+	var/friendly_verb_simple = "poke"
 	///Set to 1 to allow breaking of crates,lockers,racks,tables; 2 for walls; 3 for Rwalls.
 	var/environment_smash = ENVIRONMENT_SMASH_NONE
 
@@ -183,6 +185,10 @@
 /mob/living/simple_animal/Initialize(mapload)
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
+	if (islist(armor))
+		armor = getArmor(arglist(armor))
+	else if (!armor)
+		armor = getArmor()
 	if(gender == PLURAL)
 		gender = pick(MALE,FEMALE)
 	if(!real_name)
@@ -205,8 +211,6 @@
 		emote_see = string_list(emote_hear)
 	if(atmos_requirements)
 		atmos_requirements = string_assoc_list(atmos_requirements)
-	if(damage_coeff)
-		damage_coeff = string_assoc_list(damage_coeff)
 	if(footstep_type)
 		AddElement(/datum/element/footstep, footstep_type)
 

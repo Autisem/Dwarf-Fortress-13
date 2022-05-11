@@ -42,7 +42,7 @@
 	name = "7.12x82mm экспансивная пуля"
 	damage = 50
 	armour_penetration = -60
-	sharpness = SHARP_EDGED
+	atck_type = SHARP
 	wound_bonus = -40
 	bare_wound_bonus = 30
 	wound_falloff_tile = -8

@@ -23,10 +23,9 @@
 	shard_type = /obj/item/shard
 	value_per_unit = 0.0025
 	beauty_modifier = 0.05
-	armor_modifiers = list(MELEE = 0.2, BULLET = 0.2, LASER = 0, ENERGY = 1, BOMB = 0, BIO = 0.2, RAD = 0.2, FIRE = 1, ACID = 0.2)
 
 /datum/material/glass/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
-	victim.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = 5, sharpness = TRUE) //cronch
+	victim.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = 5, attack_type = SHARP) //cronch
 	return TRUE
 
 /*
@@ -46,7 +45,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	sheet_type = /obj/item/stack/sheet/mineral/gold
 	value_per_unit = 0.0625
 	beauty_modifier = 0.15
-	armor_modifiers = list(MELEE = 1.1, BULLET = 1.1, LASER = 1.15, ENERGY = 1.15, BOMB = 1, BIO = 1, RAD = 1, FIRE = 0.7, ACID = 1.1)
 
 /datum/material/gold/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = 5)
@@ -84,7 +82,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	value_per_unit = 0.01
 	beauty_modifier = 0.1
-	armor_modifiers = list(MELEE = 1.1, BULLET = 1.1, LASER = 0.4, ENERGY = 0.4, BOMB = 1, BIO = 0.2, RAD = 0, FIRE = 0, ACID = 0.3)
 	texture_layer_icon_state = "woodgrain"
 
 /datum/material/wood/on_applied_obj(obj/source, amount, material_flags)
@@ -132,7 +129,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	value_per_unit = 0.001
 	strength_modifier = 0.5
 	integrity_modifier = 0.1
-	armor_modifiers = list(MELEE = 0.25, BULLET = 0.25, LASER = 1.25, ENERGY = 0.25, BOMB = 0.25, BIO = 0.25, RAD = 1.5, FIRE = 1.5, ACID = 1.5)
 	beauty_modifier = 0.25
 	turf_sound_override = FOOTSTEP_SAND
 	texture_layer_icon_state = "sand"
@@ -149,7 +145,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
 	sheet_type = /obj/item/stack/sheet/paperframes
 	value_per_unit = 0.0025
-	armor_modifiers = list(MELEE = 0.1, BULLET = 0.1, LASER = 0.1, ENERGY = 0.1, BOMB = 0.1, BIO = 0.1, RAD = 1.5, FIRE = 0, ACID = 1.5)
 	beauty_modifier = 0.3
 	turf_sound_override = FOOTSTEP_SAND
 	texture_layer_icon_state = "paper"
@@ -174,7 +169,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
 	sheet_type = /obj/item/stack/sheet/cardboard
 	value_per_unit = 0.003
-	armor_modifiers = list(MELEE = 0.25, BULLET = 0.25, LASER = 0.25, ENERGY = 0.25, BOMB = 0.25, BIO = 0.25, RAD = 1.5, FIRE = 0, ACID = 1.5)
 	beauty_modifier = -0.1
 
 /datum/material/cardboard/on_applied_obj(obj/source, amount, material_flags)
@@ -197,7 +191,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
 	sheet_type = /obj/item/stack/sheet/bone
 	value_per_unit = 0.05
-	armor_modifiers = list(MELEE = 1.2, BULLET = 0.75, LASER = 0.75, ENERGY = 1.2, BOMB = 1, BIO = 1, RAD = 1.5, FIRE = 1.5, ACID = 1.5)
 	beauty_modifier = -0.2
 
 /datum/material/bamboo
@@ -207,7 +200,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/bamboo
 	value_per_unit = 0.0025
-	armor_modifiers = list(MELEE = 0.5, BULLET = 0.5, LASER = 0.5, ENERGY = 0.5, BOMB = 0.5, BIO = 0.51, RAD = 1.5, FIRE = 0.5, ACID = 1.5)
 	beauty_modifier = 0.2
 	turf_sound_override = FOOTSTEP_WOOD
 	texture_layer_icon_state = "bamboo"

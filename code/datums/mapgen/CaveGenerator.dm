@@ -10,7 +10,6 @@
 	var/list/feature_spawn_list = list(/obj/structure/geyser/random = 1)
 	///Weighted list of mobs that can spawn in the area.
 	var/list/mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast/random = 50, \
-		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 40, \
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random = 30, \
 		SPAWN_MEGAFAUNA = 4)
 	///Weighted list of flora that can spawn in the area.

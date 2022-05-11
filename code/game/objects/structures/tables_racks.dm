@@ -304,7 +304,6 @@
 	canSmoothWith = list(SMOOTH_GROUP_GLASS_TABLES)
 	max_integrity = 70
 	resistance_flags = ACID_PROOF
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 100)
 	var/list/debris = list()
 
 /obj/structure/table/glass/Initialize()
@@ -481,7 +480,6 @@
 	deconstruction_ready = 0
 	max_integrity = 200
 	integrity_failure = 0.25
-	armor = list(MELEE = 10, BULLET = 30, LASER = 30, ENERGY = 100, BOMB = 20, BIO = 0, RAD = 0, FIRE = 80, ACID = 70)
 
 /obj/structure/table/reinforced/deconstruction_hints(mob/user)
 	if(deconstruction_ready)
@@ -629,7 +627,7 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src, ATTACK_EFFECT_KICK)
 	user.visible_message(span_danger("<b>[user]</b> пинает <b>[src]</b>.") , null, null, COMBAT_MESSAGE_RANGE)
-	take_damage(rand(4,8), BRUTE, MELEE, 1)
+	take_damage(rand(4,8), BRUTE, BLUNT, 1)
 
 /obj/structure/rack/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)

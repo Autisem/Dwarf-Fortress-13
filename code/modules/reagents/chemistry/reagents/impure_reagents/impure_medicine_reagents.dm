@@ -162,7 +162,6 @@
 	description = "These inhibitory peptides cause cellular damage and cost nutrition to the patient!"
 
 /datum/reagent/peptides_failed/on_mob_life(mob/living/carbon/owner, delta_time, times_fired)
-	owner.adjustCloneLoss(0.25 * delta_time)
 	owner.adjust_nutrition(-5 * REAGENTS_METABOLISM * delta_time)
 	. = ..()
 

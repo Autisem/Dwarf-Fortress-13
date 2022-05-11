@@ -32,11 +32,3 @@
 	name = "Сращенные нервы"
 	desc = "Нервы соединены друг с другом по нескольку раз, значительно снижая эффективность оглущающих эффектов."
 	mod_type = BIOWARE_NERVES
-
-/datum/bioware/spliced_nerves/on_gain()
-	..()
-	owner.physiology.stun_mod *= 0.5
-
-/datum/bioware/spliced_nerves/on_lose()
-	..()
-	owner.physiology.stun_mod *= 2

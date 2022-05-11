@@ -2,7 +2,7 @@
 	var/amount = 0
 	var/maxamount = 3
 	var/upgrade_item = /obj/item/stack/sheet/animalhide/goliath_hide
-	var/datum/armor/added_armor = list(MELEE = 10)
+	var/datum/armor/added_armor = list(BLUNT = 10)
 	var/upgrade_name
 
 /datum/component/armor_plate/Initialize(_maxamount,obj/item/_upgrade_item,datum/armor/_added_armor)
@@ -67,7 +67,7 @@
 
 /datum/component/armor_plate/plasteel
 	upgrade_item = /obj/item/stack/sheet/plasteel_armor_plate
-	added_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 13, BOMB = 10)
+	added_armor = list(BLUNT = 10)
 
 /datum/crafting_recipe/plasteel_armor_plate
 	name = "Бронепластина из пластали"

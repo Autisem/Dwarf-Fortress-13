@@ -64,38 +64,6 @@
 	playsound(M.loc,'sound/items/drink.ogg', rand(10,50), TRUE)
 	return TRUE
 
-/obj/item/reagent_containers/food/condiment/afterattack(obj/target, mob/user , proximity)
-	. = ..()
-	if(!proximity)
-		return
-	if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
-
-		if(!target.reagents.total_volume)
-			to_chat(user, span_warning("[target] пуст!"))
-			return
-
-		if(reagents.total_volume >= reagents.maximum_volume)
-			to_chat(user, span_warning("[capitalize(src.name)] полон!"))
-			return
-
-		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transfered_by = user)
-		to_chat(user, span_notice("Заполняю [src] с [trans] единицами содержимого [target]."))
-
-		playsound(get_turf(user), pick(WATER_FLOW_MINI), 50, TRUE)
-
-	//Something like a glass or a food item. Player probably wants to transfer TO it.
-	else if(target.is_drainable() || IS_EDIBLE(target))
-		if(!reagents.total_volume)
-			to_chat(user, span_warning("[capitalize(src.name)] пуст!"))
-			return
-		if(target.reagents.total_volume >= target.reagents.maximum_volume)
-			to_chat(user, span_warning("Не могу добавить ничего больше в [target]!"))
-			return
-		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
-		to_chat(user, span_notice("Переливаю [trans] единиц в [target]."))
-
-		playsound(get_turf(user), pick(WATER_FLOW_MINI), 50, TRUE)
-
 /obj/item/reagent_containers/food/condiment/enzyme
 	name = "universal enzyme"
 	desc = "Used in cooking various dishes."

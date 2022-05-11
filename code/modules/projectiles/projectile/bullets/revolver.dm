@@ -53,7 +53,7 @@
 	damage = 15
 	armour_penetration = -30
 	ricochets_max = 0
-	sharpness = SHARP_EDGED
+	atck_type = SHARP
 	wound_bonus = 20
 	bare_wound_bonus = 20
 	embedding = list(embed_chance=75, fall_chance=3, jostle_chance=4, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.4, pain_mult=5, jostle_pain_mult=6, rip_time=1 SECONDS)

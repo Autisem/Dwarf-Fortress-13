@@ -103,7 +103,6 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("ткацкий станок", /obj/structure/loom, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("ступка", /obj/item/reagent_containers/glass/mortar, 3), \
 	new/datum/stack_recipe("головешка", /obj/item/match/firebrand, 2, time = 100), \
-	new/datum/stack_recipe("зубок", /obj/item/stack/teeth/human/wood, 1, time = 5),\
 	new/datum/stack_recipe("рукоять скипетра", /obj/item/scepter_shaft, 3, time=5),\
 	null, \
 	new/datum/stack_recipe_list("церковные скамьи", list(
@@ -123,7 +122,6 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	icon = 'white/valtos/icons/items.dmi'
 	mats_per_unit = list(/datum/material/wood=MINERAL_MATERIAL_AMOUNT)
 	sheettype = "wood"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 0)
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_SMALL
 	full_w_class = WEIGHT_CLASS_NORMAL
@@ -168,7 +166,6 @@ GLOBAL_LIST_INIT(bamboo_recipes, list ( \
 	sheettype = "bamboo"
 	mats_per_unit = list(/datum/material/bamboo = MINERAL_MATERIAL_AMOUNT)
 	throwforce = 15
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 0)
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/sheet/mineral/bamboo
 	grind_results = list(/datum/reagent/cellulose = 10)

@@ -1,17 +1,17 @@
 /obj/item/shrapnel // frag grenades
 	name = "осколок шрапнели"
 	custom_materials = list(/datum/material/iron=50)
-	armour_penetration = -20
+	armor_penetration = -20
 	icon = 'icons/obj/shards.dmi'
 	icon_state = "large"
 	w_class = WEIGHT_CLASS_TINY
 	item_flags = DROPDEL
-	sharpness = SHARP_EDGED
+	atck_type = PIERCE
 
 /obj/item/shrapnel/stingball // stingbang grenades
 	name = "резиновая шрапнель"
 	icon_state = "tiny"
-	sharpness = NONE
+	atck_type = BLUNT
 
 /obj/item/shrapnel/bullet // bullets
 	name = "пуля"
@@ -31,7 +31,7 @@
 	shrapnel_type = /obj/item/shrapnel
 	ricochet_incidence_leeway = 60
 	hit_prone_targets = TRUE
-	sharpness = SHARP_EDGED
+	atck_type = PIERCE
 	wound_bonus = 30
 	embedding = list(embed_chance=70, ignore_throwspeed_threshold=TRUE, fall_chance=1)
 
@@ -74,7 +74,7 @@
 	range = 7
 	damage = 8
 	stamina = 8
-	sharpness = SHARP_EDGED
+	atck_type = SHARP
 	wound_bonus = 5
 	bare_wound_bonus = 5
 	ricochets_max = 2
@@ -87,5 +87,5 @@
 /obj/item/shrapnel/capmine
 	name = "бронебойный осколок шрапнели"
 	custom_materials = list(/datum/material/iron=50)
-	armour_penetration = -30
+	armor_penetration = -30
 

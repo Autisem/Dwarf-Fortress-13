@@ -20,7 +20,6 @@
 	attack_verb_simple = list("колотит", "бьёт", "ударяет", "вмазывает")
 	tool_behaviour = TOOL_WRENCH
 	toolspeed = 1
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
 
 /obj/item/wrench/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is beating [user.ru_na()]self to death with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -77,44 +76,3 @@
 	icon = 'white/Feline/icons/cyber_arm_tools.dmi'
 	icon_state = "wrench_cyborg"
 	toolspeed = 0.5
-
-/obj/item/wrench/combat
-	name = "combat wrench"
-	desc = "It's like a normal wrench but edgier. Can be found on the battlefield."
-	icon_state = "wrench_combat"
-	belt_icon_state = "wrench_combat"
-	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	attack_verb_continuous = list("devastates", "brutalizes", "commits a war crime against", "obliterates", "humiliates")
-	attack_verb_simple = list("devastate", "brutalize", "commit a war crime against", "obliterate", "humiliate")
-	tool_behaviour = null
-	toolspeed = null
-
-/obj/item/wrench/combat/Initialize()
-	. = ..()
-	AddComponent(/datum/component/transforming, \
-		force_on = 6, \
-		throwforce_on = 8, \
-		hitsound_on = hitsound, \
-		w_class_on = WEIGHT_CLASS_NORMAL, \
-		clumsy_check = FALSE)
-	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, .proc/on_transform)
-
-/*
- * Signal proc for [COMSIG_TRANSFORMING_ON_TRANSFORM].
- *
- * Gives it wrench behaviors when active.
- */
-/obj/item/wrench/combat/proc/on_transform(obj/item/source, mob/user, active)
-	SIGNAL_HANDLER
-
-	if(active)
-		tool_behaviour = TOOL_WRENCH
-		toolspeed = 1
-	else
-		tool_behaviour = initial(tool_behaviour)
-		toolspeed = initial(toolspeed)
-
-	balloon_alert(user, "[name] [active ? "active, woe!":"restrained"]")
-	playsound(user ? user : src, active ? 'sound/weapons/saberon.ogg' : 'sound/weapons/saberoff.ogg', 5, TRUE)
-	return COMPONENT_NO_DEFAULT_MESSAGE

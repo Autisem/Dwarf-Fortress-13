@@ -1,6 +1,6 @@
 
 ///the essential proc to call when an obj must receive damage of any kind.
-/obj/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
+/obj/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = BLUNT, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	if(QDELETED(src))
 		stack_trace("[src] taking damage after deletion")
 		return
@@ -51,8 +51,8 @@
 	return obj_integrity
 
 ///returns the damage value of the attack after processing the obj's various armor protections
-/obj/proc/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration = 0)
-	if(damage_flag == MELEE && damage_amount < damage_deflection)
+/obj/proc/run_obj_armor(damage_amount, damage_type, damage_flag = BLUNT, attack_dir, armour_penetration = 0)
+	if(damage_flag in list(SHARP, BLUNT, PIERCE) && damage_amount < damage_deflection)
 		return 0
 	switch(damage_type)
 		if(BRUTE)
@@ -82,7 +82,7 @@
 
 /obj/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	..()
-	take_damage(AM.throwforce, BRUTE, MELEE, 1, get_dir(src, AM))
+	take_damage(AM.throwforce, BRUTE, BLUNT, 1, get_dir(src, AM))
 
 /obj/ex_act(severity, target)
 	if(resistance_flags & INDESTRUCTIBLE)
@@ -91,15 +91,15 @@
 	if(QDELETED(src))
 		return
 	if(target == src)
-		take_damage(INFINITY, BRUTE, BOMB, 0)
+		take_damage(INFINITY, BRUTE, BLUNT, 0)
 		return
 	switch(severity)
 		if(1)
-			take_damage(INFINITY, BRUTE, BOMB, 0)
+			take_damage(INFINITY, BRUTE, BLUNT, 0)
 		if(2)
-			take_damage(rand(100, 250), BRUTE, BOMB, 0)
+			take_damage(rand(100, 250), BRUTE, BLUNT, 0)
 		if(3)
-			take_damage(rand(10, 90), BRUTE, BOMB, 0)
+			take_damage(rand(10, 90), BRUTE, BLUNT, 0)
 
 /obj/bullet_act(obj/projectile/P)
 	. = ..()
@@ -109,7 +109,7 @@
 	if(!QDELETED(src)) //Bullet on_hit effect might have already destroyed this object
 		take_damage(P.damage, P.damage_type, P.flag, 0, turn(P.dir, 180), P.armour_penetration)
 
-/obj/proc/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, armor_penetration = 0) //used by attack_alien, attack_animal, and attack_slime
+/obj/proc/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = BLUNT, sound_effect = 1, armor_penetration = 0) //used by attack_alien, attack_animal, and attack_slime
 	user.do_attack_animation(src)
 	user.changeNext_move(CLICK_CD_MELEE)
 	return take_damage(damage_amount, damage_type, damage_flag, sound_effect, get_dir(src, user), armor_penetration)
@@ -123,9 +123,9 @@
 		if(M.environment_smash)
 			play_soundeffect = FALSE
 		if(M.obj_damage)
-			. = attack_generic(M, M.obj_damage, M.melee_damage_type, MELEE, play_soundeffect, M.armour_penetration)
+			. = attack_generic(M, M.obj_damage, M.melee_damage_type, M.atck_type, play_soundeffect, M.armour_penetration)
 		else
-			. = attack_generic(M, rand(M.melee_damage_lower,M.melee_damage_upper), M.melee_damage_type, MELEE, play_soundeffect, M.armour_penetration)
+			. = attack_generic(M, rand(M.melee_damage_lower,M.melee_damage_upper), M.melee_damage_type, M.atck_type, play_soundeffect, M.armour_penetration)
 		if(. && !play_soundeffect)
 			playsound(src, 'sound/effects/meteorimpact.ogg', 100, TRUE)
 

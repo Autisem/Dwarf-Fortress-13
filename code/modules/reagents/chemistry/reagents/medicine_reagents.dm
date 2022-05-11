@@ -50,7 +50,6 @@
 	M.heal_bodypart_damage(5 * REM * delta_time, 5 * REM * delta_time)
 	M.adjustToxLoss(-5 * REM * delta_time, FALSE, TRUE)
 	M.setOxyLoss(0, 0)
-	M.setCloneLoss(0, 0)
 
 	M.set_blurriness(0)
 	M.set_blindness(0)
@@ -152,29 +151,12 @@
 		M.adjustBruteLoss(-power * REM * delta_time, 0)
 		M.adjustFireLoss(-power * REM * delta_time, 0)
 		M.adjustToxLoss(-power * REM * delta_time, 0, TRUE) //heals TOXINLOVERs
-		M.adjustCloneLoss(-power * REM * delta_time, 0)
 		for(var/i in M.all_wounds)
 			var/datum/wound/iter_wound = i
 			iter_wound.on_xadone(power * REAGENTS_EFFECT_MULTIPLIER * delta_time)
 		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC) //fixes common causes for disfiguration
 		. = TRUE
 	metabolization_rate = REAGENTS_METABOLISM * (0.00001 * (M.bodytemperature ** 2) + 0.5)
-	..()
-
-/datum/reagent/medicine/clonexadone
-	name = "Клоноксадон"
-	enname = "Clonexadone"
-	description = "A chemical that derives from Cryoxadone. It specializes in healing clone damage, but nothing else. Requires very cold temperatures to properly metabolize, and metabolizes quicker than cryoxadone."
-	color = "#3D3DC6"
-	taste_description = "мускулы"
-	metabolization_rate = 1.5 * REAGENTS_METABOLISM
-
-/datum/reagent/medicine/clonexadone/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	if(M.bodytemperature < 273.15)
-		M.adjustCloneLoss((0.00006 * (M.bodytemperature ** 2) - 6) * REM * delta_time, 0)
-		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
-		. = TRUE
-	metabolization_rate = REAGENTS_METABOLISM * (0.000015 * (M.bodytemperature ** 2) + 0.75)
 	..()
 
 /datum/reagent/medicine/pyroxadone
@@ -202,7 +184,6 @@
 		M.adjustBruteLoss(-power * REM * delta_time, FALSE)
 		M.adjustFireLoss(-1.5 * power * REM * delta_time, FALSE)
 		M.adjustToxLoss(-power * REM * delta_time, FALSE, TRUE)
-		M.adjustCloneLoss(-power * REM * delta_time, FALSE)
 		for(var/i in M.all_wounds)
 			var/datum/wound/iter_wound = i
 			iter_wound.on_xadone(power * REAGENTS_EFFECT_MULTIPLIER * delta_time)
@@ -221,7 +202,6 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/medicine/rezadone/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	M.setCloneLoss(0) //Rezadone is almost never used in favor of cryoxadone. Hopefully this will change that. // No such luck so far
 	M.heal_bodypart_damage(1 * REM * delta_time, 1 * REM * delta_time)
 	REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	..()
@@ -943,7 +923,6 @@
 	M.adjustOxyLoss(-15 * REM * delta_time, 0)
 	M.adjustToxLoss(-5 * REM * delta_time, 0)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -15 * REM * delta_time)
-	M.adjustCloneLoss(-3 * REM * delta_time, 0)
 	..()
 	. = TRUE
 
@@ -970,7 +949,6 @@
 		M.adjustFireLoss(-1 * REM * delta_time, 0)
 		M.adjustOxyLoss(-0.5 * REM * delta_time, 0)
 		M.adjustToxLoss(-0.5 * REM * delta_time, 0)
-		M.adjustCloneLoss(-0.1 * REM * delta_time, 0)
 		M.adjustStaminaLoss(-0.5 * REM * delta_time, 0)
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1 * REM * delta_time, 150) //This does, after all, come from ambrosia, and the most powerful ambrosia in existence, at that!
 	else
@@ -978,7 +956,6 @@
 		M.adjustFireLoss(-5 * REM * delta_time, 0)
 		M.adjustOxyLoss(-3 * REM * delta_time, 0)
 		M.adjustToxLoss(-3 * REM * delta_time, 0)
-		M.adjustCloneLoss(-1 * REM * delta_time, 0)
 		M.adjustStaminaLoss(-3 * REM * delta_time, 0)
 		M.jitteriness = clamp(M.jitteriness + (3 * REM * delta_time), 0, 30)
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2 * REM * delta_time, 150)
@@ -1423,22 +1400,6 @@
 		else
 			var/obj/item/organ/heart/our_heart = M.getorganslot(ORGAN_SLOT_HEART)
 			our_heart.applyOrganDamage(1)
-
-/datum/reagent/medicine/coagulant/on_mob_metabolize(mob/living/M)
-	if(!ishuman(M))
-		return
-
-	var/mob/living/carbon/human/blood_boy = M
-	blood_boy.physiology?.bleed_mod *= passive_bleed_modifier
-
-/datum/reagent/medicine/coagulant/on_mob_end_metabolize(mob/living/M)
-	if(was_working)
-		to_chat(M, span_warning("Медикамент, сгущающий мою кровь, перестал действовать!"))
-	if(!ishuman(M))
-		return
-
-	var/mob/living/carbon/human/blood_boy = M
-	blood_boy.physiology?.bleed_mod /= passive_bleed_modifier
 
 // i googled "natural coagulant" and a couple of results came up for banana peels, so after precisely 30 more seconds of research, i now dub grinding banana peels good for your blood
 /datum/reagent/medicine/coagulant/banana_peel

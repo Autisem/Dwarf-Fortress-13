@@ -16,7 +16,7 @@
 	custom_materials = list(/datum/material/iron=10, /datum/material/glass=20)
 	reagent_flags = TRANSPARENT
 	custom_price = PAYCHECK_EASY * 0.5
-	sharpness = SHARP_POINTY
+	atck_type = PIERCE
 
 /obj/item/reagent_containers/syringe/Initialize()
 	. = ..()

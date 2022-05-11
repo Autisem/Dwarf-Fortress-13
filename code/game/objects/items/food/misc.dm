@@ -444,7 +444,7 @@
 	force = 30
 	throwforce = 15
 	block_chance = 55
-	armour_penetration = 80
+	armor_penetration = 80
 	wound_bonus = -50
 	attack_verb_continuous = list("шлёпает", "рубит")
 	attack_verb_simple = list("шлёпает", "рубит")

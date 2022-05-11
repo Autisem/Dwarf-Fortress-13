@@ -24,7 +24,6 @@
 	speed = 1
 	melee_damage_lower = 15
 	melee_damage_upper = 18
-	damage_coeff = list(BRUTE = 1, BURN = 1.5, TOX = 1.5, CLONE = 0, STAMINA = 0, OXY = 1.5)
 	obj_damage = 20
 	environment_smash = ENVIRONMENT_SMASH_WALLS
 	attack_verb_continuous = "бьёт"

@@ -368,9 +368,6 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 /mob/living/proc/treat_message(message)
 
-	if(lisp)
-		message = lisp(message, lisp)
-
 	if(HAS_TRAIT(src, TRAIT_UNINTELLIGIBLE_SPEECH))
 		message = unintelligize(message)
 

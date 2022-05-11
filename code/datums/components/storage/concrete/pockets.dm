@@ -61,23 +61,23 @@
 	. = ..()
 	set_holdable(list(
 		/obj/item/kitchen/knife, /obj/item/pen,
-		/obj/item/scalpel, /obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/syringe,
 		/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/screwdriver, /obj/item/weldingtool/mini,
 		/obj/item/firing_pin
 		),
-		list(/obj/item/screwdriver/power)
+		list()
 		)
 
 /datum/component/storage/concrete/pockets/shoes/clown/Initialize()
 	. = ..()
 	set_holdable(list(
 		/obj/item/kitchen/knife, /obj/item/pen,
-		/obj/item/scalpel, /obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/syringe,
 		/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/screwdriver, /obj/item/weldingtool/mini,
 		/obj/item/firing_pin, /obj/item/bikehorn),
-		list(/obj/item/screwdriver/power)
+		list()
 		)
 
 /datum/component/storage/concrete/pockets/pocketprotector

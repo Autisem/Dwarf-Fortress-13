@@ -74,8 +74,8 @@
 			readout += "В случае с бросками, понадобится бросить [span_warning("[HITS_TO_CRIT(source.throwforce)] раз")]."
 		else
 			readout += "В случае с бросками, эта штука не сможет никому навредить."
-		if(source.armour_penetration > 0 || source.block_chance > 0)
-			readout += "Предмет имеет [span_warning("[weapon_tag_convert(source.armour_penetration)]")] пробивную характеристику и [span_warning("[weapon_tag_convert(source.block_chance)]")] возможность блокирования ударов."
+		if(source.get_armorpen() > 0 || source.block_chance > 0)
+			readout += "Предмет имеет [span_warning("[weapon_tag_convert(source.get_armorpen())]")] пробивную характеристику и [span_warning("[weapon_tag_convert(source.block_chance)]")] возможность блокирования ударов."
 	// Custom manual notes
 	if(source.offensive_notes)
 		readout += source.offensive_notes

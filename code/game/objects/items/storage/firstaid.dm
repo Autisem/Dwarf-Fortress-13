@@ -82,16 +82,6 @@
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/clothing/gloves/,
 		/obj/item/clothing/mask/breath,
-		/obj/item/surgical_drapes, //for true paramedics
-		/obj/item/scalpel,
-		/obj/item/circular_saw,
-		/obj/item/bonesetter,
-		/obj/item/surgicaldrill,
-		/obj/item/retractor,
-		/obj/item/cautery,
-		/obj/item/hemostat,
-		/obj/item/blood_filter,
-		/obj/item/shears,
 		/obj/item/stamp,
 		/obj/item/clothing/glasses,
 		/obj/item/wrench/medical,
@@ -107,11 +97,7 @@
 		/obj/item/stack/medical/gauze/twelve = 1,
 		/obj/item/stack/medical/suture = 2,
 		/obj/item/stack/medical/mesh = 2,
-		/obj/item/reagent_containers/hypospray/medipen = 1,
-		/obj/item/surgical_drapes = 1,
-		/obj/item/scalpel = 1,
-		/obj/item/hemostat = 1,
-		/obj/item/cautery = 1)
+		/obj/item/reagent_containers/hypospray/medipen = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/ancient

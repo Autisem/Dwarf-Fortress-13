@@ -57,8 +57,6 @@
 
 	var/name_override //For temporary visible name changes
 
-	var/datum/physiology/physiology
-
 	var/list/datum/bioware = list()
 
 	var/pooed = FALSE

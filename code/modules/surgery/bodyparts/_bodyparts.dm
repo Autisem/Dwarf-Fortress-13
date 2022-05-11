@@ -208,7 +208,7 @@
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
-/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = NONE, attack_direction = null)
+/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null, wound_bonus = 0, bare_wound_bonus = 0, attack_type = BLUNT, attack_direction = null)
 	var/hit_percent = (100-blocked)/100
 	if((!brute && !burn && !stamina) || hit_percent <= 0)
 		return FALSE
@@ -248,10 +248,10 @@
 	var/bio_state = owner.get_biological_state()
 	var/easy_dismember = HAS_TRAIT(owner, TRAIT_EASYDISMEMBER) // if we have easydismember, we don't reduce damage when redirecting damage to different types (slashing weapons on mangled/skinless limbs attack at 100% instead of 50%)
 
-	if(wounding_type == WOUND_BLUNT && sharpness)
-		if(sharpness & SHARP_EDGED)
+	if(wounding_type == WOUND_BLUNT && (attack_type in list(SHARP, PIERCE)))
+		if(attack_type == SHARP)
 			wounding_type = WOUND_SLASH
-		else if (sharpness & SHARP_POINTY)
+		else if (attack_type == PIERCE)
 			wounding_type = WOUND_PIERCE
 
 	//Handling for bone only/flesh only(none right now)/flesh and bone targets
@@ -271,7 +271,7 @@
 		if(BIO_FLESH_BONE)
 			// if we've already mangled the skin (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
 			// So a big sharp weapon is still all you need to destroy a limb
-			if(mangled_state == BODYPART_MANGLED_FLESH && sharpness)
+			if(mangled_state == BODYPART_MANGLED_FLESH && (attack_type in list(SHARP, PIERCE)))
 				playsound(src, "sound/effects/wounds/crackandbleed.ogg", 100)
 				if(wounding_type == WOUND_SLASH && !easy_dismember)
 					wounding_dmg *= 0.6 // edged weapons pass along 60% of their wounding damage to the bone since the power is spread out over a larger area
@@ -323,7 +323,7 @@
 	return update_bodypart_damage_state() || .
 
 /// Allows us to roll for and apply a wound without actually dealing damage. Used for aggregate wounding power with pellet clouds
-/obj/item/bodypart/proc/painless_wound_roll(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus, sharpness=NONE)
+/obj/item/bodypart/proc/painless_wound_roll(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus, attack_type=BLUNT)
 	if(!owner || phantom_wounding_dmg <= WOUND_MINIMUM_DAMAGE || wound_bonus == CANT_WOUND)
 		return
 
@@ -331,10 +331,10 @@
 	var/bio_state = owner.get_biological_state()
 	var/easy_dismember = HAS_TRAIT(owner, TRAIT_EASYDISMEMBER) // if we have easydismember, we don't reduce damage when redirecting damage to different types (slashing weapons on mangled/skinless limbs attack at 100% instead of 50%)
 
-	if(wounding_type == WOUND_BLUNT && sharpness)
-		if(sharpness & SHARP_EDGED)
+	if(wounding_type == WOUND_BLUNT && (attack_type in list(SHARP, PIERCE)))
+		if(attack_type == SHARP)
 			wounding_type = WOUND_SLASH
-		else if (sharpness & SHARP_POINTY)
+		else if (attack_type == PIERCE)
 			wounding_type = WOUND_PIERCE
 
 	//Handling for bone only/flesh only(none right now)/flesh and bone targets
@@ -354,7 +354,7 @@
 		if(BIO_FLESH_BONE)
 			// if we've already mangled the skin (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
 			// So a big sharp weapon is still all you need to destroy a limb
-			if(mangled_state == BODYPART_MANGLED_FLESH && sharpness)
+			if(mangled_state == BODYPART_MANGLED_FLESH && (attack_type in list(SHARP, PIERCE)))
 				playsound(src, "sound/effects/wounds/crackandbleed.ogg", 100)
 				if(wounding_type == WOUND_SLASH && !easy_dismember)
 					phantom_wounding_dmg *= 0.6 // edged weapons pass along 60% of their wounding damage to the bone since the power is spread out over a larger area

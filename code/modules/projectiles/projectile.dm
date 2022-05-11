@@ -131,8 +131,8 @@
 	var/damage = 10
 	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
 	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
-	///Defines what armor to use when it hits things.  Must be set to bullet, laser, energy, or bomb
-	var/flag = BULLET
+	///Defines what armor to use when it hits things.
+	var/flag = PIERCE
 	///How much armor this projectile pierces.
 	var/armour_penetration = 0
 	///Whether or not our bullet lacks penetrative power, and is easily stopped by armor.
@@ -608,10 +608,10 @@
 	return FALSE
 
 /obj/projectile/proc/check_ricochet_flag(atom/A)
-	if((flag in list(ENERGY, LASER)) && (A.flags_ricochet & RICOCHET_SHINY))
+	if((A.flags_ricochet & RICOCHET_SHINY))
 		return TRUE
 
-	if((flag in list(BOMB, BULLET)) && (A.flags_ricochet & RICOCHET_HARD))
+	if((A.flags_ricochet & RICOCHET_HARD))
 		return TRUE
 
 	return FALSE

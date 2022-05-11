@@ -66,7 +66,7 @@
 	display_results(user, target, span_notice("You jerk apart some of the blood vessels in [target] [parse_zone(target_zone)].") ,
 		span_notice("[user] jerks apart some of the blood vessels in [target] [parse_zone(target_zone)] with [tool]!") ,
 		span_notice("[user] jerk apart some of the blood vessels in [target] [parse_zone(target_zone)]!"))
-	surgery.operated_bodypart.receive_damage(brute=rand(4,8), sharpness=SHARP_EDGED, wound_bonus = 10)
+	surgery.operated_bodypart.receive_damage(brute=rand(4,8), attack_type = tool.atck_type, wound_bonus = 10)
 
 ///// Sealing the vessels back together
 /datum/surgery_step/seal_veins

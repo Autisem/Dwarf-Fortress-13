@@ -391,11 +391,11 @@
 
 	switch(choice)
 		if(CADE_TYPE_BOMB)
-			armor = armor.modifyRating(bomb = 50)
+			armor = armor.modifyRating(blunt = 50)
 		if(CADE_TYPE_MELEE)
-			armor = armor.modifyRating(melee = 30, bullet = 30)
+			armor = armor.modifyRating(blunt = 30, pierce = 30)
 		if(CADE_TYPE_ACID)
-			armor = armor.modifyRating(bio = 0, acid = 20)
+			armor = armor.modifyRating(acid = 20)
 
 	barricade_upgrade_type = choice
 
@@ -558,11 +558,11 @@
 
 			switch(barricade_upgrade_type)
 				if(CADE_TYPE_BOMB)
-					armor = armor.modifyRating(bomb = -50)
+					armor = armor.modifyRating(blunt = -50)
 				if(CADE_TYPE_MELEE)
-					armor = armor.modifyRating(melee = -30, bullet = -30)
+					armor = armor.modifyRating(blunt = -30, pierce = -30)
 				if(CADE_TYPE_ACID)
-					armor = armor.modifyRating(bio = 0, acid = -20)
+					armor = armor.modifyRating( acid = -20)
 
 			new /obj/item/stack/sheet/iron(loc, CADE_UPGRADE_REQUIRED_SHEETS)
 			barricade_upgrade_type = null

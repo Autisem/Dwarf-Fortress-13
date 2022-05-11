@@ -20,7 +20,7 @@
 		return ..()
 	if(isobj(target))
 		var/obj/hit_object = target
-		hit_object.take_damage(80, BRUTE, BULLET, FALSE)
+		hit_object.take_damage(80, BRUTE, SHARP, FALSE)
 	else if(isclosedturf(target))
 		damage -= max(damage - 30, 10) //lose extra momentum from busting through a wall
 		var/turf/closed/hit_turf = target

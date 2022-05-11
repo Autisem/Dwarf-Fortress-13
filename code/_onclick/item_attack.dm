@@ -229,7 +229,7 @@
 /obj/attacked_by(obj/item/I, mob/living/user)
 	if(I.force)
 		var/no_damage = TRUE
-		if(take_damage(I.force, I.damtype, MELEE, 1))
+		if(take_damage(I.force, I.damtype, I.atck_type, 1))
 			no_damage = FALSE
 		//only witnesses close by and the victim see a hit message.
 		log_combat(user, src, "attacked", I)
@@ -250,7 +250,7 @@
 		return TRUE //successful attack
 
 /mob/living/simple_animal/attacked_by(obj/item/I, mob/living/user)
-	if(!attack_threshold_check(I.force, I.damtype, MELEE, FALSE))
+	if(!attack_threshold_check(I.force, I.damtype, I.atck_type, FALSE))
 		playsound(loc, 'sound/weapons/tap.ogg', I.get_clamped_volume(), TRUE, -1)
 	else
 		return ..()

@@ -33,8 +33,7 @@
 	attack_verb_continuous = list("attacks", "stabs", "pokes")
 	attack_verb_simple = list("attack", "stab", "poke")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
-	sharpness = SHARP_POINTY
+	atck_type = SHARP
 	var/datum/reagent/forkload //used to eat omelette
 	custom_price = PAYCHECK_PRISONER
 
@@ -95,8 +94,7 @@
 	custom_materials = list(/datum/material/iron=12000)
 	attack_verb_continuous = list("slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
-	sharpness = SHARP_EDGED
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
+	atck_type = SHARP
 	var/bayonet = FALSE //Can this be attached to a gun?
 	wound_bonus = -5
 	bare_wound_bonus = 10
@@ -128,7 +126,7 @@
 	throw_range = 5
 	attack_verb_continuous = list("prods", "whiffs", "scratches", "pokes")
 	attack_verb_simple = list("prod", "whiff", "scratch", "poke")
-	sharpness = SHARP_EDGED
+	atck_type = SHARP
 	custom_price = PAYCHECK_PRISONER * 2
 	var/break_chance = 25
 
@@ -249,7 +247,6 @@
 	throwforce = 12
 	attack_verb_continuous = list("shanks", "shivs")
 	attack_verb_simple = list("shank", "shiv")
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	custom_materials = list(/datum/material/glass=400)
 
 /obj/item/kitchen/knife/shiv/carrot
@@ -296,7 +293,6 @@
 	throw_range = 5
 	attack_verb_simple = list("whack", "spoon", "tap")
 	attack_verb_continuous = list("whacks", "spoons", "taps")
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
 	custom_materials = list(/datum/material/iron=120)
 	custom_price = PAYCHECK_PRISONER * 5
 	tool_behaviour = TOOL_MINING

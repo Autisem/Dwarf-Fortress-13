@@ -91,6 +91,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/payday_modifier = 1
 	///Type of damage attack does. Ethereals attack with burn damage for example.
 	var/attack_type = BRUTE
+	///The ACTUAL attack type. attack_type is damage_type in mobs, but for some fucking reason it's called attack_type here
+	var/atck_type = BLUNT // DO NOT CONFUSE WITH attack_type
 	///Lowest possible punch damage this species can give. If this is set to 0, punches will always miss.
 	var/punchdamagelow = 1
 	///Highest possible punch damage this species can give.
@@ -1261,7 +1263,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(DT_PROB(round(-H.satiety/77), delta_time))
 				H.Jitter(5)
 			hunger_rate = 3 * NUTRITION_LOSS_PER_SECOND
-		hunger_rate *= H.physiology.hunger_mod
 		H.adjust_nutrition(-hunger_rate * delta_time)
 
 	if(H.nutrition > NUTRITION_LEVEL_FULL)
@@ -1451,9 +1452,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			log_combat(user, target, "attempted to punch")
 			return FALSE
 
-		punchouttooth(target,user,rand(0,9),affecting) // hippie -- teethcode
-
-		var/armor_block = target.run_armor_check(affecting, MELEE)
+		var/armor_block = target.run_armor_check(affecting, BLUNT)
 
 		playsound(target.loc, user.dna.species.attack_sound, 25, TRUE, -1)
 
@@ -1550,7 +1549,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 /datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
 	if(user != H)
-		if(H.check_shields(I, I.force, "[I.name]", MELEE_ATTACK, I.armour_penetration))
+		if(H.check_shields(I, I.force, "[I.name]", MELEE_ATTACK, I.get_armorpen()))
 			return FALSE
 	if(H.check_block())
 		H.visible_message(span_warning("[H] blocks [I]!") , \
@@ -1564,7 +1563,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	hit_area = affecting.name
 	var/def_zone = affecting.body_zone
 
-	var/armor_block = H.run_armor_check(affecting, MELEE, span_notice("Your armor has protected your [hit_area]!") , span_warning("Your armor has softened a hit to your [hit_area]!") ,I.armour_penetration)
+	var/armor_block = H.run_armor_check(affecting, I.atck_type, span_notice("Your armor has protected your [hit_area]!") , span_warning("Your armor has softened a hit to your [hit_area]!") ,I.get_armorpen())
 	armor_block = min(90,armor_block) //cap damage reduction at 90%
 	var/Iwound_bonus = I.wound_bonus
 
@@ -1575,7 +1574,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	H.send_item_attack_message(I, user, hit_area, affecting)
 
 	var/attack_direction = get_dir(user, H)
-	apply_damage(I.force, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness(), attack_direction = attack_direction)
+	apply_damage(I.force, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, attack_type = I.atck_type, attack_direction = attack_direction)
 
 	if(!I.force)
 		return FALSE //item force is zero
@@ -1618,8 +1617,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					if(H.glasses && prob(33))
 						H.glasses.add_mob_blood(H)
 						H.update_inv_glasses()
-				if(!I.get_sharpness())
-					punchouttooth(H,user,I.force,affecting) // hippie -- teethcode
 
 			if(BODY_ZONE_CHEST)
 				if(H.stat == CONSCIOUS && !I.get_sharpness() && armor_block < 50)
@@ -1638,11 +1635,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	return TRUE
 
-/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = NONE, attack_direction = null)
-	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
+/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, attack_type = BLUNT, attack_direction = null)
+	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, attack_type, attack_direction)
 	var/hit_percent = (100-(blocked+armor))/100
-	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100
-	if(!damage || (!forced && hit_percent <= 0))
+	if(!damage || !forced)
 		return 0
 
 	var/obj/item/bodypart/BP = null
@@ -1659,50 +1655,41 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	switch(damagetype)
 		if(BRUTE)
 			H.damageoverlaytemp = 20
-			var/damage_amount = forced ? damage : damage * hit_percent * brutemod * H.physiology.brute_mod
+			var/damage_amount = forced ? damage : damage * hit_percent * brutemod
 			if(BP)
-				if(BP.receive_damage(damage_amount, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness, attack_direction = attack_direction))
+				if(BP.receive_damage(damage_amount, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, attack_type = attack_type, attack_direction = attack_direction))
 					H.update_damage_overlays()
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)
 		if(BURN)
 			H.damageoverlaytemp = 20
-			var/damage_amount = forced ? damage : damage * hit_percent * burnmod * H.physiology.burn_mod
+			var/damage_amount = forced ? damage : damage * hit_percent * burnmod
 			if(BP)
-				if(BP.receive_damage(0, damage_amount, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness, attack_direction = attack_direction))
+				if(BP.receive_damage(0, damage_amount, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, attack_type = attack_type, attack_direction = attack_direction))
 					H.update_damage_overlays()
 			else
 				H.adjustFireLoss(damage_amount)
 		if(TOX)
-			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.tox_mod
+			var/damage_amount = forced ? damage : damage * hit_percent
 			H.adjustToxLoss(damage_amount)
 		if(OXY)
-			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.oxy_mod
+			var/damage_amount = forced ? damage : damage * hit_percent
 			H.adjustOxyLoss(damage_amount)
-		if(CLONE)
-			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.clone_mod
-			H.adjustCloneLoss(damage_amount)
 		if(STAMINA)
-			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.stamina_mod
+			var/damage_amount = forced ? damage : damage * hit_percent
 			if(BP)
 				if(BP.receive_damage(0, 0, damage_amount))
 					H.update_stamina()
 			else
 				H.adjustStaminaLoss(damage_amount)
 		if(BRAIN)
-			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.brain_mod
+			var/damage_amount = forced ? damage : damage * hit_percent
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, damage_amount)
 	return 1
 
 /datum/species/proc/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	// called when hit by a projectile
-	switch(P.type)
-		if(/obj/projectile/energy/floramut) // overwritten by plants/pods
-			H.show_message(span_notice("The radiation beam dissipates harmlessly through your body."))
-		if(/obj/projectile/energy/florayield)
-			H.show_message(span_notice("The radiation beam dissipates harmlessly through your body."))
-		if(/obj/projectile/energy/florarevolution)
-			H.show_message(span_notice("The radiation beam dissipates harmlessly through your body."))
+	return
 
 /datum/species/proc/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	// called before a projectile hit
@@ -1835,7 +1822,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(flying_species && H.movement_type & FLYING)
 		ToggleFlight(H)
 		flyslip(H)
-	. = stunmod * H.physiology.stun_mod * amount
+	. = stunmod * amount
 
 //////////////
 //Space Move//

@@ -126,8 +126,8 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	var/siemens_coefficient = 1
 	/// How much clothing is slowing you down. Negative values speeds you up
 	var/slowdown = 0
-	///percentage of armour effectiveness to remove
-	var/armour_penetration = 0
+	///percentage of armor effectiveness to remove
+	var/datum/armor_penetration/armor_penetration
 	///What objects the suit storage can store
 	var/list/allowed = null
 	///In deciseconds, how long an item takes to equip; counts only for normal clothing slots, not pockets etc.
@@ -161,8 +161,6 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	///for flags such as [GLASSESCOVERSEYES]
 	var/flags_cover = 0
 	var/heat = 0
-	///All items with sharpness of SHARP_EDGED or higher will automatically get the butchering component.
-	var/sharpness = NONE
 
 	///How a tool acts when you use it on something, such as wirecutters cutting wires while multitools measure power
 	var/tool_behaviour = NONE
@@ -209,6 +207,12 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	var/override_notes = FALSE
 
 /obj/item/Initialize()
+	if(isnum(armor_penetration))
+		armor_penetration = getArmorPen(armor_penetration, armor_penetration, armor_penetration, armor_penetration, armor_penetration, armor_penetration) //everything has the same value
+	else if(islist(armor_penetration))
+		armor_penetration = getArmorPen(arglist(armor_penetration))
+	else if(!armor_penetration)
+		armor_penetration = getArmorPen()
 
 	if(attack_verb_continuous)
 		attack_verb_continuous = string_list(attack_verb_continuous)
@@ -236,6 +240,12 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NEW_ITEM, src)
 	if(LAZYLEN(embedding))
 		updateEmbedding()
+
+///Fetches its corresponding armor penetration depending on atck_type
+/obj/item/proc/get_armorpen(rating = null)
+	if(rating)
+		return armor_penetration.GetRating(rating)
+	return armor_penetration.GetRating(atck_type)
 
 /// Adds the weapon_description element, which shows the 'warning label' for especially dangerous objects. Override this for item types with special notes.
 /obj/item/proc/add_weapon_description()
@@ -269,7 +279,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 	updateEmbedding()
 
-	if(sharpness && force > 5) //give sharp objects butchering functionality, for consistency
+	if(atck_type == SHARP) //give sharp objects butchering functionality, for consistency
 		AddComponent(/datum/component/butchering, 80 * toolspeed)
 
 /**Makes cool stuff happen when you suicide with an item
@@ -643,7 +653,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 ///Returns the sharpness of src. If you want to get the sharpness of an item use this.
 /obj/item/proc/get_sharpness()
-	return sharpness
+	return atck_type == SHARP
 
 /obj/item/proc/get_dismember_sound()
 	if(damtype == BURN)
@@ -937,10 +947,10 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		victim.visible_message(span_warning("[victim] looks like [victim.p_theyve()] just bit something they shouldn't have!") , \
 							span_boldwarning("OH GOD! Was that a crunch? That didn't feel good at all!!"))
 
-		victim.apply_damage(max(15, force), BRUTE, BODY_ZONE_HEAD, wound_bonus = 10, sharpness = TRUE)
+		victim.apply_damage(max(15, force), BRUTE, BODY_ZONE_HEAD, wound_bonus = 10, attack_type = atck_type)
 		victim.losebreath += 2
 		if(tryEmbed(victim.get_bodypart(BODY_ZONE_CHEST), TRUE, TRUE)) //and if it embeds successfully in their chest, cause a lot of pain
-			victim.apply_damage(max(25, force*1.5), BRUTE, BODY_ZONE_CHEST, wound_bonus = 7, sharpness = TRUE)
+			victim.apply_damage(max(25, force*1.5), BRUTE, BODY_ZONE_CHEST, wound_bonus = 7, attack_type = atck_type)
 			victim.losebreath += 6
 			discover_after = FALSE
 		if(QDELETED(src)) // in case trying to embed it caused its deletion (say, if it's DROPDEL)

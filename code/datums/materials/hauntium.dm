@@ -8,7 +8,6 @@
 	value_per_unit = 0.05
 	beauty_modifier = 0.25
 	strength_modifier = 1
-	armor_modifiers = list(MELEE = 1, BULLET = 1, LASER = 1, ENERGY = 1, BOMB = 1, BIO = 1, RAD = 1, FIRE = 1, ACID = 1)
 
 
 /datum/material/hauntium/on_applied_obj(obj/o, amount, material_flags)

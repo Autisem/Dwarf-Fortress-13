@@ -1,5 +1,5 @@
 
-/mob/living/proc/run_armor_check(def_zone = null, attack_flag = MELEE, absorb_text = null, soften_text = null, armour_penetration, penetrated_text, silent=FALSE)
+/mob/living/proc/run_armor_check(def_zone = null, attack_flag = BLUNT, absorb_text = null, soften_text = null, armour_penetration, penetrated_text, silent=FALSE)
 	var/armor = getarmor(def_zone, attack_flag)
 
 	if(armor <= 0)
@@ -56,7 +56,7 @@
 
 	if(!P.nodamage && on_hit_state != BULLET_ACT_BLOCK)
 		var/attack_direction = get_dir(P.starting, src)
-		apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus=P.wound_bonus, bare_wound_bonus=P.bare_wound_bonus, sharpness = P.sharpness, attack_direction = attack_direction)
+		apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus=P.wound_bonus, bare_wound_bonus=P.bare_wound_bonus, attack_type = PIERCE, attack_direction = attack_direction)
 		apply_effects(P.stun, P.knockdown, P.unconscious, P.irradiate, P.slur, P.stutter, P.eyeblur, P.drowsy, armor, P.stamina, P.jitter, P.paralyze, P.immobilize)
 		if(P.dismemberment && (P.damage_type == BRUTE || P.damage_type == BURN))
 			check_projectile_dismemberment(P, def_zone)
@@ -95,8 +95,8 @@
 						span_userdanger("<b>You're</b> hit by [thrown_item.name]!"))
 		if(!thrown_item.throwforce)
 			return
-		var/armor = run_armor_check(zone, MELEE, "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].", thrown_item.armour_penetration)
-		apply_damage(thrown_item.throwforce, thrown_item.damtype, zone, armor, sharpness = thrown_item.get_sharpness(), wound_bonus = (nosell_hit * CANT_WOUND))
+		var/armor = run_armor_check(zone, thrown_item.atck_type, "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].", thrown_item.get_armorpen())
+		apply_damage(thrown_item.throwforce, thrown_item.damtype, zone, armor, attack_type = thrown_item.atck_type, wound_bonus = (nosell_hit * CANT_WOUND))
 		if(QDELETED(src)) //Damage can delete the mob.
 			return
 		if(body_position == LYING_DOWN) // physics says it's significantly harder to push someone by constantly chucking random furniture at them if they are down on the floor.

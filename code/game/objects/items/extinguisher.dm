@@ -21,7 +21,7 @@
 	var/chem = /datum/reagent/water
 	var/safety = TRUE
 	var/refilling = FALSE
-	var/tanktype = /obj/structure/reagent_dispensers/watertank
+	var/tanktype = null //Has to be /obj/structure/reagent_dispensers/watertank but its currently deleted
 	var/sprite_name = "fire_extinguisher"
 	var/power = 5 //Maximum distance launched water will travel
 	var/precision = FALSE //By default, turfs picked from a spray are random, set to 1 to make it always have at least one water effect per row
@@ -92,7 +92,6 @@
 	tank_holder_icon_state = "holder_foam_extinguisher"
 	dog_fashion = null
 	chem = /datum/reagent/firefighting_foam
-	tanktype = /obj/structure/reagent_dispensers/foamtank
 	sprite_name = "foam_extinguisher"
 	precision = TRUE
 	can_explode = FALSE
@@ -155,8 +154,6 @@
 
 	new /obj/effect/dummy/lighting_obj (bang_turf, COLOR_WHITE, (5), 4, 2)
 
-	AddComponent(/datum/component/pellet_cloud, projectile_type=/obj/projectile/bullet/pellet/shotgun_rubbershot, magnitude=5)
-	// в петушителях находятся шарики для тактического вспенивания содержимого внутри (а также для использования в качестве ручной гранаты при окопных войнах)
 	SEND_SIGNAL(src, COMSIG_EXTINGUISHER_BOOM)
 
 	explosion(bang_turf, 0, 0, 2, 0)
@@ -204,26 +201,7 @@
 		. += "</br><span class='notice'>ПКМ, чтобы опустошить его.</span>"
 
 /obj/item/extinguisher/proc/AttemptRefill(atom/target, mob/user)
-	if(istype(target, tanktype) && target.Adjacent(user))
-		var/safety_save = safety
-		safety = TRUE
-		if(reagents.total_volume == reagents.maximum_volume)
-			to_chat(user, span_warning("[capitalize(src.name)] уже полон!"))
-			safety = safety_save
-			return TRUE
-		var/obj/structure/reagent_dispensers/W = target //will it work?
-		var/transferred = W.reagents.trans_to(src, max_water, transfered_by = user)
-		if(transferred > 0)
-			to_chat(user, span_notice("[capitalize(src.name)] пополнен [transferred] единицами."))
-			playsound(src.loc, 'sound/effects/refill.ogg', 50, TRUE, -6)
-			for(var/datum/reagent/water/R in reagents.reagent_list)
-				R.cooling_temperature = cooling_power
-		else
-			to_chat(user, span_warning("[capitalize(W.name)] совсем пустой!"))
-		safety = safety_save
-		return TRUE
-	else
-		return FALSE
+	return FALSE ///obj/structure/reagent_dispencer was deleted so you can't refill right now
 
 /obj/item/extinguisher/afterattack(atom/target, mob/user , flag)
 	. = ..()

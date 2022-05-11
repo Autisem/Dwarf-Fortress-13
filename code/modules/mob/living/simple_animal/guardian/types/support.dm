@@ -4,7 +4,6 @@
 	friendly_verb_continuous = "heals"
 	friendly_verb_simple = "heal"
 	speed = 0
-	damage_coeff = list(BRUTE = 0.7, BURN = 0.7, TOX = 0.7, CLONE = 0.7, STAMINA = 0, OXY = 0.7)
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	playstyle_string = span_holoparasite("As a <b>support</b> type, you may toggle your basic attacks to a healing mode. In addition, ПКМing on an adjacent object or mob will warp them to your bluespace beacon after a short delay.")
@@ -48,7 +47,6 @@
 		if(toggle)
 			a_intent = INTENT_HARM
 			speed = 0
-			damage_coeff = list(BRUTE = 0.7, BURN = 0.7, TOX = 0.7, CLONE = 0.7, STAMINA = 0, OXY = 0.7)
 			melee_damage_lower = 15
 			melee_damage_upper = 15
 			to_chat(src, "<span class='danger'><B>You switch to combat mode.</span></B>")
@@ -56,7 +54,6 @@
 		else
 			a_intent = INTENT_HELP
 			speed = 1
-			damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
 			melee_damage_lower = 0
 			melee_damage_upper = 0
 			to_chat(src, "<span class='danger'><B>You switch to healing mode.</span></B>")

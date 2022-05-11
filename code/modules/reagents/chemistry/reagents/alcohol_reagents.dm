@@ -1357,7 +1357,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(M.health <= 0)
 		M.adjustBruteLoss(-3 * REM * delta_time, 0)
 		M.adjustFireLoss(-3 * REM * delta_time, 0)
-		M.adjustCloneLoss(-5 * REM * delta_time, 0)
 		M.adjustOxyLoss(-4 * REM * delta_time, 0)
 		M.adjustToxLoss(-3 * REM * delta_time, 0)
 		. = TRUE

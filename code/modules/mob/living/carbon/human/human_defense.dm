@@ -1,24 +1,15 @@
 /mob/living/carbon/human/getarmor(def_zone, type)
-	var/armorval = 0
-	var/organnum = 0
+	//If you don't specify a bodypart, it selects a random bodypart
+	if(!def_zone)
+		def_zone = pick(BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_HEAD)
 
-	if(def_zone)
-		if(isbodypart(def_zone))
-			var/obj/item/bodypart/bp = def_zone
-			if(bp)
-				return checkarmor(def_zone, type)
-		var/obj/item/bodypart/affecting = get_bodypart(check_zone(def_zone))
-		if(affecting)
-			return checkarmor(affecting, type)
-		//If a specific bodypart is targetted, check how that bodypart is protected and return the value.
-
-	//If you don't specify a bodypart, it checks ALL your bodyparts for protection, and averages out the values
-	for(var/X in bodyparts)
-		var/obj/item/bodypart/BP = X
-		armorval += checkarmor(BP, type)
-		organnum++
-	return (armorval/max(organnum, 1))
-
+	if(isbodypart(def_zone))
+		var/obj/item/bodypart/bp = def_zone
+		if(bp)
+			return checkarmor(def_zone, type)
+	var/obj/item/bodypart/affecting = get_bodypart(check_zone(def_zone))
+	if(affecting)
+		return checkarmor(affecting, type)
 
 /mob/living/carbon/human/proc/checkarmor(obj/item/bodypart/def_zone, d_type)
 	if(!d_type)
@@ -32,7 +23,8 @@
 			var/obj/item/clothing/C = bp
 			if(C.body_parts_covered & def_zone.body_part)
 				protection += C.armor.getRating(d_type)
-	protection += physiology.armor.getRating(d_type)
+	if(def_zone?.armor) //If mutant body has its own bodyparts with its armor values count them aswell
+		protection += def_zone.armor.getRating(d_type)
 	return protection
 
 ///Get all the clothing on a specific body part
@@ -118,23 +110,23 @@
 
 	for(var/obj/item/I in held_items)
 		if(!istype(I, /obj/item/clothing))
-			var/final_block_chance = I.block_chance - (clamp((armour_penetration-I.armour_penetration)/2,0,100)) + block_chance_modifier //So armour piercing blades can still be parried by other blades, for example
+			var/final_block_chance = I.block_chance - (clamp((armour_penetration-I.get_armorpen())/2,0,100)) + block_chance_modifier //So armour piercing blades can still be parried by other blades, for example
 			if(I.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
 				return TRUE
 	if(wear_suit)
-		var/final_block_chance = wear_suit.block_chance - (clamp((armour_penetration-wear_suit.armour_penetration)/2,0,100)) + block_chance_modifier
+		var/final_block_chance = wear_suit.block_chance - (clamp((armour_penetration-wear_suit.get_armorpen())/2,0,100)) + block_chance_modifier
 		if(wear_suit.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
 			return TRUE
 	if(w_uniform)
-		var/final_block_chance = w_uniform.block_chance - (clamp((armour_penetration-w_uniform.armour_penetration)/2,0,100)) + block_chance_modifier
+		var/final_block_chance = w_uniform.block_chance - (clamp((armour_penetration-w_uniform.get_armorpen())/2,0,100)) + block_chance_modifier
 		if(w_uniform.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
 			return TRUE
 	if(wear_neck)
-		var/final_block_chance = wear_neck.block_chance - (clamp((armour_penetration-wear_neck.armour_penetration)/2,0,100)) + block_chance_modifier
+		var/final_block_chance = wear_neck.block_chance - (clamp((armour_penetration-wear_neck.get_armorpen())/2,0,100)) + block_chance_modifier
 		if(wear_neck.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
 			return TRUE
 	if(head)
-		var/final_block_chance = head.block_chance - (clamp((armour_penetration-head.armour_penetration)/2,0,100)) + block_chance_modifier
+		var/final_block_chance = head.block_chance - (clamp((armour_penetration-head.get_armorpen())/2,0,100)) + block_chance_modifier
 		if(head.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
 			return TRUE
 	return FALSE
@@ -245,7 +237,7 @@
 			if(check_shields(M, damage, "[M.name]"))
 				return FALSE
 			if(stat != DEAD)
-				apply_damage(damage, BRUTE, affecting, run_armor_check(affecting, MELEE))
+				apply_damage(damage, BRUTE, affecting, run_armor_check(affecting, PIERCE))
 		return TRUE
 
 /mob/living/carbon/human/attack_animal(mob/living/simple_animal/M)
@@ -261,9 +253,9 @@
 	var/obj/item/bodypart/affecting = get_bodypart(ran_zone(dam_zone))
 	if(!affecting)
 		affecting = get_bodypart(BODY_ZONE_CHEST)
-	var/armor = run_armor_check(affecting, MELEE, armour_penetration = M.armour_penetration)
+	var/armor = run_armor_check(affecting, M.atck_type, armour_penetration = M.armour_penetration)
 	var/attack_direction = get_dir(M, src)
-	apply_damage(damage, M.melee_damage_type, affecting, armor, wound_bonus = M.wound_bonus, bare_wound_bonus = M.bare_wound_bonus, sharpness = M.sharpness, attack_direction = attack_direction)
+	apply_damage(damage, M.melee_damage_type, affecting, armor, wound_bonus = M.wound_bonus, bare_wound_bonus = M.bare_wound_bonus, attack_type = M.atck_type, attack_direction = attack_direction)
 
 /mob/living/carbon/human/ex_act(severity, target, origin)
 	if(TRAIT_BOMBIMMUNE in dna.species.species_traits)
@@ -273,7 +265,7 @@
 		return
 	var/brute_loss = 0
 	var/burn_loss = 0
-	var/bomb_armor = getarmor(null, BOMB)
+	var/bomb_armor = getarmor(null, BLUNT)
 
 //200 max knockdown for EXPLODE_HEAVY
 //160 max knockdown for EXPLODE_LIGHT
@@ -296,7 +288,7 @@
 				brute_loss = 500
 				var/atom/throw_target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
 				throw_at(throw_target, 200, 4)
-				damage_clothes(400 - bomb_armor, BRUTE, BOMB)
+				damage_clothes(400 - bomb_armor, BRUTE, BLUNT)
 
 		if (EXPLODE_HEAVY)
 			brute_loss = 60
@@ -304,7 +296,7 @@
 			if(bomb_armor)
 				brute_loss = 30*(2 - round(bomb_armor*0.01, 0.05))
 				burn_loss = brute_loss				//damage gets reduced from 120 to up to 60 combined brute+burn
-			damage_clothes(200 - bomb_armor, BRUTE, BOMB)
+			damage_clothes(200 - bomb_armor, BRUTE, BLUNT)
 			if (ears && !HAS_TRAIT_FROM(src, TRAIT_DEAF, CLOTHING_TRAIT))
 				ears.adjustEarDamage(30, 120)
 			Unconscious(20)							//short amount of time for follow up attacks against elusive enemies like wizards
@@ -316,7 +308,7 @@
 			brute_loss = 30
 			if(bomb_armor)
 				brute_loss = 15*(2 - round(bomb_armor*0.01, 0.05))
-			damage_clothes(max(50 - bomb_armor, 0), BRUTE, BOMB)
+			damage_clothes(max(50 - bomb_armor, 0), BRUTE, BLUNT)
 			if (ears && !HAS_TRAIT_FROM(src, TRAIT_DEAF, CLOTHING_TRAIT))
 				ears.adjustEarDamage(15,60)
 			Knockdown(160 - (bomb_armor * 1.6))		//100 bomb armor will prevent knockdown altogether
@@ -328,7 +320,7 @@
 		var/max_limb_loss = round(4/severity) //so you don't lose four limbs at severity 3.
 		for(var/X in bodyparts)
 			var/obj/item/bodypart/BP = X
-			if(prob(50/severity) && !prob(getarmor(BP, BOMB)) && BP.body_zone != BODY_ZONE_HEAD && BP.body_zone != BODY_ZONE_CHEST)
+			if(prob(50/severity) && !prob(getarmor(BP, BLUNT)) && BP.body_zone != BODY_ZONE_HEAD && BP.body_zone != BODY_ZONE_CHEST)
 				BP.brute_dam = BP.max_damage
 				BP.dismember(BRUTE, TRUE, FALSE)
 				max_limb_loss--
@@ -350,7 +342,6 @@
 	else if(!(flags & SHOCK_NOGLOVES)) //This gets the siemens_coeff for all non tesla shocks
 		if(gloves)
 			siemens_coeff *= gloves.siemens_coefficient
-	siemens_coeff *= physiology.siemens_coeff
 	siemens_coeff *= dna.species.siemens_coeff
 	. = ..()
 	//Don't go further if the shock was blocked/too weak.

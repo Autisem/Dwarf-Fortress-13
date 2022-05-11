@@ -18,20 +18,11 @@
 
 /datum/surgery_step/add_prosthetic
 	name = "добавить конечность"
-	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100, /obj/item/chainsaw = 100)
+	implements = list(/obj/item/bodypart = 100)
 	time = 32
 	var/organ_rejection_dam = 0
 
 /datum/surgery_step/add_prosthetic/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(istype(tool, /obj/item/organ_storage))
-		if(!tool.contents.len)
-			to_chat(user, span_warning("[tool] пуст!"))
-			return -1
-		var/obj/item/I = tool.contents[1]
-		if(!isbodypart(I))
-			to_chat(user, span_warning("Невозможно присоединить [I]!"))
-			return -1
-		tool = I
 	if(istype(tool, /obj/item/bodypart))
 		var/obj/item/bodypart/BP = tool
 		if(ismonkey(target))// monkey patient only accept organic monkey limbs
@@ -65,11 +56,6 @@
 
 /datum/surgery_step/add_prosthetic/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	. = ..()
-	if(istype(tool, /obj/item/organ_storage))
-		tool.icon_state = initial(tool.icon_state)
-		tool.desc = initial(tool.desc)
-		tool.cut_overlays()
-		tool = tool.contents[1]
 	if(istype(tool, /obj/item/bodypart) && user.temporarilyRemoveItemFromInventory(tool))
 		var/obj/item/bodypart/L = tool
 		if(!L.attach_limb(target))

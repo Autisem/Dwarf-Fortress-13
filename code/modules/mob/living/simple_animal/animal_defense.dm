@@ -43,7 +43,7 @@
 							span_userdanger("[M] [response_harm_continuous] you!") , null, COMBAT_MESSAGE_RANGE, M)
 			to_chat(M, span_danger("You [response_harm_simple] [name]!"))
 			playsound(loc, attacked_sound, 25, TRUE, -1)
-			attack_threshold_check(harm_intent_damage)
+			attack_threshold_check(harm_intent_damage, attack_type = BLUNT)
 			log_combat(M, src, "attacked")
 			updatehealth()
 			return TRUE
@@ -77,12 +77,9 @@
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		return attack_threshold_check(damage, M.melee_damage_type)
 
-/mob/living/simple_animal/proc/attack_threshold_check(damage, damagetype = BRUTE, armorcheck = MELEE, actuallydamage = TRUE)
+/mob/living/simple_animal/proc/attack_threshold_check(damage, damagetype = BRUTE, armorcheck = BLUNT, actuallydamage = TRUE, attack_type = BLUNT)
 	var/temp_damage = damage
-	if(!damage_coeff[damagetype])
-		temp_damage = 0
-	else
-		temp_damage *= damage_coeff[damagetype]
+	temp_damage -= temp_damage*(armor.getRating(attack_type)/100)
 
 	if(temp_damage >= 0 && temp_damage <= force_threshold)
 		visible_message(span_warning("[capitalize(src.name)] looks unharmed!"))
@@ -93,7 +90,8 @@
 		return TRUE
 
 /mob/living/simple_animal/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
-	apply_damage(Proj.damage, Proj.damage_type)
+	var/temp_damage = Proj.damage - Proj.damage*(armor.getRating(Proj.flag)/100)
+	apply_damage(temp_damage, Proj.damage_type)
 	Proj.on_hit(src, 0, piercing_hit)
 	return BULLET_ACT_HIT
 
@@ -103,7 +101,7 @@
 	..()
 	if(QDELETED(src))
 		return
-	var/bomb_armor = getarmor(null, BOMB)
+	var/bomb_armor = getarmor(null, BLUNT)
 	switch (severity)
 		if (EXPLODE_DEVASTATE)
 			if(prob(bomb_armor))

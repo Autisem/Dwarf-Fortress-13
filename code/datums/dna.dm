@@ -235,7 +235,6 @@
 		update_body()
 		update_hair()
 		update_body_parts()
-	update_teeth()
 
 
 /mob/proc/has_dna()
@@ -409,15 +408,12 @@
 				to_chat(src, span_notice("А мне неплохо!"))
 			if(4)
 				to_chat(src, span_notice("Неплохо!")) //you thought
-				physiology.damage_resistance = -20000
 			if(5)
 				to_chat(src, span_notice("Отлично!"))
 				reagents.add_reagent(/datum/reagent/aslimetoxin, 10)
 			if(6)
 				apply_status_effect(STATUS_EFFECT_GO_AWAY)
 			if(7)
-				to_chat(src, span_notice("Зашибись!"))
-				ForceContractDisease(new/datum/disease/decloning()) //slow acting, non-viral clone damage based GBS
 			if(8)
 				var/list/elligible_organs = list()
 				for(var/obj/item/organ/O in internal_organs) //make sure we dont get an implant or cavity item

@@ -11,7 +11,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("pokes", "jabs", "pins the tail on")
 	attack_verb_simple = list("poke", "jab")
-	sharpness = SHARP_POINTY
+	atck_type = PIERCE
 	max_integrity = 200
 	layer = CORGI_ASS_PIN_LAYER
 

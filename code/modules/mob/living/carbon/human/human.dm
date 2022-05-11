@@ -15,7 +15,6 @@
 
 	//initialise organs
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
-	physiology = new()
 
 	. = ..()
 
@@ -43,7 +42,6 @@
 		AddComponent(/datum/component/mood)
 
 /mob/living/carbon/human/Destroy()
-	QDEL_NULL(physiology)
 	QDEL_LIST(bioware)
 	GLOB.human_list -= src
 	return ..()

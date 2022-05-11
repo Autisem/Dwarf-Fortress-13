@@ -28,7 +28,7 @@
 	var/degrees = 0
 	var/font = PEN_FONT
 	embedding = list()
-	sharpness = SHARP_POINTY
+	atck_type = PIERCE
 
 /obj/item/pen/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is scribbling numbers all over [user.ru_na()]self with [src]! It looks like [user.p_theyre()] trying to commit sudoku..."))
@@ -101,7 +101,7 @@
 	throw_speed = 4
 	colour = "crimson"
 	custom_materials = list(/datum/material/gold = 750)
-	sharpness = SHARP_EDGED
+	atck_type = PIERCE
 	resistance_flags = FIRE_PROOF
 	unique_reskin = list("Oak" = "pen-fountain-o",
 						"Gold" = "pen-fountain-g",
@@ -215,67 +215,6 @@
 	reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 20)
 	reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 15)
 	reagents.add_reagent(/datum/reagent/toxin/staminatoxin, 10)
-
-/*
- * (Alan) Edaggers
- */
-/obj/item/pen/edagger
-	attack_verb_continuous = list("рубит", "втыкает", "разрезает", "кромсает", "разрывает", "нарезает", "режет") //these won't show up if the pen is off
-	attack_verb_simple = list("рубит", "втыкает", "разрезает", "кромсает", "разрывает", "нарезает", "режет")
-	sharpness = SHARP_EDGED
-	/// The real name of our item when extended.
-	var/hidden_name = "energy dagger"
-	/// Whether or pen is extended
-	var/extended = FALSE
-
-/obj/item/pen/edagger/Initialize()
-	. = ..()
-	AddComponent(/datum/component/butchering, _speed = 6 SECONDS, _butcher_sound = 'sound/weapons/blade1.ogg')
-	AddComponent(/datum/component/transforming, \
-		force_on = 18, \
-		throwforce_on = 35, \
-		throw_speed_on = 4, \
-		sharpness_on = SHARP_EDGED, \
-		w_class_on = WEIGHT_CLASS_NORMAL)
-	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, .proc/on_transform)
-
-/obj/item/pen/edagger/suicide_act(mob/user)
-	. = BRUTELOSS
-	if(extended)
-		user.visible_message(span_suicide("[user] forcefully rams the pen into their mouth!"))
-	else
-		user.visible_message(span_suicide("[user] is holding a pen up to their mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
-		attack_self(user)
-
-/*
- * Signal proc for [COMSIG_TRANSFORMING_ON_TRANSFORM].
- *
- * Handles swapping their icon files to edagger related icon files -
- * as they're supposed to look like a normal pen.
- */
-/obj/item/pen/edagger/proc/on_transform(obj/item/source, mob/user, active)
-	SIGNAL_HANDLER
-
-	extended = active
-	if(active)
-		name = hidden_name
-		icon_state = "edagger"
-		inhand_icon_state = "edagger"
-		lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
-		righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-		embedding = list(embed_chance = 100) // Rule of cool
-	else
-		name = initial(name)
-		icon_state = initial(icon_state)
-		inhand_icon_state = initial(inhand_icon_state)
-		lefthand_file = initial(lefthand_file)
-		righthand_file = initial(righthand_file)
-		embedding = list(embed_chance = EMBED_CHANCE)
-
-	updateEmbedding()
-	balloon_alert(user, "[hidden_name] [active ? "active":"concealed"]")
-	playsound(user ? user : src, active ? 'sound/weapons/saberon.ogg' : 'sound/weapons/saberoff.ogg', 5, TRUE)
-	return COMPONENT_NO_DEFAULT_MESSAGE
 
 /obj/item/pen/survival
 	name = "survival pen"

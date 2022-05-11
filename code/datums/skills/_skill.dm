@@ -69,10 +69,4 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 	if (LAZYFIND(mind.skills_rewarded, src.type))
 		// to_chat(mind.current, span_nicegreen("Похоже,  Ассоциация Профессионалов [title] не хочет давать мне больше символов навыка."))
 		return
-	podspawn(list(
-		"target" = get_turf(mind.current),
-		"path" = /obj/structure/closet/supplypod,
-		"style" = STYLE_BLUESPACE,
-		"delays" = list(POD_TRANSIT = 150, POD_FALLING = 4, POD_OPENING = 30, POD_LEAVING = 30)
-	))
 	LAZYADD(mind.skills_rewarded, src.type)

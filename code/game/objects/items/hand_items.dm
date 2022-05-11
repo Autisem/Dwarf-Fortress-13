@@ -449,7 +449,7 @@
 	nodamage = FALSE // okay i kinda lied about love not being able to hurt you
 	damage = 35
 	wound_bonus = 0
-	sharpness = SHARP_POINTY
+	atck_type = PIERCE
 	color = COLOR_BLACK
 
 /obj/projectile/kiss/death/on_hit(atom/target, blocked, pierce_hit)

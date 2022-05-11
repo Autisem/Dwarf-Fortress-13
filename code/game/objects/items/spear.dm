@@ -11,14 +11,13 @@
 	throwforce = 20
 	throw_speed = 4
 	embedding = list("impact_pain_mult" = 2, "remove_pain_mult" = 4, "jostle_chance" = 2.5)
-	armour_penetration = 10
+	armor_penetration = 10
 	custom_materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("attack", "poke", "jab", "tear", "lacerate", "gore")
-	sharpness = SHARP_EDGED // i know the whole point of spears is that they're pointy, but edged is more devastating at the moment so
+	atck_type = PIERCE
 	max_integrity = 200
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
 	var/war_cry = "ААААААА!!!"
 	var/icon_prefix = "spearglass"
 	wound_bonus = -15
@@ -56,7 +55,7 @@
 	desc = "Случайно сконструированное, но все еще смертельное оружие. Вершина современных технологий."
 	force = 12
 	throwforce = 22
-	armour_penetration = 15				//Enhanced armor piercing
+	armor_penetration = 15				//Enhanced armor piercing
 
 /obj/item/spear/bonespear/ComponentInitialize()
 	. = ..()

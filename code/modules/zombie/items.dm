@@ -12,7 +12,7 @@
 	var/icon_right = "bloodhand_right"
 	hitsound = 'sound/hallucinations/growl1.ogg'
 	force = 21 // Just enough to break airlocks with melee attacks
-	sharpness = SHARP_EDGED
+	atck_type = PIERCE
 	wound_bonus = -30
 	bare_wound_bonus = 15
 	damtype = BRUTE
@@ -81,7 +81,6 @@
 		user.adjustBruteLoss(-hp_gained, 0)
 		user.adjustToxLoss(-hp_gained, 0)
 		user.adjustFireLoss(-hp_gained, 0)
-		user.adjustCloneLoss(-hp_gained, 0)
 		user.updatehealth()
 		user.adjustOrganLoss(ORGAN_SLOT_BRAIN, -hp_gained) // Zom Bee gibbers "BRAAAAISNSs!1!"
 		user.set_nutrition(min(user.nutrition + hp_gained, NUTRITION_LEVEL_FULL))

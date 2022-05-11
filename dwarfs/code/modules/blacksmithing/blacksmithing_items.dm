@@ -50,7 +50,7 @@
 	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
 	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = SHARP_EDGED
+	atck_type = SHARP
 	w_class = WEIGHT_CLASS_SMALL
 	force = 10
 	throwforce = 12

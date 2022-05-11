@@ -25,12 +25,6 @@
 	var/obscured = check_obscured_slots()
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
-	if(get_bodypart(BODY_ZONE_HEAD) && !skipface)
-		var/obj/item/bodypart/head/O = locate(/obj/item/bodypart/head) in bodyparts
-		if(O)
-			if(O.get_teeth() < O.max_teeth)
-				. += "<span class='warning'>[t_He] [t_is] missing [O.max_teeth - O.get_teeth()] teeth!</span>\n"
-
 	//head
 	if(head && !(obscured & ITEM_SLOT_HEAD) && !(head.item_flags & EXAMINE_SKIP))
 		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head.\n"
@@ -214,16 +208,6 @@
 				msg += "[t_He] [t_has] <b>moderate</b> burns!\n"
 			else
 				msg += "<B>[t_He] [t_has] severe burns!</B>\n"
-
-		temp = getCloneLoss()
-		if(temp)
-			if(temp < 25)
-				msg += "[t_He] [t_has] minor cellular damage.\n"
-			else if(temp < 50)
-				msg += "[t_He] [t_has] <b>moderate</b> cellular damage!\n"
-			else
-				msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
-
 
 	if(fire_stacks > 0)
 		msg += "[t_He] [t_is] covered in something flammable.\n"

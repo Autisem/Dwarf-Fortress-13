@@ -1,12 +1,12 @@
 /obj/projectile/bullet/shotgun_slug
 	name = "12g пуля"
 	damage = 50
-	sharpness = SHARP_POINTY
+	atck_type = PIERCE
 	wound_bonus = 0
 
 /obj/projectile/bullet/shotgun_slug/executioner
 	name = "executioner slug" // admin only, can dismember limbs
-	sharpness = SHARP_EDGED
+	atck_type = SHARP
 	wound_bonus = 80
 
 /obj/projectile/bullet/shotgun_slug/pulverizer

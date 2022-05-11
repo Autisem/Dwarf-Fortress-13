@@ -14,7 +14,6 @@
 	drag_slowdown = 1.5		// Same as a prone mob
 	max_integrity = 200
 	integrity_failure = 0.25
-	armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 70, ACID = 60)
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	interaction_flags_atom = null
 
@@ -115,8 +114,6 @@
 
 /obj/structure/closet/update_icon()
 	. = ..()
-	if (istype(src, /obj/structure/closet/supplypod))
-		return
 	if(!opened)
 		layer = OBJ_LAYER
 	else
@@ -401,11 +398,8 @@
 				span_hear("Cлышу громкий металлический удар."))
 			var/mob/living/L = O
 			L.Paralyze(40)
-			if(istype(src, /obj/structure/closet/supplypod/extractionpod))
-				O.forceMove(src)
-			else
-				O.forceMove(T)
-				close()
+			O.forceMove(T)
+			close()
 	else
 		O.forceMove(T)
 	return 1

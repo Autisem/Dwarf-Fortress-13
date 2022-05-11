@@ -101,7 +101,7 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	faction = list("hostile")
-	sharpness = SHARP_POINTY
+	atck_type = PIERCE
 	squish_chance = 0 // manual squish if relevant
 
 /mob/living/simple_animal/hostile/cockroach/hauberoach/Initialize()

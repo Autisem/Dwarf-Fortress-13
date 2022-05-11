@@ -692,31 +692,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/obj/item/food/bread/plain/bread = new(get_turf(target))
 	target.forceMove(bread)
 
-/**
- * firing_squad is a proc for the :B:erforate smite to shoot each individual bullet at them, so that we can add actual delays without sleep() nonsense
- *
- * Hilariously, if you drag someone away mid smite, the bullets will still chase after them from the original spot, possibly hitting other people. Too funny to fix imo
- *
- * Arguments:
- * * target- guy we're shooting obviously
- * * source_turf- where the bullet begins, preferably on a turf next to the target
- * * body_zone- which bodypart we're aiming for, if there is one there
- * * wound_bonus- the wounding power we're assigning to the bullet, since we don't care about the base one
- * * damage- the damage we're assigning to the bullet, since we don't care about the base one
- */
-/proc/firing_squad(mob/living/carbon/target, turf/source_turf, body_zone, wound_bonus, damage)
-	if(!target.get_bodypart(body_zone))
-		return
-	playsound(target, 'sound/weapons/gun/revolver/shot.ogg', 100)
-	var/obj/projectile/bullet/smite/divine_wrath = new(source_turf)
-	divine_wrath.damage = damage
-	divine_wrath.wound_bonus = wound_bonus
-	divine_wrath.original = target
-	divine_wrath.def_zone = body_zone
-	divine_wrath.spread = 0
-	divine_wrath.preparePixelProjectile(target, source_turf)
-	divine_wrath.fire()
-
 /client/proc/punish_log(whom, punishment)
 	var/msg = "[key_name_admin(src)] punished [key_name_admin(whom)] with [punishment]."
 	message_admins(msg)

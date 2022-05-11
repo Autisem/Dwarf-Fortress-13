@@ -9,7 +9,6 @@
 	max_integrity = 25
 	can_be_unanchored = TRUE
 	resistance_flags = ACID_PROOF
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 100)
 	rad_insulation = RAD_VERY_LIGHT_INSULATION
 	pass_flags_self = PASSGLASS
 	flags_ricochet = RICOCHET_HARD
@@ -376,7 +375,6 @@
 	heat_resistance = 233
 	decon_speed = 10
 	resistance_flags = FLAMMABLE
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	knocksound = "pageturn"
 	bashsound = 'sound/weapons/slashmiss.ogg'
 	breaksound = 'sound/items/poster_ripped.ogg'
@@ -403,7 +401,7 @@
 	if(.)
 		return
 	if(user.a_intent == INTENT_HARM)
-		take_damage(4,BRUTE,MELEE, 0)
+		take_damage(4,BRUTE,BLUNT, 0)
 		if(!QDELETED(src))
 			update_icon()
 

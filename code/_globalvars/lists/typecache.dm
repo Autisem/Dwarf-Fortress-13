@@ -15,6 +15,4 @@ GLOBAL_LIST_INIT(typecache_machine_or_structure, typecacheof(list(/obj/machinery
 GLOBAL_LIST_INIT(typecache_elevated_structures, typecacheof(list(/obj/structure/table,/obj/structure/rack,/obj/structure/closet)))
 
 /// A typecache of objects that player controlled, easily accessible, hostile mobs should not be able to move around easily
-GLOBAL_LIST_INIT(typecache_general_bad_things_to_easily_move, typecacheof(list(
-	/obj/structure/reagent_dispensers,
-)))
+GLOBAL_LIST_INIT(typecache_general_bad_things_to_easily_move, typecacheof(list()))

@@ -13,8 +13,6 @@
 	else
 		if(isnull(loaded_projectile))
 			return FALSE
-		AddComponent(/datum/component/pellet_cloud, projectile_type, pellets)
-		SEND_SIGNAL(src, COMSIG_PELLET_CLOUD_INIT, target, user, fired_from, randomspread, spread, zone_override, params, distro)
 
 	if(click_cooldown_override)
 		user.changeNext_move(click_cooldown_override)

@@ -145,7 +145,7 @@
 	return !is_mouth_covered()
 
 /mob/living/carbon/CanSpreadAirborneDisease()
-	return !((head && (head.flags_cover & HEADCOVERSMOUTH) && (head.armor.getRating(BIO) >= 25)) || (wear_mask && (wear_mask.flags_cover & MASKCOVERSMOUTH) && (wear_mask.armor.getRating(BIO) >= 25)))
+	return !((head && (head.flags_cover & HEADCOVERSMOUTH) || (wear_mask && (wear_mask.flags_cover & MASKCOVERSMOUTH))))
 
 /mob/living/proc/set_shocked()
 	flags_1 |= SHOCKED_1

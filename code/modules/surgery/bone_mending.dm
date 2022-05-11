@@ -39,7 +39,7 @@
 ///// Repair Hairline Fracture (Severe)
 /datum/surgery_step/repair_bone_hairline
 	name = "восстановите костную структуру (костоправ/костный гель/лента)"
-	implements = list(/obj/item/bonesetter = 100, /obj/item/stack/medical/bone_gel = 100, /obj/item/stack/sticky_tape/surgical = 100, /obj/item/stack/sticky_tape/super = 50, /obj/item/stack/sticky_tape = 30, /obj/item/wrench = 25)
+	implements = list(/obj/item/stack/medical/bone_gel = 100, /obj/item/stack/sticky_tape/surgical = 100, /obj/item/stack/sticky_tape/super = 50, /obj/item/stack/sticky_tape = 30, /obj/item/wrench = 25)
 	time = 40
 
 /datum/surgery_step/repair_bone_hairline/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

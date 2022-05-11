@@ -32,11 +32,3 @@
 	name = "Переплетенные вены"
 	desc = "Система кровообращения сплетена в сеть, значительно снижающую количество теряемой при ранениях крови."
 	mod_type = BIOWARE_CIRCULATION
-
-/datum/bioware/threaded_veins/on_gain()
-	..()
-	owner.physiology.bleed_mod *= 0.25
-
-/datum/bioware/threaded_veins/on_lose()
-	..()
-	owner.physiology.bleed_mod *= 4

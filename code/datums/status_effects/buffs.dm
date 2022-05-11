@@ -18,47 +18,6 @@
 	desc = "You are being resurrected!"
 	icon_state = "wish_granter"
 
-/datum/status_effect/blooddrunk
-	id = "blooddrunk"
-	duration = 10
-	tick_interval = 0
-	alert_type = /atom/movable/screen/alert/status_effect/blooddrunk
-
-/atom/movable/screen/alert/status_effect/blooddrunk
-	name = "Blood-Drunk"
-	desc = "You are drunk on blood! Your pulse thunders in your ears! Nothing can harm you!" //not true, and the item description mentions its actual effect
-	icon_state = "blooddrunk"
-
-/datum/status_effect/blooddrunk/on_apply()
-	. = ..()
-	if(.)
-		ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, "blooddrunk")
-		if(ishuman(owner))
-			var/mob/living/carbon/human/H = owner
-			H.physiology.brute_mod *= 0.1
-			H.physiology.burn_mod *= 0.1
-			H.physiology.tox_mod *= 0.1
-			H.physiology.oxy_mod *= 0.1
-			H.physiology.clone_mod *= 0.1
-			H.physiology.stamina_mod *= 0.1
-		owner.log_message("gained blood-drunk stun immunity", LOG_ATTACK)
-		owner.add_stun_absorption("blooddrunk", INFINITY, 4)
-		owner.playsound_local(get_turf(owner), 'sound/effects/singlebeat.ogg', 40, 1, use_reverb = FALSE)
-
-/datum/status_effect/blooddrunk/on_remove()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.brute_mod *= 10
-		H.physiology.burn_mod *= 10
-		H.physiology.tox_mod *= 10
-		H.physiology.oxy_mod *= 10
-		H.physiology.clone_mod *= 10
-		H.physiology.stamina_mod *= 10
-	owner.log_message("lost blood-drunk stun immunity", LOG_ATTACK)
-	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, "blooddrunk");
-	if(islist(owner.stun_absorption) && owner.stun_absorption["blooddrunk"])
-		owner.stun_absorption -= "blooddrunk"
-
 /datum/status_effect/sword_spin
 	id = "Bastard Sword Spin"
 	duration = 50
@@ -293,34 +252,6 @@
 	name = "Lightning Orb"
 	desc = "The speed surges through you!"
 	icon_state = "lightningorb"
-
-/datum/status_effect/mayhem
-	id = "Mayhem"
-	duration = 2 MINUTES
-	/// The chainsaw spawned by the status effect
-	var/obj/item/chainsaw/doomslayer/chainsaw
-
-/datum/status_effect/mayhem/on_apply()
-	. = ..()
-	to_chat(owner, "<span class='reallybig redtext'>RIP AND TEAR</span>")
-	SEND_SOUND(owner, sound('sound/hallucinations/veryfar_noise.ogg'))
-	new /datum/hallucination/delusion(owner, forced = TRUE, force_kind = "demon", duration = duration, skip_nearby = FALSE)
-	chainsaw = new(get_turf(owner))
-	owner.log_message("entered a blood frenzy", LOG_ATTACK)
-	ADD_TRAIT(chainsaw, TRAIT_NODROP, CHAINSAW_FRENZY_TRAIT)
-	owner.drop_all_held_items()
-	owner.put_in_hands(chainsaw, forced = TRUE)
-	chainsaw.attack_self(owner)
-	owner.reagents.add_reagent(/datum/reagent/medicine/adminordrazine,25)
-	to_chat(owner, span_warning("KILL, KILL, KILL! YOU HAVE NO ALLIES ANYMORE, KILL THEM ALL!"))
-	var/datum/client_colour/colour = owner.add_client_colour(/datum/client_colour/bloodlust)
-	QDEL_IN(colour, 1.1 SECONDS)
-
-/datum/status_effect/mayhem/on_remove()
-	. = ..()
-	to_chat(owner, span_notice("Your bloodlust seeps back into the bog of your subconscious and you regain self control."))
-	owner.log_message("exited a blood frenzy", LOG_ATTACK)
-	QDEL_NULL(chainsaw)
 
 /datum/status_effect/speed_boost
 	id = "speed_boost"

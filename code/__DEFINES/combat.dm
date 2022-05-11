@@ -11,8 +11,6 @@
 #define TOX "toxin"
 /// Suffocation.
 #define OXY "oxygen"
-/// Cellular degredation. Rare and difficult to treat.
-#define CLONE "clone"
 /// Exhaustion and nonlethal damage.
 #define STAMINA "stamina"
 /// Brain damage. Should probably be decomissioned and replaced with proper organ damage.
@@ -20,19 +18,9 @@
 
 //Damage flag defines //
 /// Involves a melee attack or a thrown object.
-#define MELEE "melee"
-/// Involves a solid projectile.
-#define BULLET "bullet"
-/// Involves a laser.
-#define LASER "laser"
-/// Involves an EMP or energy-based projectile.
-#define ENERGY "energy"
-/// Involves a shockwave, usually from an explosion.
-#define BOMB "bomb"
-/// Involved in checking wheter a disease can infect or spread. Also involved in xeno neurotoxin.
-#define BIO "bio"
-/// Involves ionizing radiation.
-#define RAD "rad"
+#define SHARP "sharp"
+#define BLUNT "blunt"
+#define PIERCE "pierce"
 /// Involves fire or temperature extremes.
 #define FIRE "fire"
 /// Involves corrosive substances.
@@ -41,8 +29,6 @@
 #define MAGIC "magic"
 /// Involved in checking the likelyhood of applying a wound to a mob.
 #define WOUND "wound"
-/// Involves being eaten
-#define CONSUME "consume"
 
 // Weather immunities //
 #define WEATHER_STORM "storm"

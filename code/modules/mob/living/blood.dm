@@ -81,7 +81,6 @@
 		add_splatter_floor(loc, (amt >= 10))
 
 /mob/living/carbon/human/bleed(amt)
-	amt *= physiology.bleed_mod
 	if(!(NOBLOOD in dna.species.species_traits))
 		..()
 
@@ -99,7 +98,6 @@
 	if((NOBLOOD in dna.species.species_traits))
 		return
 	. = ..()
-	. *= physiology.bleed_mod
 
 /**
  * bleed_warn() is used to for carbons with an active client to occasionally receive messages warning them about their bleeding status (if applicable)

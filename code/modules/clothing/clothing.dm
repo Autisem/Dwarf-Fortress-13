@@ -1,5 +1,3 @@
-#define MOTH_EATING_CLOTHING_DAMAGE 15
-
 /obj/item/clothing
 	name = "clothing"
 	resistance_flags = FLAMMABLE
@@ -59,9 +57,6 @@
 	/// How many zones (body parts, not precise) we have disabled so far, for naming purposes
 	var/zones_disabled
 
-	/// A lazily initiated "food" version of the clothing for moths
-	var/obj/item/food/clothing/moth_snack
-
 /obj/item/clothing/Initialize()
 	if((clothing_flags & VOICEBOX_TOGGLABLE))
 		actions_types += /datum/action/item_action/toggle_voice_box
@@ -81,52 +76,6 @@
 		var/atom/movable/screen/inventory/hand/H = over_object
 		if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
 			add_fingerprint(usr)
-
-//This code is cursed, moths are cursed, and someday I will destroy it. but today is not that day.
-/obj/item/food/clothing
-	name = "temporary moth clothing snack item"
-	desc = "If you're reading this it means I messed up. This is related to moths eating clothes and I didn't know a better way to do it than making a new food object. <--- stinky idiot wrote this"
-	bite_consumption = 1
-	// sigh, ok, so it's not ACTUALLY infinite nutrition. this is so you can eat clothes more than...once.
-	// bite_consumption limits how much you actually get, and the take_damage in after eat makes sure you can't abuse this.
-	// ...maybe this was a mistake after all.
-	food_reagents = list(/datum/reagent/consumable/nutriment = INFINITY)
-	tastes = list("dust" = 1, "threads" = 1)
-	foodtypes = CLOTH
-
-	/// A weak reference to the clothing that created us
-	var/datum/weakref/clothing
-
-/obj/item/food/clothing/MakeEdible()
-	AddComponent(/datum/component/edible,\
-		initial_reagents = food_reagents,\
-		food_flags = food_flags,\
-		foodtypes = foodtypes,\
-		volume = max_volume,\
-		eat_time = eat_time,\
-		tastes = tastes,\
-		eatverbs = eatverbs,\
-		bite_consumption = bite_consumption,\
-		microwaved_type = microwaved_type,\
-		junkiness = junkiness,\
-		after_eat = CALLBACK(src, .proc/after_eat))
-
-/obj/item/food/clothing/proc/after_eat(mob/eater)
-	var/obj/item/clothing/resolved_clothing = clothing.resolve()
-	if (resolved_clothing)
-		resolved_clothing.take_damage(MOTH_EATING_CLOTHING_DAMAGE, sound_effect = FALSE, damage_flag = CONSUME)
-	else
-		qdel(src)
-
-/obj/item/clothing/attack(mob/attacker, mob/user, def_zone)
-	if(user.a_intent != INTENT_HARM && ismoth(attacker))
-		if (isnull(moth_snack))
-			moth_snack = new
-			moth_snack.name = name
-			moth_snack.clothing = WEAKREF(src)
-		moth_snack.attack(attacker, user, def_zone)
-	else
-		return ..()
 
 /obj/item/clothing/attackby(obj/item/W, mob/user, params)
 	if(!istype(W, repairable_by))
@@ -220,7 +169,7 @@
 		body_parts_covered &= ~i
 
 	if(body_parts_covered == NONE) // if there are no more parts to break then the whole thing is kaput
-		obj_destruction((damage_type == BRUTE ? MELEE : LASER)) // melee/laser is good enough since this only procs from direct attacks anyway and not from fire/bombs
+		obj_destruction((damage_type == BRUTE ? SHARP : BLUNT))
 		return
 
 	switch(zones_disabled)
@@ -235,7 +184,6 @@
 
 /obj/item/clothing/Destroy()
 	user_vars_remembered = null //Oh god somebody put REFERENCES in here? not to worry, we'll clean it up
-	QDEL_NULL(moth_snack)
 	return ..()
 
 /obj/item/clothing/dropped(mob/living/user)
@@ -489,19 +437,12 @@ BLIND     // can't see anything
 	return 0
 
 /obj/item/clothing/obj_destruction(damage_flag)
-	if(damage_flag == BOMB)
+	if(damage_flag == BLUNT)
 		var/turf/T = get_turf(src)
 		//so the shred survives potential turf change from the explosion.
 		addtimer(CALLBACK_NEW(/obj/effect/decal/cleanable/shreds, list(T, name)), 1)
 		deconstruct(FALSE)
-	if(damage_flag == CONSUME) //This allows for moths to fully consume clothing, rather than damaging it like other sources like brute
-		var/turf/current_position = get_turf(src)
-		new /obj/effect/decal/cleanable/shreds(current_position, name)
-		if(isliving(loc))
-			var/mob/living/possessing_mob = loc
-			possessing_mob.visible_message(span_danger("[src] is consumed until naught but shreds remains!"), span_boldwarning("[src] falls apart into little bits!"))
-		deconstruct(FALSE)
-	else if(!(damage_flag in list(ACID, FIRE)))
+	if(!(damage_flag in list(ACID, FIRE)))
 		body_parts_covered = NONE
 		slot_flags = NONE
 		update_clothes_damaged_state(CLOTHING_SHREDDED)
@@ -524,5 +465,3 @@ BLIND     // can't see anything
 		return
 	if(prob(0.2))
 		to_chat(L, span_warning("The damaged threads on your [src.name] chafe!"))
-
-#undef MOTH_EATING_CLOTHING_DAMAGE

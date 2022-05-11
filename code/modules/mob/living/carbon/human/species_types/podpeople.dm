@@ -44,16 +44,3 @@
 		H.adjustToxLoss(3 * REAGENTS_EFFECT_MULTIPLIER * delta_time)
 		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM * delta_time)
 		return TRUE
-
-/datum/species/pod/on_hit(obj/projectile/P, mob/living/carbon/human/H)
-	switch(P.type)
-		if(/obj/projectile/energy/floramut)
-			H.adjustFireLoss(rand(5,15))
-			H.show_message(span_userdanger("The radiation beam singes you!"))
-		if(/obj/projectile/energy/florayield)
-			H.set_nutrition(min(H.nutrition+30, NUTRITION_LEVEL_FULL))
-		if(/obj/projectile/energy/florarevolution)
-			H.show_message(span_notice("The radiation beam leaves you feeling disoriented!"))
-			H.Dizzy(15)
-			H.emote("flip")
-			H.emote("spin")

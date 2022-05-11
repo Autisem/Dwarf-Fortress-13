@@ -22,7 +22,6 @@
 
 	tool_behaviour = TOOL_WIRECUTTER
 	toolspeed = 1
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
 	var/random_color = TRUE
 	var/static/list/wirecutter_colors = list(
 		"blue" = "#1861d5",
@@ -52,8 +51,6 @@
 	. += base_overlay
 
 /obj/item/wirecutters/attack(mob/living/carbon/C, mob/user)
-	if(tearoutteeth(C, user)) // hippie start -- adds teeth code
-		return FALSE // hippie end
 	if(istype(C) && C.handcuffed && istype(C.handcuffed, /obj/item/restraints/handcuffs/cable))
 		user.visible_message(span_notice("[user] перекусывает наручи [C] используя [src]!"))
 		qdel(C.handcuffed)

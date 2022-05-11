@@ -54,7 +54,7 @@
 	custom_materials = list(/datum/material/iron=50)
 	attack_verb_continuous = list("smashes", "hits", "attacks")
 	attack_verb_simple = list("smash", "hit", "attack")
-	sharpness = SHARP_EDGED
+	atck_type = SHARP
 
 /obj/item/shovel/Initialize()
 	. = ..()
