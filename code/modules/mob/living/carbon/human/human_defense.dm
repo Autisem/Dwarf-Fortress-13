@@ -1,7 +1,7 @@
 /mob/living/carbon/human/getarmor(def_zone, type)
 	//If you don't specify a bodypart, it selects a random bodypart
 	if(!def_zone)
-		def_zone = pick(BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_HEAD)
+		def_zone = pick(bodyparts)
 
 	if(isbodypart(def_zone))
 		var/obj/item/bodypart/bp = def_zone
