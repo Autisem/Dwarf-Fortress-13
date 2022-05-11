@@ -81,9 +81,6 @@
 		to_chat(user, span_danger("You bite [victim]!"))
 		if(armor >= 2)
 			return TRUE
-		for(var/d in user.diseases)
-			var/datum/disease/bite_infection = d
-			victim.ForceContractDisease(bite_infection)
 		return TRUE
 	target.attack_paw(user)
 	return TRUE

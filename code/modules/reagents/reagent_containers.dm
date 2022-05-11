@@ -9,8 +9,6 @@
 	var/volume = 30
 	var/reagent_flags
 	var/list/list_reagents = null
-	var/spawned_disease = null
-	var/disease_amount = 20
 	var/spillable = FALSE
 	var/list/fill_icon_thresholds = null
 	var/fill_icon_state = null // Optional custom name for reagent fill icon_state prefix
@@ -21,11 +19,6 @@
 	if(isnum(vol) && vol > 0)
 		volume = vol
 	create_reagents(volume, reagent_flags, allowed_reagents)
-	if(spawned_disease)
-		var/datum/disease/F = new spawned_disease()
-		var/list/data = list("viruses"= list(F))
-		reagents.add_reagent(/datum/reagent/blood, disease_amount, data)
-
 	add_initial_reagents()
 
 /obj/item/reagent_containers/create_reagents(max_vol, flags, _allowed_reagents)

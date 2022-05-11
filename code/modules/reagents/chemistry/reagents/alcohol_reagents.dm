@@ -250,12 +250,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		M.Unconscious(100)
 		M.Jitter(350)
 
-	if(DT_PROB(0.5, delta_time) && iscarbon(M))
-		var/datum/disease/D = new /datum/disease/heart_failure
-		M.ForceContractDisease(D)
-		to_chat(M, span_userdanger("Уверен что ощутил как мое сердце пропустило удар.."))
-		M.playsound_local(M, 'sound/effects/singlebeat.ogg', 100, 0)
-
 /datum/reagent/consumable/ethanol/vodka
 	name = "Водка"
 	description = "Number one drink AND fueling choice for Russians worldwide."

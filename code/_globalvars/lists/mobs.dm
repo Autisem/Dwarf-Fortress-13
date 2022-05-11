@@ -45,8 +45,6 @@ GLOBAL_LIST_EMPTY(narcd_underages)
 GLOBAL_LIST_EMPTY(language_datum_instances)
 GLOBAL_LIST_EMPTY(all_languages)
 
-GLOBAL_LIST_EMPTY(sentient_disease_instances)
-
 GLOBAL_LIST_EMPTY(latejoin_ai_cores)
 
 GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)

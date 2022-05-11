@@ -47,7 +47,7 @@
 		bleeding_chest.force_wound_upwards(/datum/wound/slash/critical)
 
 	if(!detach_limb)
-		new /obj/effect/decal/cleanable/blood/gibs(location, C.get_static_viruses())
+		new /obj/effect/decal/cleanable/blood/gibs(location)
 		qdel(src)
 		return TRUE
 	var/direction = pick(GLOB.cardinals)

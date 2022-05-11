@@ -10,7 +10,6 @@
 		TRAIT_CAN_STRIP,
 		TRAIT_CAN_USE_FLIGHT_POTION,
 	)
-	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_REPTILE
 	mutant_bodyparts = list("tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None",
 						"frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs")
 	mutanttongue = /obj/item/organ/tongue/lizard
@@ -130,7 +129,6 @@ Lizard subspecies: SILVER SCALED
 	name = "Silver Scale"
 	id = "silverlizard"
 	limbs_id = "lizard"
-	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_REPTILE
 	inherent_traits = list(TRAIT_ADVANCEDTOOLUSER,TRAIT_HOLY,TRAIT_NOBREATH,TRAIT_VIRUSIMMUNE,TRAIT_WINE_TASTER,TRAIT_CAN_STRIP)
 	species_language_holder = /datum/language_holder/lizard/silver
 	mutanttongue = /obj/item/organ/tongue/lizard/silver

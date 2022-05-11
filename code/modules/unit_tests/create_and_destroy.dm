@@ -54,8 +54,6 @@
 	//We don't have a pod
 	ignore += typesof(/obj/effect/pod_landingzone_effect)
 	ignore += typesof(/obj/effect/pod_landingzone)
-	//We don't have a disease to pass in
-	ignore += typesof(/obj/effect/mapping_helpers/component_injector/infective)
 	//There's no shapeshift to hold
 	ignore += typesof(/obj/shapeshift_holder)
 	//No tauma to pass in

@@ -29,8 +29,6 @@
 
 #define STATUS_EFFECT_FLESHMEND /datum/status_effect/fleshmend //Very fast healing; suppressed by fire, and heals less fire damage
 
-#define STATUS_EFFECT_EXERCISED /datum/status_effect/exercised //Prevents heart disease
-
 #define STATUS_EFFECT_HIPPOCRATIC_OATH /datum/status_effect/hippocratic_oath //Gives you an aura of healing as well as regrowing the Rod of Asclepius if lost
 
 #define STATUS_EFFECT_GOOD_MUSIC /datum/status_effect/good_music

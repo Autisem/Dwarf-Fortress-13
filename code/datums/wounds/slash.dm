@@ -145,45 +145,6 @@
 	else if(istype(I, /obj/item/stack/medical/suture))
 		suture(I, user)
 
-/datum/wound/slash/try_handling(mob/living/carbon/human/user)
-	if(user.pulling != victim || user.zone_selected != limb.body_zone || !isfelinid(user) || !victim.try_inject(user, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE))
-		return FALSE
-	if(DOING_INTERACTION_WITH_TARGET(user, victim))
-		to_chat(user, span_warning("Уже взаимодействую с [victim]!"))
-		return
-	if(user.is_mouth_covered())
-		to_chat(user, "<span class='warning'Мой рот закрыт и не может достать до ран [victim]!</span>")
-		return
-	if(!user.getorganslot(ORGAN_SLOT_TONGUE))
-		to_chat(user, span_warning("А чем лизать-то?!")) // f in chat
-		return
-
-	lick_wounds(user)
-	return TRUE
-
-/// if a felinid is licking this cut to reduce bleeding
-/datum/wound/slash/proc/lick_wounds(mob/living/carbon/human/user)
-	// transmission is one way patient -> felinid since google said cat saliva is antiseptic or whatever, and also because felinids are already risking getting beaten for this even without people suspecting they're spreading a deathvirus
-	for(var/i in victim.diseases)
-		var/datum/disease/iter_disease = i
-		if(iter_disease.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS))
-			continue
-		user.ForceContractDisease(iter_disease)
-
-	user.visible_message(span_notice("<b>[user]</b> начинает зализывать рану на [limb.name] <b>[victim]</b>.") , span_notice("Начинаю зализывать рану на [limb.name] <b>[victim]</b>...") , ignored_mobs=victim)
-	to_chat(victim, "<span class='notice'><b>[user]</b> начинает зализывать рану на моей [limb.name].</span")
-	if(!do_after(user, base_treat_time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
-		return
-
-	user.visible_message(span_notice("<b>[user]</b> зализывает рану на [limb.name] <b>[victim]</b>.") , span_notice("Зализываю рану на [limb.name] <b>[victim]</b>.") , ignored_mobs=victim)
-	to_chat(victim, "<span class='green'><b>[user]</b> зализывает рану на моей [limb.name]!</span")
-	blood_flow -= 0.5
-
-	if(blood_flow > minimum_flow)
-		try_handling(user)
-	else if(demotes_to)
-		to_chat(user, span_green("Успешно ослабляю кровотечение у [victim]."))
-
 /datum/wound/slash/on_xadone(power)
 	. = ..()
 	blood_flow -= 0.03 * power // i think it's like a minimum of 3 power, so .09 blood_flow reduction per tick is pretty good for 0 effort

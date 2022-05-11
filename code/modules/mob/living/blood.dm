@@ -197,12 +197,6 @@
 		var/mob/living/carbon/C = AM
 		if(blood_id == C.get_blood_id())//both mobs have the same blood substance
 			if(blood_id == /datum/reagent/blood) //normal blood
-				if(blood_data["viruses"])
-					for(var/thing in blood_data["viruses"])
-						var/datum/disease/D = thing
-						if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
-							continue
-						C.ForceContractDisease(D)
 				if(!(blood_data["blood_type"] in get_safe_blood(C.dna.blood_type)))
 					C.reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
 					return TRUE
@@ -221,15 +215,7 @@
 	if(blood_id == /datum/reagent/blood) //actual blood reagent
 		var/blood_data = list()
 		//set the blood data
-		blood_data["viruses"] = list()
-
-		for(var/thing in diseases)
-			var/datum/disease/D = thing
-			blood_data["viruses"] += D.Copy()
-
 		blood_data["blood_DNA"] = dna.unique_enzymes
-		if(LAZYLEN(disease_resistances))
-			blood_data["resistances"] = disease_resistances.Copy()
 		var/list/temp_chem = list()
 		for(var/datum/reagent/R in reagents.reagent_list)
 			temp_chem[R.type] = R.volume
@@ -313,14 +299,14 @@
 				temp_blood_DNA = drop.return_blood_DNA() //we transfer the dna from the drip to the splatter
 				qdel(drop)//the drip is replaced by a bigger splatter
 		else
-			drop = new(T, get_static_viruses())
+			drop = new(T)
 			drop.transfer_mob_blood_dna(src)
 			return
 
 	// Find a blood decal or create a new one.
 	var/obj/effect/decal/cleanable/blood/B = locate() in T
 	if(!B)
-		B = new /obj/effect/decal/cleanable/blood/splatter(T, get_static_viruses())
+		B = new /obj/effect/decal/cleanable/blood/splatter(T)
 	if(QDELETED(B)) //Give it up
 		return
 	B.bloodiness = min((B.bloodiness + BLOOD_AMOUNT_PER_DECAL), BLOOD_POOL_MAX)

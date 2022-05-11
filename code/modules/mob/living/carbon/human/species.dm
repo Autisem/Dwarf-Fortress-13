@@ -135,8 +135,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/list/species_traits = list()
 	///Generic traits tied to having the species.
 	var/list/inherent_traits = list(TRAIT_ADVANCEDTOOLUSER, TRAIT_CAN_STRIP)
-	/// List of biotypes the mob belongs to. Used by diseases.
-	var/inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	///List of factions the mob gain upon gaining this species.
 	var/list/inherent_factions
 
@@ -374,7 +372,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(DIGITIGRADE in species_traits)
 		C.Digitigrade_Leg_Swap(FALSE)
 
-	C.mob_biotypes = inherent_biotypes
 
 	regenerate_organs(C,old_species)
 
@@ -398,10 +395,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	for(var/X in inherent_traits)
 		ADD_TRAIT(C, X, SPECIES_TRAIT)
-
-	if(TRAIT_VIRUSIMMUNE in inherent_traits)
-		for(var/datum/disease/A in C.diseases)
-			A.cure(FALSE)
 
 	if(TRAIT_TOXIMMUNE in inherent_traits)
 		C.setToxLoss(0, TRUE, TRUE)

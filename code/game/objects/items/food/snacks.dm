@@ -15,50 +15,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	preserved_food = TRUE
 
-/obj/item/food/candy/bronx
-	name = "South Bronx Paradise bar"
-	desc = "Lose weight, guaranteed! Caramel Mocha Flavor. Something about product consumption..."
-	icon_state = "bronx"
-	inhand_icon_state = "candy"
-	trash_type = /obj/item/trash/candy
-	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 2, /datum/reagent/yuck = 1)
-	junkiness = 10
-	bite_consumption = 10
-	tastes = list("конфета" = 5, "потеря веса" = 4, "личинка насекомых" = 1)
-	foodtypes = JUNKFOOD | RAW | GROSS
-	custom_price = PAYCHECK_ASSISTANT * 1.6 //Joke adjusted for inflation
-	w_class = WEIGHT_CLASS_TINY
-	var/revelation = FALSE
-	preserved_food = TRUE
-
-/obj/item/food/candy/bronx/MakeEdible()
-	AddComponent(/datum/component/edible,\
-				initial_reagents = food_reagents,\
-				food_flags = food_flags,\
-				foodtypes = foodtypes,\
-				volume = max_volume,\
-				eat_time = eat_time,\
-				tastes = tastes,\
-				eatverbs = eatverbs,\
-				bite_consumption = bite_consumption,\
-				microwaved_type = microwaved_type,\
-				junkiness = junkiness,\
-				after_eat = CALLBACK(src, .proc/after_eat))
-
-/obj/item/food/candy/bronx/proc/after_eat(mob/living/eater)
-	if(ishuman(eater))
-		var/mob/living/carbon/human/carl = eater
-		var/datum/disease/P = new /datum/disease/parasite()
-		carl.ForceContractDisease(P, FALSE, TRUE)
-
-/obj/item/food/candy/bronx/examine(mob/user)
-	. = ..()
-	if(!revelation)
-		to_chat(user, span_notice("Geeze, you need to get to get your eyes checked. You should look again..."))
-		desc = "Lose weight, guaranteed! Caramel Mocha Flavor! WARNING: PRODUCT NOT FIT FOR HUMAN CONSUMPTION. CONTAINS LIVE DIAMPHIDIA SPECIMENS."
-		name = "South Bronx Parasite bar"
-		revelation = TRUE
-
 /obj/item/food/sosjerky
 	name = "\improper Scaredy's Private Reserve Beef Jerky"
 	icon_state = "sosjerky"

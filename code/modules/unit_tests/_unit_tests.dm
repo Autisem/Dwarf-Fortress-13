@@ -51,7 +51,6 @@
 #include "combat.dm"
 #include "component_tests.dm"
 #include "connect_loc.dm"
-#include "confusion.dm"
 //#include "create_and_destroy.dm"
 #include "emoting.dm"
 #include "keybinding_init.dm"

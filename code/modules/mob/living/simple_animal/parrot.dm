@@ -831,15 +831,4 @@
 			parrot_interest = null
 		else if(parrot_state == (PARROT_SWOOP | PARROT_ATTACK) && Adjacent(parrot_interest))
 			walk_to(src, parrot_interest, 0, parrot_speed)
-			Possess(parrot_interest)
 	..()
-
-/mob/living/simple_animal/parrot/poly/ghost/proc/Possess(mob/living/carbon/human/H)
-	if(!ishuman(H))
-		return
-	var/datum/disease/parrot_possession/P = new
-	P.parrot = src
-	forceMove(H)
-	H.ForceContractDisease(P, FALSE)
-	parrot_interest = null
-	H.visible_message(span_danger("[capitalize(src.name)] dive bombs into [H] chest and vanishes!") , span_userdanger("[capitalize(src.name)] dive bombs into your chest, vanishing! This can't be good!"))

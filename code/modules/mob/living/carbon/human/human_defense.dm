@@ -230,7 +230,7 @@
 		dismembering_strike(M, affecting.body_zone)
 
 	if(try_inject(M, affecting, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE))//Thick suits can stop monkey bites.
-		if(..()) //successful monkey bite, this handles disease contraction.
+		if(..()) //successful monkey bite
 			var/damage = rand(M.dna.species.punchdamagelow, M.dna.species.punchdamagehigh)
 			if(!damage)
 				return

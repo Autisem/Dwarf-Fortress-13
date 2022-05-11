@@ -41,7 +41,6 @@
 
 	remove_from_all_data_huds()
 	GLOB.mob_living_list -= src
-	QDEL_LIST(diseases)
 	for(var/s in ownedSoullinks)
 		var/datum/soullink/S = s
 		S.ownerDies(FALSE)
@@ -101,16 +100,6 @@
 	if(isliving(M))
 		var/mob/living/L = M
 		they_can_move = L.mobility_flags & MOBILITY_MOVE
-		//Also spread diseases
-		for(var/thing in diseases)
-			var/datum/disease/D = thing
-			if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
-				L.ContactContractDisease(D)
-
-		for(var/thing in L.diseases)
-			var/datum/disease/D = thing
-			if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
-				ContactContractDisease(D)
 
 		//Should stop you pushing a restrained person out of the way
 		if(L.pulledby && L.pulledby != src && HAS_TRAIT(L, TRAIT_RESTRAINED))
@@ -294,16 +283,6 @@
 		if(isliving(M))
 			var/mob/living/L = M
 			SEND_SIGNAL(M, COMSIG_LIVING_GET_PULLED, src)
-			//Share diseases that are spread by touch
-			for(var/thing in diseases)
-				var/datum/disease/D = thing
-				if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
-					L.ContactContractDisease(D)
-
-			for(var/thing in L.diseases)
-				var/datum/disease/D = thing
-				if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
-					ContactContractDisease(D)
 
 			if(iscarbon(L))
 				var/mob/living/carbon/C = L
@@ -784,7 +763,7 @@
 	if((newdir in GLOB.cardinals) && (prob(50)))
 		newdir = turn(get_dir(target_turf, start), 180)
 	if(!blood_exists)
-		new /obj/effect/decal/cleanable/trail_holder(start, get_static_viruses())
+		new /obj/effect/decal/cleanable/trail_holder(start)
 
 	for(var/obj/effect/decal/cleanable/trail_holder/TH in start)
 		if((!(newdir in TH.existing_dirs) || trail_type == "trails_1" || trail_type == "trails_2") && TH.existing_dirs.len <= 16) //maximum amount of overlays is 16 (all light & heavy directions filled)
@@ -1265,15 +1244,6 @@
 		return FALSE
 	mob_pickup(user)
 	return TRUE
-
-/mob/living/proc/get_static_viruses() //used when creating blood and other infective objects
-	if(!LAZYLEN(diseases))
-		return
-	var/list/datum/disease/result = list()
-	for(var/datum/disease/D in diseases)
-		var/static_virus = D.Copy()
-		result += static_virus
-	return result
 
 /mob/living/reset_perspective(atom/A)
 	if(..())

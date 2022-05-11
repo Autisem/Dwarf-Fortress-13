@@ -79,11 +79,6 @@
 	for(var/organ in M.internal_organs)
 		var/obj/item/organ/O = organ
 		O.setOrganDamage(0)
-	for(var/thing in M.diseases)
-		var/datum/disease/D = thing
-		if(D.severity == DISEASE_SEVERITY_POSITIVE)
-			continue
-		D.cure()
 	..()
 	. = TRUE
 
@@ -223,14 +218,6 @@
 	if(reac_volume >= 5 && HAS_TRAIT_FROM(patient, TRAIT_HUSK, BURN) && patient.getFireLoss() < UNHUSK_DAMAGE_THRESHOLD) //One carp yields 12u rezadone.
 		patient.cure_husk(BURN)
 		patient.visible_message(span_nicegreen("Тело [patient] быстро впитывает влагу из окружающей среды, принимая более здоровый вид."))
-
-/datum/reagent/medicine/spaceacillin
-	name = "Космоацилин"
-	enname = "Spaceacillin"
-	description = "Spaceacillin will prevent a patient from conventionally spreading any diseases they are currently infected with. Also reduces infection in serious burns."
-	color = "#E1F2E6"
-	metabolization_rate = 0.1 * REAGENTS_METABOLISM
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 //Goon Chems. Ported mainly from Goonstation. Easily mixable (or not so easily) and provide a variety of effects.
 
@@ -502,12 +489,6 @@
 	return TRUE
 
 /datum/reagent/medicine/ephedrine/overdose_process(mob/living/M, delta_time, times_fired)
-	if(DT_PROB(1, delta_time) && iscarbon(M))
-		var/datum/disease/D = new /datum/disease/heart_failure
-		M.ForceContractDisease(D)
-		to_chat(M, span_userdanger("Уверен что ощутил как мое сердце пропустило удар.."))
-		M.playsound_local(M, 'sound/effects/singlebeat.ogg', 100, 0)
-
 	if(DT_PROB(3.5, delta_time))
 		to_chat(M, span_notice("[pick("У меня очень сильно болит голова.", "Глазам больно.", "Мне сложно ровно стоять.", "По ощущениям мое сердце буквально вырывается из груди.")]"))
 

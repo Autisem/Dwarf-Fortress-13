@@ -6,7 +6,6 @@
 	icon_state = "tape"
 	flags_cover = MASKCOVERSMOUTH
 	w_class = WEIGHT_CLASS_SMALL
-	gas_transfer_coefficient = 0.90
 	strip_delay = 10
 	modifies_speech = TRUE
 	var/used = FALSE

@@ -142,7 +142,7 @@
 	name = "crusty dried vomit"
 	desc = "You try not to look at the chunks, and fail."
 
-/obj/effect/decal/cleanable/vomit/old/Initialize(mapload, list/datum/disease/diseases)
+/obj/effect/decal/cleanable/vomit/old/Initialize(mapload)
 	. = ..()
 	icon_state += "-old"
 

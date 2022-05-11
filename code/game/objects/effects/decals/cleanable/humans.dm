@@ -61,7 +61,7 @@
 	bloodiness = 0
 	icon_state = "floor1-old"
 
-/obj/effect/decal/cleanable/blood/old/Initialize(mapload, list/datum/disease/diseases)
+/obj/effect/decal/cleanable/blood/old/Initialize(mapload)
 	add_blood_DNA(list("Non-human DNA" = random_blood_type())) // Needs to happen before ..()
 	. = ..()
 
@@ -106,7 +106,7 @@
 	dryname = "гниющие ошмётки"
 	drydesc = "Выглядят довольно вкусно, если бы это была карамель и не было бы этого тошнотворного запаха."
 
-/obj/effect/decal/cleanable/blood/gibs/Initialize(mapload, list/datum/disease/diseases)
+/obj/effect/decal/cleanable/blood/gibs/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/liquidgibs, 5)
 	RegisterSignal(src, COMSIG_MOVABLE_PIPE_EJECTING, .proc/on_pipe_eject)
@@ -141,14 +141,13 @@
 
 /obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions, mapload=FALSE)
 	set waitfor = FALSE
-	var/list/diseases = list()
-	SEND_SIGNAL(src, COMSIG_GIBS_STREAK, directions, diseases)
+	SEND_SIGNAL(src, COMSIG_GIBS_STREAK, directions)
 	var/direction = pick(directions)
 	for(var/i in 0 to pick(0, 200; 1, 150; 2, 50; 3, 17; 50)) //the 3% chance of 50 steps is intentional and played for laughs.
 		if (!mapload)
 			sleep(2)
 		if(i > 0)
-			new /obj/effect/decal/cleanable/blood/splatter(loc, diseases)
+			new /obj/effect/decal/cleanable/blood/splatter(loc)
 		if(!step_to(src, get_step(src, direction), 0))
 			break
 
@@ -185,7 +184,7 @@
 	drydesc = "Почему это никто не убрал до сих пор? Пахнет довольно неприятно."
 	should_dry = FALSE
 
-/obj/effect/decal/cleanable/blood/gibs/old/Initialize(mapload, list/datum/disease/diseases)
+/obj/effect/decal/cleanable/blood/gibs/old/Initialize(mapload)
 	. = ..()
 	setDir(pick(1,2,4,8))
 	add_blood_DNA(list("Non-human DNA" = random_blood_type()))

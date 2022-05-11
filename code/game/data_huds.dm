@@ -51,18 +51,6 @@ Medical HUD! Basic mode needs suit sensors on.
 
 //HELPERS
 
-//called when a carbon changes virus
-/mob/living/carbon/proc/check_virus()
-	var/threat
-	var/severity
-	for(var/thing in diseases)
-		var/datum/disease/D = thing
-		if(!(D.visibility_flags & HIDDEN_SCANNER))
-			if(!threat || get_disease_severity_value(D.severity) > threat) //a buffing virus gets an icon
-				threat = get_disease_severity_value(D.severity)
-				severity = D.severity
-	return severity
-
 //helper for getting the appropriate health status
 /proc/RoundHealth(mob/living/M)
 	if(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_FAKEDEATH)))
@@ -151,7 +139,6 @@ Medical HUD! Basic mode needs suit sensors on.
 	var/image/holder = hud_list[STATUS_HUD]
 	if(holder)
 		var/icon/I = icon(icon, icon_state, dir)
-		var/virus_threat = check_virus()
 		holder.pixel_y = I.Height() - world.icon_size
 		if(HAS_TRAIT(src, TRAIT_XENO_HOST))
 			holder.icon_state = "hudxeno"
@@ -161,23 +148,7 @@ Medical HUD! Basic mode needs suit sensors on.
 			else
 				holder.icon_state = "huddead"
 		else
-			switch(virus_threat)
-				if(DISEASE_SEVERITY_BIOHAZARD)
-					holder.icon_state = "hudill5"
-				if(DISEASE_SEVERITY_DANGEROUS)
-					holder.icon_state = "hudill4"
-				if(DISEASE_SEVERITY_HARMFUL)
-					holder.icon_state = "hudill3"
-				if(DISEASE_SEVERITY_MEDIUM)
-					holder.icon_state = "hudill2"
-				if(DISEASE_SEVERITY_MINOR)
-					holder.icon_state = "hudill1"
-				if(DISEASE_SEVERITY_NONTHREAT)
-					holder.icon_state = "hudill0"
-				if(DISEASE_SEVERITY_POSITIVE)
-					holder.icon_state = "hudbuff"
-				if(null)
-					holder.icon_state = "hudhealthy"
+			holder.icon_state = "hudhealthy"
 	else
 		stack_trace("[src] does not have a HEALTH_HUD but updates it!")
 

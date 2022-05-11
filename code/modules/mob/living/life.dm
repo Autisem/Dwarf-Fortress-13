@@ -47,11 +47,9 @@
 			//Breathing, if applicable
 			handle_breathing(delta_time, times_fired)
 
-		handle_diseases(delta_time, times_fired)// DEAD check is in the proc itself; we want it to spread even if the mob is dead, but to handle its disease-y properties only if you're not.
-
 		handle_wounds(delta_time, times_fired)
 
-		if (QDELETED(src)) // diseases can qdel the mob via transformations
+		if (QDELETED(src))
 			return
 
 		if(stat != DEAD)
@@ -77,9 +75,6 @@
 
 /mob/living/proc/handle_mutations_and_radiation(delta_time, times_fired)
 	radiation = 0 //so radiation don't accumulate in simple animals
-	return
-
-/mob/living/proc/handle_diseases(delta_time, times_fired)
 	return
 
 /mob/living/proc/handle_wounds(delta_time, times_fired)

@@ -551,21 +551,6 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	log_admin("[key_name(usr)] has modified Dynamic Explosion Scale: [ex_scale]")
 	message_admins("[key_name_admin(usr)] has  modified Dynamic Explosion Scale: [ex_scale]")
 
-/client/proc/give_disease(mob/living/T in GLOB.mob_living_list)
-	set category = "Адм.Веселье"
-	set name = "Give Disease"
-	set desc = "Gives a Disease to a mob."
-	if(!istype(T))
-		to_chat(src, span_notice("You can only give a disease to a mob of type /mob/living.") , confidential = TRUE)
-		return
-	var/datum/disease/D = input("Choose the disease to give to that guy", "ACHOO") as null|anything in sort_list(SSdisease.diseases, /proc/cmp_typepaths_asc)
-	if(!D)
-		return
-	T.ForceContractDisease(new D, FALSE, TRUE)
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Give Disease") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] gave [key_name(T)] the disease [D].")
-	message_admins(span_adminnotice("[key_name_admin(usr)] gave [key_name_admin(T)] the disease [D]."))
-
 /client/proc/object_say(obj/O in world)
 	set category = "Адм.События"
 	set name = "OSay"

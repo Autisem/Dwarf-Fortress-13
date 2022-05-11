@@ -512,9 +512,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 ///Trait applied to turfs when an atmos holosign is placed on them. It will stop firedoors from closing.
 #define TRAIT_FIREDOOR_STOP "firedoor_stop"
 
-/// If present on a [/mob/living/carbon], will make them appear to have a medium level disease on health HUDs.
-#define TRAIT_DISEASELIKE_SEVERITY_MEDIUM "diseaselike_severity_medium"
-
 //Medical Categories for quirks
 #define CAT_QUIRK_ALL 0
 #define CAT_QUIRK_NOTES 1
@@ -532,7 +529,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAUMA_TRAIT "trauma"
 /// Trait inherited by experimental surgeries
 #define EXPERIMENTAL_SURGERY_TRAIT "experimental_surgery"
-#define DISEASE_TRAIT "disease"
 #define SPECIES_TRAIT "species"
 #define ORGAN_TRAIT "organ"
 /// cannot be removed without admin intervention

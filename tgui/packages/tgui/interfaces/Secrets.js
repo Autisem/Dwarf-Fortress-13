@@ -84,14 +84,6 @@ const HelpfulTab = (props, context) => {
         height="100%"
         align="stretch"
         justify="space-between">
-        <Flex.Item grow={1}>
-          <Button
-            icon="plus"
-            lineHeight={lineHeightNormal}
-            fluid
-            content="Cure all diseases currently in existence"
-            onClick={() => act("clear_virus")} />
-        </Flex.Item>
         <Flex.Item grow={1} ml={0.5}>
           <Button
             icon="eye"

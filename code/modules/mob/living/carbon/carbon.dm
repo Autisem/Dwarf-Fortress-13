@@ -464,7 +464,7 @@
 					span_userdanger("You are unable to keep the [bite] down without a stomach!"))
 
 	var/turf/floor = get_turf(src)
-	var/obj/effect/decal/cleanable/vomit/spew = new(floor, get_static_viruses())
+	var/obj/effect/decal/cleanable/vomit/spew = new(floor)
 	bite.reagents.trans_to(spew, amount, transfered_by = src)
 
 /mob/living/carbon/proc/spew_organ(power = 5, amt = 1)
@@ -825,10 +825,6 @@
 	for(var/O in internal_organs)
 		var/obj/item/organ/organ = O
 		organ.setOrganDamage(0)
-	for(var/thing in diseases)
-		var/datum/disease/D = thing
-		if(D.severity != DISEASE_SEVERITY_POSITIVE)
-			D.cure(FALSE)
 	for(var/thing in all_wounds)
 		var/datum/wound/W = thing
 		W.remove_wound()

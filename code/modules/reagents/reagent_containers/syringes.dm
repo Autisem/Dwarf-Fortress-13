@@ -214,11 +214,6 @@
 	desc = "Cодержит <b>конвермол</b>. Разбавлен с гранибитаралом."
 	list_reagents = list(/datum/reagent/medicine/c2/convermol = 6, /datum/reagent/medicine/granibitaluri = 9)
 
-/obj/item/reagent_containers/syringe/antiviral
-	name = "шприц (космоцилин)"
-	desc = "Cодержит <b>антивирусы</b>."
-	list_reagents = list(/datum/reagent/medicine/spaceacillin = 15)
-
 /obj/item/reagent_containers/syringe/bioterror
 	name = "шприц биотеррора"
 	desc = "Cодержит <b>различные отравляющие вещества</b>."
