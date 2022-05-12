@@ -10,7 +10,7 @@
 	var/open = FALSE
 	var/fuel = 0
 	var/working = FALSE
-	var/heat = 373.15
+	var/heat = 500
 	/// To remember which is placed where
 	var/obj/item/reagent_containers/glass/cooking_pot/left_item
 	var/obj/item/reagent_containers/glass/cooking_pot/right_item
