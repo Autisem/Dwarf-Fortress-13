@@ -12,7 +12,6 @@
 	desc = "This is used to lie in, sleep in or strap on."
 	icon = 'dwarfs/icons/structures/bed.dmi'
 	icon_state = "wooden"
-	icon = 'icons/obj/objects.dmi'
 	anchored = TRUE
 	can_buckle = TRUE
 	buckle_lying = 90

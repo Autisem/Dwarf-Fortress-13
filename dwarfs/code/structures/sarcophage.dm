@@ -2,7 +2,7 @@
 	name = "sarcophage"
 	desc = "Resting place for the dead. Not recommended for sleep."
 	icon = 'dwarfs/icons/structures/sarcophagus.dmi'
-	icon_state = "sarcophage"
+	icon_state = "sarcophagus"
 	drag_slowdown = 4
 	var/dead_used = FALSE
 
