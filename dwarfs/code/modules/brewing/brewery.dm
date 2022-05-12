@@ -58,6 +58,19 @@
 		if(!vol)
 			return TRUE
 		to_chat(user, span_notice("You transfer [vol]u from [C]."))
+	else if(I.get_temperature())
+		if(!fuel)
+			to_chat(user, span_warning("[src] has no fuel."))
+			return TRUE
+		if(open)
+			to_chat(user, span_warning("[src] has to be closed first."))
+			return TRUE
+		if(working)
+			to_chat(user, span_warning("[src] is already lit."))
+			return TRUE
+		working = TRUE
+		update_appearance()
+		to_chat(user, span_notice("You light up [src]."))
 	else
 		return ..()
 

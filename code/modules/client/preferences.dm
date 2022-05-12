@@ -240,10 +240,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							name = "Character [i]"
 						dat += "<a class='csetup_characters_character' href='?_src_=prefs;preference=changeslot;num=[i];' [i == default_slot ? "class='linkOn'" : ""]>[name]</a> "
 					dat += "</div>"
-			dat += "<div class='csetup_occupations'>"
-			dat += "<h2>Occupation Choices</h2>"
-			dat += "<a class='csetup_occupations_choose' href='?_src_=prefs;preference=job;task=menu'>Choose</a>"
-			dat += "</div>"
 			dat += "<div class='csetup_main'>"
 			if(is_banned_from(user.ckey, "Appearance"))
 				dat += "<div class='csetup_banned'>You are banned from appearance. You can still setup your character but you name and appearance will be random.</div>"

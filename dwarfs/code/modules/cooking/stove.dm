@@ -12,8 +12,8 @@
 	var/working = FALSE
 	var/heat = 373.15
 	/// To remember which is placed where
-	var/obj/item/reagent_containers/cooking_pot/left_item
-	var/obj/item/reagent_containers/cooking_pot/right_item
+	var/obj/item/reagent_containers/glass/cooking_pot/left_item
+	var/obj/item/reagent_containers/glass/cooking_pot/right_item
 
 /obj/structure/stove/Initialize()
 	. = ..()
@@ -60,7 +60,7 @@
 		.+=M
 
 /obj/structure/stove/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/reagent_containers/cooking_pot))
+	if(istype(I, /obj/item/reagent_containers/glass/cooking_pot))
 		if(left_item)
 			to_chat(user, span_warning("This place is already occupied by [left_item]."))
 			return TRUE
@@ -85,7 +85,7 @@
 
 /obj/structure/stove/attackby_secondary(obj/item/I, mob/user, params)
 	. = SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	if(istype(I, /obj/item/reagent_containers/cooking_pot))
+	if(istype(I, /obj/item/reagent_containers/glass/cooking_pot))
 		if(right_item)
 			to_chat(user, span_warning("This place is already occupied by [right_item]."))
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN

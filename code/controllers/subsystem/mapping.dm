@@ -170,7 +170,7 @@ Used by the AI doomsday and the self-destruct nuke.
 	// load the station
 	station_start = world.maxz + 1
 	log_world("Loading map config named [config.map_name]...")
-	to_chat(world, span_green(" -- $<b>Настройка</b>:> <b>[config.map_name]</b> -- "))
+	to_chat(world, span_green(" -- $<b>Loading</b>:> <b>[config.map_name]</b> -- "))
 	LoadGroup(FailedZs, "Station", config.map_path, config.map_file, config.traits, ZTRAITS_FORTRESS)
 
 	if(SSdbcore.Connect())

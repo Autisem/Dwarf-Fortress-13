@@ -13,5 +13,5 @@
 /datum/chemical_reaction/beer_wort
 	required_reagents = list(/datum/reagent/water, /datum/reagent/grain/barley)
 	results = list(/datum/reagent/wort/beer)
-	required_container = /obj/item/reagent_containers/cooking_pot
+	required_container = /obj/item/reagent_containers/glass/cooking_pot
 	required_temp = 373.15
