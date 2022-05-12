@@ -314,7 +314,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if(findtext(G_found.real_name,"monkey"))
 			if(tgui_alert(usr,"This character appears to have been a monkey. Would you like to respawn them as such?",,list("Yes","No"))=="Yes")
 				var/mob/living/carbon/human/species/monkey/new_monkey = new
-				SSjob.SendToLateJoin(new_monkey)
+				send_to_latejoin(new_monkey)
 				G_found.mind.transfer_to(new_monkey)	//be careful when doing stuff like this! I've already checked the mind isn't in use
 				new_monkey.key = G_found.key
 				to_chat(new_monkey, "You have been fully respawned. Enjoy the game.", confidential = TRUE)
@@ -326,7 +326,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	//Ok, it's not a xeno or a monkey. So, spawn a human.
 	var/mob/living/carbon/human/new_character = new//The mob being spawned.
-	SSjob.SendToLateJoin(new_character)
+	send_to_latejoin(new_character)
 
 	var/datum/preferences/A = new()
 	A.copy_to(new_character)
@@ -391,15 +391,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	admin_delete(A)
-
-/client/proc/cmd_admin_list_open_jobs()
-	set category = "Адм.Игра"
-	set name = "Manage Job Slots"
-
-	if(!check_rights(R_ADMIN))
-		return
-	holder.manage_free_slots()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Manage Job Slots") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in world)
 	set category = "Адм.Веселье"
@@ -697,59 +688,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins(msg)
 	admin_ticket_log(whom, msg)
 	log_admin("[key_name(src)] punished [key_name(whom)] with [punishment].")
-
-/client/proc/cmd_admin_check_player_exp()	//Allows admins to determine who the newer players are.
-	set category = "Адм"
-	set name = "Player Playtime"
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(!CONFIG_GET(flag/use_exp_tracking))
-		to_chat(usr, span_warning("Tracking is disabled in the server configuration file.") , confidential = TRUE)
-		return
-
-	var/list/msg = list()
-	msg += "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Playtime Report</title></head><body>Playtime:<BR><UL>"
-	var/list/clients_list_copy = GLOB.clients.Copy()
-	sort_list(clients_list_copy)
-	for(var/client/C in clients_list_copy)
-		msg += "<LI> - [key_name_admin(C)]: <A href='?_src_=holder;[HrefToken()];getplaytimewindow=[REF(C.mob)]'>" + C.get_exp_living() + "</a></LI>"
-	msg += "</UL></BODY></HTML>"
-	src << browse(msg.Join(), "window=Player_playtime_check")
-
-/datum/admins/proc/cmd_show_exp_panel(client/client_to_check)
-	if(!check_rights(R_ADMIN))
-		return
-	if(!client_to_check)
-		to_chat(usr, span_danger("ERROR: Client not found.") , confidential = TRUE)
-		return
-	if(!CONFIG_GET(flag/use_exp_tracking))
-		to_chat(usr, span_warning("Tracking is disabled in the server configuration file.") , confidential = TRUE)
-		return
-
-	new /datum/job_report_menu(client_to_check, usr)
-
-/datum/admins/proc/toggle_exempt_status(client/C)
-	if(!check_rights(R_ADMIN))
-		return
-	if(!C)
-		to_chat(usr, span_danger("ERROR: Client not found.") , confidential = TRUE)
-		return
-
-	if(!C.set_db_player_flags())
-		to_chat(usr, span_danger("ERROR: Unable read player flags from database. Please check logs.") , confidential = TRUE)
-	var/dbflags = C.prefs.db_flags
-	var/newstate = FALSE
-	if(dbflags & DB_FLAG_EXEMPT)
-		newstate = FALSE
-	else
-		newstate = TRUE
-
-	if(C.update_flag_db(DB_FLAG_EXEMPT, newstate))
-		to_chat(usr, span_danger("ERROR: Unable to update player flags. Please check logs.") , confidential = TRUE)
-	else
-		message_admins("[key_name_admin(usr)] has [newstate ? "activated" : "deactivated"] job exp exempt status on [key_name_admin(C)]")
-		log_admin("[key_name(usr)] has [newstate ? "activated" : "deactivated"] job exp exempt status on [key_name(C)]")
 
 /// Allow admin to add or remove traits of datum
 /datum/admins/proc/modify_traits(datum/D)

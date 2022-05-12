@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	// Initialize tgui panel
 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
-	addtimer(CALLBACK(src, .proc/check_panel_loaded), 30 SECONDS)
+	addtimer(CALLBACK(src, .proc/check_panel_loaded), 15 SECONDS)
 	tgui_panel.initialize()
 
 	if(alert_mob_dupe_login)
@@ -472,8 +472,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	view_size.setZoomMode()
 	fit_viewport()
 
-	SStitle.update_lobby()
-
 	Master.UpdateTickRate()
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CLIENT_CONNECT, src)
@@ -537,7 +535,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	seen_messages = null
 	Master.UpdateTickRate()
 	..() //Even though we're going to be hard deleted there are still some things that want to know the destroy is happening
-	SStitle.update_lobby()
 	return QDEL_HINT_HARDDEL_NOW
 
 /client/proc/set_client_age_from_db(connectiontopic)
@@ -567,26 +564,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	while (query_get_related_cid.NextRow())
 		related_accounts_cid += "[query_get_related_cid.item[1]], "
 	qdel(query_get_related_cid)
-
-	if(CONFIG_GET(flag/panic_bunker) && CONFIG_GET(number/panic_bunker_cap) < GLOB.player_list.len && !holder && !GLOB.deadmins[ckey])
-		var/living_recs = CONFIG_GET(number/panic_bunker_living)
-		//Relies on pref existing, but this proc is only called after that occurs, so we're fine.
-		var/minutes = get_exp_living(pure_numeric = TRUE)
-		if(minutes <= living_recs && !CONFIG_GET(flag/panic_bunker_interview))
-			var/reject_message = "PBv2: [key] перенаправлен по причине: [minutes]/[living_recs]."
-			log_access(reject_message)
-			message_admins(span_adminnotice("[reject_message]"))
-			var/message = CONFIG_GET(string/panic_bunker_message)
-			message = replacetext(message, "%minutes%", living_recs)
-			to_chat(src, message)
-			var/list/panic_addr = CONFIG_GET(string/panic_server_address)
-			if(panic_addr)
-				var/panic_name = CONFIG_GET(string/panic_server_name)
-				to_chat(src, span_notice("Отправляем вас в [panic_name ? panic_name : panic_addr]."))
-				winset(src, null, "command=.options")
-				src << link("[panic_addr]?redirect=1")
-			qdel(src)
-			return
 
 	var/admin_rank = "Player"
 	if (src.holder && src.holder.rank)
@@ -902,8 +879,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return
 	if(CONFIG_GET(flag/see_own_notes))
 		add_verb(src, /client/proc/self_notes)
-	if(CONFIG_GET(flag/use_exp_tracking))
-		add_verb(src, /client/proc/self_playtime)
 
 
 #undef UPLOAD_LIMIT

@@ -361,12 +361,6 @@
 			return
 		A.admin_remove(usr)
 
-	if (href_list["role_edit"])
-		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in sort_list(SSjob.station_jobs)
-		if (!new_role)
-			return
-		assigned_role = new_role
-
 	else if (href_list["memory_edit"])
 		var/new_memo = stripped_multiline_input(usr, "Write new memory", "Memory", memory, MAX_MESSAGE_LEN)
 		if (isnull(new_memo))

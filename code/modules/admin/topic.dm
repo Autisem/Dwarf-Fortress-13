@@ -39,24 +39,6 @@
 	else if(href_list["stickyban"])
 		stickyban(href_list["stickyban"],href_list)
 
-	else if(href_list["getplaytimewindow"])
-		if(!check_rights(R_ADMIN))
-			return
-		var/mob/M = locate(href_list["getplaytimewindow"]) in GLOB.mob_list
-		if(!M)
-			to_chat(usr, span_danger("ERROR: Mob not found.") , confidential = TRUE)
-			return
-		cmd_show_exp_panel(M.client)
-
-	else if(href_list["toggleexempt"])
-		if(!check_rights(R_PERMISSIONS))
-			return
-		var/client/C = locate(href_list["toggleexempt"]) in GLOB.clients
-		if(!C)
-			to_chat(usr, span_danger("ERROR: Client not found.") , confidential = TRUE)
-			return
-		toggle_exempt_status(C)
-
 	else if(href_list["makeAntag"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -775,78 +757,6 @@
 		to_chat(src.owner, "Location = [location_description];", confidential = TRUE)
 		to_chat(src.owner, "[special_role_description]", confidential = TRUE)
 		to_chat(src.owner, ADMIN_FULLMONTY_NONAME(M), confidential = TRUE)
-
-	else if(href_list["addjobslot"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/Add = href_list["addjobslot"]
-
-		for(var/datum/job/job in SSjob.occupations)
-			if(job.title == Add)
-				job.total_positions += 1
-				break
-
-		src.manage_free_slots()
-
-
-	else if(href_list["customjobslot"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/Add = href_list["customjobslot"]
-
-		for(var/datum/job/job in SSjob.occupations)
-			if(job.title == Add)
-				var/newtime = null
-				newtime = input(usr, "How many jebs do you want?", "Add wanted posters", "[newtime]") as num|null
-				if(!newtime)
-					to_chat(src.owner, "Setting to amount of positions filled for the job", confidential = TRUE)
-					job.total_positions = job.current_positions
-					break
-				job.total_positions = newtime
-
-		src.manage_free_slots()
-
-	else if(href_list["removejobslot"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/Remove = href_list["removejobslot"]
-
-		for(var/datum/job/job in SSjob.occupations)
-			if(job.title == Remove && job.total_positions - job.current_positions > 0)
-				job.total_positions -= 1
-				break
-
-		src.manage_free_slots()
-
-	else if(href_list["unlimitjobslot"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/Unlimit = href_list["unlimitjobslot"]
-
-		for(var/datum/job/job in SSjob.occupations)
-			if(job.title == Unlimit)
-				job.total_positions = -1
-				break
-
-		src.manage_free_slots()
-
-	else if(href_list["limitjobslot"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/Limit = href_list["limitjobslot"]
-
-		for(var/datum/job/job in SSjob.occupations)
-			if(job.title == Limit)
-				job.total_positions = job.current_positions
-				break
-
-		src.manage_free_slots()
-
 
 	else if(href_list["adminspawncookie"])
 		if(!check_rights(R_ADMIN|R_FUN))

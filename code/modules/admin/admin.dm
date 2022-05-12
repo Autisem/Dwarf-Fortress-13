@@ -66,9 +66,6 @@
 	if(M.client)
 		body += " with ckey <b>[M.client]</b> "
 		body += "<A href='?_src_=holder;[HrefToken()];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank : "Player"]</A>"
-		if(CONFIG_GET(flag/use_exp_tracking))
-			body += "<A href='?_src_=holder;[HrefToken()];getplaytimewindow=[REF(M)]'>" + M.client.get_exp_living(FALSE) + "</a>"
-			body += "<A href='?_src_=holder;[HrefToken()];toggleexempt=[REF(M.client)]'>T-Jobs</a>"
 
 	if(isnewplayer(M))
 		body += " <B>In lobby.</B> "
@@ -127,7 +124,6 @@
 
 	body += "<A href='?_src_=holder;[HrefToken()];showmessageckey=[M.ckey]'>Notices</A>"
 	if(M.client)
-		// body += "<A href='?_src_=holder;[HrefToken()];sendtoprison=[REF(M)]'>Prison</A>"
 		body += "\ <A href='?_src_=holder;[HrefToken()];sendbacktolobby=[REF(M)]'>Return to lobby</A>"
 		var/muted = M.client.prefs.muted
 		body += "<br><b>Mute: </b> "
@@ -466,16 +462,6 @@
 			log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delay Game Start") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/unprison(mob/M in GLOB.mob_list)
-	set category = "Адм"
-	set name = "Unprison"
-	if (is_marx_level(M.z))
-		SSjob.SendToLateJoin(M)
-		message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]")
-		log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
-	else
-		tgui_alert(usr,"[M.name] is not prisoned.")
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Unprison") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 /datum/admins/proc/spawn_atom(object as text)
@@ -569,47 +555,6 @@
 	log_admin("[key_name(usr)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed.")
 	message_admins(span_adminnotice("[key_name_admin(usr)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed."))
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Guests", "[!new_guest_ban ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/datum/admins/proc/manage_free_slots()
-	if(!check_rights())
-		return
-	var/datum/browser/browser = new(usr, "jobmanagement", "Manage Free Slots", 520)
-	var/list/dat = list()
-	var/count = 0
-
-	if(!SSjob.initialized)
-		tgui_alert(usr, "You cannot manage jobs before the job subsystem is initialized!")
-		return
-
-	if(SSlag_switch.measures[DISABLE_NON_OBSJOBS])
-		dat += "<div class='notice red' style='font-size: 125%'>Lag Switch \"Disable non-observer late joining\" is ON. Only Observers may join!</div>"
-
-	dat += "<table>"
-
-	for(var/j in SSjob.occupations)
-		var/datum/job/job = j
-		count++
-		var/J_title = html_encode(job.title)
-		var/J_opPos = html_encode(job.total_positions - (job.total_positions - job.current_positions))
-		var/J_totPos = html_encode(job.total_positions)
-		dat += "<tr><td>[J_title]:</td> <td>[J_opPos]/[job.total_positions < 0 ? " (unlimited)" : J_totPos]"
-
-		dat += "</td>"
-		dat += "<td>"
-		if(job.total_positions >= 0)
-			dat += "<A href='?src=[REF(src)];[HrefToken()];customjobslot=[job.title]'>Custom</A> | "
-			dat += "<A href='?src=[REF(src)];[HrefToken()];addjobslot=[job.title]'>Add 1</A> | "
-			if(job.total_positions > job.current_positions)
-				dat += "<A href='?src=[REF(src)];[HrefToken()];removejobslot=[job.title]'>Remove</A> | "
-			else
-				dat += "Remove | "
-			dat += "<A href='?src=[REF(src)];[HrefToken()];unlimitjobslot=[job.title]'>Unlimit</A></td>"
-		else
-			dat += "<A href='?src=[REF(src)];[HrefToken()];limitjobslot=[job.title]'>Limit</A></td>"
-
-	browser.height = min(100 + count * 20, 650)
-	browser.set_content(dat.Join())
-	browser.open()
 
 /datum/admins/proc/create_or_modify_area()
 	set category = "Дбг"

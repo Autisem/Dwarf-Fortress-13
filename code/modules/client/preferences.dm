@@ -212,7 +212,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(slot_randomized)
 		load_character(default_slot) // Reloads the character slot. Prevents random features from overwriting the slot if saved.
 		slot_randomized = FALSE
-	update_preview_icon()
 	var/list/dat = list("<center>")
 
 	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character</a>"
@@ -289,9 +288,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(randomise[RANDOM_BODY] || randomise[RANDOM_BODY_ANTAG]) //doesn't work unless random body
 				dat += SETUP_NODE_RANDOM("Always random age", RANDOM_AGE)
 				dat += SETUP_NODE_RANDOM("When antagonist", RANDOM_AGE_ANTAG)
-
-			if(user.client.get_exp_living(TRUE) >= PLAYTIME_HARDCORE_RANDOM)
-				dat += SETUP_NODE_RANDOM("Hardcore mode", RANDOM_HARDCORE)
 
 			dat += "</div><div class='csetup_content'><div class='csetup_header'>Basic</div>"
 
@@ -613,184 +609,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	popup.open(FALSE)
 	onclose(user, "capturekeypress", src)
 
-/datum/preferences/proc/SetChoices(mob/user, limit = 11, list/splitJobs = list("Chief Engineer"), widthPerColumn = 295, height = 620)
-	if(!SSjob)
-		return
-
-	//limit - The amount of jobs allowed per column. Defaults to 11 to make it look nice.
-	//splitJobs - Allows you split the table by job. You can make different tables for each department by including their heads. Defaults to CE to make it look nice.
-	//widthPerColumn - Screen's width for every column.
-	//height - Screen's height.
-
-	var/width = widthPerColumn
-
-	var/HTML = "<center>"
-	if(SSjob.occupations.len <= 0)
-		HTML += "The job SSticker is not yet finished creating jobs, please try again later"
-		HTML += "<center><a href='?_src_=prefs;preference=job;task=close'>Done</a></center><br>" // Easier to press up here.
-
-	else
-		HTML += "<b>Choose occupation chances</b><br>"
-		HTML += "<div align='center'>Left-click to raise an occupation preference, right-click to lower it.<br></div>"
-		HTML += "<center><a href='?_src_=prefs;preference=job;task=close'>Done</a></center><br>" // Easier to press up here.
-		HTML += "<script type='text/javascript'>function setJobPrefRedirect(level, rank) { window.location.href='?_src_=prefs;preference=job;task=setJobLevel;level=' + level + ';text=' + encodeURIComponent(rank); return false; }</script>"
-		HTML += "<table class='role_col' width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more colomns.
-		HTML += "<table width='100%' cellpadding='1' cellspacing='0'>"
-		var/index = -1
-
-		//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
-		var/datum/job/lastJob
-
-		for(var/datum/job/job in sort_list(SSjob.occupations, /proc/cmp_job_display_asc))
-
-			index += 1
-			if((index >= limit) || (job.title in splitJobs))
-				width += widthPerColumn
-				if((index < limit) && (lastJob != null))
-					//If the cells were broken up by a job in the splitJob list then it will fill in the rest of the cells with
-					//the last job's selection color. Creating a rather nice effect.
-					for(var/i = 0, i < (limit - index), i += 1)
-						HTML += "<tr style='color: [lastJob.selection_color]'><td width='60%' align='right'>&nbsp</td><td>&nbsp</td></tr>"
-				HTML += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
-				index = 0
-
-			HTML += "<tr style='color: [job.selection_color]'><td width='60%' align='right'>"
-			var/rank = job.title
-			lastJob = job
-			if(is_banned_from(user.ckey, rank))
-				HTML += "<font color='#ff7777'>[rank]</font></td><td><a href='?_src_=prefs;bancheck=[rank]'> BANNED</a></td></tr>"
-				continue
-			var/required_playtime_remaining = job.required_playtime_remaining(user.client)
-			if(required_playtime_remaining)
-				HTML += "<font color='#ff7777'>[rank]</font></td><td><font color='#ff7777'> \[ [get_exp_format(required_playtime_remaining)] как [job.get_exp_req_type()] \] </font></td></tr>"
-				continue
-			if(job.metalocked && !(job.type in jobs_buyed))
-				HTML += "<font color='#ff7777'>[rank]</font></td><td><font color='#ff7777'> \[ $$$ \] </font></td></tr>"
-				continue
-			if(!job.player_old_enough(user.client))
-				var/available_in_days = job.available_in_days(user.client)
-				HTML += "<font color='#ff7777'>[rank]</font></td><td><font color='#ff7777'> \[ЧЕРЕЗ [(available_in_days)] ДНЕЙ\]</font></td></tr>"
-				continue
-			if((job_preferences[SSjob.overflow_role] == JP_LOW) && (rank != SSjob.overflow_role) && !is_banned_from(user.ckey, SSjob.overflow_role))
-				HTML += "<font color='#ff9955'>[rank]</font></td><td></td></tr>"
-				continue
-
-			HTML += "<span>[rank]</span>"
-
-			HTML += "</td><td width='40%'>"
-
-			var/prefLevelLabel = "ERROR"
-			var/prefLevelColor = "pink"
-			var/prefUpperLevel = -1 // level to assign on left click
-			var/prefLowerLevel = -1 // level to assign on right click
-
-			switch(job_preferences[job.title])
-				if(JP_HIGH)
-					prefLevelLabel = "High"
-					prefLevelColor = "#9999ff"
-					prefUpperLevel = 4
-					prefLowerLevel = 2
-				if(JP_MEDIUM)
-					prefLevelLabel = "Medium"
-					prefLevelColor = "#77ff77"
-					prefUpperLevel = 1
-					prefLowerLevel = 3
-				if(JP_LOW)
-					prefLevelLabel = "Low"
-					prefLevelColor = "#ff9955"
-					prefUpperLevel = 2
-					prefLowerLevel = 4
-				else
-					prefLevelLabel = "NEVER"
-					prefLevelColor = "#ff7777"
-					prefUpperLevel = 3
-					prefLowerLevel = 1
-
-			HTML += "<a class='rs_butt' href='?_src_=prefs;preference=job;task=setJobLevel;level=[prefUpperLevel];text=[rank]' oncontextmenu='javascript:return setJobPrefRedirect([prefLowerLevel], \"[rank]\");'>"
-
-			if(rank == SSjob.overflow_role)//Overflow is special
-				if(job_preferences[SSjob.overflow_role] == JP_LOW)
-					HTML += "<font color='#77ff77'>Yes</font>"
-				else
-					HTML += "<font color='#ff7777'>No</font>"
-				HTML += "</a></td></tr>"
-				continue
-
-			HTML += "<font color=[prefLevelColor]>[prefLevelLabel]</font>"
-			HTML += "</a></td></tr>"
-
-		for(var/i = 1, i < (limit - index), i += 1) // Finish the column so it is even
-			HTML += "<tr style='color: [lastJob.selection_color]><td width='60%' align='right'>&nbsp;</td><td>&nbsp;</td></tr>"
-
-		HTML += "</td'></tr></table>"
-		HTML += "</center></table>"
-
-		var/message = "Be an [SSjob.overflow_role] if preference unavailable"
-		if(joblessrole == BERANDOMJOB)
-			message = "Get random job if preference unavailable"
-		else if(joblessrole == RETURNTOLOBBY)
-			message = "Return to lobby preference unavailable"
-		HTML += "<center><br><a href='?_src_=prefs;preference=job;task=random'>[message]</a></center>"
-		HTML += "<center><a href='?_src_=prefs;preference=job;task=reset'>Reset Preferences</a></center>"
-
-	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Occupation Choice</div>", width, height)
-	popup.set_window_options("can_close=0")
-	popup.set_content(HTML)
-	popup.open(FALSE)
-
-/datum/preferences/proc/SetJobPreferenceLevel(datum/job/job, level)
-	if (!job)
-		return FALSE
-
-	if (level == JP_HIGH) // to high
-		//Set all other high to medium
-		for(var/j in job_preferences)
-			if(job_preferences[j] == JP_HIGH)
-				job_preferences[j] = JP_MEDIUM
-				//technically break here
-
-	job_preferences[job.title] = level
-	return TRUE
-
-/datum/preferences/proc/UpdateJobPreference(mob/user, role, desiredLvl)
-	if(!SSjob || SSjob.occupations.len <= 0)
-		return
-	var/datum/job/job = SSjob.GetJob(role)
-
-	if(!job)
-		user << browse(null, "window=mob_occupation")
-		ShowChoices(user)
-		return
-
-	if (!isnum(desiredLvl))
-		to_chat(user, span_danger("UpdateJobPreference - desired level was not a number. Please notify coders!"))
-		ShowChoices(user)
-		return
-
-	var/jpval = null
-	switch(desiredLvl)
-		if(3)
-			jpval = JP_LOW
-		if(2)
-			jpval = JP_MEDIUM
-		if(1)
-			jpval = JP_HIGH
-
-	if(role == SSjob.overflow_role)
-		if(job_preferences[job.title] == JP_LOW)
-			jpval = null
-		else
-			jpval = JP_LOW
-
-	SetJobPreferenceLevel(job, jpval)
-	SetChoices(user)
-
-	return 1
-
-
-/datum/preferences/proc/ResetJobs()
-	job_preferences = list()
-
 /datum/preferences/Topic(href, href_list, hsrc)			//yeah, gotta do this I guess..
 	. = ..()
 	if(href_list["close"])
@@ -815,31 +633,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				expires = " The ban is for [DisplayTimeText(text2num(ban_details["duration"]) MINUTES)] and expires on [ban_details["expiration_time"]] (server time)."
 			to_chat(user, span_danger("You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [href_list["bancheck"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]"))
 			return
-	if(href_list["preference"] == "job")
-		switch(href_list["task"])
-			if("close")
-				user << browse(null, "window=mob_occupation")
-				ShowChoices(user)
-			if("reset")
-				ResetJobs()
-				SetChoices(user)
-			if("random")
-				switch(joblessrole)
-					if(RETURNTOLOBBY)
-						if(is_banned_from(user.ckey, SSjob.overflow_role))
-							joblessrole = BERANDOMJOB
-						else
-							joblessrole = BEOVERFLOW
-					if(BEOVERFLOW)
-						joblessrole = BERANDOMJOB
-					if(BERANDOMJOB)
-						joblessrole = RETURNTOLOBBY
-				SetChoices(user)
-			if("setJobLevel")
-				UpdateJobPreference(user, href_list["text"], text2num(href_list["level"]))
-			else
-				SetChoices(user)
-		return TRUE
 
 	switch(href_list["task"])
 		if("random")
@@ -1223,10 +1016,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/new_loc = input(user, "Choose your character's traitor uplink spawn location:", "Character Preference") as null|anything in GLOB.uplink_spawn_loc_list
 					if(new_loc)
 						uplink_spawn_loc = new_loc
-
-				if("playtime_reward_cloak")
-					if (user.client.get_exp_living(TRUE) >= PLAYTIME_VETERAN)
-						playtime_reward_cloak = !playtime_reward_cloak
 
 				if ("preferred_map")
 					var/maplist = list()
@@ -1709,12 +1498,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return pick(GLOB.clown_names)
 		if("mime")
 			return pick(GLOB.mime_names)
-		if("religion")
-			return DEFAULT_RELIGION
-		if("deity")
-			return DEFAULT_DEITY
-		if("bible")
-			return DEFAULT_BIBLE
 	return random_unique_name()
 
 /datum/preferences/proc/ask_for_custom_name(mob/user,name_id)

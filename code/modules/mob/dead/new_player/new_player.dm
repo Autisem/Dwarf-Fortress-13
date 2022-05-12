@@ -49,12 +49,6 @@
 	if(client.interviewee)
 		return FALSE
 
-	if(href_list["late_join"]) //This still exists for queue messages in chat
-		if(!SSticker?.IsRoundInProgress())
-			to_chat(usr, span_boldwarning("The round is either not ready or has already finished..."))
-			return
-		LateChoices()
-
 	if(href_list["SelectedJob"])
 		if(!SSticker?.IsRoundInProgress())
 			to_chat(usr, span_danger("The round is either not ready or has already finished..."))
@@ -89,6 +83,18 @@
 		var/datum/poll_question/poll = locate(href_list["votepollref"]) in GLOB.polls
 		vote_on_poll_handler(poll, href_list)
 
+/mob/dead/new_player/proc/Try_Latejion()
+	var/answer = tgui_alert(src, "Confirm latejoin", "Latejoin", list("Yes", "No"))
+
+	if(answer != "Yes" || QDELETED(src) || !src.client)
+		return
+
+	if(!SSticker?.IsRoundInProgress())
+		to_chat(usr, span_danger("The round is either not ready or has already finished..."))
+		return
+
+	AttemptLateSpawn()
+
 //When you cop out of the round (NB: this HAS A SLEEP FOR PLAYER INPUT IN IT)
 /mob/dead/new_player/proc/make_me_an_observer(force_observe=FALSE)
 	if(QDELETED(src) || !src.client)
@@ -107,8 +113,6 @@
 
 	var/mob/dead/observer/observer = new()
 	spawning = TRUE
-
-	client.kill_lobby()
 
 	observer.started_as_observer = TRUE
 	close_spawn_windows()
@@ -132,87 +136,23 @@
 	QDEL_NULL(mind)
 	qdel(src)
 
-	SStitle.update_lobby()
-
 	return TRUE
 
-/proc/get_job_unavailable_error_message(retval, jobtitle)
-	switch(retval)
-		if(JOB_AVAILABLE)
-			return "[jobtitle] is available."
-		if(JOB_UNAVAILABLE_GENERIC)
-			return "[jobtitle] is unavailable."
-		if(JOB_UNAVAILABLE_BANNED)
-			return "You are currently banned from [jobtitle]."
-		if(JOB_UNAVAILABLE_UNBUYED)
-			return "You have to buy [jobtitle] to play it."
-		if(JOB_UNAVAILABLE_PLAYTIME)
-			return "You do not have enough relevant playtime for [jobtitle]."
-		if(JOB_UNAVAILABLE_ACCOUNTAGE)
-			return "Your account is not old enough for [jobtitle]."
-		if(JOB_UNAVAILABLE_SLOTFULL)
-			return "[jobtitle] is already filled to capacity."
-	return "Error: Unknown job availability."
+/proc/send_to_latejoin(mob/character, buckle=FALSE)
+	var/atom/destination = pick(GLOB.latejoin_landmarks)
+	character.forceMove(get_turf(destination))
+	character.update_parallax_teleport()
 
-/mob/dead/new_player/proc/IsJobUnavailable(rank, latejoin = FALSE)
-	var/datum/job/job = SSjob.GetJob(rank)
-	if(!job)
-		return JOB_UNAVAILABLE_GENERIC
-	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
-		if(job.title == "Assistant")
-			if(isnum(client.player_age) && client.player_age <= 14) //Newbies can always be assistants
-				return JOB_AVAILABLE
-			for(var/datum/job/J in SSjob.occupations)
-				if(J && J.current_positions < J.total_positions && J.title != job.title)
-					return JOB_UNAVAILABLE_SLOTFULL
-		else
-			return JOB_UNAVAILABLE_SLOTFULL
-	if(is_banned_from(ckey, rank))
-		return JOB_UNAVAILABLE_BANNED
-	if(QDELETED(src))
-		return JOB_UNAVAILABLE_GENERIC
-	if(!job.player_old_enough(client))
-		return JOB_UNAVAILABLE_ACCOUNTAGE
-	if(job.required_playtime_remaining(client))
-		return JOB_UNAVAILABLE_PLAYTIME
-	if(latejoin && !job.special_check_latejoin(client))
-		return JOB_UNAVAILABLE_GENERIC
-	if(job.metalocked && !(job.type in client.prefs.jobs_buyed))
-		return JOB_UNAVAILABLE_UNBUYED
-	return JOB_AVAILABLE
-
-/mob/dead/new_player/proc/AttemptLateSpawn(rank)
-	var/error = IsJobUnavailable(rank)
-	if(error != JOB_AVAILABLE)
-		tgui_alert(usr, get_job_unavailable_error_message(error, rank))
-		return FALSE
-
+/mob/dead/new_player/proc/AttemptLateSpawn()
 	//Remove the player from the join queue if he was in one and reset the timer
 	SSticker.queued_players -= src
 	SSticker.queue_delay = 4
 
-	SSjob.AssignRole(src, rank, 1)
+	mind.assigned_role = "Dwarf" // SSjob removed so we assing it manually
 
 	var/mob/living/character = create_character(TRUE) //creates the human and transfers vars and mind
 
-	var/is_captain = FALSE
-	// If we don't have an assigned cap yet, check if this person qualifies for some from of captaincy.
-	if(!SSjob.assigned_captain && ishuman(character) && SSjob.chain_of_command[rank] && !is_banned_from(ckey, list("Captain")))
-		is_captain = TRUE
-	// If we already have a captain, are they a "Captain" rank and are we allowing multiple of them to be assigned?
-	else if(SSjob.always_promote_captain_job && (rank == "Captain"))
-		is_captain = TRUE
-
-	var/equip = SSjob.EquipRank(character, rank, TRUE, is_captain)
-	if(isliving(equip)) //Borgs get borged in the equip, so we need to make sure we handle the new mob.
-		character = equip
-
-	var/datum/job/job = SSjob.GetJob(rank)
-
-	if(job && !job.override_latejoin_spawn(character))
-		SSjob.SendToLateJoin(character)
-
-		character.update_parallax_teleport()
+	send_to_latejoin(character)
 
 	SSticker.minds += character.mind
 	character.client.init_verbs() // init verbs for the late join
@@ -223,51 +163,11 @@
 	if(humanc)	//These procs all expect humans
 		humanc.increment_scar_slot()
 		humanc.load_persistent_scars()
+		humanc.equipOutfit(/datum/outfit/dwarf)
 
 	GLOB.joined_player_list += character.ckey
 
-	SStitle.update_lobby()
-
 	log_manifest(character.mind.key,character.mind,character,latejoin = TRUE)
-
-/mob/dead/new_player/proc/LateChoices()
-	var/list/dat = list()
-	if(SSlag_switch.measures[DISABLE_NON_OBSJOBS])
-		dat += "<div class='notice red' style='font-size: 125%'>You can only observe right now.</div><br>"
-	dat += "<div class='notice'>Round duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>"
-	for(var/datum/job/prioritized_job in SSjob.prioritized_jobs)
-		if(prioritized_job.current_positions >= prioritized_job.total_positions)
-			SSjob.prioritized_jobs -= prioritized_job
-	dat += "<table><tr><td valign='top'>"
-	var/column_counter = 0
-	// render each category's available jobs
-	for(var/category in GLOB.position_categories)
-		// position_categories contains category names mapped to available jobs and an appropriate color
-		var/cat_color = GLOB.position_categories[category]["color"]
-		dat += "<fieldset style='width: 206px; border: 2px solid [cat_color]; display: inline'>"
-		dat += "<legend align='center' style='color: #ffffff;'>[GLOB.position_categories[category]["name"]]</legend>"
-		var/list/dept_dat = list()
-		for(var/job in GLOB.position_categories[category]["jobs"])
-			var/datum/job/job_datum = SSjob.name_occupations[job]
-			if(job_datum && IsJobUnavailable(job_datum.title, TRUE) == JOB_AVAILABLE)
-				var/command_bold = ""
-				if(job_datum in SSjob.prioritized_jobs)
-					dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'><span class='priority'>[job_datum.title] ([job_datum.current_positions])</span></a>"
-				else
-					dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'>[job_datum.title] ([job_datum.current_positions])</a>"
-		if(!dept_dat.len)
-			dept_dat += span_nopositions("No occupations available.")
-		dat += jointext(dept_dat, "")
-		dat += "</fieldset><br>"
-		column_counter++
-		if(column_counter > 0 && (column_counter % 3 == 0))
-			dat += "</td><td valign='top'>"
-	dat += "</td></tr></table></center>"
-	dat += "</div></div>"
-	var/datum/browser/popup = new(src, "latechoices", "Choose your occupation", 350, 350)
-	popup.add_stylesheet("playeroptions", 'html/browser/playeroptions.css')
-	popup.set_content(jointext(dat, ""))
-	popup.open(FALSE) // 0 is passed to open so that it doesn't use the onclose() proc
 
 /mob/dead/new_player/proc/create_character(transfer_after)
 	spawning = 1
@@ -294,8 +194,6 @@
 		is_antag = TRUE
 
 	client.prefs.copy_to(H, antagonist = is_antag, is_latejoiner = transfer_after)
-
-	client.kill_lobby()
 
 	H.dna.update_dna_identity()
 	if(mind)

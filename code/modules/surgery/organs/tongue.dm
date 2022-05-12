@@ -19,7 +19,6 @@
 		/datum/language/uncommon,
 		/datum/language/xoxol,
 		/datum/language/draconic,
-		/datum/language/codespeak,
 		/datum/language/monkey,
 		/datum/language/narsie,
 		/datum/language/beachbum,
@@ -105,7 +104,6 @@
 	var/static/list/languages_possible_fly = typecacheof(list(
 		/datum/language/common,
 		/datum/language/draconic,
-		/datum/language/codespeak,
 		/datum/language/monkey,
 		/datum/language/narsie,
 		/datum/language/beachbum,
@@ -271,7 +269,6 @@
 	var/static/list/languages_possible_skeleton = typecacheof(list(
 		/datum/language/common,
 		/datum/language/draconic,
-		/datum/language/codespeak,
 		/datum/language/monkey,
 		/datum/language/narsie,
 		/datum/language/beachbum,
@@ -350,7 +347,6 @@
 	var/static/list/languages_possible_ethereal = typecacheof(list(
 		/datum/language/common,
 		/datum/language/draconic,
-		/datum/language/codespeak,
 		/datum/language/monkey,
 		/datum/language/narsie,
 		/datum/language/beachbum,

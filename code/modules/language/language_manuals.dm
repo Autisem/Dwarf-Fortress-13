@@ -47,16 +47,6 @@
 
 		qdel(src)
 
-/obj/item/language_manual/codespeak_manual
-	name = "codespeak manual"
-	desc = "The book's cover reads: \"Codespeak(tm) - Secure your communication with metaphors so elaborate, they seem randomly generated!\""
-	language = /datum/language/codespeak
-	flavour_text = "suddenly your mind is filled with codewords and responses"
-
-/obj/item/language_manual/codespeak_manual/unlimited
-	name = "deluxe codespeak manual"
-	charges = INFINITY
-
 /obj/item/language_manual/roundstart_species
 
 /obj/item/language_manual/roundstart_species/Initialize()

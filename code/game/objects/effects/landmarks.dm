@@ -34,15 +34,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 /obj/effect/landmark/start/Initialize()
 	. = ..()
 	GLOB.start_landmarks_list += src
-	if(jobspawn_override)
-		LAZYADDASSOCLIST(GLOB.jobspawn_overrides, name, src)
 	if(name != "start")
 		tag = "start*[name]"
 
 /obj/effect/landmark/start/Destroy()
 	GLOB.start_landmarks_list -= src
-	if(jobspawn_override)
-		LAZYREMOVEASSOC(GLOB.jobspawn_overrides, name, src)
 	return ..()
 
 // START LANDMARKS FOLLOW. Don't change the names unless
@@ -50,6 +46,14 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 /obj/effect/landmark/start/dwarf
 	name = "Dwarf"
 	icon_state = "Assistant" //icon_state is case sensitive. why are all of these capitalized? because fuck you that's why
+
+/obj/effect/landmark/start/dwarf/Initialize(mapload)
+	GLOB.dwarf_starts.Add(src)
+	. = ..()
+
+/obj/effect/landmark/start/dwarf/Destroy()
+	GLOB.dwarf_starts.Remove(src)
+	. = ..()
 
 // Must be immediate because players will
 // join before SSatom initializes everything.
@@ -67,9 +71,12 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	name = "JoinLate"
 
 /obj/effect/landmark/latejoin/Initialize(mapload)
-	..()
-	SSjob.latejoin_trackers += loc
-	return INITIALIZE_HINT_QDEL
+	GLOB.latejoin_landmarks.Add(src)
+	. = ..()
+
+/obj/effect/landmark/latejoin/Destroy()
+	GLOB.latejoin_landmarks.Remove(src)
+	. = ..()
 
 //observer start
 /obj/effect/landmark/observer_start

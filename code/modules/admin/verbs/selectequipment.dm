@@ -116,7 +116,7 @@
 		init_dummy()
 
 	var/datum/preferences/prefs = target_mob?.client?.prefs
-	var/icon/dummysprite = get_flat_human_icon(null, prefs=prefs, dummy_key = dummy_key, outfit_override = selected_outfit)
+	var/icon/dummysprite = get_flat_human_icon(prefs=prefs, dummy_key = dummy_key, outfit_override = selected_outfit)
 	data["icon64"] = icon2base64(dummysprite)
 	data["name"] = target_mob
 
@@ -136,7 +136,6 @@
 	if(!cached_outfits)
 		cached_outfits = list()
 		cached_outfits += list(outfit_entry("Осн", /datum/outfit, "Naked", priority=TRUE))
-		cached_outfits += make_outfit_entries("Осн", subtypesof(/datum/outfit) - typesof(/datum/outfit/job))
 
 	data["outfits"] = cached_outfits
 	return data

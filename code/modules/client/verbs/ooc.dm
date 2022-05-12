@@ -227,17 +227,6 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 	browse_messages(null, usr.ckey, null, TRUE)
 
-/client/proc/self_playtime()
-	set name = "📘 Моё время игры"
-	set category = "OOC"
-	set desc = "View the amount of playtime for roles the server has tracked."
-
-	if(!CONFIG_GET(flag/use_exp_tracking))
-		to_chat(usr, span_notice("Sorry, tracking is currently disabled."))
-		return
-
-	new /datum/job_report_menu(src, usr)
-
 // Ignore verb
 /client/verb/select_ignore()
 	set name = "❌ Ignore"

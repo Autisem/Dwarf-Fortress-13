@@ -235,25 +235,6 @@
 				banned_from += query_get_banned_roles.item[1]
 			qdel(query_get_banned_roles)
 		var/break_counter = 0
-		//standard departments all have identical handling
-		var/list/job_lists = list("Dwarfs" = GLOB.dwarf_positions)
-		for(var/department in job_lists)
-			//the first element is the department head so they need the same javascript call as above
-			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [usr.client.prefs.tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
-			output += {"<label class='inputlabel checkbox'>[job_lists[department][1]]
-						<input type='checkbox' id='[job_lists[department][1]]_dep' name='[job_lists[department][1]]' class='[department]' value='1'[usr.client.prefs.tgui_fancy ? " onClick='toggle_head(this, \"_com\")'" : ""]>
-						<div class='inputbox[(job_lists[department][1] in banned_from) ? " banned" : ""]'></div></label>
-			"}
-			break_counter = 1
-			for(var/job in job_lists[department] - job_lists[department][1]) //skip the first element since it's already been done
-				if(break_counter % 3 == 0)
-					output += "<br>"
-				output += {"<label class='inputlabel checkbox'>[job]
-							<input type='checkbox' name='[job]' class='[department]' value='1'>
-							<div class='inputbox[(job in banned_from) ? " banned" : ""]'></div></label>
-				"}
-				break_counter++
-			output += "</div></div>"
 		//departments/groups that don't have command staff would throw a javascript error since there's no corresponding reference for toggle_head()
 		var/list/headless_job_lists = list("Abstract" = list("Appearance", "Emote", "Deadchat", "OOC", "Urgent Adminhelp"))
 		for(var/department in headless_job_lists)

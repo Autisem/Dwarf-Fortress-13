@@ -57,24 +57,3 @@
 	hardcore_survival_score = hardcore_survival_score ** 1.2 //30 points would be about 60 score
 	if(is_latejoiner)//prevent them from cheatintg
 		hardcore_survival_score = 0
-
-/datum/preferences/proc/update_preview_icon()
-	// Determine what job is marked as 'High' priority, and dress them up as such.
-	var/datum/job/previewJob
-	var/highest_pref = 0
-	for(var/job in job_preferences)
-		if(job_preferences[job] > highest_pref)
-			previewJob = SSjob.GetJob(job)
-			highest_pref = job_preferences[job]
-
-	// Set up the dummy for its photoshoot
-	var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
-	copy_to(mannequin, 1, TRUE, TRUE)
-
-	if(previewJob)
-		mannequin.job = previewJob.title
-		previewJob.equip(mannequin, TRUE, preference_source = parent)
-
-	COMPILE_OVERLAYS(mannequin)
-	parent.show_character_previews(new /mutable_appearance(mannequin))
-	unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)

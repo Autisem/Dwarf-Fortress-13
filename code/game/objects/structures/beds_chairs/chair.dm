@@ -25,10 +25,8 @@
 
 /obj/structure/chair/Initialize()
 	. = ..()
-	if(!anchored)	//why would you put these on the shuttle?
-		addtimer(CALLBACK(src, .proc/RemoveFromLatejoin), 0)
 	if(prob(0.2))
-		name = "тактический [name]"
+		name = "tactical [name]"
 
 /obj/structure/chair/ComponentInitialize()
 	. = ..()
@@ -48,13 +46,6 @@
 	else if(isobserver(user) && CONFIG_GET(flag/ghost_interaction))
 		return TRUE
 	return FALSE
-
-/obj/structure/chair/Destroy()
-	RemoveFromLatejoin()
-	return ..()
-
-/obj/structure/chair/proc/RemoveFromLatejoin()
-	SSjob.latejoin_trackers -= src	//These may be here due to the arrivals shuttle
 
 /obj/structure/chair/deconstruct()
 	// If we have materials, and don't have the NOCONSTRUCT flag

@@ -136,7 +136,6 @@
 	else
 		new_player.ready = PLAYER_NOT_READY
 		base_icon_state = "not_ready"
-	SStitle.update_lobby()
 	update_appearance(UPDATE_ICON)
 
 ///Shown when the game has started
@@ -190,7 +189,7 @@
 			to_chat(new_player, span_notice("Тебя добавили в очередь для захода в игру. Твой номер в очереди: [SSticker.queued_players.len]."))
 		return
 	if(check_whitelist(new_player?.client?.ckey) || new_player?.client?.holder)
-		new_player.LateChoices()
+		new_player.Try_Latejion()
 	else
 		to_chat(hud.mymob, span_boldwarning("Disabled for testing."))
 		return

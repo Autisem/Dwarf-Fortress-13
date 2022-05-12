@@ -1,9 +1,6 @@
 /mob/dead/new_player/Login()
 	if(!client)
 		return
-	if(CONFIG_GET(flag/use_exp_tracking))
-		client.set_exp_from_db()
-		client.set_db_player_flags()
 	if(!mind)
 		mind = new /datum/mind(key)
 		mind.active = TRUE
@@ -32,14 +29,6 @@
 	asset_datum.send(client)
 
 	// Check if user should be added to interview queue
-	if (!client.holder && CONFIG_GET(flag/panic_bunker) && CONFIG_GET(flag/panic_bunker_interview) && !(client.ckey in GLOB.interviews.approved_ckeys))
-		var/required_living_minutes = CONFIG_GET(number/panic_bunker_living)
-		var/living_minutes = client.get_exp_living(TRUE)
-		if (required_living_minutes > living_minutes)
-			client.interviewee = TRUE
-			register_for_interview()
-			return
-
 	if(SSticker.current_state < GAME_STATE_SETTING_UP)
 		var/tl = SSticker.GetTimeLeft()
 		var/postfix
@@ -51,5 +40,3 @@
 
 	// if (!GLOB.donators[ckey]) //It doesn't exist yet
 	// 	load_donator(ckey)
-
-	client.show_lobby()

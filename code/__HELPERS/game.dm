@@ -468,7 +468,7 @@
 
 	//First we spawn a dude.
 	var/mob/living/carbon/human/new_character = new//The mob being spawned.
-	SSjob.SendToLateJoin(new_character)
+	send_to_latejoin(new_character)
 
 	G_found.client.prefs.copy_to(new_character)
 	new_character.dna.update_dna_identity()

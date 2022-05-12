@@ -66,15 +66,6 @@
 					var/datum/admins/D = GLOB.admin_datums[ckey]
 					dat += "[ckey] - [D.rank.name]<br>"
 				holder << browse(dat, "window=showadmins;size=600x500")
-		if("infinite_sec")
-			if(!is_debugger)
-				return
-			var/datum/job/J = SSjob.GetJob("Security Officer")
-			if(!J)
-				return
-			J.total_positions = -1
-			J.spawn_positions = -1
-			message_admins("[key_name_admin(holder)] has removed the cap on security officers.")
 		if("list_bombers")
 			var/dat = "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'><B>Bombing List</B><HR>"
 			for(var/l in GLOB.bombers)

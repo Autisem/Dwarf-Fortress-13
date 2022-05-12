@@ -92,7 +92,6 @@
 
 /turf/closed/indestructible/splashscreen
 	name = "Dwarf Fortress"
-	desc = "Поколение странных увлечений."
 	icon = 'icons/runtime/default_title.dmi'
 	icon_state = "station_intact"
 	plane = SPLASHSCREEN_PLANE
@@ -102,16 +101,26 @@
 	maptext_x = 4
 	maptext_y = 8
 
-/turf/closed/indestructible/splashscreen/New()
-	SStitle.splash_turf = src
-	..()
-
-/turf/closed/indestructible/splashscreen/vv_edit_var(var_name, var_value)
+/turf/closed/indestructible/splashscreen/Initialize(mapload)
 	. = ..()
-	if(.)
-		switch(var_name)
-			if(NAMEOF(src, icon))
-				SStitle.icon = icon
+	var/list/provisional_title_screens = flist("[global.config.directory]/title_screens/images/")
+	var/list/title_screens = list()
+	var/file_path
+	for(var/S in provisional_title_screens)
+		var/list/L = splittext(S,"+")
+		if((L.len == 1 && (L[1] != "exclude" && L[1] != "blank.png")))
+			title_screens += S
+
+	if(length(title_screens))
+		file_path = "[global.config.directory]/title_screens/images/[pick(title_screens)]"
+
+	if(!file_path)
+		file_path = "icons/runtime/default_title.dmi"
+
+	ASSERT(fexists(file_path))
+
+	var/icon/I = new(fcopy_rsc(file_path))
+	icon = I
 
 /turf/closed/indestructible/reinforced
 	name = "reinforced wall"

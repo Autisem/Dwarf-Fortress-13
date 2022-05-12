@@ -231,15 +231,8 @@ SUBSYSTEM_DEF(ticker)
 			to_chat(world, span_green("<B>Gamemode [mode.name] failed to start.</B> Only [mode.required_players] ready players for [mode.required_enemies] antags. Reverting to pre-game lobby."))
 			qdel(mode)
 			mode = null
-			SSjob.ResetOccupations()
 			return FALSE
 
-	CHECK_TICK
-	//Configure mode and assign player to special mode stuff
-	var/can_continue = 0
-	can_continue = src.mode.pre_setup()		//Choose antagonists
-	CHECK_TICK
-	can_continue = can_continue && SSjob.DivideOccupations(mode.required_jobs) 				//Distribute jobs
 	CHECK_TICK
 
 	if(retrycap >= 4)
@@ -247,16 +240,7 @@ SUBSYSTEM_DEF(ticker)
 		mode = config.pick_mode("extended")
 		to_chat(world, "<span class='notice big'>Enjoy your stay!</span>")
 	else
-		if(!GLOB.Debug2)
-			if(!can_continue)
-				log_game("[mode.name] failed pre_setup, cause: [mode.setup_error]")
-				QDEL_NULL(mode)
-				retrycap++
-				to_chat(world, span_notice("The game cannot start without a <B>captain</B>. [retrycap]/5 until extended."))
-				SSjob.ResetOccupations()
-				return FALSE
-		else
-			message_admins(span_notice("DEBUG: Bypassing start checks... Don't forget to disable Debug-Game after the game start!"))
+		message_admins(span_notice("DEBUG: Bypassing start checks... Don't forget to disable Debug-Game after the game start!"))
 
 	CHECK_TICK
 
@@ -276,7 +260,7 @@ SUBSYSTEM_DEF(ticker)
 		toggle_looc(FALSE)
 
 	CHECK_TICK
-	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
+	GLOB.dwarf_starts = shuffle(GLOB.dwarf_starts) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
 	create_characters() //Create player characters
 	collect_minds()
 	equip_characters()
@@ -306,7 +290,7 @@ SUBSYSTEM_DEF(ticker)
 	mode.post_setup()
 	setup_done = TRUE
 
-	for(var/i in GLOB.start_landmarks_list)
+	for(var/i in GLOB.dwarf_starts)
 		var/obj/effect/landmark/start/S = i
 		if(istype(S))							//we can not runtime here. not in this important of a proc.
 			S.after_round_start()
@@ -364,52 +348,14 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/equip_characters()
-	// var/captainless = TRUE
-
-	var/highest_rank = length(SSjob.chain_of_command) + 1
-	var/list/spare_id_candidates = list()
-	var/mob/dead/new_player/picked_spare_id_candidate
-
-	// Find a suitable player to hold captaincy.
-	for(var/mob/dead/new_player/new_player_mob as anything in GLOB.new_player_list)
-		if(is_banned_from(new_player_mob.ckey, list("Captain")))
-			CHECK_TICK
-			continue
-		var/mob/living/carbon/human/new_player_human = new_player_mob.new_character
-		if(istype(new_player_human) && new_player_human.mind?.assigned_role)
-			// Keep a rolling tally of who'll get the cap's spare ID vault code.
-			// Check assigned_role's priority and curate the candidate list appropriately.
-			var/player_assigned_role = new_player_human.mind.assigned_role
-			var/spare_id_priority = SSjob.chain_of_command[player_assigned_role]
-			if(spare_id_priority)
-				if(spare_id_priority < highest_rank)
-					spare_id_candidates.Cut()
-					spare_id_candidates += new_player_mob
-					highest_rank = spare_id_priority
-				else if(spare_id_priority == highest_rank)
-					spare_id_candidates += new_player_mob
-			CHECK_TICK
-
-	if(length(spare_id_candidates))
-		picked_spare_id_candidate = pick(spare_id_candidates)
-
 	for(var/mob/dead/new_player/new_player_mob as anything in GLOB.new_player_list)
 		var/mob/living/carbon/human/new_player_human = new_player_mob.new_character
-		if(istype(new_player_human) && new_player_human.mind?.assigned_role)
-			var/player_assigned_role = new_player_human.mind.assigned_role
-			var/player_is_captain = (picked_spare_id_candidate == new_player_mob) || (SSjob.always_promote_captain_job && (player_assigned_role == "Captain"))
-			// if(player_is_captain)
-				// captainless = FALSE
-			if(player_assigned_role != new_player_human.mind.special_role)
-				SSjob.EquipRank(new_player_mob, player_assigned_role, FALSE, player_is_captain)
+		new_player_human.mind.assigned_role = "Dwarf"
 		CHECK_TICK
 
-	// if(captainless)
-	// 	for(var/mob/dead/new_player/new_player_mob as anything in GLOB.new_player_list)
-	// 		var/mob/living/carbon/human/new_player_human = new_player_mob.new_character
-			// if(new_player_human)
-				// to_chat(new_player_mob, span_notice("NO CAPTAIN!"))
-			// CHECK_TICK
+		var/atom/A = pick(GLOB.dwarf_starts)
+		new_player_human.forceMove(get_turf(A))
+		new_player_human.equipOutfit(/datum/outfit/dwarf)
 
 /datum/controller/subsystem/ticker/proc/transfer_characters()
 	var/list/livings = list()
@@ -457,7 +403,7 @@ SUBSYSTEM_DEF(ticker)
 		for (var/mob/dead/new_player/NP in queued_players)
 			to_chat(NP, span_userdanger("The alive players limit has been released!<br><a href='?src=[REF(NP)];late_join=override'>[html_encode(">>Join Game<<")]</a>"))
 			SEND_SOUND(NP, sound('sound/misc/notice1.ogg'))
-			NP.LateChoices()
+			NP.Try_Latejion()
 		queued_players.len = 0
 		queue_delay = 0
 		return
@@ -472,7 +418,7 @@ SUBSYSTEM_DEF(ticker)
 				if(next_in_line?.client)
 					to_chat(next_in_line, span_userdanger("A slot has opened! You have approximately 20 seconds to join. <a href='?src=[REF(next_in_line)];late_join=override'>\>\>Join Game\<\<</a>"))
 					SEND_SOUND(next_in_line, sound('sound/misc/notice1.ogg'))
-					next_in_line.LateChoices()
+					next_in_line.Try_Latejion()
 					return
 				queued_players -= next_in_line //Client disconnected, remove he
 			queue_delay = 0 //No vacancy: restart timer

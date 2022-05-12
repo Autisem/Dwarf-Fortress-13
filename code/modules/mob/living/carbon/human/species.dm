@@ -180,9 +180,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	///Bitflag that controls what in game ways something can select this species as a spawnable source, such as magic mirrors. See [mob defines][code/__DEFINES/mobs.dm] for possible sources.
 	var/changesource_flags = NONE
 
-	///For custom overrides for species ass images
-	var/icon/ass_image
-
 	///List of results you get from knife-butchering. null means you cant butcher it. Associated by resulting type - value of amount
 	var/list/knife_butcher_results
 
@@ -1184,12 +1181,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return TRUE
 	H.visible_message(span_notice("<b>[H]</b> starts to put on <b>[I]</b>...") , span_notice("You start to put on <b>[I]</b>..."))
 	return do_after(H, I.equip_delay_self, target = H)
-
-/datum/species/proc/before_equip_job(datum/job/J, mob/living/carbon/human/H)
-	return
-
-/datum/species/proc/after_equip_job(datum/job/J, mob/living/carbon/human/H)
-	H.update_mutant_bodyparts()
 
 /datum/species/proc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H, delta_time, times_fired)
 	if(chem.type == exotic_blood)
