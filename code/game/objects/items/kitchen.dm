@@ -80,7 +80,8 @@
 
 /obj/item/kitchen/knife
 	name = "kitchen knife"
-	icon_state = "knife"
+	icon = 'dwarfs/icons/items/kitchen.dmi'
+	icon_state = "kitchen_knife"
 	inhand_icon_state = "knife"
 	worn_icon_state = "knife"
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."

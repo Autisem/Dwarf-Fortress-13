@@ -186,7 +186,7 @@
 /obj/item/reagent_containers/glass/bucket
 	name = "bucket"
 	desc = "It's a bucket."
-	icon = 'icons/obj/janitor.dmi'
+	icon = 'dwarfs/icons/items/containers.dmi'
 	icon_state = "bucket"
 	inhand_icon_state = "bucket"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
@@ -209,13 +209,6 @@
 		ITEM_SLOT_LPOCKET, ITEM_SLOT_RPOCKET,\
 		ITEM_SLOT_DEX_STORAGE
 	)
-
-/obj/item/reagent_containers/glass/bucket/wooden
-	name = "wooden bucket"
-	icon_state = "woodbucket"
-	inhand_icon_state = "woodbucket"
-	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT * 2)
-	resistance_flags = FLAMMABLE
 
 #define SQUEEZING_DISPERSAL_PERCENT 0.75
 
@@ -264,6 +257,13 @@
 		slot_equipment_priority.Insert(index, ITEM_SLOT_HEAD)
 		return
 	return ..()
+
+/obj/item/reagent_containers/glass/bucket/update_overlays()
+	. = ..()
+	if(reagents.total_volume)
+		var/mutable_appearance/M = mutable_appearance(icon, "bucket_overlay")
+		M.color = mix_color_from_reagents(reagents.reagent_list)
+		.+=M
 
 /obj/item/pestle
 	name = "пестик"

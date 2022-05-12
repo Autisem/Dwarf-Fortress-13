@@ -10,7 +10,8 @@
 /obj/structure/bed
 	name = "bed"
 	desc = "This is used to lie in, sleep in or strap on."
-	icon_state = "bed"
+	icon = 'dwarfs/icons/structures/bed.dmi'
+	icon_state = "wooden"
 	icon = 'icons/obj/objects.dmi'
 	anchored = TRUE
 	can_buckle = TRUE

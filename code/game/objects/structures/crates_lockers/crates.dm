@@ -19,7 +19,7 @@
 
 /obj/structure/closet/crate/Initialize()
 	. = ..()
-	if(icon_state == "[initial(icon_state)]open")
+	if(icon_state == "[initial(icon_state)]_open")
 		opened = TRUE
 		AddElement(/datum/element/climbable, climb_time = crate_climb_time * 0.5, climb_stun = 0)
 	else
@@ -37,7 +37,7 @@
 				return TRUE
 
 /obj/structure/closet/crate/update_icon_state()
-	icon_state = "[initial(icon_state)][opened ? "open" : ""]"
+	icon_state = "[initial(icon_state)][opened ? "_open" : ""]"
 	return ..()
 
 /obj/structure/closet/crate/closet_update_overlays(list/new_overlays)

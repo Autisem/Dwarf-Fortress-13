@@ -1,7 +1,7 @@
 /obj/structure/closet/crate/sarcophage
 	name = "sarcophage"
 	desc = "Resting place for the dead. Not recommended for sleep."
-	icon = 'white/valtos/icons/objects.dmi'
+	icon = 'dwarfs/icons/structures/sarcophagus.dmi'
 	icon_state = "sarcophage"
 	drag_slowdown = 4
 	var/dead_used = FALSE

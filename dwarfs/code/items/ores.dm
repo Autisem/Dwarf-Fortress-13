@@ -38,8 +38,8 @@
 	name = "brick"
 	desc = "Used in building."
 	singular_name = "Brick"
-	icon = 'white/valtos/icons/objects.dmi'
-	icon_state = "block"
+	icon = 'dwarfs/icons/items/components.dmi'
+	icon_state = "stone_brick"
 	inhand_icon_state = "sheet-metal"
 	force = 10
 	throwforce = 10

@@ -120,13 +120,6 @@
 	reqs = list(/obj/item/stack/sheet/bone = 2)
 	category = CAT_PRIMAL
 
-/datum/crafting_recipe/woodbucket
-	name = "Wooden Bucket"
-	time = 30
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 3)
-	result = /obj/item/reagent_containers/glass/bucket/wooden
-	category = CAT_PRIMAL
-
 /datum/crafting_recipe/headpike
 	name = "Spike Head (Glass Spear)"
 	time = 65
