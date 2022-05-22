@@ -106,10 +106,10 @@
 		return
 	hydration = max(hydration-HYDRATION_LOSS_PER_SECOND*delta_time, 0)
 
-/mob/living/carbon/human/handle_hydration(delta_time, times_fired)
-	if(IsSleeping())
-		return
-	nutrition = max(nutrition-NUTRITION_LOSS_PER_SECOND*delta_time, 0)
+// /mob/living/carbon/human/handle_hydration(delta_time, times_fired)
+// 	if(IsSleeping())
+// 		return
+// 	nutrition = max(nutrition-NUTRITION_LOSS_PER_SECOND*delta_time, 0)
 
 /mob/living/carbon/proc/handle_bodyparts(delta_time, times_fired)
 	var/stam_regen = FALSE

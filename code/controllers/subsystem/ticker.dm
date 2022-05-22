@@ -350,12 +350,12 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/equip_characters()
 	for(var/mob/dead/new_player/new_player_mob as anything in GLOB.new_player_list)
 		var/mob/living/carbon/human/new_player_human = new_player_mob.new_character
-		new_player_human.mind.assigned_role = "Dwarf"
 		CHECK_TICK
 
 		var/atom/A = pick(GLOB.dwarf_starts)
 		new_player_human.forceMove(get_turf(A))
 		new_player_human.equipOutfit(/datum/outfit/dwarf)
+		new_player_human.mind.assigned_role = "Dwarf"
 
 /datum/controller/subsystem/ticker/proc/transfer_characters()
 	var/list/livings = list()
