@@ -14,6 +14,7 @@
 
 /obj/structure/demijohn/Initialize()
 	. = ..()
+	AddComponent(/datum/component/liftable, slowdown = 5)
 	create_reagents(max_volume)
 	START_PROCESSING(SSprocessing, src)
 
@@ -21,7 +22,7 @@
 	. = ..()
 	STOP_PROCESSING(SSprocessing, src)
 
-/obj/structure/demijohn/attackby(obj/item/I, mob/user, params)
+/obj/structure/demijohn/attackby(obj/item/I, mob/user, params) // /obj/item/liftable then use parent for interaction and update appearance
 	if(istype(I, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/C = I
 		var/transfered = C.reagents.trans_to(src, C.amount_per_transfer_from_this, transfered_by=user)
@@ -29,6 +30,17 @@
 			return FALSE
 		start_conv = world.time // each time you add something the timer will reset
 		to_chat(user, span_notice("You transfer [transfered]u to [src]."))
+		update_appearance()
+	else if(istype(I, /obj/item/liftable))
+		var/obj/item/liftable/L = I
+		if(!L.parent.reagents)
+			return
+		var/transfered = L.parent.reagents.trans_to(src, 10, transfered_by=user)
+		if(!transfered)
+			return FALSE
+		start_conv = world.time // each time you add something the timer will reset
+		to_chat(user, span_notice("You transfer [transfered]u to [src]."))
+		L.parent.update_appearance()
 		update_appearance()
 	else
 		return ..()
@@ -46,6 +58,20 @@
 			conv_reagent = null
 			target_reagent = null
 		update_appearance()
+	else if(istype(weapon, /obj/item/liftable))
+		var/obj/item/liftable/L = weapon
+		if(!L.parent.reagents)
+			return
+		var/transfered = reagents.trans_to(L.parent, 10, transfered_by=user)
+		if(!transfered)
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+		start_conv = world.time // each time you take something the timer will reset
+		to_chat(user, span_notice("You take [transfered]u from [src]."))
+		if(!reagents.total_volume)
+			conv_reagent = null
+			target_reagent = null
+		L.parent.update_appearance()
+		update_appearance()
 	else
 		return ..()
 
@@ -62,7 +88,8 @@
 		return
 	if(!target_reagent)
 		if(reagents.reagent_list.len > 1)
-			target_reagent = /datum/reagent/blood  // if there are multiple liquids produce bad quality mixed alcohol
+			// target_reagent = /datum/reagent/blood  // if there are multiple liquids produce bad quality mixed alcohol
+			return
 		else if(istype(reagents.reagent_list[1], /datum/reagent/consumable/juice) || istype(reagents.reagent_list[1], /datum/reagent/consumable/ethanol/wine))
 			conv_reagent = reagents.reagent_list[1]
 			target_reagent = conv_reagent.convtype
