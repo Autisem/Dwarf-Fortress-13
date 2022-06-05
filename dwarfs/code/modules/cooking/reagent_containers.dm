@@ -33,6 +33,22 @@
 	volume = 50
 	var/open = TRUE
 
+/obj/item/reagent_containers/glass/cooking_pot/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/storage/concrete)
+
+/obj/item/reagent_containers/glass/cooking_pot/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	find_recipe()
+
+/obj/item/reagent_containers/glass/cooking_pot/Exited(atom/movable/gone, direction)
+	. = ..()
+	find_recipe()
+
+/obj/item/reagent_containers/glass/cooking_pot/on_reagent_change(datum/reagents/holder, ...)
+	. = ..()
+	find_recipe()
+
 /obj/item/reagent_containers/glass/cooking_pot/update_overlays()
 	. = ..()
 	if(open && reagents.total_volume)
@@ -52,3 +68,6 @@
 	update_appearance()
 	to_chat(user, span_notice("You [open?"open":"close"] [src]."))
 	amount_per_transfer_from_this = open ? initial(amount_per_transfer_from_this) : 0 // cannot transfer reagents when closed
+
+/obj/item/reagent_containers/glass/cooking_pot/proc/find_recipe()
+	return

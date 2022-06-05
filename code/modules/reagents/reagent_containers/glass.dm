@@ -1,6 +1,6 @@
 
 /obj/item/reagent_containers/glass
-	name = "стакан"
+	name = "glass"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 20, 25, 30, 50)
 	volume = 50
@@ -17,14 +17,14 @@
 		return
 
 	if(!reagents || !reagents.total_volume)
-		to_chat(user, span_warning("[capitalize(src.name)] пуст!"))
+		to_chat(user, span_warning("[capitalize(src.name)] is empty!"))
 		return
 
 	if(istype(M))
 		if(user.a_intent == INTENT_HARM)
 			var/R
-			M.visible_message(span_danger("[user] разливает содержимое [src] на [M]!") , \
-							span_userdanger("[user] разливает содержимое [src] на меня!"))
+			M.visible_message(span_danger("[user] splashes [src]'s contents onto \the [M]!") , \
+							span_userdanger("[user] splashes [src]'s contents onto you!"))
 			if(reagents)
 				for(var/datum/reagent/A in reagents.reagent_list)
 					R += "[A] ([num2text(A.volume)]),"
@@ -38,23 +38,23 @@
 		else
 			if(M != user)
 				if(M.hydration >= HYDRATION_LEVEL_OVERHYDRATED)
-					M.visible_message(span_danger("[user] не может больше напоить [M] содержимым [src.name]."), \
-					span_userdanger("[user] больше не может напоить меня содержимым [src.name]."))
+					M.visible_message(span_danger("[user] cannot force any more of [src]'s contents down [M]'s throat."), \
+					span_userdanger("[user] cannot force any more of [src]'s contents down your throat."))
 					return
-				M.visible_message(span_danger("[user] пытается напоить [M] из [src].") , \
-							span_userdanger("[user] пытается напоить меня из [src]."))
+				M.visible_message(span_danger("[user] attempts to feed [M] something from [src].") , \
+							span_userdanger("[user] attempts to feed you something from [src]."))
 				if(!do_mob(user, M))
 					return
 				if(!reagents || !reagents.total_volume)
 					return // The drink might be empty after the delay, such as by spam-feeding
-				M.visible_message(span_danger("[user] поит [M] чем-то из [src].") , \
-							span_userdanger("[user] поит меня чем-то из [src]."))
+				M.visible_message(span_danger("[user] feeds [M] something from [src].") , \
+							span_userdanger("[user] feeds you something from [src]."))
 				log_combat(user, M, "fed", reagents.log_list())
 			else
 				if(user.hydration >= HYDRATION_LEVEL_OVERHYDRATED)
-					to_chat(M, span_warning("В меня больше не лезет содержимое [src.name]!"))
+					to_chat(M, span_warning("You cannot force any more of [src]'s contents down your throat!"))
 					return
-				to_chat(user, span_notice("Делаю глоток из [src]."))
+				to_chat(user, span_notice("You swallow a gulp from [src]."))
 
 			for(var/datum/reagent/R in reagents.reagent_list)
 				if(R in M.known_reagent_sounds)
@@ -77,36 +77,36 @@
 
 	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
 		if(!reagents.total_volume)
-			to_chat(user, span_warning("[capitalize(src.name)] пуст!"))
+			to_chat(user, span_warning("[capitalize(src.name)] is empty!"))
 			return
 
 		if(target.reagents.holder_full())
-			to_chat(user, span_warning("[target] полон."))
+			to_chat(user, span_warning("[target] is full."))
 			return
 
 		var/trans = reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
-		to_chat(user, span_notice("Переливаю [trans] единиц в [target]."))
+		to_chat(user, span_notice("You transfer [trans] unit\s of the contents to [target]."))
 
 		playsound(get_turf(user), pick(WATER_FLOW_MINI), 50, TRUE)
 
 	else if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if(!target.reagents.total_volume)
-			to_chat(user, span_warning("[target] пуст и не может быть заполнен!"))
+			to_chat(user, span_warning("[target] is empty and cannot be refilled!"))
 			return
 
 		if(reagents.holder_full())
-			to_chat(user, span_warning("[capitalize(src.name)] полон."))
+			to_chat(user, span_warning("[capitalize(src.name)] is full."))
 			return
 
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transfered_by = user)
-		to_chat(user, span_notice("Наполняю [src] [trans] единицами из [target]."))
+		to_chat(user, span_notice("You fill [src] with [trans] units from [target]."))
 
 		playsound(get_turf(user), pick(WATER_FLOW_MINI), 50, TRUE)
 
 	else if(reagents.total_volume)
 		if(user.a_intent == INTENT_HARM)
-			user.visible_message(span_danger("[user] разливает содержимое [src] на [target]!") , \
-								span_notice("Разливаю содержмое [src] на [target]."))
+			user.visible_message(span_danger("[user] splashes [src]'s contents on [target]!") , \
+								span_notice("You splash [src]'s contents on [target]."))
 			reagents.expose(target, TOUCH)
 			reagents.clear_reagents()
 
@@ -114,7 +114,7 @@
 	var/hotness = I.get_temperature()
 	if(hotness && reagents)
 		reagents.expose_temperature(hotness)
-		to_chat(user, span_notice("Грею [name] используя [I]!"))
+		to_chat(user, span_notice("You heat [name] with [I]!"))
 
 	//Cooling method
 	if(istype(I, /obj/item/extinguisher))
@@ -122,11 +122,11 @@
 		if(extinguisher.safety)
 			return
 		if (extinguisher.reagents.total_volume < 1)
-			to_chat(user, span_warning("[capitalize(extinguisher)] пуст!"))
+			to_chat(user, span_warning("[capitalize(extinguisher)] is empty!"))
 			return
 		var/cooling = (0 - reagents.chem_temp) * extinguisher.cooling_power * 2
 		reagents.expose_temperature(cooling)
-		to_chat(user, span_notice("Охлаждаю [name] используя [I]!"))
+		to_chat(user, span_notice("You cool \the [name] with \the [I]!"))
 		playsound(loc, 'sound/effects/extinguish.ogg', 75, TRUE, -3)
 		extinguisher.reagents.remove_all(1)
 
@@ -134,9 +134,9 @@
 		var/obj/item/food/egg/E = I
 		if(reagents)
 			if(reagents.total_volume >= reagents.maximum_volume)
-				to_chat(user, span_notice("[capitalize(src.name)] полон."))
+				to_chat(user, span_notice("[capitalize(src.name)] is full."))
 			else
-				to_chat(user, span_notice("Раздавливаю [E] в [src]."))
+				to_chat(user, span_notice("You break [E] in [src]."))
 				E.reagents.trans_to(src, E.reagents.total_volume, transfered_by = user)
 				qdel(E)
 			return
