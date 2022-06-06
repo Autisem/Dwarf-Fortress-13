@@ -237,16 +237,14 @@ Behavior that's still missing from this component that original food items had t
 	. = COMPONENT_CANCEL_ATTACK_CHAIN //Point of no return I suppose
 
 	if(eater == feeder)//If you're eating it yourself.
-		if(eat_time && !do_mob(feeder, eater, eat_time, timed_action_flags = food_flags & FOOD_FINGER_FOOD ? IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE : NONE)) //Gotta pass the minimal eat time
+		var/temp_eat_time = eat_time //We don't want to double our real eat time each time we try to chew on something
+		if(temp_eat_time && (!istype(feeder.buckled, /obj/structure/chair) || !(locate(/obj/structure/table) in range(1, feeder))))
+			temp_eat_time *= 2 //If you are eating not at a table you eat twice as long
+		if(temp_eat_time && !do_mob(feeder, eater, temp_eat_time, timed_action_flags = food_flags & FOOD_FINGER_FOOD ? IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE : NONE)) //Gotta pass the minimal eat time
 			return
 		if(IsFoodGone(owner, feeder))
 			return
 		var/eatverb = pick(eatverbs)
-/*
-		var/message_to_nearby_audience = ""
-		var/message_to_consumer = ""
-		var/message_to_blind_consumer = ""
-*/
 		if(junkiness && eater.satiety < -150 && eater.nutrition > NUTRITION_LEVEL_STARVING + 50 && !HAS_TRAIT(eater, TRAIT_VORACIOUS))
 			to_chat(eater, span_warning("You don't feel like eating any more junk food at the moment!"))
 			return
