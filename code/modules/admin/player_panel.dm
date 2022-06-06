@@ -231,18 +231,13 @@
 			if(isliving(M))
 
 				if(iscarbon(M)) //Carbon stuff
-					if(ismonkey(M))
-						M_job = "Monkey"
-					else if(ishuman(M))
+					if(ishuman(M))
 						M_job = M.job
 					else
 						M_job = "Carbon-based"
 
 				else if(isanimal(M)) //simple animals
-					if(iscorgi(M))
-						M_job = "Corgi"
-					else
-						M_job = "Animal"
+					M_job = "Animal"
 
 				else
 					M_job = "Living"

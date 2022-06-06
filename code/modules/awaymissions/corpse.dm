@@ -239,18 +239,3 @@
 	ghost_usable = FALSE //These are just not-yet-set corpses.
 	instant = FALSE
 	invisibility = 101 // a fix for the icon not wanting to cooperate
-
-/////////////////Spooky Undead//////////////////////
-//there are living variants of many of these, they're now in ghost_role_spawners.dm
-
-/obj/effect/mob_spawn/human/skeleton
-	name = "Разложившиеся останки"
-	mob_name = "skeleton"
-	mob_species = /datum/species/skeleton
-	mob_gender = NEUTER
-
-/obj/effect/mob_spawn/human/zombie
-	name = "Гниющий труп"
-	mob_name = "zombie"
-	mob_species = /datum/species/zombie
-	assignedrole = "Zombie"

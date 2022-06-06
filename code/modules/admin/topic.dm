@@ -215,26 +215,6 @@
 				var/mob/living/carbon/human/newmob = M.change_mob_type( /mob/living/carbon/human , null, null, delmob )
 				if(posttransformoutfit && istype(newmob))
 					newmob.equipOutfit(posttransformoutfit)
-			if("monkey")
-				M.change_mob_type( /mob/living/carbon/human/species/monkey , null, null, delmob )
-			if("cat")
-				M.change_mob_type( /mob/living/simple_animal/pet/cat , null, null, delmob )
-			if("runtime")
-				M.change_mob_type( /mob/living/simple_animal/pet/cat/runtime , null, null, delmob )
-			if("corgi")
-				M.change_mob_type( /mob/living/simple_animal/pet/dog/corgi , null, null, delmob )
-			if("ian")
-				M.change_mob_type( /mob/living/simple_animal/pet/dog/corgi/ian , null, null, delmob )
-			if("pug")
-				M.change_mob_type( /mob/living/simple_animal/pet/dog/pug , null, null, delmob )
-			if("crab")
-				M.change_mob_type( /mob/living/simple_animal/crab , null, null, delmob )
-			if("coffee")
-				M.change_mob_type( /mob/living/simple_animal/crab/coffee , null, null, delmob )
-			if("parrot")
-				M.change_mob_type( /mob/living/simple_animal/parrot , null, null, delmob )
-			if("polyparrot")
-				M.change_mob_type( /mob/living/simple_animal/parrot/poly , null, null, delmob )
 
 	else if(href_list["boot2"])
 		if(!check_rights(R_ADMIN))
@@ -454,46 +434,6 @@
 		message_admins(span_adminnotice("[key_name_admin(usr)] set the forced secret mode as [GLOB.secret_force_mode]."))
 		Game() // updates the main game menu
 		HandleFSecret()
-
-	else if(href_list["monkeyone"])
-		if(!check_rights(R_SPAWN))
-			return
-
-		var/mob/living/carbon/human/H = locate(href_list["monkeyone"])
-		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.", confidential = TRUE)
-			return
-
-		log_admin("[key_name(usr)] attempting to monkeyize [key_name(H)].")
-		message_admins(span_adminnotice("[key_name_admin(usr)] attempting to monkeyize [key_name_admin(H)]."))
-		H.monkeyize()
-
-	else if(href_list["humanone"])
-		if(!check_rights(R_SPAWN))
-			return
-
-		var/mob/living/carbon/human/Mo = locate(href_list["humanone"])
-		if(!ismonkey(Mo))
-			to_chat(usr, "This can only be used on monkeys.", confidential = TRUE)
-			return
-
-		log_admin("[key_name(usr)] attempting to humanize [key_name(Mo)].")
-		message_admins(span_adminnotice("[key_name_admin(usr)] attempting to humanize [key_name_admin(Mo)]."))
-		Mo.humanize()
-
-	else if(href_list["corgione"])
-		if(!check_rights(R_SPAWN))
-			return
-
-		var/mob/living/carbon/human/H = locate(href_list["corgione"])
-		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.", confidential = TRUE)
-			return
-
-		log_admin("[key_name(usr)] attempting to corgize [key_name(H)].")
-		message_admins(span_adminnotice("[key_name_admin(usr)] attempting to corgize [key_name_admin(H)]."))
-		H.corgize()
-
 
 	else if(href_list["sendtoprison"])
 		if(!check_rights(R_ADMIN))
@@ -769,10 +709,6 @@
 		//let's keep it simple
 		//milk to plasmemes and skeletons, meat to lizards, electricity bars to ethereals, cookies to everyone else
 		var/cookiealt = /obj/item/food/cookie
-		if(isskeleton(H))
-			cookiealt = /obj/item/reagent_containers/food/condiment/milk
-		else if(islizard(H))
-			cookiealt = /obj/item/food/meat/slab
 		var/obj/item/new_item = new cookiealt(H)
 		if(H.put_in_hands(new_item))
 			H.update_inv_hands()

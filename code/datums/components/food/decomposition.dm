@@ -103,12 +103,12 @@
 /datum/component/decomposition/proc/decompose()
 	var/obj/decomp = parent //Lets us spawn things at decomp
 	new /obj/effect/decal/cleanable/ants(decomp.loc)
-	var/obj/item/I = new /obj/item/food/badrecipe/moldy(decomp.loc)
+	var/obj/item/I = new /obj/item/food/badrecipe(decomp.loc)
 	I.icon = decomp.icon
 	I.icon_state = decomp.icon_state
-	I.name = "гнилая [decomp.name]"
-	I.desc = "Фу. [decomp.desc]"
-	decomp.visible_message(span_notice("[capitalize(decomp.name)] портится!"))
+	I.name = "rotten [decomp.name]"
+	I.desc = "Ew. [decomp.desc]"
+	decomp.visible_message(span_notice("[capitalize(decomp.name)] is decomposing!"))
 	qdel(decomp)
 	return
 
@@ -123,27 +123,27 @@
 		if(DECOMP_EXAM_NORMAL)// All other types
 			switch(time_d) // Deciseconds used so there's no gaps between examine times.
 				if(3001 to 4500) // 7.5 to 5 Minutes left
-					examine_list += "\n[parent] кажется сейчас протухнет."
+					examine_list += "\n[parent] looks kinda stale."
 				if(1501 to 3000) // 5 to 2.5 Minutes left
-					examine_list += "\n[parent] выглядит старовато."
+					examine_list += "\n[parent] is starting to look pretty gross."
 				if(1 to 1500) // 2.5 Minutes to 1 Decisecond left
-					examine_list += "\n[parent] выглядит вполне съедобно."
+					examine_list += "\n[parent] looks barely edible."
 		if(DECOMP_EXAM_GROSS) // Gross food
 			switch(time_d)
 				if(2101 to 3150) // 5.25 to 3.5 Minutes
-					examine_list += "\n[parent] гниёт."
+					examine_list += "\n[parent] looks kinda stale."
 				if(1050 to 2100) // 3.5 to 1.75 Minutes left
-					examine_list += "\n[parent] начинает немного подгнивать."
+					examine_list += "\n[parent] is starting to look pretty gross."
 				if(1 to 1051) // 1.75 Minutes to 1 Decisecond left
-					examine_list += "\n[parent] выглядит вполне съедобно."
+					examine_list += "\n[parent] looks barely edible."
 		if(DECOMP_EXAM_RAW) // Raw food
 			switch(time_d)
 				if(1501 to 2250) // 3.75 to 2.5 Minutes left
-					examine_list += "\n[parent] гниёт."
+					examine_list += "\n[parent] looks kinda stale."
 				if(751 to 1500) // 2.5 to 1.25 Minutes left
-					examine_list += "\n[parent] начинает немного подгнивать."
+					examine_list += "\n[parent] is starting to look pretty gross."
 				if(1 to 750) // 1.25 Minutes to 1 Decisecond left
-					examine_list += "\n[parent] выглядит вполне съедобно."
+					examine_list += "\n[parent] looks barely edible."
 
 #undef DECOMPOSITION_TIME
 #undef DECOMPOSITION_TIME_GROSS

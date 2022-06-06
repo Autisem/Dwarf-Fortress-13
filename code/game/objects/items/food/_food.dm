@@ -68,8 +68,7 @@
 				tastes = tastes,\
 				eatverbs = eatverbs,\
 				bite_consumption = bite_consumption,\
-				microwaved_type = microwaved_type,\
-				junkiness = junkiness)
+				microwaved_type = microwaved_type)
 
 
 ///This proc handles processable elements, overwrite this if you want to add behavior such as slicing, forking, spooning, whatever, to turn the item into something else
@@ -99,3 +98,16 @@
 /obj/item/food/proc/MakeDecompose(mapload)
 	if(!preserved_food)
 		AddComponent(/datum/component/decomposition, mapload, decomp_flags = foodtypes)
+
+/obj/item/food/badrecipe
+
+/obj/item/food/cookie
+	name = "cookie"
+	desc = "COOKIE!!!"
+	icon_state = "COOKIE!!!"
+	bite_consumption = 1
+	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	tastes = list("печенька" = 1)
+	foodtypes = GRAIN | SUGAR
+	food_flags = FOOD_FINGER_FOOD
+	w_class = WEIGHT_CLASS_SMALL

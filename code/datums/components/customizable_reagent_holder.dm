@@ -8,6 +8,7 @@
  * the replacement type needs to also have the component. The ingredients will be copied over. Reagents are not
  * copied over since other components already take care of that.
  */
+/* Not used right now
 /datum/component/customizable_reagent_holder
 	can_transfer = TRUE
 	///List of item ingredients.
@@ -91,12 +92,12 @@
 			switch(length(ingredients))
 				if (2)
 					if (i == 1)
-						ending = " и "
+						ending = " and "
 				if (3 to INFINITY)
 					if (i == ingredients.len - 1)
 						ending = ", "
 			ingredients_listed += "[ingredient?.name][ending]"
-	examine_list += "\nСодержит [LAZYLEN(ingredients) ? "[ingredients_listed]" : "ничего, "]размером с [custom_adjective()] [initial(atom_parent.name)]."
+	examine_list += "\nIt contains [LAZYLEN(ingredients) ? "[ingredients_listed]" : "no ingredients, "]making a [custom_adjective()]-sized [initial(atom_parent.name)]."
 
 
 ///Handles when the customizable food is attacked by something.
@@ -195,15 +196,15 @@
 /datum/component/customizable_reagent_holder/proc/custom_adjective()
 	switch(LAZYLEN(ingredients))
 		if (0 to 2)
-			return "маленький"
+			return "small"
 		if (3 to 5)
-			return "средний"
+			return "standard"
 		if (6 to 8)
-			return "большой"
+			return "big"
 		if (8 to 11)
-			return "огромный"
+			return "ridiculous"
 		if (12 to INFINITY)
-			return "монструозный"
+			return "monstrous"
 
 
 ///Gives the type of custom food (based on what the first ingredient was).
@@ -245,3 +246,4 @@
 	for (var/r in results)
 		var/atom/result = r
 		result.AddComponent(/datum/component/customizable_reagent_holder, null, fill_type, ingredient_type = ingredient_type, max_ingredients = max_ingredients, initial_ingredients = ingredients)
+*/

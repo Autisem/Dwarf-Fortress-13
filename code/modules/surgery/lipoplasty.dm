@@ -59,8 +59,6 @@
 	var/obj/item/food/meat/slab/human/newmeat = new typeofmeat
 	newmeat.name = "жирное мясо"
 	newmeat.desc = "Очень жирное мясо прямиком из разделочной."
-	newmeat.subjectname = H.real_name
-	newmeat.subjectjob = H.job
 	newmeat.reagents.add_reagent (/datum/reagent/consumable/nutriment, (removednutriment / 15)) //To balance with nutriment_factor of nutriment
 	newmeat.forceMove(target.loc)
 	return ..()

@@ -43,6 +43,3 @@
 	observer.mock_client = mock_client
 	ADD_TRAIT(observer, TRAIT_PRESERVE_UI_WITHOUT_CLIENT, TRAIT_SOURCE_UNIT_TESTS)
 	TEST_ASSERT_EQUAL(strip_menu.ui_status(observer, ui_state), UI_UPDATE, "Being within range but an observer was not update-only.")
-
-	var/mob/living/simple_animal/pet/dog/corgi/corgi = allocate(/mob/living/simple_animal/pet/dog/corgi, run_loc_floor_bottom_left)
-	TEST_ASSERT_EQUAL(strip_menu.ui_status(corgi, ui_state), UI_UPDATE, "Being within range as a corgi was not update-only.")

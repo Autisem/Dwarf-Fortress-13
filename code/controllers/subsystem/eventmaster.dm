@@ -89,9 +89,6 @@ SUBSYSTEM_DEF(eventmaster)
 	suckers.Cut()
 	fuckers.Cut()
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(iszombie(H))
-			fuckers += H
-			continue
 		if(H.getorganslot(ORGAN_SLOT_ZOMBIE))
 			suckers += H
 			continue

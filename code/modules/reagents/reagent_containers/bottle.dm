@@ -131,11 +131,6 @@
 	desc = "Маленький флакон. Содержит полоний."
 	list_reagents = list(/datum/reagent/toxin/polonium = 30)
 
-/obj/item/reagent_containers/glass/bottle/magillitis
-	name = "флакон с магиллитисом"
-	desc = "Маленький флакон. Содержит сыворотку известную как магиллитис"
-	list_reagents = list(/datum/reagent/magillitis = 5)
-
 /obj/item/reagent_containers/glass/bottle/venom
 	name = "флакон с отравой"
 	desc = "Маленький флакон. Содержит Отраву."
@@ -231,11 +226,6 @@
 	name = "Basic buffer bottle"
 	desc = "A small bottle of basic buffer."
 	list_reagents = list(/datum/reagent/reaction_agent/basic_buffer = 30)
-
-/obj/item/reagent_containers/glass/bottle/romerol
-	name = "флакон с ромеролом"
-	desc = "Маленький флакон с Ромеролом, НАСТОЯЩИМ зомби порошком."
-	list_reagents = list(/datum/reagent/romerol = 30)
 
 //Oldstation.dmm chemical storage bottles
 

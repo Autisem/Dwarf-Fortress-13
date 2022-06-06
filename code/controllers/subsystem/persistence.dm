@@ -19,17 +19,11 @@ SUBSYSTEM_DEF(persistence)
 	var/list/paintings = list()
 
 /datum/controller/subsystem/persistence/Initialize()
-	LoadPoly()
 	LoadRecentModes()
 	LoadRecentMaps()
 	if(CONFIG_GET(flag/use_antag_rep))
 		LoadAntagReputation()
 	return ..()
-
-/datum/controller/subsystem/persistence/proc/LoadPoly()
-	for(var/mob/living/simple_animal/parrot/poly/P in GLOB.alive_mob_list)
-		twitterize(P.speech_buffer, "polytalk")
-		break //Who's been duping the bird?!
 
 /datum/controller/subsystem/persistence/proc/LoadRecentModes()
 	var/json_file = file("data/RecentModes.json")

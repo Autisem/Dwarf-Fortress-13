@@ -62,7 +62,6 @@ Behavior that's still missing from this component that original food items had t
 		return COMPONENT_INCOMPATIBLE
 
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
-	RegisterSignal(parent, COMSIG_ATOM_ATTACK_ANIMAL, .proc/UseByAnimal)
 	RegisterSignal(parent, COMSIG_ATOM_CHECKPARTS, .proc/OnCraft)
 	RegisterSignal(parent, COMSIG_ATOM_CREATEDBY_PROCESSING, .proc/OnProcessed)
 	RegisterSignal(parent, COMSIG_EDIBLE_INGREDIENT_ADDED, .proc/edible_ingredient_added)
@@ -384,27 +383,6 @@ Behavior that's still missing from this component that original food items had t
 		var/turf/T = parent
 		T.ScrapeAway(1, CHANGETURF_INHERIT_AIR)
 	else
-		qdel(parent)
-
-///Ability to feed food to puppers
-/datum/component/edible/proc/UseByAnimal(datum/source, mob/user)
-
-	SIGNAL_HANDLER
-
-
-	var/atom/owner = parent
-
-	if(!isdog(user))
-		return
-	var/mob/living/L = user
-	if(bitecount == 0 || prob(50))
-		L.manual_emote("nibbles away at \the [parent]")
-	bitecount++
-	. = COMPONENT_CANCEL_ATTACK_CHAIN
-	L.taste(owner.reagents) // why should carbons get all the fun?
-	if(bitecount >= 5)
-		var/satisfaction_text = pick("burps from enjoyment.", "yaps for more!", "woofs twice.", "looks at the area where \the [parent] was.")
-		L.manual_emote(satisfaction_text)
 		qdel(parent)
 
 

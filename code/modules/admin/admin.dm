@@ -151,22 +151,8 @@
 		if(!isnewplayer(M))
 			body += "<br>"
 			//Human
-			if(ishuman(M) && !ismonkey(M))
-				body += "<B>Human</B>: "
-			else
-				body += "<A href='?_src_=holder;[HrefToken()];humanone=[REF(M)]'>Human</A>"
+			body += "<B>Human</B>: "
 
-			//Monkey
-			if(ismonkey(M))
-				body += "<B>Monkey</B>: "
-			else
-				body += "<A href='?_src_=holder;[HrefToken()];monkeyone=[REF(M)]'>Monkey</A>"
-
-			//Corgi
-			if(iscorgi(M))
-				body += "<B>Corgi</B>: "
-			else
-				body += "<A href='?_src_=holder;[HrefToken()];corgione=[REF(M)]'>Corgi</A>"
 
 			if(ishuman(M))
 				body += "<A href='?_src_=holder;[HrefToken()];makeai=[REF(M)]'>AI</A>"

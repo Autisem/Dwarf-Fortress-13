@@ -129,17 +129,6 @@
 		to_chat(user, span_notice("You cool \the [name] with \the [I]!"))
 		playsound(loc, 'sound/effects/extinguish.ogg', 75, TRUE, -3)
 		extinguisher.reagents.remove_all(1)
-
-	if(istype(I, /obj/item/food/egg)) //breaking eggs
-		var/obj/item/food/egg/E = I
-		if(reagents)
-			if(reagents.total_volume >= reagents.maximum_volume)
-				to_chat(user, span_notice("[capitalize(src.name)] is full."))
-			else
-				to_chat(user, span_notice("You break [E] in [src]."))
-				E.reagents.trans_to(src, E.reagents.total_volume, transfered_by = user)
-				qdel(E)
-			return
 	..()
 
 /*

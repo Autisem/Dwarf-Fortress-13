@@ -13,7 +13,7 @@
 	var/mob/living/carbon/human/H = user
 	if(H.mind?.miming)
 		return
-	if(ishumanbasic(H) || isfelinid(H))
+	if(ishuman(H))
 		if(user.gender == FEMALE)
 			return pick('white/rebolution228/sounds/emotes/female_crying01.ogg',\
 						'white/rebolution228/sounds/emotes/female_crying02.ogg',\
@@ -24,8 +24,6 @@
 						'white/rebolution228/sounds/emotes/male_crying02.ogg',\
 						'white/rebolution228/sounds/emotes/male_crying03.ogg',\
 						'white/rebolution228/sounds/emotes/male_crying04.ogg')
-	else if(ismonkey(user))
-		return
 
 /datum/emote/living/carbon/human/dap
 	key = "dap"
@@ -79,7 +77,7 @@
 	var/mob/living/carbon/human/H = user
 	if(H.mind?.miming)
 		return
-	if(ishumanbasic(H) || isfelinid(H))
+	if(ishuman(H))
 		if(user.gender == FEMALE)
 			return pick('white/valtos/sounds/emotes/scream_female_1.ogg',\
 						'white/valtos/sounds/emotes/scream_female_2.ogg',\
@@ -94,16 +92,6 @@
 						'sound/voice/human/malescream_4.ogg',\
 						'sound/voice/human/malescream_5.ogg',\
 						'sound/voice/human/malescream_6.ogg')
-	else if(ismoth(H))
-		return 'sound/voice/moth/scream_moth.ogg'
-	else if(ismonkey(user)) //If its a monkey, override it.
-		return pick('sound/creatures/monkey/monkey_screech_1.ogg',\
-					'sound/creatures/monkey/monkey_screech_2.ogg',\
-					'sound/creatures/monkey/monkey_screech_3.ogg',\
-					'sound/creatures/monkey/monkey_screech_4.ogg',\
-					'sound/creatures/monkey/monkey_screech_5.ogg',\
-					'sound/creatures/monkey/monkey_screech_6.ogg',\
-					'sound/creatures/monkey/monkey_screech_7.ogg')
 
 /datum/emote/living/carbon/human/scream/screech //If a human tries to screech it'll just scream.
 	key = "screech"
@@ -126,14 +114,6 @@
 	var/mob/living/carbon/human/H = user
 	if(H.mind?.miming)
 		return
-	if(ismonkey(user))
-		return pick('sound/creatures/monkey/monkey_screech_1.ogg',\
-					'sound/creatures/monkey/monkey_screech_2.ogg',\
-					'sound/creatures/monkey/monkey_screech_3.ogg',\
-					'sound/creatures/monkey/monkey_screech_4.ogg',\
-					'sound/creatures/monkey/monkey_screech_5.ogg',\
-					'sound/creatures/monkey/monkey_screech_6.ogg',\
-					'sound/creatures/monkey/monkey_screech_7.ogg')
 	if(user.gender == FEMALE)
 		return pick('white/valtos/sounds/emotes/agony_female_1.ogg',\
 					'white/valtos/sounds/emotes/agony_female_2.ogg',\
@@ -267,43 +247,3 @@
 		var/light_dab_speed = rand(3,7)
 		H.DabAnimation(angle = light_dab_angle , speed = light_dab_speed)
 		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
-
-///Snowflake emotes only for le epic chimp
-/datum/emote/living/carbon/human/monkey
-
-/datum/emote/living/carbon/human/monkey/can_run_emote(mob/user, status_check = TRUE, intentional)
-	if(ismonkey(user))
-		return ..()
-	return FALSE
-
-/datum/emote/living/carbon/human/monkey/gnarl
-	key = "gnarl"
-	key_third_person = "gnarls"
-	message = "granls exposing their teeth..."
-
-/datum/emote/living/carbon/human/monkey/roll
-	key = "roll"
-	key_third_person = "rolls"
-	message = "rolls."
-	hands_use_check = TRUE
-
-/datum/emote/living/carbon/human/monkey/scratch
-	key = "scratch"
-	key_third_person = "scratches"
-	message = "scratches."
-	hands_use_check = TRUE
-
-/datum/emote/living/carbon/human/monkey/screech/roar
-	key = "roar"
-	key_third_person = "roars"
-	message = "roars."
-
-/datum/emote/living/carbon/human/monkey/tail
-	key = "tail"
-	message = "wags their tail."
-
-/datum/emote/living/carbon/human/monkeysign
-	key = "sign"
-	key_third_person = "signs"
-	message_param = "signs the number %t."
-	hands_use_check = TRUE

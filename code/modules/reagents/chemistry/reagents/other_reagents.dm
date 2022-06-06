@@ -96,12 +96,8 @@
 	. = ..()
 	exposed_obj.extinguish()
 	exposed_obj.wash(CLEAN_TYPE_ACID)
-	// Monkey cube
-	if(istype(exposed_obj, /obj/item/food/monkeycube))
-		var/obj/item/food/monkeycube/cube = exposed_obj
-		cube.Expand()
 
-	else if(istype(exposed_obj, /obj/item/stack/sheet/hairlesshide))
+	if(istype(exposed_obj, /obj/item/stack/sheet/hairlesshide))
 		var/obj/item/stack/sheet/hairlesshide/HH = exposed_obj
 		new /obj/item/stack/sheet/wethide(get_turf(HH), HH.amount)
 		qdel(HH)
@@ -380,142 +376,6 @@
 		M.say(pick("Shit was SO cash.", "You are everything bad in the world.", "What sports do you play, other than 'jack off to naked drawn Japanese people?'", "Don???t be a stranger. Just hit me with your best shot.", "My name is John and I hate every single one of you."), forced = /datum/reagent/spraytan)
 	..()
 	return
-
-#define MUT_MSG_IMMEDIATE 1
-#define MUT_MSG_EXTENDED 2
-#define MUT_MSG_ABOUT2TURN 3
-
-/datum/reagent/mutationtoxin
-	name = "Токсин Стабильной Мутации"
-	enname = "Stable Mutation Toxin"
-	description = "A humanizing toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	metabolization_rate = 0.5 * REAGENTS_METABOLISM //metabolizes to prevent micro-dosage
-	taste_description = "слайм"
-	var/race = /datum/species/human
-	var/list/mutationtexts = list( "You don't feel very well." = MUT_MSG_IMMEDIATE,
-									"Your skin feels a bit abnormal." = MUT_MSG_IMMEDIATE,
-									"Your limbs begin to take on a different shape." = MUT_MSG_EXTENDED,
-									"Your appendages begin morphing." = MUT_MSG_EXTENDED,
-									"You feel as though you're about to change at any moment!" = MUT_MSG_ABOUT2TURN)
-	var/cycles_to_turn = 20 //the current_cycle threshold / iterations needed before one can transform
-	hydration_factor = DRINK_HYDRATION_FACTOR_SALTY
-
-/datum/reagent/mutationtoxin/on_mob_life(mob/living/carbon/human/H, delta_time, times_fired)
-	. = TRUE
-	if(!istype(H))
-		return
-	if(!(H.dna?.species) || !(H.mob_biotypes & MOB_ORGANIC))
-		return
-
-	if(DT_PROB(5, delta_time))
-		var/list/pick_ur_fav = list()
-		var/filter = NONE
-		if(current_cycle <= (cycles_to_turn*0.3))
-			filter = MUT_MSG_IMMEDIATE
-		else if(current_cycle <= (cycles_to_turn*0.8))
-			filter = MUT_MSG_EXTENDED
-		else
-			filter = MUT_MSG_ABOUT2TURN
-
-		for(var/i in mutationtexts)
-			if(mutationtexts[i] == filter)
-				pick_ur_fav += i
-		to_chat(H, span_warning("[pick(pick_ur_fav)]"))
-
-	if(current_cycle >= cycles_to_turn)
-		var/datum/species/species_type = race
-		H.set_species(species_type)
-		holder.del_reagent(type)
-		to_chat(H, span_warning("Превратился в [lowertext(initial(species_type.name))]!"))
-		return
-	..()
-
-/datum/reagent/mutationtoxin/felinid
-	name = "Токсин Мутации в Фелинида"
-	enname = "Felinid Mutation Toxin"
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/human/felinid
-	taste_description = "что-то мяукающее"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/mutationtoxin/lizard
-	name = "Токсин Мутации в Ящера"
-	enname = "Lizard Mutation Toxin"
-	description = "A lizarding toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/lizard
-	taste_description = "дыхание дракона, но не так круто"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/mutationtoxin/moth
-	name = "Токсин Мутации в Мотылька"
-	enname = "Moth Mutation Toxin"
-	description = "A glowing toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/moth
-	taste_description = "одежда"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/mutationtoxin/pod
-	name = "Токсин Мутации в Дендроида"
-	enname = "Podperson Mutation Toxin"
-	description = "A vegetalizing toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/pod
-	taste_description = "цветы"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/mutationtoxin/android
-	name = "Токсин Мутации в Андроида"
-	enname = "Android Mutation Toxin"
-	description = "A robotic toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/android
-	taste_description = "схемотехника и сталь"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-//BLACKLISTED RACES
-/datum/reagent/mutationtoxin/skeleton
-	name = "Токсин Мутации в Скелета"
-	enname = "Skeleton Mutation Toxin"
-	description = "A scary toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/skeleton
-	taste_description = "молоко... и много молока"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/mutationtoxin/zombie
-	name = "Токсин Мутации в Зомби"
-	enname = "Zombie Mutation Toxin"
-	description = "An undead toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/zombie //Not the infectious kind. The days of xenobio zombie outbreaks are long past.
-	taste_description = "моз... ничего особенного"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/mutationtoxin/ash
-	name = "Токсин Мутации в Пепельника"
-	enname = "Ash Mutation Toxin"
-	description = "An ashen toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/lizard/ashwalker
-	taste_description = "дикость"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-//DANGEROUS RACES
-/datum/reagent/mutationtoxin/shadow
-	name = "Токсин Мутации в Тень"
-	enname = "Shadow Mutation Toxin"
-	description = "A dark toxin."
-	color = "#5EFF3B" //RGB: 94, 255, 59
-	race = /datum/species/shadow
-	taste_description = "ночь"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-#undef MUT_MSG_IMMEDIATE
-#undef MUT_MSG_EXTENDED
-#undef MUT_MSG_ABOUT2TURN
 
 /datum/reagent/mulligan
 	name = "Токсин Муллигана"
@@ -1860,39 +1720,6 @@
 	..()
 
 //Misc reagents
-
-/datum/reagent/romerol
-	name = "Ромерол"
-	enname = "Romerol"
-	// the REAL zombie powder
-	description = "Romerol is a highly experimental bioterror agent \
-		which causes dormant nodules to be etched into the grey matter of \
-		the subject. These nodules only become active upon death of the \
-		host, upon which, the secondary structures activate and take control \
-		of the host body."
-	color = "#123524" // RGB (18, 53, 36)
-	metabolization_rate = INFINITY
-	taste_description = "мозги"
-
-/datum/reagent/romerol/expose_mob(mob/living/carbon/human/exposed_mob, methods=TOUCH, reac_volume)
-	. = ..()
-	// Silently add the zombie infection organ to be activated upon death
-	if(!exposed_mob.getorganslot(ORGAN_SLOT_ZOMBIE))
-		var/obj/item/organ/zombie_infection/nodamage/ZI = new()
-		ZI.Insert(exposed_mob)
-
-/datum/reagent/magillitis
-	name = "Магиллитис"
-	enname = "Magillitis"
-	description = "An experimental serum which causes rapid muscular growth in Hominidae. Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas."
-	reagent_state = LIQUID
-	color = "#00f041"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/magillitis/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	..()
-	if((ishuman(M)) && current_cycle >= 10)
-		M.gorillize()
 
 /datum/reagent/growthserum
 	name = "Сыворотка Роста"

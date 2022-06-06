@@ -1252,7 +1252,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/bananahonk/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	var/obj/item/organ/liver/liver = M.getorganslot(ORGAN_SLOT_LIVER)
-	if((liver && HAS_TRAIT(liver, TRAIT_COMEDY_METABOLISM)) || ismonkey(M))
+	if((liver && HAS_TRAIT(liver, TRAIT_COMEDY_METABOLISM)))
 		M.heal_bodypart_damage(1 * REM * delta_time, 1 * REM * delta_time)
 		. = TRUE
 	return ..() || .
@@ -2169,19 +2169,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Bug Spray"
 	glass_desc = "Your eyes begin to water as the sting of alcohol reaches them."
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/consumable/ethanol/bug_spray/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	//Bugs should not drink Bug spray.
-	if(ismoth(M))
-		M.adjustToxLoss(1 * REM * delta_time, 0)
-	return ..()
-
-/datum/reagent/consumable/ethanol/bug_spray/on_mob_metabolize(mob/living/carbon/M)
-
-	if(ismoth(M))
-		M.emote("agony")
-	return ..()
-
 
 /datum/reagent/consumable/ethanol/applejack
 	name = "Эплджек"

@@ -5,7 +5,6 @@
 
 	feature_spawn_list = list(/obj/structure/geyser/random = 1)
 	mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast/random = 50, \
-		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random = 30, \
 		SPAWN_MEGAFAUNA = 4
 	)
 

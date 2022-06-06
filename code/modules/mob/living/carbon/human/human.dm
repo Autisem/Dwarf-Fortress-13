@@ -49,17 +49,9 @@
 /mob/living/carbon/human/ZImpactDamage(turf/T, levels)
 	if(!HAS_TRAIT(src, TRAIT_FREERUNNING) || levels > 1) // falling off one level
 		return ..()
-	if(isfelinid(src))
-		var/obj/item/bodypart/left_leg = get_bodypart(BODY_ZONE_L_LEG)
-		var/obj/item/bodypart/right_leg = get_bodypart(BODY_ZONE_R_LEG)
-		if(!left_leg || !right_leg || left_leg.bodypart_disabled || right_leg.bodypart_disabled)
-			return ..()
-		visible_message(span_notice("[capitalize(src.name)] ловко приземляется на [T]!") , \
-			span_warning("Лечу вниз на [levels] уров[levels > 1 ? "ней" : "ень"] прямо в [T] мягко приземляясь при этом!"))
-	else
-		visible_message(span_danger("[capitalize(src.name)] влетает в [T], но остаётся в целости.") , \
+	visible_message(span_danger("[capitalize(src.name)] влетает в [T], но остаётся в целости.") , \
 						span_userdanger("Падаю... и влетаю в [T], но остаюсь в целости."))
-		Knockdown(levels * 50)
+	Knockdown(levels * 50)
 
 /mob/living/carbon/human/prepare_data_huds()
 	//Update med hud images...
@@ -436,27 +428,6 @@
 			var/newtype = GLOB.species_list[result]
 			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src] to [result]")
 			set_species(newtype)
-	if(href_list[VV_HK_PURRBATION])
-		if(!check_rights(R_SPAWN))
-			return
-
-		if(!ishumanbasic(src))
-			to_chat(usr, "This can only be done to the basic human species at the moment.")
-			return
-		var/success = purrbation_toggle(src)
-		if(success)
-			to_chat(usr, "Put [src] on purrbation.")
-			log_admin("[key_name(usr)] has put [key_name(src)] on purrbation.")
-			var/msg = span_notice("[key_name_admin(usr)] has put [key_name(src)] on purrbation.")
-			message_admins(msg)
-			admin_ticket_log(src, msg)
-
-		else
-			to_chat(usr, "Removed [src] from purrbation.")
-			log_admin("[key_name(usr)] has removed [key_name(src)] from purrbation.")
-			var/msg = span_notice("[key_name_admin(usr)] has removed [key_name(src)] from purrbation.")
-			message_admins(msg)
-			admin_ticket_log(src, msg)
 
 /mob/living/carbon/human/limb_attack_self()
 	var/obj/item/bodypart/arm = hand_bodyparts[active_hand_index]
@@ -600,51 +571,3 @@
 	. = ..()
 	if(use_random_name)
 		fully_replace_character_name(real_name, dna.species.random_name())
-
-/mob/living/carbon/human/species/android
-	race = /datum/species/android
-
-/mob/living/carbon/human/species/dullahan
-	race = /datum/species/dullahan
-
-/mob/living/carbon/human/species/felinid
-	race = /datum/species/human/felinid
-
-/mob/living/carbon/human/species/lizard
-	race = /datum/species/lizard
-
-/mob/living/carbon/human/species/lizard/ashwalker
-	race = /datum/species/lizard/ashwalker
-
-/mob/living/carbon/human/species/lizard/silverscale
-	race = /datum/species/lizard/silverscale
-
-/mob/living/carbon/human/species/lizard/ashwalker
-	race = /datum/species/lizard/ashwalker
-
-/mob/living/carbon/human/species/moth
-	race = /datum/species/moth
-
-/mob/living/carbon/human/species/mush
-	race = /datum/species/mush
-
-/mob/living/carbon/human/species/pod
-	race = /datum/species/pod
-
-/mob/living/carbon/human/species/shadow
-	race = /datum/species/shadow
-
-/mob/living/carbon/human/species/skeleton
-	race = /datum/species/skeleton
-
-/mob/living/carbon/human/species/snail
-	race = /datum/species/snail
-
-/mob/living/carbon/human/species/zombie
-	race = /datum/species/zombie
-
-/mob/living/carbon/human/species/zombie/infectious
-	race = /datum/species/zombie/infectious
-
-/mob/living/carbon/human/species/zombie/krokodil_addict
-	race = /datum/species/krokodil_addict

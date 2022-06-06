@@ -124,38 +124,6 @@
 	..()
 	. = TRUE
 
-/datum/reagent/drug/krokodil
-	name = "Крокодил"
-	enname = "krokodil"
-	description = "Cools and calms you down. If overdosed it will deal significant Brain and Toxin damage. If addicted it will begin to deal fatal amounts of Brute damage as the subject's skin falls off."
-	reagent_state = LIQUID
-	color = "#0064B4"
-	overdose_threshold = 20
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	addiction_types = list(/datum/addiction/opiods = 18) //7.2 per 2 seconds
-	hydration_factor = DRINK_HYDRATION_FACTOR_SALTY
-
-
-/datum/reagent/drug/krokodil/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	var/high_message = pick("You feel calm.", "You feel collected.", "You feel like you need to relax.")
-	if(DT_PROB(2.5, delta_time))
-		to_chat(M, span_notice("[high_message]"))
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "smacked out", /datum/mood_event/narcotic_heavy, name)
-	if(current_cycle == 35 && creation_purity <= 0.6)
-		if(!istype(M.dna.species, /datum/species/krokodil_addict))
-			to_chat(M, span_userdanger("Your skin falls off easily!"))
-			M.adjustBruteLoss(50*REM, 0) // holy shit your skin just FELL THE FUCK OFF
-			M.set_species(/datum/species/krokodil_addict)
-	..()
-
-/datum/reagent/drug/krokodil/overdose_process(mob/living/M, delta_time, times_fired)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.25 * REM * delta_time)
-	M.adjustToxLoss(0.25 * REM * delta_time, 0)
-	..()
-	. = TRUE
-
-
-
 /datum/reagent/drug/methamphetamine
 	name = "Метамфетамин"
 	enname = "Methamphetamine"

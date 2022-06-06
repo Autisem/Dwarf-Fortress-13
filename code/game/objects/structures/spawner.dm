@@ -10,7 +10,7 @@
 
 	var/max_mobs = 5
 	var/spawn_time = 300 //30 seconds default
-	var/mob_types = list(/mob/living/simple_animal/hostile/carp)
+	var/mob_types = list(/mob/living/simple_animal/hostile/frogman)
 	var/spawn_text = "emerges from"
 	var/faction = list("hostile")
 	var/spawner_type = /datum/component/spawner
@@ -40,18 +40,13 @@
 	max_mobs = 3
 	icon = 'icons/mob/nest.dmi'
 	spawn_text = "crawls out of"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goliath, /mob/living/simple_animal/hostile/asteroid/hivelord, /mob/living/simple_animal/hostile/asteroid/fugu)
+	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goliath, /mob/living/simple_animal/hostile/asteroid/fugu)
 	faction = list("mining")
 
 /obj/structure/spawner/mining/goliath
 	name = "goliath den"
 	desc = "A den housing a nest of goliaths, oh god why?"
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goliath)
-
-/obj/structure/spawner/mining/hivelord
-	name = "hivelord den"
-	desc = "A den housing a nest of hivelords."
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/hivelord)
 
 /obj/structure/spawner/mining/wumborian
 	name = "wumborian fugu den"

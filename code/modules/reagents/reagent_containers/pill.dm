@@ -201,14 +201,6 @@
 	icon_state = "pill22"
 	rename_with_volume = TRUE
 
-///////////////////////////////////////// this pill is used only in a legion mob drop
-/obj/item/reagent_containers/pill/shadowtoxin
-	name = "чёрная таблетка"
-	desc = "I wouldn't eat this if I were you."
-	icon_state = "pill9"
-	color = "#454545"
-	list_reagents = list(/datum/reagent/mutationtoxin/shadow = 5)
-
 ///////////////////////////////////////// Psychologist inventory pills
 /obj/item/reagent_containers/pill/happinesspsych
 	name = "mood stabilizer pill"

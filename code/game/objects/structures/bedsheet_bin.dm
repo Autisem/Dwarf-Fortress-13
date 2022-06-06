@@ -22,7 +22,6 @@ LINEN BINS
 	resistance_flags = FLAMMABLE
 	dying_key = DYE_REGISTRY_BEDSHEET
 
-	dog_fashion = /datum/dog_fashion/head/ghost
 	var/list/dream_messages = list("white")
 
 /obj/item/bedsheet/Initialize(mapload)

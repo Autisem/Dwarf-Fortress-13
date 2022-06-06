@@ -144,7 +144,7 @@
 
 			var/list/settings = list(
 				"mainsettings" = list(
-					"typepath" = list("desc" = "Path to spawn", "type" = "datum", "path" = "/mob/living", "subtypesonly" = TRUE, "value" = /mob/living/simple_animal/hostile/bear/russian),
+					"typepath" = list("desc" = "Path to spawn", "type" = "datum", "path" = "/mob/living", "subtypesonly" = TRUE, "value" = /mob/living/simple_animal/hostile/frogman),
 					"humanoutfit" = list("desc" = "Outfit if human", "type" = "datum", "path" = "/datum/outfit", "subtypesonly" = TRUE, "value" = /datum/outfit),
 					"amount" = list("desc" = "Number per portal", "type" = "number", "value" = 1),
 					"portalnum" = list("desc" = "Number of total portals", "type" = "number", "value" = 10),
@@ -219,15 +219,6 @@
 
 			message_admins(span_boldannounce("[key_name_admin(holder)] changed the bomb cap to [GLOB.MAX_EX_DEVESTATION_RANGE], [GLOB.MAX_EX_HEAVY_RANGE], [GLOB.MAX_EX_LIGHT_RANGE]"))
 			log_admin("[key_name(holder)] changed the bomb cap to [GLOB.MAX_EX_DEVESTATION_RANGE], [GLOB.MAX_EX_HEAVY_RANGE], [GLOB.MAX_EX_LIGHT_RANGE]")
-		//buttons that are fun for exactly you and nobody else.
-		if("monkey")
-			if(!is_funmin)
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Monkeyize All Humans"))
-			for(var/i in GLOB.human_list)
-				var/mob/living/carbon/human/H = i
-				INVOKE_ASYNC(H, /mob/living/carbon.proc/monkeyize)
-			ok = TRUE
 		if("massbraindamage")
 			if(!is_funmin)
 				return
@@ -238,20 +229,6 @@
 			message_admins("[key_name_admin(holder)] made everybody brain damaged")
 		if("floorlava")
 			SSweather.run_weather(/datum/weather/floor_is_lava)
-		if("masspurrbation")
-			if(!is_funmin)
-				return
-			mass_purrbation()
-			message_admins("[key_name_admin(holder)] has put everyone on \
-				purrbation!")
-			log_admin("[key_name(holder)] has put everyone on purrbation.")
-		if("massremovepurrbation")
-			if(!is_funmin)
-				return
-			mass_remove_purrbation()
-			message_admins("[key_name_admin(holder)] has removed everyone from \
-				purrbation.")
-			log_admin("[key_name(holder)] has removed everyone from purrbation.")
 		if("massimmerse")
 			if(!is_funmin)
 				return

@@ -390,23 +390,6 @@ new /datum/stack_recipe("paper frame separator", /obj/structure/window/paperfram
 /obj/item/stack/sheet/meat/five
 	amount = 5
 
-/obj/item/stack/sheet/pizza
-	name = "ломтики пепперони "
-	desc = "Это вкусные ломтики пепперони!"
-	singular_name = "ломтик пепперони"
-	icon_state = "sheet-pizza"
-	mats_per_unit = list(/datum/material/pizza = MINERAL_MATERIAL_AMOUNT)
-	merge_type = /obj/item/stack/sheet/pizza
-	material_type = /datum/material/pizza
-	material_modifier = 1
-
-/obj/item/stack/sheet/pizza/fifty
-	amount = 50
-/obj/item/stack/sheet/pizza/twenty
-	amount = 20
-/obj/item/stack/sheet/pizza/five
-	amount = 5
-
 /obj/item/stack/sheet/sandblock
 	name = "блоки песка"
 	desc = "Я уже слишком стар для того чтобы играться с песочными замками. Теперь я строю... Песочные станции."
@@ -416,22 +399,6 @@ new /datum/stack_recipe("paper frame separator", /obj/structure/window/paperfram
 	merge_type = /obj/item/stack/sheet/sandblock
 	material_type = /datum/material/sand
 	material_modifier = 1
-	var/obj/item/food/no_raisin/negr_snack
-
-/obj/item/stack/sheet/sandblock/attack(mob/living/M, mob/living/user, params)
-	if(user.a_intent != INTENT_HARM && ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.skin_tone == "african1" || H.skin_tone == "african2")
-			if (isnull(negr_snack))
-				negr_snack = new
-				negr_snack.name = name
-			negr_snack.attack(M, user, params)
-			return TRUE
-	return ..()
-
-/obj/item/stack/sheet/sandblock/Destroy()
-	QDEL_NULL(negr_snack)
-	return ..()
 
 /obj/item/stack/sheet/sandblock/fifty
 	amount = 50

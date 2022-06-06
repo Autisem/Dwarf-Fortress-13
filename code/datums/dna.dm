@@ -389,80 +389,8 @@
 /////////////////////////// DNA HELPER-PROCS
 
 /mob/living/carbon/human/proc/something_horrible(ignore_stability)
-	if(!has_dna()) //shouldn't ever happen anyway so it's just in really weird cases
-		return
-	if(!ignore_stability && (dna.stability > 0))
-		return
-	var/instability = -dna.stability
-	dna.stability = 100
-	if(prob(max(70-instability,0)))
-		switch(rand(0,10)) //not complete and utter death
-			if(0)
-				monkeyize()
-			if(1)
-				gain_trauma(/datum/brain_trauma/severe/paralysis/paraplegic)
-				to_chat(src, span_warning("Моя плоть превратилась в инвалидную коляску, и я не чувствую своих ног."))
-			if(2)
-				corgize()
-			if(3)
-				to_chat(src, span_notice("А мне неплохо!"))
-			if(4)
-				to_chat(src, span_notice("Неплохо!")) //you thought
-			if(5)
-				to_chat(src, span_notice("Отлично!"))
-				reagents.add_reagent(/datum/reagent/aslimetoxin, 10)
-			if(6)
-				apply_status_effect(STATUS_EFFECT_GO_AWAY)
-			if(7)
-			if(8)
-				var/list/elligible_organs = list()
-				for(var/obj/item/organ/O in internal_organs) //make sure we dont get an implant or cavity item
-					elligible_organs += O
-				vomit(20, TRUE)
-				if(elligible_organs.len)
-					var/obj/item/organ/O = pick(elligible_organs)
-					O.Remove(src)
-					visible_message(span_danger("[capitalize(src.name)] выблёвывает [O.name]!") , span_danger("Выблёвываю [O.name]")) //no "vomit up your the heart"
-					O.forceMove(drop_location())
-			if(9 to 10)
-				to_chat(src, span_notice("О, да!"))
-	else
-		switch(rand(0,5))
-			if(0)
-				gib()
-			if(1)
-				dust()
-
-			if(2)
-				death()
-			if(3)
-				if(prob(95))
-					var/obj/item/bodypart/BP = get_bodypart(pick(BODY_ZONE_CHEST,BODY_ZONE_HEAD))
-					if(BP)
-						BP.dismember()
-					else
-						gib()
-				else
-					set_species(/datum/species/dullahan)
-			if(4)
-				visible_message(span_warning("С [src] слезает кожа!") , span_boldwarning("Моя кожа слезает с меня!"))
-				spawn_gibs()
-				set_species(/datum/species/skeleton)
-				if(prob(90))
-					addtimer(CALLBACK(src, .proc/death), 30)
-					if(mind)
-						mind.hasSoul = FALSE
-			if(5)
-				to_chat(src, span_phobia("ПОСМОТРИ НАВЕРХ!"))
-				addtimer(CALLBACK(src, .proc/something_horrible_mindmelt), 30)
+	return //NO MUTATIONS
 
 
 /mob/living/carbon/human/proc/something_horrible_mindmelt()
-	if(!is_blind())
-		var/obj/item/organ/eyes/eyes = locate(/obj/item/organ/eyes) in internal_organs
-		if(!eyes)
-			return
-		eyes.Remove(src)
-		qdel(eyes)
-		visible_message(span_notice("У [src] тают глаза!") , "<span class>='userdanger'>Кажется я теперь понимаю что-то.</span>")
-		addtimer(CALLBACK(src, .proc/adjustOrganLoss, ORGAN_SLOT_BRAIN, 200), 20)
+	return

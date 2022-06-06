@@ -149,7 +149,7 @@
 
 /datum/reagent/consumable/banana/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	var/obj/item/organ/liver/liver = M.getorganslot(ORGAN_SLOT_LIVER)
-	if((liver && HAS_TRAIT(liver, TRAIT_COMEDY_METABOLISM)) || ismonkey(M))
+	if((liver && HAS_TRAIT(liver, TRAIT_COMEDY_METABOLISM)))
 		M.heal_bodypart_damage(1 * REM * delta_time, 1 * REM * delta_time, 0)
 		. = TRUE
 	..()
@@ -640,40 +640,6 @@
 	M.adjust_bodytemperature(-5 * REM * 1.5 * delta_time, M.get_body_temp_normal())
 	..()
 	. = TRUE
-
-/datum/reagent/consumable/monkey_energy
-	name = "Monkey Energy"
-	description = "The only drink that will make you unleash the ape."
-	color = "#f39b03" // rgb: 243, 155, 3
-	overdose_threshold = 60
-	taste_description = "барбекю и ностальгия"
-	glass_icon_state = "monkey_energy_glass"
-	glass_name = "glass of Monkey Energy"
-	glass_desc = "You can unleash the ape, but without the pop of the can?"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	hydration_factor = DRINK_HYDRATION_FACTOR_LOW
-
-/datum/reagent/consumable/monkey_energy/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	M.Jitter(40 * REM * delta_time)
-	M.dizziness += 1 * REM * delta_time
-	M.drowsyness = 0
-	M.AdjustSleeping(-40 * REM * delta_time)
-	M.adjust_bodytemperature(-5 * REM * 1.5 * delta_time, M.get_body_temp_normal())
-	..()
-
-/datum/reagent/consumable/monkey_energy/on_mob_metabolize(mob/living/L)
-	..()
-	if(ismonkey(L))
-		L.add_movespeed_modifier(/datum/movespeed_modifier/reagent/monkey_energy)
-
-/datum/reagent/consumable/monkey_energy/on_mob_end_metabolize(mob/living/L)
-	L.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/monkey_energy)
-	..()
-
-/datum/reagent/consumable/monkey_energy/overdose_process(mob/living/M, delta_time, times_fired)
-	if(DT_PROB(7.5, delta_time))
-		M.say(pick_list_replacements(BOOMER_FILE, "boomer"), forced = /datum/reagent/consumable/monkey_energy)
-	..()
 
 /datum/reagent/consumable/ice
 	name = "Лед"

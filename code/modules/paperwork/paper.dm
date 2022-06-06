@@ -32,7 +32,6 @@
 	body_parts_covered = HEAD
 	resistance_flags = FLAMMABLE
 	max_integrity = 50
-	dog_fashion = /datum/dog_fashion/head
 	drop_sound = 'sound/items/handling/paper_drop.ogg'
 	pickup_sound =  'sound/items/handling/paper_pickup.ogg'
 	grind_results = list(/datum/reagent/cellulose = 3)

@@ -29,7 +29,6 @@
 	icon_state = "armoralt"
 	inhand_icon_state = "armoralt"
 	blood_overlay_type = "armor"
-	dog_fashion = /datum/dog_fashion/back
 
 /obj/item/clothing/suit/armor/vest/alt
 	desc = "Бронированный жилет Тип I, обеспечивающий достойную защиту от большинства видов повреждений."
@@ -110,7 +109,6 @@
 	heat_protection = CHEST|GROIN|ARMS|HANDS
 	strip_delay = 70
 	resistance_flags = FLAMMABLE
-	dog_fashion = null
 
 /obj/item/clothing/suit/armor/vest/warden/alt
 	name = "бронежилет надзирателя"
@@ -125,7 +123,6 @@
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
-	dog_fashion = null
 
 /obj/item/clothing/suit/armor/vest/leather/noname
 	desc = "Кожаное пальто в легкой броне. Элегантно и практично." //временный костыль-подпорка для сноса говна зерги.
@@ -135,7 +132,6 @@
 	icon_state = "capcarapace"
 	inhand_icon_state = "armor"
 	body_parts_covered = CHEST|GROIN
-	dog_fashion = null
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
@@ -207,7 +203,6 @@
 	desc = "Бронежилет с детективным значком на нем."
 	icon_state = "detective-armor"
 	resistance_flags = FLAMMABLE
-	dog_fashion = null
 
 /obj/item/clothing/suit/armor/vest/det_suit/Initialize()
 	. = ..()

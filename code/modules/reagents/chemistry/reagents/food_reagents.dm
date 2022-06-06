@@ -133,62 +133,6 @@
 	taste_description = "rich earthy pungent"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
-/datum/reagent/consumable/cooking_oil
-	name = "Кулинарное Масло"
-	description = "A variety of cooking oil derived from fat or plants. Used in food preparation and frying."
-	color = "#EADD6B" //RGB: 234, 221, 107 (based off of canola oil)
-	taste_mult = 0.8
-	taste_description = "масло"
-	nutriment_factor = 7 * REAGENTS_METABOLISM //Not very healthy on its own
-	metabolization_rate = 10 * REAGENTS_METABOLISM
-	penetrates_skin = NONE
-	var/fry_temperature = 450 //Around ~350 F (117 C) which deep fryers operate around in the real world
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	hydration_factor = DRINK_HYDRATION_FACTOR_SALTY
-
-/datum/reagent/consumable/cooking_oil/expose_obj(obj/exposed_obj, reac_volume)
-	. = ..()
-	if(!holder || (holder.chem_temp <= fry_temperature))
-		return
-	if(!isitem(exposed_obj) || istype(exposed_obj, /obj/item/food/deepfryholder))
-		return
-	if(exposed_obj.resistance_flags & INDESTRUCTIBLE)
-		exposed_obj.loc.visible_message(span_notice("Горячее масло не оказало эффекта на [exposed_obj]!"))
-		return
-	exposed_obj.loc.visible_message(span_warning("[exposed_obj] быстро обжарился благодаря вылитому горячему маслу! Каким то образом."))
-	var/obj/item/food/deepfryholder/fry_target = new(exposed_obj.drop_location(), exposed_obj)
-	fry_target.fry(volume)
-	fry_target.reagents.add_reagent(/datum/reagent/consumable/cooking_oil, reac_volume)
-
-/datum/reagent/consumable/cooking_oil/expose_mob(mob/living/exposed_mob, methods = TOUCH, reac_volume, show_message = TRUE, touch_protection = 0)
-	. = ..()
-	if(!(methods & (VAPOR|TOUCH)) || isnull(holder) || (holder.chem_temp < fry_temperature)) //Directly coats the mob, and doesn't go into their bloodstream
-		return
-
-	var/oil_damage = ((holder.chem_temp / fry_temperature) * 0.33) //Damage taken per unit
-	if(methods & TOUCH)
-		oil_damage *= max(1 - touch_protection, 0)
-	var/FryLoss = round(min(38, oil_damage * reac_volume))
-	if(!HAS_TRAIT(exposed_mob, TRAIT_OIL_FRIED))
-		exposed_mob.visible_message(span_warning("Кипящее масло шипит, покрывая [exposed_mob]!") , \
-		span_userdanger("Облит кипящим маслом!"))
-		if(FryLoss)
-			exposed_mob.emote("agony")
-		playsound(exposed_mob, 'sound/machines/fryer/deep_fryer_emerge.ogg', 25, TRUE)
-		ADD_TRAIT(exposed_mob, TRAIT_OIL_FRIED, "cooking_oil_react")
-		addtimer(CALLBACK(exposed_mob, /mob/living/proc/unfry_mob), 3)
-	if(FryLoss)
-		exposed_mob.adjustFireLoss(FryLoss)
-
-/datum/reagent/consumable/cooking_oil/expose_turf(turf/open/exposed_turf, reac_volume)
-	. = ..()
-	if(!istype(exposed_turf) || isgroundlessturf(exposed_turf) || (reac_volume < 5))
-		return
-
-	exposed_turf.MakeSlippery(TURF_WET_LUBE, min_wet_time = 10 SECONDS, wet_time_to_add = reac_volume * 1.5 SECONDS)
-	exposed_turf.name = "deep-fried [initial(exposed_turf.name)]"
-	exposed_turf.add_atom_colour(color, TEMPORARY_COLOUR_PRIORITY)
-
 /datum/reagent/consumable/sugar
 	name = "Сахар"
 	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
@@ -386,14 +330,6 @@
 	taste_description = "горечь"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	hydration_factor = DRINK_HYDRATION_FACTOR_SALTY
-
-/datum/reagent/consumable/coco/on_mob_add(mob/living/carbon/M)
-	.=..()
-	if(isfelinid(M))
-		to_chat(M, span_warning("Ваши внутренности переворачиваются от шоколада!"))
-		M.vomit(20)
-		M.losebreath += 20
-		M.Paralyze(150)
 
 /datum/reagent/drug/mushroomhallucinogen
 	name = "Грибной Галлюциноген"

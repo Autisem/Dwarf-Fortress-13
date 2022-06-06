@@ -44,12 +44,6 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 /client/proc/show_tgui_notice(header, msg)
 	tgui_alert_async(src, header, msg, list("Понимаю"))
 
-/mob/living/carbon/human/proc/makeSkeleton()
-	ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC)
-	set_species(/datum/species/skeleton)
-	return TRUE
-
-
 /mob/living/carbon/proc/Drain()
 	become_husk(CHANGELING_DRAIN)
 	ADD_TRAIT(src, TRAIT_BADDNA, CHANGELING_DRAIN)

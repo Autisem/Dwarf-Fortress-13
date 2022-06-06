@@ -25,10 +25,6 @@
 /datum/surgery_step/add_prosthetic/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(istype(tool, /obj/item/bodypart))
 		var/obj/item/bodypart/BP = tool
-		if(ismonkey(target))// monkey patient only accept organic monkey limbs
-			if(BP.status == BODYPART_ROBOTIC || BP.animal_origin != MONKEY_BODYPART)
-				to_chat(user, span_warning("[BP] относится к другому селекционному виду."))
-				return -1
 		if(BP.status != BODYPART_ROBOTIC)
 			organ_rejection_dam = 10
 			if(ishuman(target))

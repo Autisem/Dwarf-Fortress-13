@@ -99,20 +99,6 @@
 	name = "Nuka Cola"
 	list_reagents = list(/datum/reagent/consumable/nuka_cola = 50)
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/food/egg)) //breaking eggs
-		var/obj/item/food/egg/E = I
-		if(reagents)
-			if(reagents.total_volume >= reagents.maximum_volume)
-				to_chat(user, span_notice("[capitalize(src.name)] is full."))
-			else
-				to_chat(user, span_notice("You break [E] in [src]."))
-				reagents.add_reagent(/datum/reagent/consumable/eggyolk, 5)
-				qdel(E)
-			return
-	else
-		..()
-
 /obj/item/reagent_containers/food/drinks/drinkingglass/attack(obj/target, mob/user)
 	if(user.a_intent == INTENT_HARM && ismob(target) && target.reagents && reagents.total_volume)
 		target.visible_message(span_danger("[user] splashes the contents of [src] onto [target]!") , \

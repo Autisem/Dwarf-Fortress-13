@@ -1,4 +1,6 @@
 /datum/unit_test/reagent_mob_procs/Run()
+	return
+	/*
 	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human)
 	var/obj/item/food/hotdog/debug/fooditem = allocate(/obj/item/food/hotdog/debug)
 
@@ -10,3 +12,4 @@
 
 	TEST_ASSERT(human.has_reagent(/datum/reagent/consumable/ketchup), "Human doesn't have ketchup after eating")
 	TEST_ASSERT(human.has_reagent(/datum/reagent/medicine/epinephrine), "Human doesn't have epinephrine after injecting")
+	*/

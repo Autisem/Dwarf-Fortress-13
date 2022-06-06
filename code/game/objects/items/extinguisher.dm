@@ -14,7 +14,6 @@
 	custom_materials = list(/datum/material/iron = 90)
 	attack_verb_continuous = list("бьёт", "ударяет", "устраивает развал", "баллонит", "грейтайдит", "наносит удар")
 	attack_verb_simple = list("бьёт", "ударяет", "устраивает развал", "баллонит", "грейтайдит", "наносит удар")
-	dog_fashion = /datum/dog_fashion/back
 	resistance_flags = FIRE_PROOF
 	var/max_water = 50
 	var/last_use = 1
@@ -44,7 +43,6 @@
 	custom_materials = list(/datum/material/iron = 50, /datum/material/glass = 40)
 	max_water = 30
 	sprite_name = "miniFE"
-	dog_fashion = null
 	can_explode = FALSE
 
 /obj/item/extinguisher/crafted
@@ -60,7 +58,6 @@
 	custom_materials = list(/datum/material/iron = 50, /datum/material/glass = 40)
 	max_water = 30
 	sprite_name = "coolant"
-	dog_fashion = null
 	cooling_power = 1.5
 	power = 3
 
@@ -90,7 +87,6 @@
 	icon_state = "foam_extinguisher0"
 	inhand_icon_state = "foam_extinguisher"
 	tank_holder_icon_state = "holder_foam_extinguisher"
-	dog_fashion = null
 	chem = /datum/reagent/firefighting_foam
 	sprite_name = "foam_extinguisher"
 	precision = TRUE

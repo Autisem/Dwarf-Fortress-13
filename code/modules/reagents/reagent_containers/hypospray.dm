@@ -240,16 +240,6 @@
 	inhand_icon_state = "atropen"
 	list_reagents = list(/datum/reagent/medicine/atropine = 10)
 
-/obj/item/reagent_containers/hypospray/medipen/magillitis
-	name = "experimental autoinjector"
-	desc = "A custom-frame needle injector with a small single-use reservoir, containing an experimental serum. Unlike the more common medipen frame, it cannot pierce through protective armor or hardsuits, nor can the chemical inside be extracted."
-	icon_state = "gorillapen"
-	inhand_icon_state = "gorillapen"
-	volume = 5
-	ignore_flags = 0
-	reagent_flags = NONE
-	list_reagents = list(/datum/reagent/magillitis = 5)
-
 /obj/item/reagent_containers/hypospray/medipen/pumpup
 	name = "maintenance pump-up"
 	desc = "A ghetto looking autoinjector filled with a cheap adrenaline shot... Great for shrugging off the effects of stunbatons."
