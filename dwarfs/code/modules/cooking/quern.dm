@@ -30,7 +30,7 @@
 /obj/structure/quern/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/growable))
 		var/obj/item/growable/G = I
-		if(!G.grain_type)
+		if(!G.GetComponent(/datum/component/grindable))
 			return TRUE
 		if(!open)
 			to_chat(user, span_warning("[src] has to be opened first."))
@@ -85,15 +85,10 @@
 	if(do_after(user, work_time, src))
 		if(contents.len)
 			var/obj/item/growable/G = contents[1]
-			for(var/i in 1 to rand(1,2))
-				new G.seed_type(get_turf(src))
-			reagents.add_reagent(G.grain_type, G.grain_volume)
-			qdel(G)
+			SEND_SIGNAL(G, COSMIG_ITEM_GRINDED, src)
 		else // has grain reagents
 			var/datum/reagent/grain/G =  reagents.has_reagent_subtype(/datum/reagent/grain)
-			var/vol = G.volume*G.flour_ratio
-			reagents.remove_reagent(G.type, vol)
-			reagents.add_reagent(G.flour_type, vol)
+			SEND_SIGNAL(G, COSMIG_REAGENT_GRINDED, src)
 	busy_operating = FALSE
 	update_appearance()
 	to_chat(user, span_notice("You finish working at [src]."))

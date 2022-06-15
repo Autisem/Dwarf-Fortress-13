@@ -111,11 +111,6 @@ GLOBAL_LIST_INIT(enname2reagent, build_enname2reagent())
 	var/sound/special_sound = null
 	///hydration factor to restore thirst
 	var/hydration_factor = 0
-	///dwarf brewing stuff
-	var/datum/reagent/convtype
-	var/conv_delta = 5 SECONDS // time it takes for conv_amt to convert into convtype
-	var/conv_amt = 10 // volume to be converted in conv_delta time
-	var/conv_rate = 1 // rate of conversion. 1 is 100% of juice volume becomes wine (same volume)
 
 
 /datum/reagent/New()

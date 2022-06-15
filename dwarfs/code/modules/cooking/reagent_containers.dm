@@ -69,5 +69,74 @@
 	to_chat(user, span_notice("You [open?"open":"close"] [src]."))
 	amount_per_transfer_from_this = open ? initial(amount_per_transfer_from_this) : 0 // cannot transfer reagents when closed
 
-/obj/item/reagent_containers/glass/cooking_pot/proc/find_recipe()
-	return
+/obj/item/reagent_containers/glass/plate
+	icon = 'dwarfs/icons/items/kitchen.dmi'
+
+/obj/item/reagent_containers/glass/plate/Initialize(mapload, vol)
+	. = ..()
+	AddComponent(/datum/component/storage/concrete/debug)
+/obj/item/reagent_containers/glass/plate/regular
+	name = "plate"
+	desc = "Good for holding some food inside it."
+	icon_state = "wooden_plate"
+	amount_per_transfer_from_this = 10
+	possible_transfer_amounts = list()
+	volume = 50
+
+/obj/item/reagent_containers/glass/plate/regular/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/spoon))
+		var/list/d = find_recipe(subtypesof(/datum/cooking_recipe/plate), contents)
+		var/mob/living/carbon/human/H = user
+		if(!d)
+			var/held_index = H.is_holding(src)
+			if(held_index)
+				qdel(src)
+				var/obj/item/food/sausage/S = new
+				H.put_in_hand(S, held_index)
+			else
+				new /obj/item/food/sausage(loc)
+				qdel(src)
+		var/datum/cooking_recipe/R = d[1]
+		var/perfect_recipe = d[2]
+
+		if(perfect_recipe)
+			var/obj/item/food/F = new R.result
+			var/held_index = H.is_holding(src)
+			if(held_index)
+				qdel(src)
+				H.put_in_hand(F, held_index)
+			else
+				F.forceMove(loc)
+				qdel(src)
+		else
+			var/obj/item/food/F = new R.custom_result
+			F.transfer_nutrients_from(src)
+			var/held_index = H.is_holding(src)
+			if(held_index)
+				qdel(src)
+				H.put_in_hand(F, held_index)
+			else
+				F.forceMove(loc)
+				qdel(src)
+	else
+		. = ..()
+
+/obj/item/reagent_containers/glass/plate/flat
+	name = "flat plate"
+	desc = "Holds food a bit worse than a ragular plate."
+	icon_state = "fancy_plate"
+
+/obj/item/reagent_containers/glass/plate/bowl
+	name = "bowl"
+	desc = "Deep plate."
+	icon_state = "wooden_bowl"
+
+/obj/item/reagent_containers/glass/pan
+	name = "frying pan"
+	desc = "Used to fry stuff."
+	icon = 'dwarfs/icons/items/kitchen.dmi'
+	icon_state = "skillet"
+
+/obj/item/reagent_containers/glass/pan/Initialize(mapload, vol)
+	. = ..()
+	AddComponent(/datum/component/storage/concrete/debug)

@@ -4,7 +4,7 @@
 	desc = "you eat this"
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_SMALL
-	icon = 'icons/obj/food/food.dmi'
+	icon = 'dwarfs/icons/items/food.dmi'
 	icon_state = null
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
@@ -27,12 +27,8 @@
 	var/list/eatverbs
 	///How much reagents per bite
 	var/bite_consumption
-	///What you get if you microwave the food. Use baking for raw things, use microwaving for already cooked things
-	var/microwaved_type
 	///Type of atom thats spawned after eating this item
 	var/trash_type
-	///How much junkiness this food has? God I should remove junkiness soon
-	var/junkiness
 	///Will this food turn into badrecipe on a grill? Don't use this for everything; preferably mostly for food that is made on a grill to begin with so it burns after some time
 	var/burns_on_grill = FALSE
 	///Will this food turn into badrecipe in an oven? Don't use this for everything; preferably mostly for food that is made in an oven to begin with so it burns after some time
@@ -67,8 +63,7 @@
 				eat_time = eat_time,\
 				tastes = tastes,\
 				eatverbs = eatverbs,\
-				bite_consumption = bite_consumption,\
-				microwaved_type = microwaved_type)
+				bite_consumption = bite_consumption)
 
 
 ///This proc handles processable elements, overwrite this if you want to add behavior such as slicing, forking, spooning, whatever, to turn the item into something else
@@ -104,10 +99,10 @@
 /obj/item/food/cookie
 	name = "cookie"
 	desc = "COOKIE!!!"
-	icon_state = "COOKIE!!!"
+	icon_state = "cookie"
 	bite_consumption = 1
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
-	tastes = list("печенька" = 1)
+	tastes = list("cookie" = 1)
 	foodtypes = GRAIN | SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL

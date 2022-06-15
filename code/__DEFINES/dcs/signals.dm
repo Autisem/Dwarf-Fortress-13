@@ -819,9 +819,6 @@
 ///from base of obj/item/hit_reaction(): (list/args)
 #define COMSIG_ITEM_HIT_REACT "item_hit_react"
 	#define COMPONENT_HIT_REACTION_BLOCK (1<<0)
-///called on item when microwaved (): (obj/machinery/microwave/M)
-#define COMSIG_ITEM_MICROWAVE_ACT "microwave_act"
-	#define COMPONENT_SUCCESFUL_MICROWAVE (1<<0)
 ///called on item when created through microwaving (): (obj/machinery/microwave/M, cooking_efficiency)
 #define COMSIG_ITEM_MICROWAVE_COOKED "microwave_cooked"
 ///from base of item/sharpener/attackby(): (amount, max)
@@ -835,6 +832,16 @@
 	#define COMPONENT_HANDLED_GRILLING (1<<0)
 ///Called when an object is turned into another item through grilling ontop of a griddle
 #define COMSIG_GRILL_COMPLETED "item_grill_completed"
+//Called when an item is squeezed in /obj/structure/press
+#define COSMIG_ITEM_SQUEEZED "item_squeezed"
+//Called when something is grinded in a quern
+#define COSMIG_ITEM_GRINDED "item_grinded"
+#define COSMIG_REAGENT_GRINDED "reagent_grinded"
+//Called when a reagent is being fermented in a demijohn
+#define COSMIG_REAGENT_START_FERMENTING "reagent_start_fermenting"
+#define COSMIG_REAGENT_STOP_FERMENTING "reagent_stop_fermenting"
+//Called for demijohn to stop fermentation
+#define COSMIG_DEMIJOHN_STOP "demijohn_stop"
 //Called when an object is in an oven
 #define COMSIG_ITEM_BAKED "item_baked"
 	#define COMPONENT_HANDLED_BAKING (1<<0)

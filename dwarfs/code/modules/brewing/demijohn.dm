@@ -6,21 +6,22 @@
 	icon = 'dwarfs/icons/structures/workshops.dmi'
 	icon_state = "demijohn"
 	var/max_volume = 300
-	var/datum/reagent/target_reagent // what are we making right now; block everything else
-	var/datum/reagent/conv_reagent // what are we converting right now
-	var/last_conv // world.time when it tried to convert liquids
-	var/start_conv
+	var/timerid
 	var/wait_before_start = 1 MINUTES // amount of time to wait before starting the work; also wait before starting to convert a converted product (juice->wine->vinegar)
 
 /obj/structure/demijohn/Initialize()
 	. = ..()
 	AddComponent(/datum/component/liftable, slowdown = 5)
 	create_reagents(max_volume)
-	START_PROCESSING(SSprocessing, src)
+	RegisterSignal(src, COSMIG_DEMIJOHN_STOP, .proc/restart_fermentation)
 
 /obj/structure/demijohn/Destroy()
 	. = ..()
-	STOP_PROCESSING(SSprocessing, src)
+	remove_timer()
+
+/obj/structure/demijohn/proc/remove_timer()
+	if(active_timers)
+		deltimer(timerid)
 
 /obj/structure/demijohn/attackby(obj/item/I, mob/user, params) // /obj/item/liftable then use parent for interaction and update appearance
 	if(istype(I, /obj/item/reagent_containers))
@@ -28,7 +29,8 @@
 		var/transfered = C.reagents.trans_to(src, C.amount_per_transfer_from_this, transfered_by=user)
 		if(!transfered)
 			return FALSE
-		start_conv = world.time // each time you add something the timer will reset
+		stop_fermentation()
+		timerid = addtimer(CALLBACK(src, .proc/start_fermentation), wait_before_start, TIMER_STOPPABLE)
 		to_chat(user, span_notice("You transfer [transfered]u to [src]."))
 		update_appearance()
 	else if(istype(I, /obj/item/liftable))
@@ -38,7 +40,8 @@
 		var/transfered = L.parent.reagents.trans_to(src, 10, transfered_by=user)
 		if(!transfered)
 			return FALSE
-		start_conv = world.time // each time you add something the timer will reset
+		stop_fermentation()
+		timerid = addtimer(CALLBACK(src, .proc/start_fermentation), wait_before_start, TIMER_STOPPABLE)
 		to_chat(user, span_notice("You transfer [transfered]u to [src]."))
 		L.parent.update_appearance()
 		update_appearance()
@@ -52,11 +55,10 @@
 		var/transfered = reagents.trans_to(C, 10, transfered_by=user)
 		if(!transfered)
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-		start_conv = world.time // each time you take something the timer will reset
+		stop_fermentation()
+		if(reagents.total_volume)
+			timerid = addtimer(CALLBACK(src, .proc/start_fermentation), wait_before_start, TIMER_STOPPABLE)
 		to_chat(user, span_notice("You take [transfered]u from [src]."))
-		if(!reagents.total_volume)
-			conv_reagent = null
-			target_reagent = null
 		update_appearance()
 	else if(istype(weapon, /obj/item/liftable))
 		var/obj/item/liftable/L = weapon
@@ -65,11 +67,10 @@
 		var/transfered = reagents.trans_to(L.parent, 10, transfered_by=user)
 		if(!transfered)
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-		start_conv = world.time // each time you take something the timer will reset
+		stop_fermentation()
+		if(reagents.total_volume)
+			timerid = addtimer(CALLBACK(src, .proc/start_fermentation), wait_before_start, TIMER_STOPPABLE)
 		to_chat(user, span_notice("You take [transfered]u from [src]."))
-		if(!reagents.total_volume)
-			conv_reagent = null
-			target_reagent = null
 		L.parent.update_appearance()
 		update_appearance()
 	else
@@ -83,27 +84,18 @@
 		M.color = mix_color_from_reagents(reagents.reagent_list)
 		underlays += M
 
-/obj/structure/demijohn/process(delta_time)
-	if(!reagents.total_volume)
-		return
-	if(!target_reagent)
-		if(reagents.reagent_list.len > 1)
-			// target_reagent = /datum/reagent/blood  // if there are multiple liquids produce bad quality mixed alcohol
-			return
-		else if(istype(reagents.reagent_list[1], /datum/reagent/consumable/juice) || istype(reagents.reagent_list[1], /datum/reagent/consumable/ethanol/wine))
-			conv_reagent = reagents.reagent_list[1]
-			target_reagent = conv_reagent.convtype
-		else
-			return
-	if(world.time < start_conv+wait_before_start) // don't do anything until left untouched for wait_before_start
-		return
-	if(world.time >= last_conv+conv_reagent.conv_delta)
-		last_conv = world.time
-		var/to_conv = conv_reagent.conv_amt * conv_reagent.conv_rate
-		reagents.remove_reagent(conv_reagent.type, to_conv)
-		reagents.add_reagent(target_reagent, to_conv)
-		update_appearance()
-		if(!reagents.get_reagent(conv_reagent.type))
-			start_conv = world.time
-			conv_reagent = null
-			target_reagent = null
+/obj/structure/demijohn/proc/start_fermentation()
+	for(var/datum/reagent/R in reagents.reagent_list)
+		SEND_SIGNAL(R, COSMIG_REAGENT_START_FERMENTING, src)
+
+/obj/structure/demijohn/proc/stop_fermentation()
+	SIGNAL_HANDLER
+	remove_timer() //in case there is a timer running
+	for(var/datum/reagent/R in reagents.reagent_list)
+		SEND_SIGNAL(R, COSMIG_REAGENT_STOP_FERMENTING, src)
+
+/obj/structure/demijohn/proc/restart_fermentation()
+	SIGNAL_HANDLER
+	stop_fermentation()
+	if(reagents.total_volume)
+		timerid = addtimer(CALLBACK(src, .proc/start_fermentation), wait_before_start, TIMER_STOPPABLE)

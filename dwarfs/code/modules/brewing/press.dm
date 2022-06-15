@@ -8,7 +8,7 @@
 	layer = ABOVE_MOB_LAYER
 	var/max_items = 10 // how much fruits it can hold
 	var/max_volume = 500 // sus
-	var/time_to_juice = 1 SECONDS
+	var/time_to_juice = 3 SECONDS
 	var/busy_juicing = FALSE
 
 /obj/structure/press/Initialize()
@@ -31,7 +31,7 @@
 /obj/structure/press/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/growable))
 		var/obj/item/growable/G = I
-		if(!G.juice_type)
+		if(!G.GetComponent(/datum/component/pressable))
 			to_chat(user, span_warning("[G] cannot be juiced."))
 			return FALSE
 		if(length(contents) >= max_items)
@@ -67,16 +67,7 @@
 			item_types.Add(I.type)
 			types_amount++
 	var/obj/item/growable/G = contents[length(contents)]
-	var/datum/reagent/R = G.juice_type
-	if(types_amount > 1)
-		R = /datum/reagent/blood
-	var/volume = rand(1, G.juice_volume)
-	G.juice_volume -= volume
-	reagents.add_reagent(R, volume)
-	if(G.juice_volume <= 0)
-		for(var/i in 1 to rand(1, 2))
-			new G.seed_type(get_turf(src))
-		qdel(G)
+	SEND_SIGNAL(G, COSMIG_ITEM_SQUEEZED, src, types_amount)
 
 /obj/structure/press/update_overlays()
 	. = ..()
@@ -84,13 +75,15 @@
 		if("press_working")
 			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/32x64.dmi', "working_overlay")
 			var/obj/item/growable/G = contents[length(contents)]
-			var/_color = initial(G.juice_type.color)
+			var/datum/component/pressable/C = G.GetComponent(/datum/component/pressable)
+			var/_color = initial(C.pressable_liquid_type.color)
 			M.color = _color
 			. += M
 		if("press_open_item")
 			var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/32x64.dmi', "item_overlay")
 			var/obj/item/growable/G = contents[length(contents)]
-			var/_color = initial(G.juice_type.color)
+			var/datum/component/pressable/C = G.GetComponent(/datum/component/pressable)
+			var/_color = initial(C.pressable_liquid_type.color)
 			M.color = _color
 			. += M
 		if("press_finished")

@@ -2,6 +2,7 @@
 	name = "growable"
 	desc = "Plant produce it."
 	icon = 'dwarfs/icons/farming/growable.dmi'
+	w_class = WEIGHT_CLASS_SMALL
 	var/edible = FALSE // some types are edible; some seeds are edible
 	var/seed_type // if contains seeds it can be processed to get them, except seeds ofc
 	var/list/food_reagents
@@ -12,12 +13,15 @@
 	var/list/tastes
 	// var/list/eatverbs
 	var/bite_consumption
-	// PROCESSING VARS
-	var/datum/reagent/juice_type // can it be made into juice?
-	var/juice_volume = 10 // how much juice per growable can we get?
-	// KITCHEN
-	var/grain_type
-	var/grain_volume = 10
+
+/obj/item/growable/proc/MakePressable()
+	return
+
+/obj/item/growable/proc/MakeGrindable()
+	return
+
+/obj/item/growable/proc/MakeProcessable()
+	return
 
 /obj/item/growable/Initialize()
 	. = ..()
@@ -32,6 +36,9 @@
 				eat_time = eat_time,\
 				tastes = tastes,\
 				bite_consumption = bite_consumption)
+	MakeGrindable()
+	MakePressable()
+	MakeProcessable()
 
 /obj/item/growable/pod
 	name = "pod"
@@ -69,14 +76,18 @@
 	desc = ""
 	icon_state = "cave_wheat"
 	seed_type = /obj/item/growable/seeds/cave_wheat
-	grain_type = /datum/reagent/grain/cave_wheat
+
+/obj/item/growable/cave_wheat/MakeGrindable()
+	AddComponent(/datum/component/grindable, /datum/reagent/grain/cave_wheat, 10)
 
 /obj/item/growable/barley
 	name = "barley"
 	desc = ""
 	icon_state = "barley"
 	seed_type = /obj/item/growable/seeds/barley
-	grain_type = /datum/reagent/grain/barley
+
+/obj/item/growable/barley/MakeGrindable()
+	AddComponent(/datum/component/grindable, /datum/reagent/grain/barley, 10)
 
 /obj/item/growable/turnip
 	name = "turnip"
@@ -105,6 +116,9 @@
 	seed_type = /obj/item/growable/seeds/sweet_pod
 	edible = TRUE
 
+/obj/item/growable/sweet_pod/MakePressable()
+	AddComponent(/datum/component/pressable, /datum/reagent/consumable/juice/sweet_pod, 10)
+
 /obj/item/growable/pig_tail
 	name = "pig tail"
 	desc = ""
@@ -117,4 +131,9 @@
 	icon_state = "plump_helmet"
 	seed_type = /obj/item/growable/seeds/plump_helmet
 	edible = TRUE
-	juice_type = /datum/reagent/consumable/juice/plump
+
+/obj/item/growable/plump_helmet/MakePressable()
+	AddComponent(/datum/component/pressable, /datum/reagent/consumable/juice/plump, 10)
+
+/obj/item/growable/plump_helmet/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/slice/plump_helmet, 3, 2 SECONDS)

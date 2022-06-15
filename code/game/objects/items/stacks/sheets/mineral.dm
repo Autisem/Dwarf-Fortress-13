@@ -62,6 +62,7 @@ Mineral Sheets
 	point_value = 20
 	merge_type = /obj/item/stack/sheet/mineral/gold
 	material_type = /datum/material/gold
+	novariants = TRUE
 
 GLOBAL_LIST_INIT(gold_recipes, list ())
 
@@ -81,7 +82,7 @@ GLOBAL_LIST_INIT(gold_recipes, list ())
 	icon_state = "coal"
 	singular_name = "coal lump"
 	merge_type = /obj/item/stack/sheet/mineral/coal
-	grind_results = list(/datum/reagent/carbon = 20)
+	novariants = TRUE
 
 /obj/item/stack/sheet/mineral/coal/attackby(obj/item/W, mob/user, params)
 	if(W.get_temperature() > 300)//If the temperature of the object is over 300, then ignite
