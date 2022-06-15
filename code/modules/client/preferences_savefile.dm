@@ -164,29 +164,15 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["menuoptions"], menuoptions)
 	READ_FILE(S["enable_tips"], enable_tips)
 	READ_FILE(S["tip_delay"], tip_delay)
-	READ_FILE(S["pda_style"], pda_style)
-	READ_FILE(S["pda_color"], pda_color)
 	READ_FILE(S["fullscreen"], fullscreen)
 	READ_FILE(S["btprefsnew"], btprefsnew)
 	READ_FILE(S["btvolume_max"], btvolume_max)
 	READ_FILE(S["disabled_autocap"], disabled_autocap)
 
-	READ_FILE(S["purchased_gear"], purchased_gear)
-	READ_FILE(S["equipped_gear"], equipped_gear)
-	READ_FILE(S["jobs_buyed"], jobs_buyed)
 	READ_FILE(S["w_toggles"], w_toggles)
 	READ_FILE(S["hearted_until"], hearted_until)
 	if(hearted_until > world.realtime)
 		hearted = TRUE
-	//favorite outfits
-	READ_FILE(S["favorite_outfits"], favorite_outfits)
-
-	var/list/parsed_favs = list()
-	for(var/typetext in favorite_outfits)
-		var/datum/outfit/path = text2path(typetext)
-		if(ispath(path)) //whatever typepath fails this check probably doesn't exist anymore
-			parsed_favs += path
-	favorite_outfits = uniqueList(parsed_favs)
 
 	// Custom hotkeys
 	READ_FILE(S["key_bindings"], key_bindings)
@@ -239,17 +225,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, GHOST_OTHERS_DEFAULT_OPTION)
 	menuoptions		= SANITIZE_LIST(menuoptions)
 	be_special		= SANITIZE_LIST(be_special)
-	pda_style		= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
-	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
 	key_bindings 	= sanitize_keybindings(key_bindings)
-	favorite_outfits = SANITIZE_LIST(favorite_outfits)
-
-	if(!purchased_gear)
-		purchased_gear = list()
-	if(!equipped_gear)
-		equipped_gear = list()
-	if(!jobs_buyed)
-		jobs_buyed = list()
 
 	if(needs_update >= 0) //save the updated version
 		var/old_default_slot = default_slot
@@ -322,20 +298,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["menuoptions"], menuoptions)
 	WRITE_FILE(S["enable_tips"], enable_tips)
 	WRITE_FILE(S["tip_delay"], tip_delay)
-	WRITE_FILE(S["pda_style"], pda_style)
-	WRITE_FILE(S["pda_color"], pda_color)
 	WRITE_FILE(S["key_bindings"], key_bindings)
 	WRITE_FILE(S["fullscreen"], fullscreen)
 	WRITE_FILE(S["btprefsnew"], btprefsnew)
 	WRITE_FILE(S["btvolume_max"], btvolume_max)
-	WRITE_FILE(S["purchased_gear"], purchased_gear)
-	WRITE_FILE(S["equipped_gear"], equipped_gear)
-	WRITE_FILE(S["jobs_buyed"], jobs_buyed)
 	WRITE_FILE(S["hearted_until"], (hearted_until > world.realtime ? hearted_until : null))
 	WRITE_FILE(S["disabled_autocap"], disabled_autocap)
 	WRITE_FILE(S["ice_cream_time"], ice_cream_time)
 	WRITE_FILE(S["ice_cream"], ice_cream)
-	WRITE_FILE(S["favorite_outfits"], favorite_outfits)
 	return TRUE
 
 /datum/preferences/proc/load_character(slot)
@@ -423,11 +393,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["preferred_ai_core_display"], preferred_ai_core_display)
 	READ_FILE(S["prefered_security_department"], prefered_security_department)
 
-	//Jobs
-	READ_FILE(S["joblessrole"], joblessrole)
-	//Load prefs
-	READ_FILE(S["job_preferences"], job_preferences)
-
 	//try to fix any outdated data if necessary
 	//preference updating will handle saving the updated data for us.
 	if(needs_update >= 0)
@@ -502,12 +467,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	persistent_scars = sanitize_integer(persistent_scars)
 
-	joblessrole	= sanitize_integer(joblessrole, 1, 3, initial(joblessrole))
-	//Validate job prefs
-	for(var/j in job_preferences)
-		if(job_preferences[j] != JP_LOW && job_preferences[j] != JP_MEDIUM && job_preferences[j] != JP_HIGH)
-			job_preferences -= j
-
 	return TRUE
 
 /datum/preferences/proc/save_character()
@@ -571,11 +530,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	WRITE_FILE(S["preferred_ai_core_display"] ,  preferred_ai_core_display)
 	WRITE_FILE(S["prefered_security_department"] , prefered_security_department)
-
-	//Jobs
-	WRITE_FILE(S["joblessrole"]		, joblessrole)
-	//Write prefs
-	WRITE_FILE(S["job_preferences"] , job_preferences)
 
 	return TRUE
 

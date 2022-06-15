@@ -60,8 +60,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/inquisitive_ghost = 1
 	var/allow_midround_antag = 1
 	var/preferred_map = null
-	var/pda_style = MONO
-	var/pda_color = "#808000"
 
 	var/uses_glasses_colour = TRUE
 
@@ -94,12 +92,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/custom_names = list()
 	var/preferred_ai_core_display = "Blue"
 	var/prefered_security_department = SEC_DEPT_RANDOM
-
-	//Job preferences 2.0 - indexed by job title , no key or value implies never
-	var/list/job_preferences = list()
-
-		// Want randomjob if preferences already filled - Donkie
-	var/joblessrole = BERANDOMJOB  //defaults to 1 for fewer assistants
 
 	// 0 = character settings, 1 = game preferences
 	var/current_tab = 0
@@ -136,14 +128,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/list/btprefsnew = list()
 	var/btvolume_max = null
-	var/en_names = FALSE
+	var/en_names = TRUE
 
-	//Loadout stuff
-	var/list/gear = list()
-	var/list/purchased_gear = list()
-	var/list/equipped_gear = list()
-	var/list/jobs_buyed = list()
-	var/gear_tab = "Основное"
 	///This var stores the amount of points the owner will get for making it out alive.
 	var/hardcore_survival_score = 0
 
@@ -155,12 +141,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/body_type
 	/// If we have persistent scars enabled
 	var/persistent_scars = TRUE
-	// Автокапитализация и поинтизация текста
+	// Auto capitalize text
 	var/disabled_autocap = FALSE
 	///If we want to broadcast deadchat connect/disconnect messages
 	var/broadcast_login_logout = TRUE
-	///What outfit typepaths we've favorited in the SelectEquipment menu
-	var/list/favorite_outfits = list()
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -194,7 +178,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 #define SETUP_START_NODE(L)  		  	 		 	 		"<div class='csetup_character_node'><div class='csetup_character_label'>[L]</div><div class='csetup_character_input'>"
 
 #define SETUP_GET_LINK(pref, task, task_type, value) 		"<a href='?_src_=prefs;preference=[pref][task ? ";[task_type]=[task]" : ""]'>[value]</a>"
-#define SETUP_GET_LINK_RANDOM(random_type) 		  	 		"<a href='?_src_=prefs;preference=toggle_random;random_type=[random_type]'>[randomise[random_type] ? "Random" : "Fixed"]</a>"
+#define SETUP_GET_LINK_RANDOM(random_type) 		  	 		"<a href='?_src_=prefs;preference=toggle_random;random_type=[random_type]'>[randomise[random_type] ? "Yes" : "No"]</a>"
 #define SETUP_COLOR_BOX(color) 				  	 	 		"<span style='border: 1px solid #161616; background-color: #[color];'>&nbsp;&nbsp;&nbsp;</span>"
 
 #define SETUP_NODE_SWITCH(label, pref, value)		  		"[SETUP_START_NODE(label)][SETUP_GET_LINK(pref, null, null, value)][SETUP_CLOSE_NODE]"
@@ -212,6 +196,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(slot_randomized)
 		load_character(default_slot) // Reloads the character slot. Prevents random features from overwriting the slot if saved.
 		slot_randomized = FALSE
+	update_preview_icon()
 	var/list/dat = list("<center>")
 
 	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character</a>"
@@ -249,19 +234,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += SETUP_GET_LINK("name", "random", "task", "Random")
 			dat += SETUP_CLOSE_NODE
 
-			var/old_group
-			for(var/custom_name_id in GLOB.preferences_custom_names)
-				var/namedata = GLOB.preferences_custom_names[custom_name_id]
-				if(!old_group)
-					old_group = namedata["group"]
-				else if(old_group != namedata["group"])
-					old_group = namedata["group"]
-				dat += SETUP_START_NODE(namedata["pref_name"])
-				dat += SETUP_GET_LINK(custom_name_id, "input", "task", custom_names[custom_name_id])
-				dat += SETUP_CLOSE_NODE
-
 			dat += SETUP_NODE_RANDOM("Always random name", RANDOM_NAME)
-			dat += SETUP_NODE_RANDOM("Random name when antagonist", RANDOM_NAME_ANTAG)
+			// dat += SETUP_NODE_RANDOM("Random name when antagonist", RANDOM_NAME_ANTAG)
 
 			dat += "<div class='csetup_header'>Body</div>"
 
@@ -285,21 +259,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += SETUP_NODE_RANDOM("Always random age", RANDOM_AGE)
 				dat += SETUP_NODE_RANDOM("When antagonist", RANDOM_AGE_ANTAG)
 
-			dat += "</div><div class='csetup_content'><div class='csetup_header'>Basic</div>"
-
-			dat += SETUP_START_NODE("Species")
-			dat += SETUP_GET_LINK("species", "input", "task", pref_species.name)
-			dat += SETUP_GET_LINK("species", "random", "task", "Random")
-			dat += SETUP_GET_LINK("toggle_random", RANDOM_SPECIES, "random_type", randomise[RANDOM_SPECIES] ? "Yes" : "No")
-			dat += SETUP_CLOSE_NODE
-
-			dat += SETUP_START_NODE("Appearance")
-			dat += SETUP_GET_LINK("all", "random", "task", "Random")
-			dat += SETUP_GET_LINK("species", "random", "task", "Random")
-			dat += SETUP_GET_LINK("toggle_random", RANDOM_BODY, "random_type", randomise[RANDOM_BODY] ? "Yes" : "No")
-			dat += SETUP_CLOSE_NODE
-
-			dat += "<div class='csetup_header'>Detailed</div>"
+			dat += "<div class='csetup_header'>Appearance</div>"
 
 			if((HAS_FLESH in pref_species.species_traits) || (HAS_BONE in pref_species.species_traits))
 				dat += SETUP_START_NODE("Temporal Scarring")

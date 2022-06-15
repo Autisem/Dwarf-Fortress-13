@@ -120,10 +120,6 @@
 	data["icon64"] = icon2base64(dummysprite)
 	data["name"] = target_mob
 
-	data["favorites"] = list()
-	if(prefs)
-		data["favorites"] = prefs.favorite_outfits
-
 	var/list/custom
 	custom += make_custom_outfit_entries(GLOB.custom_outfits)
 	data["custom_outfits"] = custom
@@ -183,17 +179,6 @@
 
 		if("customoutfit")
 			user.outfit_manager()
-
-		if("togglefavorite")
-			var/datum/outfit/outfit_path = resolve_outfit(params["path"])
-			if(!ispath(outfit_path)) //we do *not* want custom outfits (i.e objects) here, they're not even persistent
-				return
-
-			if(user.prefs.favorite_outfits.Find(outfit_path)) //already there, remove it
-				user.prefs.favorite_outfits -= outfit_path
-			else //not there, add it
-				user.prefs.favorite_outfits += outfit_path
-			user.prefs.save_preferences()
 
 /client/proc/admin_apply_outfit(mob/target, dresscode)
 	if(!ishuman(target) && !isobserver(target))

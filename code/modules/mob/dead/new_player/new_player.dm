@@ -252,22 +252,6 @@
 /mob/dead/new_player/proc/check_preferences()
 	if(!client)
 		return FALSE //Not sure how this would get run without the mob having a client, but let's just be safe.
-	if(client.prefs.joblessrole != RETURNTOLOBBY)
-		return TRUE
-	// If they have antags enabled, they're potentially doing this on purpose instead of by accident. Notify admins if so.
-	var/has_antags = FALSE
-	if(client.prefs.be_special.len > 0)
-		has_antags = TRUE
-	if(client.prefs.job_preferences.len == 0)
-		if(!ineligible_for_roles)
-			to_chat(src, span_danger("You have no jobs enabled, along with return to lobby if job is unavailable. This makes you ineligible for any round start role, please update your job preferences."))
-		ineligible_for_roles = TRUE
-		ready = PLAYER_NOT_READY
-		if(has_antags)
-			log_admin("[src.ckey] just got booted back to lobby with no jobs, but antags enabled.")
-			message_admins("[src.ckey] just got booted back to lobby with no jobs enabled, but antag rolling enabled. Likely antag rolling abuse.")
-
-		return FALSE //This is the only case someone should actually be completely blocked from antag rolling as well
 	return TRUE
 
 /**
