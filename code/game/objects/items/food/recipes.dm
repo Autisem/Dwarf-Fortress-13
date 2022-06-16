@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(cooking_recipes)
 /datum/cooking_recipe/oven/plate
 
 /datum/cooking_recipe/oven/plate/plump_steak
-	req_items = list(/obj/item/food/slice/plump_helmet=3, /obj/item/food/slice/meat=1)
+	req_items = list(/obj/item/food/slice/plump_helmet=3, /obj/item/food/meat/slab=1)
 	result = /obj/item/food/dish/plump_with_steak
 	custom_result = /obj/item/food/dish/plump_with_steak/custom
 

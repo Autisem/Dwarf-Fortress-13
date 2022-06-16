@@ -5,6 +5,9 @@
 	desc = "A slab of meat."
 	icon_state = "meat"
 
+/obj/item/food/meat/slab/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/slice/meat, 3, 2 SECONDS)
+
 /obj/item/food/meat/slab/human
 
 /obj/item/food/meat/slab/goliath
