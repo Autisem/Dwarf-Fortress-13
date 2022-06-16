@@ -11,7 +11,7 @@
 	set hidden = 1
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_danger("Не могу молиться.") , confidential = TRUE)
+		to_chat(usr, span_danger("Prayers disabled.") , confidential = TRUE)
 		return
 
 	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
@@ -20,7 +20,7 @@
 	log_prayer("[src.key]/([src.name]): [msg]")
 	if(usr.client)
 		if(usr.client.prefs.muted & MUTE_PRAY)
-			to_chat(usr, span_danger("Не хочу молиться.") , confidential = TRUE)
+			to_chat(usr, span_danger("Praysers disabled(muted).") , confidential = TRUE)
 			return
 		if(src.client.handle_spam_prevention(msg,MUTE_PRAY))
 			return
@@ -45,6 +45,6 @@
 			if(C.prefs.toggles & SOUND_PRAYERS)
 				if(usr.job == "Chaplain")
 					SEND_SOUND(C, sound('sound/effects/pray.ogg'))
-	to_chat(usr, span_info("Молитва: \"[msg_tmp]\"") , confidential = TRUE)
+	to_chat(usr, span_info("Prayer: \"[msg_tmp]\"") , confidential = TRUE)
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Prayer") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
