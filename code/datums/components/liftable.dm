@@ -18,7 +18,7 @@
 	var/lift_delay
 	var/obj/item/liftable/item
 
-/datum/component/liftable/Initialize(lift_delay = 10 SECONDS, slowdown = 5, worn_icon = null)
+/datum/component/liftable/Initialize(lift_delay = 10 SECONDS, slowdown = 5, worn_icon = null, inhand_icon_state = null)
 	src.lift_delay = lift_delay
 
 	//Create placeholder item that will be picked up
@@ -32,6 +32,8 @@
 		worn_icon = P.icon
 	item.lefthand_file = worn_icon
 	item.righthand_file = worn_icon
+	if(inhand_icon_state)
+		item.inhand_icon_state = inhand_icon_state
 	update_item()
 
 	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, .proc/dragged)

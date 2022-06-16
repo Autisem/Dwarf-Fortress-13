@@ -28,6 +28,8 @@
 	name = "cooking pot"
 	desc = "boomer"
 	icon = 'dwarfs/icons/items/kitchen.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	icon_state = "cooking_pot_open"
 	amount_per_transfer_from_this = 10
 	volume = 50
@@ -135,6 +137,8 @@
 	name = "frying pan"
 	desc = "Used to fry stuff."
 	icon = 'dwarfs/icons/items/kitchen.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	icon_state = "skillet"
 
 /obj/item/reagent_containers/glass/pan/Initialize(mapload, vol)

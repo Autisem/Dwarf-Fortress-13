@@ -11,7 +11,7 @@
 
 /obj/structure/demijohn/Initialize()
 	. = ..()
-	AddComponent(/datum/component/liftable, slowdown = 5)
+	AddComponent(/datum/component/liftable, slowdown = 5, worn_icon='dwarfs/icons/mob/inhand/righthand.dmi', inhand_icon_state="demijohn")
 	create_reagents(max_volume)
 	RegisterSignal(src, COSMIG_DEMIJOHN_STOP, .proc/restart_fermentation)
 
