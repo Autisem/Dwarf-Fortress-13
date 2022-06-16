@@ -633,7 +633,7 @@
 			to_chat(M, span_warning("<b>[capitalize(host.name)]</b> is full, you have to free some space first!"))
 		return FALSE //Storage item is full
 	if(length(can_hold))
-		if(!is_type_in_typecache(I, can_hold))
+		if(!is_type_in_list(I, can_hold))
 			if(!stop_messages)
 				to_chat(M, span_warning("<b>[capitalize(host.name)]</b> cannot store <b>[capitalize(I.name)]</b>!"))
 			return FALSE
