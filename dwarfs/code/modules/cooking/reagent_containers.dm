@@ -84,7 +84,7 @@
 	volume = 50
 
 /obj/item/reagent_containers/glass/plate/regular/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/spoon))
+	if(istype(I, /obj/item/kitchen/knife))
 		var/list/d = find_recipe(subtypesof(/datum/cooking_recipe/plate), contents)
 		var/mob/living/carbon/human/H = user
 		if(!d)

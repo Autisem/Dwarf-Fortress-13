@@ -96,9 +96,3 @@
 				qdel(src)
 	else
 		. = ..()
-
-/obj/item/spoon
-	name = "spoon"
-	desc = "Spooooooooooon."
-	icon = 'dwarfs/icons/items/kitchen.dmi'
-	icon_state = "spoon"

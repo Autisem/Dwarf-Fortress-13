@@ -158,9 +158,6 @@
 		update_appearance()
 		return
 	fuel = max(fuel--, 0)
-	for(var/obj/item/R in contents)
-		if(R.reagents.total_volume)
-			R.reagents.expose_temperature(heat)
 
 /obj/structure/stove/proc/remove_timer(item_slot)
 	if(active_timers)
