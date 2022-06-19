@@ -1325,17 +1325,17 @@
 				var/percent = tastes[taste_desc]/total_taste * 100
 				if(percent < minimum_percent)
 					continue
-				var/intensity_desc = "намёк на"
+				var/intensity_desc = "a hint of"
 				if(percent > minimum_percent * 2 || percent == 100)
 					intensity_desc = ""
 				else if(percent > minimum_percent * 3)
-					intensity_desc = "острый привкус"
+					intensity_desc = "the strong flavor of"
 				if(intensity_desc != "")
 					out += "[intensity_desc] [taste_desc]"
 				else
 					out += "[taste_desc]"
 
-	return english_list(out, "что-то неописуемое")
+	return english_list(out, "something indescribable")
 
 
 /// Returns the total heat capacity for all of the reagents currently in this holder.

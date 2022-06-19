@@ -76,21 +76,13 @@
 		possible_recipes = subtypesof(/datum/cooking_recipe/oven/flat_plate)
 	else if(istype(I, /obj/item/reagent_containers/glass/plate/bowl))
 		possible_recipes = subtypesof(/datum/cooking_recipe/oven/bowl)
-	var/list/possible_recipe = find_recipe(possible_recipes, I.contents, I.reagents.reagent_list)
-	if(!possible_recipe)
+	var/datum/cooking_recipe/R = find_recipe(possible_recipes, I.contents, I.reagents.reagent_list)
+	if(!R)
 		qdel(I)
-		new /obj/item/food/sausage(get_turf(src))
+		new /obj/item/food/badrecipe(get_turf(src))
 		return
-	var/datum/cooking_recipe/R = possible_recipe[1]
-	var/perfect_recipe = possible_recipe[2]
 
-	if(perfect_recipe)
-		var/obj/item/food/F = initial(R.result)
-		new F(get_turf(src))
-	else
-		var/obj/item/food/F = initial(R.custom_result)
-		var/obj/item/food/food = new F(get_turf(src))
-		food.transfer_nutrients_from(I)
+	new R.result(get_turf(src))
 	qdel(I)
 
 /obj/structure/oven/process(delta_time)

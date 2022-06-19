@@ -37,6 +37,8 @@
 	var/venue_value
 	///Food that's immune to decomposition.
 	var/preserved_food = FALSE
+	///Mood gain when eaten
+	var/mood_gain
 
 /obj/item/food/Initialize(mapload)
 	. = ..()
@@ -95,6 +97,8 @@
 		AddComponent(/datum/component/decomposition, mapload, decomp_flags = foodtypes)
 
 /obj/item/food/badrecipe
+	name = "burned recipe"
+	desc = "Not yummy."
 
 /obj/item/food/cookie
 	name = "cookie"

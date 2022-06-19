@@ -154,9 +154,6 @@ Used by the AI doomsday and the self-destruct nuke.
 			errorList |= pm.original_path
 	if(!silent)
 		log_world("Map [name] loaded for [(REALTIMEOFDAY - start_time)/10] seconds!")
-		switch(name)
-			if("Station")
-				name = "Станция"
 		to_chat(world, span_green(" -- #<b>[name]</b>:> <b>[(REALTIMEOFDAY - start_time)/10]</b> -- "))
 	return parsed_maps
 
@@ -171,7 +168,7 @@ Used by the AI doomsday and the self-destruct nuke.
 	station_start = world.maxz + 1
 	log_world("Loading map config named [config.map_name]...")
 	to_chat(world, span_green(" -- $<b>Loading</b>:> <b>[config.map_name]</b> -- "))
-	LoadGroup(FailedZs, "Station", config.map_path, config.map_file, config.traits, ZTRAITS_FORTRESS)
+	LoadGroup(FailedZs, "Fortress", config.map_path, config.map_file, config.traits, ZTRAITS_FORTRESS)
 
 	if(SSdbcore.Connect())
 		var/datum/db_query/query_round_map_name = SSdbcore.NewQuery({"

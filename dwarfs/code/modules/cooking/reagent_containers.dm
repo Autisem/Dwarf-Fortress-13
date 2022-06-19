@@ -87,39 +87,26 @@
 
 /obj/item/reagent_containers/glass/plate/regular/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/knife))
-		var/list/d = find_recipe(subtypesof(/datum/cooking_recipe/plate), contents)
+		var/datum/cooking_recipe/R = find_recipe(subtypesof(/datum/cooking_recipe/plate), contents)
 		var/mob/living/carbon/human/H = user
-		if(!d)
+		if(!R)
 			var/held_index = H.is_holding(src)
 			if(held_index)
 				qdel(src)
-				var/obj/item/food/sausage/S = new
+				var/obj/item/food/badrecipe/S = new
 				H.put_in_hand(S, held_index)
 			else
-				new /obj/item/food/sausage(loc)
+				new /obj/item/food/badrecipe(loc)
 				qdel(src)
-		var/datum/cooking_recipe/R = d[1]
-		var/perfect_recipe = d[2]
 
-		if(perfect_recipe)
-			var/obj/item/food/F = new R.result
-			var/held_index = H.is_holding(src)
-			if(held_index)
-				qdel(src)
-				H.put_in_hand(F, held_index)
-			else
-				F.forceMove(loc)
-				qdel(src)
+		var/obj/item/food/F = new R.result
+		var/held_index = H.is_holding(src)
+		if(held_index)
+			qdel(src)
+			H.put_in_hand(F, held_index)
 		else
-			var/obj/item/food/F = new R.custom_result
-			F.transfer_nutrients_from(src)
-			var/held_index = H.is_holding(src)
-			if(held_index)
-				qdel(src)
-				H.put_in_hand(F, held_index)
-			else
-				F.forceMove(loc)
-				qdel(src)
+			F.forceMove(loc)
+			qdel(src)
 	else
 		. = ..()
 

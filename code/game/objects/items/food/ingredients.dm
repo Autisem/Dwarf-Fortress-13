@@ -49,27 +49,19 @@
 	to_chat(user, span_notice("You start tying up \the [src]..."))
 	if(!do_after(user, 10 SECONDS, src))
 		return
-	var/list/d = find_recipe(subtypesof(/datum/cooking_recipe/sausage), contents)
+	var/datum/cooking_recipe/R = find_recipe(subtypesof(/datum/cooking_recipe/sausage), contents)
 	var/mob/living/carbon/human/H = user
-	if(!d)
+	if(!R)
 		var/held_index = H.is_holding(src)
 		qdel(src)
-		var/obj/item/food/sausage/S = new
+		var/obj/item/food/sausage/failed/S = new
 		H.put_in_hand(S, held_index)
 		return
-	var/datum/cooking_recipe/R = d[1]
-	var/perfect_recipe = d[2]
 
-	if(perfect_recipe)
-		var/obj/item/food/F = new R.result
-		var/held_index = H.is_holding(src)
-		qdel(src)
-		H.put_in_hand(F, held_index)
-	else
-		var/held_index = H.is_holding(src)
-		qdel(src)
-		var/obj/item/food/sausage/S = new
-		H.put_in_hand(S, held_index)
+	var/obj/item/food/F = new R.result
+	var/held_index = H.is_holding(src)
+	qdel(src)
+	H.put_in_hand(F, held_index)
 	to_chat(user, span_notice("You finish tying up \the [src]..."))
 
 /obj/item/food/sausage
@@ -78,5 +70,5 @@
 	icon_state = "sausage"
 
 /obj/item/food/sausage/luxurious
-	name = "luxurious sausage"
-	desc = "Luxuriously long."
+
+/obj/item/food/sausage/failed // bad sausage; gives poop when cooked
