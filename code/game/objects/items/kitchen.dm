@@ -237,8 +237,9 @@
 	desc = "A cyborg-mounted plasteel knife. Extremely sharp and durable."
 
 /obj/item/kitchen/rollingpin
-	name = "скалка"
+	name = "rolling pin"
 	desc = "Used to knock out the Bartender."
+	icon = 'dwarfs/icons/items/kitchen.dmi'
 	icon_state = "rolling_pin"
 	worn_icon_state = "rolling_pin"
 	force = 8

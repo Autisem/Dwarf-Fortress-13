@@ -99,6 +99,7 @@
 /obj/item/food/badrecipe
 	name = "burned recipe"
 	desc = "Not yummy."
+	icon_state = "food_ruined"
 
 /obj/item/food/cookie
 	name = "cookie"
