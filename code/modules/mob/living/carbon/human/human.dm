@@ -133,7 +133,7 @@
 			return FALSE
 
 		if (target.is_mouth_covered())
-			to_chat(src, span_warning("Снять бы с н[ru_ego()] маску сначала!"))
+			to_chat(src, span_warning("Снять бы с н[p_their()] маску сначала!"))
 			return FALSE
 
 		if (!getorganslot(ORGAN_SLOT_LUNGS))

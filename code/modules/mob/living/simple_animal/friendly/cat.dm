@@ -45,15 +45,15 @@ GLOBAL_LIST_EMPTY(cats)
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 
 	footstep_type = FOOTSTEP_MOB_CLAW
-	deathsound = 'white/valtos/sounds/cat/death.ogg'
-	var/list/meowlist =list('white/valtos/sounds/cat/meow1.ogg',
-							'white/valtos/sounds/cat/meow2.ogg',
-							'white/valtos/sounds/cat/meow3.ogg',
-							'white/valtos/sounds/cat/meow4.ogg',
-							'white/valtos/sounds/cat/meow5.ogg',
-							'white/valtos/sounds/cat/meow6.ogg',
-							'white/valtos/sounds/cat/meow7.ogg',
-							'white/valtos/sounds/cat/meow8.ogg')
+	deathsound = 'sound/creatures/death.ogg'
+	var/list/meowlist =list('sound/creatures/meow1.ogg',
+							'sound/creatures/meow2.ogg',
+							'sound/creatures/meow3.ogg',
+							'sound/creatures/meow4.ogg',
+							'sound/creatures/meow5.ogg',
+							'sound/creatures/meow6.ogg',
+							'sound/creatures/meow7.ogg',
+							'sound/creatures/meow8.ogg')
 
 /mob/living/simple_animal/pet/cat/male
 /mob/living/simple_animal/pet/cat/male/Initialize(_gender=null)

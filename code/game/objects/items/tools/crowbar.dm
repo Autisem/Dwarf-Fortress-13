@@ -1,9 +1,7 @@
 /obj/item/crowbar
 	name = "карманный лом"
 	desc = "Маленький ломик. Этот удобный инструмент полезен для многих вещей, например, для снятия напольной плитки или открывания дверей без электропитания."
-	icon = 'white/valtos/icons/items.dmi'
-	lefthand_file = 'white/valtos/icons/lefthand.dmi'
-	righthand_file = 'white/valtos/icons/righthand.dmi'
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar"
 	usesound = 'sound/items/crowbar.ogg'
 	flags_1 = CONDUCT_1
@@ -22,7 +20,7 @@
 	var/force_opens = FALSE
 
 /obj/item/crowbar/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] is beating [user.ru_na()]self to death with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is beating [user.p_them()]self to death with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(loc, 'sound/weapons/genhit.ogg', 50, TRUE, -1)
 	return (BRUTELOSS)
 
@@ -55,7 +53,7 @@
 /obj/item/crowbar/cyborg
 	name = "гидравлический лом"
 	desc = "Гидравлический инструмент, простой, но мощный."
-	icon = 'white/Feline/icons/cyber_arm_tools.dmi'
+	icon = 'icons/obj/items/cyber_arm_tools.dmi'
 	icon_state = "crowbar_cyborg"
 	worn_icon_state = "crowbar"
 	usesound = 'sound/items/jaws_pry.ogg'

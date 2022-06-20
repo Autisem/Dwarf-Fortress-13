@@ -314,7 +314,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/rum
 	name = "Ром"
 	description = "Yohoho and all that."
-	special_sound = 'white/valtos/sounds/drink/rum.ogg'
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 60
 	taste_description = "колючие ириски"
@@ -326,7 +325,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/tequila
 	name = "Текила"
 	description = "A strong and mildly flavoured, Mexican produced spirit. Feeling thirsty, hombre?"
-	special_sound = 'white/valtos/sounds/drink/tequila.ogg'
 	color = "#FFFF91" // rgb: 255, 255, 145
 	boozepwr = 70
 	taste_description = "растворитель"
@@ -465,56 +463,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A freezing pint of delicious Ale."
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
-/datum/reagent/consumable/ethanol/goldschlager
-	name = "Гольдшпигер"
-	description = "100 proof cinnamon schnapps, made for alcoholic teen girls on spring break."
-	color = "#FFFF91" // rgb: 255, 255, 145
-	boozepwr = 25
-	quality = DRINK_VERYGOOD
-	taste_description = "горящая корица"
-	glass_icon_state = "goldschlagerglass"
-	glass_name = "glass of goldschlager"
-	glass_desc = "100% proof that teen girls will drink anything with gold in it."
-	shot_glass_icon_state = "shotglassgold"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-	/// Ratio of gold that the goldschlager recipe contains
-	var/static/gold_ratio
-
-	// This drink is really popular with a certain demographic.
-	var/teenage_girl_quality = DRINK_VERYGOOD
-
-/datum/reagent/consumable/ethanol/goldschlager/New()
-	. = ..()
-	if(!gold_ratio)
-		// Calculate the amount of gold that goldschlager is made from
-		var/datum/chemical_reaction/drink/goldschlager/goldschlager_reaction = new
-		var/vodka_amount = goldschlager_reaction.required_reagents[/datum/reagent/consumable/ethanol/vodka]
-		var/gold_amount = goldschlager_reaction.required_reagents[/datum/reagent/gold]
-		gold_ratio = gold_amount / (gold_amount + vodka_amount)
-		qdel(goldschlager_reaction)
-
-/datum/reagent/consumable/ethanol/goldschlager/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
-	// Reset quality each time, since the bottle can be shared
-	quality = initial(quality)
-
-	if(ishuman(exposed_mob))
-		var/mob/living/carbon/human/human = exposed_mob
-		// tgstation13 does not endorse underage drinking. laws may vary by your jurisdiction.
-		if(human.age >= 13 && human.age <= 19 && human.gender == FEMALE)
-			quality = teenage_girl_quality
-
-	return ..()
-
-/datum/reagent/consumable/ethanol/goldschlager/on_transfer(atom/A, methods = TOUCH, trans_volume)
-	if(!(methods & INGEST))
-		return ..()
-
-	var/convert_amount = trans_volume * gold_ratio
-	A.reagents.remove_reagent(/datum/reagent/consumable/ethanol/goldschlager, convert_amount)
-	A.reagents.add_reagent(/datum/reagent/gold, convert_amount)
-	return ..()
-
 /datum/reagent/consumable/ethanol/patron
 	name = "Текила «Патрон»"
 	description = "Tequila with silver in it, a favorite of alcoholic women in the club scene."
@@ -556,7 +504,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/cuba_libre
 	name = "Куба Либре"
 	description = "Viva la Revolucion! Viva Cuba Libre!"
-	special_sound = 'white/valtos/sounds/drink/cuba.ogg'
 	color = "#3E1B00" // rgb: 62, 27, 0
 	boozepwr = 50
 	quality = DRINK_GOOD
@@ -665,7 +612,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/brave_bull
 	name = "Храбрый Бык"
 	description = "It's just as effective as Dutch-Courage!"
-	special_sound = 'white/valtos/sounds/drink/bull.ogg'
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 60
 	quality = DRINK_NICE
@@ -691,7 +637,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/tequila_sunrise
 	name = "Текила Санрайз"
 	description = "Tequila, Grenadine, and Orange Juice."
-	special_sound = 'white/valtos/sounds/drink/tequila_sunrise.ogg'
 	color = "#FFE48C" // rgb: 255, 228, 140
 	boozepwr = 45
 	quality = DRINK_GOOD
@@ -739,7 +684,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/irish_cream
 	name = "Ирландский Крем"
 	description = "Whiskey-imbued cream, what else would you expect from the Irish?"
-	special_sound = 'white/valtos/sounds/drink/irish_coffee.ogg'
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 50
 	quality = DRINK_NICE
@@ -752,7 +696,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/manly_dorf
 	name = "Мужественный Дорф"
 	description = "Beer and Ale, brought together in a delicious mix. Intended for true men only."
-	special_sound = 'white/valtos/sounds/drink/df.ogg'
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 100 //For the manly only
 	quality = DRINK_NICE
@@ -780,7 +723,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/longislandicedtea
 	name = "Холодный Чай «Long Island»"
 	description = "The liquor cabinet, brought together in a delicious mix. Intended for middle-aged alcoholic women only."
-	special_sound = 'white/valtos/sounds/drink/long_island.ogg'
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 35
 	quality = DRINK_VERYGOOD
@@ -794,7 +736,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/moonshine
 	name = "Самогон"
 	description = "You've really hit rock bottom now... your liver packed its bags and left last night."
-	special_sound = 'white/valtos/sounds/drink/moonshine.ogg'
 	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha) (like water)
 	boozepwr = 95
 	taste_description = "горечь"
@@ -803,27 +744,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
-/datum/reagent/consumable/ethanol/b52
-	name = "Б-52"
-	description = "Coffee, Irish Cream, and cognac. You will get bombed."
-	color = "#664300" // rgb: 102, 67, 0
-	boozepwr = 85
-	quality = DRINK_GOOD
-	taste_description = "злой и ирландский"
-	glass_icon_state = "b52glass"
-	glass_name = "B-52"
-	glass_desc = "Kahlua, Irish Cream, and cognac. You will get bombed."
-	shot_glass_icon_state = "b52glass"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	glass_price = DRINK_PRICE_EASY
-
-/datum/reagent/consumable/ethanol/b52/on_mob_metabolize(mob/living/M)
-	playsound(M, 'white/valtos/sounds/nuclearexplosion.ogg', 100, FALSE)
-
 /datum/reagent/consumable/ethanol/irishcoffee
 	name = "Ирландский Кофе"
 	description = "Coffee, and alcohol. More fun than a Mimosa to drink in the morning."
-	special_sound = 'white/valtos/sounds/drink/irish_coffee.ogg'
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 35
 	quality = DRINK_NICE
@@ -1003,7 +926,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/bahama_mama
 	name = "Багана Мама"
 	description = "A tropical cocktail with a complex blend of flavors."
-	special_sound = 'white/valtos/sounds/drink/bahama_mama.ogg'
 	color = "#FF7F3B" // rgb: 255, 127, 59
 	boozepwr = 35
 	quality = DRINK_GOOD
@@ -1134,7 +1056,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/acid_spit
 	name = "Кислотный Плевок"
 	description = "A drink for the daring, can be deadly if incorrectly prepared!"
-	special_sound = 'white/valtos/sounds/drink/airlock_alien_prying.ogg'
 	color = "#365000" // rgb: 54, 80, 0
 	boozepwr = 70
 	quality = DRINK_VERYGOOD
@@ -1171,7 +1092,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/irishcarbomb
 	name = "Ирландская Автомобильная Бомба"
 	description = "Mmm, tastes like the free Irish state."
-	special_sound = 'white/valtos/sounds/drink/irish_coffee.ogg'
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 25
 	quality = DRINK_GOOD
@@ -1213,7 +1133,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/erikasurprise
 	name = "Сюрприз Эрики"
 	description = "The surprise is, it's green!"
-	special_sound = 'white/valtos/sounds/drink/erika.ogg'
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 35
 	quality = DRINK_VERYGOOD
@@ -1239,7 +1158,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/bananahonk
 	name = "Банановый Хонк"
 	description = "A drink from Clown Heaven."
-	special_sound = 'white/valtos/sounds/drink/bikehorn.ogg'
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#FFFF91" // rgb: 255, 255, 140
 	boozepwr = 60
@@ -1372,7 +1290,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/atomicbomb
 	name = "Атомная Бомба"
 	description = "Nuclear proliferation never tasted so good."
-	special_sound = 'white/valtos/sounds/drink/atomic_bomb.ogg'
 	color = "#666300" // rgb: 102, 99, 0
 	boozepwr = 0 //custom drunk effect
 	quality = DRINK_FANTASTIC
@@ -1404,7 +1321,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/gargle_blaster
 	name = "Пангалактический ополаскиватель"
 	description = "Whoah, this stuff looks volatile!"
-	special_sound = 'white/valtos/sounds/drink/enter_galactic.ogg'
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 0 //custom drunk effect
 	quality = DRINK_GOOD
@@ -1466,7 +1382,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				if(!M.undergoing_cardiac_arrest() && M.can_heartattack())
 					M.set_heartattack(TRUE)
 					if(M.stat == CONSCIOUS)
-						M.visible_message(span_userdanger("[M] хватается за [M.ru_ego()] грудь, будто [M.ru_ego()] сердце остановилось!"))
+						M.visible_message(span_userdanger("[M] хватается за [M.p_their()] грудь, будто [M.p_their()] сердце остановилось!"))
 	. = TRUE
 	..()
 
@@ -1695,7 +1611,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		L.adjustStaminaLoss(-1)
 	L.visible_message(span_warning("[L] дрожит с новой силой!") , span_notice("Вкус [lowertext(name)] наполняет меня энергией!"))
 	if(!L.stat && heal_points == 20) //brought us out of softcrit
-		L.visible_message(span_danger("[L] накренилась в сторону [L.ru_ego()] ноги!") , span_boldnotice("Проснись и пой, малыш."))
+		L.visible_message(span_danger("[L] накренилась в сторону [L.p_their()] ноги!") , span_boldnotice("Проснись и пой, малыш."))
 
 /datum/reagent/consumable/ethanol/bastion_bourbon/on_mob_life(mob/living/L, delta_time, times_fired)
 	if(L.health > 0)
@@ -1728,7 +1644,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/fringe_weaver
 	name = "Бон Развязон"
 	description = "Bubbly, classy, and undoubtedly strong - a Glitch City classic."
-	special_sound = 'white/valtos/sounds/drink/va-lchalla.ogg'
 	color = "#FFEAC4"
 	boozepwr = 90 //classy hooch, essentially, but lower pwr to make up for slightly easier access
 	quality = DRINK_GOOD
@@ -1741,7 +1656,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/sugar_rush
 	name = "Сахарный Прилив"
 	description = "Sweet, light, and fruity - as girly as it gets."
-	special_sound = 'white/valtos/sounds/drink/va-lchalla.ogg'
 	color = "#FF226C"
 	boozepwr = 10
 	quality = DRINK_GOOD
@@ -1760,7 +1674,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/crevice_spike
 	name = "Спазм Кишок"
 	description = "Sour, bitter, and smashingly sobering."
-	special_sound = 'white/valtos/sounds/drink/va-lchalla.ogg'
 	color = "#5BD231"
 	boozepwr = -10 //sobers you up - ideally, one would drink to get hit with brute damage now to avoid alcohol problems later
 	quality = DRINK_VERYGOOD
@@ -1800,40 +1713,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/peppermint_patty/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	M.apply_status_effect(/datum/status_effect/throat_soothed)
 	M.adjust_bodytemperature(5 * REM * 1.5 * delta_time, 0, M.get_body_temp_normal())
-	..()
-
-/datum/reagent/consumable/ethanol/alexander
-	name = "Александр"
-	description = "Named after a Greek hero, this mix is said to embolden a user's shield as if they were in a phalanx."
-	special_sound = 'white/valtos/sounds/drink/alexander.ogg'
-	color = "#F5E9D3"
-	boozepwr = 50
-	quality = DRINK_GOOD
-	taste_description = "горький, сливочный какао"
-	glass_icon_state = "alexander"
-	glass_name = "Alexander"
-	glass_desc = "A creamy, indulgent delight that is stronger than it seems."
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	var/obj/item/shield/mighty_shield
-
-/datum/reagent/consumable/ethanol/alexander/on_mob_metabolize(mob/living/L)
-	if(ishuman(L))
-		var/mob/living/carbon/human/thehuman = L
-		for(var/obj/item/shield/theshield in thehuman.contents)
-			mighty_shield = theshield
-			mighty_shield.block_chance += 10
-			to_chat(thehuman, span_notice("[theshield] выглядит отполированным, хотя, я, кажется, его не полировал."))
-			return TRUE
-
-/datum/reagent/consumable/ethanol/alexander/on_mob_life(mob/living/L, delta_time, times_fired)
-	..()
-	if(mighty_shield && !(mighty_shield in L.contents)) //If you had a shield and lose it, you lose the reagent as well. Otherwise this is just a normal drink.
-		holder.remove_reagent(type)
-
-/datum/reagent/consumable/ethanol/alexander/on_mob_end_metabolize(mob/living/L)
-	if(mighty_shield)
-		mighty_shield.block_chance -= 10
-		to_chat(L,span_notice("Заметил что [mighty_shield] снова выглядит потрепанным. Странно."))
 	..()
 
 /datum/reagent/consumable/ethanol/amaretto_alexander
@@ -2362,7 +2241,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/pina_colada
 	name = "Пина Колада"
 	description = "A fresh pineapple drink with coconut rum. Yum."
-	special_sound = 'white/valtos/sounds/drink/pina_colada.ogg'
 	boozepwr = 40
 	color = "#FFF1B2"
 	quality = DRINK_FANTASTIC
@@ -2402,7 +2280,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/godfather
 	name = "Крестный Отец"
 	description = "A rough cocktail with illegal connections."
-	special_sound = 'white/valtos/sounds/drink/godfather.ogg'
 	boozepwr = 50
 	color = "#E68F00"
 	quality = DRINK_GOOD

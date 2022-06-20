@@ -10,7 +10,7 @@
 	anchored = TRUE
 	var/fuel = 0
 	var/fuel_consumption = 1 // consumes x fuel per /process
-	var/list/fuel_values = list(/obj/item/stack/sheet/mineral/coal = 15, /obj/item/stack/sheet/mineral/wood = 10)
+	var/list/fuel_values = list(/obj/item/stack/sheet/mineral/coal = 15)
 	var/working = FALSE
 
 /obj/structure/forge/update_icon_state()

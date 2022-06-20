@@ -9,7 +9,7 @@
 	var/mode = 0
 
 /obj/item/hand_labeler/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] указывает [src] на [user.ru_na()]self. [user.p_theyre(TRUE)] собирается обозначить [user.ru_na()]self как суицид!"))
+	user.visible_message(span_suicide("[user] указывает [src] на [user.p_them()]self. [user.p_theyre(TRUE)] собирается обозначить [user.p_them()]self как суицид!"))
 	labels_left = max(labels_left - 1, 0)
 
 	user.real_name += " (суицид)"

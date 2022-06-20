@@ -1,7 +1,7 @@
 /datum/map_generator/cave_generator
 	var/name = "Пещеры"
 	///Weighted list of the types that spawns if the turf is open
-	var/open_turf_types = list(/turf/open/floor/plating/asteroid = 1)
+	var/open_turf_types = list(/turf/open/floor/stone = 1)
 	///Weighted list of the types that spawns if the turf is closed
 	var/closed_turf_types =  list(/turf/closed/mineral/random = 1)
 

@@ -177,7 +177,7 @@
 		if(3 * LIVER_FAILURE_STAGE_SECONDS to 4 * LIVER_FAILURE_STAGE_SECONDS - 1)
 			examine_list += "\n<span class='notice'>Глаза [owner] жёлтые и похоже пациенту плохо.</span>"
 		if(4 * LIVER_FAILURE_STAGE_SECONDS to INFINITY)
-			examine_list += "\n<span class='danger'>Глаза [owner] полностью жёлтые и из них сочится гадкая слизь. [owner.ru_who(TRUE)] не проживёт долго с этим.</span>"
+			examine_list += "\n<span class='danger'>Глаза [owner] полностью жёлтые и из них сочится гадкая слизь. [owner] не проживёт долго с этим.</span>"
 
 /obj/item/organ/liver/on_death()
 	. = ..()

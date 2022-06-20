@@ -83,8 +83,8 @@
 
 	if(positive_result)
 		if(current_bake_time <= required_bake_time * 0.75)
-			examine_list += span_notice("\n[A] еще не пропек[A.ru_sya()]!")
+			examine_list += span_notice("\n[A] еще не пропек[A]!")
 		else if(current_bake_time <= required_bake_time)
-			examine_list += span_notice("\n[A] почти пропек[A.ru_sya()]!")
+			examine_list += span_notice("\n[A] почти пропек[A]!")
 	else
-		examine_list += span_danger("\n[A] пропек[A.ru_sya()] как следует!")
+		examine_list += span_danger("\n[A] пропек[A] как следует!")

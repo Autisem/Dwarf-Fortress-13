@@ -18,7 +18,7 @@
 	anchored = FALSE
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
 	max_integrity = 100
-	var/framestack = /obj/item/stack/rods
+	var/framestack
 	var/framestackamount = 2
 
 
@@ -46,20 +46,6 @@
 			if(!do_after(user, 2 SECONDS, target = src) || !material.use(1) || (locate(/obj/structure/table) in loc))
 				return
 			make_new_table(material.tableVariant)
-		else if(istype(material, /obj/item/stack/sheet))
-			if(material.get_amount() < 1)
-				to_chat(user, span_warning("Надо бы больше металла!"))
-				return
-			if(locate(/obj/structure/table) in loc)
-				to_chat(user, span_warning("Здесь уже есть стол!"))
-				return
-			to_chat(user, span_notice("Начинаю добавлять [material] к [src]..."))
-			if(!do_after(user, 2 SECONDS, target = src) || !material.use(1) || (locate(/obj/structure/table) in loc))
-				return
-			var/list/material_list = list()
-			if(material.material_type)
-				material_list[material.material_type] = MINERAL_MATERIAL_AMOUNT
-			make_new_table(/obj/structure/table/greyscale, material_list)
 		return
 	return ..()
 
@@ -78,35 +64,3 @@
 /obj/structure/table_frame/deconstruct(disassembled = TRUE)
 	new framestack(get_turf(src), framestackamount)
 	qdel(src)
-
-/*
- * Wooden Frames
- */
-
-/obj/structure/table_frame/wood
-	name = "деревянная рама стола"
-	desc = "Четыре деревянные ножки с четырьмя обрамляющими деревянными стержнями для деревянного стола. Вы могли бы легко пройти через это."
-	icon_state = "nu_wood_frame"
-	framestack = /obj/item/stack/sheet/mineral/wood
-	framestackamount = 2
-	resistance_flags = FLAMMABLE
-
-/obj/structure/table_frame/wood/attackby(obj/item/I, mob/user, params)
-	if (istype(I, /obj/item/stack))
-		var/obj/item/stack/material = I
-		var/toConstruct // stores the table variant
-		var/carpet_type // stores the carpet type used for construction in case of poker tables
-		if(istype(I, /obj/item/stack/sheet/mineral/wood))
-			toConstruct = /obj/structure/table/wood
-		else if(istype(I, /obj/item/stack/tile/carpet))
-			toConstruct = /obj/structure/table/wood/poker
-			carpet_type = I.type
-		if (toConstruct)
-			if(material.get_amount() < 1)
-				to_chat(user, span_warning("Надо бы [material.name], чтобы закончить это!"))
-				return
-			to_chat(user, span_notice("Начинаю добавлять [material] к [src]..."))
-			if(do_after(user, 20, target = src) && material.use(1))
-				make_new_table(toConstruct, null, carpet_type)
-	else
-		return ..()

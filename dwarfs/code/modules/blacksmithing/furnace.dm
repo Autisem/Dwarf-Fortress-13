@@ -1,7 +1,6 @@
 /obj/structure/furnace
 	name = "smelter"
 	desc = "Looks weird, probably useless."
-	icon = 'white/valtos/icons/objects.dmi'
 	icon_state = "furnace"
 	density = TRUE
 	anchored = TRUE
@@ -20,8 +19,6 @@
 			new /obj/item/blacksmith/ingot(drop_location())
 		if("gold")
 			new /obj/item/blacksmith/ingot/gold(drop_location())
-		if("glass")
-			new /obj/item/stack/sheet/glass/five(drop_location())
 
 /obj/structure/furnace/attackby(obj/item/I, mob/living/user, params)
 
@@ -32,7 +29,7 @@
 		to_chat(user, span_alert("[src] is already smelting."))
 		return
 
-	if(istype(I, /obj/item/stack/ore/iron) || istype(I, /obj/item/stack/ore/gold) || istype(I, /obj/item/stack/sheet/iron) || istype(I, /obj/item/stack/ore/glass))
+	if(istype(I, /obj/item/stack/ore/iron) || istype(I, /obj/item/stack/ore/gold))
 		var/obj/item/stack/S = I
 		if(S.amount >= 5)
 			S.use(5)
@@ -42,8 +39,6 @@
 			to_chat(user, span_notice("[src] lights up."))
 			if(istype(I, /obj/item/stack/ore/gold))
 				furnacing_type = "gold"
-			else if(istype(I, /obj/item/stack/ore/glass))
-				furnacing_type = "glass"
 			else
 				furnacing_type = "iron"
 			addtimer(CALLBACK(src, .proc/furnaced_thing), 15 SECONDS)

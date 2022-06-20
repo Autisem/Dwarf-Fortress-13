@@ -4,7 +4,7 @@
 	dye_color = DYE_PRISONER
 
 /obj/item/restraints/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] is strangling [user.ru_na()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return(OXYLOSS)
 
 /obj/item/restraints/examine(mob/user)
@@ -131,7 +131,6 @@
 	color = "#ff0000"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	custom_materials = list(/datum/material/iron=150, /datum/material/glass=75)
 	breakouttime = 20 SECONDS
 	breakoutchance = 50
 	cuffsound = 'sound/weapons/cablecuff.ogg'
@@ -168,25 +167,6 @@
 	desc = "Поддельные наручники, предназначенные для ролевых игр."
 	breakoutchance = 100
 	breakouttime = 1 SECONDS
-
-/obj/item/restraints/handcuffs/cable/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/stack/sheet/iron))
-		var/obj/item/stack/sheet/iron/M = I
-		if(M.get_amount() < 6)
-			to_chat(user, span_warning("Мне потребуется как минимум шесть единиц металла для веса!"))
-			return
-		to_chat(user, span_notice("Начинаю навешивать [I.name] на [src.name]..."))
-		if(do_after(user, 35, target = src))
-			if(M.get_amount() < 6 || !M)
-				return
-			var/obj/item/restraints/legcuffs/bola/S = new /obj/item/restraints/legcuffs/bola
-			M.use(6)
-			user.put_in_hands(S)
-			to_chat(user, span_notice("Делаю грузики используя [I.name] создавая [src.name]."))
-			remove_item_from_storage(user)
-			qdel(src)
-	else
-		return ..()
 
 /obj/item/restraints/handcuffs/cable/zipties
 	name = "стяжки"
@@ -249,7 +229,7 @@
 	return ..()
 
 /obj/item/restraints/legcuffs/beartrap/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] is sticking [user.ru_ego()] head in the [src.name]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is sticking [user.p_them()] head in the [src.name]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, TRUE, -1)
 	return (BRUTELOSS)
 

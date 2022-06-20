@@ -1,7 +1,6 @@
 /obj/structure/workbench
 	name = "workbench"
 	desc = "Almost that cube game."
-	icon = 'white/kacherkin/icons/dwarfs/obj/workbench.dmi'
 	icon_state = "workbench"
 	density = TRUE
 	anchored = TRUE

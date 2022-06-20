@@ -440,37 +440,6 @@
 	M.adjust_bodytemperature(-5 * REM * 1.5 * delta_time, M.get_body_temp_normal())
 	..()
 
-/datum/reagent/consumable/nuka_cola
-	name = "Нюка Кола"
-	description = "Cola, cola never changes."
-	special_sound = 'white/valtos/sounds/drink/fallout_3.ogg'
-	color = "#100800" // rgb: 16, 8, 0
-	quality = DRINK_VERYGOOD
-	taste_description = "будущее"
-	glass_icon_state = "nuka_colaglass"
-	glass_name = "glass of Nuka Cola"
-	glass_desc = "Don't cry, Don't raise your eye, It's only nuclear wasteland."
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	hydration_factor = DRINK_HYDRATION_FACTOR_MEDIUM
-
-/datum/reagent/consumable/nuka_cola/on_mob_metabolize(mob/living/L)
-	..()
-	L.add_movespeed_modifier(/datum/movespeed_modifier/reagent/nuka_cola)
-
-/datum/reagent/consumable/nuka_cola/on_mob_end_metabolize(mob/living/L)
-	L.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/nuka_cola)
-	..()
-
-/datum/reagent/consumable/nuka_cola/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	M.Jitter(20 * REM * delta_time)
-	M.set_drugginess(30 * REM * delta_time)
-	M.dizziness += 1.5 * REM * delta_time
-	M.drowsyness = 0
-	M.AdjustSleeping(-40 * REM * delta_time)
-	M.adjust_bodytemperature(-5 * REM * 1.5 * delta_time, M.get_body_temp_normal())
-	..()
-	. = TRUE
-
 /datum/reagent/consumable/grey_bull
 	name = "Grey Bull"
 	description = "Grey Bull, it gives you gloves!"
@@ -890,7 +859,6 @@
 /datum/reagent/consumable/pineapplejuice
 	name = "Ананасовый Сок"
 	description = "Tart, tropical, and hotly debated."
-	special_sound = 'white/valtos/sounds/drink/pineapple_apple_pen.ogg'
 	color = "#F7D435"
 	taste_description = "ананас"
 	glass_name = "glass of pineapple juice"

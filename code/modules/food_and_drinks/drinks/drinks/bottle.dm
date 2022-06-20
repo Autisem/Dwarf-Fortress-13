@@ -45,9 +45,6 @@
 	B.icon = I
 
 	if(isGlass)
-		if(prob(33))
-			var/obj/item/shard/S = new(drop_location())
-			target.Bumped(S)
 		playsound(src, "shatter", 70, TRUE)
 	else
 		B.force = 0
@@ -114,7 +111,7 @@
 		target.visible_message(span_danger("[user] hits [target][head_attack_message] with a bottle of [src.name]!") , \
 				span_userdanger("[user] hits you [head_attack_message] with a bottle of [src.name]!"))
 	else
-		target.visible_message(span_danger("[target] hits [target.ru_na()]self with a bottle of [src.name][head_attack_message]!") , \
+		target.visible_message(span_danger("[target] hits [target.p_them()]self with a bottle of [src.name][head_attack_message]!") , \
 				span_userdanger("You hit yourself with a bottle of [src.name][head_attack_message]!"))
 
 	//Attack logs
@@ -240,12 +237,6 @@
 	icon_state = "kahluabottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/kahlua = 100)
 	foodtype = VEGETABLES
-
-/obj/item/reagent_containers/food/drinks/bottle/goldschlager
-	name = "College Girl goldschlager"
-	desc = "Because they are the only ones who will drink 100 proof cinnamon schnapps."
-	icon_state = "goldschlagerbottle"
-	list_reagents = list(/datum/reagent/consumable/ethanol/goldschlager = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/cognac
 	name = "Chateau de Baton premium cognac"

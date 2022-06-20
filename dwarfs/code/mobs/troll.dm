@@ -1,7 +1,6 @@
 /mob/living/simple_animal/hostile/troll
 	name = "troll"
 	desc = "Cute."
-	icon = 'white/kacherkin/icons/dwarfs/mobs/troll.dmi'
 	icon_state = "troll"
 	icon_living = "troll"
 	icon_dead = "troll_dead"

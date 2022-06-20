@@ -17,7 +17,7 @@
 /datum/admins/proc/beaker_panel_act(list/href_list)
 	switch (href_list["beakerpanel"])
 		if ("spawncontainer")
-			var/containerdata = r_json_decode(href_list["container"])
+			var/containerdata = json_decode(href_list["container"])
 			var/obj/item/reagent_containers/container = beaker_panel_create_container(containerdata, get_turf(usr))
 			log_game("[key_name(usr)] spawned a [container] containing [pretty_string_from_reagent_list(container.reagents.reagent_list)]")
 

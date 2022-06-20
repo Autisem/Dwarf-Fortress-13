@@ -92,47 +92,6 @@
 /turf/open/space/handle_slip()
 	return
 
-/turf/open/space/attackby(obj/item/C, mob/user, params)
-	..()
-	if(!CanBuildHere())
-		return
-	if(istype(C, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = C
-		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-		var/obj/structure/lattice/catwalk/W = locate(/obj/structure/lattice/catwalk, src)
-		if(W)
-			to_chat(user, span_warning("Тут уже есть мостик!"))
-			return
-		if(L)
-			if(R.use(1))
-				qdel(L)
-				to_chat(user, span_notice("Строю мостик."))
-				playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
-				new/obj/structure/lattice/catwalk(src)
-			else
-				to_chat(user, span_warning("Надо бы побольше прутьев для постройки мостика!"))
-			return
-		if(R.use(1))
-			to_chat(user, span_notice("Строю решетку."))
-			playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
-			ReplaceWithLattice()
-		else
-			to_chat(user, span_warning("Надо бы побольше прутьев для постройки решетки."))
-		return
-	if(istype(C, /obj/item/stack/tile/plasteel))
-		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-		if(L)
-			var/obj/item/stack/tile/plasteel/S = C
-			if(S.use(1))
-				qdel(L)
-				playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
-				to_chat(user, span_notice("Покрываю обшивкой."))
-				PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
-			else
-				to_chat(user, span_warning("Надо бы плиточку!"))
-		else
-			to_chat(user, span_warning("Надо бы опору сначала сделать. Подойдёт несколько прутьев."))
-
 /turf/open/space/Entered(atom/movable/arrived)
 	. = ..()
 	if(!arrived || src != arrived.loc)
@@ -169,8 +128,6 @@
 	return
 
 /turf/open/space/can_have_cabling()
-	if(locate(/obj/structure/lattice/catwalk, src))
-		return TRUE
 	return FALSE
 
 /turf/open/space/is_transition_turf()
@@ -186,12 +143,3 @@
 	underlay_appearance.icon_state = SPACE_ICON_STATE
 	underlay_appearance.plane = PLANE_SPACE
 	return TRUE
-
-/turf/open/space/ReplaceWithLattice()
-	var/dest_x = destination_x
-	var/dest_y = destination_y
-	var/dest_z = destination_z
-	..()
-	destination_x = dest_x
-	destination_y = dest_y
-	destination_z = dest_z

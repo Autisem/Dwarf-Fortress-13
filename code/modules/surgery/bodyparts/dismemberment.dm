@@ -25,7 +25,7 @@
 	if(detach_limb)
 		playsound(get_turf(C), 'sound/effects/dismember.ogg', 80, TRUE)
 	else
-		playsound(get_turf(C), 'white/valtos/sounds/gibpart.ogg', 80, TRUE)
+		playsound(get_turf(C), 'sound/misc/gibpart.ogg', 80, TRUE)
 
 	drop_limb()
 
@@ -302,13 +302,6 @@
 
 	qdel(owner.GetComponent(/datum/component/creamed)) //clean creampie overlay
 
-	//Handle dental implants
-	for(var/datum/action/item_action/hands_free/activate_pill/AP in owner.actions)
-		AP.Remove(owner)
-		var/obj/pill = AP.target
-		if(pill)
-			pill.forceMove(src)
-
 	name = "голова [owner.real_name]"
 	..()
 
@@ -425,13 +418,6 @@
 		C.real_name = real_name
 	real_name = ""
 	name = initial(name)
-
-	//Handle dental implants
-	for(var/obj/item/reagent_containers/pill/P in src)
-		for(var/datum/action/item_action/hands_free/activate_pill/AP in P.actions)
-			P.forceMove(C)
-			AP.Grant(C)
-			break
 
 	C.updatehealth()
 	C.update_body()

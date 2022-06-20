@@ -9,9 +9,6 @@
 	var/wipe_reservation_on_release = TRUE
 	var/turf_type = /turf/open/space
 
-/datum/turf_reservation/transit
-	turf_type = /turf/open/space/transit
-
 /datum/turf_reservation/proc/Release()
 	var/v = reserved_turfs.Copy()
 	for(var/i in reserved_turfs)

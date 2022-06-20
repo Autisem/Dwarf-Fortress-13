@@ -20,7 +20,7 @@
 	attack_verb_simple = list("hit", "pierce", "slash", "attacks")
 
 /obj/item/pickaxe/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins digging into [user.ru_ego()] chest! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] begins digging into [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!"))
 	if(use_tool(user, user, 30, volume=50))
 		return BRUTELOSS
 	user.visible_message(span_suicide("[user] couldn't do it!"))

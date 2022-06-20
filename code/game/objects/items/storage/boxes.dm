@@ -31,7 +31,6 @@
 	resistance_flags = FLAMMABLE
 	drop_sound = 'sound/items/handling/cardboardbox_drop.ogg'
 	pickup_sound =  'sound/items/handling/cardboardbox_pickup.ogg'
-	var/foldable = /obj/item/stack/sheet/cardboard
 	var/illustration = "writing"
 
 /obj/item/storage/box/Initialize(mapload)
@@ -41,31 +40,15 @@
 /obj/item/storage/box/suicide_act(mob/living/carbon/user)
 	var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
 	if(myhead)
-		user.visible_message(span_suicide("[user] puts [user.ru_ego()] head into <b>[src.name]</b>, and begins closing it! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] puts [user.p_their()] head into <b>[src.name]</b>, and begins closing it! It looks like [user.p_theyre()] trying to commit suicide!"))
 		myhead.dismember()
 		myhead.forceMove(src)//force your enemies to kill themselves with your head collection box!
 		playsound(user, "desecration-01.ogg", 50, TRUE, -1)
 		return BRUTELOSS
-	user.visible_message(span_suicide("[user] beating [user.ru_na()]self with <b>[src.name]</b>! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] beating [user.p_them()]self with <b>[src.name]</b>! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
 /obj/item/storage/box/update_overlays()
 	. = ..()
 	if(illustration)
 		. += illustration
-
-/obj/item/storage/box/attack_self(mob/user)
-	..()
-
-	if(!foldable || (flags_1 & HOLOGRAM_1))
-		return
-	if(contents.len)
-		to_chat(user, span_warning("Не могу сложить коробку с предметами внутри!"))
-		return
-	if(!ispath(foldable))
-		return
-
-	to_chat(user, span_notice("Складываю [src]."))
-	var/obj/item/I = new foldable
-	qdel(src)
-	user.put_in_hands(I)

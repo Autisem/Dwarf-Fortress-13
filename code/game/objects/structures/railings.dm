@@ -59,12 +59,6 @@
 		deconstruct()
 		return TRUE
 
-/obj/structure/railing/deconstruct(disassembled)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		var/obj/item/stack/rods/rod = new /obj/item/stack/rods(drop_location(), 3)
-		transfer_fingerprints_to(rod)
-	return ..()
-
 ///Implements behaviour that makes it possible to unanchor the railing.
 /obj/structure/railing/wrench_act(mob/living/user, obj/item/I)
 	. = ..()

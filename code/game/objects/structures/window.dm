@@ -20,7 +20,7 @@
 	var/decon_speed = 30
 	var/wtype = "glass"
 	var/fulltile = FALSE
-	var/glass_type = /obj/item/stack/sheet/glass
+	var/glass_type
 	var/glass_amount = 1
 	var/mutable_appearance/crack_overlay
 	var/real_explosion_block	//ignore this, just use explosion_block
@@ -160,7 +160,7 @@
 				update_nearby_icons()
 				to_chat(user, span_notice("Чиню [src.name]."))
 		else
-			to_chat(user, span_warning("[capitalize(skloname(src.name, VINITELNI, src.gender))] не требуется починка!"))
+			to_chat(user, span_warning("[capitalize(src.name)] не требуется починка!"))
 		return
 
 	if(!(flags_1&NODECONSTRUCT_1) && !(reinf && state >= RWINDOW_FRAME_BOLTED))
@@ -238,20 +238,8 @@
 		return
 	if(!disassembled)
 		playsound(src, breaksound, 70, TRUE)
-		if(!(flags_1 & NODECONSTRUCT_1))
-			for(var/obj/item/shard/debris in spawnDebris(drop_location()))
-				transfer_fingerprints_to(debris) // transfer fingerprints to shards only
 	qdel(src)
 	update_nearby_icons()
-
-/obj/structure/window/proc/spawnDebris(location)
-	. = list()
-	. += new /obj/item/shard(location)
-	. += new /obj/effect/decal/cleanable/glass(location)
-	if (reinf)
-		. += new /obj/item/stack/rods(location, (fulltile ? 2 : 1))
-	if (fulltile)
-		. += new /obj/item/shard(location)
 
 /obj/structure/window/proc/can_be_rotated(mob/user,rotation_type)
 	if(anchored)
@@ -341,8 +329,8 @@
 /* Full Tile Windows (more obj_integrity) */
 
 /obj/structure/window/fulltile
-	icon = 'white/valtos/icons/window_glass.dmi'
-	icon_state = "window_glass-0"
+	icon = 'icons/obj/structures.dmi'
+	icon_state = "window0"
 	base_icon_state = "window_glass"
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 50
@@ -371,7 +359,6 @@
 	smoothing_groups = list(SMOOTH_GROUP_PAPERFRAME)
 	canSmoothWith = list(SMOOTH_GROUP_PAPERFRAME)
 	glass_amount = 2
-	glass_type = /obj/item/stack/sheet/paperframes
 	heat_resistance = 233
 	decon_speed = 10
 	resistance_flags = FLAMMABLE
@@ -390,11 +377,6 @@
 	. = ..()
 	if(obj_integrity < max_integrity)
 		. += "<hr><span class='info'>Он выглядит немного поврежденным, можно исправить его с помощью <b>бумаги</b>.</span>"
-
-/obj/structure/window/paperframe/spawnDebris(location)
-	. = list(new /obj/item/stack/sheet/mineral/wood(location))
-	for (var/i in 1 to rand(1,4))
-		. += new /obj/item/paper/natural(location)
 
 /obj/structure/window/paperframe/attack_hand(mob/user)
 	. = ..()

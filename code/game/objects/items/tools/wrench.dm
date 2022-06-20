@@ -1,9 +1,7 @@
 /obj/item/wrench
 	name = "гаечный ключ"
 	desc = "Ключ общего назначения. Его можно найти в твоей руке."
-	icon = 'white/valtos/icons/items.dmi'
-	lefthand_file = 'white/valtos/icons/lefthand.dmi'
-	righthand_file = 'white/valtos/icons/righthand.dmi'
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "wrench"
 	worn_icon_state = "wrench"
 	flags_1 = CONDUCT_1
@@ -22,7 +20,7 @@
 	toolspeed = 1
 
 /obj/item/wrench/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] is beating [user.ru_na()]self to death with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is beating [user.p_them()]self to death with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(loc, 'sound/weapons/genhit.ogg', 50, TRUE, -1)
 	return (BRUTELOSS)
 
@@ -52,7 +50,7 @@
 		. += "<hr><span class='notice'>По какой-то причине, это напоминает мне о [suicider].</span>"
 
 /obj/item/wrench/medical/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is praying to the medical wrench to take [user.ru_ego()] soul. It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is praying to the medical wrench to take [user.p_their()] soul. It looks like [user.p_theyre()] trying to commit suicide!"))
 	user.Stun(100, ignore_canstun = TRUE)// Stun stops them from wandering off
 	user.set_light_color(COLOR_VERY_SOFT_YELLOW)
 	user.set_light(2)
@@ -73,6 +71,6 @@
 /obj/item/wrench/cyborg
 	name = "гидравлический гаечный ключ"
 	desc = "Усовершенствованный роботизированный ключ, приводимый в действие внутренней гидравликой. В два раза быстрее, чем версия для портативных устройств."
-	icon = 'white/Feline/icons/cyber_arm_tools.dmi'
+	icon = 'icons/obj/items/cyber_arm_tools.dmi'
 	icon_state = "wrench_cyborg"
 	toolspeed = 0.5

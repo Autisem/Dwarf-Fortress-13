@@ -459,9 +459,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		winset(src, "info", "show-splitter=false")
 		winset(src, "split", "show-splitter=false")
 
-	if (prefs.fullscreen)
-		ToggleFullscreen()
-
 	if(isnewplayer(src.mob))
 		view_size = new(src, getScreenSize(prefs.widescreenpref))
 		view = "[prefs.widescreenwidth]x15"

@@ -84,7 +84,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	///Whether or not we use stealthy audio levels for this item's attack sounds
 	var/stealthy_audio = FALSE
 
-	var/list/block_sounds = list('white/valtos/sounds/block_sword.ogg')
+	var/list/block_sounds
 
 	///How large is the object, used for stuff like whether it can fit in backpacks or not
 	var/w_class = WEIGHT_CLASS_NORMAL
@@ -967,22 +967,6 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 			var/datum/material/discovered_mat = mats
 			if(discovered_mat.on_accidental_mat_consumption(victim, source_item))
 				found_mats++
-
-		//if there's glass in it and the glass is more than 60% of the item, then we can shatter it
-		if(custom_materials[GET_MATERIAL_REF(/datum/material/glass)] >= total_material_amount * 0.60)
-			if(prob(66)) //66% chance to break it
-				/// The glass shard that is spawned into the source item
-				var/obj/item/shard/broken_glass = new /obj/item/shard(loc)
-				broken_glass.name = "broken [name]"
-				broken_glass.desc = "This used to be \a [name], but it sure isn't anymore."
-				playsound(victim, "shatter", 25, TRUE)
-				qdel(src)
-				if(QDELETED(source_item))
-					broken_glass.on_accidental_consumption(victim, user)
-			else //33% chance to just "crack" it (play a sound) and leave it in the bread
-				playsound(victim, "shatter", 15, TRUE)
-			discover_after = FALSE
-
 		victim.adjust_disgust(33)
 		victim.visible_message(span_warning("[victim] looks like [victim.p_theyve()] just bitten into something hard.") , \
 						span_warning("Eugh! Did I just bite into something?"))

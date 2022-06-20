@@ -87,7 +87,6 @@
 		var/trans = reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 		to_chat(user, span_notice("You transfer [trans] unit\s of the contents to [target]."))
 
-		playsound(get_turf(user), pick(WATER_FLOW_MINI), 50, TRUE)
 
 	else if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if(!target.reagents.total_volume)
@@ -101,7 +100,6 @@
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transfered_by = user)
 		to_chat(user, span_notice("You fill [src] with [trans] units from [target]."))
 
-		playsound(get_turf(user), pick(WATER_FLOW_MINI), 50, TRUE)
 
 	else if(reagents.total_volume)
 		if(user.a_intent == INTENT_HARM)
@@ -115,28 +113,12 @@
 	if(hotness && reagents)
 		reagents.expose_temperature(hotness)
 		to_chat(user, span_notice("You heat [name] with [I]!"))
-
-	//Cooling method
-	if(istype(I, /obj/item/extinguisher))
-		var/obj/item/extinguisher/extinguisher = I
-		if(extinguisher.safety)
-			return
-		if (extinguisher.reagents.total_volume < 1)
-			to_chat(user, span_warning("[capitalize(extinguisher)] is empty!"))
-			return
-		var/cooling = (0 - reagents.chem_temp) * extinguisher.cooling_power * 2
-		reagents.expose_temperature(cooling)
-		to_chat(user, span_notice("You cool \the [name] with \the [I]!"))
-		playsound(loc, 'sound/effects/extinguish.ogg', 75, TRUE, -3)
-		extinguisher.reagents.remove_all(1)
 	..()
 
 /*
  * On accidental consumption, make sure the container is partially glass, and continue to the reagent_container proc
  */
 /obj/item/reagent_containers/glass/on_accidental_consumption(mob/living/carbon/M, mob/living/carbon/user, obj/item/source_item, discover_after = TRUE)
-	if(!custom_materials)
-		set_custom_materials(list(GET_MATERIAL_REF(/datum/material/glass) = 5))//sets it to glass so, later on, it gets picked up by the glass catch (hope it doesn't 'break' things lol)
 	return ..()
 
 /obj/item/reagent_containers/glass/beaker
@@ -146,7 +128,6 @@
 	icon_state = "beaker"
 	inhand_icon_state = "beaker"
 	worn_icon_state = "beaker"
-	custom_materials = list(/datum/material/glass=500)
 	fill_icon_thresholds = list(0, 1, 20, 40, 60, 80, 100)
 
 /obj/item/reagent_containers/glass/beaker/Initialize()
@@ -166,7 +147,6 @@
 	name = "большой химический стакан"
 	desc = "Большой химический стакан, вместимостью до 100 единиц."
 	icon_state = "beakerlarge"
-	custom_materials = list(/datum/material/glass=2500)
 	volume = 100
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,100)
@@ -268,7 +248,6 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 20, 25, 30, 50, 100)
 	volume = 100
-	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT)
 	reagent_flags = OPENCONTAINER
 	spillable = TRUE
 	var/obj/item/grinded

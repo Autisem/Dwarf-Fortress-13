@@ -10,12 +10,6 @@
 	SSpoints_of_interest.make_point_of_interest(src)
 	update_fov()
 
-	spawn(5 SECONDS)
-		if(ckey in GLOB.pacifist_list)
-			ADD_TRAIT(src, TRAIT_PACIFISM, "sosi")
-
-	add_client_colour(/datum/client_colour/correction)
-
 /mob/living/ComponentInitialize()
 	. = ..()
 	AddElement(/datum/element/movetype_handler)
@@ -1037,12 +1031,6 @@
 		mind.transfer_to(new_mob)
 	else
 		new_mob.key = key
-
-	for(var/para in hasparasites())
-		var/mob/living/simple_animal/hostile/guardian/G = para
-		G.summoner = new_mob
-		G.Recall()
-		to_chat(G, span_holoparasite("Your summoner has changed form!"))
 
 /mob/living/anti_magic_check(magic = TRUE, holy = FALSE, tinfoil = FALSE, chargecost = 1, self = FALSE)
 	. = ..()

@@ -39,7 +39,7 @@
 	requires_power = FALSE
 	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
 	sound_environment = SOUND_ENVIRONMENT_CAVE
-	ambientsounds = list('white/valtos/sounds/lifeweb/caves8.ogg', 'white/valtos/sounds/lifeweb/caves_old.ogg')
+	ambientsounds = list('sound/ambience/caves8.ogg', 'sound/ambience/caves_old.ogg')
 	map_generator = /datum/map_generator/cave_generator/dwarven
 
 /area/dwarf/cavesgen/upper_level

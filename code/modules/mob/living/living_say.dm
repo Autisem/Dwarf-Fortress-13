@@ -284,13 +284,13 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			if(length(empty_indexes) == 1 || !mute.get_bodypart(BODY_ZONE_L_ARM) || !mute.get_bodypart(BODY_ZONE_R_ARM))
 				message = stars(message)
 			if(length(empty_indexes) == 0 || (length(empty_indexes) < 2 && (!mute.get_bodypart(BODY_ZONE_L_ARM) || !mute.get_bodypart(BODY_ZONE_R_ARM))))//All existing hands full, can't sign
-				mute.visible_message("tries to sign, but can't with [src.ru_ego()] hands full!</span.?>", visible_message_flags = EMOTE_MESSAGE)
+				mute.visible_message("tries to sign, but can't with [src.p_their()] hands full!</span.?>", visible_message_flags = EMOTE_MESSAGE)
 				return FALSE
 			if(!mute.get_bodypart(BODY_ZONE_L_ARM) && !mute.get_bodypart(BODY_ZONE_R_ARM))//Can't sign with no arms!
 				to_chat(src, "<span class='warning'>You can't sign with no hands!</span.?>")
 				return FALSE
 			if(mute.handcuffed)//Can't sign when your hands are cuffed, but can at least make a visual effort to
-				mute.visible_message("tries to sign, but can't with [src.ru_ego()] hands bound!</span.?>", visible_message_flags = EMOTE_MESSAGE)
+				mute.visible_message("tries to sign, but can't with [src.p_their()] hands bound!</span.?>", visible_message_flags = EMOTE_MESSAGE)
 				return FALSE
 			if(HAS_TRAIT(mute, TRAIT_HANDS_BLOCKED) || HAS_TRAIT(mute, TRAIT_EMOTEMUTE))
 				to_chat(src, "<span class='warning'>You can't sign at the moment!</span.?>")
@@ -371,27 +371,13 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	if(HAS_TRAIT(src, TRAIT_UNINTELLIGIBLE_SPEECH))
 		message = unintelligize(message)
 
-	if(HAS_TRAIT(src, TRAIT_JEWISH))
-		message = difilexish(message)
-
-	if(HAS_TRAIT(src, TRAIT_UKRAINISH))
-		message = ukrainish(message)
-
-	if(HAS_TRAIT(src, TRAIT_ASIAT))
-		message = asiatish(message)
-
 	if(derpspeech)
 		message = derpspeech(message, stuttering)
 
 	if(stuttering)
 		message = stutter(message)
 
-	if(fucking_anime_girl_noises_oh_nya)
-		message = ddlc_text(message)
-
-	if(cultslurring && slurring)
-		message = cultslur(message)
-	else if(slurring)
+	if(slurring)
 		message = slur(message)
 
 	if(hydration <= HYDRATION_LEVEL_DEHYDRATED)

@@ -53,7 +53,7 @@
 
 	user.log_message(msg, LOG_EMOTE)
 
-	var/dchatmsg = "<b>[user]</b> [pointization(r_antidaunize(msg))]"
+	var/dchatmsg = "<b>[user]</b> [msg]"
 
 	if(user?.client?.prefs?.disabled_autocap)
 		dchatmsg = "<b>[user]</b> [msg]"

@@ -127,9 +127,9 @@
 
 /datum/wound/burn/get_examine_description(mob/user)
 	if(strikes_to_lose_limb <= 0)
-		return span_deadsay("<B>[victim.ru_ego(TRUE)] [limb.name] выглядит мёртвой и не похожей на органическую.</B>")
+		return span_deadsay("<B>[victim.p_their(TRUE)] [limb.name] выглядит мёртвой и не похожей на органическую.</B>")
 
-	var/list/condition = list("[victim.ru_ego(TRUE)] [limb.name] [examine_desc]")
+	var/list/condition = list("[victim.p_their(TRUE)] [limb.name] [examine_desc]")
 	if(limb.current_gauze)
 		var/bandage_condition
 		switch(limb.current_gauze.absorption_capacity)
@@ -152,7 +152,7 @@
 			if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
 				condition += ", <span class='deadsay'>с полосами гнилой инфекции, пульсирующей наружу!</span>"
 			if(WOUND_INFECTION_SEPTIC to INFINITY)
-				return span_deadsay("<B>[victim.ru_ego(TRUE)] [limb.name] просто гнилой кусок мяса, кожа буквально капает с костей вместе с инфекцией!</B>")
+				return span_deadsay("<B>[victim.p_their(TRUE)] [limb.name] просто гнилой кусок мяса, кожа буквально капает с костей вместе с инфекцией!</B>")
 			else
 				condition += "!"
 

@@ -727,7 +727,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("alarm")
 			target.playsound_local(source, 'sound/machines/alarm.ogg', 100, 0)
 		if("beepsky")
-			target.playsound_local(source, 'white/valtos/sounds/beepsky_russian/freeze.ogg', 35, 0)
+			target.playsound_local(source, 'sound/creatures/gorilla.ogg', 35, 0)
 		if("mech")
 			new /datum/hallucination/mech_sounds(C, forced, sound_type)
 		//Deconstructing a wall

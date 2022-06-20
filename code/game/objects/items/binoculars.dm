@@ -31,7 +31,7 @@
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/on_walk)
 	RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, .proc/rotate)
 	listeningTo = user
-	user.visible_message(span_notice("[user] приставляет [src] к [user.ru_ego()] глазам.") , span_notice("Смотрю через [src]."))
+	user.visible_message(span_notice("[user] приставляет [src] к [user.p_their()] глазам.") , span_notice("Смотрю через [src]."))
 	inhand_icon_state = "binoculars_wielded"
 	user.regenerate_icons()
 	user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, user.dir)

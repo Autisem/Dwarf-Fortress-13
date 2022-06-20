@@ -181,7 +181,7 @@
 			power_throw++
 		visible_message(span_danger("<b>[src]</b> throws <b>[thrown_thing.name]</b>[power_throw ? " really hard!" : "."]") , \
 						span_danger("You throw <b>[thrown_thing.name]</b>[power_throw ? " really hard!" : "."]"))
-		playsound(get_turf(src), 'white/valtos/sounds/throw.wav', 50, TRUE)
+		playsound(get_turf(src), 'sound/misc/throw.wav', 50, TRUE)
 		log_message("has thrown [thrown_thing] [power_throw ? "really hard" : ""]", LOG_ATTACK)
 		newtonian_move(get_dir(target, src))
 		thrown_thing.safe_throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed + power_throw, src, null, null, null, move_force)
@@ -1093,7 +1093,6 @@
 /mob/living/carbon/wash(clean_types)
 	. = ..()
 
-	RemoveElement(/datum/element/glitch)
 	// Wash equipped stuff that cannot be covered
 	for(var/obj/item/held_thing in held_items)
 		if(held_thing.wash(clean_types))

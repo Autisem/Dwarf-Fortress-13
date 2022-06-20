@@ -67,14 +67,6 @@
 	playsound(M.loc,'sound/items/drink.ogg', rand(10,50), TRUE)
 	return TRUE
 
-/*
- * On accidental consumption, make sure the container is partially glass, and continue to the reagent_container proc
- */
-/obj/item/reagent_containers/food/drinks/on_accidental_consumption(mob/living/carbon/M, mob/living/carbon/user, obj/item/source_item,  discover_after = TRUE)
-	if(isGlass && !custom_materials)
-		set_custom_materials(list(GET_MATERIAL_REF(/datum/material/glass) = 5))
-	return ..()
-
 /obj/item/reagent_containers/food/drinks/afterattack(obj/target, mob/user , proximity)
 	. = ..()
 	if(!proximity)
@@ -92,8 +84,6 @@
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 		to_chat(user, span_notice("Переливаю [trans] единиц жидкости в [target]."))
 
-		playsound(get_turf(user), pick(WATER_FLOW_MINI), 50, TRUE)
-
 	else if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if (!is_refillable())
 			to_chat(user, span_warning("Крышка [src.name] не открыта!"))
@@ -110,28 +100,11 @@
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transfered_by = user)
 		to_chat(user, span_notice("Переливаю в [src.name] [trans] единиц из [target]."))
 
-		playsound(get_turf(user), pick(WATER_FLOW_MINI), 50, TRUE)
-
 /obj/item/reagent_containers/food/drinks/attackby(obj/item/I, mob/user, params)
 	var/hotness = I.get_temperature()
 	if(hotness && reagents)
 		reagents.expose_temperature(hotness)
 		to_chat(user, span_notice("Нагреваю [name] при помощи [I.name]!"))
-
-	//Cooling method
-	if(istype(I, /obj/item/extinguisher))
-		var/obj/item/extinguisher/extinguisher = I
-		if(extinguisher.safety)
-			return
-		if(extinguisher.reagents.total_volume < 1)
-			to_chat(user, span_warning("[capitalize(extinguisher)] пуст!"))
-			return
-		var/cooling = (0 - reagents.chem_temp) * (extinguisher.cooling_power * 2)
-		reagents.expose_temperature(cooling)
-		to_chat(user, span_notice("Охлаждаю [name] при помощи [I]!"))
-		playsound(loc, 'sound/effects/extinguish.ogg', 75, TRUE, -3)
-		extinguisher.reagents.remove_all(1)
-
 	..()
 
 /obj/item/reagent_containers/food/drinks/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
@@ -153,9 +126,6 @@
 	I.SwapColor(rgb(255, 0, 220, 255), rgb(0, 0, 0, 0))
 	B.icon = I
 	B.name = "разбитый [name]"
-	if(prob(33))
-		var/obj/item/shard/S = new(drop_location())
-		target.Bumped(S)
 	playsound(src, "shatter", 70, TRUE)
 	transfer_fingerprints_to(B)
 	qdel(src)
@@ -655,7 +625,7 @@
 /obj/item/reagent_containers/food/drinks/soda_cans/attack(mob/M, mob/user)
 	if(istype(M, /mob/living/carbon) && !reagents.total_volume && user.a_intent == INTENT_HARM && user.zone_selected == BODY_ZONE_HEAD)
 		if(M == user)
-			user.visible_message(span_warning("[user] crushes the can of [src] on [user.ru_ego()] forehead!") , span_notice("You crush the can of [src] on your forehead."))
+			user.visible_message(span_warning("[user] crushes the can of [src] on [user.p_their()] forehead!") , span_notice("You crush the can of [src] on your forehead."))
 		else
 			user.visible_message(span_warning("[user] crushes the can of [src] on [M] forehead!") , span_notice("You crush the can of [src] on [M] forehead."))
 		playsound(M,'sound/weapons/pierce.ogg', rand(10,50), TRUE)

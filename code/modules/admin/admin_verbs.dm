@@ -30,8 +30,6 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/ghost_pool_protection,	/*opens a menu for toggling ghost roles*/
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
-	/datum/admins/proc/togglelooc,		/*toggles looc on/off for everyone*/
-	/datum/admins/proc/toggleloocdead,	/*toggles looc on/off for everyone who is dead */
 	/datum/admins/proc/toggleenter,		/*toggles whether people can join the current game*/
 	/datum/admins/proc/toggleguests,	/*toggles whether guests can join the current game*/
 	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
@@ -58,8 +56,6 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/resetasaycolor,
 	/client/proc/toggleadminhelpsound,
 	/client/proc/respawn_character,
-	/client/proc/fuck_pie,
-	/datum/admins/proc/paintings_manager,
 	/datum/admins/proc/known_alts_panel,
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
@@ -92,7 +88,6 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/run_weather,
 	/client/proc/show_tip,
 	/client/proc/smite,
-	/client/proc/change_lobby_music,
 	/client/proc/cmd_admin_toggle_fov
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
@@ -117,7 +112,6 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/panicbunker,
 	/client/proc/toggle_hub,
 	/client/proc/toggle_cdn,
-	/client/proc/toggle_major_mode
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -137,12 +131,6 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/test_snap_UI,
 	/client/proc/debugNatureMapGenerator,
 	/client/proc/check_bomb_impacts,
-	/client/proc/raspidoars,
-	/client/proc/commit_warcrime,
-	/client/proc/uncommit_warcrime,
-	/client/proc/kaboom,
-	/client/proc/smooth_fucking_z_level,
-	/client/proc/get_tacmap_for_test,
 	/client/proc/populate_world,
 	/client/proc/get_dynex_power,		//*debug verbs for dynex explosions.
 	/client/proc/get_dynex_range,		//*debug verbs for dynex explosions.
@@ -169,9 +157,9 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/possess, /proc/release))
 GLOBAL_PROTECT(admin_verbs_possess)
-GLOBAL_LIST_INIT(admin_verbs_permissions, list(/client/proc/edit_admin_permissions, /client/proc/add_bug_down))
+GLOBAL_LIST_INIT(admin_verbs_permissions, list(/client/proc/edit_admin_permissions))
 GLOBAL_PROTECT(admin_verbs_permissions)
-GLOBAL_LIST_INIT(admin_verbs_secured, list(/client/proc/manage_player_ranks))
+GLOBAL_LIST_INIT(admin_verbs_secured, list())
 GLOBAL_PROTECT(admin_verbs_secured)
 GLOBAL_LIST_INIT(admin_verbs_poll, list(/client/proc/poll_panel))
 GLOBAL_PROTECT(admin_verbs_poll)
@@ -230,7 +218,6 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/panicbunker,
 	/client/proc/cmd_display_del_log,
 	/client/proc/debug_huds_wrapper,
-	/client/proc/fuck_pie
 	))
 GLOBAL_PROTECT(admin_verbs_hideable)
 

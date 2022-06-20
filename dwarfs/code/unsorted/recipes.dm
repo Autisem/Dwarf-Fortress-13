@@ -85,11 +85,6 @@
 	result = /obj/item/blacksmith/shpatel
 	max_resulting = 2
 
-/datum/smithing_recipe/scepter
-	name = "scepter"
-	result = /obj/item/blacksmith/scepter
-	metal_type_need = "none"
-
 /datum/smithing_recipe/crown
 	name = "empty crown"
 	result = /obj/item/blacksmith/partial/crown_empty
@@ -109,25 +104,25 @@
 /datum/workbench_recipe/zwei
 	name = "zweihander"
 	result = /obj/item/blacksmith/zwei
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 3, /obj/item/stack/sheet/leather = 2, /obj/item/blacksmith/partial/zwei=1)
+	reqs = list(/obj/item/stack/sheet/leather = 2, /obj/item/blacksmith/partial/zwei=1)
 	primary = /obj/item/blacksmith/partial/zwei
 
 /datum/workbench_recipe/katanus
 	name = "katanus"
 	result = /obj/item/blacksmith/katanus
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 3, /obj/item/stack/sheet/leather = 2,/obj/item/blacksmith/partial/katanus=1)
+	reqs = list(/obj/item/stack/sheet/leather = 2,/obj/item/blacksmith/partial/katanus=1)
 	primary = /obj/item/blacksmith/partial/katanus
 
 /datum/workbench_recipe/cep
 	name = "flail"
 	result = /obj/item/blacksmith/cep
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 2, /obj/item/blacksmith/partial/cep=1)
+	reqs = list(/obj/item/blacksmith/partial/cep=1)
 	primary = /obj/item/blacksmith/partial/cep
 
 /datum/workbench_recipe/sword
 	name = "sword"
 	result = /obj/item/blacksmith/dwarfsord
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 2, /obj/item/stack/sheet/leather = 1, /obj/item/blacksmith/partial/dwarfsord=1)
+	reqs = list(/obj/item/stack/sheet/leather = 1, /obj/item/blacksmith/partial/dwarfsord=1)
 	primary = /obj/item/blacksmith/partial/dwarfsord
 
 /datum/workbench_recipe/crown
@@ -135,12 +130,6 @@
 	result = /obj/item/clothing/head/helmet/dwarf_crown
 	reqs = list(/obj/item/stack/sheet/mineral/gem/sapphire = 3, /obj/item/blacksmith/partial/crown_empty = 1)
 	primary = /obj/item/blacksmith/partial/crown_empty
-
-/datum/workbench_recipe/scepter
-	name = "scepter"
-	result = /obj/item/blacksmith/scepter
-	reqs = list(/obj/item/stack/sheet/mineral/gem/ruby = 1, /obj/item/blacksmith/partial/scepter_part = 1, /obj/item/scepter_shaft = 1)
-	primary = /obj/item/blacksmith/partial/scepter_part
 
 /datum/workbench_recipe/dagger_sneath
 	name = "dagger sneath"

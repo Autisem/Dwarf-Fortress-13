@@ -108,7 +108,7 @@
 		"med", "kulet", "ngalak", "kuthdeng", "cenath", "ustos", "oshnel", "nural", "nazush"
 	)
 	space_chance = 35
-	icon = 'white/valtos/icons/language.dmi'
+	icon = 'dwarfs/icons/mob/language.dmi'
 	icon_state = "dwarf"
 
 /datum/language_holder/dwarf

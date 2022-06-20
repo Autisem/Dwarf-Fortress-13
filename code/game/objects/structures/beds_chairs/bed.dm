@@ -18,7 +18,7 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 100
 	integrity_failure = 0.35
-	var/buildstacktype = /obj/item/stack/sheet/iron
+	var/buildstacktype
 	var/buildstackamount = 2
 	var/bolts = TRUE
 
@@ -162,67 +162,3 @@
 		loaded = null
 	else
 		to_chat(user, span_warning("Док пустой!"))
-
-//Dog bed
-
-/obj/structure/bed/dogbed
-	name = "собачья кровать"
-	icon_state = "dogbed"
-	desc = "Удобная на вид кровать для собаки. Вы можете даже пристегнуть своего питомца на случай, если гравитация отключится."
-	anchored = FALSE
-	buildstacktype = /obj/item/stack/sheet/mineral/wood
-	buildstackamount = 10
-	var/owned = FALSE
-
-/obj/structure/bed/dogbed/ian
-	desc = "Выглядит удобной!"
-	name = "кроватка Яна"
-	anchored = TRUE
-
-/obj/structure/bed/dogbed/cayenne
-	desc = "Кажется, немного... подозрительной."
-	name = "кровать Кайенны"
-	anchored = TRUE
-
-/obj/structure/bed/dogbed/lia
-	desc = "Seems kind of... fishy."
-	name = "Lia's bed"
-	anchored = TRUE
-
-/obj/structure/bed/dogbed/renault
-	desc = "Выглядит удобно, Лисий человек нуждается в лисичке."
-	name = "кровать Рено"
-	anchored = TRUE
-
-/obj/structure/bed/dogbed/mcgriff
-	desc = "McGriff's bed, because even crimefighters sometimes need a nap."
-	name = "McGriff's bed"
-
-/obj/structure/bed/dogbed/runtime
-	desc = "Удобная кошачья кровать. Вы можете даже пристегнуть своего питомца на случай, если гравитация отключится."
-	name = "Кровать Рантайма"
-	anchored = TRUE
-
-///Used to set the owner of a dogbed, returns FALSE if called on an owned bed or an invalid one, TRUE if the possesion succeeds
-/obj/structure/bed/dogbed/proc/update_owner(mob/living/M)
-	if(owned || type != /obj/structure/bed/dogbed) //Only marked beds work, this is hacky but I'm a hacky man
-		return FALSE //Failed
-	owned = TRUE
-	name = "кровать [M]"
-	desc = "Выглядит комфортно."
-	return TRUE //Let any callers know that this bed is ours now
-
-/obj/structure/bed/dogbed/buckle_mob(mob/living/M, force, check_loc)
-	. = ..()
-	update_owner(M)
-
-/obj/structure/bed/alien
-	name = "отдыхалка"
-	desc = "Это похоже на штуки с Земли. Могут ли инопланетяне красть наши технологии?"
-	icon_state = "abed"
-
-
-/obj/structure/bed/maint
-	name = "dirty mattress"
-	desc = "An old grubby mattress. You try to not think about what could be the cause of those stains."
-	icon_state = "dirty_mattress"

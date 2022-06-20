@@ -38,7 +38,7 @@
 						O.calculate_smithing_stats(N.mod_grade)
 					qdel(N)
 					LAZYCLEARLIST(contents)
-					playsound(src, 'white/valtos/sounds/vaper.ogg', 100)
+					playsound(src, 'sound/effects/vaper.ogg', 100)
 					I.icon_state = "tongs"
 				else
 					return

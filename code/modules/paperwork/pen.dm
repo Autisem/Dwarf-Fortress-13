@@ -31,7 +31,7 @@
 	atck_type = PIERCE
 
 /obj/item/pen/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] is scribbling numbers all over [user.ru_na()]self with [src]! It looks like [user.p_theyre()] trying to commit sudoku..."))
+	user.visible_message(span_suicide("[user] is scribbling numbers all over [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit sudoku..."))
 	return(BRUTELOSS)
 
 /obj/item/pen/blue
@@ -88,7 +88,7 @@
 /datum/crafting_recipe/charcoal_stylus
 	name = "Charcoal Stylus"
 	result = /obj/item/pen/charcoal
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 1, /datum/reagent/ash = 30)
+	reqs = list(/datum/reagent/ash = 30)
 	time = 30
 	category = CAT_PRIMAL
 

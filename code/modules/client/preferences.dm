@@ -107,7 +107,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/parallax
 
 	var/ambientocclusion = TRUE
-	var/fullscreen = TRUE
 
 	///Should we automatically fit the viewport?
 	var/auto_fit_viewport = FALSE
@@ -385,7 +384,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += SETUP_NODE_SWITCH("Parallax", "parallaxdown", button_name)
 			dat += SETUP_NODE_SWITCH("Shadows", "ambientocclusion", ambientocclusion ? "On" : "Off")
 			dat += SETUP_NODE_SWITCH("Fit viewport", "auto_fit_viewport", auto_fit_viewport ? "Auto" : "Manual")
-			dat += SETUP_NODE_SWITCH("Fullscreen", "fullscreen", fullscreen ? "On" : "Off")
 
 			if (CONFIG_GET(string/default_view) != CONFIG_GET(string/default_view_square))
 				dat += SETUP_NODE_SWITCH("Widescreen", "widescreenpref", widescreenpref ? "On ([CONFIG_GET(string/default_view)])" : "Off ([CONFIG_GET(string/default_view_square)])")
@@ -1251,10 +1249,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					auto_fit_viewport = !auto_fit_viewport
 					if(auto_fit_viewport && parent)
 						parent.fit_viewport()
-
-				if("fullscreen")
-					fullscreen = !fullscreen
-					parent.ToggleFullscreen()
 
 				if("tooltip_user")
 					w_toggles ^= TOOLTIP_USER_UP

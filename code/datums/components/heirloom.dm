@@ -17,4 +17,4 @@
 	if(user.mind == owner)
 		examine_list += span_notice("\nА это моя семейная реликвия. Главное - не потерять!")
 	else if(isobserver(user))
-		examine_list += span_notice("\nЭто реликвия семьи [family_name], принадлежащая [skloname(owner.current.name, DATELNI, owner.current.gender)].")
+		examine_list += span_notice("\nЭто реликвия семьи [family_name], принадлежащая [owner].")

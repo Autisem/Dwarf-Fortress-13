@@ -7,13 +7,13 @@
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_MINERAL_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_MINERAL_WALLS)
-	baseturfs = /turf/open/floor/plating/asteroid
+	baseturfs = /turf/open/floor/stone
 	opacity = TRUE
 	density = TRUE
 	base_icon_state = "smoothrocks"
 	var/smooth_icon = 'icons/turf/smoothrocks.dmi'
 	var/environment_type = "asteroid"
-	var/turf/open/floor/plating/turf_type = /turf/open/floor/plating/asteroid
+	var/turf/open/floor/turf_type = /turf/open/floor
 	var/obj/item/stack/ore/mineralType = null
 	var/mineralAmt = 3
 	var/last_act = 0

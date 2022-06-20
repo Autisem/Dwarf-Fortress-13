@@ -2,10 +2,10 @@
 
 /obj/item/blacksmith
 	name = "item"
-	icon = 'white/valtos/icons/objects.dmi'
+	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "iron_ingot"
-	lefthand_file = 'white/valtos/icons/lefthand.dmi'
-	righthand_file = 'white/valtos/icons/righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	custom_materials = list(/datum/material/iron = 10000)
 	var/real_force = 0
 	var/grade = ""
@@ -14,9 +14,6 @@
 /obj/item/blacksmith/smithing_hammer
 	name = "smithing hammer"
 	desc = "Used for forging."
-	icon = 'dwarfs/icons/items/tools.dmi'
-	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
-	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	icon_state = "smithing_hammer"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
@@ -194,10 +191,6 @@
 /obj/item/storage/belt/dagger_sneath
 	name = "dagger sneath"
 	desc = "Perfect habitat for your little friend."
-
-	icon = 'white/valtos/icons/clothing/belts.dmi'
-	worn_icon = 'white/valtos/icons/clothing/mob/belt.dmi'
-
 	icon_state = "dagger_sneath"
 	inhand_icon_state = "dagger_sneath"
 	worn_icon_state = "dagger_sneath"
@@ -436,8 +429,8 @@
 /obj/item/blacksmith/shpatel/attack_self(mob/user)
 	..()
 	var/list/choices = list(
-		"Floor" = image(icon = 'white/kacherkin/icons/dwarfs/obj/turfs1.dmi', icon_state = "stone_floor"),
-		"Wall" = image(icon = 'dwarfs/icons/turf/walls_dwarven.dmi', icon_state = "rich_wall-12")
+		"Floor" = image(icon = 'dwarfs/icons/turf/floors_dwarven.dmi', icon_state = "stone_floor"),
+		"Wall" = image(icon = 'dwarfs/icons/turf/walls_dwarven.dmi', icon_state = "rich_wall-0")
 	)
 	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
@@ -447,101 +440,6 @@
 			mode = SHPATEL_BUILD_FLOOR
 		if("Wall")
 			mode = SHPATEL_BUILD_WALL
-
-/obj/item/blacksmith/scepter
-	name = "scepter"
-	desc = "Scepter of Armok chosen."
-	icon = 'dwarfs/icons/items/weapons.dmi'
-	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
-	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
-	icon_state = "king_scepter"
-	w_class = WEIGHT_CLASS_HUGE
-	force = 9
-	throwforce = 4
-	throw_range = 5
-	custom_materials = list(/datum/material/gold = 10000)
-	var/mode = SHPATEL_BUILD_FLOOR
-	var/cur_markers = 0
-	var/max_markers = 64
-
-/obj/item/blacksmith/scepter/proc/check_menu(mob/living/user)
-	if(!istype(user))
-		return FALSE
-	if(user.incapacitated() || !user.Adjacent(src))
-		return FALSE
-	return TRUE
-
-/obj/item/blacksmith/scepter/attack_self(mob/user)
-	..()
-	var/list/choices = list(
-		"Floors"   = image(icon = 'white/valtos/icons/objects.dmi', icon_state = "plan_floor"),
-		"Walls"  = image(icon = 'white/valtos/icons/objects.dmi', icon_state = "plan_wall"),
-		"Doors"  = image(icon = 'white/valtos/icons/objects.dmi', icon_state = "plan_door"),
-		"Tables"  = image(icon = 'white/valtos/icons/objects.dmi', icon_state = "plan_table"),
-		"Chairs" = image(icon = 'white/valtos/icons/objects.dmi', icon_state = "plan_chair"),
-		"Clear"= image(icon = 'white/valtos/icons/objects.dmi', icon_state = "clear")
-	)
-	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
-	if(!check_menu(user))
-		return
-	switch(choice)
-		if("Floors")
-			mode = SHPATEL_BUILD_FLOOR
-		if("Walls")
-			mode = SHPATEL_BUILD_WALL
-		if("Doors")
-			mode = SHPATEL_BUILD_DOOR
-		if("Tables")
-			mode = SHPATEL_BUILD_TABLE
-		if("Chairs")
-			mode = SHPATEL_BUILD_CHAIR
-		if("Clear")
-			clear(user)
-
-/obj/effect/plan_marker
-	name = "marker"
-	icon = 'white/valtos/icons/objects.dmi'
-	anchored = TRUE
-	icon_state = "plan_floor"
-	layer = ABOVE_NORMAL_TURF_LAYER
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	alpha = 190
-
-/obj/item/blacksmith/scepter/proc/clear(mob/user)
-	var/i = 0
-	for(var/obj/effect/plan_marker/M in view(7, user))
-		qdel(M)
-		i++
-	to_chat(user, span_notice("Deleted [i] markers."))
-
-/obj/item/blacksmith/scepter/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(QDELETED(target))
-		return
-	if(isturf(target))
-		var/turf/T = get_turf(target)
-		for(var/atom/A in T)
-			if(istype(A, /obj/effect/plan_marker))
-				qdel(A)
-				to_chat(user, span_notice("You remove a marker."))
-				cur_markers--
-				return
-		if(cur_markers >= max_markers)
-			to_chat(user, span_warning("Max 64!"))
-			return
-		var/obj/visual = new /obj/effect/plan_marker(T)
-		cur_markers++
-		switch(mode)
-			if(SHPATEL_BUILD_FLOOR)
-				visual.icon_state = "plan_floor"
-			if(SHPATEL_BUILD_WALL)
-				visual.icon_state = "plan_wall"
-			if(SHPATEL_BUILD_DOOR)
-				visual.icon_state = "plan_door"
-			if(SHPATEL_BUILD_TABLE)
-				visual.icon_state = "plan_table"
-			if(SHPATEL_BUILD_CHAIR)
-				visual.icon_state = "plan_chair"
 
 #undef SHPATEL_BUILD_FLOOR
 #undef SHPATEL_BUILD_WALL

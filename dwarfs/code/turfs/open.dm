@@ -19,20 +19,6 @@
 		new /obj/item/stack/sheet/stone(get_turf(src))
 		return TRUE
 
-/turf/open/floor/stone/attackby(obj/item/W, mob/user, params)
-	. = ..()
-	if(istype(W, /obj/item/blacksmith/chisel) && isstrictlytype(src, /turf/open/floor/stone))
-		if(busy)
-			to_chat(user, span_warning("Currently busy."))
-			return
-		busy = TRUE
-		if(!do_after(user, 10 SECONDS, target = src))
-			busy = FALSE
-			return
-		busy = FALSE
-		to_chat(user, span_warning("You process [src]."))
-		ChangeTurf(/turf/open/floor/stone/fancy)
-
 /turf/open/floor/stone/raw
 	name = "ugly stone floor"
 	desc = "Terrible."
@@ -86,15 +72,3 @@
 									span_notice("You dig up some stones."))
 	if(..())
 		return
-
-/turf/open/floor/stone/fancy
-	name = "fancy stone floor"
-	desc = "Beautiful classic."
-	icon = 'white/kacherkin/icons/dwarfs/obj/turfs1.dmi'
-	icon_state = "stone_floor_fancy"
-	footstep = FOOTSTEP_SAND
-	barefootstep = FOOTSTEP_SAND
-	clawfootstep = FOOTSTEP_SAND
-	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-	floor_tile = /turf/open/floor/stone/raw
-	slowdown = 0

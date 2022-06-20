@@ -403,9 +403,6 @@
 		else if(bodytemperature < 270.15)
 			to_chat(M, span_warning("It feels like [src] is freezing as you hug [p_them()]."))
 
-		if(HAS_TRAIT(M, TRAIT_HACKER))
-			RemoveElement(/datum/element/glitch)
-
 		if(HAS_TRAIT(M, TRAIT_FRIENDLY))
 			var/datum/component/mood/hugger_mood = M.GetComponent(/datum/component/mood)
 			if (hugger_mood.sanity >= SANITY_GREAT)
@@ -656,7 +653,7 @@
 	RegisterSignal(user, COMSIG_PARENT_QDELETING, .proc/qdel_void)
 	RegisterSignal(grasped_part, list(COMSIG_CARBON_REMOVE_LIMB, COMSIG_PARENT_QDELETING), .proc/qdel_void)
 
-	user.visible_message(span_danger("[user] grasps at [user.ru_ego()] [grasped_part.name], trying to stop the bleeding.") , span_notice("You grab hold of your [grasped_part.name] tightly.") , vision_distance=COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_danger("[user] grasps at [user.p_their()] [grasped_part.name], trying to stop the bleeding.") , span_notice("You grab hold of your [grasped_part.name] tightly.") , vision_distance=COMBAT_MESSAGE_RANGE)
 	playsound(get_turf(src), 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 	return TRUE
 

@@ -4,7 +4,6 @@
 	icon_state = "katanus"
 	inhand_icon_state = "katanus"
 	worn_icon_state = "katanus"
-	worn_icon = 'white/valtos/icons/weapons/mob/back.dmi'
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BACK
 	force = 25
@@ -25,8 +24,6 @@
 	icon_state = "zwei"
 	inhand_icon_state = "zwei"
 	worn_icon_state = "katanus"
-	lefthand_file = 'white/valtos/icons/96x96_lefthand.dmi'
-	righthand_file = 'white/valtos/icons/96x96_righthand.dmi'
 	inhand_x_dimension = -32
 	flags_1 = CONDUCT_1
 	force = 30
@@ -108,7 +105,6 @@
 	icon_state = "dwarfsord"
 	inhand_icon_state = "dwarfsord"
 	worn_icon_state = "dwarfsord"
-	worn_icon = 'white/valtos/icons/weapons/mob/back.dmi'
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	force = 30

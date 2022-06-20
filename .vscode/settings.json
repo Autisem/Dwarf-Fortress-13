@@ -27,5 +27,7 @@
 	},
 	"[scss]": {
 		"editor.rulers": [80]
-	}
+	},
+	"explorer.autoReveal": "focusNoScroll",
+	"dreammaker.tickOnCreate": true
 }

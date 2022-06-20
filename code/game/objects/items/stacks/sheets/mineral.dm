@@ -19,7 +19,7 @@ Mineral Sheets
 
 /obj/item/stack/sheet/mineral/gem/diamond
 	name = "diamond"
-	icon = 'white/valtos/icons/items.dmi'
+	icon = 'dwarfs/icons/items/ores_gems.dmi'
 	icon_state = "diamond"
 	// inhand_icon_state = "sheet-diamond"
 	singular_name = "diamond"
@@ -29,7 +29,7 @@ Mineral Sheets
 
 /obj/item/stack/sheet/mineral/gem/sapphire
 	name = "sapphire"
-	icon = 'white/valtos/icons/items.dmi'
+	icon = 'dwarfs/icons/items/ores_gems.dmi'
 	icon_state = "sapphire"
 	// inhand_icon_state = "sheet-sapphire"
 	singular_name = "sapphire"
@@ -39,7 +39,7 @@ Mineral Sheets
 
 /obj/item/stack/sheet/mineral/gem/ruby
 	name = "ruby"
-	icon = 'white/valtos/icons/items.dmi'
+	icon = 'dwarfs/icons/items/ores_gems.dmi'
 	icon_state = "ruby"
 	// inhand_icon_state = "sheet-ruby"
 	singular_name = "ruby"
@@ -52,7 +52,7 @@ Mineral Sheets
  */
 /obj/item/stack/sheet/mineral/gold
 	name = "gold"
-	icon = 'white/valtos/icons/items.dmi'
+	icon = 'dwarfs/icons/items/ores_gems.dmi'
 	icon_state = "sheet-gold"
 	inhand_icon_state = "sheet-gold"
 	singular_name = "golden sheet"

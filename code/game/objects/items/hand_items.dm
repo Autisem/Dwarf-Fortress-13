@@ -430,7 +430,7 @@
 			self_msg = "Чувствую, будто мой язык совсем исчез, как только пытаюсь вспомнить, как составлять слова!"
 			living_target.stuttering += rand(5, 15)
 		if(3)
-			other_msg = "запирается с ошеломленным взглядом на [living_target.ru_ego()] лице, уставливаясь на [firer ? firer : "потолок"]!"
+			other_msg = "запирается с ошеломленным взглядом на [living_target.p_their()] лице, уставливаясь на [firer ? firer : "потолок"]!"
 			self_msg = "Ваш мозг не может полностью проанализировать, что только что произошло, и вы уставились своим взглядом на [firer ? "[firer]" : "потолок"], как будто на целую вечность!"
 			living_target.face_atom(firer)
 			living_target.Stun(rand(3 SECONDS, 8 SECONDS))
@@ -471,4 +471,4 @@
 	if(! living_target.has_reagent(/datum/reagent/consumable/garlic) )
 		//Phwoar
 		living_target.reagents.add_reagent(/datum/reagent/consumable/garlic, 1)
-	living_target.visible_message("[living_target] имеет смешной взгляд на [living_target.ru_ego()] лице.", "Воу! Какое резкое послевкусие от чеснока!", vision_distance=COMBAT_MESSAGE_RANGE)
+	living_target.visible_message("[living_target] имеет смешной взгляд на [living_target.p_their()] лице.", "Воу! Какое резкое послевкусие от чеснока!", vision_distance=COMBAT_MESSAGE_RANGE)

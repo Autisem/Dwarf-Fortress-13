@@ -7,7 +7,6 @@
 	/// List of refs to falling objects -> how many levels deep we've fallen
 	var/static/list/falling_atoms = list()
 	var/static/list/forbidden_types = typecacheof(list(
-		/obj/structure/lattice,
 		/obj/structure/stone_tile,
 		/obj/projectile,
 		/obj/effect/projectile,
@@ -36,11 +35,7 @@
 
 /datum/component/chasm/proc/is_safe()
 	//if anything matching this typecache is found in the chasm, we don't drop things
-	var/static/list/chasm_safeties_typecache = typecacheof(list(/obj/structure/lattice/catwalk))
-
-	var/atom/parent = src.parent
-	var/list/found_safeties = typecache_filter_list(parent.contents, chasm_safeties_typecache)
-	return LAZYLEN(found_safeties)
+	return 0
 
 /datum/component/chasm/proc/drop_stuff(AM)
 	if (is_safe())

@@ -156,7 +156,7 @@
 /datum/component/acid/proc/on_examine(atom/A, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_danger("\n[A] покрыт[A.ru_a()] кислотой!")
+	examine_list += span_danger("\n[A] покрыт[A] кислотой!")
 
 /// Makes it possible to clean acid off of objects.
 /datum/component/acid/proc/on_clean(atom/A, clean_types)

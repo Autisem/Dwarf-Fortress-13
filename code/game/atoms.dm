@@ -1399,8 +1399,6 @@
 			log_ooc(log_text)
 		if(LOG_LOBBY)
 			log_lobby(log_text)
-		if(LOG_LOOC)
-			log_looc(log_text)
 		if(LOG_ADMIN)
 			log_admin(log_text)
 		if(LOG_ADMIN_PRIVATE)
@@ -1889,3 +1887,10 @@
 		candidate = mergers[id]
 	return candidate
 */
+
+/// Does the MGS ! animation
+/atom/proc/do_alert_animation()
+	var/image/I = image('icons/obj/closet.dmi', src, "cardboard_special", layer+1)
+	flick_overlay_view(I, src, 8)
+	I.alpha = 0
+	animate(I, pixel_z = 32, alpha = 255, time = 5, easing = ELASTIC_EASING)

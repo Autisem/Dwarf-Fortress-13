@@ -10,7 +10,7 @@
 		return TRUE //martial art code was a mistake
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	atk_verb = pick("punch", "smash", "crack")
-	D.visible_message(span_danger("[A] [atk_verb]ed [D] with such inhuman strength that it sends [D.ru_na()] flying backwards!") , \
+	D.visible_message(span_danger("[A] [atk_verb]ed [D] with such inhuman strength that it sends [D.p_them()] flying backwards!") , \
 					span_userdanger("You're [atk_verb]ed by [A] with such inhuman strength that it sends you flying backwards!") , span_hear("Слышу звук разрывающейся плоти!") , null, A)
 	to_chat(A, span_danger("[atk_verb] [D] так сильно, что [D.p_them()] отлетает назад!"))
 	D.apply_damage(rand(15,30), A.get_attack_type())

@@ -147,13 +147,13 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return "radio"
 
 /proc/get_radio_name(freq)
-	var/returntext = ru_comms(GLOB.reverseradiochannels["[freq]"])
+	var/returntext = GLOB.reverseradiochannels["[freq]"]
 	if(returntext)
 		return returntext
 	return "[copytext_char("[freq]", 1, 4)].[copytext_char("[freq]", 4, 5)]"
 
 /proc/attach_spans_pointized(input, list/spans)
-	return "[message_spans_start(spans)][pointization(input)]</span>"
+	return "[message_spans_start(spans)][input]</span>"
 
 /proc/attach_spans(input, list/spans)
 	return "[message_spans_start(spans)][input]</span>"

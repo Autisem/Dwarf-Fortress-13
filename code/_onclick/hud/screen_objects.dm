@@ -295,12 +295,6 @@
 	icon = 'icons/hud/screen_cyborg.dmi'
 	screen_loc = ui_borg_intents
 
-/atom/movable/screen/spacesuit
-	name = "spacesuit battery"
-	icon = 'white/valtos/icons/hud.dmi'
-	icon_state = "spacesuit_0"
-	screen_loc = ui_spacesuit
-
 /atom/movable/screen/mov_intent
 	name = "run/walk"
 	icon = 'icons/hud/screen_midnight.dmi'

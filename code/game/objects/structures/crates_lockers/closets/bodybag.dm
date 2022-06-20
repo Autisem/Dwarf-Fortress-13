@@ -11,7 +11,6 @@
 	open_sound_volume = 15
 	close_sound_volume = 15
 	integrity_failure = 0
-	material_drop = /obj/item/stack/sheet/cloth
 	delivery_icon = null //unwrappable
 	anchorable = FALSE
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
@@ -28,7 +27,7 @@
 	return ..()
 
 /obj/structure/closet/body_bag/attackby(obj/item/interact_tool, mob/user, params)
-	if (istype(interact_tool, /obj/item/pen) || istype(interact_tool, /obj/item/toy/crayon))
+	if (istype(interact_tool, /obj/item/pen))
 		if(!user.is_literate())
 			to_chat(user, span_notice("Неразборчиво черкаю на [src]!"))
 			return

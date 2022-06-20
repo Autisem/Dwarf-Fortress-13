@@ -9,7 +9,6 @@
 	fill_icon_thresholds = list(0)
 	fill_icon_state = "drinking_glass"
 	volume = 50
-	custom_materials = list(/datum/material/glass=500)
 	max_integrity = 20
 	spillable = TRUE
 	resistance_flags = ACID_PROOF
@@ -71,7 +70,6 @@
 	possible_transfer_amounts = list(15)
 	fill_icon_state = "shot_glass"
 	volume = 15
-	custom_materials = list(/datum/material/glass=100)
 	custom_price = PAYCHECK_ASSISTANT * 0.4
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/on_reagent_change(datum/reagents/holder, ...)
@@ -94,10 +92,6 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass/filled/cola
 	name = "Space Cola"
 	list_reagents = list(/datum/reagent/consumable/space_cola = 50)
-
-/obj/item/reagent_containers/food/drinks/drinkingglass/filled/nuka_cola
-	name = "Nuka Cola"
-	list_reagents = list(/datum/reagent/consumable/nuka_cola = 50)
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/attack(obj/target, mob/user)
 	if(user.a_intent == INTENT_HARM && ismob(target) && target.reagents && reagents.total_volume)

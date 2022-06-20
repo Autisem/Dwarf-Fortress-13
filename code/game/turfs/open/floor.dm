@@ -74,11 +74,8 @@
 				if(1)
 					if(!length(baseturfs) || !ispath(baseturfs[baseturfs.len-1], /turf/open/floor))
 						ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
-						ReplaceWithLattice()
 					else
 						ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
-					if(prob(33))
-						new /obj/item/stack/sheet/iron(src)
 				if(2)
 					ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
 				if(3)
@@ -86,8 +83,6 @@
 						ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					else
 						break_tile()
-					if(prob(33))
-						new /obj/item/stack/sheet/iron(src)
 		if(3)
 			if (prob(50))
 				src.break_tile()
@@ -100,7 +95,7 @@
 	return attack_hand(user)
 
 /turf/open/floor/proc/break_tile_to_plating()
-	var/turf/open/floor/plating/T = make_plating()
+	var/turf/open/floor/T = make_plating()
 	if(!istype(T))
 		return
 	T.break_tile()
@@ -163,7 +158,7 @@
 	var/obj/item/crowbar/CB = user.is_holding_item_of_type(/obj/item/crowbar)
 	if(!CB)
 		return
-	var/turf/open/floor/plating/P = pry_tile(CB, user, TRUE)
+	var/turf/open/floor/P = pry_tile(CB, user, TRUE)
 	if(!istype(P))
 		return
 	P.attackby(T, user, params)

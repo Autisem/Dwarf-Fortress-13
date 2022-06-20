@@ -662,7 +662,7 @@
 				if(!C.undergoing_cardiac_arrest() && C.can_heartattack())
 					C.set_heartattack(TRUE)
 					if(C.stat == CONSCIOUS)
-						C.visible_message(span_userdanger("[C] хватается за свою грудь, будто бы [C.ru_ego()] сердце остановилось!"))
+						C.visible_message(span_userdanger("[C] хватается за свою грудь, будто бы [C.p_their()] сердце остановилось!"))
 				else
 					C.losebreath += 10
 					C.adjustOxyLoss(rand(5,25), 0)

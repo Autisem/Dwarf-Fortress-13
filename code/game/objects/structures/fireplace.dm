@@ -38,20 +38,7 @@
 		return TRUE
 
 /obj/structure/fireplace/attackby(obj/item/T, mob/user)
-	if(istype(T, /obj/item/stack/sheet/mineral/wood))
-		var/obj/item/stack/sheet/mineral/wood/wood = T
-		var/space_remaining = MAXIMUM_BURN_TIMER - burn_time_remaining()
-		var/space_for_logs = round(space_remaining / LOG_BURN_TIMER)
-		if(space_for_logs < 1)
-			to_chat(user, span_warning("Похоже [T.name] не поместится в <b>[src.name]</b>!"))
-			return
-		var/logs_used = min(space_for_logs, wood.amount)
-		wood.use(logs_used)
-		adjust_fuel_timer(LOG_BURN_TIMER * logs_used)
-		user.visible_message("<span class='notice'><b>[user]</b> подкидывает немного \
-			древесины в <b>[src.name]</b>.</span>", "<span class='notice'>Подкидываю \
-			немного древесины в <b>[src.name]</b>.</span>")
-	else if(istype(T, /obj/item/paper_bin))
+	if(istype(T, /obj/item/paper_bin))
 		var/obj/item/paper_bin/paper_bin = T
 		user.visible_message("<span class='notice'><b>[user]</b> закидывает [T.name] в \
 			<b>[src.name]</b>.</span>", "<span class='notice'>Закидываю [T.name] в <b>[src.name]</b>.\

@@ -69,7 +69,7 @@
 ///Called when there is no real turf below this turf
 /datum/element/turf_z_transparency/proc/add_baseturf_underlay(turf/our_turf)
 	if(is_openspace) // we don't ever want our bottom turf to be openspace
-		our_turf.ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+		our_turf.ChangeTurf(/turf/open/floor/stone, flags = CHANGETURF_INHERIT_AIR)
 	var/turf/path = SSmapping.level_trait(our_turf.z, ZTRAIT_BASETURF) || /turf/open/space
 	if(!ispath(path))
 		path = text2path(path)

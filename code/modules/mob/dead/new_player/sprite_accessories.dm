@@ -878,7 +878,7 @@
 // white dream hair
 
 /datum/sprite_accessory/hair/white
-	icon = 'white/valtos/icons/ohairs.dmi'
+	icon = 'icons/mob/ohairs.dmi'
 	icon_state = null
 	name = null
 
@@ -2287,37 +2287,6 @@
 	icon_state = "cat"
 	color_src = HAIR
 
-/datum/sprite_accessory/tails/human/fox
-	name = "Fox"
-	icon_state = "fox"
-	color_src = HAIR
-	icon = 'white/valtos/icons/mutant_bodyparts.dmi'
-
-/datum/sprite_accessory/tails_animated/human/fox
-	name = "Fox"
-	icon_state = "fox"
-	color_src = HAIR
-	icon = 'white/valtos/icons/mutant_bodyparts.dmi'
-
-/datum/sprite_accessory/tails/human/oni
-	name = "Oni"
-	icon_state = "oni"
-	color_src = HAIR
-	icon = 'white/valtos/icons/mutant_bodyparts.dmi'
-
-/datum/sprite_accessory/tails_animated/human/oni
-	name = "Oni"
-	icon_state = "oni"
-	color_src = HAIR
-	icon = 'white/valtos/icons/mutant_bodyparts.dmi'
-
-/datum/sprite_accessory/tails/human/pig
-	name = "Pig"
-	icon_state = "pig"
-	icon = 'white/valtos/icons/mutant_bodyparts.dmi'
-	locked = TRUE
-	use_static = TRUE
-
 /datum/sprite_accessory/tails/monkey/default
 	name = "Monkey"
 	icon_state = "monkey"
@@ -2381,13 +2350,6 @@
 	icon_state = "cat"
 	hasinner = 1
 	color_src = HAIR
-
-/datum/sprite_accessory/ears/pig
-	name = "Pig"
-	icon_state = "pig"
-	icon = 'white/valtos/icons/mutant_bodyparts.dmi'
-	locked = TRUE
-	use_static = TRUE
 
 /datum/sprite_accessory/wings/none
 	name = "None"

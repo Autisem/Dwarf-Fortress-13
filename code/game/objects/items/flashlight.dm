@@ -11,7 +11,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
-	custom_materials = list(/datum/material/iron=50, /datum/material/glass=20)
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_range = 4
 	light_power = 1
@@ -47,9 +46,9 @@
 
 /obj/item/flashlight/suicide_act(mob/living/carbon/human/user)
 	if (user.is_blind())
-		user.visible_message(span_suicide("[user] is putting [src] close to [user.ru_ego()] eyes and turning it on... but [user.p_theyre()] blind!"))
+		user.visible_message(span_suicide("[user] is putting [src] close to [user.p_their()] eyes and turning it on... but [user.p_theyre()] blind!"))
 		return SHAME
-	user.visible_message(span_suicide("[user] is putting [src] close to [user.ru_ego()] eyes and turning it on! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is putting [src] close to [user.p_their()] eyes and turning it on! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (FIRELOSS)
 
 /obj/item/flashlight/attack(mob/living/carbon/M, mob/living/carbon/human/user)
@@ -119,36 +118,13 @@
 						var/obj/item/organ/O = mouth_organs[I]
 						organ_list += (O.gender == "plural" ? O.name : " [O.name]")
 
-				var/pill_count = 0
-				for(var/datum/action/item_action/hands_free/activate_pill/AP in M.actions)
-					pill_count++
-
 				if(M == user)
-					var/can_use_mirror = FALSE
-					if(isturf(user.loc))
-						var/obj/structure/mirror/mirror = locate(/obj/structure/mirror, user.loc)
-						if(mirror)
-							switch(user.dir)
-								if(NORTH)
-									can_use_mirror = mirror.pixel_y > 0
-								if(SOUTH)
-									can_use_mirror = mirror.pixel_y < 0
-								if(EAST)
-									can_use_mirror = mirror.pixel_x > 0
-								if(WEST)
-									can_use_mirror = mirror.pixel_x < 0
-
 					M.visible_message(span_notice("[M] directs [src] to [their] mouth."), \
 					span_notice("You point [src] into your mouth."))
-					if(!can_use_mirror)
-						to_chat(user, span_notice("You can't see anything without a mirror."))
-						return
 					if(organ_count)
 						to_chat(user, span_notice("Inside your mouth [organ_count > 1 ? "are" : "is"] [organ_list]."))
 					else
 						to_chat(user, span_notice("There's nothing inside your mouth."))
-					if(pill_count)
-						to_chat(user, span_notice("You have [pill_count] implanted pill[pill_count > 1 ? "s" : ""]."))
 
 				else
 					user.visible_message(span_notice("[user] directs [src] to [M]'s mouth."),\
@@ -157,8 +133,6 @@
 						to_chat(user, span_notice("Inside [their] mouth [organ_count > 1 ? "are" : "is"] [organ_list]."))
 					else
 						to_chat(user, span_notice("[M] doesn't have any organs in [their] mouth."))
-					if(pill_count)
-						to_chat(user, span_notice("[M] has [pill_count] pill[pill_count > 1 ? "s" : ""] implanted in [their] teeth."))
 
 	else
 		return ..()

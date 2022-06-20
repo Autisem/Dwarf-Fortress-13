@@ -53,32 +53,3 @@
 	baseturfs = /turf/open/floor/stone
 	sheet_amount = 4
 	girder_type = null
-	var/busy = FALSE
-
-/turf/closed/wall/stonewall/attackby(obj/item/W, mob/user, params)
-	. = ..()
-	if(istype(W, /obj/item/blacksmith/chisel))
-		if(busy)
-			to_chat(user, span_warning("Currently busy."))
-			return
-		busy = TRUE
-		if(!do_after(user, 10 SECONDS, target = src))
-			busy = FALSE
-			return
-		busy = FALSE
-		to_chat(user, span_warning("You process \the [src]."))
-		ChangeTurf(/turf/closed/wall/stonewall_fancy)
-
-/turf/closed/wall/stonewall_fancy
-	name = "fancy stone wall"
-	desc = "KrasIVo!"
-	icon = 'white/valtos/icons/dwarfs/rich_wall.dmi'
-	icon_state = "rich_wall-0"
-	base_icon_state = "rich_wall"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_INDUSTRIAL_LIFT)
-	canSmoothWith = list(SMOOTH_GROUP_INDUSTRIAL_LIFT)
-	sheet_type = /obj/item/stack/sheet/stone
-	baseturfs = /turf/open/floor/stone
-	sheet_amount = 4
-	girder_type = null

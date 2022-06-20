@@ -44,8 +44,6 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define ischasm(A) (istype(A, /turf/open/chasm))
 
-#define isplatingturf(A) (istype(A, /turf/open/floor/plating))
-
 #define istransparentturf(A) (HAS_TRAIT(A, TURF_Z_TRANSPARENT_TRAIT))
 
 //Mobs
@@ -163,8 +161,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define issignaler(O) (istype(O, /obj/item/assembly/signaler))
 
-GLOBAL_LIST_INIT(glass_sheet_types, typecacheof(list(
-	/obj/item/stack/sheet/glass)))
+GLOBAL_LIST_INIT(glass_sheet_types, typecacheof(list()))
 
 #define is_glass_sheet(O) (is_type_in_typecache(O, GLOB.glass_sheet_types))
 

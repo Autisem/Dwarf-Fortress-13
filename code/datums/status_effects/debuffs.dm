@@ -570,7 +570,7 @@
 				var/prev_intent = owner.a_intent
 				owner.a_intent = INTENT_HARM
 				to_chat(owner, span_warning("Мою руку схватила судорога!"))
-				owner.log_message("attacked [owner.ru_na()]self to a Muscle Spasm", LOG_ATTACK)
+				owner.log_message("attacked [owner.p_them()]self to a Muscle Spasm", LOG_ATTACK)
 				owner.ClickOn(owner)
 				owner.a_intent = prev_intent
 			if(5)
@@ -600,7 +600,7 @@
 	if(prob(40))
 		var/obj/item/I = H.get_active_held_item()
 		if(I && H.dropItemToGround(I))
-			H.visible_message(span_notice("Рука [H] дёргается и случайно выбрасывает [skloname(I.name, VINITELNI, I.gender)]!") ,span_userdanger("Моя рука внезапно дёргается и из неё выпадает то, что я держу!"))
+			H.visible_message(span_notice("Рука [H] дёргается и случайно выбрасывает [I]!") ,span_userdanger("Моя рука внезапно дёргается и из неё выпадает то, что я держу!"))
 			H.jitteriness += 5
 
 /atom/movable/screen/alert/status_effect/convulsing

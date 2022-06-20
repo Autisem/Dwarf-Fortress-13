@@ -1,7 +1,7 @@
 /obj/structure/chair
 	name = "стул"
 	desc = "На нём можно сидеть."
-	icon = 'white/valtos/icons/chairs.dmi'
+	icon = 'icons/obj/chairs.dmi'
 	icon_state = "chair"
 	anchored = TRUE
 	can_buckle = TRUE
@@ -11,7 +11,7 @@
 	integrity_failure = 0.1
 
 	custom_materials = list(/datum/material/iron = 2000)
-	var/buildstacktype = /obj/item/stack/sheet/iron
+	var/buildstacktype = /obj/item/stack/sheet/stone
 	var/buildstackamount = 1
 	var/item_chair = /obj/item/chair // if null it can't be picked up
 	layer = OBJ_LAYER
@@ -116,7 +116,6 @@
 	icon_state = "wooden_chair"
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
-	buildstacktype = /obj/item/stack/sheet/mineral/wood
 	buildstackamount = 3
 	item_chair = /obj/item/chair/wood
 
@@ -219,7 +218,7 @@
 			return
 		if(!usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, TRUE))
 			return
-		usr.visible_message(span_notice("[usr] хватает [skloname(src.name, VINITELNI, src.gender)].") , span_notice("Хватаю [skloname(src.name, VINITELNI, src.gender)]."))
+		usr.visible_message(span_notice("[usr] хватает [src].") , span_notice("Хватаю [src]."))
 		var/obj/item/C = new item_chair(loc)
 		C.set_custom_materials(custom_materials)
 		TransferComponents(C)
@@ -229,27 +228,10 @@
 /obj/structure/chair/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	return ..()
 
-/obj/structure/chair/stool/bar
-	name = "барный стул"
-	desc = "На нем есть какие-то неприятные пятна ..."
-	icon = 'white/valtos/icons/chairs.dmi'
-	icon_state = "bar"
-	item_chair = /obj/item/chair/stool/bar
-
-/obj/structure/chair/stool/bamboo
-	name = "бамбуковый стул"
-	desc = "Самодельный стул, выглядит прикольно."
-	icon_state = "bamboo_stool"
-	resistance_flags = FLAMMABLE
-	max_integrity = 60
-	buildstacktype = /obj/item/stack/sheet/mineral/bamboo
-	buildstackamount = 2
-	item_chair = /obj/item/chair/stool/bamboo
-
 /obj/item/chair
 	name = "стул"
 	desc = "Особенность потасовок в баре."
-	icon = 'white/valtos/icons/chairs.dmi'
+	icon = 'icons/obj/chairs.dmi'
 	icon_state = "chair_toppled"
 	inhand_icon_state = "chair"
 	lefthand_file = 'icons/mob/inhands/misc/chairs_lefthand.dmi'
@@ -265,7 +247,7 @@
 	var/obj/structure/chair/origin_type = /obj/structure/chair
 
 /obj/item/chair/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins hitting [user.ru_na()]self with <b>[src.name]</b>! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] begins hitting [user.p_them()]self with <b>[src.name]</b>! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(src,hitsound,50,TRUE)
 	return BRUTELOSS
 
@@ -301,8 +283,6 @@
 	if(remaining_mats)
 		for(var/M=1 to remaining_mats)
 			new stack_type(get_turf(loc))
-	else if(custom_materials[GET_MATERIAL_REF(/datum/material/iron)])
-		new /obj/item/stack/rods(get_turf(loc), 2)
 	qdel(src)
 
 
@@ -310,7 +290,7 @@
 
 /obj/item/chair/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "атаку", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == UNARMED_ATTACK && prob(hit_reaction_chance))
-		owner.visible_message(span_danger("[owner] отражает [attack_text] [skloname(src.name, TVORITELNI, src.gender)]!"))
+		owner.visible_message(span_danger("[owner] отражает [attack_text] [src]!"))
 		return TRUE
 	return FALSE
 
@@ -332,26 +312,10 @@
 
 /obj/item/chair/stool
 	name = "табуретка"
-	icon = 'white/valtos/icons/chairs.dmi'
 	icon_state = "stool_toppled"
 	inhand_icon_state = "stool"
 	origin_type = /obj/structure/chair/stool
 	break_chance = 0 //It's too sturdy.
-
-/obj/item/chair/stool/bamboo
-	name = "бамбуковый стул"
-	icon_state = "bamboo_stool"
-	inhand_icon_state = "stool_bamboo"
-	hitsound = 'sound/weapons/genhit1.ogg'
-	origin_type = /obj/structure/chair/stool/bamboo
-	break_chance = 50	//Submissive and breakable unlike the chad iron stool
-
-/obj/item/chair/stool/bar
-	name = "барный стул"
-	icon = 'white/valtos/icons/chairs.dmi'
-	icon_state = "bar_toppled"
-	inhand_icon_state = "stool_bar"
-	origin_type = /obj/structure/chair/stool/bar
 
 /obj/item/chair/wood
 	name = "деревянный стул"
@@ -375,55 +339,6 @@
 	icon = 'icons/obj/chairs.dmi'
 	icon_state = "chairold"
 	item_chair = null
-
-/obj/structure/chair/bronze
-	name = "латунный стул"
-	desc = "Кругленький стул из латуни. У него маленькие винтики для колес!"
-	anchored = FALSE
-	icon = 'icons/obj/chairs.dmi'
-	icon_state = "brass_chair"
-	buildstacktype = /obj/item/stack/tile/bronze
-	buildstackamount = 1
-	item_chair = null
-	var/turns = 0
-
-/obj/structure/chair/bronze/relaymove(mob/user, direction)
-	if(!direction)
-		return FALSE
-	if(direction == dir)
-		return
-	setDir(direction)
-	playsound(src, 'sound/effects/servostep.ogg', 50, FALSE)
-	return FALSE
-
-/obj/structure/chair/bronze/Destroy()
-	STOP_PROCESSING(SSfastprocess, src)
-	. = ..()
-
-/obj/structure/chair/bronze/process()
-	setDir(turn(dir,-90))
-	playsound(src, 'sound/effects/servostep.ogg', 50, FALSE)
-	turns++
-	if(turns >= 8)
-		STOP_PROCESSING(SSfastprocess, src)
-
-/obj/structure/chair/bronze/Moved()
-	. = ..()
-	if(has_gravity())
-		playsound(src, 'sound/machines/clockcult/integration_cog_install.ogg', 50, TRUE)
-
-/obj/structure/chair/bronze/AltClick(mob/user)
-	turns = 0
-	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE))
-		return
-	if(!(datum_flags & DF_ISPROCESSING))
-		user.visible_message(span_notice("[user] spins [src] around, and the last vestiges of Ratvarian technology keeps it spinning FOREVER.") , \
-		span_notice("Automated spinny chairs. The pinnacle of ancient Ratvarian technology."))
-		START_PROCESSING(SSfastprocess, src)
-	else
-		user.visible_message(span_notice("[user] stops [src] uncontrollable spinning.") , \
-		span_notice("You grab [src] and stop its wild spinning."))
-		STOP_PROCESSING(SSfastprocess, src)
 
 /obj/structure/chair/mime
 	name = "невидимый стул"

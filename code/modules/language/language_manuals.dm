@@ -35,7 +35,7 @@
 	else if(M.has_language(language))
 		M.visible_message(span_danger("[user] beats [M] over the head with [src]!") , span_userdanger("[user] beats you over the head with [src]!") , span_hear("You hear smacking."))
 	else
-		M.visible_message(span_notice("[user] teaches [M] by beating [M.ru_na()] over the head with [src]!") , span_boldnotice("As [user] hits you with [src], [flavour_text].") , span_hear("You hear smacking."))
+		M.visible_message(span_notice("[user] teaches [M] by beating [M.p_their()] over the head with [src]!") , span_boldnotice("As [user] hits you with [src], [flavour_text].") , span_hear("You hear smacking."))
 		M.grant_language(language, TRUE, TRUE, LANGUAGE_MIND)
 		use_charge(user)
 

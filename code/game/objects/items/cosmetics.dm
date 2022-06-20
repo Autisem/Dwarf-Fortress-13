@@ -53,13 +53,13 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.is_mouth_covered())
-			to_chat(user, span_warning("Remove [ H == user ? "your" : "[H.ru_ego()]" ] mask!"))
+			to_chat(user, span_warning("Remove [ H == user ? "your" : "[H.p_their()]" ] mask!"))
 			return
 		if(H.lip_style)	//if they already have lipstick on
 			to_chat(user, span_warning("You need to wipe off the old lipstick first!"))
 			return
 		if(H == user)
-			user.visible_message(span_notice("[user] does [user.ru_ego()] lips with <b>[src.name]</b>.") , \
+			user.visible_message(span_notice("[user] does [user.p_their()] lips with <b>[src.name]</b>.") , \
 				span_notice("You take a moment to apply <b>[src.name]</b>. Perfect!"))
 			H.lip_style = "lipstick"
 			H.lip_color = colour
@@ -108,7 +108,7 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/razor/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] begins shaving [user.ru_na()]self without the razor guard! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] begins shaving [user.p_them()]self without the razor guard! It looks like [user.p_theyre()] trying to commit suicide!"))
 	shave(user, BODY_ZONE_PRECISE_MOUTH)
 	shave(user, BODY_ZONE_HEAD)//doesnt need to be BODY_ZONE_HEAD specifically, but whatever
 	return BRUTELOSS
@@ -163,10 +163,10 @@
 					return
 
 				if(H == user) //shaving yourself
-					user.visible_message(span_notice("[user] starts to shave [user.ru_ego()] facial hair with [src].") , \
+					user.visible_message(span_notice("[user] starts to shave [user.p_their()] facial hair with [src].") , \
 						span_notice("You take a moment to shave your facial hair with [src]..."))
 					if(do_after(user, 50, target = H))
-						user.visible_message(span_notice("[user] shaves [user.ru_ego()] facial hair clean with [src].") , \
+						user.visible_message(span_notice("[user] shaves [user.p_their()] facial hair clean with [src].") , \
 							span_notice("You finish shaving with [src]. Fast and clean!"))
 						shave(H, location)
 				else
@@ -210,10 +210,10 @@
 					return
 
 				if(H == user) //shaving yourself
-					user.visible_message(span_notice("[user] starts to shave [user.ru_ego()] head with [src].") , \
+					user.visible_message(span_notice("[user] starts to shave [user.p_their()] head with [src].") , \
 						span_notice("You start to shave your head with [src]..."))
 					if(do_after(user, 5, target = H))
-						user.visible_message(span_notice("[user] shaves [user.ru_ego()] head with [src].") , \
+						user.visible_message(span_notice("[user] shaves [user.p_their()] head with [src].") , \
 							span_notice("You finish shaving with [src]."))
 						shave(H, location)
 				else

@@ -45,7 +45,7 @@
 	var/close_sound = 'sound/machines/closet_close.ogg'
 	var/open_sound_volume = 35
 	var/close_sound_volume = 50
-	var/material_drop = /obj/item/stack/sheet/iron
+	var/material_drop = /obj/item/stack/sheet/stone
 	var/material_drop_amount = 2
 	var/delivery_icon = "deliverycloset" //which icon to use when packagewrapped. null to be unwrappable.
 	var/anchorable = TRUE
@@ -513,7 +513,7 @@
 				INVOKE_ASYNC(src, /datum/.proc/ui_interact, user)
 			else
 				locked = !locked
-				playsound(src, 'white/valtos/sounds/locker.ogg', 25, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
+				playsound(src, 'sound/items/locker.ogg', 25, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
 				user.visible_message(span_notice("[user] [locked ? "блокирует" : "разблокировывает"] [src].") ,
 								span_notice("[locked ? "Блокирую" : "Разблокировываю"] [src]."))
 				update_icon()

@@ -285,10 +285,6 @@
 	name = "флакон с железом"
 	list_reagents = list(/datum/reagent/iron = 30)
 
-/obj/item/reagent_containers/glass/bottle/copper
-	name = "флакон с медью"
-	list_reagents = list(/datum/reagent/copper = 30)
-
 /obj/item/reagent_containers/glass/bottle/mercury
 	name = "флакон с ртутью"
 	list_reagents = list(/datum/reagent/mercury = 30)

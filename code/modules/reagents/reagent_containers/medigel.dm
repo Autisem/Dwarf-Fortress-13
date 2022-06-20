@@ -47,7 +47,7 @@
 		return
 
 	if(M == user)
-		M.visible_message(span_notice("[user] пытается [apply_method] [src] на [user.ru_na()]."))
+		M.visible_message(span_notice("[user] пытается [apply_method] [src] на [user.p_them()]."))
 		if(self_delay)
 			if(!do_mob(user, M, self_delay))
 				return

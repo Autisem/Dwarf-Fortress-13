@@ -380,7 +380,7 @@
 	resistance_flags = FIRE_PROOF
 	density = TRUE
 	/// Itemstack that is dropped when a rock is mined with a pickaxe
-	var/obj/item/stack/mineResult = /obj/item/stack/ore/glass/basalt
+	var/obj/item/stack/mineResult
 	/// Amount of the itemstack to drop
 	var/mineAmount = 20
 

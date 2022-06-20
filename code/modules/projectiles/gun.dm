@@ -89,7 +89,6 @@
 	if(pin)
 		pin = new pin(src)
 	build_zooming()
-	RegisterSignal(src, COMSIG_CLICK_CTRL_SHIFT, .proc/change_skin)
 
 /obj/item/gun/Destroy()
 	if(isobj(pin)) //Can still be the initial path, then we skip

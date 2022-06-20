@@ -70,7 +70,7 @@
 	var/static/list/PRcounts = list()	//PR id -> number of times announced this round
 
 /datum/world_topic/pr_announce/Run(list/input)
-	var/list/payload = r_json_decode(input["payload"])
+	var/list/payload = json_decode(input["payload"])
 	var/id = "[payload["pull_request"]["id"]]"
 	if(!PRcounts[id])
 		PRcounts[id] = 1
@@ -285,7 +285,7 @@
 	var/procpath = "/[proctype]/[procname]"
 	if(!text2path(procpath))
 		return "Error: callproc(): [procpath] does not exist."
-	var/list/lst = r_json_decode(input["args"])
+	var/list/lst = json_decode(input["args"])
 	if(!lst)
 		return "NO ARGS ARRRRGH"
 

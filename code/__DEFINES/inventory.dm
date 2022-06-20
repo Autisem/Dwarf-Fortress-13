@@ -161,5 +161,4 @@ GLOBAL_LIST_INIT(security_wintercoat_allowed, typecacheof(list(
 	/obj/item/flashlight,
 	/obj/item/gun/ballistic,
 	/obj/item/lighter,
-	/obj/item/restraints/handcuffs,
-	/obj/item/toy,)))
+	/obj/item/restraints/handcuffs,)))

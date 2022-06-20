@@ -355,7 +355,6 @@
 			to_chat(candidate_mob, span_notice("Выбираем: Да."))
 			if(time_passed + poll_time <= world.time)
 				to_chat(candidate_mob, span_danger("СЛИШКОМ ПОЗДНО!"))
-				SEND_SOUND(candidate_mob, 'white/valtos/sounds/error1.ogg')
 				candidates -= candidate_mob
 			else
 				candidates += candidate_mob

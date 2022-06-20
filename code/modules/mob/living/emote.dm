@@ -27,9 +27,9 @@
 		var/mob/living/carbon/human/H = user
 		if(!H.mind || !H.mind.miming)
 			if(user.gender == FEMALE)
-				return 'white/valtos/sounds/emotes/burp_female.ogg'
+				return 'sound/emotes/burp_female.ogg'
 			else
-				return 'white/valtos/sounds/emotes/burp_male.ogg'
+				return 'sound/emotes/burp_male.ogg'
 
 /datum/emote/living/choke
 	key = "choke"
@@ -42,15 +42,15 @@
 		var/mob/living/carbon/human/H = user
 		if(!H.mind || !H.mind.miming)
 			if(user.gender == FEMALE)
-				return pick('white/valtos/sounds/emotes/choke_female_1.ogg',\
-							'white/valtos/sounds/emotes/choke_female_2.ogg',\
-							'white/valtos/sounds/emotes/choke_female_3.ogg',\
-							'white/valtos/sounds/emotes/choke_female_4.ogg')
+				return pick('sound/emotes/choke_female_1.ogg',\
+							'sound/emotes/choke_female_2.ogg',\
+							'sound/emotes/choke_female_3.ogg',\
+							'sound/emotes/choke_female_4.ogg')
 			else
-				return pick('white/valtos/sounds/emotes/choke_male_1.ogg',\
-							'white/valtos/sounds/emotes/choke_male_2.ogg',\
-							'white/valtos/sounds/emotes/choke_male_3.ogg',\
-							'white/valtos/sounds/emotes/choke_male_4.ogg')
+				return pick('sound/emotes/choke_male_1.ogg',\
+							'sound/emotes/choke_male_2.ogg',\
+							'sound/emotes/choke_male_3.ogg',\
+							'sound/emotes/choke_male_4.ogg')
 
 /datum/emote/living/cross
 	key = "cross"
@@ -92,17 +92,17 @@
 		var/mob/living/carbon/human/H = user
 		if(!H.mind || !H.mind.miming)
 			if(user.gender == FEMALE)
-				return pick('white/valtos/sounds/emotes/cough_female_1.ogg',\
-							'white/valtos/sounds/emotes/cough_female_2.ogg',\
-							'white/valtos/sounds/emotes/cough_female_3.ogg',\
-							'white/valtos/sounds/emotes/cough_female_4.ogg',\
-							'white/valtos/sounds/emotes/cough_female_5.ogg')
+				return pick('sound/emotes/cough_female_1.ogg',\
+							'sound/emotes/cough_female_2.ogg',\
+							'sound/emotes/cough_female_3.ogg',\
+							'sound/emotes/cough_female_4.ogg',\
+							'sound/emotes/cough_female_5.ogg')
 			else
-				return pick('white/valtos/sounds/emotes/cough_male_1.ogg',\
-							'white/valtos/sounds/emotes/cough_male_2.ogg',\
-							'white/valtos/sounds/emotes/cough_male_3.ogg',\
-							'white/valtos/sounds/emotes/cough_male_4.ogg',\
-							'white/valtos/sounds/emotes/cough_male_5.ogg')
+				return pick('sound/emotes/cough_male_1.ogg',\
+							'sound/emotes/cough_male_2.ogg',\
+							'sound/emotes/cough_male_3.ogg',\
+							'sound/emotes/cough_male_4.ogg',\
+							'sound/emotes/cough_male_5.ogg')
 
 /datum/emote/living/dance
 	key = "dance"
@@ -175,19 +175,19 @@
 		var/mob/living/carbon/human/H = user
 		if(!H.mind || !H.mind.miming)
 			if(user.gender == FEMALE)
-				return pick('white/valtos/sounds/emotes/gasp_female_1.ogg',\
-							'white/valtos/sounds/emotes/gasp_female_2.ogg',\
-							'white/valtos/sounds/emotes/gasp_female_3.ogg',\
-							'white/valtos/sounds/emotes/gasp_female_4.ogg',\
-							'white/valtos/sounds/emotes/gasp_female_5.ogg',\
-							'white/valtos/sounds/emotes/gasp_female_6.ogg')
+				return pick('sound/emotes/gasp_female_1.ogg',\
+							'sound/emotes/gasp_female_2.ogg',\
+							'sound/emotes/gasp_female_3.ogg',\
+							'sound/emotes/gasp_female_4.ogg',\
+							'sound/emotes/gasp_female_5.ogg',\
+							'sound/emotes/gasp_female_6.ogg')
 			else
-				return pick('white/valtos/sounds/emotes/gasp_male_1.ogg',\
-							'white/valtos/sounds/emotes/gasp_male_2.ogg',\
-							'white/valtos/sounds/emotes/gasp_male_3.ogg',\
-							'white/valtos/sounds/emotes/gasp_male_4.ogg',\
-							'white/valtos/sounds/emotes/gasp_male_5.ogg',\
-							'white/valtos/sounds/emotes/gasp_male_6.ogg')
+				return pick('sound/emotes/gasp_male_1.ogg',\
+							'sound/emotes/gasp_male_2.ogg',\
+							'sound/emotes/gasp_male_3.ogg',\
+							'sound/emotes/gasp_male_4.ogg',\
+							'sound/emotes/gasp_male_5.ogg',\
+							'sound/emotes/gasp_male_6.ogg')
 
 /datum/emote/living/giggle
 	key = "giggle"
@@ -201,8 +201,8 @@
 		var/mob/living/carbon/human/H = user
 		if(!H.mind || !H.mind.miming)
 			if(user.gender == FEMALE)
-				return pick('white/valtos/sounds/emotes/giggle_female_1.ogg',\
-							'white/valtos/sounds/emotes/giggle_female_2.ogg')
+				return pick('sound/emotes/giggle_female_1.ogg',\
+							'sound/emotes/giggle_female_2.ogg')
 
 /datum/emote/living/glare
 	key = "glare"
@@ -273,21 +273,21 @@
 		var/mob/living/carbon/human/H = user
 		if(!H.mind || !H.mind.miming)
 			if(user.gender == FEMALE)
-				return pick('white/valtos/sounds/emotes/laugh_female_1.ogg',\
-							'white/valtos/sounds/emotes/laugh_female_2.ogg',\
-							'white/valtos/sounds/emotes/laugh_female_3.ogg',\
-							'white/valtos/sounds/emotes/laugh_female_4.ogg',\
-							'white/valtos/sounds/emotes/laugh_female_5.ogg',\
-							'white/valtos/sounds/emotes/laugh_female_6.ogg',\
-							'white/valtos/sounds/emotes/laugh_female_7.ogg')
+				return pick('sound/emotes/laugh_female_1.ogg',\
+							'sound/emotes/laugh_female_2.ogg',\
+							'sound/emotes/laugh_female_3.ogg',\
+							'sound/emotes/laugh_female_4.ogg',\
+							'sound/emotes/laugh_female_5.ogg',\
+							'sound/emotes/laugh_female_6.ogg',\
+							'sound/emotes/laugh_female_7.ogg')
 			else
-				return pick('white/valtos/sounds/emotes/laugh_male_1.ogg',\
-							'white/valtos/sounds/emotes/laugh_male_2.ogg',\
-							'white/valtos/sounds/emotes/laugh_male_3.ogg',\
-							'white/valtos/sounds/emotes/laugh_male_4.ogg',\
-							'white/valtos/sounds/emotes/laugh_male_5.ogg',\
-							'white/valtos/sounds/emotes/laugh_male_6.ogg',\
-							'white/valtos/sounds/emotes/laugh_male_7.ogg')
+				return pick('sound/emotes/laugh_male_1.ogg',\
+							'sound/emotes/laugh_male_2.ogg',\
+							'sound/emotes/laugh_male_3.ogg',\
+							'sound/emotes/laugh_male_4.ogg',\
+							'sound/emotes/laugh_male_5.ogg',\
+							'sound/emotes/laugh_male_6.ogg',\
+							'sound/emotes/laugh_male_7.ogg')
 
 /datum/emote/living/look
 	key = "look"
@@ -371,12 +371,12 @@
 	if(H.mind?.miming)
 		return
 	if(user.gender == MALE)
-		return pick('white/valtos/sounds/emotes/sigh_male_1.ogg',\
-					'white/valtos/sounds/emotes/sigh_male_2.ogg',\
-					'white/valtos/sounds/emotes/sigh_male_3.ogg',\
-					'white/valtos/sounds/emotes/sigh_male_4.ogg')
+		return pick('sound/emotes/sigh_male_1.ogg',\
+					'sound/emotes/sigh_male_2.ogg',\
+					'sound/emotes/sigh_male_3.ogg',\
+					'sound/emotes/sigh_male_4.ogg')
 	else
-		return 'white/valtos/sounds/emotes/sigh_female.ogg'
+		return 'sound/emotes/sigh_female.ogg'
 
 /datum/emote/living/sit
 	key = "sit"
@@ -399,13 +399,13 @@
 		var/mob/living/carbon/human/H = user
 		if(!H.mind || !H.mind.miming)
 			if(user.gender == FEMALE)
-				return pick('white/valtos/sounds/emotes/sneeze_female_1.ogg',\
-							'white/valtos/sounds/emotes/sneeze_female_2.ogg',\
-							'white/valtos/sounds/emotes/sneeze_female_3.ogg')
+				return pick('sound/emotes/sneeze_female_1.ogg',\
+							'sound/emotes/sneeze_female_2.ogg',\
+							'sound/emotes/sneeze_female_3.ogg')
 			else
-				return pick('white/valtos/sounds/emotes/sneeze_male_1.ogg',\
-							'white/valtos/sounds/emotes/sneeze_male_2.ogg',\
-							'white/valtos/sounds/emotes/sneeze_male_3.ogg')
+				return pick('sound/emotes/sneeze_male_1.ogg',\
+							'sound/emotes/sneeze_male_2.ogg',\
+							'sound/emotes/sneeze_male_3.ogg')
 
 /datum/emote/living/smug
 	key = "smug"
@@ -428,25 +428,25 @@
 
 /datum/emote/living/snore/get_sound(mob/living/user)
 	if(ishuman(user))
-		return pick('white/valtos/sounds/emotes/snore_1.ogg',\
-					'white/valtos/sounds/emotes/snore_2.ogg',\
-					'white/valtos/sounds/emotes/snore_3.ogg',\
-					'white/valtos/sounds/emotes/snore_4.ogg',\
-					'white/valtos/sounds/emotes/snore_5.ogg',\
-					'white/valtos/sounds/emotes/snore_6.ogg',\
-					'white/valtos/sounds/emotes/snore_7.ogg',\
-					'white/valtos/sounds/emotes/snore_8.ogg',\
-					'white/valtos/sounds/emotes/snore_9.ogg',\
-					'white/valtos/sounds/emotes/snore_10.ogg',\
-					'white/valtos/sounds/emotes/snore_11.ogg',\
-					'white/valtos/sounds/emotes/snore_12.ogg',\
-					'white/valtos/sounds/emotes/snore_13.ogg',\
-					'white/valtos/sounds/emotes/snore_14.ogg',\
-					'white/valtos/sounds/emotes/snore_15.ogg',\
-					'white/valtos/sounds/emotes/snore_16.ogg',\
-					'white/valtos/sounds/emotes/snore_17.ogg',\
-					'white/valtos/sounds/emotes/snore_18.ogg',\
-					'white/valtos/sounds/emotes/snore_19.ogg')
+		return pick('sound/emotes/snore_1.ogg',\
+					'sound/emotes/snore_2.ogg',\
+					'sound/emotes/snore_3.ogg',\
+					'sound/emotes/snore_4.ogg',\
+					'sound/emotes/snore_5.ogg',\
+					'sound/emotes/snore_6.ogg',\
+					'sound/emotes/snore_7.ogg',\
+					'sound/emotes/snore_8.ogg',\
+					'sound/emotes/snore_9.ogg',\
+					'sound/emotes/snore_10.ogg',\
+					'sound/emotes/snore_11.ogg',\
+					'sound/emotes/snore_12.ogg',\
+					'sound/emotes/snore_13.ogg',\
+					'sound/emotes/snore_14.ogg',\
+					'sound/emotes/snore_15.ogg',\
+					'sound/emotes/snore_16.ogg',\
+					'sound/emotes/snore_17.ogg',\
+					'sound/emotes/snore_18.ogg',\
+					'sound/emotes/snore_19.ogg')
 
 /datum/emote/living/stare
 	key = "stare"

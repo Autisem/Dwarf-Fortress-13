@@ -80,7 +80,7 @@
 	name = "бронепластина из пластали"
 	singular_name = "бронепластина из пластали"
 	desc = "Самодельный броневой лист грубо вырезанный из листа пластали, напоминает поделки рейнджеров НКР"
-	icon = 'white/Feline/icons/armor_plate.dmi'
+	icon = 'icons/obj/items/armor_plate.dmi'
 	icon_state = "plasteel_armor_plate"
 	max_amount = 6
 	merge_type = /obj/item/stack/sheet/plasteel_armor_plate

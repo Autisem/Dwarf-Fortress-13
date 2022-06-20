@@ -16,6 +16,16 @@
 	icon = 'icons/turf/walls.dmi'
 	explosion_block = 50
 
+/turf/closed/indestructible/black
+	name = "eptiness"
+	icon_state = "black"
+	layer = FLY_LAYER
+	bullet_bounce_sound = null
+	baseturfs = /turf/closed/indestructible/black
+
+/turf/closed/indestructible/black/New()
+	return
+
 /turf/closed/indestructible/TerraformTurf(path, new_baseturf, flags, defer_change = FALSE, ignore_air = FALSE)
 	return
 
@@ -35,9 +45,6 @@
 	playsound(src, 'sound/weapons/genhit.ogg', 25, TRUE)
 	add_fingerprint(user)
 	if(isopenspace(turf_one))
-		if(locate(/obj/structure/lattice) in turf_one)
-			to_chat(user, span_notice("The lattice above is obstructing your way!"))
-			return
 		if(do_after(user, 3 SECONDS, target = src))
 			if(isopenturf(turf_two))
 				var/obstacles = FALSE
@@ -67,8 +74,6 @@
 				user.movement_type &= ~FLYING
 				var/turf/feetson = get_turf(user)
 				if(isgroundlessturf(feetson))
-					if(locate(/obj/structure/lattice) in feetson)
-						return
 					feetson.zFall(user)
 	else
 		to_chat(user, span_notice("You push the wall but nothing happens!"))

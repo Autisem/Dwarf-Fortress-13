@@ -127,7 +127,7 @@
 	add_fingerprint(usr)
 
 /obj/item/paper/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] выцарапывает решётку на [user.ru_ego()] запястье бумагой! Судя по всему, [user.p_theyre()] собирается совершить су...доку."))
+	user.visible_message(span_suicide("[user] выцарапывает решётку на [user.p_their()] запястье бумагой! Судя по всему, [user.p_theyre()] собирается совершить су...доку."))
 	return (BRUTELOSS)
 
 /obj/item/paper/proc/clearpaper()
@@ -196,7 +196,7 @@
 		SStgui.close_uis(src)
 		return
 
-	if(istype(P, /obj/item/pen) || istype(P, /obj/item/toy/crayon))
+	if(istype(P, /obj/item/pen))
 		if(length(info) >= MAX_PAPER_LENGTH) // Sheet must have less than 1000 charaters
 			to_chat(user, span_warning("Это хранилище бумаги заполнено!"))
 			return
@@ -251,14 +251,6 @@
 		var/obj/item/clipboard/clipboard = loc
 		if(clipboard.pen)
 			holding = clipboard.pen
-	if(istype(holding, /obj/item/toy/crayon))
-		var/obj/item/toy/crayon/PEN = holding
-		data["pen_font"] = CRAYON_FONT
-		data["pen_color"] = PEN.paint_color
-		data["edit_mode"] = MODE_WRITING
-		data["is_crayon"] = TRUE
-		data["stamp_class"] = "FAKE"
-		data["stamp_icon_state"] = "FAKE"
 	else if(istype(holding, /obj/item/pen))
 		var/obj/item/pen/PEN = holding
 		data["pen_font"] = PEN.font
@@ -344,12 +336,6 @@
 
 			update_icon()
 			. = TRUE
-
-/obj/item/paper/ui_host(mob/user)
-	if(istype(loc, /obj/structure/noticeboard))
-		return loc
-	return ..()
-
 /**
  * Construction paper
  */

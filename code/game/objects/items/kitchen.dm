@@ -236,32 +236,6 @@
 	icon_state = "knife_cyborg"
 	desc = "A cyborg-mounted plasteel knife. Extremely sharp and durable."
 
-/obj/item/kitchen/knife/shiv
-	name = "стеклянная заточка"
-	icon = 'icons/obj/shards.dmi'
-	icon_state = "shiv"
-	inhand_icon_state = "shiv"
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	desc = "A makeshift glass shiv."
-	force = 8
-	throwforce = 12
-	attack_verb_continuous = list("shanks", "shivs")
-	attack_verb_simple = list("shank", "shiv")
-	custom_materials = list(/datum/material/glass=400)
-
-/obj/item/kitchen/knife/shiv/carrot
-	name = "морковная заточка"
-	icon_state = "carrotshiv"
-	inhand_icon_state = "carrotshiv"
-	icon = 'icons/obj/kitchen.dmi'
-	desc = "Unlike other carrots, you should probably keep this far away from your eyes."
-	custom_materials = null
-
-/obj/item/kitchen/knife/shiv/carrot/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] forcefully drives \the [src] into [user.p_their()] eye! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return BRUTELOSS
-
 /obj/item/kitchen/rollingpin
 	name = "скалка"
 	desc = "Used to knock out the Bartender."

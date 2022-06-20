@@ -60,7 +60,7 @@
 /// Apply the actual effects of the healing if it's a simple animal, goes to [/obj/item/stack/medical/proc/heal_carbon] if it's a carbon, returns TRUE if it works, FALSE if it doesn't
 /obj/item/stack/medical/proc/heal(mob/living/patient, mob/user)
 	if(patient.stat == DEAD)
-		to_chat(user, span_warning("[patient] мертв! Ничем не могу помочь [patient.ru_na()]."))
+		to_chat(user, span_warning("[patient] мертв! Ничем не могу помочь [patient.p_them()]."))
 		return
 	if(isanimal(patient) && heal_brute) // only brute can heal
 		var/mob/living/simple_animal/critter = patient
@@ -115,7 +115,7 @@
 	merge_type = /obj/item/stack/medical/bruise_pack
 
 /obj/item/stack/medical/bruise_pack/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] избивает [user.ru_na()]себя с помощью [src]! Это выглядит будто [user.p_theyre()] пытается совершить самоубийство!"))
+	user.visible_message(span_suicide("[user] избивает [user.p_them()]себя с помощью [src]! Это выглядит будто [user.p_theyre()] пытается совершить самоубийство!"))
 	return (BRUTELOSS)
 
 /obj/item/stack/medical/gauze
@@ -171,21 +171,8 @@
 /obj/item/stack/medical/gauze/twelve
 	amount = 12
 
-/obj/item/stack/medical/gauze/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_WIRECUTTER || I.get_sharpness())
-		if(get_amount() < 2)
-			to_chat(user, span_warning("На как минимум два кусочка бинта!"))
-			return
-		new /obj/item/stack/sheet/cloth(user.drop_location())
-		user.visible_message(span_notice("<b>[user]</b> нарезает <b>[src]</b> на куски ткани при помощи <b>[I]</b>.") , \
-			span_notice("Нарезаю <b>[src]</b> на куски ткани при помощи <b>[I]</b>.") , \
-			span_hear("Слышу как что-то режет ткань."))
-		use(2)
-	else
-		return ..()
-
 /obj/item/stack/medical/gauze/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] начинает затягивать [src] на шее [user.ru_ego()]! Это выглядит как будто [user.ru_who()] забыл как оказывать медицинскую помощь!"))
+	user.visible_message(span_suicide("[user] начинает затягивать [src] на шее [user.p_their()]! Это выглядит как будто [user.p_they()] забыл как оказывать медицинскую помощь!"))
 	return OXYLOSS
 
 /obj/item/stack/medical/gauze/improvised
@@ -262,7 +249,7 @@
 	merge_type = /obj/item/stack/medical/ointment
 
 /obj/item/stack/medical/ointment/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is squeezing [src] into [user.ru_ego()] mouth! [user.p_do(TRUE)]n't [user.ru_who()] know that stuff is toxic?"))
+	user.visible_message(span_suicide("[user] is squeezing [src] into [user.p_their()] mouth! [user.p_do(TRUE)]n't [user.p_they()] know that stuff is toxic?"))
 	return TOXLOSS
 
 /obj/item/stack/medical/mesh
@@ -383,7 +370,7 @@
 	if(!iscarbon(user))
 		return
 	var/mob/living/carbon/C = user
-	C.visible_message(span_suicide("[C] впрыскивает весь [src] в рот [C.ru_ego ()]! Это неправильная процедура! Похоже, [C.p_theyre ()] пытается покончить жизнь самоубийством!"))
+	C.visible_message(span_suicide("[C] впрыскивает весь [src] в рот [C.p_their ()]! Это неправильная процедура! Похоже, [C.p_theyre ()] пытается покончить жизнь самоубийством!"))
 	if(!do_after(C, 2 SECONDS))
 		C.visible_message(span_suicide("[C] облажался и все равно умирает!"))
 		return (BRUTELOSS)

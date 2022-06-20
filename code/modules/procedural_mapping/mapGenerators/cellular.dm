@@ -12,7 +12,7 @@
 	var/list/current_state
 	var/width = 10
 	var/height = 10
-	var/list/type_map = list(/turf/open/floor/plating, /turf/closed/wall)
+	var/list/type_map = list(/turf/open/floor/stone, /turf/closed/wall)
 	var/turf/start = null
 
 /datum/map_generator/ca/defineRegion(turf/Start, turf/End, replace = 0)
@@ -86,7 +86,7 @@
 /datum/map_generator/ca/caves
 	b_rule = list(5,6,7,8)
 	s_rule = list(4)
-	type_map = list(/turf/open/floor/plating/asteroid/basalt, /turf/closed/mineral/)
+	type_map = list(/turf/open/floor/stone, /turf/closed/mineral/)
 	iterations = 5
 
 /datum/map_generator/ca/maze

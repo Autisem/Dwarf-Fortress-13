@@ -50,7 +50,7 @@
 	STR.max_items = 30
 
 /obj/item/storage/bag/trash/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] puts [src] over [user.ru_ego()] head and starts chomping at the insides! Disgusting!"))
+	user.visible_message(span_suicide("[user] puts [src] over [user.p_their()] head and starts chomping at the insides! Disgusting!"))
 	playsound(loc, 'sound/items/eatfood.ogg', 50, TRUE, -1)
 	return (TOXLOSS)
 
@@ -226,7 +226,7 @@
 
 /obj/item/storage/bag/chemistry
 	name = "сумка для химии"
-	icon = 'white/Feline/icons/med_items.dmi'
+	icon = 'icons/obj/items/med_items.dmi'
 	icon_state = "bag_chem"
 	worn_icon_state = "chembag"
 	desc = "Сумка для хранения таблеток, пластырей и бутылочек."
@@ -271,8 +271,7 @@
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.insert_preposition = "в"
 	STR.set_holdable(list(
-		/obj/item/reagent_containers/glass/beaker,
-		/obj/item/electronics
+		/obj/item/reagent_containers/glass/beaker
 		))
 
 /obj/item/storage/bag/harpoon_quiver

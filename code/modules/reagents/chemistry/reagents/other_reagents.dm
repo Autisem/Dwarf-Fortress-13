@@ -49,7 +49,6 @@
 	description = "You don't even want to think about what's in here."
 	taste_description = "жирное железо"
 	shot_glass_icon_state = "shotglassred"
-	material = /datum/material/meat
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	hydration_factor = DRINK_HYDRATION_FACTOR_LOW
 
@@ -120,7 +119,6 @@
 	name = "Святая Вода"
 	enname = "Holy Water"
 	description = "Water blessed by some deity."
-	special_sound = 'white/valtos/sounds/drink/hallelujah.ogg'
 	color = "#E0E8EF" // rgb: 224, 232, 239
 	glass_icon_state  = "glass_clear"
 	glass_name = "glass of holy water"
@@ -369,9 +367,9 @@
 		N.regenerate_icons()
 		if(DT_PROB(3.5, delta_time))
 			if(N.w_uniform)
-				M.visible_message(pick("<b>[M]</b>'s collar pops up without warning.</span>", "<b>[M]</b> flexes [M.ru_ego()] arms."))
+				M.visible_message(pick("<b>[M]</b>'s collar pops up without warning.</span>", "<b>[M]</b> flexes [M.p_their()] arms."))
 			else
-				M.visible_message("<b>[M]</b> сгибает [M.ru_ego()] руки.")
+				M.visible_message("<b>[M]</b> сгибает [M.p_their()] руки.")
 	if(DT_PROB(5, delta_time))
 		M.say(pick("Shit was SO cash.", "You are everything bad in the world.", "What sports do you play, other than 'jack off to naked drawn Japanese people?'", "Don???t be a stranger. Just hit me with your best shot.", "My name is John and I hate every single one of you."), forced = /datum/reagent/spraytan)
 	..()
@@ -447,25 +445,6 @@
 	color = "#808080" // rgb: 128, 128, 128
 	taste_mult = 0 // oderless and tasteless
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/copper
-	name = "Медь"
-	enname = "Copper"
-	description = "A highly ductile metal. Things made out of copper aren't very durable, but it makes a decent material for electrical wiring."
-	reagent_state = SOLID
-	color = "#6E3B08" // rgb: 110, 59, 8
-	taste_description = "металл"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/copper/expose_obj(obj/exposed_obj, reac_volume)
-	. = ..()
-	if(!istype(exposed_obj, /obj/item/stack/sheet/iron))
-		return
-
-	var/obj/item/stack/sheet/iron/M = exposed_obj
-	reac_volume = min(reac_volume, M.amount)
-	new/obj/item/stack/tile/bronze(get_turf(M), reac_volume)
-	M.use(reac_volume)
 
 /datum/reagent/nitrogen
 	name = "Азот"
@@ -745,7 +724,6 @@
 	reagent_state = SOLID
 	color = "#A8A8A8" // rgb: 168, 168, 168
 	taste_mult = 0
-	material = /datum/material/glass
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/fuel
@@ -805,7 +783,6 @@
 	. = ..()
 	if(methods & (TOUCH|VAPOR))
 		exposed_mob.wash(clean_types)
-		exposed_mob.RemoveElement(/datum/element/glitch)
 
 /datum/reagent/space_cleaner/ez_clean
 	name = "Очиститель «EZ»"
@@ -1307,89 +1284,6 @@
 	taste_description = "металл"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
-/datum/reagent/carpet
-	name = "Ковёр"
-	enname = "Carpet"
-	description = "For those that need a more creative way to roll out a red carpet."
-	reagent_state = LIQUID
-	color = "#771100"
-	taste_description = "ковёр" // Your tounge feels furry.
-	var/carpet_type = /turf/open/floor/carpet
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/carpet/expose_turf(turf/exposed_turf, reac_volume)
-	if(isplatingturf(exposed_turf) || istype(exposed_turf, /turf/open/floor/plasteel))
-		var/turf/open/floor/target_floor = exposed_turf
-		target_floor.PlaceOnTop(carpet_type, flags = CHANGETURF_INHERIT_AIR)
-	..()
-
-/datum/reagent/carpet/black
-	name = "Черный Ковёр"
-	enname = "Black Carpet"
-	description = "The carpet also comes in... BLAPCK" //yes, the typo is intentional
-	color = "#1E1E1E"
-	taste_description = "лакрица"
-	carpet_type = /turf/open/floor/carpet/black
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/carpet/blue
-	name = "Синий Ковёр"
-	description = "For those that really need to chill out for a while."
-	color = "#0000DC"
-	taste_description = "замороженный ковер"
-	carpet_type = /turf/open/floor/carpet/blue
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/carpet/cyan
-	name = "Голубой Ковёр"
-	enname = "Blue Carpet"
-	description = "For those that need a throwback to the years of using poison as a construction material. Smells like asbestos."
-	color = "#00B4FF"
-	taste_description = "асбест"
-	carpet_type = /turf/open/floor/carpet/cyan
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/carpet/green
-	name = "Зеленый Ковёр"
-	enname = "Green Carpet"
-	description = "For those that need the perfect flourish for green eggs and ham."
-	color = "#A8E61D"
-	taste_description = "зеленый ковёр" //the caps is intentional
-	carpet_type = /turf/open/floor/carpet/green
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/carpet/orange
-	name = "Оранжевый Ковёр"
-	enname = "Orange Carpet"
-	description = "For those that prefer a healthy carpet to go along with their healthy diet."
-	color = "#E78108"
-	taste_description = "апельсиновый сок"
-	carpet_type = /turf/open/floor/carpet/orange
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/carpet/purple
-	name = "Фиолетовый Ковёр"
-	enname = "Purple Carpet"
-	description = "For those that need to waste copious amounts of healing jelly in order to look fancy."
-	color = "#91D865"
-	taste_description = "желе"
-	carpet_type = /turf/open/floor/carpet/purple
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/carpet/red
-	name = "Красный Ковёр"
-	enname = "Red Carpet"
-	description = "For those that need an even redder carpet."
-	color = "#731008"
-	taste_description = "кровь и кишки"
-	carpet_type = /turf/open/floor/carpet/red
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/carpet/royal
-	name = "Королевский Ковёр?"
-	enname = "Royal Carpet?"
-	description = "For those that break the game and need to make an issue report."
-
 /datum/reagent/carpet/royal/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	. = ..()
 	var/obj/item/organ/liver/liver = M.getorganslot(ORGAN_SLOT_LIVER)
@@ -1405,24 +1299,6 @@
 		else if(HAS_TRAIT(liver, TRAIT_PRETENDER_ROYAL_METABOLISM))
 			if(DT_PROB(8, delta_time))
 				to_chat(M, "Ощущаю себя самозванцем...")
-
-/datum/reagent/carpet/royal/black
-	name = "Черный Королевский Ковёр"
-	enname = "Royal Black Carpet"
-	description = "For those that feel the need to show off their timewasting skills."
-	color = "#000000"
-	taste_description = "царственность"
-	carpet_type = /turf/open/floor/carpet/royalblack
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/carpet/royal/blue
-	name = "Синий Королевский Ковёр"
-	enname = "Royal Blue Carpet"
-	description = "For those that feel the need to show off their timewasting skills.. in BLUE."
-	color = "#5A64C8"
-	taste_description = "голубая кровь" //also intentional
-	carpet_type = /turf/open/floor/carpet/royalblue
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/bromine
 	name = "Бром"

@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(persistence)
 	var/json_file = file("data/RecentModes.json")
 	if(!fexists(json_file))
 		return
-	var/list/json = r_json_decode(file2text(json_file))
+	var/list/json = json_decode(file2text(json_file))
 	if(!json)
 		return
 	saved_modes = json["data"]
@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(persistence)
 			WARNING("Failed to load antag reputation. File likely corrupt.")
 			return
 		return
-	antag_rep = r_json_decode(json)
+	antag_rep = json_decode(json)
 
 /datum/controller/subsystem/persistence/proc/CollectData()
 	CollectRoundtype()

@@ -294,8 +294,8 @@
 	var/atom/movable/AM = parent
 	AM.unbuckle_mob(user)
 	user.Paralyze(60)
-	user.visible_message(span_warning("[AM] pushes [user] off of [AM.ru_na()]!") , \
-						span_warning("[AM] pushes you off of [AM.ru_na()]!"))
+	user.visible_message(span_warning("[AM] pushes [user] off of [AM.p_them()]!") , \
+						span_warning("[AM] pushes you off of [AM.p_them()]!"))
 
 /datum/component/riding/cyborg
 	del_on_unbuckle_all = TRUE

@@ -7,7 +7,7 @@
 	resistance_flags = FLAMMABLE
 
 /obj/item/folder/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] начинает оформление мнимого смертного приговора! Судя по всему, он[user.ru_a()] пытается совершить суицид!"))
+	user.visible_message(span_suicide("[user] начинает оформление мнимого смертного приговора! Судя по всему, он пытается совершить суицид!"))
 	return OXYLOSS
 
 /obj/item/folder/blue
@@ -36,7 +36,7 @@
 /obj/item/folder/attackby(obj/item/W, mob/user, params)
 	if(burn_paper_product_attackby_check(W, user))
 		return
-	if(istype(W, /obj/item/paper) || istype(W, /obj/item/documents))
+	if(istype(W, /obj/item/paper))
 		if(!user.transferItemToLoc(W, src))
 			return
 		to_chat(user, span_notice("Кладу [W] в [src]."))
@@ -96,37 +96,3 @@
 		attack_self(usr)
 		update_icon()
 
-/obj/item/folder/documents
-	name = "папка - 'СОВЕРШЕННО СЕКРЕТНО'"
-	desc = "Папка со штампом \"Совершенно секретно — собственность корпорации NanoTrasen. Несанкционированное распространение карается смертью.\""
-
-/obj/item/folder/documents/Initialize()
-	. = ..()
-	new /obj/item/documents/nanotrasen(src)
-	update_icon()
-
-/obj/item/folder/syndicate
-	icon_state = "folder_syndie"
-	name = "папка - 'СОВЕРШЕННО СЕКРЕТНО'"
-	desc = "Папка со штампом \"Совершенно секретно — собственность Синдиката.\""
-
-/obj/item/folder/syndicate/red
-	icon_state = "folder_sred"
-
-/obj/item/folder/syndicate/red/Initialize()
-	. = ..()
-	new /obj/item/documents/syndicate/red(src)
-	update_icon()
-
-/obj/item/folder/syndicate/blue
-	icon_state = "folder_sblue"
-
-/obj/item/folder/syndicate/blue/Initialize()
-	. = ..()
-	new /obj/item/documents/syndicate/blue(src)
-	update_icon()
-
-/obj/item/folder/syndicate/mining/Initialize()
-	. = ..()
-	new /obj/item/documents/syndicate/mining(src)
-	update_icon()

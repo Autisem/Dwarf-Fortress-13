@@ -20,12 +20,11 @@
 	var/lifetime = 40
 	var/reagent_divisor = 7
 	var/static/list/blacklisted_turfs = typecacheof(list(
-	/turf/open/space/transit,
 	/turf/open/chasm,
 	/turf/open/lava))
 	var/slippery_foam = TRUE
 	var/can_bypass_density = FALSE
-	var/smooth_icon = 'white/valtos/icons/foam_smooth.dmi'
+	var/smooth_icon = 'icons/turf/walls/foam_smooth.dmi'
 
 /obj/effect/particle_effect/foam/smart
 	can_bypass_density = TRUE
@@ -88,8 +87,6 @@
 	STOP_PROCESSING(SSfastprocess, src)
 	if(metal)
 		var/turf/T = get_turf(src)
-		if(isspaceturf(T) || isopenspace(T)) //Block up any exposed space
-			T.PlaceOnTop(/turf/open/floor/plating/foam, flags = CHANGETURF_INHERIT_AIR)
 		for(var/direction in GLOB.cardinals)
 			var/turf/cardinal_turf = get_step(T, direction)
 			if(get_area(cardinal_turf) != get_area(T)) //We're at an area boundary, so let's block off this turf!
@@ -237,7 +234,7 @@
 	max_integrity = 20
 	smoothing_groups = list(SMOOTH_GROUP_METALFOAM)
 	canSmoothWith = list(SMOOTH_GROUP_METALFOAM)
-	var/smooth_icon = 'white/valtos/icons/foam_smooth.dmi'
+	var/smooth_icon = 'icons/turf/walls/foam_smooth.dmi'
 
 /obj/structure/foamedmetal/Initialize()
 	. = ..()

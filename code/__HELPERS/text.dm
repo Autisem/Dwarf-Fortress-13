@@ -757,7 +757,7 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 	var/list/oldjson = list()
 	var/list/oldentries = list()
 	if(fexists(log))
-		oldjson = r_json_decode(file2text(log))
+		oldjson = json_decode(file2text(log))
 		oldentries = oldjson["data"]
 	if(length(oldentries))
 		for(var/string in accepted)
@@ -921,7 +921,7 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 //json decode that will return null on parse error instead of runtiming.
 /proc/safe_json_decode(data)
 	try
-		return r_json_decode(data)
+		return json_decode(data)
 	catch
 		return
 

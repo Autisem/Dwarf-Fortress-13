@@ -25,7 +25,6 @@
 /datum/component/storage/concrete/pockets/small/fedora/Initialize()
 	. = ..()
 	var/static/list/exception_cache = typecacheof(list(
-		/obj/item/gun/ballistic/automatic/tommygun
 		))
 	exception_hold = exception_cache
 
@@ -70,7 +69,6 @@
 	. = ..()
 	set_holdable(list( //Same items as a PDA
 		/obj/item/pen,
-		/obj/item/toy/crayon,
 		/obj/item/lipstick,
 		/obj/item/clothing/mask/cigarette)
 		)

@@ -148,7 +148,7 @@
 	var/target_has_brain = C.getorgan(/obj/item/organ/brain)
 
 	if(!target_has_brain && C.is_eyes_covered())
-		to_chat(user, span_warning("Стоит открыть [C.ru_ego()] голову сначала!"))
+		to_chat(user, span_warning("Стоит открыть [C.p_their()] голову сначала!"))
 		return
 
 	//since these people will be dead M != usr
@@ -158,7 +158,7 @@
 			return
 		var/msg = "[C] вставляет [src] в голову [user]."
 		if(C == user)
-			msg = "[user] вставляет [src] в [user.ru_ego()] голову!"
+			msg = "[user] вставляет [src] в [user.p_their()] голову!"
 
 		C.visible_message(span_danger("[msg]") ,
 						span_userdanger("[msg]"))

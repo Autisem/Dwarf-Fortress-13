@@ -383,7 +383,7 @@
  * * mob/user: The user examining the wound's owner, if that matters
  */
 /datum/wound/proc/get_examine_description(mob/user)
-	. = "[victim.ru_ego(TRUE)] [limb.name] [examine_desc]"
+	. = "[victim.p_their(TRUE)] [limb.name] [examine_desc]"
 	. = severity <= WOUND_SEVERITY_MODERATE ? "[.]." : "<B>[.]!</B>"
 
 /datum/wound/proc/get_scanner_description(mob/user)

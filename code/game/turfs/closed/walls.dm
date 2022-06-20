@@ -7,7 +7,7 @@
 	icon_state = "wall-0"
 	base_icon_state = "wall"
 	explosion_block = 1
-	baseturfs = /turf/open/floor/plating
+	baseturfs = /turf/open/floor/stone
 
 	flags_ricochet = RICOCHET_HARD
 
@@ -18,9 +18,9 @@
 	///lower numbers are harder. Used to determine the probability of a hulk smashing through.
 	var/hardness = 40
 	var/slicing_duration = 100  //default time taken to slice the wall
-	var/sheet_type = /obj/item/stack/sheet/iron
+	var/sheet_type
 	var/sheet_amount = 2
-	var/girder_type = /obj/structure/girder
+	var/girder_type
 
 	var/list/dent_decals
 
@@ -78,8 +78,6 @@
 
 /turf/closed/wall/proc/devastate_wall()
 	new sheet_type(src, sheet_amount)
-	if(girder_type)
-		new /obj/item/stack/sheet/iron(src)
 
 /turf/closed/wall/ex_act(severity, target, prikolist)
 	if(target == src)
@@ -134,14 +132,8 @@
 	return FALSE
 
 /turf/closed/wall/proc/try_wallmount(obj/item/W, mob/user, turf/T)
-	//check for wall mounted frames
-	if(istype(W, /obj/item/wallframe))
-		var/obj/item/wallframe/F = W
-		if(F.try_build(src, user))
-			F.attach(src, user)
-		return TRUE
 	//Poster stuff
-	else if(istype(W, /obj/item/poster))
+	if(istype(W, /obj/item/poster))
 		place_poster(W,user)
 		return TRUE
 	else if(istype(W, /obj/item/blacksmith/torch_handle))

@@ -76,86 +76,81 @@
  * Makes you speak like you're drunk
  */
 /proc/slur(phrase)
-	var/output = ""
-
-	for(var/i = 1; i <= length(phrase); i++)
-		var/a_letter = text2ascii(phrase, i)
-		var/letter = ascii2text(a_letter)
+	phrase = html_decode(phrase)
+	var/leng = length(phrase)
+	. = ""
+	var/newletter = ""
+	var/rawchar = ""
+	for(var/i = 1, i <= leng, i += length(rawchar))
+		rawchar = newletter = phrase[i]
 		if(prob(33))
-			if(lowertext(letter)=="о")	letter="у"
-			if(lowertext(letter)=="ы")	letter="i"
-			if(lowertext(letter)=="р")	letter="r"
-			if(lowertext(letter)=="л")	letter="ль"
-			if(lowertext(letter)=="з")	letter="с"
-			if(lowertext(letter)=="в")	letter="ф"
-			if(lowertext(letter)=="б")	letter="п"
-			if(lowertext(letter)=="г")	letter="х"
-			if(lowertext(letter)=="д")	letter="т"
-
-		switch(rand(1,15))
-			if(1,3,5,8)		letter = "[lowertext(letter)]"
-			if(2,4,6,15)	letter = "[uppertext(letter)]"
-			if(7)			letter += "'"
-			if(9,10)		letter = "<b>[letter]</b>"
-			if(11,12)		letter = "<big>[letter]</big>"
-			if(13,14)		letter = "<small>[letter]</small>"
-		output += letter
-
-	return output
-
-/// Makes you talk like you got cult stunned, which is slurring but with some dark messages
-/proc/cultslur(phrase)
-	var/output = ""
-
-	for(var/i = 1; i <= length(phrase); i++)
-		var/a_letter = text2ascii(phrase, i)
-		var/letter = ascii2text(a_letter)
-		if(prob(33))
-			if(lowertext(letter)=="о")	letter="о"
-			if(lowertext(letter)=="ы")	letter="i"
-			if(lowertext(letter)=="р")	letter="НАР"
-			if(lowertext(letter)=="л")	letter="ль"
-			if(lowertext(letter)=="з")	letter="СИ"
-			if(lowertext(letter)=="в")	letter="ф"
-			if(lowertext(letter)=="б")	letter="п"
-			if(lowertext(letter)=="г")	letter="СМЫСЛА"
-			if(lowertext(letter)=="д")	letter="т"
-			if(lowertext(letter)=="н")	letter="НЕТ"
-
-		switch(rand(1,15))
-			if(1,3,5,8)		letter = "[lowertext(letter)]"
-			if(2,4,6,15)	letter = "[uppertext(letter)]"
-			if(7)			letter += "'"
-			if(9,10)		letter = "<b>[letter]</b>"
-			if(11,12)		letter = "<big>[letter]</big>"
-			if(13,14)			letter = "<small>[letter]</small>"
-		output += letter
-
-	return output
+			var/lowerletter = lowertext(newletter)
+			if(lowerletter == "o")
+				newletter = "u"
+			else if(lowerletter == "s")
+				newletter = "ch"
+			else if(lowerletter == "a")
+				newletter = "ah"
+			else if(lowerletter == "u")
+				newletter = "oo"
+			else if(lowerletter == "c")
+				newletter = "k"
+		if(prob(5))
+			if(newletter == " ")
+				newletter = "...huuuhhh..."
+			else if(newletter == ".")
+				newletter = " *BURP*."
+		if(prob(15))
+			switch(rand(1,3))
+				if(1)
+					newletter += "'"
+				if(2)
+					newletter += "[newletter]"
+				if(3)
+					newletter += "[newletter][newletter]"
+		. += "[newletter]"
+	return sanitize(.)
 
 ///Adds stuttering to the message passed in
-/proc/stutter(n)
-	return r_stutter(n)
+/proc/stutter(phrase)
+	phrase = html_decode(phrase)
+	var/leng = length(phrase)
+	. = ""
+	var/newletter = ""
+	var/rawchar = ""
+	var/static/regex/nostutter = regex(@@[aeiouAEIOU ""''()[\]{}.!?,:;_`~-]@)
+	for(var/i = 1, i <= leng, i += length(rawchar))
+		rawchar = newletter = phrase[i]
+		if(prob(80) && !nostutter.Find(rawchar))
+			if(prob(10))
+				newletter = "[newletter]-[newletter]-[newletter]-[newletter]"
+			else if(prob(20))
+				newletter = "[newletter]-[newletter]-[newletter]"
+			else if (prob(5))
+				newletter = ""
+			else
+				newletter = "[newletter]-[newletter]"
+		. += newletter
+	return sanitize(.)
 
 ///Convert a message to derpy speak
 /proc/derpspeech(message, stuttering)
-	message = replacetext(message, "ты", "-")
-	message = replacetext(message, "голова", "ТЫКОВКА")
-	message = replacetext(message, "ноги", "ПАЛОЧКИ")
-	message = replacetext(message, "помоги", "посмотри")
-	message = replacetext(message, "убивают", "любят")
-	message = replacetext(message, "убивает", "любит")
-	message = replacetext(message, "космос", "дырочк")
-	message = replacetext(message, "техи", "попа")
-	message = replacetext(message, "техах", "попу")
-	message = replacetext(message, "стволы", "дерьмо")
-	message = replacetext(message, "пушки", "говно")
-	message = replacetext(message, "руки", "КУЛЬТЯПКИ")
+	message = replacetext(message, "you", "u")
+	message = replacetext(message, "head", "PUMPKIN")
+	message = replacetext(message, "legs", "STICKS")
+	message = replacetext(message, "help", "halp")
+	message = replacetext(message, "killed", "loved")
+	message = replacetext(message, "grief", "grife")
+	message = replacetext(message, "killing", "loving")
+	message = replacetext(message, "reason", "raisin")
+	message = replacetext(message, " am ", " ")
+	message = replacetext(message, " is ", " ")
+	message = replacetext(message, " are ", " ")
 	if(prob(50))
 		message = uppertext(message)
-		message += "[r_stutter(pick("!", "!!", "!!!"))]"
+		message += "[stutter(pick("!", "!!", "!!!"))]"
 	if(!stuttering && prob(15))
-		message = r_stutter(message)
+		message = stutter(message)
 	return message
 
 /**

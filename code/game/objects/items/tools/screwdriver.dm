@@ -2,9 +2,7 @@
 	name = "отвёртка"
 	desc = "Ею можно откручивать и закручивать различные штуки."
 	gender = FEMALE
-	icon = 'white/valtos/icons/items.dmi'
-	lefthand_file = 'white/valtos/icons/lefthand.dmi'
-	righthand_file = 'white/valtos/icons/righthand.dmi'
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver_map"
 	inhand_icon_state = "screwdriver"
 	worn_icon_state = "screwdriver"
@@ -38,7 +36,7 @@
 	)
 
 /obj/item/screwdriver/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] is stabbing [src] into [user.ru_ego()] [pick("temple", "heart")]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is stabbing [src] into [user.p_their()] [pick("temple", "heart")]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return(BRUTELOSS)
 
 /obj/item/screwdriver/Initialize()
@@ -67,16 +65,6 @@
 		M.appearance_flags = RESET_COLOR
 		. += M
 
-/obj/item/screwdriver/get_belt_overlay()
-	if(random_color)
-		var/mutable_appearance/body = mutable_appearance('white/valtos/icons/belt_overlays.dmi', "screwdriver")
-		var/mutable_appearance/head = mutable_appearance('white/valtos/icons/belt_overlays.dmi', "screwdriver_head")
-		body.color = color
-		head.add_overlay(body)
-		return head
-	else
-		return mutable_appearance('white/valtos/icons/belt_overlays.dmi', icon_state)
-
 /obj/item/screwdriver/abductor
 	name = "инопланетная отвёртка"
 	desc = "Похожа на экспериментальную сверхзвуковую отвертку."
@@ -87,13 +75,10 @@
 	toolspeed = 0.1
 	random_color = FALSE
 
-/obj/item/screwdriver/abductor/get_belt_overlay()
-	return mutable_appearance('white/valtos/icons/belt_overlays.dmi', "screwdriver_nuke")
-
 /obj/item/screwdriver/cyborg
 	name = "автоматическая отвертка"
 	desc = "Мощная автоматическая отвертка, разработанная для быстрой и точной работы."
-	icon = 'white/Feline/icons/cyber_arm_tools.dmi'
+	icon = 'icons/obj/items/cyber_arm_tools.dmi'
 	icon_state = "screwdriver_cyborg"
 	hitsound = 'sound/items/drill_hit.ogg'
 	usesound = 'sound/items/drill_use.ogg'

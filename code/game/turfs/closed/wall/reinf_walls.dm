@@ -9,7 +9,6 @@
 	smoothing_flags = SMOOTH_BITMASK
 	hardness = 10
 	sheet_amount = 1
-	girder_type = /obj/structure/girder/reinforced
 	explosion_block = 2
 	rad_insulation = RAD_HEAVY_INSULATION
 	///Dismantled state, related to deconstruction.
@@ -35,7 +34,6 @@
 
 /turf/closed/wall/r_wall/devastate_wall()
 	new sheet_type(src, sheet_amount)
-	new /obj/item/stack/sheet/iron(src, 2)
 
 /turf/closed/wall/r_wall/attack_animal(mob/living/simple_animal/M)
 	M.changeNext_move(CLICK_CD_MELEE)

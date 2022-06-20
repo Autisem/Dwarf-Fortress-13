@@ -66,22 +66,3 @@
 
 /obj/item/reagent_containers/blood/universal
 	blood_type = "U"
-
-/obj/item/reagent_containers/blood/attackby(obj/item/I, mob/user, params)
-	if (istype(I, /obj/item/pen) || istype(I, /obj/item/toy/crayon))
-		if(!user.is_literate())
-			to_chat(user, span_notice("Неразборчиво написал на этикетке [src]!"))
-			return
-		var/t = stripped_input(user, "What would you like to label the blood pack?", name, null, 53)
-		if(!user.canUseTopic(src, BE_CLOSE))
-			return
-		if(user.get_active_held_item() != I)
-			return
-		if(t)
-			labelled = 1
-			name = "пакет крови - [t]"
-		else
-			labelled = 0
-			update_pack_name()
-	else
-		return ..()

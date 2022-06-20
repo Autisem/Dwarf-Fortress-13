@@ -30,7 +30,7 @@
 			msg = "Это выглядит на среднем уровне, достаточно, чтобы называться \"ИСКУССТВОМ\"."
 		if (0 to BAD_ART)
 			SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "artbad", /datum/mood_event/artbad)
-			msg = "Вау, [source.ru_who()] выглядит ущербно."
+			msg = "Вау, [source.p_they()] выглядит ущербно."
 
 	user.visible_message(span_notice("[user] останавливается и пристально смотрит на [source].") , \
 		span_notice("Оцениваю [source]... [msg]"))

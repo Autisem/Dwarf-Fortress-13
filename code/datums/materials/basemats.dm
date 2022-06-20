@@ -4,28 +4,10 @@
 	desc = "Common iron ore often found in sedimentary and igneous layers of the crust."
 	color = "#878687"
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
-	sheet_type = /obj/item/stack/sheet/iron
 	value_per_unit = 0.0025
 
 /datum/material/iron/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = 5)
-	return TRUE
-
-///Breaks extremely easily but is transparent.
-/datum/material/glass
-	name = "glass"
-	desc = "Glass forged by melting sand."
-	color = "#88cdf1"
-	alpha = 150
-	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
-	integrity_modifier = 0.1
-	sheet_type = /obj/item/stack/sheet/glass
-	shard_type = /obj/item/shard
-	value_per_unit = 0.0025
-	beauty_modifier = 0.05
-
-/datum/material/glass/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
-	victim.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = 5, attack_type = SHARP) //cronch
 	return TRUE
 
 /*
@@ -42,7 +24,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	color = "#ffbb50" //gold is shiny, but not as bright as bananium
 	strength_modifier = 1.2
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
-	sheet_type = /obj/item/stack/sheet/mineral/gold
 	value_per_unit = 0.0625
 	beauty_modifier = 0.15
 
@@ -78,7 +59,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	desc = "Flexible, durable, but flamable. Hard to come across in space."
 	color = "#bb8e53"
 	strength_modifier = 0.5
-	sheet_type = /obj/item/stack/sheet/mineral/wood
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	value_per_unit = 0.01
 	beauty_modifier = 0.1
@@ -110,7 +90,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	color = "#88cdf1"
 	alpha = 150
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
-	sheet_type = /obj/item/stack/sheet/hot_ice
 	value_per_unit = 0.2
 	beauty_modifier = 0.2
 
@@ -125,7 +104,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	desc = "You know, it's amazing just how structurally sound sand can be."
 	color = "#EDC9AF"
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
-	sheet_type = /obj/item/stack/sheet/sandblock
 	value_per_unit = 0.001
 	strength_modifier = 0.5
 	integrity_modifier = 0.1
@@ -143,7 +121,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	desc = "Ten thousand folds of pure starchy power."
 	color = "#E5DCD5"
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
-	sheet_type = /obj/item/stack/sheet/paperframes
 	value_per_unit = 0.0025
 	beauty_modifier = 0.3
 	turf_sound_override = FOOTSTEP_SAND
@@ -167,7 +144,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	desc = "They say cardboard is used by hobos to make incredible things."
 	color = "#5F625C"
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
-	sheet_type = /obj/item/stack/sheet/cardboard
 	value_per_unit = 0.003
 	beauty_modifier = -0.1
 
@@ -189,7 +165,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	desc = "Man, building with this will make you the coolest caveman on the block."
 	color = "#e3dac9"
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
-	sheet_type = /obj/item/stack/sheet/bone
 	value_per_unit = 0.05
 	beauty_modifier = -0.2
 
@@ -198,7 +173,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	desc = "If it's good enough for pandas, it's good enough for you."
 	color = "#87a852"
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
-	sheet_type = /obj/item/stack/sheet/mineral/bamboo
 	value_per_unit = 0.0025
 	beauty_modifier = 0.2
 	turf_sound_override = FOOTSTEP_WOOD

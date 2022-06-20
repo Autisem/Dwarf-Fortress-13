@@ -19,5 +19,4 @@
 	ambientsounds = AWAY_MISSION
 	requires_power = FALSE
 	sound_environment = SOUND_ENVIRONMENT_CAVE
-	ambientsounds = list('white/valtos/sounds/lifeweb/caves8.ogg', 'white/valtos/sounds/lifeweb/caves_old.ogg')
-	env_temp_relative = 20
+	ambientsounds = list('sound/ambience/caves8.ogg', 'sound/ambience/caves_old.ogg')

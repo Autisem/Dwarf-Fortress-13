@@ -71,28 +71,16 @@
 "iq" = (
 /turf/open/floor/stone/raw,
 /area/dwarf/fortress)
-"jD" = (
-/obj/structure/table/stone,
-/obj/item/flashlight/fueled/lantern,
-/turf/open/floor/carpet/green,
-/area/dwarf/fortress)
-"kg" = (
-/turf/open/floor/carpet/green,
-/area/dwarf/fortress)
 "kJ" = (
 /obj/structure/chair/comfy/stone/throne{
 	dir = 4
 	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/stone,
 /area/dwarf/fortress)
 "kL" = (
 /obj/structure/mineral_door/heavystone{
 	dir = 4
 	},
-/turf/open/floor/stone,
-/area/dwarf/fortress)
-"lH" = (
-/obj/item/stack/rods/ten,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "lW" = (
@@ -119,12 +107,12 @@
 /turf/open/floor/stone/raw,
 /area/dwarf/fortress)
 "nH" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /obj/structure/table/stone,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "nI" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/stone/raw,
 /area/dwarf/fortress)
 "nV" = (
@@ -141,10 +129,6 @@
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /turf/open/floor/stone/raw,
-/area/dwarf/fortress)
-"pE" = (
-/obj/structure/lattice,
-/turf/open/openspace,
 /area/dwarf/fortress)
 "pM" = (
 /obj/structure/stairs/east,
@@ -189,9 +173,6 @@
 /obj/effect/landmark/start/dwarf,
 /turf/open/floor/stone/raw,
 /area/dwarf/fortress)
-"vC" = (
-/turf/open/floor/carpet/black,
-/area/dwarf/fortress)
 "vK" = (
 /obj/item/flashlight/fueled/lantern,
 /turf/open/floor/stone/raw,
@@ -207,7 +188,6 @@
 /obj/structure/stone_tile{
 	dir = 4
 	},
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "wv" = (
@@ -218,7 +198,6 @@
 /obj/structure/stone_tile/cracked{
 	dir = 4
 	},
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "wz" = (
@@ -230,7 +209,7 @@
 /area/dwarf/fortress)
 "xc" = (
 /obj/structure/dwarf_altar,
-/turf/open/floor/carpet/black,
+/turf/open/floor/stone,
 /area/dwarf/fortress)
 "yR" = (
 /obj/structure/anvil,
@@ -258,10 +237,6 @@
 /obj/item/blacksmith/ingot,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
-"DI" = (
-/obj/structure/fluff/drake_statue,
-/turf/open/floor/stone,
-/area/dwarf/fortress)
 "DR" = (
 /obj/structure/stone_tile/burnt,
 /obj/structure/stone_tile/burnt{
@@ -273,7 +248,6 @@
 /obj/structure/stone_tile{
 	dir = 8
 	},
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "FQ" = (
@@ -347,22 +321,14 @@
 /area/dwarf/fortress)
 "Sc" = (
 /obj/structure/stone_tile/slab/burnt,
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "Sj" = (
 /obj/structure/stone_tile/slab,
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "SG" = (
 /obj/structure/stone_tile/slab/cracked,
-/obj/structure/lattice,
-/turf/open/openspace,
-/area/dwarf/fortress)
-"SX" = (
-/obj/structure/fluff/big_chain,
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "Tv" = (
@@ -376,7 +342,6 @@
 /obj/structure/stone_tile{
 	dir = 8
 	},
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "TZ" = (
@@ -390,7 +355,6 @@
 /obj/structure/stone_tile/block/cracked{
 	dir = 1
 	},
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "Vs" = (
@@ -404,7 +368,6 @@
 /obj/structure/stone_tile{
 	dir = 8
 	},
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "Vz" = (
@@ -415,7 +378,6 @@
 	dir = 4
 	},
 /obj/structure/stone_tile/block,
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "Wb" = (
@@ -429,7 +391,6 @@
 	dir = 1
 	},
 /obj/structure/stone_tile,
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "WU" = (
@@ -440,7 +401,6 @@
 "Xe" = (
 /obj/structure/stone_tile/center/cracked,
 /obj/structure/stone_tile/surrounding,
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "XI" = (
@@ -448,7 +408,6 @@
 	dir = 5
 	},
 /obj/structure/stone_tile/block,
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "YA" = (
@@ -459,7 +418,6 @@
 /obj/structure/stone_tile/block/burnt{
 	dir = 8
 	},
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "YP" = (
@@ -472,7 +430,6 @@
 /obj/structure/stone_tile/burnt{
 	dir = 8
 	},
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "YZ" = (
@@ -485,7 +442,6 @@
 /obj/structure/stone_tile/burnt{
 	dir = 4
 	},
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 "Zf" = (
@@ -496,7 +452,6 @@
 /obj/structure/stone_tile{
 	dir = 4
 	},
-/obj/structure/lattice,
 /turf/open/openspace,
 /area/dwarf/fortress)
 
@@ -191848,9 +191803,9 @@ vf
 PL
 iq
 el
-pE
-pE
-SX
+vf
+vf
+vf
 el
 iq
 dG
@@ -192452,9 +192407,9 @@ iq
 iq
 gc
 el
-pE
-pE
-SX
+vf
+vf
+vf
 el
 iq
 dG
@@ -195679,9 +195634,9 @@ nV
 nV
 el
 el
-jD
+rQ
 kJ
-kg
+gc
 el
 el
 iq
@@ -195981,9 +195936,9 @@ nV
 nV
 el
 gc
-kg
-kg
-kg
+gc
+gc
+gc
 gc
 el
 iq
@@ -196314,9 +196269,9 @@ dG
 dG
 dG
 el
-pE
-pE
-SX
+vf
+vf
+vf
 el
 dG
 dG
@@ -197472,7 +197427,7 @@ nV
 nV
 el
 el
-DI
+gc
 gc
 gc
 el
@@ -197522,9 +197477,9 @@ dG
 dG
 dG
 el
-pE
-pE
-SX
+vf
+vf
+vf
 el
 dG
 dG
@@ -197773,8 +197728,8 @@ nV
 el
 el
 el
-vC
-vC
+gc
+gc
 gc
 gc
 el
@@ -198076,7 +198031,7 @@ el
 st
 el
 xc
-vC
+gc
 JF
 gc
 bk
@@ -198377,8 +198332,8 @@ nV
 el
 el
 el
-vC
-vC
+gc
+gc
 gc
 gc
 el
@@ -198680,7 +198635,7 @@ nV
 nV
 el
 el
-DI
+gc
 gc
 gc
 el
@@ -199606,7 +199561,7 @@ nV
 nV
 nV
 el
-lH
+gc
 vx
 FQ
 cK
@@ -206618,9 +206573,9 @@ dG
 dG
 iq
 el
-pE
-pE
-SX
+vf
+vf
+vf
 el
 iq
 iq
@@ -207826,9 +207781,9 @@ dG
 dG
 iq
 el
-pE
-pE
-SX
+vf
+vf
+vf
 el
 iq
 iq

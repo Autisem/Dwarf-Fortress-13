@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	if(!outfit_file)
 		return
 	var/filedata = file2text(outfit_file)
-	var/json = r_json_decode(filedata)
+	var/json = json_decode(filedata)
 	if(!json)
 		to_chat(admin,span_warning("JSON decode error.") , confidential = TRUE)
 		return

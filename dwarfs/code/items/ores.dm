@@ -6,8 +6,8 @@
 
 /obj/item/stack/ore/stone
 	name = "stone"
-	icon = 'white/valtos/icons/objects.dmi'
-	icon_state = "stone"
+	icon = 'dwarfs/icons/items/ores_gems.dmi'
+	icon_state = "rock"
 	singular_name = "Stone piece"
 	max_amount = 1
 	refined_type = /obj/item/stack/sheet/stone
@@ -19,18 +19,12 @@
 		return ..()
 
 	if(istype(I, /obj/item/blacksmith/chisel))
-		playsound(src, 'white/valtos/sounds/tough.wav', 100, TRUE)
+		playsound(src, 'sound/weapons/tough.wav', 100, TRUE)
 		if(prob(25))
 			to_chat(user, span_warning("You process \the [src]."))
 			return
 		new /obj/item/stack/sheet/stone(user.loc)
 		to_chat(user, span_notice("You process \the [src]."))
-		qdel(src)
-		return
-	if(istype(I, /obj/item/blacksmith/smithing_hammer))
-		playsound(src, 'sound/effects/break_stone.ogg', 50, TRUE)
-		new /obj/item/stack/ore/glass(drop_location())
-		to_chat(user, span_notice("You smash \the [src]."))
 		qdel(src)
 		return
 

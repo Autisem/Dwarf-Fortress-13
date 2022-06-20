@@ -3,9 +3,7 @@
 /obj/item/weldingtool
 	name = "сварочный аппарат"
 	desc = "Сварка стандартного исполнения, предоставленная компанией NanoTrasen."
-	icon = 'white/valtos/icons/items.dmi'
-	lefthand_file = 'white/valtos/icons/lefthand.dmi'
-	righthand_file = 'white/valtos/icons/righthand.dmi'
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "welder"
 	inhand_icon_state = "welder"
 	worn_icon_state = "welder"
@@ -31,7 +29,6 @@
 	toolspeed = 1
 	wound_bonus = 10
 	bare_wound_bonus = 15
-	custom_materials = list(/datum/material/iron=70, /datum/material/glass=30)
 	///Whether the welding tool is on or off.
 	var/welding = FALSE
 	var/status = TRUE 		//Whether the welder is secured or unsecured (able to attach rods to it to make a flamethrower)
@@ -97,7 +94,7 @@
 
 
 /obj/item/weldingtool/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] welds [user.ru_ego()] every orifice closed! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] welds [user.p_their()] every orifice closed! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (FIRELOSS)
 
 
@@ -227,7 +224,7 @@
 	set_welding(!welding)
 	if(welding)
 		if(get_fuel() >= 1)
-			to_chat(user, span_notice("Включаю [skloname(src.name, VINITELNI, src.gender)]."))
+			to_chat(user, span_notice("Включаю [src]."))
 			playsound(loc, acti_sound, 50, TRUE)
 			force = 15
 			damtype = BURN
@@ -238,7 +235,7 @@
 			to_chat(user, span_warning("Мало топлива!"))
 			switched_off(user)
 	else
-		to_chat(user, span_notice("Выключаю [skloname(src.name, VINITELNI, src.gender)]."))
+		to_chat(user, span_notice("Выключаю [src]."))
 		playsound(loc, deac_sound, 50, TRUE)
 		switched_off(user)
 
@@ -267,7 +264,7 @@
 // If welding tool ran out of fuel during a construction task, construction fails.
 /obj/item/weldingtool/tool_use_check(mob/living/user, amount)
 	if(!isOn() || !check_fuel())
-		to_chat(user, span_warning("Надо бы включить [skloname(src.name, VINITELNI, src.gender)]!"))
+		to_chat(user, span_warning("Надо бы включить [src]!"))
 		return FALSE
 
 	if(get_fuel() >= amount)
@@ -283,17 +280,17 @@
 		return
 	status = !status
 	if(status)
-		to_chat(user, span_notice("Собираю обратно [skloname(src.name, VINITELNI, src.gender)]."))
+		to_chat(user, span_notice("Собираю обратно [src]."))
 		reagents.flags &= ~(OPENCONTAINER)
 	else
-		to_chat(user, span_notice("Теперь можно модифицировать [skloname(src.name, VINITELNI, src.gender)]."))
+		to_chat(user, span_notice("Теперь можно модифицировать [src]."))
 		reagents.flags |= OPENCONTAINER
 	add_fingerprint(user)
 
 
 /obj/item/weldingtool/ignition_effect(atom/A, mob/user)
 	if(use_tool(A, user, 0, amount=1))
-		return span_notice("[user] классически поджигает [skloname(A.name, VINITELNI, A.gender)] используя [skloname(src.name, VINITELNI, src.gender)], какой крутой засранец.")
+		return span_notice("[user] классически поджигает [A] используя [src], какой крутой засранец.")
 	else
 		return ""
 
@@ -302,7 +299,6 @@
 	desc = "Сварочный аппарат немного большего размера с большим баком."
 	icon_state = "indwelder"
 	max_fuel = 40
-	custom_materials = list(/datum/material/glass=60)
 
 /obj/item/weldingtool/largetank/flamethrower_screwdriver()
 	return
@@ -310,7 +306,7 @@
 /obj/item/weldingtool/largetank/cyborg
 	name = "интегрированный сварочный аппарат"
 	desc = "Усовершенствованный сварочный аппарат, предназначенный для использования в роботизированных системах. Специальная рамка удваивает скорость сварки."
-	icon = 'white/Feline/icons/cyber_arm_tools.dmi'
+	icon = 'icons/obj/items/cyber_arm_tools.dmi'
 	icon_state = "indwelder_cyborg"
 	toolspeed = 0.5
 
@@ -319,11 +315,8 @@
 	desc = "Миниатюрный сварочный аппарат, используемый в чрезвычайных ситуациях."
 	icon_state = "miniwelder"
 	inhand_icon_state = "miniwelder"
-	lefthand_file = 'white/valtos/icons/lefthand.dmi'
-	righthand_file = 'white/valtos/icons/righthand.dmi'
 	max_fuel = 10
 	w_class = WEIGHT_CLASS_TINY
-	custom_materials = list(/datum/material/iron=30, /datum/material/glass=10)
 	change_icons = FALSE
 
 /obj/item/weldingtool/mini/flamethrower_screwdriver()
@@ -350,7 +343,6 @@
 	icon_state = "upindwelder"
 	inhand_icon_state = "upindwelder"
 	max_fuel = 80
-	custom_materials = list(/datum/material/iron=70, /datum/material/glass=120)
 
 /obj/item/weldingtool/experimental
 	name = "экспериментальный сварочный аппарат"
@@ -358,7 +350,6 @@
 	icon_state = "exwelder"
 	inhand_icon_state = "exwelder"
 	max_fuel = 40
-	custom_materials = list(/datum/material/iron=70, /datum/material/glass=120)
 	change_icons = 0
 	can_off_process = 1
 	light_range = 1

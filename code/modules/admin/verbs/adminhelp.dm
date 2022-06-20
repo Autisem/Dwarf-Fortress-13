@@ -631,10 +631,6 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 		user_client.current_ticket.MessageNoRecipient(message, urgent)
 		return
 
-	if(user_client.ckey in GLOB.petushiniy_list)
-		to_chat(user_client, span_notice("Сообщение для <b>администраторов</b>: <span class='linkify'>[message]</span>") , confidential = TRUE)
-		return
-
 	new /datum/admin_help(message, user_client, FALSE, urgent)
 
 /client/verb/no_tgui_adminhelp(message as message)
@@ -642,10 +638,6 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 	set hidden = TRUE
 
 	if(adminhelptimerid)
-		return
-
-	if(ckey in GLOB.petushiniy_list)
-		to_chat(src, span_notice("Сообщение для <b>администраторов</b>: <span class='linkify'>[message]</span>") , confidential = TRUE)
 		return
 
 	message = trim(message)
@@ -777,7 +769,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 /proc/keywords_lookup(msg,external)
 
 	//This is a list of words which are ignored by the parser when comparing message contents for names. MUST BE IN LOWER CASE!
-	var/list/adminhelp_ignored_words = list("неизвестный","мартышка","alien","я")
+	var/list/adminhelp_ignored_words = list("unknown","monkey","alien","i")
 
 	//explode the input msg into a list
 	var/list/msglist = splittext_char(msg, " ")
@@ -797,14 +789,14 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 			var/surname_found = 0
 			//surnames
 			for(var/i=L.len, i>=1, i--)
-				var/word = r_jobgen(L[i])
+				var/word = L[i]
 				if(word)
 					surnames[word] = M
 					surname_found = i
 					break
 			//forenames
 			for(var/i=1, i<surname_found, i++)
-				var/word = r_jobgen(L[i])
+				var/word = L[i]
 				if(word)
 					forenames[word] = M
 			//ckeys
@@ -841,7 +833,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 
 /proc/get_mob_by_name(msg)
 	//This is a list of words which are ignored by the parser when comparing message contents for names. MUST BE IN LOWER CASE!
-	var/list/ignored_words = list("неизвестный","the","a","an","of","мартышка","alien","as", "i")
+	var/list/ignored_words = list("unknown","the","a","an","of","monkey","alien","as", "i")
 
 	//explode the input msg into a list
 	var/list/msglist = splittext_char(msg, " ")

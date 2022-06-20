@@ -59,15 +59,6 @@
 	name = "tactical medic's armor vest"
 	icon_state = "marine_medic"
 
-/obj/item/clothing/suit/armor/vest/old
-	name = "старый бронежилет"
-	desc = "Бронежилет Тип I старого поколения. Ввиду использования старых технологий создания бронежилета, является менее маневрененным для перемещения."
-	icon = 'white/rebolution228/icons/clothing/suits.dmi'
-	worn_icon = 'white/rebolution228/icons/clothing/mob/suits_mob.dmi'
-	icon_state = "armor_old"
-	inhand_icon_state = "armor"
-	slowdown = 0.4
-
 /obj/item/clothing/suit/armor/vest/blueshirt
 	name = "большой бронежилет"
 	desc = "Большой, но удобный кусок брони, защищающий вас от некоторых угроз."

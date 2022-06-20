@@ -15,15 +15,15 @@
 		return
 	if(ishuman(H))
 		if(user.gender == FEMALE)
-			return pick('white/rebolution228/sounds/emotes/female_crying01.ogg',\
-						'white/rebolution228/sounds/emotes/female_crying02.ogg',\
-						'white/rebolution228/sounds/emotes/female_crying03.ogg',\
-						'white/rebolution228/sounds/emotes/female_crying04.ogg')
+			return pick('sound/emotes/female_crying01.ogg',\
+						'sound/emotes/female_crying02.ogg',\
+						'sound/emotes/female_crying03.ogg',\
+						'sound/emotes/female_crying04.ogg')
 		else
-			return pick('white/rebolution228/sounds/emotes/male_crying01.ogg',\
-						'white/rebolution228/sounds/emotes/male_crying02.ogg',\
-						'white/rebolution228/sounds/emotes/male_crying03.ogg',\
-						'white/rebolution228/sounds/emotes/male_crying04.ogg')
+			return pick('sound/emotes/male_crying01.ogg',\
+						'sound/emotes/male_crying02.ogg',\
+						'sound/emotes/male_crying03.ogg',\
+						'sound/emotes/male_crying04.ogg')
 
 /datum/emote/living/carbon/human/dap
 	key = "dap"
@@ -79,13 +79,13 @@
 		return
 	if(ishuman(H))
 		if(user.gender == FEMALE)
-			return pick('white/valtos/sounds/emotes/scream_female_1.ogg',\
-						'white/valtos/sounds/emotes/scream_female_2.ogg',\
-						'white/valtos/sounds/emotes/scream_female_3.ogg',\
-						'white/valtos/sounds/emotes/scream_female_4.ogg')
+			return pick('sound/emotes/scream_female_1.ogg',\
+						'sound/emotes/scream_female_2.ogg',\
+						'sound/emotes/scream_female_3.ogg',\
+						'sound/emotes/scream_female_4.ogg')
 		else
-			return pick('white/valtos/sounds/emotes/scream_male_1.ogg',\
-						'white/valtos/sounds/emotes/scream_male_2.ogg',\
+			return pick('sound/emotes/scream_male_1.ogg',\
+						'sound/emotes/scream_male_2.ogg',\
 						'sound/voice/human/malescream_1.ogg',\
 						'sound/voice/human/malescream_2.ogg',\
 						'sound/voice/human/malescream_3.ogg',\
@@ -115,19 +115,19 @@
 	if(H.mind?.miming)
 		return
 	if(user.gender == FEMALE)
-		return pick('white/valtos/sounds/emotes/agony_female_1.ogg',\
-					'white/valtos/sounds/emotes/agony_female_2.ogg',\
-					'white/valtos/sounds/emotes/agony_female_3.ogg')
+		return pick('sound/emotes/agony_female_1.ogg',\
+					'sound/emotes/agony_female_2.ogg',\
+					'sound/emotes/agony_female_3.ogg')
 	else
-		return pick('white/valtos/sounds/emotes/agony_male_1.ogg',\
-					'white/valtos/sounds/emotes/agony_male_2.ogg',\
-					'white/valtos/sounds/emotes/agony_male_3.ogg',\
-					'white/valtos/sounds/emotes/agony_male_4.ogg',\
-					'white/valtos/sounds/emotes/agony_male_5.ogg',\
-					'white/valtos/sounds/emotes/agony_male_6.ogg',\
-					'white/valtos/sounds/emotes/agony_male_7.ogg',\
-					'white/valtos/sounds/emotes/agony_male_8.ogg',\
-					'white/valtos/sounds/emotes/agony_male_9.ogg')
+		return pick('sound/emotes/agony_male_1.ogg',\
+					'sound/emotes/agony_male_2.ogg',\
+					'sound/emotes/agony_male_3.ogg',\
+					'sound/emotes/agony_male_4.ogg',\
+					'sound/emotes/agony_male_5.ogg',\
+					'sound/emotes/agony_male_6.ogg',\
+					'sound/emotes/agony_male_7.ogg',\
+					'sound/emotes/agony_male_8.ogg',\
+					'sound/emotes/agony_male_9.ogg')
 
 
 /datum/emote/living/carbon/human/pale

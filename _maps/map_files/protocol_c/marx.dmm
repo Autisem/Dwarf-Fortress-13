@@ -6,7 +6,7 @@
 /turf/closed/indestructible/splashscreen,
 /area/start)
 "w" = (
-/turf/closed/indestructible/black,
+/turf/closed/indestructible,
 /area/start)
 "E" = (
 /obj/effect/landmark/start/new_player,

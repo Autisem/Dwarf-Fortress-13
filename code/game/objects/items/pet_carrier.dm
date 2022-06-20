@@ -17,7 +17,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 3
-	custom_materials = list(/datum/material/iron = 7500, /datum/material/glass = 100)
 	var/open = TRUE
 	var/locked = FALSE
 	var/list/occupants = list()
@@ -166,7 +165,7 @@
 		return
 	user.visible_message(span_notice("[user] starts loading [target] into [src].") , \
 	span_notice("You start loading [target] into [src]...") , null, null, target)
-	to_chat(target, span_userdanger("[user] starts loading you into [user.ru_ego()] [name]!"))
+	to_chat(target, span_userdanger("[user] starts loading you into [user.p_their()] [name]!"))
 	if(!do_mob(user, target, 30))
 		return
 	if(target in occupants)
@@ -176,7 +175,7 @@
 		return
 	user.visible_message(span_notice("[user] loads [target] into [src]!") , \
 	span_notice("You load [target] into [src].") , null, null, target)
-	to_chat(target, span_userdanger("[user] loads you into [user.ru_ego()] [name]!"))
+	to_chat(target, span_userdanger("[user] loads you into [user.p_their()] [name]!"))
 	add_occupant(target)
 
 /obj/item/pet_carrier/proc/add_occupant(mob/living/occupant)

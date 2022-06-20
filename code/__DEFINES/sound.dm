@@ -49,8 +49,7 @@
 					'sound/ambience/white/ambi9.ogg',\
 					'sound/ambience/white/ambi10.ogg',\
 					'sound/ambience/white/ambi12.ogg',\
-					'sound/ambience/white/ambi13.ogg',\
-					'white/valtos/sounds/prison/amb8.ogg')
+					'sound/ambience/white/ambi13.ogg')
 
 #define HOLY list('sound/ambience/white/ambichurch1.ogg')
 
@@ -69,14 +68,12 @@
 
 #define MINING list('sound/ambience/white/ambidanger1.ogg',\
 					'sound/ambience/white/ambidanger2.ogg',\
-					'sound/ambience/white/ambi12.ogg',\
-					'white/valtos/sounds/prison/amb6.ogg')
+					'sound/ambience/white/ambi12.ogg')
 
 #define MEDICAL list('sound/ambience/white/ambimed1.ogg',\
 					'sound/ambience/white/ambimed2.ogg')
 
-#define SPOOKY list('sound/ambience/white/ambimo1.ogg',\
-					'white/valtos/sounds/prison/amb7.ogg')
+#define SPOOKY list('sound/ambience/white/ambimo1.ogg')
 
 #define SPACE list('sound/ambience/white/ambispace1.ogg',\
 				'sound/ambience/white/ambispace2.ogg',\
@@ -93,12 +90,6 @@
 #define REEBE list('sound/ambience/ambireebe1.ogg',\
 				'sound/ambience/ambireebe2.ogg',\
 				'sound/ambience/ambireebe3.ogg')
-
-#define CITY_SOUNDS list('white/rebolution228/sounds/ambience/daytime_1.ogg',\
-						'white/rebolution228/sounds/ambience/daytime_2.ogg',\
-						'white/rebolution228/sounds/ambience/daytime_3.ogg',\
-						'white/rebolution228/sounds/ambience/daytime_4.ogg',\
-						'white/rebolution228/sounds/ambience/daytime_5.ogg')
 
 #define CREEPY_SOUNDS list('sound/effects/ghost.ogg',\
 						'sound/effects/ghost2.ogg',\
@@ -124,20 +115,6 @@
 						'sound/hallucinations/veryfar_noise.ogg',\
 						'sound/hallucinations/wail.ogg')
 
-#define SOVIET_AMB list('white/valtos/sounds/prison/amb6.ogg',\
-						'white/valtos/sounds/prison/amb7.ogg',\
-						'white/valtos/sounds/prison/amb8.ogg')
-
-#define RANGERS_AMB list('white/valtos/sounds/rangers/1.ogg',\
-						'white/valtos/sounds/rangers/2.ogg',\
-						'white/valtos/sounds/rangers/3.ogg',\
-						'white/valtos/sounds/rangers/4.ogg',\
-						'white/valtos/sounds/rangers/5.ogg')
-
-#define SOVIET_AMB_CAVES list('white/valtos/sounds/prison/ambout1.ogg')
-
-#define SCARLET_DAWN_AMBIENT list('white/valtos/sounds/dz/ambidawn.ogg')
-
 #define GENERIC_AMBIGEN list('sound/ambience/ambigen1.ogg',\
 						'sound/ambience/ambigen3.ogg',\
 						'sound/ambience/ambigen4.ogg',\
@@ -156,35 +133,7 @@
 						'white/jhnazar/sound/effects/turbolift/elevatormusic1.ogg',\
 						'white/jhnazar/sound/effects/turbolift/elevatormusic2.ogg')
 
-#define FAR_EXPLOSION_SOUNDS list('white/valtos/sounds/farexplosion/1.ogg',\
-						'white/valtos/sounds/farexplosion/2.ogg',\
-						'white/valtos/sounds/farexplosion/3.ogg',\
-						'white/valtos/sounds/farexplosion/4.ogg',\
-						'white/valtos/sounds/farexplosion/5.ogg',\
-						'white/valtos/sounds/farexplosion/6.ogg',\
-						'white/valtos/sounds/farexplosion/7.ogg',\
-						'white/valtos/sounds/farexplosion/8.ogg',\
-						'white/valtos/sounds/farexplosion/9.ogg',\
-						'sound/effects/explosionfar.ogg')
-
-#define WATER_FLOW_MINI list('white/valtos/sounds/voda1.ogg',\
-						'white/valtos/sounds/voda2.ogg',\
-						'white/valtos/sounds/voda3.ogg',\
-						'white/valtos/sounds/voda4.ogg',\
-						'white/valtos/sounds/voda5.ogg')
-
-#define RANDOM_DEEPH_SOUNDS list('white/valtos/sounds/lifeweb/deeph1.ogg',\
-						'white/valtos/sounds/lifeweb/deeph2.ogg',\
-						'white/valtos/sounds/lifeweb/deeph3.ogg',\
-						'white/valtos/sounds/lifeweb/deeph4.ogg',\
-						'white/valtos/sounds/lifeweb/deeph5.ogg',\
-						'white/valtos/sounds/lifeweb/deeph6.ogg')
-
-#define RANDOM_DREAMER_SOUNDS list('white/valtos/sounds/lifeweb/dream1.ogg',\
-						'white/valtos/sounds/lifeweb/dream2.ogg',\
-						'white/valtos/sounds/lifeweb/dream3.ogg',\
-						'white/valtos/sounds/lifeweb/dream4.ogg',\
-						'white/valtos/sounds/lifeweb/dream5.ogg')
+#define FAR_EXPLOSION_SOUNDS list('sound/effects/explosionfar.ogg')
 
 #define INTERACTION_SOUND_RANGE_MODIFIER -3
 #define EQUIP_SOUND_VOLUME 30

@@ -147,7 +147,7 @@
 
 	var/list/msg = list()
 	if(!limb.current_gauze)
-		msg += "[victim.ru_ego(TRUE)] [limb.name] [examine_desc]"
+		msg += "[victim.p_their(TRUE)] [limb.name] [examine_desc]"
 	else
 		var/sling_condition = "отлично"
 		// how much life we have left in these bandages
@@ -161,7 +161,7 @@
 			if(75 to INFINITY)
 				sling_condition = "плотно"
 
-		msg += "[capitalize(limb.current_gauze.name)] на [victim.ru_na()] [sling_condition] держится"
+		msg += "[capitalize(limb.current_gauze.name)] на [victim.p_them()] [sling_condition] держится"
 
 	if(taped)
 		msg += ", и, кажется, реформируется под хирургической лентой!"
@@ -284,7 +284,7 @@
 
 /datum/wound/blunt/moderate/treat(obj/item/I, mob/user)
 	if(victim == user)
-		victim.visible_message(span_danger("<b>[user]</b> начинает вправлять [victim.ru_ego()] [limb.name] используя [I].") , span_warning("Начинаю вправлять свою [limb.name] используя [I]..."))
+		victim.visible_message(span_danger("<b>[user]</b> начинает вправлять [victim.p_their()] [limb.name] используя [I].") , span_warning("Начинаю вправлять свою [limb.name] используя [I]..."))
 	else
 		user.visible_message(span_danger("<b>[user]</b> начинает вправлять [limb.name] <b>[victim]</b> используя [I].") , span_notice("Начинаю вправлять [limb.name] <b>[victim]</b> используя [I]..."))
 
@@ -293,7 +293,7 @@
 
 	if(victim == user)
 		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
-		victim.visible_message(span_danger("<b>[user]</b> успешно вправляет [victim.ru_ego()] [limb.name]!") , span_userdanger("Вправляю свою [limb.name]!"))
+		victim.visible_message(span_danger("<b>[user]</b> успешно вправляет [victim.p_their()] [limb.name]!") , span_userdanger("Вправляю свою [limb.name]!"))
 	else
 		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
 		user.visible_message(span_danger("<b>[user]</b> успешно вправляет [limb.name] <b>[victim]</b>!") , span_nicegreen("Вправляю [limb.name] <b>[victim]</b>!") , victim)
@@ -319,7 +319,7 @@
 	limp_slowdown = 6
 	threshold_minimum = 60
 	threshold_penalty = 30
-	treatable_by = list(/obj/item/stack/sticky_tape/surgical, /obj/item/stack/medical/bone_gel)
+	treatable_by = list(/obj/item/stack/medical/bone_gel)
 	status_effect_type = /datum/status_effect/wound/blunt/severe
 	scar_keyword = "bluntsevere"
 	brain_trauma_group = BRAIN_TRAUMA_MILD
@@ -344,7 +344,7 @@
 	threshold_minimum = 115
 	threshold_penalty = 50
 	disabling = TRUE
-	treatable_by = list(/obj/item/stack/sticky_tape/surgical, /obj/item/stack/medical/bone_gel)
+	treatable_by = list(/obj/item/stack/medical/bone_gel)
 	status_effect_type = /datum/status_effect/wound/blunt/critical
 	scar_keyword = "bluntcritical"
 	brain_trauma_group = BRAIN_TRAUMA_SEVERE
@@ -390,47 +390,18 @@
 			painkiller_bonus += 20
 
 		if(prob(25 + (20 * (severity - 2)) - painkiller_bonus)) // 25%/45% chance to fail self-applying with severe and critical wounds, modded by painkillers
-			victim.visible_message(span_danger("<b>[victim]</b> проваливает попытку нанести [I] на [victim.ru_ego()] [limb.name], теряя сознание от боли!") , span_notice("Теряю сознание от боли пытаясь применить [I] на мою [limb.name] перед тем как закончить!"))
+			victim.visible_message(span_danger("<b>[victim]</b> проваливает попытку нанести [I] на [victim.p_their()] [limb.name], теряя сознание от боли!") , span_notice("Теряю сознание от боли пытаясь применить [I] на мою [limb.name] перед тем как закончить!"))
 			victim.AdjustUnconscious(5 SECONDS)
 			return
-		victim.visible_message(span_notice("<b>[victim]</b> успешно применяет [I] на [victim.ru_ego()] [limb.name], скорчившись от боли!") , span_notice("Заканчиваю применять [I] на мою [limb.name], осталось перетерпеть адскую боль!"))
+		victim.visible_message(span_notice("<b>[victim]</b> успешно применяет [I] на [victim.p_their()] [limb.name], скорчившись от боли!") , span_notice("Заканчиваю применять [I] на мою [limb.name], осталось перетерпеть адскую боль!"))
 
 	limb.receive_damage(25, stamina=100, wound_bonus=CANT_WOUND)
 	if(!gelled)
 		gelled = TRUE
 
-/// if someone is using surgical tape on our wound
-/datum/wound/blunt/proc/tape(obj/item/stack/sticky_tape/surgical/I, mob/user)
-	if(!gelled)
-		to_chat(user, span_warning("[capitalize(limb.name)] [user == victim ? " " : "<b>[victim]</b> "] должна быть покрыт костным гелем для выполнения этой экстренной операции!"))
-		return
-	if(taped)
-		to_chat(user, span_warning("[capitalize(limb.name)] [user == victim ? " " : "<b>[victim]</b> "] уже обёрнута в [I.name] и реформируется!"))
-		return
-
-	user.visible_message(span_danger("<b>[user]</b> начинает применять [I] на [limb.name] <b>[victim]</b>...") , span_warning("Начинаю применять [I] на [limb.name] [user == victim ? " " : "<b>[victim]</b> "]..."))
-
-	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
-		return
-
-	if(victim == user)
-		regen_ticks_needed *= 1.5
-
-	I.use(1)
-	if(user != victim)
-		user.visible_message(span_notice("<b>[user]</b> заканчивает применять [I] на [limb.name] <b>[victim]</b>, издавая шипящий звук!") , span_notice("Заканчиваю применять [I] на [limb.name] <b>[victim]</b>!") , ignored_mobs=victim)
-		to_chat(victim, span_green("<b>[user]</b> заканчивает применять [I] на мою [limb.name], сразу начинаю чувствовать как мои кости реформируются!"))
-	else
-		victim.visible_message(span_notice("<b>[victim]</b> заканчивает применять [I] на [victim.ru_ego()] [limb.name], !") , span_green("Заканчиваю применять [I] на мою [limb.name], сразу начинаю чувствовать как мои кости реформируются!"))
-
-	taped = TRUE
-	processes = TRUE
-
 /datum/wound/blunt/treat(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/medical/bone_gel))
 		gel(I, user)
-	else if(istype(I, /obj/item/stack/sticky_tape/surgical))
-		tape(I, user)
 
 /datum/wound/blunt/get_scanner_description(mob/user)
 	. = ..()

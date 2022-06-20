@@ -11,7 +11,7 @@
 
 /datum/status_effect/determined/on_apply()
 	. = ..()
-	owner.visible_message(span_danger("[owner] стискивает [owner.ru_ego()] зубы от боли!") , span_notice("<b>Прилив адреналина даёт мне на мгновение забыть про раны!</b>") , vision_distance=COMBAT_MESSAGE_RANGE)
+	owner.visible_message(span_danger("[owner] стискивает [owner.p_their()] зубы от боли!") , span_notice("<b>Прилив адреналина даёт мне на мгновение забыть про раны!</b>") , vision_distance=COMBAT_MESSAGE_RANGE)
 
 /datum/status_effect/determined/on_remove()
 	owner.visible_message(span_danger("[owner] заметно ослабевает!") , span_warning("<b>Раны начинают болеть с огромной силой...</b>") , vision_distance=COMBAT_MESSAGE_RANGE)

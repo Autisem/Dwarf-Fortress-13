@@ -53,10 +53,6 @@
 
 /datum/reagent/clf3/expose_turf(turf/exposed_turf, reac_volume)
 	. = ..()
-	if(isplatingturf(exposed_turf))
-		var/turf/open/floor/plating/target_plating = exposed_turf
-		if(prob(10 + target_plating.burnt + 5*target_plating.broken)) //broken or burnt plating is more susceptible to being destroyed
-			target_plating.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 	if(isfloorturf(exposed_turf))
 		var/turf/open/floor/target_floor = exposed_turf
 		if(prob(reac_volume))

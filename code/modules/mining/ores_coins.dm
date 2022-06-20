@@ -71,7 +71,6 @@
 	icon_state = "iron_ore"
 	inhand_icon_state = "Iron ore"
 	singular_name = "iron ore chunk"
-	refined_type = /obj/item/stack/sheet/iron
 	mine_experience = 1
 	spreadChance = 20
 	merge_type = /obj/item/stack/ore/iron
@@ -80,7 +79,7 @@
 
 /obj/item/stack/ore/coal
 	name = "coal ore"
-	icon = 'white/valtos/icons/prison/prison.dmi'
+	icon = 'dwarfs/icons/items/ores_gems.dmi'
 	icon_state = "coal"
 	inhand_icon_state = "Iron ore"
 	singular_name = "coal ore chunk"
@@ -96,42 +95,6 @@
 	var/obj/item/stack/S = new refined_type (get_turf(src))
 	S.amount = new_amount
 	qdel(src)
-
-/obj/item/stack/ore/glass
-	name = "sand pile"
-	icon_state = "glass_ore"
-	inhand_icon_state = "Glass ore"
-	singular_name = "sand pile"
-	refined_type = /obj/item/stack/sheet/glass
-	w_class = WEIGHT_CLASS_TINY
-	mine_experience = 0 //its sand
-	merge_type = /obj/item/stack/ore/glass
-
-/obj/item/stack/ore/glass/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(..() || !ishuman(hit_atom))
-		return
-	var/mob/living/carbon/human/C = hit_atom
-	if(C.is_eyes_covered())
-		C.visible_message(span_danger("[C] eye protection blocks the sand!") , span_warning("Your eye protection blocks the sand!"))
-		return
-	C.adjust_blurriness(6)
-	C.adjustStaminaLoss(15)//the pain from your eyes burning does stamina damage
-	C.add_confusion(5)
-	to_chat(C, span_userdanger("<b>[src.name]</b> gets into your eyes! The pain, it burns!"))
-	qdel(src)
-
-/obj/item/stack/ore/glass/ex_act(severity, target)
-	if (severity == EXPLODE_NONE)
-		return
-	qdel(src)
-
-/obj/item/stack/ore/glass/basalt
-	name = "volcanic ash"
-	icon_state = "volcanic_sand"
-	inhand_icon_state = "volcanic_sand"
-	singular_name = "volcanic ash pile"
-	mine_experience = 0
-	merge_type = /obj/item/stack/ore/glass/basalt
 
 /obj/item/stack/ore/gold
 	name = "gold ore"

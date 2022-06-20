@@ -13,7 +13,6 @@
 	var/mode = SYRINGE_DRAW
 	var/busy = FALSE		// needed for delayed drawing of blood
 	var/proj_piercing = 0 //does it pierce through thick clothes when shot with syringe gun
-	custom_materials = list(/datum/material/iron=10, /datum/material/glass=20)
 	reagent_flags = TRANSPARENT
 	custom_price = PAYCHECK_EASY * 0.5
 	atck_type = PIERCE
@@ -189,7 +188,7 @@
 
 /obj/item/reagent_containers/syringe/bluespace/update_overlays()
 	. = ..()
-	var/mutable_appearance/animation_overlay = mutable_appearance('white/Feline/icons/syringe_bluespace.dmi', "animation")
+	var/mutable_appearance/animation_overlay = mutable_appearance('icons/obj/items/syringe_bluespace.dmi', "animation")
 	. += animation_overlay
 
 ///Used by update_icon() and update_overlays()
@@ -265,14 +264,14 @@
 /obj/item/reagent_containers/syringe/bluespace
 	name = "блюспейс шприц"
 	desc = "Эта малышка может хранить 60 единиц в себе."
-	icon = 'white/Feline/icons/syringe_bluespace.dmi'
+	icon = 'icons/obj/items/syringe_bluespace.dmi'
 	amount_per_transfer_from_this = 20
 	volume = 60
 
 /obj/item/reagent_containers/syringe/piercing
 	name = "бронебойный шприц"
 	desc = "Шприц с алмазным наконечником. Может хранить примерно 10 единиц."
-	icon = 'white/Feline/icons/syringe_piercing.dmi'
+	icon = 'icons/obj/items/syringe_piercing.dmi'
 	volume = 10
 	proj_piercing = 1
 

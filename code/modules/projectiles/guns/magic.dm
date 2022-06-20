@@ -73,7 +73,7 @@
 	to_chat(user, span_warning("<b>[name]</b> тихо свистит."))
 
 /obj/item/gun/magic/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] is twisting [src] above [user.ru_ego()] head, releasing a magical blast! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is twisting [src] above [user.p_their()] head, releasing a magical blast! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(loc, fire_sound, 50, TRUE, -1)
 	return (FIRELOSS)
 

@@ -1,9 +1,7 @@
 /obj/item/wirecutters
 	name = "кусачки"
 	desc = "Чтобы резать кабели."
-	icon = 'white/valtos/icons/items.dmi'
-	lefthand_file = 'white/valtos/icons/lefthand.dmi'
-	righthand_file = 'white/valtos/icons/righthand.dmi'
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters_map"
 	inhand_icon_state = "cutters"
 	flags_1 = CONDUCT_1
@@ -64,7 +62,7 @@
 		..()
 
 /obj/item/wirecutters/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] is cutting at [user.ru_ego()] arteries with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] is cutting at [user.p_their()] arteries with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(loc, usesound, 50, TRUE, -1)
 	return (BRUTELOSS)
 
@@ -79,7 +77,7 @@
 /obj/item/wirecutters/cyborg
 	name = "механизированные кусачки"
 	desc = "Обрезает провода силой ЭЛЕКТРИЧЕСКОсти. Быстрее, чем обычные канаторезы."
-	icon = 'white/Feline/icons/cyber_arm_tools.dmi'
+	icon = 'icons/obj/items/cyber_arm_tools.dmi'
 	icon_state = "wirecutters_cyborg"
 	worn_icon_state = "cutters"
 	toolspeed = 0.5

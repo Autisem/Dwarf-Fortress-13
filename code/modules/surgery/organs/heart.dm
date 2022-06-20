@@ -92,7 +92,7 @@
 
 	if(organ_flags & ORGAN_FAILING)	//heart broke, stopped beating, death imminent
 		if(owner.stat == CONSCIOUS)
-			owner.visible_message(span_danger("[owner] хватается за [owner.ru_ego()] грудь в порыве сердечного приступа!") , \
+			owner.visible_message(span_danger("[owner] хватается за [owner.p_their()] грудь в порыве сердечного приступа!") , \
 				span_userdanger("Чувствую ужасную боль в груди, как будто остановилось сердце!"))
 		owner.set_heartattack(TRUE)
 		failed = TRUE

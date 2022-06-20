@@ -13,3 +13,8 @@
 #define UI_BOXCRAFT "EAST-4:22,SOUTH+1:6"
 #define UI_BOXAREA "EAST-4:6,SOUTH+0:5"
 #define UI_BOXLANG "EAST-4:22,SOUTH+0:21"
+
+#define ui_multiz_up "EAST-1:44,SOUTH+3:8"
+#define ui_multiz_down "EAST-1:44,SOUTH+2:24"
+
+#define ui_emotes "EAST-1:44,SOUTH+2:8"

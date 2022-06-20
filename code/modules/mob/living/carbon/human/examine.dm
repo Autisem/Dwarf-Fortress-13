@@ -381,7 +381,7 @@
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()
 	if(!pronoun_replacement)
-		pronoun_replacement = ru_who(TRUE)
+		pronoun_replacement = p_they(TRUE)
 	for(var/V in status_effects)
 		var/datum/status_effect/E = V
 		if(E.examine_text)
