@@ -81,7 +81,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		surgery.speed_modifier = max(0.1*power_multiplier, surgery.speed_modifier)
 
 /datum/reagent/consumable/ethanol/beer
-	name = "Пиво"
+	name = "beer"
 	enname = "Beer"
 	description = "Алкогольный напиток, который варили с дневних времен еще на старой земле. Всё еще популярен."
 	color = "#664300" // rgb: 102, 67, 0
@@ -93,6 +93,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	fallback_icon_state = "beer"
 	glass_price = DRINK_PRICE_STOCK
+
+/datum/reagent/consumable/ethanol/beer/barley
+	name = "barley beer"
 
 /datum/reagent/consumable/ethanol/beer/light
 	name = "Светлое Пиво"

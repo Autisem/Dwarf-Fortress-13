@@ -26,7 +26,7 @@
 	var/open = FALSE
 	var/fuel = 0
 	var/working = FALSE
-	var/temp = 373.15
+	var/temp = 500
 
 /obj/structure/brewery/l/Destroy()
 	. = ..()
@@ -36,7 +36,7 @@
 
 /obj/structure/brewery/l/Initialize()
 	. = ..()
-	create_reagents(150, _allowed_reagents=list(/datum/reagent/wort))
+	create_reagents(300)
 	START_PROCESSING(SSprocessing, src)
 
 /obj/structure/brewery/l/AltClick(mob/user)
@@ -49,8 +49,12 @@
 
 /obj/structure/brewery/l/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/stack/sheet/mineral/coal))
-		I.forceMove(src)
-		fuel += 30
+		if(!open)
+			to_chat(user, span_warning("[src] has to be opened first!"))
+			return
+		var/obj/item/stack/S = I
+		fuel += 30*S.amount
+		qdel(S)
 		update_appearance()
 	else if(istype(I, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/C = I
@@ -122,7 +126,7 @@
 		update_appearance()
 		return
 	reagents.expose_temperature(temp)
-	var/datum/reagent/young = reagents.has_reagent(/datum/reagent/consumable/ethanol/young)
+	var/datum/reagent/young = reagents.has_reagent_subtype(/datum/reagent/consumable/ethanol/young)
 	if(young)
 		right.reagents.add_reagent(young.type, young.volume)
 		reagents.remove_reagent(young.type, young.volume)
@@ -133,7 +137,7 @@
 
 /obj/structure/brewery/r/Initialize()
 	. = ..()
-	create_reagents(150)
+	create_reagents(300)
 
 /obj/structure/brewery/r/Destroy()
 	. = ..()
