@@ -51,7 +51,7 @@
 /obj/item/food/dish/dwarven_stew
 	name = "dwarven stew"
 	desc = ""
-	icon_state = "swarven_stew"
+	icon_state = "dwarven_stew"
 	plate_type = /obj/item/reagent_containers/glass/cooking_pot
 	food_reagents = list(/datum/reagent/consumable/nutriment=1)
 
