@@ -309,7 +309,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		righthand_file = SSgreyscale.GetColoredIconByType(greyscale_config_inhand_right, greyscale_colors)
 
 /obj/item/verb/move_to_top()
-	set name = "move to top"
+	set name = "Move to top"
 	set category = "Объект"
 	set src in oview(1)
 
@@ -528,7 +528,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 /obj/item/verb/verb_pickup()
 	set src in oview(1)
 	set category = "Объект"
-	set name = "pick up"
+	set name = "Pick up"
 
 	if(usr.incapacitated() || !Adjacent(usr))
 		return
