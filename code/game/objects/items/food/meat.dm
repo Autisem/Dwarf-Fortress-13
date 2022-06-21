@@ -14,6 +14,7 @@
 
 /obj/item/food/meat/slab/troll
 	name = "troll meat"
+	icon_state = "troll_meat"
 
 /obj/item/food/meat/slab/troll/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/slice/meat/troll, 3, 2 SECONDS)

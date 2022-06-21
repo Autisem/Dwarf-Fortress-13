@@ -9,6 +9,8 @@
 	icon_state = "meat_slice"
 
 /obj/item/food/slice/meat/troll
+	name = "troll meat slice"
+	icon_state = "troll_slice"
 
 /obj/item/food/slice/dough
 	name = "dough slice"
