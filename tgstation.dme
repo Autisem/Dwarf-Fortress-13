@@ -1436,6 +1436,7 @@
 #include "dwarfs\code\modules\cooking\items.dm"
 #include "dwarfs\code\modules\cooking\oven.dm"
 #include "dwarfs\code\modules\cooking\quern.dm"
+#include "dwarfs\code\modules\cooking\reactions.dm"
 #include "dwarfs\code\modules\cooking\reagent_containers.dm"
 #include "dwarfs\code\modules\cooking\reagents.dm"
 #include "dwarfs\code\modules\cooking\stove.dm"

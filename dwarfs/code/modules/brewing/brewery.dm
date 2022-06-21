@@ -87,20 +87,6 @@
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 		to_chat(user, span_notice("You transfer [vol]u from [src]."))
 
-/obj/structure/brewery/l/attack_hand(mob/user)
-	if(!fuel)
-		to_chat(user, span_warning("[src] has no fuel."))
-		return
-	if(!reagents.total_volume)
-		to_chat(user, span_warning("[src] has nothing to brew."))
-		return
-	if(open)
-		to_chat(user, span_warning("[src] has to be closed firts."))
-		return
-	working = !working
-	to_chat(user, span_notice("You [working?"light up":"extinguish"] [src]."))
-	update_appearance()
-
 /obj/structure/brewery/l/update_icon_state()
 	. = ..()
 	if(working)
@@ -134,31 +120,55 @@
 /obj/structure/brewery/r
 	icon_state = "brewery_r_empty"
 	var/obj/structure/brewery/left
+	var/busy = FALSE
 
 /obj/structure/brewery/r/Initialize()
 	. = ..()
 	create_reagents(300)
+	START_PROCESSING(SSprocessing, src)
 
 /obj/structure/brewery/r/Destroy()
 	. = ..()
+	STOP_PROCESSING(SSprocessing, src)
 	if(left)
 		QDEL_NULL(left)
 
+/obj/structure/brewery/r/update_icon_state()
+	. = ..()
+	if(contents.len)
+		icon_state = "brewery_r_container"
+	else
+		icon_state = initial(icon_state)
+
+/obj/structure/brewery/r/process(delta_time)
+	if(!contents.len)
+		return
+	var/datum/reagent/beer = reagents.has_reagent_subtype(/datum/reagent/consumable/ethanol/beer)
+	if(beer)
+		contents[1].reagents.add_reagent(beer.type, beer.volume)
+		reagents.remove_reagent(beer.type, beer.volume)
+
 /obj/structure/brewery/r/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/reagent_containers))
-		var/obj/item/reagent_containers/C = I
-		var/vol = C.reagents.trans_to(src, C.amount_per_transfer_from_this, transfered_by=user)
-		if(!vol)
-			return TRUE
-		to_chat(user, span_notice("You transfer [vol]u from [C]."))
+	if(istype(I, /obj/item/liftable))
+		var/obj/item/liftable/L = I
+		if(!istype(L.parent, /obj/structure/barrel))
+			return
+		if(contents.len)
+			to_chat(user, span_warning("There is aready a barrel here."))
+			return
+		var/mob/living/carbon/human/H = user
+		H.dropItemToGround(I)
+		L.parent.forceMove(src)
+		update_appearance()
 	else
 		return ..()
 
-/obj/structure/brewery/r/attackby_secondary(obj/item/I, mob/user, params)
-	. = SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	if(istype(I, /obj/item/reagent_containers))
-		var/obj/item/reagent_containers/C = I
-		var/vol = reagents.trans_to(C, C.amount_per_transfer_from_this, transfered_by=user)
-		if(!vol)
-			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-		to_chat(user, span_notice("You transfer [vol]u from [src]."))
+/obj/structure/brewery/r/attack_hand(mob/user)
+	if(!contents.len)
+		return
+	if(busy)
+		to_chat(user, span_warning("Somebody else is picking it up."))
+		return
+	var/datum/component/liftable/C = contents[1].GetComponent(/datum/component/liftable)
+	C.dragged(contents[1], user, user)
+	update_appearance()

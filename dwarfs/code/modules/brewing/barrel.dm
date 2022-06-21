@@ -4,6 +4,7 @@
 	icon = 'dwarfs/icons/structures/workshops.dmi'
 	icon_state = "barrel"
 	var/open = TRUE
+	density = 1
 
 /obj/structure/barrel/Initialize()
 	. = ..()

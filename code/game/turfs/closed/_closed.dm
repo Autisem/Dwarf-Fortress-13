@@ -12,12 +12,12 @@
 
 /turf/closed/indestructible
 	name = "wall"
-	desc = "Достаточно крепкая для попытки хоть как-то поцарапать её."
 	icon = 'icons/turf/walls.dmi'
 	explosion_block = 50
 
 /turf/closed/indestructible/black
-	name = "eptiness"
+	name = "emptiness"
+	desc = "It look back at you."
 	icon_state = "black"
 	layer = FLY_LAYER
 	bullet_bounce_sound = null
