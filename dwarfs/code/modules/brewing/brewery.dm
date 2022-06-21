@@ -170,5 +170,5 @@
 		to_chat(user, span_warning("Somebody else is picking it up."))
 		return
 	var/datum/component/liftable/C = contents[1].GetComponent(/datum/component/liftable)
-	C.dragged(contents[1], user, user)
+	C.dragged(contents[1], user, user, forced=TRUE)
 	update_appearance()

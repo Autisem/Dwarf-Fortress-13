@@ -39,12 +39,12 @@
 	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, .proc/dragged)
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_APPEARANCE, .proc/update_item)
 
-/datum/component/liftable/proc/dragged(atom/over, src_location, over_location, src_control, over_control, params)
+/datum/component/liftable/proc/dragged(atom/over, src_location, over_location, src_control, over_control, params, forced = FALSE)
 	if(src_location != over_location)
 		return
 	if(!ishuman(src_location))
 		return
-	if(!(src_location in range(1, over)))
+	if(!(src_location in range(1, over)) && !forced)
 		return
 	var/mob/living/carbon/human/H = src_location
 	to_chat(H, span_notice("You start lifting \the [over]."))
