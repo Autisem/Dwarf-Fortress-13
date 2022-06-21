@@ -1622,7 +1622,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 /datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, attack_type = BLUNT, attack_direction = null)
 	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, attack_type, attack_direction)
 	var/hit_percent = (100-(blocked+armor))/100
-	if(!damage || !forced)
+	if(!damage || (!forced && hit_percent <= 0))
 		return 0
 
 	var/obj/item/bodypart/BP = null
