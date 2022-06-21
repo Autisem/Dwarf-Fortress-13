@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(cooking_recipes)
 	result = /obj/item/food/dish/balanced_roll
 
 /datum/cooking_recipe/oven/flat_plate/trolls_delight
-	req_items = list(/obj/item/food/slice/meat/troll=2, /obj/item/food/slice/plump_helmet=3, /obj/item/growable/carrot=1)
+	req_items = list(/obj/item/food/meat/slab/troll=2, /obj/item/food/slice/plump_helmet=3, /obj/item/growable/carrot=1)
 	req_reagents = list(/datum/reagent/consumable/juice/sweet_pod=10)
 	result = /obj/item/food/dish/troll_delight
 
