@@ -87,7 +87,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	color = "#664300" // rgb: 102, 67, 0
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	boozepwr = 25
-	taste_description = "моча"
+	taste_description = "beer"
 	glass_name = "стакан пива"
 	glass_desc = "Освежающая пинта пива."
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
