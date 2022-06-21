@@ -37,7 +37,7 @@
 
 /obj/item/reagent_containers/glass/cooking_pot/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/storage/concrete)
+	AddComponent(/datum/component/storage/concrete/debug)
 
 /obj/item/reagent_containers/glass/cooking_pot/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -85,7 +85,17 @@
 	possible_transfer_amounts = list()
 	volume = 50
 
-/obj/item/reagent_containers/glass/plate/regular/attackby(obj/item/I, mob/user, params)
+/obj/item/reagent_containers/glass/plate/flat
+	name = "flat plate"
+	desc = "Holds food a bit worse than a ragular plate."
+	icon_state = "fancy_plate"
+
+/obj/item/reagent_containers/glass/plate/bowl
+	name = "bowl"
+	desc = "Deep plate."
+	icon_state = "wooden_bowl"
+
+/obj/item/reagent_containers/glass/plate/bowl/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/knife))
 		var/datum/cooking_recipe/R = find_recipe(subtypesof(/datum/cooking_recipe/plate), contents)
 		var/mob/living/carbon/human/H = user
@@ -109,16 +119,6 @@
 			qdel(src)
 	else
 		. = ..()
-
-/obj/item/reagent_containers/glass/plate/flat
-	name = "flat plate"
-	desc = "Holds food a bit worse than a ragular plate."
-	icon_state = "fancy_plate"
-
-/obj/item/reagent_containers/glass/plate/bowl
-	name = "bowl"
-	desc = "Deep plate."
-	icon_state = "wooden_bowl"
 
 /obj/item/reagent_containers/glass/pan
 	name = "frying pan"

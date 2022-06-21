@@ -44,10 +44,6 @@ GLOBAL_LIST_EMPTY(cooking_recipes)
 ///******************PLATE RECIPES******************///
 /datum/cooking_recipe/plate
 
-/datum/cooking_recipe/plate/dwarven_salad
-	req_items = list(/obj/item/growable/carrot=1, /obj/item/growable/plump_helmet=1, /obj/item/growable/turnip=1)
-	result = /obj/item/food/dish/salad
-
 ///******************STICK RECIPES******************///
 /datum/cooking_recipe/stick
 
@@ -57,6 +53,10 @@ GLOBAL_LIST_EMPTY(cooking_recipes)
 
 ///******************BOWL RECIPES******************///
 /datum/cooking_recipe/bowl
+
+/datum/cooking_recipe/bowl/dwarven_salad
+	req_items = list(/obj/item/growable/carrot=1, /obj/item/growable/plump_helmet=1, /obj/item/growable/turnip=1)
+	result = /obj/item/food/dish/salad
 
 ///******************PAN RECIPES******************///
 /datum/cooking_recipe/pan

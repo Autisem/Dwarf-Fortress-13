@@ -35,7 +35,7 @@
 		if(!open)
 			to_chat(user, span_warning("[src] has to be opened first."))
 			return TRUE
-		if(contents.len || reagents.total_volume)
+		if(contents.len > 3)
 			to_chat(user, span_warning("[src] is already full."))
 			return TRUE
 		G.forceMove(src)
