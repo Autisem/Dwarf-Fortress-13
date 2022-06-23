@@ -14,7 +14,6 @@
 	block_chance = 25
 	atck_type = SHARP
 	max_integrity = 50
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
 	custom_materials = list(/datum/material/iron = 10000)
 
@@ -34,7 +33,6 @@
 	block_chance = 5
 	atck_type = SHARP
 	max_integrity = 150
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
 	reach = 2
 	custom_materials = list(/datum/material/iron = 10000)
@@ -64,7 +62,6 @@
 	attack_verb_simple = list("hits")
 	block_chance = 0
 	max_integrity = 50
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
 	custom_materials = list(/datum/material/iron = 10000)
 
@@ -89,7 +86,6 @@
 	block_chance = 0
 	atck_type = SHARP
 	max_integrity = 20
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
 	custom_materials = list(/datum/material/iron = 10000)
 
@@ -115,6 +111,5 @@
 	block_chance = 15
 	atck_type = SHARP
 	max_integrity = 50
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
 	custom_materials = list(/datum/material/iron = 10000)
