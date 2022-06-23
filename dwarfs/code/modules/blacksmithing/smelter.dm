@@ -64,9 +64,9 @@
 			ingot_type = /obj/item/blacksmith/ingot/gold
 		else
 			ingot_type = /obj/item/blacksmith/ingot
-		new ingot_type(src)
-		if(working)
+		if(working && !contents.len)
 			start_smelting()
+		new ingot_type(src)
 	else if(I.get_temperature())
 		if(!fuel)
 			to_chat(user, span_warning("[src] has no fuel."))
