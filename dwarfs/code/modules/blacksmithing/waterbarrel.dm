@@ -39,7 +39,7 @@
 					qdel(N)
 					LAZYCLEARLIST(contents)
 					playsound(src, 'sound/effects/vaper.ogg', 100)
-					I.icon_state = "tongs"
+					I.update_appearance()
 				else
 					return
 	else
