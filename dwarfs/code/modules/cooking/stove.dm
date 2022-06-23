@@ -197,10 +197,12 @@
 		possible_recipes = subtypesof(/datum/cooking_recipe/pan)
 	var/datum/cooking_recipe/R = find_recipe(possible_recipes, I.contents, I.reagents.reagent_list)
 	if(!R)
-		qdel(I)
+		for(var/obj/O in I.contents)
+			qdel(O)
+		I.reagents.clear_reagents()
 		new /obj/item/food/badrecipe(get_turf(src))
 		return
-
 	var/obj/item/food/F = initial(R.result)
 	new F(get_turf(src))
 	qdel(I)
+	update_appearance()

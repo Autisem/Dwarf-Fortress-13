@@ -776,6 +776,7 @@
 #include "code\game\objects\items\food\dishes.dm"
 #include "code\game\objects\items\food\ingredients.dm"
 #include "code\game\objects\items\food\meat.dm"
+#include "code\game\objects\items\food\misc.dm"
 #include "code\game\objects\items\food\reactions.dm"
 #include "code\game\objects\items\food\recipes.dm"
 #include "code\game\objects\items\melee\misc.dm"

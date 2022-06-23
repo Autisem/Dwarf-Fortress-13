@@ -52,7 +52,7 @@
 	name = "dwarven stew"
 	desc = ""
 	icon_state = "dwarven_stew"
-	plate_type = /obj/item/reagent_containers/glass/cooking_pot
+	plate_type = /obj/item/reagent_containers/glass/plate/bowl
 	food_reagents = list(/datum/reagent/consumable/nutriment=1)
 
 /obj/item/food/dish/plump_pie
@@ -66,7 +66,7 @@
 	name = "roasted beer wurst"
 	desc = ""
 	icon_state = "beer_wurst"
-	plate_type = /obj/item/reagent_containers/glass/pan
+	plate_type = /obj/item/reagent_containers/glass/plate/regular
 	food_reagents = list(/datum/reagent/consumable/nutriment=1)
 
 //**********************THIRD TIER DISHES*****************************//
@@ -89,5 +89,5 @@
 	name = "allwurst"
 	desc = ""
 	icon_state = "allwurst"
-	plate_type = /obj/item/reagent_containers/glass/pan
+	plate_type = /obj/item/reagent_containers/glass/plate/regular
 	food_reagents = list(/datum/reagent/consumable/nutriment=1)

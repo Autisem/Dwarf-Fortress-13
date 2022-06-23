@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(cooking_recipes)
 /datum/cooking_recipe/pot/dwarven_stew
 	req_items = list(/obj/item/food/slice/meat=3, /obj/item/food/slice/plump_helmet=3, /obj/item/growable/turnip=1)
 	req_reagents = list(/datum/reagent/water=15)
-	result = /obj/item/food/dish/dwarven_stew
+	result = /obj/item/transfer_food/stew
 
 ///******************PLATE RECIPES******************///
 /datum/cooking_recipe/plate
@@ -64,12 +64,12 @@ GLOBAL_LIST_EMPTY(cooking_recipes)
 /datum/cooking_recipe/pan/beer_wurst
 	req_items = list(/obj/item/food/sausage=1)
 	req_reagents = list(/datum/reagent/consumable/ethanol/beer/barley=10)
-	result = /obj/item/food/dish/roasted_beer_wurst
+	result = /obj/item/transfer_food/beer_wurst
 
 /datum/cooking_recipe/pan/allwurst
 	req_items = list(/obj/item/food/sausage/luxurious=1)
 	req_reagents = list(/datum/reagent/consumable/ethanol/beer/barley=10, /datum/reagent/consumable/juice/sweet_pod=10)
-	result = /obj/item/food/dish/allwurst
+	result = /obj/item/transfer_food/allwurst
 
 ///******************SAUSAGE RECIPES******************///
 /datum/cooking_recipe/sausage
