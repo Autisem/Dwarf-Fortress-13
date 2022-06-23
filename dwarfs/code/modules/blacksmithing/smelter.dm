@@ -95,4 +95,5 @@
 		working = FALSE
 		update_appearance()
 		remove_timer()
+		return
 	fuel = max(fuel-1, 0)
