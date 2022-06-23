@@ -27,10 +27,7 @@
 	species_traits = list(EYECOLOR, HAIR, FACEHAIR, LIPS, NO_UNDERWEAR, TRAIT_ALCOHOL_TOLERANCE)
 	mutant_bodyparts = list("mcolor" = "FFF", "wings" = "None")
 	use_skintones = 1
-	disliked_food = GROSS | RAW
-	liked_food = JUNKFOOD | FRIED
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
-	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,-3), OFFSET_GLOVES = list(0,-3), OFFSET_GLASSES = list(0,-3), OFFSET_EARS = list(0,-3), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,-3), OFFSET_FACEMASK = list(0,-3), OFFSET_HEAD = list(0,-4), OFFSET_HAIR = list(0,-3), OFFSET_FACE = list(0,-3), OFFSET_BELT = list(0,-3), OFFSET_BACK = list(0,-4), OFFSET_SUIT = list(0,-3), OFFSET_NECK = list(0,-3))
 	mutantlungs = /obj/item/organ/lungs/dwarven
 	mutanttongue = /obj/item/organ/tongue/dwarven
 	mutantliver = /obj/item/organ/liver/dwarven
@@ -114,12 +111,6 @@
 /datum/language_holder/dwarf
 	understood_languages = list(/datum/language/dwarven = list(LANGUAGE_ATOM))
 	spoken_languages = list(/datum/language/dwarven = list(LANGUAGE_ATOM))
-
-/obj/item/clothing/mask/breath/dwarf
-	name = "небольшая дыхательная маска"
-	desc = "Загадочным образом исчезает при надевании."
-	icon_state = "breath"
-	inhand_icon_state = null
 
 /datum/outfit/dwarf
 	name = "Dwarf"
