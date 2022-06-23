@@ -106,7 +106,7 @@
 /obj/structure/brewery/l/process(delta_time)
 	if(!working)
 		return
-	fuel = clamp(fuel--, 0, fuel)
+	fuel = max(fuel-1, 0)
 	if(!fuel)
 		working = FALSE
 		update_appearance()

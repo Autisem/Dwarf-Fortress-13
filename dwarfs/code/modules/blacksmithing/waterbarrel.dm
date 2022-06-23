@@ -2,7 +2,7 @@
 	name = "barrel with dirty water"
 	desc = "Do. Not. Drink."
 	icon = 'dwarfs/icons/structures/workshops.dmi'
-	icon_state = "barrel_water_1"
+	icon_state = "barrel_dirty"
 	anchored = TRUE
 	density = TRUE
 	layer = TABLE_LAYER

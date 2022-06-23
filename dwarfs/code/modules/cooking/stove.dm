@@ -157,7 +157,7 @@
 		visible_message(span_notice("[src]'s flames die out."))
 		update_appearance()
 		return
-	fuel = max(fuel--, 0)
+	fuel = max(fuel-1, 0)
 
 /obj/structure/stove/proc/remove_timer(item_slot)
 	if(active_timers)

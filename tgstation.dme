@@ -1420,7 +1420,7 @@
 #include "dwarfs\code\modules\blacksmithing\blacksmithing_items.dm"
 #include "dwarfs\code\modules\blacksmithing\clothing.dm"
 #include "dwarfs\code\modules\blacksmithing\forge.dm"
-#include "dwarfs\code\modules\blacksmithing\furnace.dm"
+#include "dwarfs\code\modules\blacksmithing\smelter.dm"
 #include "dwarfs\code\modules\blacksmithing\waterbarrel.dm"
 #include "dwarfs\code\modules\blacksmithing\weapons.dm"
 #include "dwarfs\code\modules\blacksmithing\workbench.dm"

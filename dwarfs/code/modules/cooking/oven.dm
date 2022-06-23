@@ -91,4 +91,4 @@
 	if(fuel<1)
 		working = FALSE
 		update_appearance()
-	fuel = max(fuel--, 0)
+	fuel = max(fuel-1, 0)
