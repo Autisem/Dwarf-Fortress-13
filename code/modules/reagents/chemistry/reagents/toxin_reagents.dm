@@ -41,10 +41,6 @@
 	taste_mult = 0.9
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
-/datum/reagent/toxin/mutagen/on_mob_life(mob/living/carbon/C, delta_time, times_fired)
-	C.apply_effect(5 * REM * delta_time, EFFECT_IRRADIATE, 0)
-	return ..()
-
 #define	LIQUID_PLASMA_BP (50+273.15)
 
 /datum/reagent/toxin/plasma
@@ -466,10 +462,6 @@
 	toxpwr = 0
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
-/datum/reagent/toxin/polonium/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	M.radiation += 4 * REM * delta_time
-	..()
-
 /datum/reagent/toxin/histamine
 	name = "Гистамин"
 	enname = "Histamine"
@@ -882,26 +874,6 @@
 		for(var/key in pm_controller.controlled_planes)
 			animate(pm_controller.controlled_planes[key], transform = matrix(), time = 5, easing = QUAD_EASING)
 	..()
-
-/datum/reagent/toxin/anacea
-	name = "Анацея"
-	enname = "Anacea"
-	description = "A toxin that quickly purges medicines and metabolizes very slowly."
-	reagent_state = LIQUID
-	color = "#3C5133"
-	metabolization_rate = 0.08 * REAGENTS_METABOLISM
-	creation_purity = REAGENT_STANDARD_PURITY
-	purity = REAGENT_STANDARD_PURITY
-	toxpwr = 0.15
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/toxin/anacea/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	var/remove_amt = 5
-	if(holder.has_reagent(/datum/reagent/medicine/calomel) || holder.has_reagent(/datum/reagent/medicine/pen_acid))
-		remove_amt = 0.5
-	for(var/datum/reagent/medicine/R in M.reagents.reagent_list)
-		M.reagents.remove_reagent(R.type, remove_amt * REM * normalise_creation_purity())
-	return ..()
 
 //ACID
 

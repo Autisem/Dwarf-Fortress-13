@@ -10,7 +10,6 @@
 	hardness = 10
 	sheet_amount = 1
 	explosion_block = 2
-	rad_insulation = RAD_HEAVY_INSULATION
 	///Dismantled state, related to deconstruction.
 	var/d_state = INTACT
 

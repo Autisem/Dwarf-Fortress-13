@@ -187,13 +187,6 @@
 	icon_state = "pill22"
 	rename_with_volume = TRUE
 
-/obj/item/reagent_containers/pill/penacid
-	name = "pentetic acid pill"
-	desc = "Used to expunge radiation and toxins."
-	list_reagents = list(/datum/reagent/medicine/pen_acid = 10)
-	icon_state = "pill22"
-	rename_with_volume = TRUE
-
 /obj/item/reagent_containers/pill/neurine
 	name = "neurine pill"
 	desc = "Used to treat non-severe mental traumas."
@@ -266,13 +259,6 @@
 	name = pick(names)
 	if(prob(30))
 		desc = pick(descs)
-
-/obj/item/reagent_containers/pill/potassiodide
-	name = "potassium iodide pill"
-	desc = "Used to reduce low radiation damage very effectively."
-	icon_state = "pill11"
-	list_reagents = list(/datum/reagent/medicine/potass_iodide = 15)
-	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/pill/probital
 	name = "Probital pill"

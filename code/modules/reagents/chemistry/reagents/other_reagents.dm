@@ -653,12 +653,7 @@
 	reagent_state = SOLID
 	color = "#5E9964" //this used to be silver, but liquid uranium can still be green and it's more easily noticeable as uranium like this so why bother?
 	taste_description = "внутренности реактора"
-	var/irradiation_level = 0.5 * REM
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/uranium/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	M.apply_effect(irradiation_level*delta_time/M.metabolism_efficiency, EFFECT_IRRADIATE,0)
-	..()
 
 /datum/reagent/uranium/expose_turf(turf/exposed_turf, reac_volume)
 	. = ..()
@@ -678,7 +673,6 @@
 	reagent_state = SOLID
 	color = "#00CC00" // ditto
 	taste_description = "синий цвет и сожаление"
-	irradiation_level = 2*REM
 	material = null
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 

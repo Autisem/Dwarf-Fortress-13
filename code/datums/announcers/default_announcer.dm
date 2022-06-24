@@ -12,7 +12,6 @@
 						ANNOUNCER_OUTBREAK7 = 'sound/ai/default/outbreak7.ogg',
 						ANNOUNCER_POWEROFF = 'sound/ai/default/poweroff.ogg',
 						ANNOUNCER_POWERON = 'sound/ai/default/poweron.ogg',
-						ANNOUNCER_RADIATION = 'sound/ai/default/radiation.ogg',
 						ANNOUNCER_SHUTTLECALLED = 'sound/ai/default/shuttlecalled.ogg',
 						ANNOUNCER_SHUTTLEDOCK = 'sound/ai/default/shuttledock.ogg',
 						ANNOUNCER_SHUTTLERECALLED = 'sound/ai/default/shuttlerecalled.ogg',

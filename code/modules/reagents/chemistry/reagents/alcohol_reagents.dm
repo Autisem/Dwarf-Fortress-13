@@ -253,22 +253,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		M.Unconscious(100)
 		M.Jitter(350)
 
-/datum/reagent/consumable/ethanol/vodka
-	name = "Водка"
-	description = "Number one drink AND fueling choice for Russians worldwide."
-	color = "#0064C8" // rgb: 0, 100, 200
-	boozepwr = 65
-	taste_description = "зерновой спирт"
-	glass_icon_state = "ginvodkaglass"
-	glass_name = "glass of vodka"
-	glass_desc = "The glass contain wodka. Xynta."
-	shot_glass_icon_state = "shotglassclear"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/consumable/ethanol/vodka/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	M.radiation = max(M.radiation - (2 * REM * delta_time),0)
-	return ..()
-
 /datum/reagent/consumable/ethanol/bilk
 	name = "Билк"
 	description = "This appears to be beer mixed with milk. Disgusting."
@@ -564,25 +548,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "White Russian"
 	glass_desc = "A very nice looking drink. But that's just, like, your opinion, man."
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/consumable/ethanol/screwdrivercocktail
-	name = "Отвертка"
-	description = "Vodka, mixed with plain ol' orange juice. The result is surprisingly delicious."
-	color = "#A68310" // rgb: 166, 131, 16
-	boozepwr = 55
-	quality = DRINK_NICE
-	taste_description = "апельсины"
-	glass_icon_state = "screwdriverglass"
-	glass_name = "Screwdriver"
-	glass_desc = "A simple, yet superb mixture of Vodka and orange juice. Just the thing for the tired engineer."
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/consumable/ethanol/screwdrivercocktail/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	var/obj/item/organ/liver/liver = M.getorganslot(ORGAN_SLOT_LIVER)
-	if(HAS_TRAIT(liver, TRAIT_ENGINEER_METABOLISM))
-		// Engineers lose radiation poisoning at a massive rate.
-		M.radiation = max(M.radiation - (25 * REM * delta_time), 0)
-	return ..()
 
 /datum/reagent/consumable/ethanol/booger
 	name = "Бугер"

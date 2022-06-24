@@ -117,7 +117,7 @@
 	if(location == BODY_ZONE_PRECISE_MOUTH)
 		H.facial_hairstyle = "Shaved"
 	else
-		H.hairstyle = "Skinhead"
+		H.hairstyle = "Bald"
 
 	H.update_hair()
 	playsound(loc, 'sound/items/welder2.ogg', 20, TRUE)

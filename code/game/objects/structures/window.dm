@@ -9,7 +9,6 @@
 	max_integrity = 25
 	can_be_unanchored = TRUE
 	resistance_flags = ACID_PROOF
-	rad_insulation = RAD_VERY_LIGHT_INSULATION
 	pass_flags_self = PASSGLASS
 	flags_ricochet = RICOCHET_HARD
 	receive_ricochet_chance_mod = 0.5

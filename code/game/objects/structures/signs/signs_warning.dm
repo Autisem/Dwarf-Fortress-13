@@ -87,19 +87,6 @@
 	icon_state = "nosmoking"
 	is_editable = TRUE
 
-/obj/structure/sign/warning/radiation
-	name = "\improper HAZARDOUS RADIATION sign"
-	sign_change_name = "Warning - Radiation"
-	desc = "A warning sign alerting the user of potential radiation hazards."
-	icon_state = "radiation"
-	is_editable = TRUE
-
-/obj/structure/sign/warning/radiation/rad_area
-	name = "\improper RADIOACTIVE AREA sign"
-	sign_change_name = "Warning - Radioactive Area"
-	desc = "A warning sign which reads 'RADIOACTIVE AREA'."
-	is_editable = TRUE
-
 /obj/structure/sign/warning/enginesafety
 	name = "\improper ENGINEERING SAFETY sign"
 	sign_change_name = "Warning - Engineering Safety Protocols"

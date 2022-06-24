@@ -4,17 +4,10 @@
 	var/unique_enzymes
 	var/uni_identity
 	var/blood_type
-	var/datum/species/species = new /datum/species/human //The type of mutant race the player is if applicable (i.e. potato-man)
+	var/datum/species/species = new /datum/species/dwarf //The type of mutant race the player is if applicable (i.e. potato-man)
 	var/list/features = list("FFF") //first value is mutant color
 	var/real_name //Stores the real name of the person who originally got this dna datum. Used primarely for changelings,
-	var/list/mutations = list()   //All mutations are from now on here
-	var/list/temporary_mutations = list() //Temporary changes to the UE
-	var/list/previous = list() //For temporary name/ui/ue/blood_type modifications
 	var/mob/living/holder
-	var/mutation_index[DNA_MUTATION_BLOCKS] //List of which mutations this carbon has and its assigned block
-	var/default_mutation_genes[DNA_MUTATION_BLOCKS] //List of the default genes from this mutation to allow DNA Scanner highlighting
-	var/stability = 100
-	var/scrambled = FALSE //Did we take something like mutagen? In that case we cant get our genes scanned to instantly cheese all the powers.
 
 /datum/dna/New(mob/living/new_holder)
 	if(istype(new_holder))
@@ -29,10 +22,6 @@
 
 	QDEL_NULL(species)
 
-	mutations.Cut()					//This only references mutations, just dereference.
-	temporary_mutations.Cut()		//^
-	previous.Cut()					//^
-
 	return ..()
 
 /datum/dna/proc/transfer_identity(mob/living/carbon/destination, transfer_SE = 0)
@@ -44,21 +33,14 @@
 	destination.set_species(species.type, icon_update=0)
 	destination.dna.features = features.Copy()
 	destination.dna.real_name = real_name
-	destination.dna.temporary_mutations = temporary_mutations.Copy()
-	if(transfer_SE)
-		destination.dna.mutation_index = mutation_index
-		destination.dna.default_mutation_genes = default_mutation_genes
 
 /datum/dna/proc/copy_dna(datum/dna/new_dna)
 	new_dna.unique_enzymes = unique_enzymes
-	new_dna.mutation_index = mutation_index
-	new_dna.default_mutation_genes = default_mutation_genes
 	new_dna.uni_identity = uni_identity
 	new_dna.blood_type = blood_type
 	new_dna.features = features.Copy()
 	new_dna.species = new species.type
 	new_dna.real_name = real_name
-	new_dna.mutations = mutations.Copy()
 
 /datum/dna/proc/generate_uni_identity()
 	. = ""
@@ -91,33 +73,12 @@
 			. += random_string(DNA_BLOCK_SIZE,GLOB.hex_characters)
 	return .
 
-/datum/dna/proc/generate_dna_blocks()
-	var/list/mutations_temp = GLOB.good_mutations + GLOB.bad_mutations + GLOB.not_good_mutations
-	if(!LAZYLEN(mutations_temp))
-		return
-	mutation_index.Cut()
-	default_mutation_genes.Cut()
-	shuffle_inplace(mutations_temp)
-	shuffle_inplace(mutation_index)
-
 //Used to generate original gene sequences for every mutation
 /proc/generate_gene_sequence(length=4)
 	var/static/list/active_sequences = list("AT","TA","GC","CG")
 	var/sequence
 	for(var/i in 1 to length*DNA_SEQUENCE_LENGTH)
 		sequence += pick(active_sequences)
-	return sequence
-
-//Used to create a chipped gene sequence
-/proc/create_sequence(mutation, active, difficulty)
-	difficulty += rand(-2,4)
-	var/sequence = GET_SEQUENCE(mutation)
-	if(active)
-		return sequence
-	while(difficulty)
-		var/randnum = rand(1, length_char(sequence))
-		sequence = copytext_char(sequence, 1, randnum) + "X" + copytext_char(sequence, randnum + 1)
-		difficulty--
 	return sequence
 
 /datum/dna/proc/generate_unique_enzymes()
@@ -162,46 +123,21 @@
  * * target_dna The DNA that we are comparing to
  */
 /datum/dna/proc/is_same_as(datum/dna/target_dna)
-	if(uni_identity == target_dna.uni_identity && mutation_index == target_dna.mutation_index && real_name == target_dna.real_name)
+	if(uni_identity == target_dna.uni_identity && real_name == target_dna.real_name)
 		if(species.type == target_dna.species.type && compare_list(features, target_dna.features) && blood_type == target_dna.blood_type)
 			return TRUE
 	return FALSE
-
-/datum/dna/proc/update_instability(alert=TRUE)
-	stability = 100
-	if(holder)
-		var/message
-		if(alert)
-			switch(stability)
-				if(70 to 90)
-					message = span_warning("Дрожу.")
-				if(60 to 69)
-					message = span_warning("Мне холодно.")
-				if(40 to 59)
-					message = span_warning("Мне плохо.")
-				if(20 to 39)
-					message = span_warning("Моя кожа движется?")
-				if(1 to 19)
-					message = span_warning("Чувствую как каждая моя клеточка горит.")
-				if(-INFINITY to 0)
-					message = span_boldwarning("Похоже моя ДНК сейчас взорвётся! Надо бы что-то предпринять поскорее.")
-		if(stability <= 0)
-			holder.apply_status_effect(STATUS_EFFECT_DNA_MELT)
-		if(message)
-			to_chat(holder, message)
 
 //used to update dna UI, UE, and dna.real_name.
 /datum/dna/proc/update_dna_identity()
 	uni_identity = generate_uni_identity()
 	unique_enzymes = generate_unique_enzymes()
 
-/datum/dna/proc/initialize_dna(newblood_type, skip_index = FALSE)
+/datum/dna/proc/initialize_dna(newblood_type)
 	if(newblood_type)
 		blood_type = newblood_type
 	unique_enzymes = generate_unique_enzymes()
 	uni_identity = generate_uni_identity()
-	if(!skip_index) //I hate this
-		generate_dna_blocks()
 	features = random_features()
 
 /////////////////////////// DNA MOB-PROCS //////////////////////
@@ -265,13 +201,6 @@
 		dna.uni_identity = ui
 		updateappearance(icon_update=0)
 
-	if(LAZYLEN(mutation_index))
-		dna.mutation_index = mutation_index.Copy()
-		if(LAZYLEN(default_mutation_genes))
-			dna.default_mutation_genes = default_mutation_genes.Copy()
-		else
-			dna.default_mutation_genes = mutation_index.Copy()
-
 	if(mrace || newfeatures || ui)
 		update_body()
 		update_hair()
@@ -311,14 +240,6 @@
 		if(mutcolor_update)
 			update_body_parts()
 
-/datum/dna/proc/check_block_string(mutation)
-	if((LAZYLEN(mutation_index) > DNA_MUTATION_BLOCKS) || !(mutation in mutation_index))
-		return FALSE
-	return is_gene_active(mutation)
-
-/datum/dna/proc/is_gene_active(mutation)
-	return (mutation_index[mutation] == GET_SEQUENCE(mutation))
-
 /////////////////////////// DNA HELPER-PROCS //////////////////////////////
 
 /proc/getleftblocks(input,blocknumber,blocksize)
@@ -337,12 +258,6 @@
 		return 0
 	return getleftblocks(istring, blocknumber, blocksize) + replacement + getrightblocks(istring, blocknumber, blocksize)
 
-/datum/dna/proc/mutation_in_sequence(mutation)
-	if(!mutation)
-		return
-	else if(mutation in mutation_index)
-		return TRUE
-
 /mob/living/carbon/proc/randmuti()
 	if(!has_dna())
 		return
@@ -358,10 +273,6 @@
 /proc/scramble_dna(mob/living/carbon/M, ui=FALSE, se=FALSE, probability)
 	if(!M.has_dna())
 		return FALSE
-	if(se)
-		for(var/i=1, i<=DNA_MUTATION_BLOCKS, i++)
-			if(prob(probability))
-				M.dna.generate_dna_blocks()
 	if(ui)
 		for(var/i=1, i<=DNA_UNI_IDENTITY_BLOCKS, i++)
 			if(prob(probability))

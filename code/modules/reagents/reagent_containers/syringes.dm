@@ -297,10 +297,6 @@
 	desc = "Cодержит <b>салициловую кислоту</b>, используется для лечения серьёзных травм."
 	list_reagents = list(/datum/reagent/medicine/sal_acid = 15)
 
-/obj/item/reagent_containers/syringe/penacid
-	name = "шприц (диэтилентриаминпентауксусная кислота)"
-	desc = "Cодержит <b>диэтилентриаминпентауксусную кислоту</b>, используется для снижения уровня облучения и небольшого выведения токсинов."
-	list_reagents = list(/datum/reagent/medicine/pen_acid = 15)
 
 /obj/item/reagent_containers/syringe/syriniver
 	name = "шприц (сиринивир)"

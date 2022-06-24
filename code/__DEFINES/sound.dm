@@ -215,7 +215,6 @@
 #define ANNOUNCER_OUTBREAK7 "announcer_outbreak7"
 #define ANNOUNCER_POWEROFF "announcer_poweroff"
 #define ANNOUNCER_POWERON "announcer_poweron"
-#define ANNOUNCER_RADIATION "announcer_radiation"
 #define ANNOUNCER_SHUTTLECALLED "announcer_shuttlecalled"
 #define ANNOUNCER_SHUTTLEDOCK "announcer_shuttledock"
 #define ANNOUNCER_SHUTTLERECALLED "announcer_shuttlerecalled"
@@ -235,7 +234,6 @@ GLOBAL_LIST_INIT(announcer_keys, list(
 	ANNOUNCER_OUTBREAK7,
 	ANNOUNCER_POWEROFF,
 	ANNOUNCER_POWERON,
-	ANNOUNCER_RADIATION,
 	ANNOUNCER_SHUTTLECALLED,
 	ANNOUNCER_SHUTTLEDOCK,
 	ANNOUNCER_SHUTTLERECALLED,

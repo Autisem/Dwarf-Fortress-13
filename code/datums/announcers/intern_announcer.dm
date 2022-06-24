@@ -36,7 +36,6 @@
 						ANNOUNCER_OUTBREAK7 = 'sound/ai/intern/outbreak7.ogg',
 						ANNOUNCER_POWEROFF = 'sound/ai/intern/poweroff.ogg',
 						ANNOUNCER_POWERON = 'sound/ai/intern/poweron.ogg',
-						ANNOUNCER_RADIATION = 'sound/ai/intern/radiation.ogg',
 						ANNOUNCER_SHUTTLECALLED = 'sound/ai/intern/shuttlecalled.ogg',
 						ANNOUNCER_SHUTTLEDOCK = 'sound/ai/intern/shuttledock.ogg',
 						ANNOUNCER_SHUTTLERECALLED = 'sound/ai/intern/shuttlerecalled.ogg',

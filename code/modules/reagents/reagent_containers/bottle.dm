@@ -186,11 +186,6 @@
 	desc = "Маленький флакон с дифенгидрамином."
 	list_reagents = list(/datum/reagent/medicine/diphenhydramine = 30)
 
-/obj/item/reagent_containers/glass/bottle/potass_iodide
-	name = "флакон с антирадом"
-	desc = "Маленький флакон с йодидом калия."
-	list_reagents = list(/datum/reagent/medicine/potass_iodide = 30)
-
 /obj/item/reagent_containers/glass/bottle/salglu_solution
 	name = "флакон физраствора с глюкозой"
 	desc = "Маленький флакон наполненный физраствором с глюкозой."

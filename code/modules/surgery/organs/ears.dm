@@ -33,7 +33,7 @@
 		to_chat(owner, span_warning("Звон в ушах становится громче, на мгновение заглушая любые внешние шумы."))
 
 	. = ..()
-	// if we have non-damage related deafness like mutations, quirks or clothing (earmuffs), don't bother processing here. Ear healing from earmuffs or chems happen elsewhere
+	// if we have non-damage related deafness like quirks or clothing (earmuffs), don't bother processing here. Ear healing from earmuffs or chems happen elsewhere
 	if(HAS_TRAIT_NOT_FROM(owner, TRAIT_DEAF, EAR_DAMAGE))
 		return
 

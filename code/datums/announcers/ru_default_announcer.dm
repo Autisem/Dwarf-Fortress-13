@@ -12,7 +12,6 @@
 						ANNOUNCER_OUTBREAK7 = 'sound/ai/announcer/biology.ogg',
 						ANNOUNCER_POWEROFF = 'sound/ai/announcer/poweroff.ogg',
 						ANNOUNCER_POWERON = 'sound/ai/announcer/alert.ogg',
-						ANNOUNCER_RADIATION = 'sound/ai/announcer/alert.ogg',
 						ANNOUNCER_SHUTTLECALLED = 'sound/ai/announcer/alert.ogg',
 						ANNOUNCER_SHUTTLEDOCK = 'sound/ai/announcer/alert.ogg',
 						ANNOUNCER_SHUTTLERECALLED = 'sound/ai/announcer/alert.ogg',

@@ -24,7 +24,6 @@
 						ANNOUNCER_OUTBREAK7 = 'sound/ai/xrenoid/bio7.wav',
 						ANNOUNCER_POWEROFF = 'sound/ai/xrenoid/powerdown1.wav',
 						ANNOUNCER_POWERON = 'sound/ai/xrenoid/powerup.wav',
-						ANNOUNCER_RADIATION = 'sound/ai/xrenoid/alerts/4.wav',
 						ANNOUNCER_SHUTTLECALLED = 'sound/ai/xrenoid/shuttlecalled.wav',
 						ANNOUNCER_SHUTTLEDOCK = 'sound/ai/xrenoid/shuttledock.wav',
 						ANNOUNCER_SHUTTLERECALLED = 'sound/ai/xrenoid/shuttlerecalled.wav',

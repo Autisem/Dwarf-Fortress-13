@@ -170,18 +170,6 @@
 	desc = "Like they drank in 2D speakeasies."
 	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey/candycorn = 100)
 
-/obj/item/reagent_containers/food/drinks/bottle/vodka
-	name = "Tunguska triple distilled"
-	desc = "Aah, vodka. Prime choice of drink AND fuel by Russians worldwide."
-	icon_state = "vodkabottle"
-	list_reagents = list(/datum/reagent/consumable/ethanol/vodka = 100)
-
-/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka
-	name = "Badminka vodka"
-	desc = "The label's written in Cyrillic. All you can make out is the name and a word that looks vaguely like 'Vodka'."
-	icon_state = "badminka"
-	list_reagents = list(/datum/reagent/consumable/ethanol/vodka = 100)
-
 /obj/item/reagent_containers/food/drinks/bottle/tequila
 	name = "Caccavo guaranteed quality tequila"
 	desc = "Made from premium petroleum distillates, pure thalidomide and other fine quality ingredients!"

@@ -2,81 +2,8 @@
 
 #define CHECK_DNA_AND_SPECIES(C) if((!(C.dna)) || (!(C.dna.species))) return
 
-//Defines copying names of mutations in all cases, make sure to change this if you change mutation's type
-#define XRAY		/datum/mutation/human/thermal/x_ray
-#define SPACEMUT	/datum/mutation/human/space_adaptation
-#define TK			/datum/mutation/human/telekinesis
-#define NERVOUS		/datum/mutation/human/nervousness
-#define EPILEPSY	/datum/mutation/human/epilepsy
-#define MUTATE		/datum/mutation/human/bad_dna
-#define COUGH		/datum/mutation/human/cough
-#define DWARFISM	/datum/mutation/human/dwarfism
-#define GIGANTISM	/datum/mutation/human/gigantism
-#define CLOWNMUT	/datum/mutation/human/clumsy
-#define TOURETTES	/datum/mutation/human/tourettes
-#define DEAFMUT		/datum/mutation/human/deaf
-#define BLINDMUT	/datum/mutation/human/blind
-#define RACEMUT		/datum/mutation/human/race
-#define BADSIGHT	/datum/mutation/human/nearsight
-#define LASEREYES	/datum/mutation/human/laser_eyes
-#define CHAMELEON	/datum/mutation/human/chameleon
-#define WACKY		/datum/mutation/human/wacky
-#define MUT_MUTE	/datum/mutation/human/mute
-#define STONER		/datum/mutation/human/stoner
-#define UNINTELLIGIBLE		/datum/mutation/human/unintelligible
-#define SWEDISH		/datum/mutation/human/swedish
-#define CHAV		/datum/mutation/human/chav
-#define ELVIS		/datum/mutation/human/elvis
-#define MEDIEVAL	/datum/mutation/human/medieval
-#define RADIOACTIVE	/datum/mutation/human/radioactive
-#define GLOWY		/datum/mutation/human/glow
-#define ANTIGLOWY	/datum/mutation/human/glow/anti
-#define TELEPATHY	/datum/mutation/human/telepathy
-#define FIREBREATH	/datum/mutation/human/firebreath
-#define VOID		/datum/mutation/human/void
-#define TONGUESPIKE	/datum/mutation/human/tonguespike
-#define TONGUESPIKECHEM		/datum/mutation/human/tongue_spike/chem
-#define STRONG    	/datum/mutation/human/strong
-#define STIMMED		/datum/mutation/human/stimmed
-#define FIRESWEAT	/datum/mutation/human/fire
-#define THERMAL		/datum/mutation/human/thermal
-#define ANTENNA		/datum/mutation/human/antenna
-#define PARANOIA	/datum/mutation/human/paranoia
-#define MINDREAD	/datum/mutation/human/mindreader
-#define INSULATED	/datum/mutation/human/insulated
-#define SHOCKTOUCH	/datum/mutation/human/shock
-#define OLFACTION	/datum/mutation/human/olfaction
-#define ACIDFLESH	/datum/mutation/human/acidflesh
-#define BADBLINK	/datum/mutation/human/badblink
-#define SPASTIC		/datum/mutation/human/spastic
-#define EXTRASTUN	/datum/mutation/human/extrastun
-#define GELADIKINESIS		/datum/mutation/human/geladikinesis
-#define CRYOKINESIS /datum/mutation/human/cryokinesis
-#define SPIDER_WEB	/datum/mutation/human/webbing
-#define MARTYRDOM	/datum/mutation/human/martyrdom
-#define HARS		/datum/mutation/human/headless
-#define BIOTECHCOMPAT /datum/mutation/human/biotechcompat
-
-#define HONORBOUND /datum/mutation/human/honorbound
-#define BURDENED /datum/mutation/human/burdened
-
 #define UI_CHANGED "ui changed"
 #define UE_CHANGED "ue changed"
-
-#define CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY 204
-
-// String identifiers for associative list lookup
-
-//Types of usual mutations
-#define	POSITIVE 			1
-#define	NEGATIVE			2
-#define	MINOR_NEGATIVE		4
-
-
-//Mutation classes. Normal being on them, extra being additional mutations with instability and other being stuff you dont want people to fuck with like wizard mutate
-#define MUT_NORMAL 1
-#define MUT_EXTRA 2
-#define MUT_OTHER 3
 
 //DNA - Because fuck you and your magic numbers being all over the codebase.
 #define DNA_BLOCK_SIZE				3
@@ -91,7 +18,6 @@
 #define DNA_HAIRSTYLE_BLOCK		7
 
 #define DNA_SEQUENCE_LENGTH			4
-#define DNA_MUTATION_BLOCKS			8
 #define DNA_UNIQUE_ENZYMES_LEN		32
 
 //species traits for mutantraces
@@ -167,11 +93,6 @@
 #define STANDARD_ORGAN_HEALING 0.0005
 /// designed to fail organs when left to decay for ~15 minutes
 #define STANDARD_ORGAN_DECAY 0.00111
-
-//used for the can_chromosome var on mutations
-#define CHROMOSOME_NEVER 0
-#define CHROMOSOME_NONE 1
-#define CHROMOSOME_USED 2
 
 //used for mob's genetic gender (mainly just for pronouns, members of sexed species with plural gender refer to their body_type for the actual sprites, which is not genetic)
 #define G_MALE 1

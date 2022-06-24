@@ -13,12 +13,10 @@
 #define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
 
 //Human Overlays Indexes/////////
-#define MUTATIONS_LAYER			30		//mutations. Tk headglows, cold resistance glow, etc
 #define BODY_BEHIND_LAYER		29		//certain mutantrace features (tail when looking south) that must appear behind the body parts
 #define BODYPARTS_LAYER			28		//Initially "AUGMENTS", this was repurposed to be a catch-all bodyparts flag
 #define BODY_ADJ_LAYER			27		//certain mutantrace features (snout, body markings) that must appear above the body parts
 #define BODY_LAYER				26		//underwear, undershirts, socks, eyes, lips(makeup)
-#define FRONT_MUTATIONS_LAYER	25		//mutations that should appear above body, body_adj and bodyparts layer (e.g. laser eyes)
 #define DAMAGE_LAYER			24		//damage indicators (cuts and burns)
 #define UNIFORM_LAYER			23
 #define ID_LAYER				22

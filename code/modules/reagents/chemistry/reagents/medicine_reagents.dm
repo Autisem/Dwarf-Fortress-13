@@ -69,7 +69,6 @@
 	M.slurring = 0
 	M.jitteriness = 0
 	M.hallucination = 0
-	M.radiation = 0
 	REMOVE_TRAITS_NOT_IN(M, list(SPECIES_TRAIT, ROUNDSTART_TRAIT, ORGAN_TRAIT))
 	M.reagents.remove_all_type(/datum/reagent/toxin, 5 * REM * delta_time, FALSE, TRUE)
 	if(M.blood_volume < BLOOD_VOLUME_NORMAL)
@@ -382,38 +381,6 @@
 		M.adjustToxLoss(1 * REM * delta_time, 0)
 		. = TRUE
 	..()
-
-/datum/reagent/medicine/potass_iodide
-	name = "Йодид Калия"
-	enname = "Potassium Iodide"
-	description = "Efficiently restores low radiation damage."
-	reagent_state = LIQUID
-	color = "#BAA15D"
-	metabolization_rate = 2 * REAGENTS_METABOLISM
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/medicine/potass_iodide/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	if(M.radiation > 0)
-		M.radiation -= min(8 * REM * delta_time, M.radiation)
-	..()
-
-/datum/reagent/medicine/pen_acid
-	name = "Пентетовая кислота"
-	enname = "Pentetic Acid"
-	description = "ДТПА, она же диэтилентриаминпентауксусная кислота. Вещество выводящее из тела токсины, радиацию и химикаты."
-	reagent_state = LIQUID
-	color = "#E6FFF0"
-	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/medicine/pen_acid/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	M.radiation -= (max(M.radiation - RAD_MOB_SAFE, 0) / 50) * REM * delta_time
-	M.adjustToxLoss(-2 * REM * delta_time, 0)
-	for(var/datum/reagent/R in M.reagents.reagent_list)
-		if(R != src)
-			M.reagents.remove_reagent(R.type, 2 * REM * delta_time)
-	..()
-	. = TRUE
 
 /datum/reagent/medicine/sal_acid
 	name = "Салициловая Кислота"

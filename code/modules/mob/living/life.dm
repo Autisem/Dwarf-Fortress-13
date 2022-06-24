@@ -38,11 +38,6 @@
 		return
 
 	if(!IS_IN_STASIS(src))
-
-		if(stat != DEAD)
-			//Mutations and radiation
-			handle_mutations_and_radiation(delta_time, times_fired)
-
 		if(stat != DEAD)
 			//Breathing, if applicable
 			handle_breathing(delta_time, times_fired)
@@ -71,10 +66,6 @@
 		return 1
 
 /mob/living/proc/handle_breathing(delta_time, times_fired)
-	return
-
-/mob/living/proc/handle_mutations_and_radiation(delta_time, times_fired)
-	radiation = 0 //so radiation don't accumulate in simple animals
 	return
 
 /mob/living/proc/handle_wounds(delta_time, times_fired)

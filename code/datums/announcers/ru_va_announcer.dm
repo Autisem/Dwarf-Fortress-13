@@ -19,7 +19,6 @@
 						ANNOUNCER_OUTBREAK7 = 'sound/ai/va/bio7.ogg',
 						ANNOUNCER_POWEROFF = 'sound/ai/va/powerdown1.ogg',
 						ANNOUNCER_POWERON = 'sound/ai/va/powerup.ogg',
-						ANNOUNCER_RADIATION = 'sound/ai/va/rad.ogg',
 						ANNOUNCER_SHUTTLECALLED = 'sound/ai/va/shuttlecalled.ogg',
 						ANNOUNCER_SHUTTLEDOCK = 'sound/ai/va/shuttledock.ogg',
 						ANNOUNCER_SHUTTLERECALLED = 'sound/ai/va/shuttlerecalled.ogg',
