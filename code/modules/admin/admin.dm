@@ -277,13 +277,13 @@
 						return FALSE
 				SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", delay * 10)
 			if("Hard Restart (No Delay, No Feeback Reason)")
-				to_chat(world, "Перезагрузка мира - [init_by]")
+				to_chat(world, "World reboot(hard) - [init_by]")
 				world.Reboot()
 			if("Hardest Restart (No actions, just reboot)")
-				to_chat(world, "Быстрая перезагрузка мира - [init_by]")
+				to_chat(world, "World reboot(hardest) - [init_by]")
 				world.Reboot(fast_track = TRUE)
 			if("Server Restart (Kill and restart DD)")
-				to_chat(world, "Жесткая перезагрузка мира - [init_by]")
+				to_chat(world, "World reboot(kill) - [init_by]")
 				if(CONFIG_GET(flag/this_shit_is_stable))
 					world.shelleo("curl -X POST http://localhost:3636/hard-reboot-dwarf")
 
