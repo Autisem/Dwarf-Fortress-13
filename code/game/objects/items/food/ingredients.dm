@@ -45,7 +45,7 @@
 
 /obj/item/food/intestines/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/storage/concrete/debug)
+	AddComponent(/datum/component/storage/concrete/cooking/sausage)
 
 /obj/item/food/intestines/attack_self(mob/user, modifiers)
 	to_chat(user, span_notice("You start tying up \the [src]..."))

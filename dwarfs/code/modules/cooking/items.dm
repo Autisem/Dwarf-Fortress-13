@@ -7,7 +7,7 @@
 
 /obj/item/stick/Initialize()
 	. = ..()
-	AddComponent(/datum/component/storage/concrete/debug)
+	AddComponent(/datum/component/storage/concrete/cooking/stick)
 
 /obj/item/stick/update_overlays()
 	. = ..()

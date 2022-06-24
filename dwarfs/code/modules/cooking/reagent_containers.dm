@@ -32,12 +32,12 @@
 	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	icon_state = "cooking_pot_open"
 	amount_per_transfer_from_this = 10
-	volume = 50
+	volume = 100
 	var/open = TRUE
 
 /obj/item/reagent_containers/glass/cooking_pot/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/storage/concrete/debug)
+	AddComponent(/datum/component/storage/concrete/cooking/pot)
 
 /obj/item/reagent_containers/glass/cooking_pot/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -73,10 +73,11 @@
 
 /obj/item/reagent_containers/glass/plate
 	icon = 'dwarfs/icons/items/kitchen.dmi'
+	volume = 20
 
 /obj/item/reagent_containers/glass/plate/Initialize(mapload, vol)
 	. = ..()
-	AddComponent(/datum/component/storage/concrete/debug)
+	AddComponent(/datum/component/storage/concrete/cooking/plate)
 /obj/item/reagent_containers/glass/plate/regular
 	name = "plate"
 	desc = "Good for holding some food inside it."
@@ -127,7 +128,8 @@
 	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
 	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	icon_state = "skillet"
+	volume = 30
 
 /obj/item/reagent_containers/glass/pan/Initialize(mapload, vol)
 	. = ..()
-	AddComponent(/datum/component/storage/concrete/debug)
+	AddComponent(/datum/component/storage/concrete/cooking/pan)
