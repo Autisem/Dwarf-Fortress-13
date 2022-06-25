@@ -34,7 +34,7 @@
 	return (direction == UP)
 
 /turf/open/indestructible
-	name = "плиточка"
+	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
 	footstep = FOOTSTEP_FLOOR

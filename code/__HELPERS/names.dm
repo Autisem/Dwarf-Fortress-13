@@ -65,13 +65,16 @@ GLOBAL_VAR(command_name)
 
 /proc/new_station_name()
 	var/new_station_name = ""
+	for(var/i in 1 to 2)
+		new_station_name += GLOB.language_nouns[pick(GLOB.language_nouns)]["Dwarven"]
 
-	if (prob(10))
-		new_station_name = pick(GLOB.fortress_prefixes) + " "
-	else
-		new_station_name = "Fortress "
+	if(prob(30))
+		new_station_name += " the "
+		new_station_name += GLOB.language_adjectives[pick(GLOB.language_adjectives)]["Dwarven"]
 
-	new_station_name += capitalize(pick(GLOB.fortress_names))
+	if(prob(30))
+		new_station_name += " of "
+		new_station_name += GLOB.language_nouns[pick(GLOB.language_nouns)]["Dwarven"]
 
 	return capitalize(new_station_name)
 
