@@ -348,6 +348,8 @@ SUBSYSTEM_DEF(ticker)
 		var/mob/living/carbon/human/new_player_human = new_player_mob.new_character
 		CHECK_TICK
 
+		if(!new_player_human)
+			continue
 		var/atom/A = pick(GLOB.dwarf_starts)
 		new_player_human.forceMove(get_turf(A))
 		new_player_human.equipOutfit(/datum/outfit/dwarf)

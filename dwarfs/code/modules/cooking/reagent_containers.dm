@@ -78,23 +78,95 @@
 /obj/item/reagent_containers/glass/plate/Initialize(mapload, vol)
 	. = ..()
 	AddComponent(/datum/component/storage/concrete/cooking/plate)
+
 /obj/item/reagent_containers/glass/plate/regular
 	name = "plate"
 	desc = "Good for holding some food inside it."
 	icon_state = "wooden_plate"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list()
-	volume = 50
+
+/obj/item/reagent_containers/glass/plate/regular/update_overlays()
+	. = ..()
+	for(var/i=1;i<=min(contents.len,4);i++)
+		var/obj/item/I = contents[i]
+		var/mutable_appearance/M = mutable_appearance(I.icon, I.icon_state)
+		M.pixel_x = -10
+		M.pixel_y = -10
+		switch(i)
+			if(1)
+				M.pixel_x += 8
+				M.pixel_y += 11
+			if(2)
+				M.pixel_x += 13
+				M.pixel_y += 11
+			if(3)
+				M.pixel_x += 8
+				M.pixel_y += 8
+			if(4)
+				M.pixel_x += 13
+				M.pixel_y += 8
+		M.transform *= 0.6
+		. += M
 
 /obj/item/reagent_containers/glass/plate/flat
 	name = "flat plate"
 	desc = "Holds food a bit worse than a ragular plate."
 	icon_state = "fancy_plate"
 
+/obj/item/reagent_containers/glass/plate/flat/update_overlays()
+	. = ..()
+	for(var/i=1;i<=min(contents.len,4);i++)
+		var/obj/item/I = contents[i]
+		var/mutable_appearance/M = mutable_appearance(I.icon, I.icon_state)
+		M.pixel_x = -10
+		M.pixel_y = -11
+		switch(i)
+			if(1)
+				M.pixel_x += 8
+				M.pixel_y += 11
+			if(2)
+				M.pixel_x += 13
+				M.pixel_y += 11
+			if(3)
+				M.pixel_x += 8
+				M.pixel_y += 8
+			if(4)
+				M.pixel_x += 13
+				M.pixel_y += 8
+		M.transform *= 0.6
+		. += M
+
 /obj/item/reagent_containers/glass/plate/bowl
 	name = "bowl"
 	desc = "Deep plate."
 	icon_state = "wooden_bowl"
+
+/obj/item/reagent_containers/glass/plate/bowl/update_overlays()
+	. = ..()
+	for(var/i=1;i<=min(contents.len,4);i++)
+		var/obj/item/I = contents[i]
+		var/mutable_appearance/M = mutable_appearance(I.icon, I.icon_state)
+		M.pixel_x = -10
+		M.pixel_y = -10
+		switch(i)
+			if(3)
+				M.pixel_x += 8
+				M.pixel_y += 11
+				M.layer = FLOAT_LAYER-1
+			if(4)
+				M.pixel_x += 13
+				M.pixel_y += 11
+				M.layer = FLOAT_LAYER-1
+			if(1)
+				M.pixel_x += 8
+				M.pixel_y += 8
+			if(2)
+				M.pixel_x += 13
+				M.pixel_y += 8
+		M.transform *= 0.6
+		. += M
+	. += mutable_appearance(icon, "wooden_bowl_overlay")
 
 /obj/item/reagent_containers/glass/plate/bowl/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/knife))
@@ -129,6 +201,29 @@
 	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	icon_state = "skillet"
 	volume = 30
+
+/obj/item/reagent_containers/glass/pan/update_overlays()
+	. = ..()
+	for(var/i=1;i<=min(contents.len,4);i++)
+		var/obj/item/I = contents[i]
+		var/mutable_appearance/M = mutable_appearance(I.icon, I.icon_state)
+		M.pixel_x = -14
+		M.pixel_y = -14
+		switch(i)
+			if(1)
+				M.pixel_x += 8
+				M.pixel_y += 11
+			if(2)
+				M.pixel_x += 13
+				M.pixel_y += 11
+			if(3)
+				M.pixel_x += 8
+				M.pixel_y += 8
+			if(4)
+				M.pixel_x += 13
+				M.pixel_y += 8
+		M.transform *= 0.6
+		. += M
 
 /obj/item/reagent_containers/glass/pan/Initialize(mapload, vol)
 	. = ..()

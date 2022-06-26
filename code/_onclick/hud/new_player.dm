@@ -193,7 +193,6 @@
 	else
 		to_chat(hud.mymob, span_boldwarning("Disabled for testing."))
 		return
-	new_player.make_me_an_observer(TRUE)
 
 /atom/movable/screen/lobby/button/join/proc/show_join_button()
 	SIGNAL_HANDLER
