@@ -94,16 +94,18 @@
 		M.pixel_x = -10
 		M.pixel_y = -10
 		switch(i)
-			if(1)
-				M.pixel_x += 8
-				M.pixel_y += 11
-			if(2)
-				M.pixel_x += 13
-				M.pixel_y += 11
 			if(3)
 				M.pixel_x += 8
-				M.pixel_y += 8
+				M.pixel_y += 11
+				M.layer = FLOAT_LAYER-1
 			if(4)
+				M.pixel_x += 13
+				M.pixel_y += 11
+				M.layer = FLOAT_LAYER-1
+			if(1)
+				M.pixel_x += 8
+				M.pixel_y += 8
+			if(2)
 				M.pixel_x += 13
 				M.pixel_y += 8
 		M.transform *= 0.6
