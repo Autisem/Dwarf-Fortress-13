@@ -8,8 +8,8 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 	var/modifiers = list(SKILL_SPEED_MODIFIER = list(1, 1, 1, 1, 1, 1, 1)) //Dictionary of modifier type - list of modifiers (indexed by level). 7 entries in each list for all 7 skill levels.
 	///List associating different messages that appear on level up with different levels
 	var/list/levelUpMessages = list()
-	///List associating different messages that appear on level up with different levels
-	var/list/levelDownMessages = list()
+	var/level = 1
+	var/experience = 0
 
 /datum/skill/proc/get_skill_modifier(modifier, level)
 	return modifiers[modifier][level] //Levels range from 1 (None) to 7 (Legendary)
@@ -28,13 +28,6 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 	"<span class='nicegreen'>After lots of practice, I've begun to truly understand the intricacies \
 	and surprising depth behind [name]. I now consider myself a master [title].</span>",
 	"<span class='nicegreen'>Through incredible determination and effort, I've reached the peak of my [name] abiltities. I'm finally able to consider myself a legendary [title]!</span>" )
-	levelDownMessages = list("<span class='nicegreen'>I have somehow completely lost all understanding of [name]. Please tell an admin if you see this.</span>",
-	"<span class='nicegreen'>I'm starting to forget what [name] really even is. I need more practice...</span>",
-	"<span class='nicegreen'>I'm getting a little worse at [name]. I'll need to keep practicing to get better at it...</span>",
-	"<span class='nicegreen'>I'm getting a little worse at [name]...</span>",
-	"<span class='nicegreen'>I'm losing my [name] expertise ....</span>",
-	"<span class='nicegreen'>I feel like I'm losing my mastery of [name].</span>",
-	"<span class='nicegreen'>I feel as though my legendary [name] skills have deteriorated. I'll need more intense training to recover my lost skills.</span>" )
 
 /**
  * level_gained: Gives skill levelup messages to the user
@@ -51,9 +44,7 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
  * level_lost: See level_gained, same idea but fires on skill level-down
  */
 /datum/skill/proc/level_lost(datum/mind/mind, new_level, old_level)
-	if(old_level > levelDownMessages.len)
-		return
-	to_chat(mind.current, levelDownMessages[old_level]) //old_level will be a value from 1 to 6, so we get appropriate message from the 6-element levelUpMessages list
+	return
 
 /**
  * try_skill_reward: Checks to see if a user is eligable for a tangible reward for reaching a certain skill level
@@ -64,7 +55,7 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
  * * new_level - The current level of the user. Used to check if it meets the requirements for a reward
  */
 /datum/skill/proc/try_skill_reward(datum/mind/mind, new_level)
-	if (new_level != SKILL_LEVEL_LEGENDARY)
+	if (new_level != SKILL_LEVEL_LEGEND)
 		return
 	if (LAZYFIND(mind.skills_rewarded, src.type))
 		// to_chat(mind.current, span_nicegreen("Похоже,  Ассоциация Профессионалов [title] не хочет давать мне больше символов навыка."))

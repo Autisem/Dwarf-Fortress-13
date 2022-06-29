@@ -51,10 +51,6 @@
 	C.update_body_parts()
 	GLOB.dwarf_list += C
 	. = ..()
-	spawn(5 SECONDS)
-		if(!istype(C, /mob/living/carbon/human/dummy))
-			C.mind.set_experience(/datum/skill/smithing, SKILL_EXP_APPRENTICE, FALSE)
-			C.mind.set_experience(/datum/skill/mining,   SKILL_EXP_APPRENTICE, FALSE)
 
 /datum/species/dwarf/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	C.draw_hippie_parts(TRUE)

@@ -1,7 +1,7 @@
 /// Any humanoid (non-Xeno) mob, such as humans, plasmamen, lizards.
 /mob/living/carbon/human
-	name = "Неизвестный"
-	real_name = "Неизвестный"
+	name = "Unknown"
+	real_name = "Unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "human_basic"
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
@@ -25,7 +25,7 @@
 
 	//Facial hair colour and style
 	var/facial_hair_color = "000"
-	var/facial_hairstyle = "Shaved"
+	var/facial_hairstyle = "Bald"
 
 	//Eye colour
 	var/eye_color = "000"
@@ -59,7 +59,6 @@
 
 	var/list/datum/bioware = list()
 
-	var/pooed = FALSE
 	/// What types of mobs are allowed to ride/buckle to this mob
 	var/static/list/can_ride_typecache = typecacheof(list(/mob/living/carbon/human))
 	var/lastpuke = 0

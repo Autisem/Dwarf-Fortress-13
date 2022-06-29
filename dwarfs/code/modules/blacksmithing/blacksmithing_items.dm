@@ -466,7 +466,7 @@
 	real_force = 16
 	icon_state = "katanus_part"
 
-/obj/item/blacksmith/partial/cep
+/obj/item/blacksmith/partial/flail
 	name = "ball on a chain"
 	real_force = 20
 	icon_state = "cep_part"

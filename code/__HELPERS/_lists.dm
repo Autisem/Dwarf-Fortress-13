@@ -149,6 +149,14 @@
 			return TRUE
 	return FALSE
 
+/proc/type_from_list(T, list/L)
+	if(!LAZYLEN(L) || !T)
+		return FALSE
+	for(var/datum/D in L)
+		if(istype(D, T))
+			return D
+	return FALSE
+
 /// Return either pick(list) or null if list is not of type /list or is empty
 /proc/safepick(list/L)
 	if(LAZYLEN(L))

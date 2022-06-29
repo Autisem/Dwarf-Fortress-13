@@ -12,9 +12,9 @@
 	name = "\[part\] zweihander blade"
 	result = /obj/item/blacksmith/partial/zwei
 
-/datum/smithing_recipe/cep
+/datum/smithing_recipe/flail
 	name = "\[part\] ball on a chain"
-	result = /obj/item/blacksmith/partial/cep
+	result = /obj/item/blacksmith/partial/flail
 
 /datum/smithing_recipe/dwarfsord
 	name = "\[part\] sword blade"
@@ -113,11 +113,11 @@
 	reqs = list(/obj/item/stack/sheet/leather = 2,/obj/item/blacksmith/partial/katanus=1)
 	primary = /obj/item/blacksmith/partial/katanus
 
-/datum/workbench_recipe/cep
+/datum/workbench_recipe/flail
 	name = "flail"
-	result = /obj/item/blacksmith/cep
-	reqs = list(/obj/item/blacksmith/partial/cep=1)
-	primary = /obj/item/blacksmith/partial/cep
+	result = /obj/item/blacksmith/flail
+	reqs = list(/obj/item/blacksmith/partial/flail=1)
+	primary = /obj/item/blacksmith/partial/flail
 
 /datum/workbench_recipe/sword
 	name = "sword"

@@ -571,3 +571,6 @@
 	. = ..()
 	if(use_random_name)
 		fully_replace_character_name(real_name, dna.species.random_name())
+
+/mob/living/carbon/human/species/dwarf
+	race = /datum/species/dwarf

@@ -186,6 +186,11 @@
 		to_chat(user, span_warning("You don't want to harm other living beings!"))
 		return
 
+	if(skill)
+		if(prob(user.mind.get_skill_modifier(skill, SKILL_MISS_MODIFIER)))
+			user.visible_message(span_danger("<b>[user]</b> misses <b>[M]</b> with [src]!"), span_danger("You miss <b>[M]</b> with [src]!"))
+			return
+
 	if(!force)
 		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), TRUE, -1)
 	else if(hitsound)
@@ -196,6 +201,8 @@
 
 	user.do_attack_animation(M)
 	M.attacked_by(src, user)
+	if(skill && M.stat != DEAD)
+		user.mind.adjust_experience(skill, 7)
 
 	log_combat(user, M, "attacked", src.name, "(DAMTYPE: [uppertext(damtype)])")
 	add_fingerprint(user)
@@ -237,9 +244,20 @@
 			span_danger("You hit <b>[src]</b> with <b>[I]</b>[no_damage ? ", without leaving a scratch" : ""]!"), null, COMBAT_MESSAGE_RANGE)
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)
+	var/tempforce = I.force
+	if(I.skill)
+		tempforce += user.mind.get_skill_modifier(I.skill, SKILL_DAMAGE_MODIFIER)
+
+	var/obj/item/held = get_active_held_item()
+	if(held && held.skill)
+		if(prob(mind.get_skill_modifier(held.skill, SKILL_PARRY_MODIFIER)))
+			visible_message(span_danger("<b>[src]</b> parries <b>[user]'s</b> attack!"), span_danger("You parry <b>[user]'s</b> attack!"))
+			playsound(src, 'sound/weapons/tap.ogg', 60, TRUE, -1)
+			mind.adjust_experience(held.skill, 7)
+			return FALSE
 	send_item_attack_message(I, user)
-	if(I.force)
-		apply_damage(I.force, I.damtype)
+	if(tempforce)
+		apply_damage(tempforce, I.damtype)
 		if(I.damtype == BRUTE)
 			if(prob(33))
 				I.add_mob_blood(src)
@@ -250,7 +268,10 @@
 		return TRUE //successful attack
 
 /mob/living/simple_animal/attacked_by(obj/item/I, mob/living/user)
-	if(!attack_threshold_check(I.force, I.damtype, I.atck_type, FALSE))
+	var/tempforce = I.force
+	if(I.skill)
+		tempforce += user.mind.get_skill_modifier(I.skill, SKILL_DAMAGE_MODIFIER)
+	if(!attack_threshold_check(tempforce, I.damtype, I.atck_type, FALSE))
 		playsound(loc, 'sound/weapons/tap.ogg', I.get_clamped_volume(), TRUE, -1)
 	else
 		return ..()

@@ -64,8 +64,8 @@
 
 //Hide/Show Action Buttons ... Button
 /atom/movable/screen/movable/action_button/hide_toggle
-	name = "Спрятать кнопки"
-	desc = "Shift-клик по любой кнопке для сброса и CTRL-Клик, чтобы закрепить её. ПКМ по кнопке для сброса всех кнопок."
+	name = "Hide buttons"
+	desc = "Shift-Click on a button to reset it and CTRL-Click, to lock it. Right-Click this button to reset all buttons."
 	icon = 'icons/hud/actions.dmi'
 	icon_state = "bg_default"
 	var/hidden = FALSE
@@ -97,14 +97,14 @@
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"])
 		if(locked)
-			to_chat(usr, span_warning("Кнопка действия \"[name]\" заблокирована, нужно её разблокировать."))
+			to_chat(usr, span_warning("Action \"[name]\" is locked, it has to be unlocked first."))
 			return TRUE
 		moved = FALSE
 		usr.update_action_buttons(TRUE)
 		return TRUE
 	if(modifiers["ctrl"])
 		locked = !locked
-		to_chat(usr, span_notice("Кнопка действия \"[name]\" [locked ? "" : "раз"]блокирована."))
+		to_chat(usr, span_notice("Button \"[name]\" [locked ? "locked" : "unlocked"]."))
 		if(id && usr.client) //try to (un)remember position
 			usr.client.prefs.action_buttons_screen_locs["[name]_[id]"] = locked ? moved : null
 		return TRUE
@@ -121,15 +121,15 @@
 		if(id && usr.client)
 			usr.client.prefs.action_buttons_screen_locs["[name]_[id]"] = null
 		usr.update_action_buttons(TRUE)
-		to_chat(usr, span_notice("Кнопки действий сброшены."))
+		to_chat(usr, span_notice("All buttons have been reset."))
 		return TRUE
 	usr.hud_used.action_buttons_hidden = !usr.hud_used.action_buttons_hidden
 
 	hidden = usr.hud_used.action_buttons_hidden
 	if(hidden)
-		name = "Показать кнопки"
+		name = "Show buttons"
 	else
-		name = "Спрятать кнопки"
+		name = "Hide buttons"
 	update_icon()
 	usr.update_action_buttons()
 
@@ -141,7 +141,7 @@
 	if(moved)
 		moved = FALSE
 	user.update_action_buttons(TRUE)
-	to_chat(user, span_notice("Кнопки действий сброшены."))
+	to_chat(user, span_notice("All buttons have been reset."))
 
 
 /atom/movable/screen/movable/action_button/hide_toggle/proc/InitialiseIcon(datum/hud/owner_hud)

@@ -523,3 +523,13 @@
 	target.layer = old_layer
 	target.plane = old_plane
 	current_button.appearance_cache = target.appearance
+
+/datum/action/toggle_attack
+	name = "Toggle Attack"
+	desc = "Switches attack mode on this weapon."
+	icon_icon = 'dwarfs/icons/mob/actions.dmi'
+	button_icon_state = "toggle_attack"
+
+/datum/action/toggle_attack/Trigger()
+	var/datum/component/attack_toggle/C = target.GetComponent(/datum/component/attack_toggle)
+	C.toggle_attack(owner)

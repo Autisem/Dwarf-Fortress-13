@@ -241,6 +241,13 @@
 	. = ..()
 	if(!.)
 		return
+	var/obj/item/held = get_active_held_item()
+	if(held && held.skill)
+		if(prob(mind.get_skill_modifier(held.skill, SKILL_PARRY_MODIFIER)))
+			visible_message(span_danger("<b>[src]</b> parries <b>[M]'s</b> attack!"), span_danger("You parry <b>[M]'s</b> attack!"))
+			playsound(src, 'sound/weapons/tap.ogg', 60, TRUE, -1)
+			mind.adjust_experience(held.skill, 7)
+			return FALSE
 	var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 	if(check_shields(M, damage, "[M.name]", MELEE_ATTACK, M.armour_penetration))
 		return FALSE

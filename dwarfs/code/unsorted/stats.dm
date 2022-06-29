@@ -82,7 +82,7 @@
 			throwforce = 18
 			block_chance = 10
 
-/obj/item/blacksmith/cep/calculate_smithing_stats(grade)
+/obj/item/blacksmith/flail/calculate_smithing_stats(grade)
 	switch(grade)
 		if(1)
 			force = 9

@@ -201,6 +201,8 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	var/offensive_notes
 	/// Used in obj/item/examine to determines whether or not to detail an item's statistics even if it does not meet the force requirements
 	var/override_notes = FALSE
+	/// Used skill in combat; affects dodges and misses
+	var/datum/skill/skill
 
 /obj/item/Initialize()
 	if(isnum(armor_penetration))
@@ -1147,3 +1149,13 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	animate(attack_image, alpha = 175, transform = matrix() * 0.75, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
 	animate(time = 1)
 	animate(alpha = 0, time = 3, easing = CIRCULAR_EASING|EASE_OUT)
+
+/obj/item/proc/attach_action(datum/action/action)
+	if(ispath(action))
+		action = new action(src)
+	else
+		action.link_to(src)
+	if(actions)
+		actions.Add(action)
+	else
+		actions = list(action)

@@ -15,7 +15,7 @@
 	atck_type = SHARP
 	max_integrity = 50
 	resistance_flags = FIRE_PROOF
-	custom_materials = list(/datum/material/iron = 10000)
+	skill = /datum/skill/combat/sword
 
 /obj/item/blacksmith/zwei
 	name = "zweihander"
@@ -35,7 +35,7 @@
 	max_integrity = 150
 	resistance_flags = FIRE_PROOF
 	reach = 2
-	custom_materials = list(/datum/material/iron = 10000)
+	skill = /datum/skill/combat/longsword
 
 /obj/item/blacksmith/zwei/ComponentInitialize()
 	. = ..()
@@ -47,7 +47,7 @@
 		return
 	user.changeNext_move(3 SECONDS)
 
-/obj/item/blacksmith/cep
+/obj/item/blacksmith/flail
 	name = "flail"
 	desc = "Spin it really fast."
 	icon_state = "cep"
@@ -63,9 +63,9 @@
 	block_chance = 0
 	max_integrity = 50
 	resistance_flags = FIRE_PROOF
-	custom_materials = list(/datum/material/iron = 10000)
+	skill = /datum/skill/combat/flail
 
-/obj/item/blacksmith/cep/afterattack(atom/target, mob/user, proximity)
+/obj/item/blacksmith/flail/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(!proximity)
 		return
@@ -82,18 +82,21 @@
 	throwforce = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb_simple = list("атакует", "рубит", "втыкает", "разрубает", "кромсает", "разрывает", "нарезает", "режет")
 	block_chance = 0
 	atck_type = SHARP
 	max_integrity = 20
 	resistance_flags = FIRE_PROOF
-	custom_materials = list(/datum/material/iron = 10000)
+	skill = /datum/skill/combat/dagger
 
-/obj/item/blacksmith/dagger/afterattack(atom/target, mob/user, proximity)
+/obj/item/blacksmith/dagger/Initialize()
 	. = ..()
-	if(!proximity)
-		return
-	user.changeNext_move(CLICK_CD_RAPID)
+	AddComponent(/datum/component/attack_toggle,\
+		attacks=list(SHARP,PIERCE),\
+		damages=list(20, 3),\
+		cooldowns=list(CLICK_CD_MELEE, CLICK_CD_RAPID),\
+		attack_verbs_simple=list(list("attack","slash"), list("pierce","poke","stab")),\
+		attack_verbs_continuous=list(list("attacks","slashes"), list("pierces","pokes","stabs"))\
+	)
 
 /obj/item/blacksmith/dwarfsord
 	name = "sword"
@@ -112,4 +115,4 @@
 	atck_type = SHARP
 	max_integrity = 50
 	resistance_flags = FIRE_PROOF
-	custom_materials = list(/datum/material/iron = 10000)
+	skill = /datum/skill/combat/sword

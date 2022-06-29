@@ -1356,6 +1356,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm <b>[target]</b>!"))
 		return FALSE
+
+	if(prob(target.mind.get_skill_modifier(/datum/skill/martial, SKILL_MISS_MODIFIER)))
+		user.visible_message(span_warning("[user]'s attack misses [target]!") , \
+							span_userdanger("Your attack misses [target]!") , span_hear("You hear a swoosh!") , COMBAT_MESSAGE_RANGE, user)
+		to_chat(target, span_warning("[user]'s attack misses you!"))
+		playsound(target.loc, user.dna.species.miss_sound, 25, TRUE, -1)
+		return FALSE
+
 	if(target.check_block())
 		target.visible_message(span_warning("[target] blocks [user]'s attack!") , \
 							span_userdanger("You block [user]'s attack!") , span_hear("You hear a swoosh!") , COMBAT_MESSAGE_RANGE, user)
@@ -1383,23 +1391,19 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		//var/mis_dice_rolled = roll_stat_dice(user.current_fate[MOB_INT] + user.current_fate[MOB_DEX])
 
-		var/miss_chance = 100//calculate the odds that a punch misses entirely. considers stamina and brute damage of the puncher. punches miss by default to prevent weird cases
-		if(user.dna.species.punchdamagelow)
-			if(atk_effect == ATTACK_EFFECT_KICK || HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER)) //kicks never miss (provided your species deals more than 0 damage)
-				miss_chance = 0
-			else
-				miss_chance = min((user.dna.species.punchdamagehigh/user.dna.species.punchdamagelow) + user.getStaminaLoss() + (user.getBruteLoss()*0.5), 100) //old base chance for a miss + various damage. capped at 100 to prevent weirdness in prob()
+		var/obj/item/held = target.get_active_held_item()
+		if(held && held.skill)
+			if(prob(target.mind.get_skill_modifier(held.skill, SKILL_PARRY_MODIFIER)))
+				target.visible_message(span_danger("<b>[target]</b> parries <b>[user]'s</b> attack!"), span_danger("You parry <b>[user]'s</b> attack!"))
+				playsound(target, 'sound/weapons/tap.ogg', 60, TRUE, -1)
+				target.mind.adjust_experience(held.skill, 7)
+				return FALSE
 
-		if(!damage || !affecting || prob(miss_chance))//future-proofing for species that have 0 damage/weird cases where no zone is targeted
-			playsound(target.loc, user.dna.species.miss_sound, 25, TRUE, -1)
-			target.visible_message(span_danger("[user] [atk_verb] misses [target]!") ,\
-							span_userdanger("You avoid [user]'s [atk_verb]!") , span_hear("You hear a swoosh!") , COMBAT_MESSAGE_RANGE, user)
-			to_chat(user, span_warning("You [atk_verb] misses [target]!"))
-
-			//target.visible_message(span_danger("[user][return_miss_string(mis_dice_rolled)] [atk_verb] мимо [target]!") ,
-			//				span_userdanger("[user][return_miss_string(mis_dice_rolled)] [atk_verb] мимо меня!") , span_hear("Слышу взмах!") , COMBAT_MESSAGE_RANGE, user)
-			//to_chat(user, span_warning("Промахиваюсь[return_miss_string(mis_dice_rolled)] пытаясь ударить [target]!"))
-
+		if(!damage || !affecting)//future-proofing for species that have 0 damage/weird cases where no zone is targeted
+			// playsound(target.loc, user.dna.species.miss_sound, 25, TRUE, -1)
+			// target.visible_message(span_danger("[user] [atk_verb] misses [target]!") ,
+			// 				span_userdanger("You avoid [user]'s [atk_verb]!") , span_hear("You hear a swoosh!") , COMBAT_MESSAGE_RANGE, user)
+			// to_chat(user, span_warning("You [atk_verb] misses [target]!"))
 			log_combat(user, target, "attempted to punch")
 			return FALSE
 
@@ -1430,6 +1434,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			target.apply_damage(damage, user.dna.species.attack_type, affecting, armor_block, attack_direction = attack_direction)
 			target.apply_damage(damage*1.5, STAMINA, affecting, armor_block)
 			log_combat(user, target, "punched")
+
+		if(target.stat != DEAD)
+			user.mind.adjust_experience(/datum/skill/martial, 4)
 
 		if((target.stat != DEAD) && damage >= user.dna.species.punchstunthreshold)
 			target.visible_message(span_danger("[user] knocks [target] down!") , \
