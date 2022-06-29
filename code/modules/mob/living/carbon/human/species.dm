@@ -234,7 +234,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
  */
 /datum/species/proc/random_name(gender,unique,lastname,en_lang)
 	if(unique)
-		return random_unique_name(gender, en_lang = en_lang)
+		return random_unique_name(gender)
 
 	var/randname
 	if(gender == MALE)
