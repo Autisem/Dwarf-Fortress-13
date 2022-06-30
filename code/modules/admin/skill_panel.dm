@@ -33,11 +33,6 @@
 				xp_req_to_level = SKILL_EXP_LIST[lvl_num+1] - SKILL_EXP_LIST[lvl_num]
 			var/exp_percent = exp / SKILL_EXP_LIST[SKILL_LEVEL_LEGEND]
 			.["skills"] += list(list("playername" = targetmind.current, "path" = S.type, "name" = S.name, "desc" = S.desc, "lvlnum" = lvl_num, "lvl" = lvl_name, "exp" = exp, "exp_prog" = xp_req_to_level - xp_prog_to_level, "exp_req" = xp_req_to_level, "exp_percent" = exp_percent, "max_exp" = SKILL_EXP_LIST[length(SKILL_EXP_LIST)]))
-		// for(var/skill_type in subtypesof(/datum/skill))
-		// 	if(user.mind.get_skill(skill_type))
-		// 		continue
-		// 	var/datum/skill/S = skill_type
-		// 	.["missing_skills"] += list(list("path"=skill_type, "name"=initial(S.name)))
 
 /datum/skill_panel/ui_act(action, params)
 	. = ..()
