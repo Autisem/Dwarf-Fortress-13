@@ -23,8 +23,8 @@ export const SkillPanel = (props, context) => {
       <Window.Content scrollable>
         <Section title={skills.playername}>
           <Button
-          content="Grant Skill"
-          onClick={() => act('add_skill')} />
+            content="Grant Skill"
+            onClick={() => act('add_skill')} />
           <LabeledList>
             {skills.map(skill => (
               <LabeledList.Item
