@@ -197,8 +197,7 @@
 		possible_recipes = subtypesof(/datum/cooking_recipe/pan)
 	var/datum/cooking_recipe/R = find_recipe(possible_recipes, I.contents, I.reagents.reagent_list)
 	if(!R)
-		for(var/obj/O in I.contents)
-			qdel(O)
+		LAZYCLEARLIST(I.contents)
 		I.reagents.clear_reagents()
 		new /obj/item/food/badrecipe(get_turf(src))
 		return
