@@ -168,18 +168,18 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 	var/list/known_alts_html = list()
 
 	for (var/known_alt in load_known_alts())
-		known_alts_html += "<a href='?src=[REF(src)];[HrefToken()];action=delete;id=[known_alt[4]]'>\[-\] Удалить</a> <b>[known_alt[1]]</b> мультиакк <b>[known_alt[2]]</b> (добавлен <b>[known_alt[3]]</b>)."
+		known_alts_html += "<a href='?src=[REF(src)];[HrefToken()];action=delete;id=[known_alt[4]]'>\[-\] Delete</a> <b>[known_alt[1]]</b> multiaccount <b>[known_alt[2]]</b> (added <b>[known_alt[3]]</b>)."
 
 	var/html = {"
 		<head>
 			<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-			<title>Мультиакки</title>
+			<title>Multiaccounts</title>
 		</head>
 
 		<body>
-			<p>Не стоит доверять этой информации...</p>
+			<p>This information may be untrustworthy...</p>
 
-			<h2>Мультиакки:</h2> <a href='?src=[REF(src)];[HrefToken()];action=add'>\[+\] Добавить</a><hr>
+			<h2>Multiaccounts:</h2> <a href='?src=[REF(src)];[HrefToken()];action=add'>\[+\] Add</a><hr>
 
 			[known_alts_html.Join("<br />")]
 		</body>
@@ -188,7 +188,7 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 	client << browse(html, "window=known_alts;size=700x400")
 
 /datum/admins/proc/known_alts_panel()
-	set name = "Мультиакки"
-	set category = "Адм"
+	set name = "Multiaccounts"
+	set category = "Admin"
 
 	GLOB.known_alts.show_panel(usr.client)

@@ -1,5 +1,5 @@
 /client/proc/cmd_admin_say(msg as text)
-	set category = "Особенное"
+	set category = "Special"
 	set name = "Asay" //Gave this shit a shorter name so you only have to time out "asay" rather than "admin say" to use it --NeoFite
 	set hidden = TRUE
 	if(!check_rights(0))

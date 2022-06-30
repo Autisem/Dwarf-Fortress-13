@@ -10,7 +10,7 @@
  */
 /client/verb/fix_tgui_panel()
 	set name = " ❗ FIX CHAT"
-	set category = "Особенное"
+	set category = "Special"
 	var/action
 	log_tgui(src, "Started fixing.", context = "verb/fix_tgui_panel")
 

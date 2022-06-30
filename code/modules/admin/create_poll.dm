@@ -1,6 +1,6 @@
 /client/proc/create_poll()
 	set name = "Create Poll"
-	set category = "Особенное"
+	set category = "Special"
 	if(!check_rights(R_POLL))
 		return
 	if(!SSdbcore.Connect())

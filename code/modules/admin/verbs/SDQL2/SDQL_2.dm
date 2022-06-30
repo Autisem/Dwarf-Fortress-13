@@ -201,7 +201,7 @@
 		CRASH("SDQL2 fatal error");};
 
 /client/proc/SDQL2_query_wrapper()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "SDQL2 query"
 
 	var/msg = input(src, null, "Spawn object-mob") as message|null

@@ -283,7 +283,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/hide_verbs()
 	set name = "Adminverbs - Hide All"
-	set category = "Адм"
+	set category = "Admin"
 
 	remove_admin_verbs()
 	add_verb(src, /client/proc/show_verbs)
@@ -294,7 +294,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/show_verbs()
 	set name = "Adminverbs - Show"
-	set category = "Адм"
+	set category = "Admin"
 
 	remove_verb(src, /client/proc/show_verbs)
 	add_admin_verbs()
@@ -306,7 +306,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 
 /client/proc/admin_ghost()
-	set category = "Адм.Игра"
+	set category = "Admin.Game"
 	set name = "Aghost"
 	if(!holder)
 		return
@@ -338,7 +338,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/invisimin()
 	set name = "Invisimin"
-	set category = "Адм.Игра"
+	set category = "Admin.Game"
 	set desc = "Toggles ghost-like invisibility (Don't abuse this)"
 	if(holder && mob)
 		if(initial(mob.invisibility) == INVISIBILITY_OBSERVER)
@@ -353,7 +353,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/check_antagonists()
 	set name = "Check Antagonists"
-	set category = "Адм.Игра"
+	set category = "Admin.Game"
 	if(holder)
 		holder.check_antagonists()
 		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
@@ -363,7 +363,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/ban_panel()
 	set name = "Banning Panel"
-	set category = "Адм"
+	set category = "Admin"
 	if(!check_rights(R_BAN))
 		return
 	holder.ban_panel()
@@ -371,7 +371,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/unban_panel()
 	set name = "Unbanning Panel"
-	set category = "Адм"
+	set category = "Admin"
 	if(!check_rights(R_BAN))
 		return
 	holder.unban_panel()
@@ -379,14 +379,14 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/game_panel()
 	set name = "Game Panel"
-	set category = "Адм.Игра"
+	set category = "Admin.Game"
 	if(holder)
 		holder.Game()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Game Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/poll_panel()
 	set name = "Server Poll Management"
-	set category = "Адм"
+	set category = "Admin"
 	if(!check_rights(R_POLL))
 		return
 	holder.poll_list_panel()
@@ -412,7 +412,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	GLOB.stealthminID["[ckey]"] = "@[num2text(num)]"
 
 /client/proc/stealth()
-	set category = "Адм"
+	set category = "Admin"
 	set name = "Stealth Mode"
 	if(holder)
 		if(holder.fakekey)
@@ -444,7 +444,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Stealth Mode") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/drop_bomb()
-	set category = "Адм.Веселье"
+	set category = "Admin.Fun"
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
@@ -487,7 +487,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Drop Bomb") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/drop_dynex_bomb()
-	set category = "Адм.Веселье"
+	set category = "Admin.Fun"
 	set name = "Drop DynEx Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
@@ -500,7 +500,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Drop Dynamic Bomb") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/get_dynex_range()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Get DynEx Range"
 	set desc = "Get the estimated range of a bomb, using explosive power."
 
@@ -511,7 +511,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	to_chat(usr, "Estimated Explosive Range: (Devastation: [round(range*0.25)], Heavy: [round(range*0.5)], Light: [round(range)])", confidential = TRUE)
 
 /client/proc/get_dynex_power()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Get DynEx Power"
 	set desc = "Get the estimated required power of a bomb, to reach a specific range."
 
@@ -522,7 +522,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	to_chat(usr, "Estimated Explosive Power: [power]", confidential = TRUE)
 
 /client/proc/set_dynex_scale()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Set DynEx Scale"
 	set desc = "Set the scale multiplier of dynex explosions. The default is 0.5."
 
@@ -534,7 +534,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	message_admins("[key_name_admin(usr)] has  modified Dynamic Explosion Scale: [ex_scale]")
 
 /client/proc/object_say(obj/O in world)
-	set category = "Адм.События"
+	set category = "Admin.Events"
 	set name = "OSay"
 	set desc = "Makes an object say something."
 	var/message = input(usr, "What do you want the message to be?", "Make Sound") as text | null
@@ -548,7 +548,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
-	set category = "Адм.События"
+	set category = "Admin.Events"
 	if (!(holder.rank.rights & R_BUILD))
 		return
 	if(src.mob)
@@ -557,7 +557,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/deadmin()
 	set name = "Deadmin"
-	set category = "Адм"
+	set category = "Admin"
 	set desc = "Shed your admin powers."
 
 	if(!holder)
@@ -572,7 +572,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/readmin()
 	set name = "Readmin"
-	set category = "Адм"
+	set category = "Admin"
 	set desc = "Regain your admin powers."
 
 	//if(!isdead(src.mob) && !check_rights(R_PERMISSIONS))
@@ -584,7 +584,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(!A)
 		A = GLOB.admin_datums[ckey]
 		if (!A)
-			var/msg = " пытается readmin but they have no deadmin entry"
+			var/msg = " Tried to readmin but they have no deadmin entry"
 			message_admins("[key_name_admin(src)][msg]")
 			log_admin_private("[key_name(src)][msg]")
 			return
@@ -593,14 +593,13 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if (!holder)
 		return //This can happen if an admin attempts to vv themself into somebody elses's deadmin datum by getting ref via brute force
 
-	to_chat(src, span_interface("Ты пидор.") , confidential = TRUE)
 	message_admins("[src] re-adminned themselves.")
 	log_admin("[src] re-adminned themselves.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Readmin")
 
 /client/proc/populate_world(amount = 50 as num)
 	set name = "Populate World"
-	set category = "Дбг"
+	set category = "Debug"
 	set desc = "(\"Amount of mobs to create\") Populate the world with test mobs."
 
 	if (amount > 0)
@@ -634,7 +633,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/toggle_AI_interact()
 	set name = "Toggle Admin AI Interact"
-	set category = "Адм.Игра"
+	set category = "Admin.Game"
 	set desc = "Allows you to interact with most machines as an AI would as a ghost"
 
 	AI_Interact = !AI_Interact
@@ -646,12 +645,12 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/debugstatpanel()
 	set name = "Debug Stat Panel"
-	set category = "Дбг"
+	set category = "Debug"
 
 	src << output("", "statbrowser:create_debug")
 
 /client/proc/display_sendmaps()
 	set name = "Send Maps Profile"
-	set category = "Дбг"
+	set category = "Debug"
 
 	src << link("?debug=profile&type=sendmaps&window=test")

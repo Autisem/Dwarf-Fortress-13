@@ -52,7 +52,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 
 	var/tp = SSticker.totalPlayers
 
-	. += "Diggers: [tp]"
+	. += "Total: [tp]"
 	. += "Ready: [SSticker.totalPlayersReady]"
 
 /mob/dead/proc/server_hop()

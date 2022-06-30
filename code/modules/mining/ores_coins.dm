@@ -1,8 +1,4 @@
 
-#define GIBTONITE_QUALITY_HIGH 3
-#define GIBTONITE_QUALITY_MEDIUM 2
-#define GIBTONITE_QUALITY_LOW 1
-
 #define ORESTACK_OVERLAYS_MAX 10
 
 /**********************Mineral ores**************************/
@@ -72,7 +68,7 @@
 	inhand_icon_state = "Iron ore"
 	singular_name = "iron ore chunk"
 	mine_experience = 1
-	spreadChance = 20
+	spreadChance = 60
 	merge_type = /obj/item/stack/ore/iron
 	ore_icon = 'dwarfs/icons/turf/ores/iron.dmi'
 	ore_basename = "iron"
@@ -85,7 +81,7 @@
 	singular_name = "coal ore chunk"
 	refined_type = /obj/item/stack/sheet/mineral/coal
 	mine_experience = 1
-	spreadChance = 20
+	spreadChance = 80
 	merge_type = /obj/item/stack/ore/coal
 	ore_icon = 'dwarfs/icons/turf/ores/coal.dmi'
 	ore_basename = "coal"
@@ -103,13 +99,15 @@
 	singular_name = "gold ore chunk"
 	mine_experience = 5
 	refined_type = /obj/item/stack/sheet/mineral/gold
-	spreadChance = 5
+	spreadChance = 30
 	merge_type = /obj/item/stack/ore/gold
 	ore_icon = 'dwarfs/icons/turf/ores/gold.dmi'
 	ore_basename = "gold"
 
 /obj/item/stack/ore/gem
 	max_amount = 1
+	spreadChance = 10
+
 /obj/item/stack/ore/gem/diamond
 	name = "diamond ore"
 	icon_state = "diamond_ore"

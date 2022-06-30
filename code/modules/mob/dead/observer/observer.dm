@@ -338,7 +338,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	. += "X:[src.x] Y:[src.y] Z:[src.z]"
 
 /mob/dead/observer/verb/reenter_corpse()
-	set category = "Призрак"
+	set category = "Ghost"
 	set name = "Return to body"
 	if(!client)
 		return
@@ -361,7 +361,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return TRUE
 
 /mob/dead/observer/verb/stay_dead()
-	set category = "Призрак"
+	set category = "Ghost"
 	set name = "DNR"
 	if(!client)
 		return
@@ -506,7 +506,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(source_mob, span_danger("This mob is not located in the game world."))
 
 /mob/dead/observer/verb/change_view_range()
-	set category = "Призрак"
+	set category = "Ghost"
 	set name = "View range"
 	set desc = "Change your view range."
 
@@ -548,14 +548,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/toggle_ghostsee()
 	set name = " 🔄 See others"
 	set desc = "Toggles your ability to see things only ghosts can see, like other ghosts"
-	set category = "Призрак"
+	set category = "Ghost"
 	ghostvision = !(ghostvision)
 	update_sight()
 	to_chat(usr, span_boldnotice("You [(ghostvision?"now":"no longer")] have ghost vision."))
 
 /mob/dead/observer/verb/toggle_darkness()
 	set name = " 🔄 See darkness"
-	set category = "Призрак"
+	set category = "Ghost"
 	switch(lighting_alpha)
 		if (LIGHTING_PLANE_ALPHA_VISIBLE)
 			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
@@ -609,7 +609,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				client.images |= (GLOB.ghost_images_simple-ghostimage_simple)
 
 /mob/dead/observer/verb/possess()
-	set category = "Призрак"
+	set category = "Ghost"
 	set name = "Possess!"
 	set desc= "Take over the body of a mindless creature!"
 
@@ -694,7 +694,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/toggle_data_huds()
 	set name = " 🔄 Med HUD"
 	set desc = "Toggles whether you see medical HUDs"
-	set category = "Призрак"
+	set category = "Ghost"
 
 	if(data_huds_on) //remove old huds
 		remove_data_huds()
@@ -709,7 +709,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "❌ Restore Appearance"
 	set desc = "Sets your deadchat name and ghost appearance to your \
 		roundstart character."
-	set category = "Призрак"
+	set category = "Ghost"
 
 	set_ghost_appearance()
 	if(client?.prefs)

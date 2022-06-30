@@ -1,5 +1,5 @@
 /client/proc/anon_names()
-	set category = "Адм.События"
+	set category = "Admin.Events"
 	set name = "Setup Anonymous Names"
 
 

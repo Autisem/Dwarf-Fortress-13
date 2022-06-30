@@ -1,5 +1,5 @@
 /mob/dead/observer/verb/show_notificationprefs()
-	set category = "Призрак"
+	set category = "Ghost"
 	set name = "Notifications"
 	set desc = "Notification preferences"
 

@@ -128,7 +128,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/proc/set_ooc()
 	set name = "Set Player OOC Color"
 	set desc = "Modifies player OOC Color"
-	set category = "Срв"
+	set category = "Server"
 	if(IsAdminAdvancedProcCall())
 		return
 	var/newColor = input(src, "Please select the new player OOC color.", "OOC color") as color|null
@@ -147,7 +147,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/proc/reset_ooc()
 	set name = "❌ Reset Player OOC Color"
 	set desc = "Returns player OOC Color to default"
-	set category = "Срв"
+	set category = "Server"
 	if(IsAdminAdvancedProcCall())
 		return
 	if(tgui_alert(usr, "Are you sure you want to reset the OOC color of all players?", "Reset Player OOC Color", list("Yes", "No")) != "Yes")
@@ -363,7 +363,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 /client/verb/fit_viewport()
 	set name = "❗ Fit Screen"
-	set category = "Особенное"
+	set category = "Special"
 	set desc = "Fit the width of the map window to match the viewport"
 
 	// Fetch aspect ratio

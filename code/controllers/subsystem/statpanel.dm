@@ -34,17 +34,17 @@ SUBSYSTEM_DEF(statpanels)
 		currentrun.len--
 		if(!target.statbrowser_ready)
 			continue
-		if(target.stat_tab == "Состояние" && num_fires % status_wait == 0)
+		if(target.stat_tab == "Status" && num_fires % status_wait == 0)
 			set_status_tab(target)
 		if(!target.holder)
 			target << output("", "statbrowser:remove_admin_tabs")
 		else
-			if(!("MC" in target.panel_tabs) || !("Тикеты" in target.panel_tabs))
+			if(!("MC" in target.panel_tabs) || !("Tickets" in target.panel_tabs))
 				target << output("[url_encode(target.holder.href_token)]", "statbrowser:add_admin_tabs")
 			if(target.stat_tab == "MC" && ((num_fires % mc_wait == 0)))
 				set_MC_tab(target)
 
-			if(target.stat_tab == "Тикеты" && num_fires % default_wait == 0)
+			if(target.stat_tab == "Tickets" && num_fires % default_wait == 0)
 				set_tickets_tab(target)
 
 			if(!length(GLOB.sdql2_queries) && ("SDQL2" in target.panel_tabs))
@@ -152,7 +152,7 @@ SUBSYSTEM_DEF(statpanels)
 	if(!target.statbrowser_ready)
 		return FALSE
 
-	if(target.stat_tab == "Состояние")
+	if(target.stat_tab == "Status")
 		set_status_tab(target)
 		return TRUE
 
@@ -174,7 +174,7 @@ SUBSYSTEM_DEF(statpanels)
 		set_MC_tab(target)
 		return TRUE
 
-	if(target.stat_tab == "Тикеты")
+	if(target.stat_tab == "Tickets")
 		set_tickets_tab(target)
 		return TRUE
 

@@ -1,7 +1,7 @@
 /client/proc/jumptoarea()
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
-	set category = "Адм.Игра"
+	set category = "Admin.Game"
 	if(!src.holder)
 		to_chat(src, "Only administrators may use this command.", confidential = TRUE)
 		return
@@ -30,7 +30,7 @@
 
 /client/proc/jumptoturf(turf/T in world)
 	set name = "Jump to Turf"
-	set category = "Адм.Игра"
+	set category = "Admin.Game"
 	if(!src.holder)
 		to_chat(src, "Only administrators may use this command.", confidential = TRUE)
 		return
@@ -42,7 +42,7 @@
 	return
 
 /client/proc/jumptomob()
-	set category = "Адм.Игра"
+	set category = "Admin.Game"
 	set name = "Jump to Mob"
 
 	if(!src.holder)
@@ -63,7 +63,7 @@
 			to_chat(A, "This mob is not located in the game world.", confidential = TRUE)
 
 /client/proc/jumptocoord(tx as num, ty as num, tz as num)
-	set category = "Адм.Игра"
+	set category = "Admin.Game"
 	set name = "Jump to Coordinate"
 
 	if (!holder)
@@ -78,7 +78,7 @@
 	message_admins("[key_name_admin(usr)] jumped to coordinates [tx], [ty], [tz]")
 
 /client/proc/jumptokey()
-	set category = "Адм.Игра"
+	set category = "Admin.Game"
 	set name = "Jump to Key"
 
 	if(!src.holder)
@@ -101,7 +101,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Jump To Key") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/Getmob(mob/M in world)
-	set category = "Адм.Игра"
+	set category = "Admin.Game"
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
 	if(!src.holder)
@@ -131,7 +131,7 @@
 
 
 /client/proc/Getkey()
-	set category = "Адм.Игра"
+	set category = "Admin.Game"
 	set name = "Get Key"
 	set desc = "Key to teleport"
 
@@ -159,7 +159,7 @@
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Get Key") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/sendmob(mob/M in sortmobs())
-	set category = "Адм.Игра"
+	set category = "Admin.Game"
 	set name = "Send Mob"
 	if(!src.holder)
 		to_chat(src, "Only administrators may use this command.", confidential = TRUE)

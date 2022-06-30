@@ -1,6 +1,6 @@
 /proc/possess(obj/O in world)
 	set name = "Possess Obj"
-	set category = "Объект"
+	set category = "Obj"
 
 	if((O.obj_flags & DANGEROUS_POSSESSION) && CONFIG_GET(flag/forbid_singulo_possession))
 		to_chat(usr, "[O] is too powerful for you to possess.", confidential = TRUE)
@@ -28,7 +28,7 @@
 
 /proc/release()
 	set name = "Release Obj"
-	set category = "Объект"
+	set category = "Obj"
 	//usr.loc = get_turf(usr)
 
 	if(usr.control_object && usr.name_archive) //if you have a name archived and if you are actually relassing an object
@@ -47,7 +47,7 @@
 
 /proc/givetestverbs(mob/M in GLOB.mob_list)
 	set desc = "Give this guy possess/release verbs"
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Give Possessing Verbs"
 	add_verb(M, /proc/possess)
 	add_verb(M, /proc/release)

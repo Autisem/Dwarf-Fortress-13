@@ -1,5 +1,5 @@
 /client/proc/fix_next_move()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Unfreeze Everyone"
 	var/largest_move_time = 0
 	var/largest_click_time = 0
@@ -28,7 +28,7 @@
 	return
 
 /client/proc/radio_report()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Radio report"
 
 	var/output = "<b>Radio Report</b><hr>"
@@ -60,7 +60,7 @@
 
 /client/proc/reload_admins()
 	set name = "Reload Admins"
-	set category = "Адм"
+	set category = "Admin"
 
 	if(!src.holder)
 		return
@@ -75,7 +75,7 @@
 
 /client/proc/toggle_cdn()
 	set name = "Toggle CDN"
-	set category = "Срв"
+	set category = "Server"
 	var/static/admin_disabled_cdn_transport = null
 	if (tgui_alert(usr, "Are you sure you want to toggle the CDN asset transport?", "Confirm", list("Yes", "No")) != "Yes")
 		return

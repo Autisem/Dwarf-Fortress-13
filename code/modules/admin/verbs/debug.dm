@@ -1,5 +1,5 @@
 /client/proc/Debug2()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Debug-Game"
 	if(!check_rights(R_DEBUG))
 		return
@@ -27,7 +27,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 */
 
 /client/proc/cmd_admin_animalize(mob/M in GLOB.mob_list)
-	set category = "Адм.Веселье"
+	set category = "Admin.Fun"
 	set name = "Make Simple Animal"
 
 	if(!SSticker.HasRoundStarted())
@@ -47,7 +47,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all_wrapper()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Del-All"
 
 	var/msg = input(src, null, "Del-All") as text|null
@@ -77,7 +77,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delete All") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_assume_direct_control(mob/M in GLOB.mob_list)
-	set category = "Адм.Игра"
+	set category = "Admin.Game"
 	set name = "Assume direct control"
 	set desc = "Direct intervention"
 
@@ -99,7 +99,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Assume Direct Control") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_give_direct_control(mob/M in GLOB.mob_list)
-	set category = "Адм.Игра"
+	set category = "Admin.Game"
 	set name = "Give direct control"
 
 	if(!M)
@@ -155,7 +155,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	return dresscode
 
 /client/proc/cmd_debug_mob_lists()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Debug Mob Lists"
 	set desc = "For when you just gotta know"
 
@@ -176,7 +176,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			to_chat(usr, jointext(GLOB.joined_player_list,","), confidential = TRUE)
 
 /client/proc/cmd_display_del_log()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Display del() Log"
 	set desc = "Display del's log of everything that's passed through it."
 
@@ -205,21 +205,21 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	usr << browse(dellog.Join(), "window=dellog")
 
 /client/proc/cmd_display_overlay_log()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Display overlay Log"
 	set desc = "Display SSoverlays log of everything that's passed through it."
 
 	render_stats(SSoverlays.stats, src)
 
 /client/proc/cmd_display_init_log()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Display Initialize() Log"
 	set desc = "Displays a list of things that didn't handle Initialize() properly"
 
 	usr << browse(replacetext(SSatoms.InitLog(), "\n", "<br>"), "window=initlog")
 
 /client/proc/debug_huds_wrapper()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Debug HUDs"
 	set desc = "Debug the data or antag HUDs"
 
@@ -235,7 +235,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	debug_variables(GLOB.huds[i])
 
 /client/proc/toggle_medal_disable()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Toggle Medal Disable"
 	set desc = "Toggles the safety lock on trying to contact the medal hub."
 
@@ -249,7 +249,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] [SSachievements.achievements_enabled ? "disabled" : "enabled"] the medal hub lockout.")
 
 /client/proc/view_runtimes()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "View Runtimes"
 	set desc = "Open the runtime Viewer"
 
@@ -259,7 +259,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	GLOB.error_cache.show_to(src)
 
 /client/proc/pump_random_event()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Pump Random Event"
 	set desc = "Schedules the event subsystem to fire a new random event immediately. Some events may fire without notification."
 	if(!holder)
@@ -272,7 +272,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] pumped a random event.")
 
 /client/proc/start_line_profiling()
-	set category = "Профайл"
+	set category = "Profile"
 	set name = "Start Line Profiling"
 	set desc = "Starts tracking line by line profiling for code lines that support it"
 
@@ -283,7 +283,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] started line by line profiling.")
 
 /client/proc/stop_line_profiling()
-	set category = "Профайл"
+	set category = "Profile"
 	set name = "Stops Line Profiling"
 	set desc = "Stops tracking line by line profiling for code lines that support it"
 
@@ -294,7 +294,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] stopped line by line profiling.")
 
 /client/proc/show_line_profiling()
-	set category = "Профайл"
+	set category = "Profile"
 	set name = "Show Line Profiling"
 	set desc = "Shows tracked profiling info from code lines that support it"
 
@@ -310,7 +310,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	profile_show(src, sort)
 
 /client/proc/reload_configuration()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Reload Configuration"
 	set desc = "Force config reload to world default"
 	if(!check_rights(R_DEBUG))
@@ -320,7 +320,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 /// A debug verb to check the sources of currently running timers
 /client/proc/check_timer_sources()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Check Timer Sources"
 	set desc = "Checks the sources of the running timers"
 	if (!check_rights(R_DEBUG))
@@ -380,7 +380,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 #ifdef TESTING
 /client/proc/check_missing_sprites()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Debug Worn Item Sprites"
 	set desc = "We're cancelling the Spritemageddon. (This will create a LOT of runtimes! Don't use on a live server!)"
 	var/actual_file_name

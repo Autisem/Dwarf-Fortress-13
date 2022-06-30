@@ -109,7 +109,7 @@
 
 /obj/item/paper/verb/rename()
 	set name = "Переименовать бумагу"
-	set category = "Объект"
+	set category = "Obj"
 	set src in usr
 
 	if(!usr.can_read(src) || usr.incapacitated(TRUE, TRUE) || (isobserver(usr) && !isAdminGhostAI(usr)))

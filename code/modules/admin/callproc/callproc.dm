@@ -1,5 +1,5 @@
 /client/proc/callproc()
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Advanced ProcCall"
 	set waitfor = FALSE
 	callproc_blocking()
@@ -130,7 +130,7 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 #endif
 
 /client/proc/callproc_datum(datum/A as null|area|mob|obj|turf)
-	set category = "Дбг"
+	set category = "Debug"
 	set name = "Atom ProcCall"
 	set waitfor = FALSE
 

@@ -10,6 +10,7 @@
 	turf_type = /turf/open/floor/stone/raw
 	baseturfs = /turf/open/floor/stone/raw
 	mineralSpawnChanceList = list(/obj/item/stack/ore/gold = 5, /obj/item/stack/ore/iron = 40, /obj/item/stack/ore/gem/diamond=1,/obj/item/stack/ore/gem/ruby=1,/obj/item/stack/ore/gem/sapphire=1,/obj/item/stack/ore/coal=20)
+	mineralChance = 5
 
 /turf/closed/mineral/random/dwarf_lustress/Initialize()
 	. = ..()
