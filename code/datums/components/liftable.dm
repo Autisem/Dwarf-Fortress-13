@@ -64,6 +64,4 @@
 		item.icon = P.icon
 		item.icon_state = P.icon_state
 		item.copy_overlays(P, TRUE)
-		item.underlays.Cut() //Some items use underlays so we have to copy them aswell
-		item.underlays = P.underlays.Copy()
 		item.update_appearance()

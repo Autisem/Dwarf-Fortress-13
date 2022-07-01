@@ -78,11 +78,10 @@
 
 /obj/structure/demijohn/update_overlays()
 	. = ..()
-	underlays.Cut()
 	if(reagents.total_volume)
-		var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/workshops.dmi', "demijohn_overlay", FLOAT_LAYER)
+		var/mutable_appearance/M = mutable_appearance('dwarfs/icons/structures/workshops.dmi', "demijohn_overlay", -FLOAT_LAYER)
 		M.color = mix_color_from_reagents(reagents.reagent_list)
-		underlays += M
+		. += M
 
 /obj/structure/demijohn/proc/start_fermentation()
 	for(var/datum/reagent/R in reagents.reagent_list)
