@@ -9,7 +9,7 @@ export const Vote = (props, context) => {
   /**
    * Adds the voting type to title if there is an ongoing vote.
    */
-  let windowTitle = 'Голосование';
+  let windowTitle = 'Voting';
   if (mode) {
     windowTitle += ': ' + (question || mode).replace(/^\w/, (c) => c.toUpperCase());
   }
@@ -18,7 +18,7 @@ export const Vote = (props, context) => {
     <Window resizable title={windowTitle} width={400} height={550}>
       <Window.Content>
         <Stack fill vertical>
-          <Section title="Создать голосование">
+          <Section title="Create Vote">
             <VoteOptions />
             {!!lower_admin && <VotersList />}
           </Section>
@@ -46,7 +46,7 @@ const VoteOptions = (props, context) => {
 
   return (
     <Stack.Item>
-      <Collapsible title="Начать голосование">
+      <Collapsible title="Start Poll">
         <Stack justify="space-between">
           <Stack.Item>
             <Stack vertical>
@@ -58,11 +58,11 @@ const VoteOptions = (props, context) => {
                     checked={!!allow_vote_map}
                     disabled={!upper_admin}
                     onClick={() => act('toggle_map')}>
-                    {allow_vote_map ? 'Включено' : 'Выключено'}
+                    {allow_vote_map ? 'Enabled' : 'Disabled'}
                   </Button.Checkbox>
                 )}
                 <Button disabled={!allow_vote_map} onClick={() => act('map')}>
-                  Карта
+                  Map
                 </Button>
               </Stack.Item>
               <Stack.Item>
@@ -73,13 +73,13 @@ const VoteOptions = (props, context) => {
                     checked={!!allow_vote_restart}
                     disabled={!upper_admin}
                     onClick={() => act('toggle_restart')}>
-                    {allow_vote_restart ? 'Включено' : 'Выключено'}
+                    {allow_vote_restart ? 'Enabled' : 'Disabled'}
                   </Button.Checkbox>
                 )}
                 <Button
                   disabled={!allow_vote_restart}
                   onClick={() => act('restart')}>
-                  Перезапуск
+                  Restart
                 </Button>
               </Stack.Item>
               <Stack.Item>
@@ -90,13 +90,13 @@ const VoteOptions = (props, context) => {
                     checked={!!allow_vote_mode}
                     disabled={!upper_admin}
                     onClick={() => act('toggle_gamemode')}>
-                    {allow_vote_mode ? 'Включено' : 'Выключено'}
+                    {allow_vote_mode ? 'Enabled' : 'Disabled'}
                   </Button.Checkbox>
                 )}
                 <Button
                   disabled={!allow_vote_mode}
                   onClick={() => act('gamemode')}>
-                  Режим
+                  Gamemode
                 </Button>
               </Stack.Item>
             </Stack>
@@ -104,7 +104,7 @@ const VoteOptions = (props, context) => {
           <Stack.Item>
             {!!lower_admin && (
               <Button disabled={!lower_admin} onClick={() => act('custom')}>
-                Своё
+                Custom
               </Button>
             )}
           </Stack.Item>
@@ -124,7 +124,7 @@ const VotersList = (props, context) => {
 
   return (
     <Stack.Item>
-      <Collapsible title={`Голосующие: ${voting.length ? `: ${voting.length}` : ""}`}>
+      <Collapsible title={`Voting: ${voting.length ? ` ${voting.length}` : ""}`}>
         <Section height={8} fill scrollable>
           {voting.map((voter) => {
             return <Box key={voter}>{voter}</Box>;
@@ -145,7 +145,7 @@ const ChoicesPanel = (props, context) => {
 
   return (
     <Stack.Item grow>
-      <Section fill scrollable title="Выбирай!">
+      <Section fill scrollable title="Choose!">
         {choices.length !== 0 ? (
           <LabeledList>
             {choices.map((choice, i) => (
@@ -159,7 +159,7 @@ const ChoicesPanel = (props, context) => {
                       onClick={() => {
                         act('vote', { index: i + 1 });
                       }}>
-                      Голосовать
+                      Vote
                     </Button>
                   }>
                   {i === selected_choice - 1 && (
@@ -170,14 +170,14 @@ const ChoicesPanel = (props, context) => {
                       name="vote-yea"
                     />
                   )}
-                  {choice.votes} Голосов
+                  {choice.votes} Votes
                 </LabeledList.Item>
                 <LabeledList.Divider />
               </Box>
             ))}
           </LabeledList>
         ) : (
-          <NoticeBox>Выбора нет!</NoticeBox>
+          <NoticeBox>No Choice!</NoticeBox>
         )}
       </Section>
     </Stack.Item>
@@ -196,13 +196,13 @@ const TimePanel = (props, context) => {
     <Stack.Item mt={1}>
       <Section>
         <Stack justify="space-between">
-          <Box fontSize={1.5}>Времени осталось: {time_remaining || 0}с</Box>
+          <Box fontSize={1.5}>Time Left: {time_remaining || 0}с</Box>
           {!!lower_admin && (
             <Button
               color="red"
               disabled={!lower_admin}
               onClick={() => act('cancel')}>
-              Отменить голосование
+              Cancel Vote
             </Button>
           )}
         </Stack>

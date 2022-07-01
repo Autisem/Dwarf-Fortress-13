@@ -145,5 +145,6 @@
 	set category = "OOC"
 	set name = "📘 Achievements"
 	set desc = "See all of your achievements!"
+	set hidden = TRUE
 
 	player_details.achievements.ui_interact(usr)

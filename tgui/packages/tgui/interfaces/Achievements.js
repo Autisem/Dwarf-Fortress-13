@@ -13,7 +13,7 @@ export const Achievements = (props, context) => {
     .filter(x => x.category === selectedCategory);
   return (
     <Window
-      title="Ачивки"
+      title="Achievements"
       width={540}
       height={680}>
       <Window.Content scrollable>
@@ -27,12 +27,12 @@ export const Achievements = (props, context) => {
             </Tabs.Tab>
           ))}
           <Tabs.Tab
-            selected={selectedCategory === 'Рекорды'}
-            onClick={() => setSelectedCategory('Рекорды')}>
+            selected={selectedCategory === 'HighScores'}
+            onClick={() => setSelectedCategory('HighScores')}>
             High Scores
           </Tabs.Tab>
         </Tabs>
-        {selectedCategory === 'Рекорды' && (
+        {selectedCategory === 'HighScores' && (
           <HighScoreTable />
         ) || (
           <AchievementTable achievements={achievements} />
@@ -74,11 +74,11 @@ const Achievement = props => {
         {desc}
         {score && (
           <Box color={value > 0 ? 'good' : 'bad'}>
-            {value > 0 ? `Достигнуто ${value} раз` : 'Не открыто'}
+            {value > 0 ? `Achieved ${value} once` : 'Locked'}
           </Box>
         ) || (
           <Box color={value ? 'good' : 'bad'}>
-            {value ? 'Открыто' : 'Не открыто'}
+            {value ? 'Unlocked' : 'Locked'}
           </Box>
         )}
       </Table.Cell>

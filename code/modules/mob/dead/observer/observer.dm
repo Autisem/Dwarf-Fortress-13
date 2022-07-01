@@ -772,7 +772,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/verb/observe()
 	set name = "Follow..."
-	set category = "OOC"
+	set category = null
+	set hidden = TRUE
 
 	if(!isobserver(usr)) //Make sure they're an observer!
 		return

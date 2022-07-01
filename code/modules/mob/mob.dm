@@ -723,7 +723,7 @@
  */
 /mob/verb/cancel_camera()
 	set name = "❗ Reset Camera"
-	set category = "OOC"
+	set category = "Special"
 	reset_perspective(null)
 	unset_machine()
 
