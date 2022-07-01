@@ -19,15 +19,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/space
 	icon_state = "space"
-	requires_power = TRUE
-	always_unpowered = TRUE
 	static_lighting = FALSE
 	base_lighting_alpha = 255
-	power_light = FALSE
-	power_equip = FALSE
-	power_environ = FALSE
 	area_flags = UNIQUE_AREA | NO_ALERTS
-	outdoors = TRUE
 	ambience_index = AMBIENCE_SPACE
 	ambientsounds = SPACE
 
@@ -39,15 +33,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	area_flags = UNIQUE_AREA | NO_ALERTS | AREA_USES_STARLIGHT
 
 /area/start
-	name = "Лобби"
+	name = "Lobby"
 	icon_state = "start"
-	requires_power = FALSE
 	static_lighting = FALSE
-	has_gravity = STANDARD_GRAVITY
 
-
-/area/testroom
-	requires_power = FALSE
-	has_gravity = STANDARD_GRAVITY
-	name = "Тестовая комната"
-	icon_state = "storage"

@@ -103,7 +103,7 @@
 		affectareas -= get_areas(V)
 	for(var/V in affectareas)
 		var/area/A = V
-		if(protect_indoors && !A.outdoors)
+		if(protect_indoors)
 			continue
 		if(A.z in impacted_z_levels)
 			impacted_areas |= A

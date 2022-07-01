@@ -731,7 +731,7 @@
 		set_lying_angle(270)
 
 /mob/living/proc/makeTrail(turf/target_turf, turf/start, direction)
-	if(!has_gravity() || !isturf(start) || !blood_volume)
+	if(!isturf(start) || !blood_volume)
 		return
 
 	var/blood_exists = locate(/obj/effect/decal/cleanable/trail_holder) in start
@@ -860,26 +860,6 @@
 
 /mob/living/proc/get_visible_name()
 	return name
-
-/mob/living/update_gravity(has_gravity)
-	. = ..()
-	if(!SSticker.HasRoundStarted())
-		return
-	var/was_weightless = alerts["gravity"] && istype(alerts["gravity"], /atom/movable/screen/alert/weightless)
-	if(has_gravity)
-		if(has_gravity == 1)
-			clear_alert("gravity")
-		else
-			if(has_gravity >= GRAVITY_DAMAGE_THRESHOLD)
-				throw_alert("gravity", /atom/movable/screen/alert/veryhighgravity)
-			else
-				throw_alert("gravity", /atom/movable/screen/alert/highgravity)
-		if(was_weightless)
-			REMOVE_TRAIT(src, TRAIT_MOVE_FLOATING, NO_GRAVITY_TRAIT)
-	else
-		throw_alert("gravity", /atom/movable/screen/alert/weightless)
-		if(!was_weightless)
-			ADD_TRAIT(src, TRAIT_MOVE_FLOATING, NO_GRAVITY_TRAIT)
 
 // The src mob пытается strip an item from someone
 // Override if a certain type of mob should be behave differently when stripping items (can't, for example)

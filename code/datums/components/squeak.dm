@@ -96,7 +96,7 @@
 		var/obj/item/I = arrived
 		if(I.item_flags & ABSTRACT)
 			return
-	if(arrived.movement_type & (FLYING|FLOATING) || !arrived.has_gravity())
+	if(arrived.movement_type & (FLYING|FLOATING))
 		return
 	var/atom/current_parent = parent
 	if(isturf(current_parent?.loc))

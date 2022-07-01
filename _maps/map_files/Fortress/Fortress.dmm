@@ -285,7 +285,7 @@
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "LG" = (
-/obj/structure/furnace,
+/obj/structure/smelter,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "LQ" = (

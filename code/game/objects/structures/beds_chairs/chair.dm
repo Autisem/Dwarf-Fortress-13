@@ -195,8 +195,7 @@
 
 /obj/structure/chair/office/Moved()
 	. = ..()
-	if(has_gravity())
-		playsound(src, 'sound/effects/roll.ogg', 100, TRUE)
+	playsound(src, 'sound/effects/roll.ogg', 100, TRUE)
 
 /obj/structure/chair/office/light
 	icon_state = "officechair_white"

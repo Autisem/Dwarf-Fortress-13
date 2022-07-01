@@ -83,7 +83,7 @@
 	//var/left_click = pa.Find("left")
 	var/middle_click = pa.Find("middle")
 	var/right_click = pa.Find("right")
-	var/alt_click = pa.Find("alt")
+	// var/alt_click = pa.Find("alt")
 
 	mobcrutch.name = "\[[c.ckey] spawn&throw buildmode]"
 
@@ -109,14 +109,10 @@
 		var/obj/item/temp = A
 		temp.attack_self(c.mob)
 
-	if(alt_click)
-		A.newtonian_move(BM.build_dir)
-		log_admin("Build Mode: [key_name(c)] spawned [A] in [AREACOORD(object)][right_click ? ", activated it and" : " and"] nudged it in space. (dir=[dir2ru_text(BM.build_dir)])")
-	else
-		if(istype(A, /obj/projectile))
-			var/obj/projectile/proj = A
-			proj.fire(dir2angle(BM.build_dir))
-			log_admin("Build Mode: [key_name(c)] fired [A] in [AREACOORD(object)] (dir=[dir2ru_text(BM.build_dir)]).")
-			return
-		A.safe_throw_at(throwtarget, range, speed, force = src.force, spin = src.spin)
-		log_admin("Build Mode: [key_name(c)] spawned [A] in [AREACOORD(object)][right_click ? ", activated it and" : " and"] thrown it (range = [range], speed = [speed], force = [force], dir=[dir2ru_text(BM.build_dir)]).")
+	if(istype(A, /obj/projectile))
+		var/obj/projectile/proj = A
+		proj.fire(dir2angle(BM.build_dir))
+		log_admin("Build Mode: [key_name(c)] fired [A] in [AREACOORD(object)] (dir=[dir2ru_text(BM.build_dir)]).")
+		return
+	A.safe_throw_at(throwtarget, range, speed, force = src.force, spin = src.spin)
+	log_admin("Build Mode: [key_name(c)] spawned [A] in [AREACOORD(object)][right_click ? ", activated it and" : " and"] thrown it (range = [range], speed = [speed], force = [force], dir=[dir2ru_text(BM.build_dir)]).")

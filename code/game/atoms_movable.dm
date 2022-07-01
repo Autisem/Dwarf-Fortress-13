@@ -253,9 +253,9 @@
 			if(z_move_flags & ZMOVE_FEEDBACK)
 				to_chat(rider || src, span_warning("There's nowhere to go in that direction!"))
 			return FALSE
-	if(z_move_flags & ZMOVE_FALL_CHECKS && (throwing || (movement_type & (FLYING|FLOATING)) || !has_gravity(start)))
+	if(z_move_flags & ZMOVE_FALL_CHECKS && (throwing || (movement_type & (FLYING|FLOATING))))
 		return FALSE
-	if(z_move_flags & ZMOVE_CAN_FLY_CHECKS && !(movement_type & (FLYING|FLOATING)) && has_gravity(start))
+	if(z_move_flags & ZMOVE_CAN_FLY_CHECKS && !(movement_type & (FLYING|FLOATING)))
 		if(z_move_flags & ZMOVE_FEEDBACK)
 			if(rider)
 				to_chat(rider, span_notice("[src] is is not capable of flight."))
@@ -384,8 +384,6 @@
 	if(A == loc && pulling.density)
 		return FALSE
 	var/move_dir = get_dir(pulling.loc, A)
-	if(!Process_Spacemove(move_dir))
-		return FALSE
 	pulling.Move(get_step(pulling.loc, move_dir), move_dir, glide_size)
 	return TRUE
 
@@ -579,7 +577,6 @@
 					setDir(first_step_dir)
 				else if (!inertia_moving)
 					inertia_next_move = world.time + inertia_move_delay
-					newtonian_move(direct)
 			moving_diagonally = 0
 			return
 
@@ -638,7 +635,6 @@
 
 	if (!inertia_moving)
 		inertia_next_move = world.time + inertia_move_delay
-		newtonian_move(movement_dir)
 	if (length(client_mobs_in_contents))
 		update_parallax_contents()
 
@@ -841,46 +837,6 @@
 	for (var/item in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
 		var/atom/movable/AM = item
 		AM.onTransitZ(old_z,new_z)
-
-/**
- * Called whenever an object moves and by mobs when they attempt to move themselves through space
- * And when an object or action applies a force on src, see [newtonian_move][/atom/movable/proc/newtonian_move]
- *
- * Return 0 to have src start/keep drifting in a no-grav area and 1 to stop/not start drifting
- *
- * Mobs should return 1 if they should be able to move of their own volition, see [/client/proc/Move]
- *
- * Arguments:
- * * movement_dir - 0 when stopping or any dir when trying to move
- */
-/atom/movable/proc/Process_Spacemove(movement_dir = 0)
-	if(has_gravity(src))
-		return TRUE
-
-	if(pulledby && (pulledby.pulledby != src || moving_from_pull))
-		return TRUE
-
-	if(throwing)
-		return TRUE
-
-	if(!isturf(loc))
-		return TRUE
-
-	return FALSE
-
-
-/// Only moves the object if it's under no gravity
-/atom/movable/proc/newtonian_move(direction)
-	if(!isturf(loc) || Process_Spacemove(0))
-		inertia_dir = 0
-		return FALSE
-
-	inertia_dir = direction
-	if(!direction)
-		return TRUE
-	inertia_last_loc = loc
-	SSspacedrift.processing[src] = src
-	return TRUE
 
 /atom/movable/proc/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	set waitfor = FALSE

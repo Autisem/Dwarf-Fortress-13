@@ -87,7 +87,7 @@
 	if(steps % 2)
 		return
 
-	if(steps != 0 && !source.has_gravity(turf)) // don't need to step as often when you hop around
+	if(steps != 0) // don't need to step as often when you hop around
 		return
 	return turf
 

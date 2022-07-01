@@ -54,13 +54,6 @@
 		using.screen_loc = UI_BOXLANG
 	static_inventory += using
 
-	using = new /atom/movable/screen/area_creator
-	using.icon = ui_style
-	if(!widescreen_layout)
-		using.screen_loc = UI_BOXAREA
-	using.hud = src
-	static_inventory += using
-
 	action_intent = new /atom/movable/screen/act_intent/segmented
 	action_intent.icon_state = mymob.a_intent
 	action_intent.hud = src

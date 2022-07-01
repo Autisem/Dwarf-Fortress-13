@@ -53,7 +53,7 @@
 		var/area/place = get_area(turfs[i])
 		if(blacklisted_areas[place.type])
 			continue
-		if(!place.requires_power || (place.area_flags & NOTELEPORT) || (place.area_flags & HIDDEN_AREA))
+		if((place.area_flags & NOTELEPORT) || (place.area_flags & HIDDEN_AREA))
 			continue // No expanding powerless rooms etc
 		areas[place.name] = place
 	var/area_choice = input(creator, "Choose an area to expand or make a new area.", "Area Expansion") as null|anything in areas
@@ -63,7 +63,6 @@
 		to_chat(creator, span_warning("No choice selected. The area remains undefined."))
 		return
 	var/area/newA
-	var/area/oldA = get_area(get_turf(creator))
 	if(!isarea(area_choice))
 		var/str = stripped_input(creator,"New area name:", "Blueprint Editing", "", MAX_NAME_LEN)
 		if(!str || !length(str)) //cancel
@@ -73,7 +72,6 @@
 			return
 		newA = new area_choice
 		newA.setup(str)
-		newA.has_gravity = oldA.has_gravity
 	else
 		newA = area_choice
 

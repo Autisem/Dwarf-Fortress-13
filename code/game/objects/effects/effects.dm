@@ -20,6 +20,3 @@
 
 /obj/effect/ex_act(severity, target)
 	return
-
-/obj/effect/abstract/has_gravity(turf/T)
-	return FALSE

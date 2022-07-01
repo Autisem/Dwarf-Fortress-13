@@ -831,11 +831,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	invisibility = value
 	set_light_on(!value ? TRUE : FALSE)
 
-
-// Ghosts have no momentum, being massless ectoplasm
-/mob/dead/observer/Process_Spacemove(movement_dir)
-	return TRUE
-
 /mob/dead/observer/vv_edit_var(var_name, var_value)
 	. = ..()
 	if(var_name == NAMEOF(src, invisibility))

@@ -32,11 +32,9 @@
 /area/dwarf/cavesgen
 	name = "Caverns"
 	icon_state = "cavesgen"
-	outdoors = TRUE
 	static_lighting = TRUE
 	base_lighting_alpha = 0
 	ambientsounds = AWAY_MISSION
-	requires_power = FALSE
 	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
 	sound_environment = SOUND_ENVIRONMENT_CAVE
 	ambientsounds = list('sound/ambience/caves8.ogg', 'sound/ambience/caves_old.ogg')

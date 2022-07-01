@@ -4,7 +4,7 @@
  * A grouping of tiles into a logical space, mostly used by map editors
  */
 /area
-	name = "Космос"
+	name = "Area"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "unknown"
 	layer = AREA_LAYER
@@ -15,9 +15,6 @@
 
 	var/area_flags = VALID_TERRITORY | BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED
 
-	///Do we have an active fire alarm?
-	var/fire = FALSE
-
 	var/lightswitch = TRUE
 
 	/// All beauty in this area combined, only includes indoor area.
@@ -27,29 +24,15 @@
 	/// If a room is too big it doesn't have beauty.
 	var/beauty_threshold = 150
 
-	/// For space, the asteroid, lavaland, etc. Used with blueprints or with weather to determine if we are adding a new area (vs editing a station room)
-	var/outdoors = FALSE
-
 	/// Size of the area in open turfs, only calculated for indoors areas.
 	var/areasize = 0
 
 	/// Bonus mood for being in this area
 	var/mood_bonus = 0
 	/// Mood message for being here, only shows up if mood_bonus != 0
-	var/mood_message = span_nicegreen("Здесь круто!\n")
+	var/mood_message = span_nicegreen("This place looks good!\n")
 	/// Does the mood bonus require a trait?
 	var/mood_trait
-
-	///Will objects this area be needing power?
-	var/requires_power = TRUE
-	/// This gets overridden to 1 for space in area/.
-	var/always_unpowered = FALSE
-
-	var/power_equip = TRUE
-	var/power_light = TRUE
-	var/power_environ = TRUE
-
-	var/has_gravity = FALSE
 
 	var/parallax_movedir = 0
 
@@ -62,15 +45,8 @@
 	///Typepath to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.
 	var/area/area_limited_icon_smoothing
 
-	var/list/power_usage
-
 	///This datum, if set, allows terrain generation behavior to be ran on Initialize()
 	var/datum/map_generator/map_generator
-
-	/// Default network root for this area aka station, lavaland, etc
-	var/network_root_id = null
-	/// Area network id when you want to find all devices hooked up to this area
-	var/network_area_id = null
 
 	///Used to decide what kind of reverb the area makes sound have
 	var/sound_environment = SOUND_ENVIRONMENT_HANGAR
@@ -128,7 +104,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	// rather than waiting for atoms to initialize.
 	if (area_flags & UNIQUE_AREA)
 		GLOB.areas_by_type[type] = src
-	power_usage = new /list(AREA_USAGE_LEN) // Some atoms would like to use power in Initialize()
 	return ..()
 
 /*
@@ -148,15 +123,8 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if(area_flags & AREA_USES_STARLIGHT)
 		static_lighting = CONFIG_GET(flag/starlight)
 
-	if(requires_power)
+	if(static_lighting)
 		luminosity = 0
-	else
-		power_light = TRUE
-		power_equip = TRUE
-		power_environ = TRUE
-
-		if(static_lighting)
-			luminosity = 0
 
 	. = ..()
 
@@ -173,7 +141,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
  * Sets machine power levels in the area
  */
 /area/LateInitialize()
-	power_change() // all machines set to current power level, also updates icon
 	update_beauty()
 
 /area/proc/RunGeneration()
@@ -247,90 +214,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/space/update_icon_state()
 	SHOULD_CALL_PARENT(FALSE)
 	icon_state = null
-
-
-/**
- * Returns int 1 or 0 if the area has power for the given channel
- *
- * evalutes a mixture of variables mappers can set, requires_power, always_unpowered and then
- * per channel power_equip, power_light, power_environ
- */
-/area/proc/powered(chan) // return true if the area has power to given channel
-
-	if(!requires_power)
-		return TRUE
-	if(always_unpowered)
-		return FALSE
-	switch(chan)
-		if(AREA_USAGE_EQUIP)
-			return power_equip
-		if(AREA_USAGE_LIGHT)
-			return power_light
-		if(AREA_USAGE_ENVIRON)
-			return power_environ
-
-	return FALSE
-
-/**
- * Space is not powered ever, so this returns false
- */
-/area/space/powered(chan) //Nope.avi
-	return FALSE
-
-/**
- * Called when the area power status changes
- *
- * Updates the area icon, calls power change on all machinees in the area, and sends the `COMSIG_AREA_POWER_CHANGE` signal.
- */
-/area/proc/power_change()
-	SEND_SIGNAL(src, COMSIG_AREA_POWER_CHANGE)
-	update_appearance()
-
-
-/**
- * Add a static amount of power load to an area
- *
- * Possible channels
- * *AREA_USAGE_STATIC_EQUIP
- * *AREA_USAGE_STATIC_LIGHT
- * *AREA_USAGE_STATIC_ENVIRON
- */
-/area/proc/addStaticPower(value, powerchannel)
-	switch(powerchannel)
-		if(AREA_USAGE_STATIC_START to AREA_USAGE_STATIC_END)
-			power_usage[powerchannel] += value
-
-/**
- * Remove a static amount of power load to an area
- *
- * Possible channels
- * *AREA_USAGE_STATIC_EQUIP
- * *AREA_USAGE_STATIC_LIGHT
- * *AREA_USAGE_STATIC_ENVIRON
- */
-/area/proc/removeStaticPower(value, powerchannel)
-	switch(powerchannel)
-		if(AREA_USAGE_STATIC_START to AREA_USAGE_STATIC_END)
-			power_usage[powerchannel] -= value
-
-/**
- * Clear all non-static power usage in area
- *
- * Clears all power used for the dynamic equipment, light and environment channels
- */
-/area/proc/clear_usage()
-	power_usage[AREA_USAGE_EQUIP] = 0
-	power_usage[AREA_USAGE_LIGHT] = 0
-	power_usage[AREA_USAGE_ENVIRON] = 0
-
-
-/**
- * Add a power value amount to the stored used_x variables
- */
-/area/proc/use_power(amount, chan)
-	switch(chan)
-		if(AREA_USAGE_DYNAMIC_START to AREA_USAGE_DYNAMIC_END)
-			power_usage[chan] += amount
 
 /**
  * Call back when an atom enters an area
@@ -424,10 +307,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
  */
 /area/proc/setup(a_name)
 	name = a_name
-	power_equip = FALSE
-	power_light = FALSE
-	power_environ = FALSE
-	always_unpowered = FALSE
 	area_flags &= ~VALID_TERRITORY
 	area_flags &= ~BLOBS_ALLOWED
 	addSorted()
@@ -438,8 +317,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
  *
  */
 /area/proc/update_areasize()
-	if(outdoors)
-		return FALSE
 	areasize = 0
 	for(var/turf/open/T in contents)
 		areasize++

@@ -90,21 +90,6 @@
 	icon_state = "craft"
 	screen_loc = ui_crafting
 
-/atom/movable/screen/area_creator
-	name = "new area"
-	icon = 'icons/hud/screen_midnight.dmi'
-	icon_state = "area_edit"
-	screen_loc = ui_building
-
-/atom/movable/screen/area_creator/Click()
-	if(usr.incapacitated() || (isobserver(usr) && !isAdminGhostAI(usr)))
-		return TRUE
-	var/area/A = get_area(usr)
-	if(!A.outdoors)
-		to_chat(usr, span_warning("There is already a defined structure here."))
-		return TRUE
-	create_area(usr)
-
 /atom/movable/screen/language_menu
 	name = "languages"
 	icon = 'icons/hud/screen_midnight.dmi'

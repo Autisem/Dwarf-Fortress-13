@@ -399,9 +399,6 @@
 		clear_event(null, "area")
 
 /datum/component/mood/proc/update_beauty(area/A)
-	if(A.outdoors) //if we're outside, we don't care.
-		clear_event(null, "area_beauty")
-		return FALSE
 	if(HAS_TRAIT(parent, TRAIT_SNOB))
 		switch(A.beauty)
 			if(-INFINITY to BEAUTY_LEVEL_HORRID)

@@ -222,10 +222,6 @@
 /datum/component/riding/proc/Unbuckle(atom/movable/M)
 	addtimer(CALLBACK(parent, /atom/movable/.proc/unbuckle_mob, M), 0, TIMER_UNIQUE)
 
-/datum/component/riding/proc/Process_Spacemove(direction)
-	var/atom/movable/AM = parent
-	return override_allow_spacemove || AM.has_gravity()
-
 /// currently replicated from ridable because we need this behavior here too, see if we can deal with that
 /datum/component/riding/proc/unequip_buckle_inhands(mob/living/carbon/user)
 	var/atom/movable/AM = parent

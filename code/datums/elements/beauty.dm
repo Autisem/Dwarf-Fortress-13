@@ -29,23 +29,19 @@
 	beauty_counter[target]++
 
 	var/area/current_area = get_area(target)
-	if(current_area && !current_area.outdoors)
+	if(current_area)
 		current_area.totalbeauty += beauty
 		current_area.update_beauty()
 
 /datum/element/beauty/proc/enter_area(datum/source, area/new_area)
 	SIGNAL_HANDLER
 
-	if(new_area.outdoors)
-		return
 	new_area.totalbeauty += beauty * beauty_counter[source]
 	new_area.update_beauty()
 
 /datum/element/beauty/proc/exit_area(datum/source, area/old_area)
 	SIGNAL_HANDLER
 
-	if(old_area.outdoors)
-		return
 	old_area.totalbeauty -= beauty * beauty_counter[source]
 	old_area.update_beauty()
 
@@ -62,7 +58,7 @@
 		REMOVE_TRAIT(source, TRAIT_AREA_SENSITIVE, BEAUTY_ELEMENT_TRAIT)
 	else //lower the 'counter' down by one, update the area, and call parent if it's reached zero.
 		beauty_counter[source]--
-		if(current_area && !current_area.outdoors)
+		if(current_area)
 			current_area.totalbeauty -= beauty
 			current_area.update_beauty()
 		if(!beauty_counter[source])
