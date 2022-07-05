@@ -12,7 +12,7 @@
 	faction = list("mining")
 	weather_immunities = list("ash")
 	see_in_dark = 1
-	butcher_results = list(/obj/item/food/meat/slab = 2)
+	butcher_results = list(/obj/item/food/meat/slab = list(1,2))
 	response_help_continuous = "pushes"
 	response_help_simple = "pushes"
 	response_disarm_continuous = "pushes"
@@ -23,7 +23,6 @@
 	melee_damage_upper = 15
 	attack_verb_continuous = "attacks"
 	attack_verb_simple = "attacks"
-	atmos_requirements = list("min_oxy" = 1, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 40, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1600
 
@@ -48,7 +47,6 @@
 	response_disarm_simple = "pushes"
 	response_harm_continuous = "hits"
 	response_harm_simple = "hits"
-	atmos_requirements = list("min_oxy" = 1, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 40, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1600
 	loot =  list()
@@ -96,7 +94,7 @@
 	faction = list("mining")
 	weather_immunities = list("ash")
 	see_in_dark = 1
-	butcher_results = list(/obj/item/blacksmith/ingot = 1, /obj/item/food/meat/slab = 1)
+	butcher_results = list(/obj/item/blacksmith/ingot = list(1,1), /obj/item/food/meat/slab = list(1,2))
 	attack_verb_continuous = "attacks"
 	attack_verb_simple = "attacks"
 	response_help_continuous = "pushes"
@@ -107,7 +105,6 @@
 	response_harm_simple = "hits"
 	melee_damage_lower = 12
 	melee_damage_upper = 18
-	atmos_requirements = list("min_oxy" = 1, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 40, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1600
 

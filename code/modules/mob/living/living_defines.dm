@@ -100,9 +100,6 @@
 	///How many usable hands does this mob currently have. Should only be changed through set_usable_hands()
 	var/usable_hands = 2
 
-	var/list/pipes_shown = list()
-	var/last_played_vent
-
 	var/smoke_delay = 0 ///used to prevent spam with smoke reagent reaction on mob.
 
 	var/bubble_icon = "default" ///what icon the mob uses for speechbubbles
@@ -111,12 +108,6 @@
 	var/last_bumped = 0
 	var/unique_name = FALSE ///if a mob's name should be appended with an id when created e.g. Mob (666)
 	var/numba = 0 ///the id a mob gets when it's created
-
-	var/list/butcher_results = null ///these will be yielded from butchering with a probability chance equal to the butcher item's effectiveness
-	var/list/guaranteed_butcher_results = null ///these will always be yielded from butchering
-	var/butcher_difficulty = 0 ///effectiveness prob. is modified negatively by this amount; positive numbers make it more difficult, negative ones make it easier
-
-	var/hellbound = 0 ///People who've signed infernal contracts are unrevivable.
 
 	var/list/weather_immunities
 

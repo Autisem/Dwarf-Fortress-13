@@ -98,8 +98,8 @@
 	icon_dead = "goliath_dead"
 	throw_message = "does nothing to the tough hide of the"
 	pre_attack_icon = "goliath2"
-	butcher_results = list(/obj/item/food/meat/slab=2)
-	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/goliath_hide = 1)
+	butcher_results = list(/obj/item/food/meat/slab=list(2,3))
+	hide_type = /obj/item/stack/sheet/animalhide/goliath_hide
 	loot = list()
 	stat_attack = HARD_CRIT
 	robust_searching = 1
@@ -140,9 +140,8 @@
 	speed = 4
 	pre_attack_icon = "Goliath_preattack"
 	throw_message = "does nothing to the rocky hide of the"
-	loot = list(/obj/item/stack/sheet/animalhide/goliath_hide) //A throwback to the asteroid days
-	butcher_results = list(/obj/item/food/meat/slab/goliath = 2)
-	guaranteed_butcher_results = list()
+	hide_type = /obj/item/stack/sheet/animalhide/goliath_hide
+	butcher_results = list(/obj/item/food/meat/slab/goliath = list(2,3))
 	wander = FALSE
 	var/list/cached_tentacle_turfs
 	var/turf/last_location

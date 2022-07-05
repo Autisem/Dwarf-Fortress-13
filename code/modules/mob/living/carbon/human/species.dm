@@ -1357,7 +1357,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		to_chat(user, span_warning("You don't want to harm <b>[target]</b>!"))
 		return FALSE
 
-	if(prob(target.mind.get_skill_modifier(/datum/skill/martial, SKILL_MISS_MODIFIER)))
+	if(target.mind && prob(target.mind.get_skill_modifier(/datum/skill/martial, SKILL_MISS_MODIFIER)))
 		user.visible_message(span_warning("[user]'s attack misses [target]!") , \
 							span_userdanger("Your attack misses [target]!") , span_hear("You hear a swoosh!") , COMBAT_MESSAGE_RANGE, user)
 		to_chat(target, span_warning("[user]'s attack misses you!"))

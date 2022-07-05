@@ -13,9 +13,16 @@
 	var/icon_dead = ""
 	///We only try to show a gibbing animation if this exists.
 	var/icon_gib = null
+	///Naked animal be like
+	var/icon_skinned = null
 	///Flip the sprite upside down on death. Mostly here for things lacking custom dead sprites.
 	var/flip_on_death = FALSE
-
+	///These will be yielded from butchering in a range specified for each item
+	var/list/butcher_results = null
+	///What do we get when we skin it
+	var/hide_type
+	///Whether we skinned it
+	var/skinned = FALSE
 	var/list/speak = list()
 	///Emotes while speaking IE: `Ian [emote], [text]` -- `Ian barks, "WOOF!".` Spoken text is generated from the speak variable.
 	var/list/speak_emote = list()
@@ -67,12 +74,6 @@
 	///Healable by medical stacks? Defaults to yes.
 	var/healable = 1
 
-	///Atmos effect - Yes, you can make creatures that require plasma or co2 to survive. N2O is a trace gas and handled separately, hence why it isn't here. It'd be hard to add it. Hard and me don't mix (Yes, yes make all the dick jokes you want with that.) - Errorage
-	///Leaving something at 0 means it's off - has no maximum.
-	var/list/atmos_requirements = list("min_oxy" = 5, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0)
-	///This damage is taken when atmos doesn't fit all the requirements above.
-	var/unsuitable_atmos_damage = 1
-
 	//Defaults to zero so Ian can still be cuddly. Moved up the tree to living! This allows us to bypass some hardcoded stuff.
 	melee_damage_lower = 0
 	melee_damage_upper = 0
@@ -108,9 +109,6 @@
 	///Sorry, no spider+corgi buttbabies.
 	var/animal_species
 
-	///Simple_animal access.
-	///Innate access uses an internal ID card.
-	var/obj/item/card/id/access_card = null
 	///In the event that you want to have a buffing effect on the mob, but don't want it to stack with other effects, any outside force that applies a buff to a simple mob should at least set this to 1, so we have something to check against.
 	var/buffed = 0
 	///If the mob can be spawned with a gold slime core. HOSTILE_SPAWN are spawned with plasma, FRIENDLY_SPAWN are spawned with blood.
@@ -153,8 +151,6 @@
 	///Added success chance after every failed tame attempt.
 	var/bonus_tame_chance
 
-	///I don't want to confuse this with client registered_z.
-	var/my_z
 	///What kind of footstep this mob should have. Null if it shouldn't have any.
 	var/footstep_type
 
@@ -162,8 +158,6 @@
 	var/wound_bonus = CANT_WOUND
 	///How much bare wounding power it has
 	var/bare_wound_bonus = 0
-	///If the attacks from this are sharp
-	var/sharpness = NONE
 	///Generic flags
 	var/simple_mob_flags = NONE
 
@@ -209,8 +203,6 @@
 		emote_hear = string_list(emote_hear)
 	if(emote_see)
 		emote_see = string_list(emote_hear)
-	if(atmos_requirements)
-		atmos_requirements = string_assoc_list(atmos_requirements)
 	if(footstep_type)
 		AddElement(/datum/element/footstep, footstep_type)
 
@@ -334,15 +326,10 @@
 						manual_emote(pick(emote_hear))
 
 /mob/living/simple_animal/gib()
-	if(butcher_results || guaranteed_butcher_results)
-		var/list/butcher = list()
-		if(butcher_results)
-			butcher += butcher_results
-		if(guaranteed_butcher_results)
-			butcher += guaranteed_butcher_results
+	if(butcher_results)
 		var/atom/Tsec = drop_location()
-		for(var/path in butcher)
-			for(var/i in 1 to butcher[path])
+		for(var/path in butcher_results)
+			for(var/i in 1 to butcher_results[path][1])//Lowest possible amount
 				new path(Tsec)
 	..()
 

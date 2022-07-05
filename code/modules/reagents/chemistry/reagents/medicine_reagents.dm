@@ -656,7 +656,7 @@
 /datum/reagent/medicine/strange_reagent/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
 	if(exposed_mob.stat != DEAD)
 		return ..()
-	if(exposed_mob.suiciding || exposed_mob.hellbound) //they are never coming back
+	if(exposed_mob.suiciding) //they are never coming back
 		exposed_mob.visible_message(span_warning("Тело [exposed_mob] не реагирует..."))
 		return
 	if(iscarbon(exposed_mob) && !(methods & INGEST)) //simplemobs can still be splashed

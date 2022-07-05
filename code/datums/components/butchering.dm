@@ -14,13 +14,9 @@
 	/// Callback for butchering
 	var/datum/callback/butcher_callback
 
-/datum/component/butchering/Initialize(_speed, _effectiveness, _bonus_modifier, _butcher_sound, disabled, _can_be_blunt, _butcher_callback)
+/datum/component/butchering/Initialize(_speed, _butcher_sound, disabled, _can_be_blunt, _butcher_callback)
 	if(_speed)
 		speed = _speed
-	if(_effectiveness)
-		effectiveness = _effectiveness
-	if(_bonus_modifier)
-		bonus_modifier = _bonus_modifier
 	if(_butcher_sound)
 		butcher_sound = _butcher_sound
 	if(disabled)
@@ -37,56 +33,40 @@
 
 	if(user.a_intent != INTENT_HARM)
 		return
-	if(M.stat == DEAD && (M.butcher_results || M.guaranteed_butcher_results)) //can we butcher it?
+	if(!isanimal(M))
+		return
+	var/mob/living/simple_animal/A = M
+	if(A.stat == DEAD && A.butcher_results) //can we butcher it?
+		if(butchering_enabled && !A.skinned && A.hide_type)
+			INVOKE_ASYNC(src, .proc/startSkin, source, A, user)
+			return COMPONENT_CANCEL_ATTACK_CHAIN
 		if(butchering_enabled && (can_be_blunt || source.get_sharpness()))
-			INVOKE_ASYNC(src, .proc/startButcher, source, M, user)
+			INVOKE_ASYNC(src, .proc/startButcher, source, A, user)
 			return COMPONENT_CANCEL_ATTACK_CHAIN
 
-	if(ishuman(M) && source.force && source.get_sharpness())
-		var/mob/living/carbon/human/H = M
-		if((user.pulling == H && user.grab_state >= GRAB_AGGRESSIVE) && user.zone_selected == BODY_ZONE_HEAD) // Only aggressive grabbed can be sliced.
-			if(H.has_status_effect(/datum/status_effect/neck_slice))
-				user.show_message(span_warning("Глотка [H] уже порезана!"), MSG_VISUAL, \
-								span_warning("Глотка и так уже порезана!"))
-				return COMPONENT_CANCEL_ATTACK_CHAIN
-			INVOKE_ASYNC(src, .proc/startNeckSlice, source, H, user)
-			return COMPONENT_CANCEL_ATTACK_CHAIN
-
-/datum/component/butchering/proc/startButcher(obj/item/source, mob/living/M, mob/living/user)
-	to_chat(user, span_notice("Начинаю разделывать [M]..."))
+/datum/component/butchering/proc/startButcher(obj/item/source, mob/living/simple_animal/M, mob/living/user)
+	to_chat(user, span_notice("You start butchering [M]..."))
 	playsound(M.loc, butcher_sound, 50, TRUE, -1)
-	if(do_mob(user, M, speed) && M.Adjacent(source))
+	if(do_mob(user, M, speed*user.mind.get_skill_modifier(/datum/skill/butchering, SKILL_SPEED_MODIFIER)) && M.Adjacent(source))
 		Butcher(user, M)
 
-/datum/component/butchering/proc/startNeckSlice(obj/item/source, mob/living/carbon/human/H, mob/living/user)
-	if(DOING_INTERACTION_WITH_TARGET(user, H))
-		to_chat(user, span_warning("Уже взаимодействую с [H]!"))
-		return
+/datum/component/butchering/proc/startSkin(obj/item/source, mob/living/simple_animal/M, mob/living/user)
+	to_chat(user, span_notice("You start skinning [M]..."))
+	playsound(M.loc, butcher_sound, 50, TRUE, -1)
+	if(do_mob(user, M, speed*user.mind.get_skill_modifier(/datum/skill/skinning, SKILL_SPEED_MODIFIER)) && M.Adjacent(source))
+		Skin(user, M)
 
-	user.visible_message(span_danger("[user] начинает резать глотку [H]!") , \
-					span_danger("Начинаю резать глотку [H]!") , \
-					span_hear("Слышу звуки нарезки мяса!") , ignored_mobs = H)
-	H.show_message(span_userdanger("[user] начинает перерезать мою глотку!") , MSG_VISUAL, \
-					"<span class = 'userdanger'>Что-то режет мою глотку!</span>", NONE)
-	log_combat(user, H, "starts slicing the throat of")
-
-	playsound(H.loc, butcher_sound, 50, TRUE, -1)
-	if(do_mob(user, H, clamp(500 / source.force, 30, 100)) && H.Adjacent(source))
-		if(H.has_status_effect(/datum/status_effect/neck_slice))
-			user.show_message(span_warning("[H] уже имеет второй рот на шее, куда больше?!") , MSG_VISUAL, \
-							span_warning("Здесь уже есть второй рот на шее, куда больше?!"))
-			return
-
-		H.visible_message(span_danger("[user] режет глотку [H]!") , \
-					span_userdanger("[user] режет мою глотку..."))
-		playsound(get_turf(H), 'sound/effects/wounds/crackandbleed.ogg', 40)
-		log_combat(user, H, "wounded via throat slitting", source)
-		H.apply_damage(source.force, BRUTE, BODY_ZONE_HEAD, wound_bonus=CANT_WOUND) // easy tiger, we'll get to that in a sec
-		var/obj/item/bodypart/slit_throat = H.get_bodypart(BODY_ZONE_HEAD)
-		if(slit_throat)
-			var/datum/wound/slash/critical/screaming_through_a_slit_throat = new
-			screaming_through_a_slit_throat.apply_wound(slit_throat)
-		H.apply_status_effect(/datum/status_effect/neck_slice)
+/datum/component/butchering/proc/Skin(mob/living/butcher, mob/living/simple_animal/meat)
+	var/success_chance = butcher.mind.get_skill_modifier(/datum/skill/skinning, SKILL_PROBS_MODIFIER)
+	if(prob(success_chance))
+		butcher.visible_message(span_notice("[butcher] skins [meat]."), span_notice("You skin [meat]."))
+		new meat.hide_type (get_turf(meat))
+		butcher.mind.adjust_experience(/datum/skill/skinning, 37)
+	else
+		butcher.visible_message(span_notice("[butcher] fails to skin [meat]."), span_warning("You fail to skin [meat]."))
+	meat.skinned = TRUE
+	if(meat.icon_skinned)
+		meat.icon_state = meat.icon_skinned
 
 /**
  * Handles a user butchering a target
@@ -95,38 +75,26 @@
  * - [butcher][/mob/living]: The mob doing the butchering
  * - [meat][/mob/living]: The mob being butchered
  */
-/datum/component/butchering/proc/Butcher(mob/living/butcher, mob/living/meat)
+/datum/component/butchering/proc/Butcher(mob/living/butcher, mob/living/simple_animal/meat)
 	var/list/results = list()
 	var/turf/T = meat.drop_location()
-	var/final_effectiveness = effectiveness - meat.butcher_difficulty
-	var/bonus_chance = max(0, (final_effectiveness - 100) + bonus_modifier) //so 125 total effectiveness = 25% extra chance
+	var/lower_modifier = butcher.mind.get_skill_modifier(/datum/skill/butchering, SKILL_AMOUNT_MIN_MODIFIER)
+	var/upper_modifier = butcher.mind.get_skill_modifier(/datum/skill/butchering, SKILL_AMOUNT_MAX_MODIFIER)
 	for(var/V in meat.butcher_results)
 		var/obj/bones = V
-		var/amount = meat.butcher_results[bones]
-		for(var/_i in 1 to amount)
-			if(!prob(final_effectiveness))
-				if(butcher)
-					to_chat(butcher, span_warning("Не вышло вырезать [initial(bones.name)] из [meat]."))
-				continue
-
-			if(prob(bonus_chance))
-				if(butcher)
-					to_chat(butcher, span_info("Вырезаю [initial(bones.name)] из [meat]!"))
-				results += new bones (T)
+		var/amount_lower = meat.butcher_results[bones][1] + lower_modifier
+		var/amount_upper = meat.butcher_results[bones][2] + upper_modifier
+		if(amount_lower < 1 && amount_upper < 1)
+			continue
+		for(var/_i in 1 to rand(amount_lower, amount_upper))
 			results += new bones (T)
+			butcher.mind.adjust_experience(/datum/skill/butchering, 12)
 
 		meat.butcher_results.Remove(bones) //in case you want to, say, have it drop its results on gib
 
-	for(var/V in meat.guaranteed_butcher_results)
-		var/obj/sinew = V
-		var/amount = meat.guaranteed_butcher_results[sinew]
-		for(var/i in 1 to amount)
-			results += new sinew (T)
-		meat.guaranteed_butcher_results.Remove(sinew)
-
 	if(butcher)
-		butcher.visible_message(span_notice("[butcher] разделывает [meat]."), \
-								span_notice("Разделываю [meat]."))
+		butcher.visible_message(span_notice("[butcher] butchers [meat]."), \
+								span_notice("You butcher [meat]."))
 	butcher_callback?.Invoke(butcher, meat)
 	meat.harvest(butcher)
 	meat.gib(FALSE, FALSE, TRUE)

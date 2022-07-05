@@ -32,13 +32,10 @@
 			for(var/obj/effect/decal/cleanable/cleanable_decal in A)
 				//it is intentional that the mop rounds xp but soap does not, USE THE SACRED TOOL
 				total_experience_gain += max(round(cleanable_decal.beauty / CLEAN_SKILL_BEAUTY_ADJUSTMENT, 1), 0)
-			cleaner.mind.adjust_experience(/datum/skill/cleaning, total_experience_gain)
 		A.wash(CLEAN_SCRUB)
 
 	reagents.expose(A, TOUCH, 10)	//Needed for proper floor wetting.
 	var/val2remove = 1
-	if(cleaner?.mind)
-		val2remove = round(cleaner.mind.get_skill_modifier(/datum/skill/cleaning, SKILL_SPEED_MODIFIER),0.1)
 	reagents.remove_any(val2remove)			//reaction() doesn't use up the reagents
 
 
@@ -59,8 +56,6 @@
 	if(T)
 		user.visible_message(span_notice("[user] начинает мыть [T] используя [src.name].") , span_notice("Начинаю мыть [T] используя [src.name]..."))
 		var/clean_speedies = 1
-		if(user.mind)
-			clean_speedies = user.mind.get_skill_modifier(/datum/skill/cleaning, SKILL_SPEED_MODIFIER)
 		if(do_after(user, mopspeed*clean_speedies, target = T))
 			to_chat(user, span_notice("Заканчиваю мыть пол."))
 			clean(T, user)

@@ -151,8 +151,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	return
 
 /datum/antagonist/proc/set_antag_skills()
-	owner.set_experience(/datum/skill/ranged,  SKILL_EXP_MASTER, FALSE)
-	owner.set_experience(/datum/skill/surgery, SKILL_EXP_EXPERT, FALSE)
+	return
 
 /datum/antagonist/proc/give_antag_moodies()
 	if(!antag_moodlet)

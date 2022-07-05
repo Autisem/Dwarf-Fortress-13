@@ -12,7 +12,7 @@
 	faction = list("mining")
 	weather_immunities = list("lava","ash")
 	see_in_dark = 1
-	butcher_results = list(/obj/item/food/meat/slab = 3, /obj/item/stack/ore/stone = 6, /obj/item/stack/sheet/mineral/coal = 5)
+	butcher_results = list(/obj/item/food/meat/slab = list(2,3), /obj/item/stack/ore/stone = list(3,6), /obj/item/stack/sheet/mineral/coal = list(1,5))
 	response_help_continuous = "pushes"
 	response_help_simple = "pushes"
 	response_disarm_continuous = "pushes"
@@ -23,7 +23,6 @@
 	melee_damage_upper = 25
 	attack_verb_continuous = "attacks"
 	attack_verb_simple = "attacks"
-	atmos_requirements = list("min_oxy" = 5, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 10, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 	gold_core_spawnable = HOSTILE_SPAWN

@@ -113,7 +113,7 @@
 
 /obj/item/pen/fountain/captain/Initialize()
 	. = ..()
-	AddComponent(/datum/component/butchering, 200, 115) //the pen is mightier than the sword
+	AddComponent(/datum/component/butchering, 200) //the pen is mightier than the sword
 
 /obj/item/pen/fountain/captain/reskin_obj(mob/M)
 	..()

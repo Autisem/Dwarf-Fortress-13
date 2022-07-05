@@ -127,8 +127,6 @@
 		if(!just_sleeping)
 			if(suiciding)
 				. += "<span class='warning'>[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.</span>\n"
-			if(hellbound)
-				. += span_warning("[t_He] [t_is] limp and unresponsive; there are no signs of life and [t_his] soul has departed...")
 
 			. += generate_death_examine_text()
 

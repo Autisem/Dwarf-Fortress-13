@@ -33,6 +33,8 @@
 #define SKILL_PROBS_MODIFIER "skill_probability_modifier"//ideally added/subtracted where beneficial in prob(x) calls
 #define SKILL_RANDS_MODIFIER "skill_randomness_modifier"//ideally added/subtracted where beneficial in rand(x,y) calls
 #define SKILL_SMITHING_MODIFIER "skill_smithing_modifier"//for smithing minigame
+#define SKILL_AMOUNT_MIN_MODIFIER "skill_amount_min_modifier"
+#define SKILL_AMOUNT_MAX_MODIFIER "skill_amount_max_modifier"
 //Combat related modifiers
 #define SKILL_PARRY_MODIFIER "skill_parry_modifier"//passive dodge/parry chance on weapon skills
 #define SKILL_MISS_MODIFIER "skill_miss_modifier"//passive misses in combat; the higher the level the lesser the miss chance

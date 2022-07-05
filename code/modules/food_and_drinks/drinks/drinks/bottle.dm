@@ -146,7 +146,7 @@
 /obj/item/broken_bottle/Initialize()
 	. = ..()
 	AddComponent(/datum/component/caltrop, min_damage = force)
-	AddComponent(/datum/component/butchering, 200, 55)
+	AddComponent(/datum/component/butchering, 200)
 
 /obj/item/reagent_containers/food/drinks/bottle/gin
 	name = "Griffeater gin"

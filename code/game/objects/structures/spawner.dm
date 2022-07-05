@@ -24,14 +24,6 @@
 		return
 	..()
 
-
-/obj/structure/spawner/syndicate
-	name = "warp beacon"
-	icon = 'icons/obj/device.dmi'
-	icon_state = "syndbeacon"
-	spawn_text = "warps in from"
-	mob_types = list(/mob/living/simple_animal/hostile/syndicate/ranged)
-
 /obj/structure/spawner/mining
 	name = "monster den"
 	desc = "A hole dug into the ground, harboring all kinds of monsters found within most caves or mining asteroids."

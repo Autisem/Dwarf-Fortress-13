@@ -20,7 +20,7 @@
 	melee_damage_upper = 5
 	attack_verb_continuous = "кусает"
 	attack_verb_simple = "кусает"
-	butcher_results = list(/obj/item/food/meat/slab = 1)
+	butcher_results = list(/obj/item/food/meat/slab = list(1,1))
 	pass_flags = PASSTABLE
 	faction = list("hostile")
 	attack_sound = 'sound/weapons/bite.ogg'
@@ -34,7 +34,6 @@
 	var/min_oxy = 0
 	var/max_tox = 0
 	//Space bats need no air to fly in.
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 
 /mob/living/simple_animal/hostile/retaliate/bat/Initialize()
