@@ -5,6 +5,7 @@
 	inhand_icon_state = "sheet-hide"
 	novariants = TRUE
 	merge_type = /obj/item/stack/sheet/animalhide
+	var/damaged_type
 
 /obj/item/stack/sheet/animalhide/human
 	name = "человеческая кожа"

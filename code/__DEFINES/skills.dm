@@ -31,6 +31,7 @@
 //Skill modifier types
 #define SKILL_SPEED_MODIFIER "skill_speed_modifier"//ideally added/subtracted in speed calculations to make you do stuff faster
 #define SKILL_PROBS_MODIFIER "skill_probability_modifier"//ideally added/subtracted where beneficial in prob(x) calls
+#define SKILL_PROBS2_MODIFIER "skill_probability2_modifier"//ideally added/subtracted where beneficial in prob(x) calls
 #define SKILL_RANDS_MODIFIER "skill_randomness_modifier"//ideally added/subtracted where beneficial in rand(x,y) calls
 #define SKILL_SMITHING_MODIFIER "skill_smithing_modifier"//for smithing minigame
 #define SKILL_AMOUNT_MIN_MODIFIER "skill_amount_min_modifier"

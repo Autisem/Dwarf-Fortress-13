@@ -20,7 +20,7 @@
 	///These will be yielded from butchering in a range specified for each item
 	var/list/butcher_results = null
 	///What do we get when we skin it
-	var/hide_type
+	var/obj/item/stack/sheet/animalhide/hide_type
 	///Whether we skinned it
 	var/skinned = FALSE
 	var/list/speak = list()

@@ -57,11 +57,16 @@
 		Skin(user, M)
 
 /datum/component/butchering/proc/Skin(mob/living/butcher, mob/living/simple_animal/meat)
-	var/success_chance = butcher.mind.get_skill_modifier(/datum/skill/skinning, SKILL_PROBS_MODIFIER)
-	if(prob(success_chance))
+	var/full_chance = butcher.mind.get_skill_modifier(/datum/skill/skinning, SKILL_PROBS_MODIFIER)
+	var/damaged_chance = butcher.mind.get_skill_modifier(/datum/skill/skinning, SKILL_PROBS2_MODIFIER)
+	if(prob(full_chance))
 		butcher.visible_message(span_notice("[butcher] skins [meat]."), span_notice("You skin [meat]."))
 		new meat.hide_type (get_turf(meat))
 		butcher.mind.adjust_experience(/datum/skill/skinning, 37)
+	else if(prob(damaged_chance))
+		butcher.visible_message(span_notice("[butcher] poorly skins [meat]."), span_notice("You poorly skin [meat]."))
+		new meat.hide_type.damaged_type (get_turf(meat))
+		butcher.mind.adjust_experience(/datum/skill/skinning, 19)
 	else
 		butcher.visible_message(span_notice("[butcher] fails to skin [meat]."), span_warning("You fail to skin [meat]."))
 	meat.skinned = TRUE
