@@ -1,6 +1,6 @@
 /obj/structure/closet/crate
-	name = "ящик"
-	desc = "Прямоугольный ящик, как деревянный, только стальной."
+	name = "crate"
+	desc = "Rectangular box."
 	icon = 'icons/obj/crates.dmi'
 	icon_state = "crate"
 	can_weld_shut = FALSE
@@ -57,18 +57,6 @@
 	. = ..()
 	RemoveElement(/datum/element/climbable, climb_time = crate_climb_time * 0.5, climb_stun = 0)
 	AddElement(/datum/element/climbable, climb_time = crate_climb_time, climb_stun = 0)
-
-/obj/structure/closet/crate/coffin
-	name = "гроб"
-	desc = "Это погребальный сосуд для тел тех, кто сейчас в лучшем мире."
-	icon_state = "coffin"
-	resistance_flags = FLAMMABLE
-	max_integrity = 70
-	material_drop_amount = 5
-	open_sound = 'sound/machines/wooden_closet_open.ogg'
-	close_sound = 'sound/machines/wooden_closet_close.ogg'
-	open_sound_volume = 25
-	close_sound_volume = 50
 
 /obj/structure/closet/crate/freezer
 	desc = "Фризер."
