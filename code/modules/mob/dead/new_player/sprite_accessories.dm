@@ -73,8 +73,8 @@
 	// you do not need to define _s or _l sub-states, game automatically does this for you
 
 /datum/sprite_accessory/hair/bald
-	name = "bald"
-	icon_state = "Bald"
+	name = "Bald"
+	icon_state = "bald"
 
 /*
 /////////////////////////////////////

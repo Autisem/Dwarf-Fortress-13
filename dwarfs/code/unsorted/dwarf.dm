@@ -1,25 +1,3 @@
-////////////////////
-/////BODYPARTS//////
-////////////////////
-
-
-/obj/item/bodypart/var/should_draw_hippie = FALSE
-
-/mob/living/carbon/proc/draw_hippie_parts(undo = FALSE)
-	if(!undo)
-		for(var/O in bodyparts)
-			var/obj/item/bodypart/B = O
-			B.should_draw_hippie = TRUE
-	else
-		for(var/O in bodyparts)
-			var/obj/item/bodypart/B = O
-			B.should_draw_hippie = FALSE
-
-/datum/species/proc/hippie_handle_hiding_bodyparts(list/bodyparts_adding, obj/item/bodypart/head/head, mob/living/carbon/human/human)
-	if("ipc_screen" in mutant_bodyparts)
-		if((human.wear_mask && (human.wear_mask.flags_inv & HIDEFACE)) || (human.head && (human.head.flags_inv & HIDEFACE)) || !head || head.status == BODYPART_ROBOTIC)
-			bodyparts_adding -= "ipc_screen"
-
 // To make dwarven only jumpsuits, add this species' path to the clothing's species_exception list. By default jumpsuits don't fit dwarven since they're big boned
 /datum/species/dwarf
 	name = "Dwarf"
@@ -42,18 +20,10 @@
 	return ..()
 
 /datum/species/dwarf/on_species_gain(mob/living/carbon/human/C, datum/species/old_species, pref_load)
-	// var/dwarf_beard = pick("Beard (Full)", "Beard (Dwarf)", "Beard (Very Long)")
-	C.hairstyle = "Bald"
-	// C.facial_hairstyle = dwarf_beard
-	C.draw_hippie_parts()
-	C.update_body()
-	C.update_hair()
-	C.update_body_parts()
 	GLOB.dwarf_list += C
 	. = ..()
 
 /datum/species/dwarf/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
-	C.draw_hippie_parts(TRUE)
 	GLOB.dwarf_list -= C
 	. = ..()
 
@@ -109,13 +79,3 @@
 	name = "Dwarf"
 	uniform = /obj/item/clothing/under/dwarf
 	shoes = /obj/item/clothing/shoes/dwarf
-
-/datum/outfit/dwarf/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	if(visualsOnly)
-		return
-	H.set_species(/datum/species/dwarf)
-	H.gender = MALE
-	var/new_name = H.dna.species.random_name(H.gender, TRUE)
-	H.fully_replace_character_name(H.real_name, new_name)
-	H.regenerate_icons()

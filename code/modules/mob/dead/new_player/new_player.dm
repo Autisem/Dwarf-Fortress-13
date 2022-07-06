@@ -204,7 +204,6 @@
 		mind.transfer_to(H) //won't transfer key since the mind is not active
 		mind.set_original_character(H)
 
-	H.name = real_name
 	client.init_verbs()
 	. = H
 	new_character = .
