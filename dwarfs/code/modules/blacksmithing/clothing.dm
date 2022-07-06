@@ -4,7 +4,6 @@
 	body_parts_covered = CHEST|GROIN
 	icon_state = "light_plate"
 	inhand_icon_state = "light_plate"
-	armor = list("melee" = 35, "bullet" = 30, "laser" = 25, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10, "wound" = 35)
 	custom_materials = list(/datum/material/iron = 10000)
 
 /obj/item/clothing/suit/armor/heavy_plate
@@ -16,7 +15,6 @@
 	icon_state = "heavy_plate"
 	inhand_icon_state = "heavy_plate"
 	flags_inv = HIDEJUMPSUIT
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20, "wound" = 50)
 	custom_materials = list(/datum/material/iron = 10000)
 	var/footstep = 1
 	var/mob/listeningTo
@@ -66,7 +64,6 @@
 	desc = "Great protection from stabs and slashes for its weight."
 	icon_state = "chainmail"
 	inhand_icon_state = "chainmail"
-	armor = list("melee" = 15, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "wound" = 30)
 	custom_materials = list(/datum/material/iron = 10000)
 	species_exception = list(/datum/species/dwarf)
 
@@ -76,21 +73,18 @@
 	icon_state = "plate_helmet"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 5, "wound" = 50)
 	custom_materials = list(/datum/material/iron = 10000)
 
 /obj/item/clothing/gloves/plate_gloves
 	name = "plate gloves"
 	desc = "Will save your hands from unexpected losses."
 	icon_state = "plate_gloves"
-	armor = list("melee" = 25, "bullet" = 30, "laser" = 20,"energy" = 0, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 25, "wound" = 30)
 	custom_materials = list(/datum/material/iron = 10000)
 
 /obj/item/clothing/shoes/jackboots/plate_boots
 	name = "plate boots"
 	desc = "The boots."
 	icon_state = "plate_boots"
-	armor = list("melee" = 25, "bullet" = 30, "laser" = 20,"energy" = 0, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 25, "wound" = 30)
 	custom_materials = list(/datum/material/iron = 10000)
 
 /obj/item/clothing/head/helmet/dwarf_crown
@@ -100,7 +94,6 @@
 	icon = 'dwarfs/icons/items/clothing.dmi'
 	icon_state = "king_crown"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10,"energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 5, "wound" = 15)
 	custom_materials = list(/datum/material/gold = 10000)
 	actions_types = list(/datum/action/item_action/send_message_action)
 	var/mob/assigned_count = null

@@ -79,3 +79,9 @@
 	name = "Dwarf"
 	uniform = /obj/item/clothing/under/dwarf
 	shoes = /obj/item/clothing/shoes/dwarf
+
+/datum/outfit/dwarf_king
+	name = "Dwarf King"
+	uniform = /obj/item/clothing/under/dwarf
+	shoes = /obj/item/clothing/shoes/dwarf
+	head = /obj/item/clothing/head/helmet/dwarf_crown

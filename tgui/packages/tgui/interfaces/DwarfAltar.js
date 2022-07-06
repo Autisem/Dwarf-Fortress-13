@@ -4,7 +4,6 @@ import { Window } from '../layouts';
 
 export const DwarfAltar = (props, context) => {
   const { act, data } = useBackend(context);
-  // Extract `health` and `color` variables from the `data` object.
   const {
     favor,
     rituals,
@@ -12,7 +11,7 @@ export const DwarfAltar = (props, context) => {
   return (
     <Window>
       <Box textAlign="center">
-        Благосклонности Армока {favor}
+        Armok favor {favor}
       </Box>
       <Stack vertical>
         {rituals.map(rite => (
@@ -29,7 +28,7 @@ export const DwarfAltar = (props, context) => {
                     path: rite.path,
                     cost: rite.cost,
                   })} >
-                  Провести
+                  Start
                 </Button>
               )} >
               <Box

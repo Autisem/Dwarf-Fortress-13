@@ -1403,7 +1403,7 @@
 #include "code\modules\unit_tests\_unit_tests.dm"
 #include "code\modules\webhooks\webhook.dm"
 #include "dwarfs\code\area\area.dm"
-#include "dwarfs\code\items\misc.dm"
+#include "dwarfs\code\items\damaz.dm"
 #include "dwarfs\code\items\ores.dm"
 #include "dwarfs\code\items\tools.dm"
 #include "dwarfs\code\mobs\mobs.dm"
