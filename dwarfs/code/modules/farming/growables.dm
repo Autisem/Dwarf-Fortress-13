@@ -23,6 +23,12 @@
 /obj/item/growable/proc/MakeProcessable()
 	return
 
+/obj/item/growable/proc/on_consume(mob/living/eater, mob/living/feeder)
+	var/datum/component/mood/M = eater.GetComponent(/datum/component/mood)
+	if(!M)
+		return
+	M.add_event(null, "foog", /datum/mood_event/ate_food)
+
 /obj/item/growable/Initialize()
 	. = ..()
 	if(edible)
@@ -35,7 +41,8 @@
 				volume = max_volume,\
 				eat_time = eat_time,\
 				tastes = tastes,\
-				bite_consumption = bite_consumption)
+				bite_consumption = bite_consumption,\
+				on_consume = CALLBACK(src, .proc/on_consume))
 	MakeGrindable()
 	MakePressable()
 	MakeProcessable()

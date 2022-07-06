@@ -65,7 +65,8 @@
 				eat_time = eat_time,\
 				tastes = tastes,\
 				eatverbs = eatverbs,\
-				bite_consumption = bite_consumption)
+				bite_consumption = bite_consumption,\
+				on_consume = CALLBACK(src, .proc/on_consume))
 
 
 ///This proc handles processable elements, overwrite this if you want to add behavior such as slicing, forking, spooning, whatever, to turn the item into something else
@@ -95,6 +96,12 @@
 /obj/item/food/proc/MakeDecompose(mapload)
 	if(!preserved_food)
 		AddComponent(/datum/component/decomposition, mapload, decomp_flags = foodtypes)
+
+/obj/item/food/proc/on_consume(mob/living/eater, mob/living/feeder)
+	var/datum/component/mood/M = eater.GetComponent(/datum/component/mood)
+	if(!M)
+		return
+	M.add_event(null, "foog", /datum/mood_event/ate_food)
 
 /obj/item/food/badrecipe
 	name = "burned recipe"

@@ -19,6 +19,11 @@
 	description = "<span class='boldwarning'>I'm starving!</span>\n"
 	mood_change = -10
 
+/datum/mood_event/ate_food
+	description = span_green("I ate something.")
+	mood_change = 5000
+	timeout = 3 MINUTES
+
 //charge
 /datum/mood_event/supercharged
 	description = "<span class='boldwarning'>I can't possibly keep all this power inside, I need to release some quick!</span>\n"

@@ -1,19 +1,8 @@
 /obj/item/food/dish
 	var/plate_type
 
-/obj/item/food/dish/MakeEdible()
-	AddComponent(/datum/component/edible,\
-				initial_reagents = food_reagents,\
-				food_flags = food_flags,\
-				foodtypes = foodtypes,\
-				volume = max_volume,\
-				eat_time = eat_time,\
-				tastes = tastes,\
-				eatverbs = eatverbs,\
-				bite_consumption = bite_consumption,\
-				on_consume = CALLBACK(src, .proc/on_consume))
-
-/obj/item/food/dish/proc/on_consume(mob/living/eater, mob/living/feeder)
+/obj/item/food/dish/on_consume(mob/living/eater, mob/living/feeder)
+	. = ..()
 	if(plate_type)
 		var/mob/living/carbon/human/H = feeder
 		var/held_index = H.is_holding(src)
