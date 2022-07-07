@@ -65,7 +65,8 @@
 		butcher.mind.adjust_experience(/datum/skill/skinning, 37)
 	else if(prob(damaged_chance))
 		butcher.visible_message(span_notice("[butcher] poorly skins [meat]."), span_notice("You poorly skin [meat]."))
-		new meat.hide_type.damaged_type (get_turf(meat))
+		var/dam_hidetype = initial(meat.hide_type.damaged_type)
+		new dam_hidetype (get_turf(meat))
 		butcher.mind.adjust_experience(/datum/skill/skinning, 19)
 	else
 		butcher.visible_message(span_notice("[butcher] fails to skin [meat]."), span_warning("You fail to skin [meat]."))

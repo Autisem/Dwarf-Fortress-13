@@ -202,7 +202,7 @@
 	user.do_attack_animation(M)
 	M.attacked_by(src, user)
 	if(skill && M.stat != DEAD)
-		user.mind.adjust_experience(skill, 7)
+		user.mind.adjust_experience(skill, initial(skill.exp_per_attack))
 
 	log_combat(user, M, "attacked", src.name, "(DAMTYPE: [uppertext(damtype)])")
 	add_fingerprint(user)
@@ -247,14 +247,6 @@
 	var/tempforce = I.force
 	if(I.skill)
 		tempforce += user.mind.get_skill_modifier(I.skill, SKILL_DAMAGE_MODIFIER)
-
-	var/obj/item/held = get_active_held_item()
-	if(held && held.skill)
-		if(prob(mind.get_skill_modifier(held.skill, SKILL_PARRY_MODIFIER)))
-			visible_message(span_danger("<b>[src]</b> parries <b>[user]'s</b> attack!"), span_danger("You parry <b>[user]'s</b> attack!"))
-			playsound(src, 'sound/weapons/tap.ogg', 60, TRUE, -1)
-			mind.adjust_experience(held.skill, 7)
-			return FALSE
 	send_item_attack_message(I, user)
 	if(tempforce)
 		apply_damage(tempforce, I.damtype)

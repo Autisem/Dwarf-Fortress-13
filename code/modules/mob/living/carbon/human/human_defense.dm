@@ -106,33 +106,30 @@
 	return FALSE
 
 /mob/living/carbon/human/proc/check_shields(atom/AM, damage, attack_text = "attacks", attack_type = MELEE_ATTACK, armour_penetration = 0)
-	var/block_chance_modifier = round(damage / -3)
-
-	for(var/obj/item/I in held_items)
-		if(!istype(I, /obj/item/clothing))
-			var/final_block_chance = I.block_chance - (clamp((armour_penetration-I.get_armorpen())/2,0,100)) + block_chance_modifier //So armour piercing blades can still be parried by other blades, for example
-			if(I.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
-				return TRUE
-	if(wear_suit)
-		var/final_block_chance = wear_suit.block_chance - (clamp((armour_penetration-wear_suit.get_armorpen())/2,0,100)) + block_chance_modifier
-		if(wear_suit.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
-			return TRUE
-	if(w_uniform)
-		var/final_block_chance = w_uniform.block_chance - (clamp((armour_penetration-w_uniform.get_armorpen())/2,0,100)) + block_chance_modifier
-		if(w_uniform.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
-			return TRUE
-	if(wear_neck)
-		var/final_block_chance = wear_neck.block_chance - (clamp((armour_penetration-wear_neck.get_armorpen())/2,0,100)) + block_chance_modifier
-		if(wear_neck.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
-			return TRUE
-	if(head)
-		var/final_block_chance = head.block_chance - (clamp((armour_penetration-head.get_armorpen())/2,0,100)) + block_chance_modifier
-		if(head.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
+	var/obj/item/to_parry = get_active_held_item()
+	var/obj/item/offhand = get_inactive_held_item()
+	if(offhand && istype(offhand, /obj/item/shield))
+		to_parry = offhand
+	if(to_parry && to_parry.skill)
+		if(prob(mind.get_skill_modifier(to_parry.skill, SKILL_PARRY_MODIFIER)+to_parry.block_chance))
+			// visible_message(span_danger("<b>[src]</b> parries <b>[user]'s</b> attack!"), span_danger("You parry <b>[user]'s</b> attack!"))
+			playsound(src, 'sound/weapons/tap.ogg', 60, TRUE, -1)
+			mind.adjust_experience(to_parry.skill, initial(to_parry.skill.exp_per_parry))
 			return TRUE
 	return FALSE
 
 /mob/living/carbon/human/proc/check_block()
 	if(mind)
+		var/obj/item/to_parry = get_active_held_item()
+		var/obj/item/offhand = get_inactive_held_item()
+		if(offhand && istype(offhand, /obj/item/shield))
+			to_parry = offhand
+		if(to_parry && to_parry.skill)
+			if(prob(mind.get_skill_modifier(to_parry.skill, SKILL_PARRY_MODIFIER)+to_parry.block_chance))
+				// visible_message(span_danger("<b>[src]</b> parries <b>[user]'s</b> attack!"), span_danger("You parry <b>[user]'s</b> attack!"))
+				playsound(src, 'sound/weapons/tap.ogg', 60, TRUE, -1)
+				mind.adjust_experience(to_parry.skill, initial(to_parry.skill.exp_per_parry))
+				return TRUE
 		if(mind.martial_art && prob(mind.martial_art.block_chance) && mind.martial_art.can_use(src) && throw_mode && !incapacitated(FALSE, TRUE))
 			playsound(src, 'sound/misc/block_hand.ogg', 100)
 			return TRUE
@@ -241,13 +238,6 @@
 	. = ..()
 	if(!.)
 		return
-	var/obj/item/held = get_active_held_item()
-	if(held && held.skill)
-		if(prob(mind.get_skill_modifier(held.skill, SKILL_PARRY_MODIFIER)))
-			visible_message(span_danger("<b>[src]</b> parries <b>[M]'s</b> attack!"), span_danger("You parry <b>[M]'s</b> attack!"))
-			playsound(src, 'sound/weapons/tap.ogg', 60, TRUE, -1)
-			mind.adjust_experience(held.skill, 7)
-			return FALSE
 	var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 	if(check_shields(M, damage, "[M.name]", MELEE_ATTACK, M.armour_penetration))
 		return FALSE

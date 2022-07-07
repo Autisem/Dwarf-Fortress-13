@@ -202,7 +202,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	/// Used in obj/item/examine to determines whether or not to detail an item's statistics even if it does not meet the force requirements
 	var/override_notes = FALSE
 	/// Used skill in combat; affects dodges and misses
-	var/datum/skill/skill
+	var/datum/skill/combat/skill
 
 /obj/item/Initialize()
 	if(isnum(armor_penetration))

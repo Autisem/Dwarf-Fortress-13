@@ -1391,14 +1391,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		//var/mis_dice_rolled = roll_stat_dice(user.current_fate[MOB_INT] + user.current_fate[MOB_DEX])
 
-		var/obj/item/held = target.get_active_held_item()
-		if(held && held.skill)
-			if(prob(target.mind.get_skill_modifier(held.skill, SKILL_PARRY_MODIFIER)))
-				target.visible_message(span_danger("<b>[target]</b> parries <b>[user]'s</b> attack!"), span_danger("You parry <b>[user]'s</b> attack!"))
-				playsound(target, 'sound/weapons/tap.ogg', 60, TRUE, -1)
-				target.mind.adjust_experience(held.skill, 7)
-				return FALSE
-
 		if(!damage || !affecting)//future-proofing for species that have 0 damage/weird cases where no zone is targeted
 			// playsound(target.loc, user.dna.species.miss_sound, 25, TRUE, -1)
 			// target.visible_message(span_danger("[user] [atk_verb] misses [target]!") ,
