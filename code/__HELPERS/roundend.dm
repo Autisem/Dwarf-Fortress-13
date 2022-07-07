@@ -208,10 +208,7 @@
 
 /datum/controller/subsystem/ticker/proc/standard_reboot()
 	if(ready_for_reboot)
-		if(mode.station_was_nuked)
-			Reboot("Станция уничтожена Ядерной бомбой.", "nuke")
-		else
-			Reboot("Конец раунда.", "proper completion")
+		Reboot("Round Ended.", "proper completion")
 	else
 		CRASH("Attempted standard reboot without ticker roundend completion")
 
@@ -329,21 +326,8 @@
 
 /datum/controller/subsystem/ticker/proc/personal_report(client/C, popcount)
 	var/list/parts = list()
-	var/mob/M = C.mob
-	parts += "<br><center><span class='big bold'>Конец раунда</span></center>"
-	parts += "<center>Подсчитываем выживших…</center><br>"
-	if(M.mind && !isnewplayer(M))
-		if(M.stat != DEAD && !isbrain(M))
-			parts += "<div class='panel greenborder'>"
-			parts += span_greentext("Тебе удалось пережить события, произошедшие на станции [station_name()], будучи [M.real_name]!")
-
-		else
-			parts += "<div class='panel redborder'>"
-			parts += span_redtext("Будучи [M.real_name], тебе не удалось пережить события, произошедшие на станции [station_name()]...")
-	else
-		parts += "<div class='panel stationborder'>"
-	parts += "<br>"
-	parts += GLOB.survivor_report
+	// var/mob/M = C.mob
+	parts += "<br><center><span class='big bold'>Round End</span></center>"
 	parts += "</div>"
 
 	return parts.Join()
@@ -443,10 +427,10 @@
 	var/datum/action/report/R = new
 	C.player_details.player_actions += R
 	R.Grant(C.mob)
-	to_chat(C,"<a href='?src=[REF(R)];report=1'>Показать результаты раунда снова.</a>")
+	to_chat(C,"<a href='?src=[REF(R)];report=1'>Show round end results again.</a>")
 
 /datum/action/report
-	name = "Показать результаты раунда"
+	name = "Show round end results"
 	button_icon_state = "round_end"
 
 /datum/action/report/Trigger()
@@ -468,20 +452,16 @@
 	var/jobtext = ""
 	if(ply.assigned_role)
 		jobtext = " <b>[ply.assigned_role]</b>"
-	var/text = "<b>[ply.key]</b> как <b>[ply.name]</b>[jobtext] "
+	var/text = "<b>[ply.key]</b> as <b>[ply.name]</b>[jobtext] "
 	if(ply.current)
 		if(ply.current.stat == DEAD)
-			text += " <span class='redtext'>погиб</span>"
+			text += " <span class='redtext'>died</span>"
 		else
-			text += " <span class='greentext'>выжил</span>"
-		if(fleecheck)
-			var/turf/T = get_turf(ply.current)
-			if(!T || !is_fortress_level(T.z))
-				text += " while <span class='redtext'>улетел со станции</span>"
+			text += " <span class='greentext'>survived</span>"
 		if(ply.current.real_name != ply.name)
-			text += " как <b>[ply.current.real_name]</b>"
+			text += " as <b>[ply.current.real_name]</b>"
 	else
-		text += " <span class='redtext'>был полностью уничтожен</span>"
+		text += " <span class='redtext'>destroyed</span>"
 	return text
 
 /proc/printplayerlist(list/players,fleecheck)
@@ -501,9 +481,9 @@
 	var/count = 1
 	for(var/datum/objective/objective in objectives)
 		if(objective.check_completion())
-			objective_parts += "<b>Цель #[count]</b>: [objective.explanation_text] <span class='greentext'>Успех!</span>"
+			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='greentext'>Success!</span>"
 		else
-			objective_parts += "<b>Цель #[count]</b>: [objective.explanation_text] <span class='redtext'>Провал.</span>"
+			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
 		count++
 	return objective_parts.Join("<br>")
 

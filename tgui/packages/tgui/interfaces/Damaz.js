@@ -6,6 +6,7 @@ import { Window } from '../layouts';
 export const Damaz = (props, context) => {
   const { act, data } = useBackend(context);
   const king = data.king;
+  const admin = data.admin;
   const entries = data.entries || [];
   return (
     <Window
@@ -21,6 +22,7 @@ export const Damaz = (props, context) => {
           <Box bold
           style={{"font-size":"15px","word-wrap":"break-word"}}>
             {entry.content}</Box>
+          {admin && <Button onClick={()=>act("remove_entry", {"entry":entries.indexOf(entry)})}>Delete</Button>}
           <Box italic={true} textAlign="right" >
             - <b>{entry.author}</b> of <b>{entry.fortress}</b></Box>
           </Stack.Item>

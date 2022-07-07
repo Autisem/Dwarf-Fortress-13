@@ -1,5 +1,6 @@
 #define FILE_ANTAG_REP "data/AntagReputation.json"
 #define FILE_RECENT_MAPS "data/RecentMaps.json"
+GLOBAL_LIST_EMPTY(damaz_entries)
 
 #define KEEP_ROUNDS_MAP 3
 
@@ -21,9 +22,16 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/Initialize()
 	LoadRecentModes()
 	LoadRecentMaps()
+	LoadDamazEntries()
 	if(CONFIG_GET(flag/use_antag_rep))
 		LoadAntagReputation()
 	return ..()
+
+/datum/controller/subsystem/persistence/proc/LoadDamazEntries()
+	var/savefile/S = new("data/damaz_entries.sav")
+	S["ENTRIES"] >> GLOB.damaz_entries
+	if(!islist(GLOB.damaz_entries))
+		GLOB.damaz_entries = list()
 
 /datum/controller/subsystem/persistence/proc/LoadRecentModes()
 	var/json_file = file("data/RecentModes.json")
@@ -68,9 +76,14 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/proc/CollectData()
 	CollectRoundtype()
 	CollectMaps()
+	CollectDamazEntries()
 	if(CONFIG_GET(flag/use_antag_rep))
 		CollectAntagReputation()
 	SaveScars()
+
+/datum/controller/subsystem/persistence/proc/CollectDamazEntries()
+	var/savefile/S = new("data/damaz_entries.sav")
+	S["ENTRIES"] << GLOB.damaz_entries
 
 /datum/controller/subsystem/persistence/proc/remove_duplicate_trophies(list/trophies)
 	var/list/ukeys = list()
