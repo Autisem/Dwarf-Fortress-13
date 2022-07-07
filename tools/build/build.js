@@ -67,7 +67,6 @@ export const DmTarget = new Juke.Target({
     '_maps/map_files/generic/**',
     'code/**',
     'dwarfs/**',
-    'goon/**',
     'html/**',
     'icons/**',
     'white/**',
