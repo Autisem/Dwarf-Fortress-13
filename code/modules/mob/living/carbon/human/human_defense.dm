@@ -105,14 +105,14 @@
 			return TRUE
 	return FALSE
 
-/mob/living/carbon/human/proc/check_shields(atom/AM, damage, attack_text = "attacks", attack_type = MELEE_ATTACK, armour_penetration = 0)
+/mob/living/carbon/human/proc/check_shields(atom/AM, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0)
 	var/obj/item/to_parry = get_active_held_item()
 	var/obj/item/offhand = get_inactive_held_item()
 	if(offhand && istype(offhand, /obj/item/shield))
 		to_parry = offhand
 	if(to_parry && to_parry.skill)
 		if(prob(mind.get_skill_modifier(to_parry.skill, SKILL_PARRY_MODIFIER)+to_parry.block_chance))
-			// visible_message(span_danger("<b>[src]</b> parries <b>[user]'s</b> attack!"), span_danger("You parry <b>[user]'s</b> attack!"))
+			visible_message(span_danger("<b>[src]</b> parries [attack_text]!"), span_danger("You parry [attack_text] attack!"))
 			playsound(src, 'sound/weapons/tap.ogg', 60, TRUE, -1)
 			mind.adjust_experience(to_parry.skill, initial(to_parry.skill.exp_per_parry))
 			return TRUE
@@ -126,7 +126,7 @@
 			to_parry = offhand
 		if(to_parry && to_parry.skill)
 			if(prob(mind.get_skill_modifier(to_parry.skill, SKILL_PARRY_MODIFIER)+to_parry.block_chance))
-				// visible_message(span_danger("<b>[src]</b> parries <b>[user]'s</b> attack!"), span_danger("You parry <b>[user]'s</b> attack!"))
+				visible_message(span_danger("<b>[src]</b> parries the attack!"), span_danger("You parry the attack!"))
 				playsound(src, 'sound/weapons/tap.ogg', 60, TRUE, -1)
 				mind.adjust_experience(to_parry.skill, initial(to_parry.skill.exp_per_parry))
 				return TRUE
