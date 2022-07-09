@@ -90,19 +90,19 @@
 	icon_state = "craft"
 	screen_loc = ui_crafting
 
-/atom/movable/screen/language_menu
-	name = "languages"
-	icon = 'icons/hud/screen_midnight.dmi'
-	icon_state = "talk_wheel"
-	screen_loc = ui_language_menu
+// /atom/movable/screen/language_menu
+// 	name = "languages"
+// 	icon = 'icons/hud/screen_midnight.dmi'
+// 	icon_state = "talk_wheel"
+// 	screen_loc = ui_language_menu
 
-/atom/movable/screen/language_menu/Click()
-	var/mob/M = usr
-	var/datum/language_holder/H = M.get_language_holder()
-	H.open_language_menu(usr)
+// /atom/movable/screen/language_menu/Click()
+// 	var/mob/M = usr
+// 	var/datum/language_holder/H = M.get_language_holder()
+// 	H.open_language_menu(usr)
 
-/atom/movable/screen/language_menu/ghost
-	screen_loc = ui_ghost_language_menu
+// /atom/movable/screen/language_menu/ghost
+// 	screen_loc = ui_ghost_language_menu
 
 /atom/movable/screen/inventory
 	/// The identifier for the slot. It has nothing to do with ID cards.

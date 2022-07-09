@@ -41,12 +41,12 @@
 	var/atom/movable/screen/using
 	var/atom/movable/screen/inventory/inv_box
 
-	using = new/atom/movable/screen/language_menu
-	using.icon = ui_style
-	if(!widescreen_layout)
-		using.screen_loc = UI_BOXLANG
-	using.hud = src
-	static_inventory += using
+	// using = new/atom/movable/screen/language_menu
+	// using.icon = ui_style
+	// if(!widescreen_layout)
+	// 	using.screen_loc = UI_BOXLANG
+	// using.hud = src
+	// static_inventory += using
 
 	using = new/atom/movable/screen/skills
 	using.icon = ui_style

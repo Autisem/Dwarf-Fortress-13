@@ -64,10 +64,10 @@
 	using.hud = src
 	static_inventory += using
 
-	using = new /atom/movable/screen/language_menu/ghost
-	using.icon = ui_style
-	using.hud = src
-	static_inventory += using
+	// using = new /atom/movable/screen/language_menu/ghost
+	// using.icon = ui_style
+	// using.hud = src
+	// static_inventory += using
 
 /datum/hud/ghost/show_hud(version = 0, mob/viewmob)
 	// don't show this HUD if observing; show the HUD of the observee
