@@ -6,3 +6,5 @@
 	color = "#834811"
 
 /datum/reagent/wort/beer/barley
+
+/datum/reagent/wort/beer/cave_wheat

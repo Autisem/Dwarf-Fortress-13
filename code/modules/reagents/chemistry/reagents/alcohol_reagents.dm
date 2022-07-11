@@ -96,6 +96,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/beer/barley
 	name = "barley beer"
+	color = "#e08f32"
+
+/datum/reagent/consumable/ethanol/beer/cave_wheat
+	name = "cave wheat beer"
+	color = "#8a8a8a"
 
 /datum/reagent/consumable/ethanol/beer/light
 	name = "Светлое Пиво"
