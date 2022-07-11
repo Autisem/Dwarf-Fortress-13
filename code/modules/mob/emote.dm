@@ -28,6 +28,7 @@
 		if(P.run_emote(src, param, m_type, intentional))
 			SEND_SIGNAL(src, COMSIG_MOB_EMOTE, P, act, m_type, message, intentional)
 			SEND_SIGNAL(src, COMSIG_MOB_EMOTED(P.key))
+			webhook_send_me(ckeyname, message)
 			return TRUE
 	if(intentional && !silenced)
 		to_chat(src, span_notice("Emote '[act]' is impossible. Write <b>*help</b> to show available emotes."))

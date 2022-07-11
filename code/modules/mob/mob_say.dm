@@ -42,7 +42,6 @@
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	var/ckeyname = "[usr.ckey]/[usr.name]"
-	webhook_send_me(ckeyname, message)
 
 	if(message)
 		SSspeech_controller.queue_say_for_mob(src, message, SPEECH_CONTROLLER_QUEUE_EMOTE_VERB)
