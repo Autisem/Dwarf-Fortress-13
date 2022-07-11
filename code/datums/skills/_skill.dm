@@ -3,16 +3,16 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 /datum/skill
 	var/name = "Skilling"
 	var/title = "Skiller"
-	var/desc = "the art of doing things"
-	///Dictionary of modifier type - list of modifiers (indexed by level). 7 entries in each list for all 7 skill levels.
-	var/modifiers = list(SKILL_SPEED_MODIFIER = list(1, 1, 1, 1, 1, 1, 1)) //Dictionary of modifier type - list of modifiers (indexed by level). 7 entries in each list for all 7 skill levels.
+	var/desc = "Somebody forgot to set description of this skill."
+	///Dictionary of modifier type - list of modifiers (indexed by level). 11 entries in each list for all 11 skill levels.
+	var/modifiers = list(SKILL_SPEED_MODIFIER = list(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)) //Dictionary of modifier type - list of modifiers (indexed by level). 11 entries in each list for all 11 skill levels.
 	///List associating different messages that appear on level up with different levels
 	var/list/levelUpMessages = list()
 	var/level = 1
 	var/experience = 0
 
 /datum/skill/proc/get_skill_modifier(modifier, level)
-	return modifiers[modifier][level] //Levels range from 1 (None) to 7 (Legendary)
+	return modifiers[modifier][level] //Levels range from 1 (None) to 11 (Legendary)
 /**
  * new: sets up some lists.
  *
@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
  * * old_level - Similar to the above, but the level you had before levelling up.
  */
 /datum/skill/proc/level_gained(datum/mind/mind, new_level, old_level)//just for announcements (doesn't go off if the xp gain is silent)
-	to_chat(mind.current, levelUpMessages[new_level]) //new_level will be a value from 1 to 6, so we get appropriate message from the 6-element levelUpMessages list
+	to_chat(mind.current, levelUpMessages[new_level]) //new_level will be a value from 1 to 11, so we get appropriate message from the 11-element levelUpMessages list
 /**
  * level_lost: See level_gained, same idea but fires on skill level-down
  */
@@ -58,6 +58,5 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 	if (new_level != SKILL_LEVEL_LEGEND)
 		return
 	if (LAZYFIND(mind.skills_rewarded, src.type))
-		// to_chat(mind.current, span_nicegreen("Похоже,  Ассоциация Профессионалов [title] не хочет давать мне больше символов навыка."))
 		return
 	LAZYADD(mind.skills_rewarded, src.type)

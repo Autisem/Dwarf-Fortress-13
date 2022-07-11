@@ -8,7 +8,6 @@
 
 /datum/skill/combat
 	name = "Generic combat"
-	desc = "Somebody forgot to set description of this skill."
 	title = "Combatant"
 	/*****************************************IMPORTANT*************************************************/
 	//EVERY SKILL UNDER combat/... HAS TO HAVE THE SAME MODIFIERS AS PARENT OTHERWISE SHIT WILL FUCK UP//

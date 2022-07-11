@@ -193,7 +193,6 @@
 	if(mind in GLOB.pre_setup_antags)
 		is_antag = TRUE
 
-	client.prefs.copy_to(H, antagonist = is_antag, is_latejoiner = transfer_after)
 
 	H.dna.update_dna_identity()
 	if(mind)
@@ -204,6 +203,7 @@
 		mind.transfer_to(H) //won't transfer key since the mind is not active
 		mind.set_original_character(H)
 
+	client.prefs.copy_to(H, antagonist = is_antag, is_latejoiner = transfer_after)
 	client.init_verbs()
 	. = H
 	new_character = .

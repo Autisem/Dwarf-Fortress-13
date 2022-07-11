@@ -88,6 +88,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "moth_antennae" = "Plain", "moth_markings" = "None")
 	var/list/randomise = list(RANDOM_UNDERWEAR = FALSE, RANDOM_UNDERWEAR_COLOR = TRUE, RANDOM_UNDERSHIRT = FALSE, RANDOM_SOCKS = FALSE, RANDOM_BACKPACK = FALSE, RANDOM_JUMPSUIT_STYLE = FALSE, RANDOM_HAIRSTYLE = FALSE, RANDOM_HAIR_COLOR = FALSE, RANDOM_FACIAL_HAIRSTYLE = TRUE, RANDOM_FACIAL_HAIR_COLOR = TRUE, RANDOM_SKIN_TONE = FALSE, RANDOM_EYE_COLOR = TRUE)
 	var/phobia = "spiders"
+	var/list/skills = list()
+	var/skill_points = 5
+	var/skill_points_per_skill = 3
 
 	var/list/custom_names = list()
 	var/preferred_ai_core_display = "Blue"
@@ -224,6 +227,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							name = "Character [i]"
 						dat += "<a class='csetup_characters_character' href='?_src_=prefs;preference=changeslot;num=[i];' [i == default_slot ? "class='linkOn'" : ""]>[name]</a> "
 					dat += "</div>"
+			dat += "<center><a href='?_src_=prefs;preference=skills'>Skills</a></center>"
 			dat += "<div class='csetup_main'>"
 			if(is_banned_from(user.ckey, "Appearance"))
 				dat += "<div class='csetup_banned'>You are banned from appearance. You can still setup your character but you name and appearance will be random.</div>"
@@ -1341,6 +1345,32 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					to_chat(user, span_notice("OOC Commendation Heart disabled"))
 					save_preferences()
 
+				if("skills")
+					show_skill_panel(user)
+					return
+
+				if("edit_skills")
+					var/skillpath = text2path(href_list["skill"])
+					switch(href_list["action"])
+						if("add")
+							if(!skill_points)
+								return
+							if(skills[skillpath] && skills[skillpath] == skill_points_per_skill)
+								return
+							else if(skills[skillpath] && skills[skillpath] < skill_points_per_skill)
+								skills[skillpath]++
+							else
+								skills[skillpath] = 1
+							skill_points--
+							show_skill_panel(user)
+						if("remove")
+							if(skills[skillpath] && skills[skillpath] > 0)
+								skills[skillpath]--
+							else
+								return
+							skill_points++
+							show_skill_panel(user)
+
 	ShowChoices(user)
 	return 1
 
@@ -1372,6 +1402,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				real_name += " [pick(GLOB.last_names)]"
 			else if(firstspace == name_length)
 				real_name += "[pick(GLOB.last_names)]"
+
+	if(skills && character.mind)
+		for(var/skilltype in skills)
+			if(skills[skilltype] > 0)
+				character.mind.adjust_experience(skilltype, SKILL_EXP_LIST[skills[skilltype]+1])
 
 	character.real_name = real_name
 	character.name = character.real_name
@@ -1468,3 +1503,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return
 		else
 			custom_names[name_id] = sanitized_name
+
+/datum/preferences/proc/show_skill_panel(mob/user)
+	var/list/available_skills = subtypesof(/datum/skill)
+	available_skills.Remove(/datum/skill/combat)
+	var/list/dat = list("Remaining skill points: [skill_points]<br>")
+	for(var/skilltype in available_skills)
+		var/datum/skill/S = skilltype
+		var/skillLevel = 1
+		if(S in skills)
+			skillLevel = skills[S]+1
+		dat += "[initial(S.name)] - [SSskills.level_names[skillLevel]] [initial(S.title)] <a href='?_src_=prefs;preference=edit_skills;skill=[skilltype];action=remove'>-</a><a href='?_src_=prefs;preference=edit_skills;skill=[skilltype];action=add'>+</a><br>"
+		dat += "[initial(S.desc)]<br>"
+	winshow(user, "skills_window", TRUE)
+	var/datum/browser/popup = new(user, "skills_window", "<div align='center'>Skills</div>", 400, 600)
+	popup.set_content(dat.Join())
+	popup.open(FALSE)
