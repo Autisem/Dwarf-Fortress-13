@@ -63,12 +63,12 @@ GLOBAL_LIST_EMPTY(cooking_recipes)
 
 /datum/cooking_recipe/pan/beer_wurst
 	req_items = list(/obj/item/food/sausage=1)
-	req_reagents = list(/datum/reagent/consumable/ethanol/beer/barley=10)
+	req_reagents = list(/datum/reagent/consumable/ethanol/beer/cave_wheat=10)
 	result = /obj/item/transfer_food/beer_wurst
 
 /datum/cooking_recipe/pan/allwurst
 	req_items = list(/obj/item/food/sausage/luxurious=1)
-	req_reagents = list(/datum/reagent/consumable/ethanol/beer/barley=10, /datum/reagent/consumable/juice/sweet_pod=10)
+	req_reagents = list(/datum/reagent/consumable/ethanol/beer/cave_wheat=10, /datum/reagent/consumable/juice/sweet_pod=10)
 	result = /obj/item/transfer_food/allwurst
 
 ///******************SAUSAGE RECIPES******************///
