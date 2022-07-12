@@ -1532,7 +1532,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/skillLevel = 1
 		if(S in prefs.skills)
 			skillLevel = prefs.skills[S]+1
-		askills += list(list("path"=skilltype,"name"=initial(S.name),"title"=initial(S.title),"rank"=SSskills.level_names[skillLevel],"desc"=initial(S.desc)))
+		askills += list(list("path"=skilltype,"name"=initial(S.name),"title"=initial(S.title),"rank"=SSskills.level_names[skillLevel],"desc"=initial(S.desc),"lvl"=skillLevel))
 	data["skills"] = askills
 	data["available"] = prefs.skill_points
 	data["per_skill"] = prefs.skill_points_per_skill
@@ -1542,11 +1542,24 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	. = ..()
 	if(.)
 		return
+	var/skillpath = text2path(params["path"])
 	switch(action)
 		if("add")
-			return
+			if(!prefs.skill_points)
+				return
+			if(prefs.skills[skillpath] && prefs.skills[skillpath] == prefs.skill_points_per_skill)
+				return
+			else if(prefs.skills[skillpath] && prefs.skills[skillpath] < prefs.skill_points_per_skill)
+				prefs.skills[skillpath]++
+			else
+				prefs.skills[skillpath] = 1
+			prefs.skill_points--
 		if("remove")
-			return
+			if(prefs.skills[skillpath] && prefs.skills[skillpath] > 0)
+				prefs.skills[skillpath]--
+			else
+				return
+			prefs.skill_points++
 
 /datum/skill_pref/ui_state(mob/user)
 	return GLOB.always_state

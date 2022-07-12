@@ -70,6 +70,7 @@
 		butcher.mind.adjust_experience(/datum/skill/skinning, 19)
 	else
 		butcher.visible_message(span_notice("[butcher] fails to skin [meat]."), span_warning("You fail to skin [meat]."))
+		butcher.mind.adjust_experience(/datum/skill/skinning, 7)
 	meat.skinned = TRUE
 	if(meat.icon_skinned)
 		meat.icon_state = meat.icon_skinned

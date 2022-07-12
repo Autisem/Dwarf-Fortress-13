@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(skills)
 	var/list/all_skills = list()
 	///List of level names with index corresponding to skill level
 	//List of skill level names. Note that indexes can be accessed like so: level_names[SKILL_LEVEL_NOVICE]
-	var/list/level_names = list("Not", "Novice", "Adequate", "Competent", "Proficient", "Adept", "Expert", "Accomplished", "Master", "Grand Master", "Legendary")
+	var/list/level_names = list("Unskilled", "Novice", "Adequate", "Competent", "Proficient", "Adept", "Expert", "Accomplished", "Master", "Grand Master", "Legendary")
 
 /datum/controller/subsystem/skills/Initialize(timeofday)
 	InitializeSkills()
