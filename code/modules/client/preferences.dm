@@ -1505,17 +1505,48 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			custom_names[name_id] = sanitized_name
 
 /datum/preferences/proc/show_skill_panel(mob/user)
+	var/datum/skill_pref/S = new(src, user)
+	S.ui_interact(user)
+
+/datum/skill_pref
+	var/datum/preferences/prefs
+	var/mob/user
+
+/datum/skill_pref/New(datum/preferences, mob/user)
+	src.prefs = preferences
+	src.user = user
+
+/datum/skill_pref/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "SkillPrefs")
+		ui.open()
+
+/datum/skill_pref/ui_data(mob/user)
+	var/list/data = list()
 	var/list/available_skills = subtypesof(/datum/skill)
 	available_skills.Remove(/datum/skill/combat)
-	var/list/dat = list("Remaining skill points: [skill_points]<br>")
+	var/list/askills = list()
 	for(var/skilltype in available_skills)
 		var/datum/skill/S = skilltype
 		var/skillLevel = 1
-		if(S in skills)
-			skillLevel = skills[S]+1
-		dat += "[initial(S.name)] - [SSskills.level_names[skillLevel]] [initial(S.title)] <a href='?_src_=prefs;preference=edit_skills;skill=[skilltype];action=remove'>-</a><a href='?_src_=prefs;preference=edit_skills;skill=[skilltype];action=add'>+</a><br>"
-		dat += "[initial(S.desc)]<br>"
-	winshow(user, "skills_window", TRUE)
-	var/datum/browser/popup = new(user, "skills_window", "<div align='center'>Skills</div>", 400, 600)
-	popup.set_content(dat.Join())
-	popup.open(FALSE)
+		if(S in prefs.skills)
+			skillLevel = prefs.skills[S]+1
+		askills += list(list("path"=skilltype,"name"=initial(S.name),"title"=initial(S.title),"rank"=SSskills.level_names[skillLevel],"desc"=initial(S.desc)))
+	data["skills"] = askills
+	data["available"] = prefs.skill_points
+	data["per_skill"] = prefs.skill_points_per_skill
+	return data
+
+/datum/skill_pref/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("add")
+			return
+		if("remove")
+			return
+
+/datum/skill_pref/ui_state(mob/user)
+	return GLOB.always_state
