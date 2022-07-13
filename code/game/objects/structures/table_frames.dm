@@ -62,5 +62,6 @@
 	qdel(src)
 
 /obj/structure/table_frame/deconstruct(disassembled = TRUE)
-	new framestack(get_turf(src), framestackamount)
+	if(framestack)
+		new framestack(get_turf(src), framestackamount)
 	qdel(src)

@@ -11,6 +11,9 @@
 	slowdown = 0
 	var/busy = FALSE
 
+/turf/open/floor/stone/ScrapeAway(amount, flags)
+	return ChangeTurf(/turf/open/floor/stone/raw)
+
 /turf/open/floor/stone/setup_broken_states()
 	return list(icon_state)
 
@@ -25,8 +28,11 @@
 	icon = 'dwarfs/icons/turf/floors_cavern.dmi'
 	icon_state = "stone"
 	slowdown = 1
-	baseturfs = /turf/open/floor/stone/raw
+	baseturfs = /turf/open/lava/smooth/nospread
 	var/digged_up = FALSE
+
+/turf/open/floor/stone/raw/ScrapeAway(amount, flags)
+	return ChangeTurf(/turf/open/lava/smooth/nospread)
 
 /turf/open/floor/stone/raw/crowbar_act(mob/living/user, obj/item/I)
 	return FALSE
