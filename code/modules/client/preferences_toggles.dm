@@ -86,26 +86,26 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 /client/verb/pick_ghost_customization()
 	set name = "Ghost Settings"
 	set category = "Ghost"
-	switch(tgui_alert("Что хотим сменить?",,list("Форма","Тип орбиты","Побрякушки")))
-		if("Форма")
+	switch(tgui_alert("What do you want to change?",,list("Form","Orbit Type","Accessories")))
+		if("Form")
 			pick_form()
-		if("Тип орбиты")
+		if("Orbit Type")
 			pick_ghost_orbit()
-		if("Побрякушки")
+		if("Accessories")
 			pick_ghost_accs()
 
 /client/verb/pick_ghost_others()
-	set name = "Вид других призраков"
+	set name = "View Other Ghosts as"
 	set category = null
 	set desc = "Change display settings for the ghosts of other players."
-	var/new_ghost_others = tgui_alert(usr, "Хочешь изменить других призраков или же просто убрать их побрякушки?",,list("Их Settings", "Стандартные спрайты", "Белые призраки"))
+	var/new_ghost_others = tgui_alert(usr, "Change display settings for the ghosts of other players.",,list("Their Settings", "Default Sprites", "White Ghosts"))
 	if(new_ghost_others)
 		switch(new_ghost_others)
-			if("Их Settings")
+			if("Their Settings")
 				prefs.ghost_others = GHOST_OTHERS_THEIR_SETTING
-			if("Стандартные спрайты")
+			if("Default Sprites")
 				prefs.ghost_others = GHOST_OTHERS_DEFAULT_SPRITE
-			if("Белые призраки")
+			if("White Ghosts")
 				prefs.ghost_others = GHOST_OTHERS_SIMPLE
 		prefs.save_preferences()
 		if(isobserver(mob))
@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	set category = null
 	set desc = "Toggle between directly clicking the desired intent or clicking to rotate through."
 	prefs.toggles ^= INTENT_STYLE
-	to_chat(src, "[(prefs.toggles & INTENT_STYLE) ? "Нажатие на тип взаимодействия теперь выбирает его." : "Нажатие на любой тип взаимодействия будет сменять их по часовой стрелке."]")
+	to_chat(src, "[(prefs.toggles & INTENT_STYLE) ? "Clicking an intent will now select it." : "Clicking on any intent will now rotate your intent clockwise."]")
 	prefs.save_preferences()
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Intent Selection", "[prefs.toggles & INTENT_STYLE ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -126,7 +126,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	set category = "Ghost"
 
 	prefs.ghost_hud = !prefs.ghost_hud
-	to_chat(src, "Призрачный HUD теперь [prefs.ghost_hud ? "виден" : "не виден"].")
+	to_chat(src, "Ghost HUD is now [prefs.ghost_hud ? "visible" : "hidden"].")
 	prefs.save_preferences()
 	if(isobserver(mob))
 		mob.hud_used.show_hud()
@@ -139,9 +139,9 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	prefs.inquisitive_ghost = !prefs.inquisitive_ghost
 	prefs.save_preferences()
 	if(prefs.inquisitive_ghost)
-		to_chat(src, span_notice("Буду изучать все, на что нажимаю."))
+		to_chat(src, span_notice("You will examine everything you click on."))
 	else
-		to_chat(src, span_notice("Больше не будешь изучать то, на что нажимаю."))
+		to_chat(src, span_notice("You will no longer examine everything you click on."))
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Ghost Inquisitiveness", "[prefs.inquisitive_ghost ? "Enabled" : "Disabled"]"))
 
 //Admin Preferences
