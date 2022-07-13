@@ -288,14 +288,6 @@
 	if(HAS_TRAIT(sacker, TRAIT_GIANT))
 		attack_mod += 2
 
-	if(ishuman(target))
-		var/mob/living/carbon/human/S = sacker
-
-		var/suit_slot = S.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-		if(suit_slot && (istype(suit_slot,/obj/item/clothing/suit/armor/riot))) // tackling in riot armor is more effective, but tiring
-			attack_mod += 2
-			sacker.adjustStaminaLoss(20)
-
 	var/r = rand(-3, 3) - defense_mod + attack_mod + skill_mod
 	return r
 
