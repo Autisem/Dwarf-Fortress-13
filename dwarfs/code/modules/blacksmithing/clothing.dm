@@ -90,7 +90,7 @@
 /obj/item/clothing/head/helmet/dwarf_crown
 	name = "crown"
 	desc = "To show the royal status."
-	worn_icon = 'dwarfs/icons/mob/clothing.dmi'
+	worn_icon = 'dwarfs/icons/mob/clothing/head.dmi'
 	icon = 'dwarfs/icons/items/clothing.dmi'
 	icon_state = "king_crown"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
