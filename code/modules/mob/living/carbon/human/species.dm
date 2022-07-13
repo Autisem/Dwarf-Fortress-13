@@ -1543,7 +1543,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		switch(affecting.body_zone)
 			if(BODY_ZONE_HEAD)
-				if(!I.get_sharpness() && armor_block < 40) //Арморблок снижен на 10 по просьбе Псины.
+				if(!I.get_sharpness() && armor_block < 40)
 					if(prob(I.force * 2))
 						H.adjustOrganLoss(ORGAN_SLOT_BRAIN, I.force * 0.5)
 						if(H.stat == CONSCIOUS)
@@ -1551,9 +1551,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 											span_userdanger("You're knocked senseless!"))
 							H.set_confusion(max(H.get_confusion(), 20))
 							H.adjust_blurriness(I.force)
-							H.dizziness += (I.force) //Анкон идет нахуй, пусть шатает экран.
-						if(prob(5)) //Балансим шанс получить травму от двойного шанса на нокаут. (Дефолт=10)
-							H.gain_trauma(/datum/brain_trauma/mild/concussion)
+							H.dizziness += (I.force)
 					else
 						H.adjustOrganLoss(ORGAN_SLOT_BRAIN, I.force * 0.2)
 

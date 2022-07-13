@@ -25,7 +25,6 @@
 	a_intent = INTENT_HARM
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	mob_size = MOB_SIZE_LARGE
-	initial_language_holder = /datum/language_holder/slime
 
 	///Oozes have their own nutrition. Changes based on them eating
 	var/ooze_nutrition = 50

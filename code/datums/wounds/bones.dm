@@ -18,14 +18,6 @@
 	var/regen_ticks_needed
 	/// Our current counter for gel + surgical tape regeneration
 	var/regen_ticks_current
-	/// If we suffer severe head booboos, we can get brain traumas tied to them
-	var/datum/brain_trauma/active_trauma
-	/// What brain trauma group, if any, we can draw from for head wounds
-	var/brain_trauma_group
-	/// If we deal brain traumas, when is the next one due?
-	var/next_trauma_cycle
-	/// How long do we wait +/- 20% for the next trauma?
-	var/trauma_cycle_cooldown
 	/// If this is a chest wound and this is set, we have this chance to cough up blood when hit in the chest
 	var/internal_bleeding_chance = 0
 
@@ -36,11 +28,6 @@
 	// hook into gaining/losing gauze so crit bone wounds can re-enable/disable depending if they're slung or not
 	RegisterSignal(limb, list(COMSIG_BODYPART_GAUZED, COMSIG_BODYPART_GAUZE_DESTROYED), .proc/update_inefficiencies)
 
-	if(limb.body_zone == BODY_ZONE_HEAD && brain_trauma_group)
-		processes = TRUE
-		active_trauma = victim.gain_trauma_type(brain_trauma_group, TRAUMA_RESILIENCE_WOUND)
-		next_trauma_cycle = world.time + (rand(100-WOUND_BONE_HEAD_TIME_VARIANCE, 100+WOUND_BONE_HEAD_TIME_VARIANCE) * 0.01 * trauma_cycle_cooldown)
-
 	RegisterSignal(victim, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/attack_with_hurt_hand)
 	if(limb.held_index && victim.get_item_for_held_index(limb.held_index) && (disabling || prob(30 * severity)))
 		var/obj/item/I = victim.get_item_for_held_index(limb.held_index)
@@ -48,13 +35,12 @@
 			I = victim.get_inactive_held_item()
 
 		if(I && victim.dropItemToGround(I))
-			victim.visible_message(span_danger("<b>[victim]</b> бросает <b>[I]</b> в приступе боли!") , span_warning("Боль в моей <b>[limb.name]</b> заставляет меня бросить <b>[I]</b>!") , vision_distance=COMBAT_MESSAGE_RANGE)
+			victim.visible_message(span_danger("<b>[victim]</b> drops <b>[I]</b> in shock!") , span_warning("<b>The force on your [limb.name] causes you to drop [I]!</b>!") , vision_distance=COMBAT_MESSAGE_RANGE)
 
 	update_inefficiencies()
 
 /datum/wound/blunt/remove_wound(ignore_limb, replaced)
 	limp_slowdown = 0
-	QDEL_NULL(active_trauma)
 	if(limb)
 		UnregisterSignal(limb, list(COMSIG_BODYPART_GAUZED, COMSIG_BODYPART_GAUZE_DESTROYED))
 	if(victim)
@@ -63,12 +49,6 @@
 
 /datum/wound/blunt/handle_process(delta_time, times_fired)
 	. = ..()
-	if(limb.body_zone == BODY_ZONE_HEAD && brain_trauma_group && world.time > next_trauma_cycle)
-		if(active_trauma)
-			QDEL_NULL(active_trauma)
-		else
-			active_trauma = victim.gain_trauma_type(brain_trauma_group, TRAUMA_RESILIENCE_WOUND)
-		next_trauma_cycle = world.time + (rand(100-WOUND_BONE_HEAD_TIME_VARIANCE, 100+WOUND_BONE_HEAD_TIME_VARIANCE) * 0.01 * trauma_cycle_cooldown)
 
 	if(!gelled || !taped)
 		return
@@ -322,8 +302,6 @@
 	treatable_by = list(/obj/item/stack/medical/bone_gel)
 	status_effect_type = /datum/status_effect/wound/blunt/severe
 	scar_keyword = "bluntsevere"
-	brain_trauma_group = BRAIN_TRAUMA_MILD
-	trauma_cycle_cooldown = 1.5 MINUTES
 	internal_bleeding_chance = 40
 	wound_flags = (BONE_WOUND | ACCEPTS_GAUZE | MANGLES_BONE)
 	regen_ticks_needed = 120 // ticks every 2 seconds, 240 seconds, so roughly 4 minutes default
@@ -347,8 +325,6 @@
 	treatable_by = list(/obj/item/stack/medical/bone_gel)
 	status_effect_type = /datum/status_effect/wound/blunt/critical
 	scar_keyword = "bluntcritical"
-	brain_trauma_group = BRAIN_TRAUMA_SEVERE
-	trauma_cycle_cooldown = 2.5 MINUTES
 	internal_bleeding_chance = 60
 	wound_flags = (BONE_WOUND | ACCEPTS_GAUZE | MANGLES_BONE)
 	regen_ticks_needed = 240 // ticks every 2 seconds, 480 seconds, so roughly 8 minutes default

@@ -74,7 +74,6 @@
 	if(M.blood_volume < BLOOD_VOLUME_NORMAL)
 		M.blood_volume = BLOOD_VOLUME_NORMAL
 
-	M.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
 	for(var/organ in M.internal_organs)
 		var/obj/item/organ/O = organ
 		O.setOrganDamage(0)
@@ -719,13 +718,6 @@
 	. = ..()
 	REMOVE_TRAIT(L, TRAIT_ANTICONVULSANT, name)
 
-/datum/reagent/medicine/neurine/on_mob_life(mob/living/carbon/C, delta_time, times_fired)
-	if(holder.has_reagent(/datum/reagent/consumable/ethanol/neurotoxin))
-		holder.remove_reagent(/datum/reagent/consumable/ethanol/neurotoxin, 5 * REM * delta_time)
-	if(DT_PROB(8, delta_time))
-		C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
-	..()
-
 /datum/reagent/medicine/mutadone
 	name = "Мутадон"
 	enname = "Mutadone"
@@ -920,18 +912,6 @@
 /datum/reagent/medicine/earthsblood/on_mob_end_metabolize(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_PACIFISM, type)
 	..()
-
-/datum/reagent/medicine/earthsblood/overdose_process(mob/living/M, delta_time, times_fired)
-	M.hallucination = clamp(M.hallucination + (5 * REM * delta_time), 0, 60)
-	if(current_cycle > 25)
-		M.adjustToxLoss(4 * REM * delta_time, 0)
-		if(current_cycle > 100) //podpeople get out reeeeeeeeeeeeeeeeeeeee
-			M.adjustToxLoss(6 * REM * delta_time, 0)
-	if(iscarbon(M))
-		var/mob/living/carbon/hippie = M
-		hippie.gain_trauma(/datum/brain_trauma/severe/pacifism)
-	..()
-	. = TRUE
 
 /datum/reagent/medicine/haloperidol
 	name = "Галоперидол"

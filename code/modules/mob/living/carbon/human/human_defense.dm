@@ -607,9 +607,9 @@
 
 	if(getStaminaLoss())
 		if(getStaminaLoss() > 30)
-			combined_msg += span_info("Совсем нет сил.")
+			combined_msg += span_info("You're completely exhausted.")
 		else
-			combined_msg += span_info("Чувствую усталость.")
+			combined_msg += span_info("You feel fatigued.")
 	if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
 		if(toxloss)
 			if(toxloss > 10)

@@ -394,16 +394,6 @@
 	..()
 	. = TRUE
 
-/datum/reagent/medicine/c2/musiver/overdose_start(mob/living/carbon/M)
-	U = new()
-	M.gain_trauma(U, TRAUMA_RESILIENCE_ABSOLUTE)
-	..()
-
-/datum/reagent/medicine/c2/musiver/on_mob_delete(mob/living/carbon/M)
-	if(U)
-		QDEL_NULL(U)
-	return ..()
-
 /datum/reagent/medicine/c2/musiver/overdose_process(mob/living/carbon/M, delta_time, times_fired)
 	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 1.5 * REM * delta_time)
 	M.adjust_disgust(3 * REM * delta_time)

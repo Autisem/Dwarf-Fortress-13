@@ -22,9 +22,6 @@
 			handle_blood(delta_time, times_fired)
 			handle_hydration(delta_time, times_fired)
 
-		if(stat != DEAD)
-			handle_brain_damage(delta_time, times_fired)
-
 	if(stat == DEAD)
 		stop_sound_channel(CHANNEL_HEARTBEAT)
 	else
@@ -458,15 +455,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(chest.cremation_progress >= 100)
 		visible_message(span_warning("<b>[src]</b> обращается в пепел!"))
 		dust(TRUE, TRUE)
-
-////////////////
-//BRAIN DAMAGE//
-////////////////
-
-/mob/living/carbon/proc/handle_brain_damage(delta_time, times_fired)
-	for(var/T in get_traumas())
-		var/datum/brain_trauma/BT = T
-		BT.on_life(delta_time, times_fired)
 
 /////////////////////////////////////
 //MONKEYS WITH TOO MUCH CHOLOESTROL//

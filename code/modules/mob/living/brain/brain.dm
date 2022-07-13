@@ -51,9 +51,3 @@
 	if (!client)
 		return
 	client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
-
-/mob/living/brain/proc/get_traumas()
-	. = list()
-	if(istype(loc, /obj/item/organ/brain))
-		var/obj/item/organ/brain/B = loc
-		. = B.traumas

@@ -101,29 +101,6 @@
 #define BRAIN_DAMAGE_SEVERE 100
 #define BRAIN_DAMAGE_DEATH 200
 
-#define BRAIN_TRAUMA_MILD /datum/brain_trauma/mild
-#define BRAIN_TRAUMA_SEVERE /datum/brain_trauma/severe
-#define BRAIN_TRAUMA_SPECIAL /datum/brain_trauma/special
-#define BRAIN_TRAUMA_MAGIC /datum/brain_trauma/magic
-
-#define TRAUMA_RESILIENCE_BASIC 1      //Curable with chems
-#define TRAUMA_RESILIENCE_SURGERY 2    //Curable with brain surgery
-#define TRAUMA_RESILIENCE_LOBOTOMY 3   //Curable with lobotomy
-#define TRAUMA_RESILIENCE_WOUND 4    //Curable by healing the head wound
-#define TRAUMA_RESILIENCE_MAGIC 5      //Curable only with magic
-#define TRAUMA_RESILIENCE_ABSOLUTE 6   //This is here to stay
-#define TRAUMA_RESILIENCE_PSYCHONLY 7   //Psych can cure
-
-//Limit of traumas for each resilience tier
-#define TRAUMA_LIMIT_BASIC 3
-#define TRAUMA_LIMIT_SURGERY 2
-#define TRAUMA_LIMIT_WOUND 2
-#define TRAUMA_LIMIT_LOBOTOMY 3
-#define TRAUMA_LIMIT_MAGIC 3
-#define TRAUMA_LIMIT_ABSOLUTE INFINITY
-
-#define BRAIN_DAMAGE_INTEGRITY_MULTIPLIER 0.5
-
 //Surgery Defines
 #define BIOWARE_GENERIC "generic"
 #define BIOWARE_NERVES "nerves"
