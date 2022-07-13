@@ -1,21 +1,22 @@
 /obj/item/clothing/suit/armor/light_plate
 	name = "chest plate"
 	desc = "Covers only chest area."
+	worn_icon = 'dwarfs/icons/mob/clothing/suit.dmi'
+	worn_icon_state = "chestplate_light"
 	body_parts_covered = CHEST|GROIN
 	icon_state = "light_plate"
 	inhand_icon_state = "light_plate"
-	custom_materials = list(/datum/material/iron = 10000)
 
 /obj/item/clothing/suit/armor/heavy_plate
 	name = "plate armor"
 	desc = "Sturdy but heavy."
+	worn_icon = 'dwarfs/icons/mob/clothing/suit.dmi'
+	worn_icon_state = "chestplate_heavy"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	w_class = WEIGHT_CLASS_GIGANTIC
 	slowdown = 1
 	icon_state = "heavy_plate"
 	inhand_icon_state = "heavy_plate"
-	flags_inv = HIDEJUMPSUIT
-	custom_materials = list(/datum/material/iron = 10000)
 	var/footstep = 1
 	var/mob/listeningTo
 	var/list/random_step_sound = list('sound/effects/heavystep1.ogg'=1,\
@@ -62,39 +63,42 @@
 /obj/item/clothing/under/chainmail
 	name = "chainmail"
 	desc = "Great protection from stabs and slashes for its weight."
+	worn_icon = 'dwarfs/icons/mob/clothing/under/armor.dmi'
+	worn_icon_state = "chainmail"
 	icon_state = "chainmail"
 	inhand_icon_state = "chainmail"
-	custom_materials = list(/datum/material/iron = 10000)
-	species_exception = list(/datum/species/dwarf)
 
 /obj/item/clothing/head/helmet/plate_helmet
 	name = "plate helmet"
 	desc = "Protects your head from all unexpected and expected attacks."
+	worn_icon = 'dwarfs/icons/mob/clothing/head.dmi'
+	worn_icon_state = "helmet_heavy"
 	icon_state = "plate_helmet"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
-	custom_materials = list(/datum/material/iron = 10000)
 
 /obj/item/clothing/gloves/plate_gloves
 	name = "plate gloves"
 	desc = "Will save your hands from unexpected losses."
+	worn_icon = 'dwarfs/icons/mob/clothing/hands.dmi'
+	worn_icon_state = "plate_gloves"
 	icon_state = "plate_gloves"
-	custom_materials = list(/datum/material/iron = 10000)
 
 /obj/item/clothing/shoes/jackboots/plate_boots
 	name = "plate boots"
 	desc = "The boots."
+	worn_icon = 'dwarfs/icons/mob/clothing/feet.dmi'
+	worn_icon_state = "sabatons"
 	icon_state = "plate_boots"
-	custom_materials = list(/datum/material/iron = 10000)
 
 /obj/item/clothing/head/helmet/dwarf_crown
 	name = "crown"
 	desc = "To show the royal status."
 	worn_icon = 'dwarfs/icons/mob/clothing/head.dmi'
+	worn_icon_state = "king_crown"
 	icon = 'dwarfs/icons/items/clothing.dmi'
 	icon_state = "king_crown"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	custom_materials = list(/datum/material/gold = 10000)
 	actions_types = list(/datum/action/item_action/send_message_action)
 	var/mob/assigned_count = null
 
@@ -152,4 +156,3 @@
 	name = "dwarf tunic"
 	desc = "Typical green shirt. Smells of alcohol."
 	icon_state = "dwarf"
-	species_exception = list(/datum/species/dwarf)
