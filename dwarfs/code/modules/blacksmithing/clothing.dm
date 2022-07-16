@@ -77,7 +77,7 @@
 	worn_icon = 'dwarfs/icons/mob/clothing/head.dmi'
 	worn_icon_state = "helmet_heavy"
 	icon = 'dwarfs/icons/items/clothing/head.dmi'
-	icon_state = "plate_helmet"
+	icon_state = "helmet_heavy"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 
@@ -154,9 +154,12 @@
 
 /obj/item/clothing/shoes/boots
 	name = "boots"
+	desc = "So small a child can wear them."
+	icon = 'dwarfs/icons/items/clothing/feet.dmi'
 	icon_state = "boots"
 	inhand_icon_state = "boots"
-	desc = "So small a child can wear them."
+	worn_icon = 'dwarfs/icons/mob/clothing/feet.dmi'
+	worn_icon_state = "boots"
 
 /obj/item/clothing/under/tunic
 	name = "tunic"
