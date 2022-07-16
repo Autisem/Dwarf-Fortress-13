@@ -17,8 +17,6 @@
 
 /datum/species/dwarf/on_species_gain(mob/living/carbon/human/C, datum/species/old_species, pref_load)
 	GLOB.dwarf_list += C
-	if(C.gender != MALE)
-		C.gender = MALE
 	. = ..()
 
 /datum/species/dwarf/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
