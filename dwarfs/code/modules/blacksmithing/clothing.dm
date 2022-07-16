@@ -4,6 +4,7 @@
 	worn_icon = 'dwarfs/icons/mob/clothing/suit.dmi'
 	worn_icon_state = "chestplate_light"
 	body_parts_covered = CHEST|GROIN
+	icon = 'dwarfs/icons/items/clothing/suit.dmi'
 	icon_state = "light_plate"
 	inhand_icon_state = "light_plate"
 
@@ -15,6 +16,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	w_class = WEIGHT_CLASS_GIGANTIC
 	slowdown = 1
+	icon = 'dwarfs/icons/items/clothing/suit.dmi'
 	icon_state = "heavy_plate"
 	inhand_icon_state = "heavy_plate"
 	var/footstep = 1
@@ -65,6 +67,7 @@
 	desc = "Great protection from stabs and slashes for its weight."
 	worn_icon = 'dwarfs/icons/mob/clothing/under.dmi'
 	worn_icon_state = "chainmail"
+	icon = 'dwarfs/icons/items/clothing/under.dmi'
 	icon_state = "chainmail"
 	inhand_icon_state = "chainmail"
 
@@ -73,6 +76,7 @@
 	desc = "Protects your head from all unexpected and expected attacks."
 	worn_icon = 'dwarfs/icons/mob/clothing/head.dmi'
 	worn_icon_state = "helmet_heavy"
+	icon = 'dwarfs/icons/items/clothing/head.dmi'
 	icon_state = "plate_helmet"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
@@ -82,6 +86,7 @@
 	desc = "Will save your hands from unexpected losses."
 	worn_icon = 'dwarfs/icons/mob/clothing/hands.dmi'
 	worn_icon_state = "plate_gloves"
+	icon = 'dwarfs/icons/items/clothing/gloves.dmi'
 	icon_state = "plate_gloves"
 
 /obj/item/clothing/shoes/jackboots/plate_boots
@@ -89,6 +94,7 @@
 	desc = "The boots."
 	worn_icon = 'dwarfs/icons/mob/clothing/feet.dmi'
 	worn_icon_state = "sabatons"
+	icon = 'dwarfs/icons/items/clothing/feet.dmi'
 	icon_state = "plate_boots"
 
 /obj/item/clothing/head/helmet/dwarf_crown
@@ -154,9 +160,10 @@
 
 /obj/item/clothing/under/tunic
 	name = "tunic"
-	desc = "Typical shirt. Smells of alcohol."
+	desc = "Typical tunic. Smells of alcohol."
 	worn_icon = 'dwarfs/icons/mob/clothing/under.dmi'
 	worn_icon_state = "tunic_brown"
+	icon = 'dwarfs/icons/items/clothing/under.dmi'
 	icon_state = "tunic_brown"
 
 /obj/item/clothing/under/tunic/Initialize(mycolor=null)
