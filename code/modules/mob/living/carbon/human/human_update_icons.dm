@@ -113,7 +113,7 @@ There are several things that need to be remembered:
 			return
 
 
-		var/target_overlay = U.icon_state
+		var/target_overlay = U.worn_icon_state ? U.worn_icon_state : U.icon_state
 		if(U.adjusted == ALT_STYLE)
 			target_overlay = "[target_overlay]_d"
 		else if(U.adjusted == DIGITIGRADE_STYLE)
