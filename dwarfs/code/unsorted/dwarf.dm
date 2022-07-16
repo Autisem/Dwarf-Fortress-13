@@ -73,11 +73,11 @@
 
 /datum/outfit/dwarf
 	name = "Dwarf"
-	uniform = /obj/item/clothing/under/dwarf
-	shoes = /obj/item/clothing/shoes/dwarf
+	uniform = /obj/item/clothing/under/tunic
+	shoes = /obj/item/clothing/shoes/boots
 
 /datum/outfit/dwarf_king
 	name = "Dwarf King"
-	uniform = /obj/item/clothing/under/dwarf
-	shoes = /obj/item/clothing/shoes/dwarf
+	uniform = /obj/item/clothing/under/tunic
+	shoes = /obj/item/clothing/shoes/boots
 	head = /obj/item/clothing/head/helmet/dwarf_crown

@@ -63,7 +63,7 @@
 /obj/item/clothing/under/chainmail
 	name = "chainmail"
 	desc = "Great protection from stabs and slashes for its weight."
-	worn_icon = 'dwarfs/icons/mob/clothing/under/armor.dmi'
+	worn_icon = 'dwarfs/icons/mob/clothing/under.dmi'
 	worn_icon_state = "chainmail"
 	icon_state = "chainmail"
 	inhand_icon_state = "chainmail"
@@ -146,15 +146,25 @@
 	else
 		to_chat(user, span_warning("YOU HAVE NO POWER!"))
 
-/obj/item/clothing/shoes/dwarf
-	name = "dwarf boots"
-	icon_state = "dwarf"
-	inhand_icon_state = "dwarf"
+/obj/item/clothing/shoes/boots
+	name = "boots"
+	icon_state = "boots"
+	inhand_icon_state = "boots"
 	desc = "So small a child can wear them."
 
-/obj/item/clothing/under/dwarf
-	name = "dwarf tunic"
-	desc = "Typical green shirt. Smells of alcohol."
-	worn_icon = 'dwarfs/icons/mob/clothing/under/tunic.dmi'
-	worn_icon_state = "brown"
-	icon_state = "dwarf"
+/obj/item/clothing/under/tunic
+	name = "tunic"
+	desc = "Typical shirt. Smells of alcohol."
+	worn_icon = 'dwarfs/icons/mob/clothing/under.dmi'
+	worn_icon_state = "tunic_brown"
+	icon_state = "tunic_brown"
+
+/obj/item/clothing/under/tunic/Initialize(mycolor=null)
+	. = ..()
+	select_color(mycolor)
+
+/obj/item/clothing/under/tunic/proc/select_color(mycolor=null)
+	if(!mycolor)
+		mycolor = pick("brown","red","yellow","green","aqua","blue","purple","white","gray","black")
+	worn_icon_state = "tunic_[mycolor]"
+	icon_state = "tunic_[mycolor]"
