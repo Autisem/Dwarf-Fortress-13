@@ -155,4 +155,6 @@
 /obj/item/clothing/under/dwarf
 	name = "dwarf tunic"
 	desc = "Typical green shirt. Smells of alcohol."
+	worn_icon = 'dwarfs/icons/mob/clothing/under/tunic.dmi'
+	worn_icon_state = "brown"
 	icon_state = "dwarf"
