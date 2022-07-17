@@ -178,3 +178,4 @@
 		mycolor = pick("brown","red","yellow","green","aqua","blue","purple","white","gray","black")
 	worn_icon_state = "tunic_[mycolor]"
 	icon_state = "tunic_[mycolor]"
+	name = "[mycolor] [initial(name)]"
