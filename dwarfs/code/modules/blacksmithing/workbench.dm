@@ -1,7 +1,8 @@
 /obj/structure/workbench
 	name = "workbench"
 	desc = "Almost that cube game."
-	icon_state = "workbench"
+	icon = 'dwarfs/icons/structures/64x32.dmi'
+	icon_state = "workshop"
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
