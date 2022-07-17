@@ -10,8 +10,7 @@
 	if(!holder)
 		return
 
-	var/list/investigates = list(INVESTIGATE_WIRES,
-								INVESTIGATE_CRAFTING,
+	var/list/investigates = list(INVESTIGATE_CRAFTING,
 								INVESTIGATE_BOTANY,
 								INVESTIGATE_HALLUCINATIONS)
 

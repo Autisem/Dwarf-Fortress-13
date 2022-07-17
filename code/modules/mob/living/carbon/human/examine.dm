@@ -33,7 +33,7 @@
 	if(!(obscured & ITEM_SLOT_EYES) )
 		if(glasses  && !(glasses.item_flags & EXAMINE_SKIP))
 			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes.\n"
-		else if(eye_color == BLOODCULT_EYE)
+		else if(eye_color == COLOR_RED)
 			if(HAS_TRAIT(src, TRAIT_BLOODSHOT_EYES))
 				. += "<span class='warning'><B>[t_His] eyes are gloving an unnatural red!</B></span>\n"
 

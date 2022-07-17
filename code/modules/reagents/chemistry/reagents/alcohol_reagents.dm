@@ -1426,24 +1426,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "For enjoying the most wonderful time of the year."
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
-
-/datum/reagent/consumable/ethanol/narsour
-	name = "Нар'Кис"
-	description = "Side effects include self-mutilation and hoarding plasteel."
-	color = RUNE_COLOR_DARKRED
-	boozepwr = 10
-	quality = DRINK_FANTASTIC
-	taste_description = "кровь"
-	glass_icon_state = "narsour"
-	glass_name = "Nar'Sour"
-	glass_desc = "A new hit cocktail inspired by THE ARM Breweries will have you shouting Fuu ma'jin in no time!"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/consumable/ethanol/narsour/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	M.cultslurring = min(M.cultslurring + (3 * REM * delta_time), 3)
-	M.stuttering = min(M.stuttering + (3 * REM * delta_time), 3)
-	..()
-
 /datum/reagent/consumable/ethanol/triple_sec
 	name = "Трипл Сек"
 	description = "A sweet and vibrant orange liqueur."

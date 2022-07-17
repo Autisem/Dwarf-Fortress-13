@@ -161,22 +161,22 @@
 /mob/living/carbon/proc/give()
 	var/obj/item/offered_item = get_active_held_item()
 	if(!offered_item)
-		to_chat(src, span_warning("А у меня в руке ничего и нет!"))
+		to_chat(src, span_warning("You're not holding anything to give!"))
 		return
 
 	if(IS_DEAD_OR_INCAP(src))
-		to_chat(src, span_warning("Что-то не выходит!"))
+		to_chat(src, span_warning("You're unable to offer anything in your current state!"))
 		return
 
 	if(has_status_effect(STATUS_EFFECT_OFFERING))
-		to_chat(src, span_warning("Уже что-то даю!"))
+		to_chat(src, span_warning("You're already offering up something!"))
 		return
 
 	if(offered_item.on_offered(src)) // see if the item interrupts with its own behavior
 		return
 
-	visible_message(span_notice("<b>[src.name]</b> хочет дать <b>[offered_item.name].</b>") , \
-					span_notice("Хочу дать <b>[offered_item.name]</b>.") , null, 2)
+	visible_message(span_notice("<b>[src]</b> is offering <b>[offered_item].</b>") , \
+					span_notice("You offer <b>[offered_item]</b>.") , null, 2)
 
 	apply_status_effect(STATUS_EFFECT_OFFERING, offered_item)
 
@@ -192,10 +192,10 @@
 /mob/living/carbon/proc/take(mob/living/carbon/offerer, obj/item/I)
 	clear_alert("[offerer]")
 	if(get_dist(src, offerer) > 1)
-		to_chat(src, span_warning("<b>[offerer.name]</b> слишком далеко!"))
+		to_chat(src, span_warning("<b>[offerer]</b> is out of range!"))
 		return
 	if(!I || offerer.get_active_held_item() != I)
-		to_chat(src, span_warning("<b>[offerer.name]</b> уже не хочет давать мне это!"))
+		to_chat(src, span_warning("<b>[offerer]</b> is no longer holding the item they were offering!"))
 		return
 	if(!get_empty_held_indexes())
 		to_chat(src, span_warning("Мои руки заняты!"))
@@ -203,8 +203,8 @@
 	if(I.on_offer_taken(offerer, src)) // see if the item has special behavior for being accepted
 		return
 	if(!offerer.temporarilyRemoveItemFromInventory(I))
-		visible_message(span_notice("<b>[offerer.name]</b> пытается дать <b>[I.name]</b>, но похоже оно приклеено к его руке..."))
+		visible_message(span_notice("<b>[offerer]</b> tries to hand over <b>[I]</b>, but it's stuck to them..."))
 		return
-	visible_message(span_notice("<b>[src]</b> берёт [I.name] у <b>[offerer.name]</b>.") , \
-					span_notice("Беру [I.name] у <b>[offerer.name]</b>."))
+	visible_message(span_notice("<b>[src]</b> takes [I] from <b>[offerer]</b>.") , \
+					span_notice("You take [I] from <b>[offerer]</b>."))
 	put_in_hands(I)

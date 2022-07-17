@@ -1,7 +1,6 @@
 //Investigate logging defines
 #define INVESTIGATE_BOTANY			"botany"
 #define INVESTIGATE_CRAFTING		"crafting"
-#define INVESTIGATE_WIRES			"wires"
 #define INVESTIGATE_HALLUCINATIONS	"hallucinations"
 
 // Logging types for log_message()
