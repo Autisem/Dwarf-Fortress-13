@@ -211,12 +211,6 @@
 			return
 		if(target == user && user.zone_selected != BODY_ZONE_PRECISE_MOUTH) //so we can't shoot ourselves (unless mouth selected)
 			return
-		if(iscarbon(target))
-			var/mob/living/carbon/C = target
-			for(var/i in C.all_wounds)
-				var/datum/wound/W = i
-				if(W.try_treating(src, user))
-					return // another coward cured!
 
 	if(flag)
 		if(user.zone_selected == BODY_ZONE_PRECISE_MOUTH)

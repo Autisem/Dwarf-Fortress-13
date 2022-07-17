@@ -132,12 +132,6 @@
 			var/obj/item/organ/O = V
 			O.on_death(delta_time, times_fired) //Needed so organs decay while inside the body.
 
-/mob/living/carbon/handle_wounds(delta_time, times_fired)
-	for(var/thing in all_wounds)
-		var/datum/wound/W = thing
-		if(W.processes) // meh
-			W.handle_process(delta_time, times_fired)
-
 /*
 Alcohol Poisoning Chart
 Note that all higher effects of alcohol poisoning will inherit effects for smaller amounts (i.e. light poisoning inherts from slight poisoning)

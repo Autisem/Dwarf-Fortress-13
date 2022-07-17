@@ -1931,31 +1931,6 @@
 	/// Whether we've had at least WOUND_DETERMINATION_SEVERE (2.5u) of determination at any given time. No damage slowdown immunity or indication we're having a second wind if it's just a single moderate wound
 	var/significant = FALSE
 
-/datum/reagent/determination/on_mob_end_metabolize(mob/living/carbon/M)
-	if(significant)
-		var/stam_crash = 0
-		for(var/thing in M.all_wounds)
-			var/datum/wound/W = thing
-			stam_crash += (W.severity + 1) * 3 // spike of 3 stam damage per wound severity (moderate = 6, severe = 9, critical = 12) when the determination wears off if it was a combat rush
-		M.adjustStaminaLoss(stam_crash)
-	M.remove_status_effect(STATUS_EFFECT_DETERMINED)
-	..()
-
-/datum/reagent/determination/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	if(!significant && volume >= WOUND_DETERMINATION_SEVERE)
-		significant = TRUE
-		M.apply_status_effect(STATUS_EFFECT_DETERMINED) // in addition to the slight healing, limping cooldowns are divided by 4 during the combat high
-
-	volume = min(volume, WOUND_DETERMINATION_MAX)
-
-	for(var/thing in M.all_wounds)
-		var/datum/wound/W = thing
-		var/obj/item/bodypart/wounded_part = W.limb
-		if(wounded_part)
-			wounded_part.heal_damage(0.25 * REM * delta_time, 0.25 * REM * delta_time)
-		M.adjustStaminaLoss(-0.25 * REM * delta_time) // the more wounds, the more stamina regen
-	..()
-
 /datum/reagent/eldritch //unholy water, but for eldritch cultists. why couldn't they have both just used the same reagent? who knows. maybe nar'sie is considered to be too "mainstream" of a god to worship in the cultist community.
 	name = "Жуткая Эссенция"
 	enname = "Eldritch Essence"

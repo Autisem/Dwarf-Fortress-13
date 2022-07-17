@@ -54,7 +54,6 @@
 //#include "create_and_destroy.dm"
 #include "emoting.dm"
 #include "keybinding_init.dm"
-#include "medical_wounds.dm"
 #include "merge_type.dm"
 #include "metabolizing.dm"
 #include "outfit_sanity.dm"

@@ -137,21 +137,6 @@
 	burning_volume = 0.1
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
-/datum/reagent/medicine/cryoxadone/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	var/power = -0.00003 * (M.bodytemperature ** 2) + 3
-	if(M.bodytemperature < 273.15)
-		M.adjustOxyLoss(-3 * power * REM * delta_time, 0)
-		M.adjustBruteLoss(-power * REM * delta_time, 0)
-		M.adjustFireLoss(-power * REM * delta_time, 0)
-		M.adjustToxLoss(-power * REM * delta_time, 0, TRUE) //heals TOXINLOVERs
-		for(var/i in M.all_wounds)
-			var/datum/wound/iter_wound = i
-			iter_wound.on_xadone(power * REAGENTS_EFFECT_MULTIPLIER * delta_time)
-		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC) //fixes common causes for disfiguration
-		. = TRUE
-	metabolization_rate = REAGENTS_METABOLISM * (0.00001 * (M.bodytemperature ** 2) + 0.5)
-	..()
-
 /datum/reagent/medicine/pyroxadone
 	name = "Пироксадон"
 	enname = "Pyroxadone"
@@ -177,9 +162,6 @@
 		M.adjustBruteLoss(-power * REM * delta_time, FALSE)
 		M.adjustFireLoss(-1.5 * power * REM * delta_time, FALSE)
 		M.adjustToxLoss(-power * REM * delta_time, FALSE, TRUE)
-		for(var/i in M.all_wounds)
-			var/datum/wound/iter_wound = i
-			iter_wound.on_xadone(power * REAGENTS_EFFECT_MULTIPLIER * delta_time)
 		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 		. = TRUE
 	..()
@@ -1286,27 +1268,6 @@
 /datum/reagent/medicine/coagulant/on_mob_end_metabolize(mob/living/M)
 	REMOVE_TRAIT(M, TRAIT_COAGULATING, /datum/reagent/medicine/coagulant)
 	return ..()
-
-/datum/reagent/medicine/coagulant/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	. = ..()
-	if(!M.blood_volume || !M.all_wounds)
-		return
-
-	var/datum/wound/bloodiest_wound
-
-	for(var/i in M.all_wounds)
-		var/datum/wound/iter_wound = i
-		if(iter_wound.blood_flow)
-			if(iter_wound.blood_flow > bloodiest_wound?.blood_flow)
-				bloodiest_wound = iter_wound
-
-	if(bloodiest_wound)
-		if(!was_working)
-			to_chat(M, span_green("Моя льющаяся кровь начинает сгущаться!"))
-			was_working = TRUE
-		bloodiest_wound.blood_flow = max(0, bloodiest_wound.blood_flow - (clot_rate * REM * delta_time))
-	else if(was_working)
-		was_working = FALSE
 
 /datum/reagent/medicine/coagulant/overdose_process(mob/living/M, delta_time, times_fired)
 	. = ..()

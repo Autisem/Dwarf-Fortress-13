@@ -42,10 +42,6 @@
 	add_mob_blood(C)
 	C.bleed(rand(20, 40))
 
-	var/obj/item/bodypart/bleeding_chest = C.get_bodypart(BODY_ZONE_CHEST)
-	if(bleeding_chest)
-		bleeding_chest.force_wound_upwards(/datum/wound/slash/critical)
-
 	if(!detach_limb)
 		new /obj/effect/decal/cleanable/blood/gibs(location)
 		qdel(src)
@@ -108,15 +104,6 @@
 			owner.dropItemToGround(owner.get_item_for_held_index(held_index), 1)
 			owner.hand_bodyparts[held_index] = null
 
-	for(var/thing in wounds)
-		var/datum/wound/W = thing
-		W.remove_wound(TRUE)
-
-	for(var/thing in scars)
-		var/datum/scar/S = thing
-		S.victim = null
-		LAZYREMOVE(owner.all_scars, S)
-
 	var/mob/living/carbon/phantom_owner = owner // so we can still refer to the guy who lost their limb after said limb forgets 'em
 	owner = null
 
@@ -169,13 +156,6 @@
 /obj/item/bodypart/proc/get_mangled_state()
 	. = BODYPART_MANGLED_NONE
 
-	for(var/i in wounds)
-		var/datum/wound/iter_wound = i
-		if((iter_wound.wound_flags & MANGLES_BONE))
-			. |= BODYPART_MANGLED_BONE
-		if((iter_wound.wound_flags & MANGLES_FLESH))
-			. |= BODYPART_MANGLED_FLESH
-
 /**
  * try_dismember() is used, once we've confirmed that a flesh and bone bodypart has both the skin and bone mangled, to actually roll for it
  *
@@ -196,12 +176,8 @@
 	var/base_chance = wounding_dmg
 	base_chance += (get_damage() / max_damage * 50) // how much damage we dealt with this blow, + 50% of the damage percentage we already had on this bodypart
 
-	if(locate(/datum/wound/blunt/critical) in wounds) // we only require a severe bone break, but if there's a critical bone break, we'll add 15% more
-		base_chance += 15
-
 	if(prob(base_chance))
-		var/datum/wound/loss/dismembering = new
-		dismembering.apply_dismember(src, wounding_type)
+		dismember()
 		return TRUE
 
 //when a limb is dropped, the internal organs are removed from the mob and put into the limb
@@ -355,20 +331,6 @@
 	for(var/obj/item/organ/O in contents)
 		O.Insert(C)
 
-	for(var/i in wounds)
-		var/datum/wound/W = i
-		// we have to remove the wound from the limb wound list first, so that we can reapply it fresh with the new person
-		// otherwise the wound thinks it's trying to replace an existing wound of the same type (itself) and fails/deletes itself
-		LAZYREMOVE(wounds, W)
-		W.apply_wound(src, TRUE)
-
-	for(var/thing in scars)
-		var/datum/scar/S = thing
-		if(S in C.all_scars) // prevent double scars from happening for whatever reason
-			continue
-		S.victim = C
-		LAZYADD(C.all_scars, thing)
-
 	update_bodypart_damage_state()
 
 	C.updatehealth()
@@ -455,7 +417,4 @@
 		if(!L.attach_limb(src, 1))
 			qdel(L)
 			return FALSE
-		var/datum/scar/scaries = new
-		var/datum/wound/loss/phantom_loss = new // stolen valor, really
-		scaries.generate(L, phantom_loss)
 		return TRUE

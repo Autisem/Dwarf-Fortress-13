@@ -10,7 +10,6 @@
 	throwforce = 15
 	w_class = WEIGHT_CLASS_HUGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb_simple = list("атакует", "рубит", "втыкает", "разрубает", "кромсает", "разрывает", "нарезает", "режет")
 	block_chance = 5
 	atck_type = SHARP
 	max_integrity = 150
@@ -39,8 +38,8 @@
 	atck_type = BLUNT
 	throwforce = 25
 	w_class = WEIGHT_CLASS_HUGE
-	//hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb_simple = list("hits")
+	attack_verb_simple = list("hit")
+	attack_verb_continuous = list("hits")
 	block_chance = 0
 	max_integrity = 50
 	resistance_flags = FIRE_PROOF
@@ -91,7 +90,6 @@
 	throwforce = 20
 	w_class = WEIGHT_CLASS_BULKY
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb_simple = list("атакует", "рубит", "втыкает", "разрубает", "кромсает", "разрывает", "нарезает", "режет", "колбасит")
 	block_chance = 15
 	atck_type = SHARP
 	max_integrity = 50

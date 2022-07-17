@@ -181,11 +181,6 @@
 	taste_description = "рыба"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
-/datum/reagent/toxin/carpotoxin/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	. = ..()
-	for(var/i in M.all_scars)
-		qdel(i)
-
 /datum/reagent/toxin/zombiepowder
 	name = "Зомби-Порошок"
 	enname = "zombie powder"

@@ -79,7 +79,6 @@ SUBSYSTEM_DEF(persistence)
 	CollectDamazEntries()
 	if(CONFIG_GET(flag/use_antag_rep))
 		CollectAntagReputation()
-	SaveScars()
 
 /datum/controller/subsystem/persistence/proc/CollectDamazEntries()
 	var/savefile/S = new("data/damaz_entries.sav")
@@ -134,19 +133,3 @@ SUBSYSTEM_DEF(persistence)
 
 	fdel(FILE_ANTAG_REP)
 	text2file(json_encode(antag_rep), FILE_ANTAG_REP)
-
-/datum/controller/subsystem/persistence/proc/SaveScars()
-	for(var/i in GLOB.joined_player_list)
-		var/mob/living/carbon/human/ending_human = get_mob_by_ckey(i)
-		if(!istype(ending_human) || !ending_human.mind?.original_character_slot_index || !ending_human.client || !ending_human.client.prefs || !ending_human.client.prefs.persistent_scars)
-			continue
-
-		var/mob/living/carbon/human/original_human = ending_human.mind.original_character.resolve()
-
-		if(!original_human)
-			continue
-
-		if(original_human.stat == DEAD || !original_human.all_scars || original_human != ending_human)
-			original_human.save_persistent_scars(TRUE)
-		else
-			original_human.save_persistent_scars()

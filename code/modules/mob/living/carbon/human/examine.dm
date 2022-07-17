@@ -148,10 +148,6 @@
 			else
 				msg += "<B>[t_He] [t_has] [icon2html(I, user)] \a [I] embedded in [t_his] [body_part.name]!</B>\n"
 
-		for(var/i in body_part.wounds)
-			var/datum/wound/iter_wound = i
-			msg += "[iter_wound.get_examine_description(user)]\n"
-
 	for(var/X in disabled)
 		var/obj/item/bodypart/body_part = X
 		var/damage_text
@@ -350,22 +346,6 @@
 	var/trait_exam = common_trait_examine()
 	if (!isnull(trait_exam))
 		msg += trait_exam
-
-	var/scar_severity = 0
-	for(var/i in all_scars)
-		var/datum/scar/S = i
-		if(S.is_visible(user))
-			scar_severity += S.severity
-
-	switch(scar_severity)
-		if(1 to 4)
-			msg += "<span class='tinynoticeital'>[t_He] [t_has] visible scarring, you can look again to take a closer look...</span>\n"
-		if(5 to 8)
-			msg += "<span class='smallnoticeital'>[t_He] [t_has] several bad scars, you can look again to take a closer look...</span>\n"
-		if(9 to 11)
-			msg += "<span class='notice'><i>[t_He] [t_has] significantly disfiguring scarring, you can look again to take a closer look...</i></span>\n"
-		if(12 to INFINITY)
-			msg += "<span class='notice'><b><i>[t_He] [t_is] just absolutely fucked up, you can look again to take a closer look...</i></b></span>\n"
 
 	if (length(msg))
 		. += span_warning("[msg.Join("")]")

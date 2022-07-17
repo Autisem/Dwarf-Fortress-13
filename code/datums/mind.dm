@@ -75,8 +75,6 @@
 	var/datum/weakref/original_character
 	/// The index for what character slot, if any, we were loaded from, so we can track persistent scars on a per-character basis. Each character slot gets PERSISTENT_SCAR_SLOTS scar slots
 	var/original_character_slot_index
-	/// The index for our current scar slot, so we don't have to constantly check the savefile (unlike the slots themselves, this index is independent of selected char slot, and increments whenever a valid char is joined with)
-	var/current_scar_slot_index
 
 	///Skill multiplier, adjusts how much xp you get/loose from adjust_xp. Dont override it directly, add your reason to experience_multiplier_reasons and use that as a key to put your value in there.
 	var/experience_multiplier = 1
@@ -250,10 +248,9 @@
 	if(!length(known_skills))
 		to_chat(user, span_notice("You don't have any skills."))
 		return
-	var/msg = "<span class='info'><EM>My skills</EM></span>\n<span class='notice'>"
+	var/msg = span_info("<EM>My skills</EM>\n")
 	for(var/datum/skill/S in known_skills)
-		msg += "[S.name] - [get_skill_level_name(S.type)]\n"
-	msg += "</span>"
+		msg += span_notice("[S.name] - [get_skill_level_name(S.type)]\n")
 	to_chat(user, "<div class='examine_block'>[msg]</div>")
 
 /datum/mind/proc/set_death_time()

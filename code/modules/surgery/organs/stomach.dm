@@ -178,9 +178,6 @@
 			to_chat(owner, span_warning("Лишнее молоко капает с костей!"))
 		body.heal_bodypart_damage(milk_brute_healing * REAGENTS_EFFECT_MULTIPLIER * delta_time, milk_burn_healing * REAGENTS_EFFECT_MULTIPLIER * delta_time)
 
-		for(var/i in body.all_wounds)
-			var/datum/wound/iter_wound = i
-			iter_wound.on_xadone(1 * REAGENTS_EFFECT_MULTIPLIER * delta_time)
 		reagents.remove_reagent(milk.type, milk.metabolization_rate * delta_time)
 	return ..()
 

@@ -161,8 +161,6 @@
 		humanc = character	//Let's retypecast the var to be human,
 
 	if(humanc)	//These procs all expect humans
-		humanc.increment_scar_slot()
-		humanc.load_persistent_scars()
 		humanc.equipOutfit(/datum/outfit/dwarf)
 
 	GLOB.joined_player_list += character.ckey

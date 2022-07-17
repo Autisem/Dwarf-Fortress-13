@@ -411,28 +411,6 @@
 	color = "#FFEBEB"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
-/datum/reagent/medicine/c2/synthflesh/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE)
-	. = ..()
-	if(!iscarbon(exposed_mob))
-		return
-	var/mob/living/carbon/carbies = exposed_mob
-	if(carbies.stat == DEAD)
-		show_message = 0
-	if(!(methods & (PATCH|TOUCH|VAPOR)))
-		return
-	var/harmies = min(carbies.getBruteLoss(),carbies.adjustBruteLoss(-1.25 * reac_volume)*-1)
-	var/burnies = min(carbies.getFireLoss(),carbies.adjustFireLoss(-1.25 * reac_volume)*-1)
-	for(var/i in carbies.all_wounds)
-		var/datum/wound/iter_wound = i
-		iter_wound.on_synthflesh(reac_volume)
-	carbies.adjustToxLoss((harmies+burnies)*(0.5 + (0.25*(1-creation_purity)))) //0.5 - 0.75
-	if(show_message)
-		to_chat(carbies, span_danger("Чувствую как мои ожоги и синяки заживают! Чертовски жжется!"))
-	SEND_SIGNAL(carbies, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
-	if(HAS_TRAIT_FROM(exposed_mob, TRAIT_HUSK, BURN) && carbies.getFireLoss() < UNHUSK_DAMAGE_THRESHOLD && (carbies.reagents.get_reagent_amount(/datum/reagent/medicine/c2/synthflesh) + reac_volume >= SYNTHFLESH_UNHUSK_AMOUNT))
-		carbies.cure_husk(BURN)
-		carbies.visible_message("<span class='nicegreen'>Смолянистая жидкость покрывает ожоги [carbies]. Кажется, [carbies] идет на поправку!") //we're avoiding using the phrases "burnt flesh" and "burnt skin" here because carbies could be a skeleton or a golem or something
-
 /******ORGAN HEALING******/
 /*Suffix: -rite*/
 /*

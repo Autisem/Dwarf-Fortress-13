@@ -374,7 +374,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_moth_markings"], features["moth_markings"])
 	READ_FILE(S["feature_ipc_screen"], features["ipc_screen"])
 	READ_FILE(S["feature_ipc_antenna"], features["ipc_antenna"])
-	READ_FILE(S["persistent_scars"] , persistent_scars)
 	READ_FILE(S["skills"], skills)
 	READ_FILE(S["skill_points"], skill_points)
 	READ_FILE(S["skill_points_per_skill"], skill_points_per_skill)
@@ -465,8 +464,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["moth_antennae"] 	= sanitize_inlist(features["moth_antennae"], GLOB.moth_antennae_list, "Plain")
 	features["moth_markings"] 	= sanitize_inlist(features["moth_markings"], GLOB.moth_markings_list, "None")
 
-	persistent_scars = sanitize_integer(persistent_scars)
-
 	return TRUE
 
 /datum/preferences/proc/save_character()
@@ -521,7 +518,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_moth_markings"]		, features["moth_markings"])
 	WRITE_FILE(S["feature_ipc_screen"]			, features["ipc_screen"])
 	WRITE_FILE(S["feature_ipc_antenna"]			, features["ipc_antenna"])
-	WRITE_FILE(S["persistent_scars"]			, persistent_scars)
 	WRITE_FILE(S["skills"], skills)
 	WRITE_FILE(S["skill_points"], skill_points)
 	WRITE_FILE(S["skill_points_per_skill"], skill_points_per_skill)

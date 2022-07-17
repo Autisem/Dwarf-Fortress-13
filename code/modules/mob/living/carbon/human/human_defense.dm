@@ -579,16 +579,6 @@
 				isdisabled += " and"
 		var/partmsg = "<tr><td><b>[uppertext(body_part.name)]:</b></td><td>[isdisabled] \[<span class='[no_damage ? "info" : "red"]'>[uppertext(status)]</span>\] "
 
-		for(var/thing in body_part.wounds)
-			var/datum/wound/W = thing
-			switch(W.severity)
-				if(WOUND_SEVERITY_TRIVIAL)
-					partmsg += "\[<span class='danger'>[uppertext(W.name)]</span>\] "
-				if(WOUND_SEVERITY_MODERATE)
-					partmsg += "\[<span class='red'>[uppertext(W.name)]</span>\] "
-				if(WOUND_SEVERITY_SEVERE, WOUND_SEVERITY_CRITICAL)
-					partmsg += "\[<span class='red'><b>[uppertext(W.name)]</b></span>\] "
-
 		if(body_part.get_bleed_rate())
 			partmsg += "\[<span class='red'>BLEEDING</span>\] "
 

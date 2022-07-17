@@ -65,10 +65,6 @@
 	owner.adjustBruteLoss(-10, FALSE)
 	owner.adjustFireLoss(-5, FALSE)
 	owner.adjustOxyLoss(-10)
-	if(!iscarbon(owner))
-		return
-	var/mob/living/carbon/C = owner
-	QDEL_LIST(C.all_scars)
 
 /atom/movable/screen/alert/status_effect/fleshmend
 	name = "Fleshmend"
@@ -189,32 +185,6 @@
 /datum/status_effect/marshal/on_remove()
 	. = ..()
 	REMOVE_TRAIT(owner,TRAIT_IGNOREDAMAGESLOWDOWN,type)
-
-/datum/status_effect/marshal/tick()
-	. = ..()
-	if(!iscarbon(owner))
-		return
-	var/mob/living/carbon/carbie = owner
-
-	for(var/BP in carbie.bodyparts)
-		var/obj/item/bodypart/part = BP
-		for(var/W in part.wounds)
-			var/datum/wound/wound = W
-			var/heal_amt = 0
-
-			switch(wound.severity)
-				if(WOUND_SEVERITY_MODERATE)
-					heal_amt = 1
-				if(WOUND_SEVERITY_SEVERE)
-					heal_amt = 3
-				if(WOUND_SEVERITY_CRITICAL)
-					heal_amt = 6
-			if(wound.wound_type == WOUND_BURN)
-				carbie.adjustFireLoss(-heal_amt)
-			else
-				carbie.adjustBruteLoss(-heal_amt)
-				carbie.blood_volume += carbie.blood_volume >= BLOOD_VOLUME_NORMAL ? 0 : heal_amt*3
-
 
 /atom/movable/screen/alert/status_effect/crucible_soul
 	name = "Blessing of Crucible Soul"

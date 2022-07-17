@@ -41,9 +41,6 @@
 				msg += "<B>Из [t_their] [BP.name] торчит [icon2html(I, user)] [I]!</B>\n"
 			else
 				msg += "<B>У н[t_their] застрял [icon2html(I, user)] [I] в [BP.name]!</B>\n"
-		for(var/i in BP.wounds)
-			var/datum/wound/W = i
-			msg += "[W.get_examine_description(user)]\n"
 
 	for(var/X in disabled)
 		var/obj/item/bodypart/BP = X
@@ -90,22 +87,6 @@
 	if(pulledby?.grab_state)
 		msg += "[t_they] удерживается захватом [pulledby].\n"
 
-	var/scar_severity = 0
-	for(var/i in all_scars)
-		var/datum/scar/S = i
-		if(S.is_visible(user))
-			scar_severity += S.severity
-
-	switch(scar_severity)
-		if(1 to 4)
-			msg += "\n<span class='smallnoticeital'>[t_they] похоже имеет шрамы... Стоит присмотреться, чтобы разглядеть ещё.</span>\n"
-		if(5 to 8)
-			msg += "\n<span class='notice'><i>[t_they] имеет несколько серьёзных шрамов... Стоит присмотреться, чтобы разглядеть ещё.</i></span>\n"
-		if(9 to 11)
-			msg += "\n<span class='notice'><b><i>[t_they] имеет множество ужасных шрамов... Стоит присмотреться, чтобы разглядеть ещё.</i></b></span>\n"
-		if(12 to INFINITY)
-			msg += "\n<span class='notice'><b><i>[t_they] имеет разорванное в хлам тело состоящее из шрамов... Стоит присмотреться, чтобы разглядеть ещё?</i></b></span>\n"
-
 	msg += "</span>"
 
 	. += msg.Join("")
@@ -139,25 +120,3 @@
 	. += "</span>"
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
-
-/mob/living/carbon/examine_more(mob/user)
-	if(!all_scars)
-		return ..()
-
-	var/list/visible_scars
-	for(var/i in all_scars)
-		var/datum/scar/S = i
-		if(S.is_visible(user))
-			LAZYADD(visible_scars, S)
-
-	if(!visible_scars)
-		return ..()
-
-	var/msg = list("<span class='notice'><i>Всматриваюсь в <b>[src]</b> и замечаю следующее...</i></span>\n")
-	for(var/i in visible_scars)
-		var/datum/scar/S = i
-		var/scar_text = S.get_examine_description(user)
-		if(scar_text)
-			msg += "[scar_text]\n"
-
-	return msg

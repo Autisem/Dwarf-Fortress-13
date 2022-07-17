@@ -141,8 +141,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/hearted_until
 	/// Agendered spessmen can choose whether to have a male or female bodytype
 	var/body_type
-	/// If we have persistent scars enabled
-	var/persistent_scars = TRUE
 	// Auto capitalize text
 	var/disabled_autocap = FALSE
 	///If we want to broadcast deadchat connect/disconnect messages
@@ -263,12 +261,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += SETUP_NODE_RANDOM("When antagonist", RANDOM_AGE_ANTAG)
 
 			dat += "<div class='csetup_header'>Appearance</div>"
-
-			if((HAS_FLESH in pref_species.species_traits) || (HAS_BONE in pref_species.species_traits))
-				dat += SETUP_START_NODE("Temporal Scarring")
-				dat += SETUP_GET_LINK("persistent_scars", null, null, persistent_scars ? "Enabled" : "Disabled")
-				dat += SETUP_GET_LINK("clear_scars", null, null, "Clear")
-				dat += SETUP_CLOSE_NODE
 
 			var/use_skintones = pref_species.use_skintones
 			if(use_skintones)
@@ -1178,9 +1170,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						randomise -= random_type
 					else
 						randomise[random_type] = TRUE
-
-				if("persistent_scars")
-					persistent_scars = !persistent_scars
 
 				if("clear_scars")
 					var/path = "data/player_saves/[user.ckey[1]]/[user.ckey]/scars.sav"

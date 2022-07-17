@@ -76,18 +76,6 @@
 	/// The wounds currently afflicting this body part
 	var/list/wounds
 
-	/// The scars currently afflicting this body part
-	var/list/scars
-	/// Our current stored wound damage multiplier
-	var/wound_damage_multiplier = 1
-
-	/// This number is subtracted from all wound rolls on this bodypart, higher numbers mean more defense, negative means easier to wound
-	var/wound_resistance = 0
-	/// When this bodypart hits max damage, this number is added to all wound rolls. Obviously only relevant for bodyparts that have damage caps.
-	var/disabled_wound_penalty = 15
-
-	/// A hat won't cover your face, but a shirt covering your chest will cover your... you know, chest
-	var/scars_covered_by_clothes = TRUE
 	/// So we know if we need to scream if this limb hits max damage
 	var/last_maxed
 	/// How much generic bleedstacks we have on this bodypart
@@ -110,11 +98,6 @@
 	if(owner)
 		owner.remove_bodypart(src)
 		set_owner(null)
-	for(var/wound in wounds)
-		qdel(wound) // wounds is a lazylist, and each wound removes itself from it on deletion.
-	if(length(wounds))
-		stack_trace("[type] qdeleted with [length(wounds)] uncleared wounds")
-		wounds.Cut()
 	return ..()
 
 
@@ -125,15 +108,6 @@
 		. += span_warning("Конечность имеет [brute_dam > 30 ? "серьёзные" : "незначительные"] травмы.")
 	if(burn_dam > DAMAGE_PRECISION)
 		. += span_warning("Конечность имеет [burn_dam > 30 ? "серьёзные" : "незначительные"] ожоги.")
-
-	if(locate(/datum/wound/blunt) in wounds)
-		. += "\n<span class='warning'>Кости этой кончености выглядят сильно потрескавшимися.</span>"
-	if(locate(/datum/wound/slash) in wounds)
-		. += "\n<span class='warning'>Плоть этой конечности выглядит сильно порванной.</span>"
-	if(locate(/datum/wound/pierce) in wounds)
-		. += "\n<span class='warning'>Плоть этой конечности выглядит сильно префорированной.</span>"
-	if(locate(/datum/wound/burn) in wounds)
-		. += "\n<span class='warning'>Плоть этой конечности выглядит сильно обгоревшей.</span>"
 
 /obj/item/bodypart/attack(mob/living/carbon/C, mob/user)
 	if(ishuman(C))
@@ -229,9 +203,6 @@
 	if(!brute && !burn && !stamina)
 		return FALSE
 
-	brute *= wound_damage_multiplier
-	burn *= wound_damage_multiplier
-
 	switch(animal_origin)
 		if(ALIEN_BODYPART,LARVA_BODYPART) //aliens take double burn //nothing can burn with so much snowflake code around
 			burn *= 2
@@ -244,50 +215,9 @@
 	var/wounding_type = (brute > burn ? WOUND_BLUNT : WOUND_BURN)
 	var/wounding_dmg = max(brute, burn)
 
-	var/mangled_state = get_mangled_state()
-	var/bio_state = owner.get_biological_state()
-	var/easy_dismember = HAS_TRAIT(owner, TRAIT_EASYDISMEMBER) // if we have easydismember, we don't reduce damage when redirecting damage to different types (slashing weapons on mangled/skinless limbs attack at 100% instead of 50%)
-
-	if(wounding_type == WOUND_BLUNT && (attack_type in list(SHARP, PIERCE)))
-		if(attack_type == SHARP)
-			wounding_type = WOUND_SLASH
-		else if (attack_type == PIERCE)
-			wounding_type = WOUND_PIERCE
-
-	//Handling for bone only/flesh only(none right now)/flesh and bone targets
-	switch(bio_state)
-		// if we're bone only, all cutting attacks go straight to the bone
-		if(BIO_JUST_BONE)
-			if(wounding_type == WOUND_SLASH)
-				wounding_type = WOUND_BLUNT
-				wounding_dmg *= (easy_dismember ? 1 : 0.6)
-			else if(wounding_type == WOUND_PIERCE)
-				wounding_type = WOUND_BLUNT
-				wounding_dmg *= (easy_dismember ? 1 : 0.75)
-			if((mangled_state & BODYPART_MANGLED_BONE) && try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))
-				return
-		// note that there's no handling for BIO_JUST_FLESH since we don't have any that are that right now (slimepeople maybe someday)
-		// standard humanoids
-		if(BIO_FLESH_BONE)
-			// if we've already mangled the skin (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
-			// So a big sharp weapon is still all you need to destroy a limb
-			if(mangled_state == BODYPART_MANGLED_FLESH && (attack_type in list(SHARP, PIERCE)))
-				playsound(src, "sound/effects/wounds/crackandbleed.ogg", 100)
-				if(wounding_type == WOUND_SLASH && !easy_dismember)
-					wounding_dmg *= 0.6 // edged weapons pass along 60% of their wounding damage to the bone since the power is spread out over a larger area
-				if(wounding_type == WOUND_PIERCE && !easy_dismember)
-					wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
-				wounding_type = WOUND_BLUNT
-			else if((mangled_state == BODYPART_MANGLED_BOTH || mangled_state == BODYPART_MANGLED_BONE) && try_dismember(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus))
-				return
-
 	// now we have our wounding_type and are ready to carry on with wounds and dealing the actual damage
 	if(owner && wounding_dmg >= WOUND_MINIMUM_DAMAGE && wound_bonus != CANT_WOUND)
 		check_wounding(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus, attack_direction)
-
-	for(var/i in wounds)
-		var/datum/wound/iter_wound = i
-		iter_wound.receive_damage(wounding_type, wounding_dmg, wound_bonus)
 
 	/*
 	// END WOUND HANDLING
@@ -327,43 +257,6 @@
 	if(!owner || phantom_wounding_dmg <= WOUND_MINIMUM_DAMAGE || wound_bonus == CANT_WOUND)
 		return
 
-	var/mangled_state = get_mangled_state()
-	var/bio_state = owner.get_biological_state()
-	var/easy_dismember = HAS_TRAIT(owner, TRAIT_EASYDISMEMBER) // if we have easydismember, we don't reduce damage when redirecting damage to different types (slashing weapons on mangled/skinless limbs attack at 100% instead of 50%)
-
-	if(wounding_type == WOUND_BLUNT && (attack_type in list(SHARP, PIERCE)))
-		if(attack_type == SHARP)
-			wounding_type = WOUND_SLASH
-		else if (attack_type == PIERCE)
-			wounding_type = WOUND_PIERCE
-
-	//Handling for bone only/flesh only(none right now)/flesh and bone targets
-	switch(bio_state)
-		// if we're bone only, all cutting attacks go straight to the bone
-		if(BIO_JUST_BONE)
-			if(wounding_type == WOUND_SLASH)
-				wounding_type = WOUND_BLUNT
-				phantom_wounding_dmg *= (easy_dismember ? 1 : 0.6)
-			else if(wounding_type == WOUND_PIERCE)
-				wounding_type = WOUND_BLUNT
-				phantom_wounding_dmg *= (easy_dismember ? 1 : 0.75)
-			if((mangled_state & BODYPART_MANGLED_BONE) && try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))
-				return
-		// note that there's no handling for BIO_JUST_FLESH since we don't have any that are that right now (slimepeople maybe someday)
-		// standard humanoids
-		if(BIO_FLESH_BONE)
-			// if we've already mangled the skin (critical slash or piercing wound), then the bone is exposed, and we can damage it with sharp weapons at a reduced rate
-			// So a big sharp weapon is still all you need to destroy a limb
-			if(mangled_state == BODYPART_MANGLED_FLESH && (attack_type in list(SHARP, PIERCE)))
-				playsound(src, "sound/effects/wounds/crackandbleed.ogg", 100)
-				if(wounding_type == WOUND_SLASH && !easy_dismember)
-					phantom_wounding_dmg *= 0.6 // edged weapons pass along 60% of their wounding damage to the bone since the power is spread out over a larger area
-				if(wounding_type == WOUND_PIERCE && !easy_dismember)
-					phantom_wounding_dmg *= 0.75 // piercing weapons pass along 75% of their wounding damage to the bone since it's more concentrated
-				wounding_type = WOUND_BLUNT
-			else if((mangled_state == BODYPART_MANGLED_BOTH || mangled_state == BODYPART_MANGLED_BONE) && try_dismember(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus))
-				return
-
 	check_wounding(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)
 
 /**
@@ -385,8 +278,6 @@
 	// note that these are fed into an exponent, so these are magnified
 	if(HAS_TRAIT(owner, TRAIT_EASILY_WOUNDED))
 		damage *= 1.5
-	else
-		damage = min(damage, WOUND_MAX_CONSIDERED_DAMAGE)
 
 	if(HAS_TRAIT(owner,TRAIT_HARDLY_WOUNDED))
 		damage *= 0.85
@@ -394,14 +285,8 @@
 	if(HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		damage *= 1.1
 
-	var/base_roll = rand(1, round(damage ** WOUND_DAMAGE_EXPONENT))
-	var/injury_roll = base_roll
-	injury_roll += check_woundings_mods(woundtype, damage, wound_bonus, bare_wound_bonus)
-	var/list/wounds_checking = GLOB.global_wound_types[woundtype]
-
-	if(injury_roll > WOUND_DISMEMBER_OUTRIGHT_THRESH && prob(get_damage() / max_damage * 100))
-		var/datum/wound/loss/dismembering = new
-		dismembering.apply_dismember(src, woundtype, outright = TRUE, attack_direction = attack_direction)
+	if(prob(get_damage() / max_damage * 100))
+		dismember()
 		return
 
 	// quick re-check to see if bare_wound_bonus applies, for the benefit of log_wound(), see about getting the check from check_woundings_mods() somehow
@@ -414,85 +299,6 @@
 			if(clothes_check.armor.getRating(WOUND))
 				bare_wound_bonus = 0
 				break
-
-	//cycle through the wounds of the relevant category from the most severe down
-	for(var/PW in wounds_checking)
-		var/datum/wound/possible_wound = PW
-		var/datum/wound/replaced_wound
-		for(var/i in wounds)
-			var/datum/wound/existing_wound = i
-			if(existing_wound.type in wounds_checking)
-				if(existing_wound.severity >= initial(possible_wound.severity))
-					return
-				else
-					replaced_wound = existing_wound
-
-		if(initial(possible_wound.threshold_minimum) < injury_roll)
-			var/datum/wound/new_wound
-			if(replaced_wound)
-				new_wound = replaced_wound.replace_wound(possible_wound, attack_direction = attack_direction)
-			else
-				new_wound = new possible_wound
-				new_wound.apply_wound(src, attack_direction = attack_direction)
-			log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll) // dismembering wounds are logged in the apply_wound() for loss wounds since they delete themselves immediately, these will be immediately returned
-			return new_wound
-
-// try forcing a specific wound, but only if there isn't already a wound of that severity or greater for that type on this bodypart
-/obj/item/bodypart/proc/force_wound_upwards(specific_woundtype, smited = FALSE)
-	var/datum/wound/potential_wound = specific_woundtype
-	for(var/i in wounds)
-		var/datum/wound/existing_wound = i
-		if(existing_wound.wound_type == initial(potential_wound.wound_type))
-			if(existing_wound.severity < initial(potential_wound.severity)) // we only try if the existing one is inferior to the one we're trying to force
-				existing_wound.replace_wound(potential_wound, smited)
-			return
-
-	var/datum/wound/new_wound = new potential_wound
-	new_wound.apply_wound(src, smited = smited)
-
-/**
- * check_wounding_mods() is where we handle the various modifiers of a wound roll
- *
- * A short list of things we consider: any armor a human target may be wearing, and if they have no wound armor on the limb, if we have a bare_wound_bonus to apply, plus the plain wound_bonus
- * We also flick through all of the wounds we currently have on this limb and add their threshold penalties, so that having lots of bad wounds makes you more liable to get hurt worse
- * Lastly, we add the inherent wound_resistance variable the bodypart has (heads and chests are slightly harder to wound), and a small bonus if the limb is already disabled
- *
- * Arguments:
- * * It's the same ones on [/obj/item/bodypart/proc/receive_damage]
- */
-/obj/item/bodypart/proc/check_woundings_mods(wounding_type, damage, wound_bonus, bare_wound_bonus)
-	var/armor_ablation = 0
-	var/injury_mod = 0
-
-	if(owner && ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		var/list/clothing = H.clothingonpart(src)
-		for(var/c in clothing)
-			var/obj/item/clothing/C = c
-			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
-			armor_ablation += C.armor.getRating(WOUND)
-			if(wounding_type == WOUND_SLASH)
-				C.take_damage_zone(body_zone, damage, BRUTE)
-			else if(wounding_type == WOUND_BURN && damage >= 10) // lazy way to block freezing from shredding clothes without adding another var onto apply_damage()
-				C.take_damage_zone(body_zone, damage, BURN)
-
-		if(!armor_ablation)
-			injury_mod += bare_wound_bonus
-
-	injury_mod -= armor_ablation
-	injury_mod += wound_bonus
-
-	for(var/thing in wounds)
-		var/datum/wound/W = thing
-		injury_mod += W.threshold_penalty
-
-	var/part_mod = -wound_resistance
-	if(get_damage(TRUE) >= max_damage)
-		part_mod += disabled_wound_penalty
-
-	injury_mod += part_mod
-
-	return injury_mod
 
 //Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
 //Damage cannot go below zero.
@@ -884,37 +690,6 @@
 	drop_organs()
 	qdel(src)
 
-/// Get whatever wound of the given type is currently attached to this limb, if any
-/obj/item/bodypart/proc/get_wound_type(checking_type)
-	if(isnull(wounds))
-		return
-
-	for(var/i in wounds)
-		if(istype(i, checking_type))
-			return i
-
-/**
- * update_wounds() is called whenever a wound is gained or lost on this bodypart, as well as if there's a change of some kind on a bone wound possibly changing disabled status
- *
- * Covers tabulating the damage multipliers we have from wounds (burn specifically), as well as deleting our gauze wrapping if we don't have any wounds that can use bandaging
- *
- * Arguments:
- * * replaced- If true, this is being called from the remove_wound() of a wound that's being replaced, so the bandage that already existed is still relevant, but the new wound hasn't been added yet
- */
-/obj/item/bodypart/proc/update_wounds(replaced = FALSE)
-	var/dam_mul = 1 //initial(wound_damage_multiplier)
-
-	// we can (normally) only have one wound per type, but remember there's multiple types (smites like :B:loodless can generate multiple cuts on a limb)
-	for(var/i in wounds)
-		var/datum/wound/iter_wound = i
-		dam_mul *= iter_wound.damage_mulitplier_penalty
-
-	if(!LAZYLEN(wounds) && current_gauze && !replaced) // no more wounds = no need for the gauze anymore
-		owner.visible_message(span_notice("[current_gauze] на [owner] [name] отваливается.") , span_notice("[current_gauze] на моем [name] отваливается."))
-		QDEL_NULL(current_gauze)
-
-	wound_damage_multiplier = dam_mul
-
 
 /obj/item/bodypart/proc/get_bleed_rate()
 	if(HAS_TRAIT(owner, TRAIT_NOBLEED))
@@ -931,10 +706,6 @@
 	for(var/obj/item/embeddies in embedded_objects)
 		if(!embeddies.isEmbedHarmless())
 			bleed_rate += 0.25
-
-	for(var/thing in wounds)
-		var/datum/wound/W = thing
-		bleed_rate += W.blood_flow
 
 	if(owner.body_position == LYING_DOWN)
 		bleed_rate *= 0.75

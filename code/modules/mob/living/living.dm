@@ -775,11 +775,7 @@
 	return max(1, brute_ratio * 2)
 
 /mob/living/carbon/bleedDragAmount()
-	var/bleed_amount = 0
-	for(var/i in all_wounds)
-		var/datum/wound/iter_wound = i
-		bleed_amount += iter_wound.drag_bleed_amount()
-	return bleed_amount
+	return ..()
 
 /mob/living/proc/getTrail()
 	if(getBruteLoss() < 300)

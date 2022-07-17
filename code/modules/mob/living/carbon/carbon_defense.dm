@@ -144,11 +144,6 @@
 				if(S.next_step(user, user.a_intent))
 					return TRUE
 
-	for(var/i in all_wounds)
-		var/datum/wound/W = i
-		if(W.try_handling(user))
-			return TRUE
-
 	if (user.apply_martial_art(src))
 		return TRUE
 
