@@ -1,9 +1,11 @@
 /obj/item/blacksmith/zwei
 	name = "zweihander"
 	desc = "Can even cut down trees."
-	icon_state = "zwei"
-	inhand_icon_state = "zwei"
-	worn_icon_state = "zwei"
+	icon = 'dwarfs/icons/items/weapons.dmi'
+	icon_state = "zweihander"
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand_96x32.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand_96x32.dmi'
+	inhand_icon_state = "zweihander"
 	inhand_x_dimension = -32
 	flags_1 = CONDUCT_1
 	force = 30
@@ -30,9 +32,11 @@
 /obj/item/blacksmith/flail
 	name = "flail"
 	desc = "Spin it really fast."
+	icon = 'dwarfs/icons/items/weapons.dmi'
 	icon_state = "cep"
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
 	inhand_icon_state = "cep"
-	worn_icon_state = "cep"
 	flags_1 = CONDUCT_1
 	force = 20
 	atck_type = BLUNT
@@ -54,9 +58,11 @@
 /obj/item/blacksmith/dagger
 	name = "dagger"
 	desc = "Quick, light and quite sharp."
+	icon = 'dwarfs/icons/items/weapons.dmi'
 	icon_state = "dagger"
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
 	inhand_icon_state = "dagger"
-	worn_icon_state = "dagger"
 	flags_1 = CONDUCT_1
 	force = 8
 	throwforce = 5
@@ -81,9 +87,11 @@
 /obj/item/blacksmith/sword
 	name = "sword"
 	desc = "Regular sword."
-	icon_state = "dwarfsord"
-	inhand_icon_state = "dwarfsord"
-	worn_icon_state = "dwarfsord"
+	icon = 'dwarfs/icons/items/weapons.dmi'
+	icon_state = "sword"
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	inhand_icon_state = "sword"
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	force = 30
