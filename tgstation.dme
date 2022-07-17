@@ -1064,7 +1064,7 @@
 #include "code\modules\mapping\space_management\space_transition.dm"
 #include "code\modules\mapping\space_management\traits.dm"
 #include "code\modules\mapping\space_management\zlevel_manager.dm"
-#include "code\modules\mining\ores_coins.dm"
+#include "code\modules\mining\ores.dm"
 #include "code\modules\mob\emote.dm"
 #include "code\modules\mob\inventory.dm"
 #include "code\modules\mob\login.dm"
