@@ -1,28 +1,9 @@
-/obj/item/blacksmith/katanus
-	name = "katanus"
-	desc = "To not confuse with katana."
-	icon_state = "katanus"
-	inhand_icon_state = "katanus"
-	worn_icon_state = "katanus"
-	flags_1 = CONDUCT_1
-	slot_flags = ITEM_SLOT_BACK
-	force = 25
-	throwforce = 15
-	w_class = WEIGHT_CLASS_HUGE
-	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb_simple = list("атакует", "рубит", "втыкает", "разрубает", "кромсает", "разрывает", "нарезает", "режет")
-	block_chance = 25
-	atck_type = SHARP
-	max_integrity = 50
-	resistance_flags = FIRE_PROOF
-	skill = /datum/skill/combat/sword
-
 /obj/item/blacksmith/zwei
 	name = "zweihander"
 	desc = "Can even cut down trees."
 	icon_state = "zwei"
 	inhand_icon_state = "zwei"
-	worn_icon_state = "katanus"
+	worn_icon_state = "zwei"
 	inhand_x_dimension = -32
 	flags_1 = CONDUCT_1
 	force = 30
@@ -98,7 +79,7 @@
 		attack_verbs_continuous=list(list("attacks","slashes"), list("pierces","pokes","stabs"))\
 	)
 
-/obj/item/blacksmith/dwarfsord
+/obj/item/blacksmith/sword
 	name = "sword"
 	desc = "Regular sword."
 	icon_state = "dwarfsord"

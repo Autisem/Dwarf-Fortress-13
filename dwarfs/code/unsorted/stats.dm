@@ -28,33 +28,6 @@
 			throwforce = 10
 			toolspeed = 0.2
 
-/obj/item/blacksmith/katanus/calculate_smithing_stats(grade)
-	switch(grade)
-		if(1)
-			force = 10
-			throwforce = 8
-			block_chance = 3
-		if(2)
-			force = 15
-			throwforce = 10
-			block_chance = 7
-		if(3)
-			force = 20
-			throwforce = 12
-			block_chance = 15
-		if(4)
-			force = 25
-			throwforce = 14
-			block_chance = 20
-		if(5)
-			force = 30
-			throwforce = 16
-			block_chance = 25
-		if(6)
-			force = 35
-			throwforce = 18
-			block_chance = 30
-
 /obj/item/blacksmith/zwei/calculate_smithing_stats(grade)
 	switch(grade)
 		if(1)

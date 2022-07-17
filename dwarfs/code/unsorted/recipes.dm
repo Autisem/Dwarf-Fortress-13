@@ -4,10 +4,6 @@
 	var/metal_type_need = "iron"
 	var/max_resulting = 1
 
-/datum/smithing_recipe/katanus
-	name = "\[Part\] katanus blade"
-	result = /obj/item/blacksmith/partial/katanus
-
 /datum/smithing_recipe/zwei
 	name = "\[part\] zweihander blade"
 	result = /obj/item/blacksmith/partial/zwei
@@ -16,9 +12,9 @@
 	name = "\[part\] ball on a chain"
 	result = /obj/item/blacksmith/partial/flail
 
-/datum/smithing_recipe/dwarfsord
+/datum/smithing_recipe/sword
 	name = "\[part\] sword blade"
-	result = /obj/item/blacksmith/partial/dwarfsord
+	result = /obj/item/blacksmith/partial/sword
 
 /datum/smithing_recipe/dagger
 	name = "dagger"
@@ -107,12 +103,6 @@
 	reqs = list(/obj/item/stack/sheet/leather = 2, /obj/item/blacksmith/partial/zwei=1)
 	primary = /obj/item/blacksmith/partial/zwei
 
-/datum/workbench_recipe/katanus
-	name = "katanus"
-	result = /obj/item/blacksmith/katanus
-	reqs = list(/obj/item/stack/sheet/leather = 2,/obj/item/blacksmith/partial/katanus=1)
-	primary = /obj/item/blacksmith/partial/katanus
-
 /datum/workbench_recipe/flail
 	name = "flail"
 	result = /obj/item/blacksmith/flail
@@ -122,8 +112,8 @@
 /datum/workbench_recipe/sword
 	name = "sword"
 	result = /obj/item/blacksmith/dwarfsord
-	reqs = list(/obj/item/stack/sheet/leather = 1, /obj/item/blacksmith/partial/dwarfsord=1)
-	primary = /obj/item/blacksmith/partial/dwarfsord
+	reqs = list(/obj/item/stack/sheet/leather = 1, /obj/item/blacksmith/partial/sword=1)
+	primary = /obj/item/blacksmith/partial/sword
 
 /datum/workbench_recipe/crown
 	name = "crown"

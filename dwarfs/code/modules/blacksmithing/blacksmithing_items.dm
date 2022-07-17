@@ -461,17 +461,12 @@
 	real_force = 40
 	icon_state = "zwei_part"
 
-/obj/item/blacksmith/partial/katanus
-	name = "katanus blade"
-	real_force = 16
-	icon_state = "katanus_part"
-
 /obj/item/blacksmith/partial/flail
 	name = "ball on a chain"
 	real_force = 20
 	icon_state = "cep_part"
 
-/obj/item/blacksmith/partial/dwarfsord
+/obj/item/blacksmith/partial/sword
 	name = "sword blade"
 	real_force = 16
 	icon_state = "dwarfsord_part"
