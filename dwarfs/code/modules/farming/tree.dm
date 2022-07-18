@@ -18,6 +18,16 @@
 	// produce_delta = 1 MINUTES
 	// max_harvestables =
 
+/obj/structure/plant/tree/towercap
+	name = "towercap"
+	desc = "hehe >:)"
+	species = "towercap"
+	produced = list(/obj/item/growable/apple=4)
+	// growthdelta = 1 MINUTES
+	// produce_delta = 1 MINUTES
+	// max_harvestables =
+
+
 /obj/structure/plant/tree/alder
 	name = "alder tree"
 	desc = ""
