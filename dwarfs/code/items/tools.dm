@@ -66,3 +66,15 @@
 		return BRUTELOSS
 	user.visible_message(span_suicide("[user] couldn't do it!"))
 	return SHAME
+
+/obj/item/axe
+	name = "axe"
+	desc = "<:)"
+	icon = 'dwarfs/icons/items/tools.dmi'
+	icon_state = "axe"
+	tool_behaviour = TOOL_AXE
+	force = 10
+	throwforce = 5
+	atck_type = SHARP
+	w_class = WEIGHT_CLASS_NORMAL
+	slot_flags = ITEM_SLOT_BELT

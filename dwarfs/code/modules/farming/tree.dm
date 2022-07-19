@@ -4,10 +4,31 @@
 	icon = 'dwarfs/icons/farming/growing_tree.dmi'
 	density = TRUE
 	lifespan = INFINITY
+	var/log_type = /obj/item/log
+	var/list/log_amount = list(0,0,0,1,2) //a list with amount corresponding to the growthstage
+	var/cutting_time = 40 SECONDS
 
 /obj/structure/plant/tree/Initialize()
 	. = ..()
-	pixel_x = -32
+	pixel_x = -20
+
+/obj/structure/plant/tree/proc/try_chop(obj/item/tool, mob/living/user)
+	to_chat(user, span_notice("You start chopping down [src]..."))
+	var/time_mod = user?.mind.get_skill_modifier(/datum/skill/logging, SKILL_SPEED_MODIFIER)
+	time_mod = time_mod ? time_mod : 1
+	if(tool.use_tool(src, user, cutting_time*time_mod))
+		to_chat(user, span_notice("You chop down [src]."))
+		user?.mind.adjust_experience(/datum/skill/logging, 36)
+		var/turf/my_turf = get_turf(src)
+		for(var/i in 1 to log_amount[growthstage])
+			new log_type(my_turf)
+		qdel(src)
+
+/obj/structure/plant/tree/attackby(obj/item/I, mob/user, params)
+	if(I.tool_behaviour == TOOL_AXE)
+		try_chop(I, user)
+	else
+		. = ..()
 
 /obj/structure/plant/tree/apple
 	name = "apple tree"
@@ -22,6 +43,8 @@
 	name = "towercap"
 	desc = "hehe >:)"
 	species = "towercap"
+	log_type = /obj/item/log/towercap
+	log_amount = 3
 	// growthdelta = 1 MINUTES
 	// produce_delta = 1 MINUTES
 	// max_harvestables =
