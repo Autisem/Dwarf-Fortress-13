@@ -1,7 +1,7 @@
 /obj/item/log
 	name = "log"
 	desc = "Flat."
-	icon = 'dwarfs/icons/items/logs.dmi'
+	icon = 'dwarfs/icons/items/components.dmi'
 	icon_state = "log"
 
 /obj/item/log/Initialize()
@@ -12,3 +12,4 @@
 
 /obj/item/log/towercap
 	name = "towercap log"
+	icon_state = "towercap_log"
