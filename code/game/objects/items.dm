@@ -403,11 +403,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 			return
 
 	. = FALSE
-	pickup(user)
-	add_fingerprint(user)
-	if(!user.put_in_active_hand(src, FALSE, FALSE))
-		user.dropItemToGround(src)
-		return TRUE
+	return pickup(user)
 
 /obj/item/proc/allow_attack_hand_drop(mob/user)
 	return TRUE
@@ -466,6 +462,10 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
 	item_flags |= IN_INVENTORY
+	add_fingerprint(user)
+	if(!user.put_in_active_hand(src, FALSE, FALSE))
+		user.dropItemToGround(src)
+		return TRUE
 
 /// called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder)

@@ -66,19 +66,16 @@
 	if(plot?.fertlevel)
 		time_until_growth = time_until_growth*0.8 // fertilizer makes plants grow 20% faster
 	if(world.time >= time_until_growth)
-		// Advance age
-		age++
-		growthstage = clamp(growthstage+1, 1, growthstages)
 		lastcycle_growth = world.time
+		growthcycle()
 		needs_update = 1
-		if(growthstage == growthstages)
+		if(age == growthstages)
 			produce_delta = world.time
-		if(istype(src, /obj/structure/plant/garden/crop) && can_grow_harvestable())
-			harvestable = TRUE
+			grown()
 	if(world.time >= lastcycle_produce+produce_delta)
 		lastcycle_produce = world.time
-		if(can_grow_harvestable())
-			harvestable = TRUE
+		producecycle()
+		if(harvestable)
 			needs_update = 1
 
 //Water//////////////////////////////////////////////////////////////////
@@ -99,17 +96,14 @@
 	if(health <= 0 && !dead)
 		plantdies()
 		dead = TRUE
-		update_appearance()
+		needs_update = 1
 
-	if(age > lifespan && world.time >= lastcycle_health+health_delta)
+	if(world.time >= lastcycle_health+health_delta)
 		lastcycle_health = world.time
-		health -= rand(1,3)
+		damagecycle()
 
 	if(plot)
 		plot.fertlevel = clamp(plot.fertlevel-plot.fertrate, 0, plot.fertmax)
-		if(!(species in plot.allowed_species) && world.time >= lastcycle_health+health_delta)
-			lastcycle_health = world.time
-			health-= rand(1,3)
 
 	if(needs_update)
 		update_appearance()
@@ -139,6 +133,23 @@
 	if(growthstage != growthstages)
 		return FALSE
 	return TRUE
+
+/obj/structure/plant/proc/grown()
+	return
+
+/obj/structure/plant/proc/growthcycle()
+	age++
+	growthstage = clamp(growthstage+1, 1, growthstages)
+
+/obj/structure/plant/proc/producecycle()
+	if(can_grow_harvestable())
+		harvestable = TRUE
+
+/obj/structure/plant/proc/damagecycle()
+	if(age > lifespan)
+		health -= rand(1,3)
+	if(plot && !(species in plot?.allowed_species))
+		health -= rand(1,3)
 
 /obj/structure/plant/proc/harvest(var/mob/user)
 	if(!do_after(user, 1 SECONDS, src)) // TODO: tweak time according to skill

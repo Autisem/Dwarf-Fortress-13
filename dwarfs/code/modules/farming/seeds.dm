@@ -34,3 +34,6 @@
 
 /obj/item/growable/seeds/cave_wheat
 	plant = /obj/structure/plant/garden/crop/cave_wheat
+
+/obj/item/growable/seeds/towercap
+	plant = /obj/structure/plant/tree/towercap

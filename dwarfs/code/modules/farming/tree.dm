@@ -1,11 +1,13 @@
 /obj/structure/plant/tree
 	name = "tree"
 	desc = "Big green?"
-	icon = 'dwarfs/icons/farming/growing_tree.dmi'
+	icon = 'dwarfs/icons/farming/growing_tree_96x96.dmi'
 	density = TRUE
 	lifespan = INFINITY
-	var/log_type = /obj/item/log
-	var/list/log_amount = list(0,0,0,1,2) //a list with amount corresponding to the growthstage
+	var/small_log_type = /obj/item/log
+	var/large_log_type = /obj/item/log
+	var/list/small_log_amount = list(0,1,1,2,0) //a list of small logs with amount corresponding to the growthstage
+	var/list/large_log_amount = list(0,0,0,0,1) //a list of large logs with amount corresponding to the growthstage
 	var/cutting_time = 40 SECONDS
 
 /obj/structure/plant/tree/Initialize()
@@ -19,10 +21,16 @@
 	if(tool.use_tool(src, user, cutting_time*time_mod))
 		to_chat(user, span_notice("You chop down [src]."))
 		user?.mind.adjust_experience(/datum/skill/logging, 36)
-		var/turf/my_turf = get_turf(src)
-		for(var/i in 1 to log_amount[growthstage])
-			new log_type(my_turf)
+		chop_tree(get_turf(src))
 		qdel(src)
+
+/obj/structure/plant/tree/proc/chop_tree(turf/my_turf)
+	if(small_log_type)
+		for(var/i in 1 to small_log_amount[growthstage])
+			new small_log_type(my_turf)
+	if(large_log_type)
+		for(var/i in 1 to large_log_amount[growthstage])
+			new large_log_type(my_turf)
 
 /obj/structure/plant/tree/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_AXE)
@@ -43,8 +51,9 @@
 	name = "towercap"
 	desc = "hehe >:)"
 	species = "towercap"
-	log_type = /obj/item/log/towercap
-	log_amount = 3
+	produced = list(/obj/item/growable/seeds/towercap=1)
+	large_log_type = /obj/item/log/large/towercap
+	small_log_type = /obj/item/log/towercap
 	// growthdelta = 1 MINUTES
 	// produce_delta = 1 MINUTES
 	// max_harvestables =

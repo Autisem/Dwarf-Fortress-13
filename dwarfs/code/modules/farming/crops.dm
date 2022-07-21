@@ -2,6 +2,10 @@
 /obj/structure/plant/garden/crop
 	name = "crop"
 
+/obj/structure/plant/garden/crop/grown()
+	. = ..()
+	harvestable = TRUE
+
 /obj/structure/plant/garden/crop/Initialize()
 	. = ..()
 	icon_ripe = "[species]-[growthstages]"
