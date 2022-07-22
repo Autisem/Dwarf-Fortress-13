@@ -60,12 +60,22 @@
 		if(S)
 			S.update_icon()
 
+/obj/structure/stairs/proc/CanLeave(atom/movable/mover, direction)
+	if(direction in list(dir, REVERSE_DIR(dir)))
+		return TRUE
+	// if we are moving across from stair to stair on the same z-level
+	var/turf/newloc_turf = get_step(mover, direction)
+	if((locate(/obj/structure/stairs) in newloc_turf.contents) && !(direction in list(dir, REVERSE_DIR(dir))))
+		return TRUE
+	return FALSE
+
 /obj/structure/stairs/proc/on_exit(datum/source, atom/movable/leaving, direction)
 	SIGNAL_HANDLER
 
 	if(leaving == src)
 		return // Let's not block ourselves.
-
+	if(!CanLeave(leaving, direction))
+		return COMPONENT_ATOM_BLOCK_EXIT
 	if(!isobserver(leaving) && isTerminator() && direction == dir)
 		leaving.set_currently_z_moving(CURRENTLY_Z_ASCENDING)
 		INVOKE_ASYNC(src, .proc/stair_ascend, leaving)
@@ -147,3 +157,15 @@
 		if(S.dir == dir)
 			return FALSE
 	return TRUE
+
+/obj/structure/stairs/CanAllowThrough(atom/movable/mover, border_dir)
+	. = ..()
+	if(!.)
+		return .
+	var/turf/mover_turf = get_turf(mover)
+	if(dir == REVERSE_DIR(border_dir))
+		return TRUE
+	// if we are moving across from stair to stair on the same z-level
+	if((locate(/obj/structure/stairs) in mover_turf.contents) && !(border_dir in list(dir, REVERSE_DIR(dir))))
+		return TRUE
+	return FALSE
