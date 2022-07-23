@@ -29,7 +29,7 @@
 		return
 
 /obj/item/stack/sheet/stone
-	name = "brick"
+	name = "stone"
 	desc = "Used in building."
 	singular_name = "Brick"
 	icon = 'dwarfs/icons/items/components.dmi'
@@ -41,5 +41,3 @@
 	w_class = WEIGHT_CLASS_TINY
 	merge_type = /obj/item/stack/sheet/stone
 	material_type = /datum/material/stone
-	matter_amount = 4
-	cost = 500

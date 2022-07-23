@@ -74,23 +74,17 @@
 	ore_basename = "iron"
 
 /obj/item/stack/ore/coal
-	name = "coal ore"
+	name = "coal"
 	icon = 'dwarfs/icons/items/ores_gems.dmi'
 	icon_state = "coal"
 	inhand_icon_state = "Iron ore"
-	singular_name = "coal ore chunk"
+	singular_name = "coal chunk"
 	refined_type = /obj/item/stack/sheet/mineral/coal
 	mine_experience = 1
 	spreadChance = 80
 	merge_type = /obj/item/stack/ore/coal
 	ore_icon = 'dwarfs/icons/turf/ores/coal.dmi'
 	ore_basename = "coal"
-
-/obj/item/stack/ore/coal/Initialize(mapload, new_amount, merge, list/mat_override, mat_amt)
-	. = ..()
-	var/obj/item/stack/S = new refined_type (get_turf(src))
-	S.amount = new_amount
-	qdel(src)
 
 /obj/item/stack/ore/gold
 	name = "gold ore"

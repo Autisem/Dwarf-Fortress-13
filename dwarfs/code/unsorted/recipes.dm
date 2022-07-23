@@ -17,17 +17,22 @@
 	result = /obj/item/blacksmith/partial/sword
 
 /datum/smithing_recipe/dagger
-	name = "dagger"
-	result = /obj/item/blacksmith/dagger
+	name = "\[part\] dagger"
+	result = /obj/item/blacksmith/partial/dagger
 	max_resulting = 3
 
 /datum/smithing_recipe/pickaxe
-	name = "pickaxe"
-	result = /obj/item/pickaxe
+	name = "\[part\] pickaxe"
+	result = /obj/item/blacksmith/partial/pickaxe
 
 /datum/smithing_recipe/shovel
-	name = "shovel"
-	result = /obj/item/shovel
+	name = "\[part\] shovel"
+	result = /obj/item/blacksmith/partial/shovel
+	max_resulting = 2
+
+/datum/smithing_recipe/axe
+	name = "\[part\] axe"
+	result = /obj/item/blacksmith/partial/axe
 	max_resulting = 2
 
 /datum/smithing_recipe/smithing_hammer
@@ -97,22 +102,28 @@
 	var/list/reqs
 	var/obj/primary
 
+/datum/workbench_recipe/dagger
+	name = "dagger"
+	result = /obj/item/blacksmith/dagger
+	reqs = list(/obj/item/blacksmith/partial/dagger=1, /obj/item/weapon_hilt=1)
+	primary = /obj/item/blacksmith/partial/dagger
+
 /datum/workbench_recipe/zwei
 	name = "zweihander"
 	result = /obj/item/blacksmith/zwei
-	reqs = list(/obj/item/stack/sheet/leather = 2, /obj/item/blacksmith/partial/zwei=1)
+	reqs = list(/obj/item/stack/sheet/leather = 2, /obj/item/blacksmith/partial/zwei=1, /obj/item/weapon_hilt=1)
 	primary = /obj/item/blacksmith/partial/zwei
 
 /datum/workbench_recipe/flail
 	name = "flail"
 	result = /obj/item/blacksmith/flail
-	reqs = list(/obj/item/blacksmith/partial/flail=1)
+	reqs = list(/obj/item/blacksmith/partial/flail=1, /obj/item/weapon_hilt=1)
 	primary = /obj/item/blacksmith/partial/flail
 
 /datum/workbench_recipe/sword
 	name = "sword"
-	result = /obj/item/blacksmith/dwarfsord
-	reqs = list(/obj/item/stack/sheet/leather = 1, /obj/item/blacksmith/partial/sword=1)
+	result = /obj/item/blacksmith/sword
+	reqs = list(/obj/item/stack/sheet/leather = 1, /obj/item/blacksmith/partial/sword=1, /obj/item/weapon_hilt=1)
 	primary = /obj/item/blacksmith/partial/sword
 
 /datum/workbench_recipe/crown
@@ -126,3 +137,21 @@
 	result = /obj/item/storage/belt/dagger_sneath
 	reqs = list(/obj/item/stack/sheet/leather = 3)
 	primary = null
+
+/datum/workbench_recipe/pickaxe
+	name = "pickaxe"
+	result = /obj/item/pickaxe
+	reqs = list(/obj/item/blacksmith/partial/pickaxe=1, /obj/item/tool_handle=1)
+	primary = /obj/item/blacksmith/partial/pickaxe
+
+/datum/workbench_recipe/axe
+	name = "axe"
+	result = /obj/item/axe
+	reqs = list(/obj/item/blacksmith/partial/axe=1, /obj/item/tool_handle=1)
+	primary = /obj/item/blacksmith/partial/axe
+
+/datum/workbench_recipe/shovel
+	name = "shovel"
+	result = /obj/item/shovel
+	reqs = list(/obj/item/blacksmith/partial/shovel=1, /obj/item/tool_handle=1)
+	primary = /obj/item/blacksmith/partial/shovel

@@ -22,8 +22,6 @@
 	anchored = TRUE
 	pass_flags_self = PASSTABLE | LETPASSTHROW
 	layer = TABLE_LAYER
-	var/frame = /obj/structure/table_frame
-	var/framestack
 	var/buildstack
 	var/busy = FALSE
 	var/buildstackamount = 1
@@ -242,10 +240,6 @@
 			for(var/i in custom_materials)
 				var/datum/material/M = i
 				new M.sheet_type(T, FLOOR(custom_materials[M] / MINERAL_MATERIAL_AMOUNT, 1))
-		if(!wrench_disassembly)
-			new frame(T)
-		else
-			new framestack(T, framestackamount)
 	qdel(src)
 
 /*

@@ -230,3 +230,19 @@
 /obj/item/reagent_containers/glass/pan/Initialize(mapload, vol)
 	. = ..()
 	AddComponent(/datum/component/storage/concrete/cooking/pan)
+
+/obj/item/reagent_containers/glass/cup
+	name = "wooden cup"
+	icon = 'dwarfs/icons/items/containers.dmi'
+	icon_state = "wooden_cup"
+
+/obj/item/reagent_containers/glass/cup/update_overlays()
+	. = ..()
+	if(reagents.total_volume)
+		var/mutable_appearance/M = mutable_appearance(icon, "cup_overlay")
+		M.color = mix_color_from_reagents(reagents.reagent_list)
+		. += M
+
+/obj/item/reagent_containers/glass/cup/iron
+	name = "iron cup"
+	icon_state = "iron_cup"

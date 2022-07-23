@@ -41,7 +41,7 @@ export const Stack = (props, context) => {
           title={"Amount: " + amount}
           buttons={(
             <>
-              Искать
+              Search
               <Input
                 autoFocus
                 value={searchText}

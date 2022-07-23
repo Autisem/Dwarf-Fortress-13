@@ -18,7 +18,6 @@
 	var/singular_name
 	var/amount = 1
 	var/max_amount = 50 //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
-	var/cost = 1 // How much energy from storage it costs
 	var/merge_type = null // This path and its children should merge with this stack, defaults to src.type
 	var/full_w_class = WEIGHT_CLASS_NORMAL //The weight class the stack should have at amount > 2/3rds max_amount
 	var/novariants = TRUE //Determines whether the item should update it's sprites based on amount.
@@ -35,8 +34,6 @@
 	var/absorption_capacity
 	/// How quickly we lower the blood flow on a cut wound we're bandaging. Expected lifetime of this bandage in seconds is thus absorption_capacity/absorption_rate, or until the cut heals, whichever comes first
 	var/absorption_rate
-	/// Amount of matter for RCD
-	var/matter_amount = 0
 	/// Does this stack require a unique girder in order to make a wall?
 	var/has_unique_girder = FALSE
 

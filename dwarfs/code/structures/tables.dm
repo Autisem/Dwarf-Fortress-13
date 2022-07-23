@@ -7,8 +7,6 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	max_integrity = 300
 	buildstack = /obj/item/stack/sheet/stone
-	smoothing_groups = list(SMOOTH_GROUP_BRONZE_TABLES)
-	canSmoothWith = list(SMOOTH_GROUP_BRONZE_TABLES)
 
 /obj/structure/table/stone/attackby(obj/item/W, mob/user, params)
 	if (W.tool_behaviour == TOOL_WRENCH || W.tool_behaviour == TOOL_SCREWDRIVER)
@@ -16,3 +14,11 @@
 		return
 	else
 		return ..()
+
+/obj/structure/table/wood
+	name = "wooden table"
+	desc = ""
+	icon = 'dwarfs/icons/structures/wood_table.dmi'
+	icon_state = "wood_table-0"
+	base_icon_state = "wood_table"
+	buildstack = /obj/item/stack/sheet/planks

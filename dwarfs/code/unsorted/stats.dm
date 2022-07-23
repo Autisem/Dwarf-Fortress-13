@@ -109,7 +109,7 @@
 			throwforce = 10
 			block_chance = 0
 
-/obj/item/blacksmith/dwarfsord/calculate_smithing_stats(grade)
+/obj/item/blacksmith/sword/calculate_smithing_stats(grade)
 	switch(grade)
 		if(1)
 			force = 15

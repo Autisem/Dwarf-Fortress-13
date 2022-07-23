@@ -1,9 +1,8 @@
 /obj/item/stick
 	name = "stick"
 	desc = "Stick."
-	//no icon :(
-	icon = 'dwarfs/icons/items/parts.dmi'
-	icon_state = "scepter_shaft"
+	icon = 'dwarfs/icons/items/components.dmi'
+	icon_state = "tool_handle"
 
 /obj/item/stick/Initialize()
 	. = ..()

@@ -449,27 +449,47 @@
 
 /obj/item/blacksmith/partial
 	desc = "Looks like a part of something bigger."
-	icon = 'dwarfs/icons/items/parts.dmi'
+	icon = 'dwarfs/icons/items/components.dmi'
 	var/item_grade = "*"
 
 /obj/item/blacksmith/partial/Initialize()
 	. = ..()
 	force = 1
 
+/obj/item/blacksmith/partial/dagger
+	name = "dagger blade"
+	real_force = 4
+	icon_state = "dagger_blade"
+
+/obj/item/blacksmith/partial/pickaxe
+	name = "pickaxe blade"
+	real_force = 4
+	icon_state = "dagger_blade"
+
+/obj/item/blacksmith/partial/shovel
+	name = "shovel blade"
+	real_force = 4
+	icon_state = "dagger_blade"
+
+/obj/item/blacksmith/partial/axe
+	name = "axe blade"
+	real_force = 4
+	icon_state = "dagger_blade"
+
 /obj/item/blacksmith/partial/zwei
 	name = "zweihander blade"
 	real_force = 40
-	icon_state = "zwei_part"
+	icon_state = "zweihander_blade"
 
 /obj/item/blacksmith/partial/flail
 	name = "ball on a chain"
 	real_force = 20
-	icon_state = "cep_part"
+	icon_state = "cep_mace"
 
 /obj/item/blacksmith/partial/sword
 	name = "sword blade"
 	real_force = 16
-	icon_state = "dwarfsord_part"
+	icon_state = "sword_blade"
 
 /obj/item/blacksmith/partial/crown_empty
 	name = "empty crown"
