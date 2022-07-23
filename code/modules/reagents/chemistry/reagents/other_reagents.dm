@@ -482,7 +482,7 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/mercury/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	if(!HAS_TRAIT(src, TRAIT_IMMOBILIZED) && !isspaceturf(M.loc))
+	if(!HAS_TRAIT(src, TRAIT_IMMOBILIZED) && !isopenspace(M.loc))
 		step(M, pick(GLOB.cardinals))
 	if(DT_PROB(3.5, delta_time))
 		M.emote(pick("twitch","drool","moan"))
@@ -509,7 +509,7 @@
 
 /datum/reagent/carbon/expose_turf(turf/exposed_turf, reac_volume)
 	. = ..()
-	if(isspaceturf(exposed_turf))
+	if(isopenspace(exposed_turf))
 		return
 
 	var/obj/effect/decal/cleanable/dirt/dirt_decal = (locate() in exposed_turf.contents)
@@ -572,7 +572,7 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/lithium/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	if(!HAS_TRAIT(M, TRAIT_IMMOBILIZED) && !isspaceturf(M.loc))
+	if(!HAS_TRAIT(M, TRAIT_IMMOBILIZED) && !isopenspace(M.loc))
 		step(M, pick(GLOB.cardinals))
 	if(DT_PROB(2.5, delta_time))
 		M.emote(pick("twitch","drool","moan"))
@@ -657,7 +657,7 @@
 
 /datum/reagent/uranium/expose_turf(turf/exposed_turf, reac_volume)
 	. = ..()
-	if((reac_volume < 3) || isspaceturf(exposed_turf))
+	if((reac_volume < 3) || isopenspace(exposed_turf))
 		return
 
 	var/obj/effect/decal/cleanable/greenglow/glow = locate() in exposed_turf.contents
@@ -1887,28 +1887,6 @@
 	A.material_flags = applied_material_flags
 	A.set_custom_materials(metal_dat)
 	ADD_TRAIT(A, TRAIT_MAT_TRANSMUTED, type)
-
-/datum/reagent/gravitum
-	name = "Гравитум"
-	enname = "Gravitum"
-	description = "A rare kind of null fluid, capable of temporalily removing all weight of whatever it touches." //i dont even
-	color = "#050096" // rgb: 5, 0, 150
-	taste_mult = 0 // oderless and tasteless
-	metabolization_rate = 0.1 * REAGENTS_METABOLISM //20 times as long, so it's actually viable to use
-	var/time_multiplier = 1 MINUTES //1 minute per unit of gravitum on objects. Seems overpowered, but the whole thing is very niche
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
-/datum/reagent/gravitum/expose_obj(obj/exposed_obj, volume)
-	. = ..()
-	exposed_obj.AddElement(/datum/element/forced_gravity, 0)
-	addtimer(CALLBACK(exposed_obj, .proc/_RemoveElement, list(/datum/element/forced_gravity, 0)), volume * time_multiplier)
-
-/datum/reagent/gravitum/on_mob_add(mob/living/L)
-	L.AddElement(/datum/element/forced_gravity, 0) //0 is the gravity, and in this case weightless
-	return ..()
-
-/datum/reagent/gravitum/on_mob_end_metabolize(mob/living/L)
-	L.RemoveElement(/datum/element/forced_gravity, 0)
 
 /datum/reagent/cellulose
 	name = "Волокна Целлюлозы"

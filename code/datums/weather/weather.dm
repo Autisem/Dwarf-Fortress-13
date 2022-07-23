@@ -46,7 +46,7 @@
 	var/end_overlay
 
 	/// Types of area to affect
-	var/area_type = /area/space
+	var/area_type = /area/dwarf/fortress
 	/// TRUE value protects areas with outdoors marked as false, regardless of area type
 	var/protect_indoors = FALSE
 	/// Areas to be affected by the weather, calculated when the weather begins

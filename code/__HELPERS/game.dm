@@ -526,7 +526,7 @@
 			if (!istype(turf_area, specific_area))
 				continue
 
-		if (!isspaceturf(found_turf))
+		if (!isopenspace(found_turf))
 			if (!found_turf.is_blocked_turf())
 				possible_loc.Add(found_turf)
 

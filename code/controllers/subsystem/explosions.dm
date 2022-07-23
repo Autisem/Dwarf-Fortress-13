@@ -291,7 +291,7 @@ SUBSYSTEM_DEF(explosions)
 						if(!baseshakeamount) // Devastating explosions rock the station and ground
 							baseshakeamount = devastation_range*3
 						shake_camera(M, 10, clamp(baseshakeamount*0.25, 0, SHAKE_CLAMP))
-				else if(!isspaceturf(get_turf(M)) && heavy_impact_range) // Big enough explosions echo throughout the hull
+				else if(!isopenspace(get_turf(M)) && heavy_impact_range) // Big enough explosions echo throughout the hull
 					var/echo_volume = 40
 					if(devastation_range)
 						baseshakeamount = devastation_range
@@ -374,7 +374,7 @@ SUBSYSTEM_DEF(explosions)
 			if(EXPLODE_LIGHT)
 				SSexplosions.lowturf += T
 
-		if(flame_dist && prob(40) && !isspaceturf(T) && !T.density)
+		if(flame_dist && prob(40) && !isopenspace(T) && !T.density)
 			flameturf += T
 
 		//--- THROW ITEMS AROUND ---

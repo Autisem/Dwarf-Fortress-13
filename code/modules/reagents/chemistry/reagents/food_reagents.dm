@@ -480,7 +480,7 @@
 
 /datum/reagent/consumable/flour/expose_turf(turf/exposed_turf, reac_volume)
 	. = ..()
-	if(isspaceturf(exposed_turf))
+	if(isopenspace(exposed_turf))
 		return
 
 	var/obj/effect/decal/cleanable/food/flour/reagentdecal = new(exposed_turf)

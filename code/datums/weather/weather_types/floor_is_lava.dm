@@ -15,7 +15,7 @@
 	end_duration = 0
 
 	area_type = /area
-	protected_areas = list(/area/space)
+	protected_areas = list()
 	target_trait = ZTRAIT_FORTRESS
 
 	overlay_layer = ABOVE_OPEN_TURF_LAYER //Covers floors only

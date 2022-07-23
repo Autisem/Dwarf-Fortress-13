@@ -4,11 +4,9 @@ SUBSYSTEM_DEF(pathfinder)
 	flags = SS_NO_FIRE
 	var/datum/flowcache/mobs
 	var/datum/flowcache/circuits
-	var/static/space_type_cache
 	var/static/openspace_type_cache
 
 /datum/controller/subsystem/pathfinder/Initialize()
-	space_type_cache = typecacheof(/turf/open/space)
 	openspace_type_cache = typecacheof(/turf/open/openspace)
 	mobs = new(10)
 	circuits = new(3)

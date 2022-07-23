@@ -381,10 +381,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		if(O.flags_1 & INITIALIZED_1)
 			SEND_SIGNAL(O, COMSIG_OBJ_HIDE, intact)
 
-// override for space turfs, since they should never hide anything
-/turf/open/space/levelupdate()
-	return
-
 /turf/proc/Bless()
 	new /obj/effect/blessing(src)
 
@@ -589,13 +585,12 @@ GLOBAL_LIST_EMPTY(station_turfs)
  * * check_density: WE CAN PASS OBJECTS, aren't we?
 */
 /turf/proc/reachableAdjacentTurfs(caller, ID, simulated_only, bypass_density = FALSE)
-	var/static/space_type_cache = typecacheof(/turf/open/space)
 	var/static/openspace_type_cache = typecacheof(/turf/open/openspace)
 	. = list()
 
 	for(var/iter_dir in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src,iter_dir)
-		if(!turf_to_check || (simulated_only && (space_type_cache[turf_to_check.type] || openspace_type_cache[turf_to_check.type])))
+		if(!turf_to_check || (simulated_only && openspace_type_cache[turf_to_check.type]))
 			continue
 		if(turf_to_check.density || (!bypass_density && LinkBlockedWithAccess(turf_to_check, caller, ID)))
 			continue

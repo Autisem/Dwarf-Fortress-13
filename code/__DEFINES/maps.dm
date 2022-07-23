@@ -54,7 +54,8 @@ fuck jannies
 )
 
 //Reserved/Transit turf type
-#define RESERVED_TURF_TYPE /turf/open/space/basic			//What the turf is when not being used
+//What the turf is when not being used
+#define RESERVED_TURF_TYPE /turf/open
 
 #define BIOME_LOW_HEAT "low_heat"
 #define BIOME_LOWMEDIUM_HEAT "lowmedium_heat"
