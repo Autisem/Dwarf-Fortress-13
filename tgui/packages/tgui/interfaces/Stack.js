@@ -51,7 +51,7 @@ export const Stack = (props, context) => {
           )}>
           {items.length === 0 && (
             <NoticeBox>
-              Нет особых рецептов.
+              No recipes.
             </NoticeBox>
           ) || (
             <RecipeList recipes={items} />
@@ -166,7 +166,7 @@ const Recipe = (props, context) => {
   let buttonName = title;
   buttonName += " (";
   buttonName += req_amount + " ";
-  buttonName += ("лист" + (req_amount > 1 ? "ов" : ""));
+  buttonName += ("sheet" + (req_amount > 1 ? "s" : ""));
   buttonName += ")";
 
   if (res_amount > 1) {
