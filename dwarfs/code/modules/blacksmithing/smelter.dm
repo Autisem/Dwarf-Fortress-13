@@ -10,6 +10,7 @@
 	var/working = FALSE
 	var/fuel = 0
 	var/smelting_time = 1 MINUTES
+	var/max_items = 5
 	var/timerid
 
 /obj/structure/smelter/Initialize()
@@ -55,6 +56,9 @@
 /obj/structure/smelter/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/stack/ore/iron) || istype(I, /obj/item/stack/ore/gold))
 		var/obj/item/stack/S = I
+		if(contents.len == max_items)
+			to_chat(user, span_warning("[src] is full!"))
+			return
 		if(!S.use(5))
 			to_chat(user, span_warning("You need at leat 5 pieces."))
 			return
