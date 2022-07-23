@@ -141,7 +141,6 @@
 /proc/send_to_latejoin(mob/character, buckle=FALSE)
 	var/atom/destination = pick(GLOB.latejoin_landmarks)
 	character.forceMove(get_turf(destination))
-	character.update_parallax_teleport()
 
 /mob/dead/new_player/proc/AttemptLateSpawn()
 	//Remove the player from the join queue if he was in one and reset the timer

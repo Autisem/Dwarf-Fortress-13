@@ -635,8 +635,6 @@
 
 	if (!inertia_moving)
 		inertia_next_move = world.time + inertia_move_delay
-	if (length(client_mobs_in_contents))
-		update_parallax_contents()
 
 	move_stacks--
 	if(move_stacks > 0) //we want only the first Moved() call in the stack to send this signal, all the other ones have an incorrect old_loc

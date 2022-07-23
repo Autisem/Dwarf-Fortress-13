@@ -107,8 +107,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/widescreenwidth = 19
 
-	var/parallax
-
 	var/ambientocclusion = TRUE
 
 	///Should we automatically fit the viewport?
@@ -365,19 +363,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += SETUP_NODE_SWITCH("Text autocorrection", "disabled_autocap", disabled_autocap ? "Off" : "On")
 			dat += SETUP_NODE_INPUT("FPS", "clientfps", clientfps)
 
-			switch (parallax)
-				if (PARALLAX_LOW)
-					button_name += "Low"
-				if (PARALLAX_MED)
-					button_name += "Medium"
-				if (PARALLAX_INSANE)
-					button_name += "Insane"
-				if (PARALLAX_DISABLE)
-					button_name += "Disabled"
-				else
-					button_name += "High"
-
-			dat += SETUP_NODE_SWITCH("Parallax", "parallaxdown", button_name)
 			dat += SETUP_NODE_SWITCH("Shadows", "ambientocclusion", ambientocclusion ? "On" : "Off")
 			dat += SETUP_NODE_SWITCH("Fit viewport", "auto_fit_viewport", auto_fit_viewport ? "Auto" : "Manual")
 
@@ -1221,16 +1206,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("allow_midround_antag")
 					toggles ^= MIDROUND_ANTAG
-
-				if("parallaxup")
-					parallax = WRAP(parallax + 1, PARALLAX_INSANE, PARALLAX_DISABLE + 1)
-					if (parent && parent.mob && parent.mob.hud_used)
-						parent.mob.hud_used.update_parallax_pref(parent.mob)
-
-				if("parallaxdown")
-					parallax = WRAP(parallax - 1, PARALLAX_INSANE, PARALLAX_DISABLE + 1)
-					if (parent && parent.mob && parent.mob.hud_used)
-						parent.mob.hud_used.update_parallax_pref(parent.mob)
 
 				if("ambientocclusion")
 					ambientocclusion = !ambientocclusion

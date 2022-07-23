@@ -183,19 +183,6 @@
 	blend_mode = BLEND_OVERLAY
 	render_relay_plane = RENDER_PLANE_GAME
 
-///Contains space parallax
-/atom/movable/screen/plane_master/parallax
-	name = "parallax plane master"
-	plane = PLANE_SPACE_PARALLAX
-	blend_mode = BLEND_MULTIPLY
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	render_relay_plane = RENDER_PLANE_GAME
-
-/atom/movable/screen/plane_master/parallax_white
-	name = "parallax whitifier plane master"
-	plane = PLANE_SPACE
-	render_relay_plane = RENDER_PLANE_GAME
-
 /atom/movable/screen/plane_master/camera_static
 	name = "camera static plane master"
 	plane = CAMERA_STATIC_PLANE

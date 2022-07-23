@@ -34,8 +34,6 @@
 	/// Does the mood bonus require a trait?
 	var/mood_trait
 
-	var/parallax_movedir = 0
-
 	var/ambience_volume = 15
 	var/ambience_index = AMBIENCE_GENERIC
 	var/list/ambientsounds
