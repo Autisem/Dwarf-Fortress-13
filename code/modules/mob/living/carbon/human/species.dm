@@ -37,8 +37,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/exotic_bloodtype = ""
 	///What the species drops when gibbed by a gibber machine.
 	var/meat = /obj/item/food/meat/slab/human
-	///What skin the species drops when gibbed by a gibber machine.
-	var/skinned_type
 	///Bitfield for food types that the species likes, giving them a mood boost. Lizards like meat, for example.
 	var/liked_food = NONE
 	///Bitfield for food types that the species dislikes, giving them disgust. Humans hate raw food, for example.
