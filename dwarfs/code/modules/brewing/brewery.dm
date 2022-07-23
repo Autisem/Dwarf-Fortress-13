@@ -48,13 +48,13 @@
 	to_chat(user, span_notice("You [open?"open":"close"] [src]."))
 
 /obj/structure/brewery/l/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/stack/sheet/mineral/coal))
+	if(I.get_fuel())
 		if(!open)
 			to_chat(user, span_warning("[src] has to be opened first!"))
 			return
-		var/obj/item/stack/S = I
-		fuel += 30*S.amount
-		qdel(S)
+		fuel += I.get_fuel()
+		user.visible_message(span_notice("[user] throws [I] into [src]."), span_notice("You throw [I] into [src]."))
+		qdel(I)
 		update_appearance()
 	else if(istype(I, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/C = I

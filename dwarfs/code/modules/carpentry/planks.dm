@@ -8,6 +8,9 @@
 	w_class = WEIGHT_CLASS_BULKY
 	merge_type = /obj/item/stack/sheet/planks
 
+/obj/item/stack/sheet/planks/get_fuel()
+	return 10 * amount
+
 GLOBAL_LIST_INIT(plank_recipes, list (
 	new/datum/stack_recipe("Weapon Hilt", /obj/item/weapon_hilt),
 	new/datum/stack_recipe("Tool Handle", /obj/item/tool_handle),

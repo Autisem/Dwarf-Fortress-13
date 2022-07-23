@@ -62,7 +62,7 @@
 /obj/item/weldingtool/update_overlays()
 	. = ..()
 	if(change_icons)
-		var/ratio = get_fuel() / max_fuel
+		var/ratio = _get_fuel() / max_fuel
 		ratio = CEILING(ratio*4, 1) * 25
 		. += "[initial(icon_state)][ratio]"
 	if(welding)
@@ -176,7 +176,7 @@
 	use(used)
 
 // Returns the amount of fuel in the welder
-/obj/item/weldingtool/proc/get_fuel()
+/obj/item/weldingtool/proc/_get_fuel()
 	return reagents.get_reagent_amount(/datum/reagent/fuel)
 
 
@@ -188,7 +188,7 @@
 	if(used > 0)
 		burned_fuel_for = 0
 
-	if(get_fuel() >= used)
+	if(_get_fuel() >= used)
 		reagents.remove_reagent(/datum/reagent/fuel, used)
 		check_fuel()
 		return TRUE
@@ -209,7 +209,7 @@
 
 //Turns off the welder if there is no more fuel (does this really need to be its own proc?)
 /obj/item/weldingtool/proc/check_fuel(mob/user)
-	if(get_fuel() <= 0 && welding)
+	if(_get_fuel() <= 0 && welding)
 		set_light_on(FALSE)
 		switched_on(user)
 		update_icon()
@@ -223,7 +223,7 @@
 		return
 	set_welding(!welding)
 	if(welding)
-		if(get_fuel() >= 1)
+		if(_get_fuel() >= 1)
 			to_chat(user, span_notice("Включаю [src]."))
 			playsound(loc, acti_sound, 50, TRUE)
 			force = 15
@@ -252,7 +252,7 @@
 /obj/item/weldingtool/examine(mob/user)
 	. = ..()
 	. += "<hr>"
-	. += "Здесь примерно [get_fuel()] единиц топлива из максимальных [max_fuel]."
+	. += "Здесь примерно [_get_fuel()] единиц топлива из максимальных [max_fuel]."
 
 /obj/item/weldingtool/get_temperature()
 	return welding * heat
@@ -267,7 +267,7 @@
 		to_chat(user, span_warning("Надо бы включить [src]!"))
 		return FALSE
 
-	if(get_fuel() >= amount)
+	if(_get_fuel() >= amount)
 		return TRUE
 	else
 		to_chat(user, span_warning("Нужно больше топлива для этой задачи!"))
@@ -333,7 +333,7 @@
 	change_icons = FALSE
 
 /obj/item/weldingtool/abductor/process()
-	if(get_fuel() <= max_fuel)
+	if(_get_fuel() <= max_fuel)
 		reagents.add_reagent(/datum/reagent/fuel, 1)
 	..()
 
@@ -359,7 +359,7 @@
 
 /obj/item/weldingtool/experimental/process()
 	..()
-	if(get_fuel() < max_fuel && nextrefueltick < world.time)
+	if(_get_fuel() < max_fuel && nextrefueltick < world.time)
 		nextrefueltick = world.time + 10
 		reagents.add_reagent(/datum/reagent/fuel, 1)
 

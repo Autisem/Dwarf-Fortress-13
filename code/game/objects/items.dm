@@ -640,6 +640,10 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 /obj/item/proc/get_temperature()
 	return heat
 
+///Returns the fuel value of src to make refuelling easier
+/obj/item/proc/get_fuel()
+	return 0
+
 ///Returns the sharpness of src. If you want to get the sharpness of an item use this.
 /obj/item/proc/get_sharpness()
 	return atck_type == SHARP

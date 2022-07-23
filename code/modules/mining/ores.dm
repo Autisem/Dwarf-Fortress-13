@@ -86,6 +86,9 @@
 	ore_icon = 'dwarfs/icons/turf/ores/coal.dmi'
 	ore_basename = "coal"
 
+/obj/item/stack/ore/coal/get_fuel()
+	return 15 * amount
+
 /obj/item/stack/ore/gold
 	name = "gold ore"
 	icon_state = "gold"
