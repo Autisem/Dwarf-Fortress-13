@@ -78,3 +78,9 @@
 									span_notice("You dig up some stones."))
 	if(..())
 		return
+
+/turf/open/genturf
+	name = "ungenerated turf"
+	desc = "If you see this, and you're not a ghost, yell at coders"
+	icon = 'icons/turf/debug.dmi'
+	icon_state = "genturf"
