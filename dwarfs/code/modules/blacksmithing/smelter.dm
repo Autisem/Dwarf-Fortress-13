@@ -83,11 +83,10 @@
 		if(contents.len)
 			start_smelting()
 		update_appearance()
-	else if(istype(I, /obj/item/stack/sheet/mineral/coal))
-		var/obj/item/stack/sheet/mineral/coal/C = I
-		fuel += C.amount*15
-		qdel(C)
-		to_chat(user, span_notice("You throw [C] into [src]."))
+	else if(I.get_fuel())
+		fuel += I.get_fuel()
+		qdel(I)
+		user.visible_message(span_notice("[user] throws [I] into [src]."), span_notice("You throw [I] into [src]."))
 		update_appearance()
 	else
 		. = ..()

@@ -84,6 +84,9 @@ GLOBAL_LIST_INIT(gold_recipes, list ())
 	merge_type = /obj/item/stack/sheet/mineral/coal
 	novariants = TRUE
 
+/obj/item/stack/sheet/mineral/coal/get_fuel()
+	return 15 * amount
+
 /obj/item/stack/sheet/mineral/coal/attackby(obj/item/W, mob/user, params)
 	if(W.get_temperature() > 300)//If the temperature of the object is over 300, then ignite
 		var/turf/T = get_turf(src)

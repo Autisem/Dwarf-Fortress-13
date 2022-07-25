@@ -200,6 +200,7 @@
 	M.lastattackerckey = user.ckey
 
 	user.do_attack_animation(M)
+	M.do_damaged_animation(user)
 	M.attacked_by(src, user)
 	if(skill && M.stat != DEAD)
 		user.mind.adjust_experience(skill, initial(skill.exp_per_attack))

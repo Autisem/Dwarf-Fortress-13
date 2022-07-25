@@ -95,14 +95,14 @@
 		update_appearance()
 		to_chat(user, span_notice("You light up [src]."))
 		start_cooking()
-	else if(istype(I, /obj/item/stack/sheet/mineral/coal))
+	else if(I.get_fuel())
 		if(!open)
 			to_chat(user, span_warning("[src] has to be opened first."))
 			return
-		var/obj/item/stack/sheet/mineral/coal/C = I
-		fuel += C.amount*15
-		qdel(C)
-		to_chat(user, "You throw [C] into [src].")
+		fuel += I.get_fuel()
+		user.visible_message(span_notice("[user] throws [I] into [src]."), span_notice("You throw [I] into [src]."))
+		qdel(I)
+		update_appearance()
 	else
 		. = ..()
 

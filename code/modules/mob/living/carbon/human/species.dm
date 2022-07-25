@@ -1345,6 +1345,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				to_chat(user, span_warning("You can't [atk_verb] with your mouth covered!"))
 				return FALSE
 		user.do_attack_animation(target, atk_effect)
+		target.do_damaged_animation(user)
 
 		var/damage = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh)
 

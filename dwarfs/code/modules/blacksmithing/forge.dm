@@ -10,7 +10,6 @@
 	anchored = TRUE
 	var/fuel = 0
 	var/fuel_consumption = 1 // consumes x fuel per /process
-	var/list/fuel_values = list(/obj/item/stack/sheet/mineral/coal = 15)
 	var/working = FALSE
 
 /obj/structure/forge/update_icon_state()
@@ -43,11 +42,10 @@
 /obj/structure/forge/attackby(obj/item/I, mob/living/user, params)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
-	if(I.type in fuel_values)
-		var/obj/item/stack/S = I
-		src.visible_message(span_notice("[user] throws [S] into [src]."), span_notice("You throw [S] into [src]."))
-		fuel+=S.amount*fuel_values[I.type]
-		qdel(S)
+	if(I.get_fuel())
+		user.visible_message(span_notice("[user] throws [I] into [src]."), span_notice("You throw [I] into [src]."))
+		fuel+=I.get_fuel()
+		qdel(I)
 		update_appearance()
 	else if(I.get_temperature())
 		if(!fuel)

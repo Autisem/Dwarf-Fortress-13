@@ -6,6 +6,9 @@
 	throw_range = 0
 	w_class = WEIGHT_CLASS_BULKY
 
+/obj/item/log/get_fuel()
+	return 50 // 5 planks
+
 /obj/item/log/Initialize()
 	. = ..()
 	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
@@ -33,6 +36,9 @@
 	density = 1
 	w_class = WEIGHT_CLASS_GIGANTIC
 	var/small_log_type = /obj/item/log
+
+/obj/item/log/large/get_fuel()
+	return 3 * 50 // 3 logs each 5 planks
 
 /obj/item/log/large/Initialize()
 	. = ..()

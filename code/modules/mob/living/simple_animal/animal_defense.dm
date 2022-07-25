@@ -39,6 +39,7 @@
 				to_chat(M, span_warning("You don't want to hurt [name]!"))
 				return
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+			do_damaged_animation(M)
 			visible_message(span_danger("[M] [response_harm_continuous] [name]!") ,\
 							span_userdanger("[M] [response_harm_continuous] you!") , null, COMBAT_MESSAGE_RANGE, M)
 			to_chat(M, span_danger("You [response_harm_simple] [name]!"))
