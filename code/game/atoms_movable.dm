@@ -1045,6 +1045,34 @@
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, transform=rotated_transform, time = 1, easing=BACK_EASING|EASE_IN, flags = ANIMATION_PARALLEL)
 	animate(pixel_x = pixel_x - pixel_x_diff, pixel_y = pixel_y - pixel_y_diff, transform=initial_transform, time = 2, easing=SINE_EASING, flags = ANIMATION_PARALLEL)
 
+/atom/movable/proc/do_damaged_animation(atom/attacker)
+	var/pixel_x_diff = 0
+	var/pixel_y_diff = 0
+	switch(get_dir(attacker, src))
+		if(NORTH)
+			pixel_y_diff = 3
+		if(NORTHWEST)
+			pixel_x_diff = -3
+			pixel_y_diff = 3
+		if(NORTHEAST)
+			pixel_x_diff = 3
+			pixel_y_diff = 3
+		if(SOUTH)
+			pixel_y_diff = -3
+		if(SOUTHWEST)
+			pixel_x_diff = -3
+			pixel_y_diff = -3
+		if(SOUTHEAST)
+			pixel_x_diff = 3
+			pixel_y_diff = -3
+		if(WEST)
+			pixel_x_diff = -3
+		if(EAST)
+			pixel_x_diff = 3
+	animate(src, pixel_x=pixel_x+pixel_x_diff, pixel_y=pixel_y+pixel_y_diff, time=2, easing=SINE_EASING)
+	animate(time=1)
+	animate(pixel_x=pixel_x-pixel_x_diff, pixel_y=pixel_y-pixel_y_diff, time=2, easing=SINE_EASING)
+
 /atom/movable/vv_get_dropdown()
 	. = ..()
 	. += "<option value='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(src)]'>Follow</option>"

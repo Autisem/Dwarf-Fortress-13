@@ -203,6 +203,7 @@
 	if(M.attack_sound)
 		playsound(loc, M.attack_sound, 50, TRUE, TRUE)
 	M.do_attack_animation(src)
+	do_damaged_animation(M)
 	visible_message(span_danger("<b>[M]</b> [M.attack_verb_continuous] <b>[name]</b>!") , \
 					span_userdanger("<b>[M]</b> [M.attack_verb_continuous] you!") , null, COMBAT_MESSAGE_RANGE, M)
 	to_chat(M, span_danger("[M.attack_verb_simple] <b>[name]</b>!"))
@@ -237,6 +238,7 @@
 				to_chat(M, span_warning("You can't bite when your mouth is covered!"))
 				return FALSE
 			M.do_attack_animation(src, ATTACK_EFFECT_BITE)
+			do_damaged_animation(M)
 			if (prob(75))
 				log_combat(M, src, "attacked")
 				playsound(loc, 'sound/weapons/bite.ogg', 50, TRUE, -1)
