@@ -1380,8 +1380,6 @@
 #include "dwarfs\code\modules\carpentry\components.dm"
 #include "dwarfs\code\modules\carpentry\log.dm"
 #include "dwarfs\code\modules\carpentry\planks.dm"
-#include "dwarfs\code\modules\construction\blueprint.dm"
-#include "dwarfs\code\modules\construction\builder_hammer.dm"
 #include "dwarfs\code\modules\cooking\items.dm"
 #include "dwarfs\code\modules\cooking\oven.dm"
 #include "dwarfs\code\modules\cooking\quern.dm"
