@@ -175,11 +175,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(CONFIG_GET(flag/automute_on) && !holder && last_message == message)
 		src.last_message_count++
 		if(src.last_message_count >= SPAM_TRIGGER_AUTOMUTE)
-			to_chat(src, span_userdanger("Авто-мут был применён. Следующим шагом может стать авто-бан."))
+			to_chat(src, span_userdanger("You have been automatically muted, stop spamming."))
 			cmd_admin_mute(src, mute_type, 1)
 			return TRUE
 		if(src.last_message_count >= SPAM_TRIGGER_WARNING)
-			to_chat(src, span_userdanger("Прекращай спамить. К тебе будет применён авто-мут, если не прекратишь это."))
+			to_chat(src, span_userdanger("Stop spamming, you will be automatically muted if you continue."))
 			return FALSE
 	else
 		last_message = message
@@ -774,7 +774,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	var/url = winget(src, null, "url")
 	//special javascript to make them reconnect under a new window.
 	src << browse({"<a id='link' href="byond://[url]?token=[token]">byond://[url]?token=[token]</a><script type="text/javascript">document.getElementById("link").click();window.location="byond://winset?command=.quit"</script>"}, "border=0;titlebar=0;size=1x1;window=redirect")
-	to_chat(src, {"<a href="byond://[url]?token=[token]">Тебя должно переподключить автоматически. Если это не так, то нажми на меня.</a>"})
+	to_chat(src, {"<a href="byond://[url]?token=[token]">You will be reconnected automatically. If this is not happening click here.</a>"})
 
 /client/proc/note_randomizer_user()
 	add_system_note("CID-Error", "Detected as using a cid randomizer.")
@@ -833,11 +833,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			clicklimiter[MINUTE_COUNT] = 0
 		clicklimiter[MINUTE_COUNT] += 1+(ab)
 		if (clicklimiter[MINUTE_COUNT] > mcl)
-			var/msg = "Действия игнорируются. Слишком много действий было совершено до этого за секунду."
+			var/msg = "You click was ignored. Too many clicks made in the last minute."
 			if (minute != clicklimiter[ADMINSWARNED_AT]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
 				clicklimiter[ADMINSWARNED_AT] = minute
 
-				msg += " Педали были проинформированы и уже выехали давать тебе пизды, крепись."
+				msg += " The admins have been notified."
 				if (ab)
 					log_game("[key_name(src)] is using the middle click aimbot exploit")
 					message_admins("[ADMIN_LOOKUPFLW(usr)] [ADMIN_KICK(usr)] is using the middle click aimbot exploit</span>")
@@ -857,7 +857,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			clicklimiter[SECOND_COUNT] = 0
 		clicklimiter[SECOND_COUNT] += 1+(!!ab)
 		if (clicklimiter[SECOND_COUNT] > scl)
-			to_chat(src, span_danger("Действия игнорируются. Слишком много действий было совершено до этого за секунду."))
+			to_chat(src, span_danger("You click was ignored. Too many clicks made in the last second."))
 			return
 
 	if (prefs.hotkeys)
