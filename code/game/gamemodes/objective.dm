@@ -38,7 +38,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		if ((possible_target != src) && ishuman(possible_target.current))
 			possible_targets += possible_target.current
 
-	possible_targets = list("Ничего", "Random") + sortNames(possible_targets)
+	possible_targets = list("Nobody", "Random") + sortNames(possible_targets)
 
 
 	if(target?.current)
@@ -48,7 +48,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	if (!new_target)
 		return
 
-	if (new_target == "Ничего.")
+	if (new_target == "Nobody.")
 		target = null
 	else if (new_target == "Random")
 		find_target()
@@ -200,16 +200,16 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/protect/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Защитить [target.name], на должности [!target_role_type ? target.assigned_role : target.special_role]."
+		explanation_text = "Protect [target.name]."
 	else
-		explanation_text = "Ничего."
+		explanation_text = "Nothing."
 
 /datum/objective/protect/admin_edit(mob/admin)
 	admin_simple_target_pick(admin)
 
 /datum/objective/survive
 	name = "survive"
-	explanation_text = "Выжить."
+	explanation_text = "Survive."
 	reward = 5
 
 /datum/objective/survive/check_completion()
@@ -221,7 +221,7 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/martyr
 	name = "martyr"
-	explanation_text = "Погибнуть красиво."
+	explanation_text = "Die beautifully."
 	reward = 15
 
 /datum/objective/martyr/check_completion()
@@ -271,11 +271,11 @@ GLOBAL_LIST_EMPTY(possible_items)
 	if(item)
 		targetinfo = item
 		steal_target = targetinfo.targetitem
-		explanation_text = "Украсть [targetinfo.name]"
+		explanation_text = "Steal [targetinfo.name]"
 		give_special_equipment(targetinfo.special_equipment)
 		return steal_target
 	else
-		explanation_text = "Ничего."
+		explanation_text = "Nothing."
 		return
 
 /datum/objective/steal/admin_edit(mob/admin)
@@ -294,7 +294,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 		if (!custom_name)
 			return
 		steal_target = custom_target
-		explanation_text = "Украсть [custom_name]."
+		explanation_text = "Steal [custom_name]."
 
 	else
 		set_target(new_target)
@@ -346,9 +346,9 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/protect_object/update_explanation_text()
 	. = ..()
 	if(protect_target)
-		explanation_text = "Защитить [protect_target] любой ценой."
+		explanation_text = "Protect [protect_target] at any cost."
 	else
-		explanation_text = "Ничего."
+		explanation_text = "Nothing."
 
 /datum/objective/protect_object/check_completion()
 	return !QDELETED(protect_target)

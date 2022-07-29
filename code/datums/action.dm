@@ -211,7 +211,7 @@
 	name = "Toggle Gunlight"
 
 /datum/action/item_action/toggle_mode
-	name = "Режим управления"
+	name = "Toggle mode"
 
 /datum/action/item_action/toggle_barrier_spread
 	name = "Toggle Barrier Spread"
@@ -220,16 +220,13 @@
 	name = "Equip/Unequip TED Gun"
 
 /datum/action/item_action/toggle_paddles
-	name = "Управление ручками"
+	name = "Toggle paddles"
 
 /datum/action/item_action/pick_color
 	name = "Choose A Color"
 
 /datum/action/item_action/toggle_mister
 	name = "Toggle Mister"
-
-/datum/action/item_action/toggle_morozko
-	name = "Распылитель"
 
 /datum/action/item_action/activate_injector
 	name = "Activate Injector"
@@ -250,7 +247,7 @@
 
 /datum/action/item_action/toggle/New(Target)
 	..()
-	name = "переключить [target.name]"
+	name = "Toggle [target.name]"
 	button.name = name
 
 /datum/action/item_action/halt
@@ -342,7 +339,7 @@
 
 /datum/action/item_action/organ_action/toggle/New(Target)
 	..()
-	name = "переключить [target.name]"
+	name = "toggle [target.name]"
 	button.name = name
 
 /datum/action/item_action/organ_action/use/New(Target)

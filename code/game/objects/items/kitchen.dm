@@ -20,7 +20,7 @@
 	ADD_TRAIT(src, TRAIT_APC_SHOCKING, INNATE_TRAIT)
 
 /obj/item/kitchen/fork
-	name = "вилка"
+	name = "fork"
 	desc = "Pointy."
 	icon_state = "fork"
 	force = 4
@@ -62,22 +62,6 @@
 	else
 		return ..()
 
-/obj/item/kitchen/fork/plastic
-	name = "пластиковая вилка"
-	desc = "Really takes you back to highschool lunch."
-	icon_state = "plastic_fork"
-	force = 0
-	w_class = WEIGHT_CLASS_TINY
-	throwforce = 0
-	custom_price = PAYCHECK_PRISONER * 2
-	var/break_chance = 25
-
-/obj/item/kitchen/fork/plastic/afterattack(atom/target, mob/user)
-	.=..()
-	if(prob(break_chance))
-		user.visible_message(span_danger("[user]'s fork snaps into tiny pieces in their hand."))
-		qdel(src)
-
 /obj/item/kitchen/knife
 	name = "kitchen knife"
 	icon = 'dwarfs/icons/items/kitchen.dmi'
@@ -116,126 +100,6 @@
 						span_suicide("[user] is slitting [user.p_their()] stomach open with the [src.name]! It looks like [user.p_theyre()] trying to commit seppuku.")))
 	return (BRUTELOSS)
 
-/obj/item/kitchen/knife/plastic
-	name = "пластиковый нож"
-	icon_state = "plastic_knife"
-	inhand_icon_state = "knife"
-	desc = "A very safe, barely sharp knife made of plastic. Good for cutting food and not much else."
-	force = 0
-	w_class = WEIGHT_CLASS_TINY
-	throwforce = 0
-	throw_range = 5
-	attack_verb_continuous = list("prods", "whiffs", "scratches", "pokes")
-	attack_verb_simple = list("prod", "whiff", "scratch", "poke")
-	atck_type = SHARP
-	custom_price = PAYCHECK_PRISONER * 2
-	var/break_chance = 25
-
-/obj/item/kitchen/knife/plastic/afterattack(mob/living/carbon/user)
-	.=..()
-	if(prob(break_chance))
-		user.visible_message(span_danger("[user]'s knife snaps into tiny pieces in their hand."))
-		qdel(src)
-
-/obj/item/kitchen/knife/ritual
-	name = "ритуальный серп"
-	desc = "The unearthly energies that once powered this blade are now dormant."
-	icon = 'icons/obj/eldritch.dmi'
-	icon_state = "bone_blade"
-	inhand_icon_state = "bone_blade"
-	worn_icon_state = "bone_blade"
-	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
-	w_class = WEIGHT_CLASS_NORMAL
-
-/obj/item/kitchen/knife/bloodletter
-	name = "кровопускатель"
-	desc = "An occult looking dagger that is cold to the touch. Somehow, the flawless orb on the pommel is made entirely of liquid blood."
-	icon = 'icons/obj/ice_moon/artifacts.dmi'
-	icon_state = "bloodletter"
-	worn_icon_state = "render"
-	w_class = WEIGHT_CLASS_NORMAL
-	/// Bleed stacks applied when an organic mob target is hit
-	var/bleed_stacks_per_hit = 3
-
-/obj/item/kitchen/knife/bloodletter/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(!isliving(target) || !proximity_flag)
-		return
-	var/mob/living/M = target
-	if(!(M.mob_biotypes & MOB_ORGANIC))
-		return
-	var/datum/status_effect/stacking/saw_bleed/bloodletting/B = M.has_status_effect(/datum/status_effect/stacking/saw_bleed/bloodletting)
-	if(!B)
-		M.apply_status_effect(/datum/status_effect/stacking/saw_bleed/bloodletting, bleed_stacks_per_hit)
-	else
-		B.add_stacks(bleed_stacks_per_hit)
-
-/obj/item/kitchen/knife/butcher
-	name = "тесак мясника"
-	icon_state = "butch"
-	inhand_icon_state = "butch"
-	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown by-products."
-	flags_1 = CONDUCT_1
-	force = 15
-	throwforce = 10
-	custom_materials = list(/datum/material/iron=18000)
-	attack_verb_continuous = list("cleaves", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("cleave", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
-	w_class = WEIGHT_CLASS_NORMAL
-	custom_price = PAYCHECK_EASY * 5
-	wound_bonus = 25
-
-/obj/item/kitchen/knife/hunting
-	name = "охотничий нож"
-	desc = "Despite its name, it's mainly used for cutting meat from dead prey rather than actual hunting."
-	inhand_icon_state = "huntingknife"
-	icon_state = "huntingknife"
-
-/obj/item/kitchen/knife/hunting/set_butchering()
-	AddComponent(/datum/component/butchering, 80 - force)
-
-/obj/item/kitchen/knife/combat
-	name = "боевой нож"
-	icon_state = "buckknife"
-	desc = "A military combat utility survival knife."
-	embedding = list("pain_mult" = 4, "embed_chance" = 65, "fall_chance" = 10, "ignore_throwspeed_threshold" = TRUE)
-	force = 20
-	throwforce = 20
-	attack_verb_continuous = list("slashes", "stabs", "slices", "tears", "lacerates", "rips", "cuts")
-	attack_verb_simple = list("slash", "stab", "slice", "tear", "lacerate", "rip", "cut")
-	bayonet = TRUE
-
-/obj/item/kitchen/knife/combat/survival
-	name = "нож выживальщика"
-	icon_state = "survivalknife"
-	embedding = list("pain_mult" = 4, "embed_chance" = 35, "fall_chance" = 10)
-	desc = "A hunting grade survival knife."
-	force = 15
-	throwforce = 15
-	bayonet = TRUE
-
-/obj/item/kitchen/knife/combat/bone
-	name = "костяной нож"
-	inhand_icon_state = "bone_dagger"
-	icon_state = "bone_dagger"
-	worn_icon_state = "bone_dagger"
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	desc = "A sharpened bone. The bare minimum in survival."
-	embedding = list("pain_mult" = 4, "embed_chance" = 35, "fall_chance" = 10)
-	force = 15
-	throwforce = 15
-	custom_materials = null
-
-/obj/item/kitchen/knife/combat/cyborg
-	name = "нож киборга"
-	icon = 'icons/obj/items_cyborg.dmi'
-	icon_state = "knife_cyborg"
-	desc = "A cyborg-mounted plasteel knife. Extremely sharp and durable."
-
 /obj/item/kitchen/rollingpin
 	name = "rolling pin"
 	desc = "Used to knock out the Bartender."
@@ -259,7 +123,7 @@
 /* Trays  moved to /obj/item/storage/bag */
 
 /obj/item/kitchen/spoon
-	name = "ложка"
+	name = "spoon"
 	desc = "Just be careful your food doesn't melt the spoon first."
 	icon_state = "spoon"
 	w_class = WEIGHT_CLASS_TINY
@@ -273,19 +137,3 @@
 	custom_price = PAYCHECK_PRISONER * 5
 	tool_behaviour = TOOL_MINING
 	toolspeed = 25 // Literally 25 times worse than the base pickaxe
-
-/obj/item/kitchen/spoon/plastic
-	name = "пластиковая ложка"
-	icon_state = "plastic_spoon"
-	force = 0
-	custom_price = PAYCHECK_PRISONER * 2
-	toolspeed = 75 // The plastic spoon takes 5 minutes to dig through a single mineral turf... It's one, continuous, breakable, do_after...
-
-	/// The probability of this breaking every time it's used
-	var/break_chance = 25
-
-/obj/item/kitchen/spoon/plastic/afterattack(atom/target, mob/user)
-	.=..()
-	if(prob(break_chance))
-		user.visible_message(span_danger("[user]'s spoon snaps into tiny pieces in their hand."))
-		qdel(src)

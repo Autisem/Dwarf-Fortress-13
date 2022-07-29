@@ -95,7 +95,7 @@
 			var/pen_mod = -(armor * penetrative_behaviour) // if our shrapnel is weak into armor, then we restore our armor to the full value.
 			actual_chance += pen_mod // doing the armor pen as a separate calc just in case this ever gets expanded on
 			if(actual_chance <= 0)
-				victim.visible_message(span_danger("[weapon] отскакивает от брони [victim]!"), span_notice("[weapon] отскакивает от моей брони!"), vision_distance = COMBAT_MESSAGE_RANGE)
+				victim.visible_message(span_danger("[weapon] bounces off [victim]'s armor, unable to embed!"), span_notice("[weapon] bounces off your armor, unable to embed!"), vision_distance = COMBAT_MESSAGE_RANGE)
 				return
 
 	if(!prob(actual_chance))
@@ -137,9 +137,9 @@
 	SIGNAL_HANDLER
 
 	if(I.isEmbedHarmless())
-		examine_list += "<hr>[capitalize(I.name)] выглядит липким и вероятнее всего прилипнет к кому-нибудь, если правильно кинуть!"
+		examine_list += "[I] feels sticky, and could probably get stuck to someone if thrown properly!"
 	else
-		examine_list += "<hr>[capitalize(I.name)] выглядит острым и вероятнее всего воткнётся в кого-нибудь, если правильно кинуть!"
+		examine_list += "[I] has a fine point, and could probably embed in someone if thrown properly!"
 
 /**
  * checkEmbedProjectile() is what we get when a projectile with a defined shrapnel_type impacts a target.
@@ -155,8 +155,6 @@
 		return // we don't care
 
 	var/obj/item/payload = new payload_type(get_turf(hit))
-	if(istype(payload, /obj/item/shrapnel/bullet))
-		payload.name = P.name
 	payload.embedding = P.embedding
 	payload.updateEmbedding()
 	var/mob/living/carbon/C = hit

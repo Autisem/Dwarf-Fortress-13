@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/blood
-	name = "пакет крови"
-	desc = "Содержит кровь используемую при переливании. Должна быть зафиксирована на капельнице. Объем 200 единиц."
+	name = "blood pack"
+	desc = "Contains blood used for transfusion. Must be attached to an IV drip."
 	icon = 'icons/obj/bloodpack.dmi'
 	icon_state = "bloodpack"
 	volume = 200
@@ -56,13 +56,6 @@
 
 /obj/item/reagent_containers/blood/o_minus
 	blood_type = "O-"
-
-/obj/item/reagent_containers/blood/lizard
-	blood_type = "L"
-
-/obj/item/reagent_containers/blood/ethereal
-	blood_type = "LE"
-	unique_blood = /datum/reagent/consumable/liquidelectricity
 
 /obj/item/reagent_containers/blood/universal
 	blood_type = "U"

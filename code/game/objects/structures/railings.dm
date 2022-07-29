@@ -34,31 +34,6 @@
 
 	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS ,null,CALLBACK(src, .proc/can_be_rotated),CALLBACK(src,.proc/after_rotation))
 
-/obj/structure/railing/attackby(obj/item/I, mob/living/user, params)
-	..()
-	add_fingerprint(user)
-
-	if(I.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
-		if(obj_integrity < max_integrity)
-			if(!I.tool_start_check(user, amount=0))
-				return
-
-			to_chat(user, span_notice("You begin repairing [src]..."))
-			if(I.use_tool(src, user, 40, volume=50))
-				obj_integrity = max_integrity
-				to_chat(user, span_notice("You repair [src]."))
-		else
-			to_chat(user, span_warning("[src] is already in good condition!"))
-		return
-
-/obj/structure/railing/wirecutter_act(mob/living/user, obj/item/I)
-	. = ..()
-	if(!anchored)
-		to_chat(user, span_warning("You cut apart the railing."))
-		I.play_tool_sound(src, 100)
-		deconstruct()
-		return TRUE
-
 ///Implements behaviour that makes it possible to unanchor the railing.
 /obj/structure/railing/wrench_act(mob/living/user, obj/item/I)
 	. = ..()

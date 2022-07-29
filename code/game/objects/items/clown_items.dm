@@ -23,7 +23,6 @@
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
-	grind_results = list(/datum/reagent/lye = 10)
 	var/cleanspeed = 35 //slower than mop
 	force_string = "robust... against germs"
 	var/uses = 100
@@ -52,45 +51,6 @@
 			else
 				msg = "It's seen some light use, but it's still pretty fresh."
 	. += "<hr><span class='notice'>[msg]</span>"
-
-/obj/item/soap/nanotrasen
-	desc = "A heavy duty bar of Nanotrasen brand soap. Smells of plasma."
-	grind_results = list(/datum/reagent/toxin/plasma = 10, /datum/reagent/lye = 10)
-	icon_state = "soapnt"
-	cleanspeed = 28 //janitor gets this
-	uses = 300
-
-/obj/item/soap/homemade
-	desc = "A homemade bar of soap. Smells of... well...."
-	icon_state = "soapgibs"
-	cleanspeed = 30 // faster to reward chemists for going to the effort
-
-/obj/item/soap/deluxe
-	desc = "A deluxe Waffle Co. brand bar of soap. Smells of high-class luxury."
-	icon_state = "soapdeluxe"
-	cleanspeed = 20 //captain gets one of these
-
-/obj/item/soap/syndie
-	desc = "An untrustworthy bar of soap made of strong chemical agents that dissolve blood faster."
-	icon_state = "soapsyndie"
-	cleanspeed = 5 //faster than mop so it is useful for traitors who want to clean crime scenes
-
-/obj/item/soap/omega
-	name = "omega soap"
-	desc = "The most advanced soap known to mankind."
-	icon_state = "soapomega"
-	cleanspeed = 3 //Only the truest of mind soul and body get one of these
-	uses = 301
-
-/obj/item/soap/omega/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] is using [src] to scrub themselves from the timeline! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return MANUAL_SUICIDE
-
-/obj/item/paper/fluff/stations/soap
-	name = "ancient janitorial poem"
-	desc = "An old paper that has passed many hands."
-	info = "The legend of the omega soap</B><BR><BR> Essence of <B>potato</B>. Juice, not grind.<BR><BR> A <B>lizard's</B> tail, turned into <B>wine</B>.<BR><BR> <B>powder of monkey</B>, to help the workload.<BR><BR> Some <B>Krokodil</B>, because meth would explode.<BR><BR> <B>Nitric acid</B> and <B>Baldium</B>, for organic dissolving.<BR><BR> A cup filled with <B>Hooch</B>, for sinful absolving<BR><BR> Some <B>Bluespace Dust</B>, for removal of stains.<BR><BR> A syringe full of <B>Pump-up</B>, it's security's bane.<BR><BR> Add a can of <B>Space Cola</B>, because we've been paid.<BR><BR> <B>Heat</B> as hot as you can, let the soap be your blade.<BR><BR> <B>Ten units of each regent create a soap that could topple all others.</B>"
-
 
 /obj/item/soap/suicide_act(mob/user)
 	user.say(";FFFFFFFFFFFFFFFFUUUUUUUDGE!!", forced="soap suicide")
@@ -137,19 +97,6 @@
 			human_user.update_body()
 		decreaseUses(user)
 		return
-	else if(istype(target, /obj/structure/window))
-		user.visible_message(span_notice("[user] begins to clean [target.name] with [src]...") , span_notice("You begin to clean [target.name] with [src]..."))
-		if(do_after(user, clean_speedies, target = target))
-			to_chat(user, span_notice("You clean [target.name]."))
-			target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-			target.set_opacity(initial(target.opacity))
-			var/obj/structure/window/our_window = target
-			if(our_window.bloodied)
-				for(var/obj/effect/decal/cleanable/blood/iter_blood in our_window)
-					our_window.vis_contents -= iter_blood
-					qdel(iter_blood)
-					our_window.bloodied = FALSE
-			decreaseUses(user)
 	else
 		user.visible_message(span_notice("[user] begins to clean [target.name] with [src]...") , span_notice("You begin to clean [target.name] with [src]..."))
 		if(do_after(user, clean_speedies, target = target))
@@ -179,8 +126,8 @@
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	throw_speed = 3
 	throw_range = 7
-	attack_verb_continuous = list("ХОНКАЕТ")
-	attack_verb_simple = list("ХОНКАЕТ")
+	attack_verb_continuous = list("HONKS")
+	attack_verb_simple = list("HONKS")
 	///sound file given to the squeaky component we make in Initialize()
 	var/soundfile = 'sound/items/bikehorn.ogg'
 
@@ -241,4 +188,3 @@
 	name = "Canned Laughter"
 	desc = "Just looking at this makes you want to giggle."
 	icon_state = "laughter"
-	list_reagents = list(/datum/reagent/consumable/laughter = 50)

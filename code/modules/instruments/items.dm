@@ -32,7 +32,7 @@
 
 /obj/item/instrument/attack_self(mob/user)
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning("У меня не хватает ловкости для этого!"))
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return TRUE
 	interact(user)
 
@@ -43,7 +43,6 @@
 	if(!isliving(user) || user.stat != CONSCIOUS || HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
 		return
 
-	user.set_machine(src)
 	song.ui_interact(user)
 
 /obj/item/instrument/violin
@@ -131,8 +130,8 @@
 	desc = "It's made of wood and has bronze strings."
 	icon_state = "guitar"
 	inhand_icon_state = "guitar"
-	attack_verb_continuous = list("играет металл", "серенадирует", "инструментирует", "применяет по делу")
-	attack_verb_simple = list("играет металл", "серенадирует", "инструментирует", "применяет по делу")
+	attack_verb_continuous = list("plays metal on", "serenades", "crashes", "smashes")
+	attack_verb_simple = list("play metal on", "serenade", "crash", "smash")
 	hitsound = 'sound/weapons/stringsmash.ogg'
 	allowed_instrument_ids = list("guitar","csteelgt","cnylongt", "ccleangt", "cmutedgt")
 
@@ -142,8 +141,8 @@
 	icon_state = "eguitar"
 	inhand_icon_state = "eguitar"
 	force = 12
-	attack_verb_continuous = list("играет металл", "серенадирует", "инструментирует", "применяет по делу")
-	attack_verb_simple = list("играет металл", "серенадирует", "инструментирует", "применяет по делу")
+	attack_verb_continuous = list("plays metal on", "serenades", "crashes", "smashes")
+	attack_verb_simple = list("play metal on", "serenade", "crash", "smash")
 	hitsound = 'sound/weapons/stringsmash.ogg'
 	allowed_instrument_ids = "eguitar"
 
@@ -174,8 +173,8 @@
 	icon_state = "spectral_trumpet"
 	inhand_icon_state = "spectral_trumpet"
 	force = 0
-	attack_verb_continuous = list("играет","джаззует","трампетирует","горнирует","дудит","спукает")
-	attack_verb_simple = list("играет","джаззует","трампетирует","горнирует","дудит","спукает")
+	attack_verb_continuous = list("plays", "jazzes", "trumpets", "mourns", "doots", "spooks")
+	attack_verb_simple = list("play", "jazz", "trumpet", "mourn", "doot", "spook")
 
 /obj/item/instrument/trumpet/spectral/attack(mob/living/carbon/C, mob/user)
 	playsound (src, 'sound/runtime/instruments/trombone/En4.mid', 100,1,-1)
@@ -194,8 +193,8 @@
 	icon_state = "saxophone"
 	inhand_icon_state = "saxophone"
 	force = 0
-	attack_verb_continuous = list("играет","саксирует","горнирует","дудит","спукает")
-	attack_verb_simple = list("играет","саксирует","горнирует","дудит","спукает")
+	attack_verb_continuous = list("plays", "jazzes", "trumpets", "mourns", "doots", "spooks")
+	attack_verb_simple = list("play", "jazz", "trumpet", "mourn", "doot", "spook")
 
 /obj/item/instrument/saxophone/spectral/attack(mob/living/carbon/C, mob/user)
 	playsound (src, 'sound/runtime/instruments/saxophone/En4.mid', 100,1,-1)
@@ -214,8 +213,8 @@
 	icon_state = "trombone"
 	inhand_icon_state = "trombone"
 	force = 0
-	attack_verb_continuous = list("играет","тромбирует","дудит","спукает")
-	attack_verb_simple = list("играет","тромбирует","дудит","спукает")
+	attack_verb_continuous = list("plays", "jazzes", "trombones", "mourns", "doots", "spooks")
+	attack_verb_simple = list("play", "jazz", "trombone", "mourn", "doot", "spook")
 
 /obj/item/instrument/trombone/spectral/attack(mob/living/carbon/C, mob/user)
 	playsound (src, 'sound/runtime/instruments/trombone/Cn4.mid', 100,1,-1)
@@ -261,8 +260,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/horns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/horns_righthand.dmi'
 	allowed_instrument_ids = list("bikehorn", "honk")
-	attack_verb_continuous = list("невероятно красиво ХОНКАЕТ")
-	attack_verb_simple = list("невероятно красиво ХОНКАЕТ")
+	attack_verb_continuous = list("beautifully honks")
+	attack_verb_simple = list("beautifully honk")
 	w_class = WEIGHT_CLASS_TINY
 	force = 0
 	throw_speed = 3

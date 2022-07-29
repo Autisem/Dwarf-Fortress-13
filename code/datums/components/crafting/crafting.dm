@@ -144,8 +144,6 @@
 						for(var/datum/reagent/reagent in container.reagents.reagent_list)
 							.["other"][reagent.type] += reagent.volume
 				.["other"][item.type] += 1
-		else if (ismachinery(object))
-			LAZYADDASSOCLIST(.["machinery"], object.type, object)
 
 /// Returns a boolean on whether the tool requirements of the input recipe are satisfied by the input source and surroundings.
 /datum/component/personal_crafting/proc/check_tools(atom/source, datum/crafting_recipe/recipe, list/surroundings)
@@ -197,23 +195,23 @@
 			if(R.one_per_turf)
 				for(var/content in get_turf(a))
 					if(istype(content, R.result))
-						return ", уже создано."
+						return ", object already present."
 			//If we're a mob we'll try a do_after; non mobs will instead instantly construct the item
 			if(ismob(a) && !do_after(a, R.time, target = a))
 				return "."
 			contents = get_surroundings(a,R.blacklist)
 			if(!check_contents(a, R, contents))
-				return ", не хватает компонента."
+				return ", missing component."
 			if(!check_tools(a, R, contents))
-				return ", нет инструмента."
+				return ", missing tool."
 			var/list/parts = del_reqs(R, a)
 			var/atom/movable/I = new R.result (get_turf(a.loc))
 			I.CheckParts(parts, R)
 			if(send_feedback)
 				SSblackbox.record_feedback("tally", "object_crafted", 1, I.type)
 			return I //Send the item back to whatever called this proc so it can handle whatever it wants to do with the new item
-		return ", нет инструмента."
-	return ", не хватает компонента."
+		return ", missing tool."
+	return ", missing component."
 
 /*Del reqs works like this:
 	Loop over reqs var of the recipe
@@ -437,11 +435,11 @@
 					user.put_in_hands(result)
 				else
 					result.forceMove(user.drop_location())
-				to_chat(user, span_notice("[crafting_recipe.name] создано."))
+				to_chat(user, span_notice("[crafting_recipe.name] constructed."))
 				user.investigate_log("[key_name(user)] crafted [crafting_recipe]", INVESTIGATE_CRAFTING)
 				crafting_recipe.on_craft_completion(user, result)
 			else
-				to_chat(user, span_warning("Создание провалено[result]"))
+				to_chat(user, span_warning("Construction failed[result]"))
 			busy = FALSE
 		if("toggle_recipes")
 			display_craftable_only = !display_craftable_only
@@ -466,8 +464,6 @@
 		//We just need the name, so cheat-typecast to /atom for speed (even tho Reagents are /datum they DO have a "name" var)
 		//Also these are typepaths so sadly we can't just do "[a]"
 		req_text += "[R.reqs[req_atom]] [initial(req_atom.name)]"
-	for(var/obj/machinery/content as anything in R.machinery)
-		req_text += "[R.reqs[content]] [initial(content.name)]"
 	if(R.additional_req_text)
 		req_text += R.additional_req_text
 	data["req_text"] = req_text.Join(", ")

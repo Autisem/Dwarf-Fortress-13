@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet
-	name = "сейф"
-	desc = "Это хранилище открываемое картой."
+	name = "secure closet"
+	desc = "A storage unit that can be locked."
 	locked = TRUE
 	icon_state = "secure"
 	max_integrity = 250

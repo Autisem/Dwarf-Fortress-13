@@ -39,9 +39,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Whether emotes will be displayed on runechat. Requires chat_on_map to have effect. Boolean.
 	var/see_rc_emotes = TRUE
 
-	var/ice_cream_time = 10 MINUTES
-	var/ice_cream = TRUE
-
 	// Custom Keybindings
 	var/list/key_bindings = list()
 
@@ -162,7 +159,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	random_character()		//let's create a random character then - rather than a fat, bald and naked man.
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
 	C?.set_macros()
-	real_name = pref_species.random_name(gender, 1, en_lang = en_names)
+	real_name = pref_species.random_name(gender, 1)
 	if(!loaded_preferences_successfully)
 		save_preferences()
 	save_character()		//let's save this new random character so it doesn't keep generating new ones.
@@ -335,9 +332,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += SETUP_NODE_SWITCH("Whisper", "ghost_whispers", (chat_toggles & CHAT_GHOSTWHISPER) ? "All" : "Near")
 			dat += SETUP_NODE_INPUT("Form", "ghostform", ghost_form)
 			dat += SETUP_NODE_INPUT("Orbit", "ghostorbit", ghost_orbit)
-			dat += SETUP_NODE_SWITCH("Body transfer", "ice_cream", ice_cream ? "On" : "Off")
-			if(ice_cream)
-				dat += SETUP_NODE_INPUT("Time until transfer", "ice_cream_time", "[ice_cream_time/600] minutes")
 
 			var/button_name = "If you see this something went wrong."
 			switch(ghost_accs)
@@ -573,7 +567,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if("random")
 			switch(href_list["preference"])
 				if("name")
-					real_name = pref_species.random_name(gender,1, en_lang = en_names)
+					real_name = pref_species.random_name(gender,1)
 				if("age")
 					age = rand(AGE_MIN, AGE_MAX)
 				if("hair")
@@ -826,7 +820,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#7F7F7F")[3]))
 							features["mcolor"] = pref_species.default_color
 						if(randomise[RANDOM_NAME])
-							real_name = pref_species.random_name(gender, en_lang = en_names)
+							real_name = pref_species.random_name(gender)
 
 				if("mutant_color")
 					var/new_mutantcolor = input(user, "Choose your character's alien/mutant color:", "Character Preference","#"+features["mcolor"]) as color|null
@@ -849,8 +843,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/new_tail
 					// new_tail = input(user, "Choose your character's tail:", "Character Preference") as null|anything in GLOB.tails_list_human
 					// if((!user.client.holder && !(user.client.ckey in GLOB.custom_tails_donations)) && (new_tail == "Fox" || new_tail == "Oni"))
-					// 	to_chat(user, span_danger("Pedos not allowed? <big>ВАШЕ ДЕЙСТВИЕ БУДЕТ ЗАПИСАНО</big>."))
-					// 	message_admins("[ADMIN_LOOKUPFLW(user)] попытался выбрать фуррятину в виде хвоста.")
 					// 	return
 					if(new_tail)
 						features["tail_human"] = new_tail
@@ -971,7 +963,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						preferred_map = maplist[pickedmap]
 
 				if ("widescreenwidth")
-					var/desiredwidth = input(user, "Какую ширину выберем от до 15-31?", "ВЫБОР", widescreenwidth)  as null|num
+					var/desiredwidth = input(user, "Input your desired width. From 15 to 31.", "Screen Width", widescreenwidth)  as null|num
 					if (!isnull(desiredwidth))
 						widescreenwidth = sanitize_integer(desiredwidth, 15, 31, widescreenwidth)
 						user.client.view_size.setDefault("[widescreenwidth]x15")
@@ -992,11 +984,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
 					if (!isnull(desiredlength))
 						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
-
-				if("ice_cream_time")
-					var/new_time = input(user, "Какая задержка будет перед передачей тела призракам? (в минутах)", "Ice Cream") as num|null
-					if(new_time)
-						ice_cream_time = min(new_time MINUTES, 60 MINUTES)
 
 		else
 			switch(href_list["preference"])
@@ -1086,11 +1073,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					save_preferences()
 
 				if("keybindings_reset")
-					var/choice = tgui_alert(user, "ПЕРЕКЛЮЧИТЕСЬ НА АНГЛИЙСКУЮ РАСКЛАДКУ ПЕРЕД ВЫБОРОМ", "Настройка хоткеев", list("Хоткеи", "Классика", "Отмена"))
-					if(choice == "Отмена")
+					var/choice = tgui_alert(user, "Select your preffered keybindings mode.", "Keybindings Reset", list("Hotkeys", "Classic", "Cancel"))
+					if(choice == "Cancel")
 						ShowChoices(user)
 						return
-					hotkeys = (choice == "Хоткеи")
+					hotkeys = (choice == "Hotkeys")
 					key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 					user.client.set_macros()
 
@@ -1100,9 +1087,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					see_chat_non_mob = !see_chat_non_mob
 				if("see_rc_emotes")
 					see_rc_emotes = !see_rc_emotes
-
-				if("ice_cream")
-					ice_cream = !ice_cream
 
 				if("action_buttons")
 					buttons_locked = !buttons_locked
@@ -1352,7 +1336,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if((randomise[RANDOM_NAME] || (randomise[RANDOM_NAME_ANTAG] && antagonist) || randomise[RANDOM_HARDCORE]) && !character_setup)
 		slot_randomized = TRUE
-		real_name = pref_species.random_name(gender, en_lang = en_names)
+		real_name = pref_species.random_name(gender)
 
 	if(randomise[RANDOM_HARDCORE] && parent.mob.mind && !character_setup)
 		if(can_be_random_hardcore())
@@ -1454,7 +1438,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(!namedata)
 		return
 
-	var/raw_name = input(user, "Запасное имя [namedata["qdesc"]]:","Настройка персонажа") as text|null
+	var/raw_name = input(user, "Secondary name [namedata["qdesc"]]:","Character Setup") as text|null
 	if(!raw_name)
 		if(namedata["allow_null"])
 			custom_names[name_id] = get_default_name(name_id)

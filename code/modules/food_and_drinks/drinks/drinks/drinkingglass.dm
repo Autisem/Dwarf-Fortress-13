@@ -1,7 +1,7 @@
 
 
 /obj/item/reagent_containers/food/drinks/drinkingglass
-	name = "стакан"
+	name = "drinking glass"
 	desc = "Your standard drinking glass."
 	icon_state = "glass_empty"
 	base_icon_state = "glass_empty"
@@ -62,7 +62,7 @@
 //  This is on a case-by-case basis, and you can even make a separate sprite for shot glasses if you want. //
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass
-	name = "шот"
+	name = "shot glass"
 	desc = "A shot glass - the universal symbol for bad decisions."
 	icon_state = "shotglass"
 	gulp_size = 15
@@ -84,14 +84,6 @@
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/get_glass_icon(datum/reagent/largest_reagent)
 	return largest_reagent?.shot_glass_icon_state
-
-/obj/item/reagent_containers/food/drinks/drinkingglass/filled/soda
-	name = "Soda Water"
-	list_reagents = list(/datum/reagent/consumable/sodawater = 50)
-
-/obj/item/reagent_containers/food/drinks/drinkingglass/filled/cola
-	name = "Space Cola"
-	list_reagents = list(/datum/reagent/consumable/space_cola = 50)
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/attack(obj/target, mob/user)
 	if(user.a_intent == INTENT_HARM && ismob(target) && target.reagents && reagents.total_volume)

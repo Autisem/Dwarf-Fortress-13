@@ -1,8 +1,8 @@
 ///Subtype for any kind of ballistic gun
 ///This has a shitload of vars on it, and I'm sorry for that, but it does make making new subtypes really easy
 /obj/item/gun/ballistic
-	desc = "По какой-то причине вошел в описание как ПУШКА. Использует 10-мм патроны."
-	name = "реактивный пистолет"
+	desc = "Now comes in flavors like GUN. Uses 10mm ammo, for some reason."
+	name = "projectile gun"
 	icon_state = "pistol"
 	w_class = WEIGHT_CLASS_NORMAL
 
@@ -50,7 +50,7 @@
 	///Whether the gun will spawn loaded with a magazine
 	var/spawnwithmagazine = TRUE
 	///Compatible magazines with the gun
-	var/mag_type = /obj/item/ammo_box/magazine/m10mm //Removes the need for max_ammo and caliber info
+	var/mag_type //Removes the need for max_ammo and caliber info
 	///Whether the sprite has a visible magazine or not
 	var/mag_display = FALSE
 	///Whether the sprite has a visible ammo display or not
@@ -75,11 +75,11 @@
 	///Whether the gun has an internal magazine or a detatchable one. Overridden by BOLT_TYPE_NO_BOLT.
 	var/internal_magazine = FALSE
 	///Phrasing of the bolt in examine and notification messages; ex: bolt, slide, etc.
-	var/bolt_wording = "затвор"
+	var/bolt_wording = "bolt"
 	///Phrasing of the magazine in examine and notification messages; ex: magazine, box, etx
-	var/magazine_wording = "магазин"
+	var/magazine_wording = "magazine"
 	///Phrasing of the cartridge in examine and notification messages; ex: bullet, shell, dart, etc.
-	var/cartridge_wording = "пуля"
+	var/cartridge_wording = "bullet"
 	///length between individual racks
 	var/rack_delay = 5
 	///time of the most recent rack, used for cooldown purposes
@@ -105,9 +105,6 @@
 	else
 		chamber_round(replace_new_round = TRUE)
 	update_icon()
-
-/obj/item/gun/ballistic/add_weapon_description()
-	AddElement(/datum/element/weapon_description, attached_proc = .proc/add_notes_ballistic)
 
 /**
  *
@@ -209,11 +206,11 @@
 	if (bolt_type == BOLT_TYPE_OPEN)
 		if(!bolt_locked)	//If it's an open bolt, racking again would do nothing
 			if (user)
-				to_chat(user, span_notice("[bolt_wording] <b>[src.name]</b> уже передёрнут!"))
+				to_chat(user, span_notice("[src]'s [bolt_wording] is already cocked!"))
 			return
 		bolt_locked = FALSE
 	if (user)
-		to_chat(user, span_notice("Передёргиваю [bolt_wording] <b>[src.name]</b>."))
+		to_chat(user, span_notice("You rack the [bolt_wording] of [src]."))
 	process_chamber(!chambered, FALSE)
 	if (bolt_type == BOLT_TYPE_LOCKING && !chambered)
 		bolt_locked = TRUE
@@ -227,7 +224,7 @@
 /obj/item/gun/ballistic/proc/drop_bolt(mob/user = null)
 	playsound(src, bolt_drop_sound, bolt_drop_sound_volume, FALSE)
 	if (user)
-		to_chat(user, span_notice("Опускаю [bolt_wording] <b>[src.name]</b>."))
+		to_chat(user, span_notice("You drop the [bolt_wording] of [src]."))
 	chamber_round()
 	bolt_locked = FALSE
 	update_icon()
@@ -235,12 +232,12 @@
 ///Handles all the logic needed for magazine insertion
 /obj/item/gun/ballistic/proc/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message = TRUE)
 	if(!istype(AM, mag_type))
-		to_chat(user, span_warning("[AM.name] не хочет в <b>[src.name]</b>..."))
+		to_chat(user, span_warning("[AM] doesn't seem to fit into [src]..."))
 		return FALSE
 	if(user.transferItemToLoc(AM, src))
 		magazine = AM
 		if (display_message)
-			to_chat(user, span_notice("Вставляю [magazine_wording] в <b>[src.name]</b>."))
+			to_chat(user, span_notice("You load a new [magazine_wording] into [src]."))
 		playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
 		if (bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
 			chamber_round(TRUE)
@@ -248,7 +245,7 @@
 		SEND_SIGNAL(src, COMSIG_UPDATE_AMMO_HUD)
 		return TRUE
 	else
-		to_chat(user, span_warning("Не могу убрать <b>[src.name]</b> из своей руки!"))
+		to_chat(user, span_warning("You cannot seem to get [src] out of your hands!"))
 		return FALSE
 
 ///Handles all the logic of magazine ejection, if tac_load is set that magazine will be tacloaded in the place of the old eject
@@ -263,16 +260,16 @@
 	var/obj/item/ammo_box/magazine/old_mag = magazine
 	if (tac_load)
 		if (insert_magazine(user, tac_load, FALSE))
-			to_chat(user, span_notice("Произвожу тактическую перезарядку <b>[src.name]</b>."))
+			to_chat(user, span_notice("You perform a tactical reload on [src]."))
 		else
-			to_chat(user, span_warning("Бросаю старый [magazine_wording], но новый не вставляется. Невероятно."))
+			to_chat(user, span_warning("You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing."))
 			magazine = null
 	else
 		magazine = null
 	user.put_in_hands(old_mag)
 	old_mag.update_icon()
 	if (display_message)
-		to_chat(user, span_notice("Вытаскиваю [magazine_wording] из <b>[src.name]</b>."))
+		to_chat(user, span_notice("You pull the [magazine_wording] out of [src]."))
 	update_icon()
 	SEND_SIGNAL(src, COMSIG_UPDATE_AMMO_HUD)
 
@@ -291,7 +288,7 @@
 			if (tac_reloads)
 				eject_magazine(user, FALSE, AM)
 			else
-				to_chat(user, span_notice("Здесь уже есть [magazine_wording] в <b>[src.name]</b>."))
+				to_chat(user, span_notice("There's already a [magazine_wording] in [src]."))
 		return
 	if (istype(A, /obj/item/ammo_casing) || istype(A, /obj/item/ammo_box))
 		if (bolt_type == BOLT_TYPE_NO_BOLT || internal_magazine)
@@ -300,7 +297,7 @@
 				chambered = null
 			var/num_loaded = magazine?.attackby(A, user, params, TRUE)
 			if (num_loaded)
-				to_chat(user, span_notice("Загружаю [num_loaded] [cartridge_wording] в <b>[src.name]</b>."))
+				to_chat(user, span_notice("You load [num_loaded] [cartridge_wording]\s into [src]."))
 				playsound(src, load_sound, load_sound_volume, load_sound_vary)
 				if (chambered == null && bolt_type == BOLT_TYPE_NO_BOLT)
 					chamber_round()
@@ -310,16 +307,16 @@
 	if(istype(A, /obj/item/suppressor))
 		var/obj/item/suppressor/S = A
 		if(!can_suppress)
-			to_chat(user, "<span class='warning'Без понятия как приделать [S.name] к <b>[src.name]</b>!</span>")
+			to_chat(user, span_warning("You can't seem to figure out how to fit [S] on [src]!"))
 			return
 		if(!user.is_holding(src))
-			to_chat(user, span_warning("Нужно держать в руках <b>[src.name]</b>, чтобы приделать [S.name]!"))
+			to_chat(user, span_warning("You need be holding [src] to fit [S] to it!"))
 			return
 		if(suppressed)
-			to_chat(user, span_warning("<b>[src.name]</b> уже имеет глушитель!"))
+			to_chat(user, span_warning("[src] already has a suppressor!"))
 			return
 		if(user.transferItemToLoc(A, src))
-			to_chat(user, span_notice("Прикручиваю [S.name] к <b>[src.name]</b>."))
+			to_chat(user, span_notice("You screw [S] onto [src]."))
 			install_suppressor(A)
 			return
 	if (can_be_sawn_off)
@@ -355,7 +352,7 @@
 			var/obj/item/suppressor/S = suppressed
 			if(!user.is_holding(src))
 				return ..()
-			to_chat(user, span_notice("Откручиваю [S.name] от [src.name]."))
+			to_chat(user, span_notice("You unscrew [S] from [src]."))
 			user.put_in_hands(S)
 			clear_suppressor()
 
@@ -416,11 +413,11 @@
 			if(T && is_fortress_level(T.z))
 				SSblackbox.record_feedback("tally", "station_mess_created", 1, CB.name)
 		if (num_unloaded)
-			to_chat(user, span_notice("Выгружаю [num_unloaded] [cartridge_wording] из <b>[src.name]</b>."))
+			to_chat(user, span_notice("You unload [num_unloaded] [cartridge_wording]\s from [src]."))
 			playsound(user, eject_sound, eject_sound_volume, eject_sound_vary)
 			update_icon()
 		else
-			to_chat(user, span_warning("<b>[src.name]</b> пуст!"))
+			to_chat(user, span_warning("[src] is empty!"))
 		return
 	if(bolt_type == BOLT_TYPE_LOCKING && bolt_locked)
 		drop_bolt(user)
@@ -436,13 +433,13 @@
 	. = ..()
 	. += "<hr>"
 	var/count_chambered = !(bolt_type == BOLT_TYPE_NO_BOLT || bolt_type == BOLT_TYPE_OPEN)
-	. += span_smalldanger("Внутри <b>[get_ammo(count_chambered)]</b> патронов.")
+	. += "It has [get_ammo(count_chambered)] round\s remaining."
 	if (!chambered)
-		. += "</br><span class='danger'>Патронник пуст.</span>"
+		. += "It does not seem to have a round chambered."
 	if (bolt_locked)
-		. += "</br><span class='smallnotice'>[capitalize(bolt_wording)] передёрнут.</span>"
+		. += "The [bolt_wording] is locked back and needs to be released before firing or de-fouling."
 	if (suppressed)
-		. += "</br><span class='smallnotice'>Можно снять глушитель через <b>alt+клик</b>.</span>"
+		. += "It has a suppressor attached that can be removed with <b>alt+click</b>."
 
 ///Gets the number of bullets in the gun
 /obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE)
@@ -496,24 +493,24 @@
 	if(!saw.get_sharpness() || saw.tool_behaviour != TOOL_SAW) //needs to be sharp. Otherwise turned off eswords can cut this.
 		return
 	if(sawn_off)
-		to_chat(user, span_warning("<b>[src.name]</b> уже обрезан!"))
+		to_chat(user, span_warning("[src] is already shortened!"))
 		return
 	if(bayonet)
-		to_chat(user, span_warning("Не могу отпилить <b>[src.name]</b> с прикрепленным [bayonet]!"))
+		to_chat(user, span_warning("You cannot saw-off [src] with [bayonet] attached!"))
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message(span_notice("[user] начинает обрезать <b>[src.name]</b>.") , span_notice("Начинаю обрезать <b>[src.name]</b>..."))
+	user.visible_message(span_notice("[user] begins to shorten [src]."), span_notice("You begin to shorten [src]..."))
 
 	//if there's any live ammo inside the gun, makes it go off
 	if(blow_up(user))
-		user.visible_message(span_danger("<b>[src.name]</b> отлетает!") , span_danger("<b>[src.name]</b> отлетает в мое лицо!"))
+		user.visible_message(span_danger("[src] goes off!"), span_danger("[src] goes off in your face!"))
 		return
 
 	if(do_after(user, 30, target = src))
 		if(sawn_off)
 			return
-		user.visible_message(span_notice("[user] обзрезал <b>[src.name]</b>!") , span_notice("Обрезал <b>[src.name]</b>."))
-		name = "обрезанный [src.name]"
+		user.visible_message(span_notice("[user] shortens [src]!"), span_notice("You shorten [src]."))
+		name = "sawn-off [src.name]"
 		desc = sawn_desc
 		w_class = WEIGHT_CLASS_NORMAL
 		inhand_icon_state = "gun"
@@ -535,13 +532,8 @@
 
 
 /obj/item/suppressor
-	name = "глушитель"
-	desc = "Маленький глушитель для большого шпионажа."
+	name = "suppressor"
+	desc = "A syndicate small-arms suppressor for maximum espionage."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "suppressor"
 	w_class = WEIGHT_CLASS_TINY
-
-
-/obj/item/suppressor/specialoffer
-	name = "дешевый глушитель"
-	desc = "Ощущается китайской подделкой, но может накручиваться на различные виды оружия."

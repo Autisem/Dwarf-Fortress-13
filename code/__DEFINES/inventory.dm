@@ -152,7 +152,6 @@ GLOBAL_LIST_INIT(security_vest_allowed, typecacheof(list(
 	/obj/item/ammo_casing,
 	/obj/item/flashlight,
 	/obj/item/gun/ballistic,
-	/obj/item/kitchen/knife/combat,
 	/obj/item/restraints/handcuffs,)))
 
 GLOBAL_LIST_INIT(security_wintercoat_allowed, typecacheof(list(

@@ -41,10 +41,10 @@
 	. = ..()
 	if(G.trigger_guard == TRIGGER_GUARD_NORMAL)
 		if(HAS_TRAIT(src, TRAIT_CHUNKYFINGERS))
-			to_chat(src, span_warning("Мои мясистые пальцы слишком большие, чтобы нажать на курок!"))
+			balloon_alert(src, "fingers are too big!")
 			return FALSE
 	if(HAS_TRAIT(src, TRAIT_NOGUNS))
-		to_chat(src, span_warning("Не могу заставить себя использовать оружие дальнего боя!"))
+		to_chat(src, span_warning("You can't bring yourself to use a ranged weapon!"))
 		return FALSE
 
 /mob/living/carbon/human/get_policy_keywords()
@@ -68,14 +68,10 @@
 ///Returns death message for mob examine text
 /mob/living/carbon/human/proc/generate_death_examine_text()
 	//var/mob/dead/observer/ghost = get_ghost(TRUE, TRUE)
-	var/t_on = p_they(TRUE)
+	var/t_He = p_they(TRUE)
+	var/t_is = p_are()
+	var/t_his = p_their()
 	if(key || !getorgan(/obj/item/organ/brain))
-		return "<span class='deadsay'>[t_on] не реагирует на происходящее вокруг; нет признаков жизни и души...</span>\n" //Default death message
-	//The death mob has a brain and no client/player that is assigned to the mob
-	/*
-	if(!ghost?.can_reenter_corpse)  //And there is no ghost that could reenter the body
-		//There is no way this mob can in any normal way get a player, so they lost the will to live
-		return "<span class='deadsay'>[t_on] не реагирует на происходящее вокруг; нет признаков жизни и желания души жить...</span>\n"
-	*/
-	//This mob has a ghost linked that could still reenter the body, so the soul only departed
-	return "<span class='deadsay'>[t_on] не реагирует на происходящее вокруг; нет признаков жизни и души...</span>\n"
+		return span_deadsay("[t_He] [t_is] limp and unresponsive; there are no signs of life...")
+	else
+		return span_deadsay("[t_He] [t_is] limp and unresponsive; there are no signs of life and [t_his] soul has departed...")

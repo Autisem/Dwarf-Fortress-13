@@ -168,7 +168,7 @@
 
 /atom/movable/proc/onZImpact(turf/impacted_turf, levels, message = TRUE)
 	if(message)
-		visible_message(span_danger("[src] падает на [impacted_turf]!"))
+		visible_message(span_danger("[src] falls on [impacted_turf]!"))
 	var/atom/highest = impacted_turf
 	for(var/atom/hurt_atom as anything in impacted_turf.contents)
 		if(!hurt_atom.density)
@@ -350,8 +350,8 @@
 		var/mob/M = AM
 		log_combat(src, M, "grabbed", addition="passive grab")
 		if(!supress_message)
-			M.visible_message(span_warning("<b>[src]</b> хватает <b>[M]</b>.") , \
-				span_danger("<b>[src]</b> хватает меня."))
+			M.visible_message(span_warning("<b>[src]</b> grabs <b>[M]</b>.") , \
+				span_danger("<b>[src]</b> is grabbing you."))
 	return TRUE
 
 /atom/movable/proc/stop_pulling()

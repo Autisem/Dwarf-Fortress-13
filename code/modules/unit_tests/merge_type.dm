@@ -1,9 +1,7 @@
 /datum/unit_test/merge_type/Run()
 	var/list/blacklist = list(/obj/item/stack/sheet,
 							  /obj/item/stack/sheet/mineral,
-							  /obj/item/stack/ore,
-							  /obj/item/stack/license_plates,
-							  /obj/item/stack/tile)
+							  /obj/item/stack/ore)
 
 	var/list/paths = subtypesof(/obj/item/stack) - blacklist
 

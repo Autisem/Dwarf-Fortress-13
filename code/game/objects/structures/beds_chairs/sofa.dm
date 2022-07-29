@@ -1,5 +1,5 @@
 /obj/structure/chair/sofa
-	name = "старый диван"
+	name = "sofa"
 	icon_state = "sofamiddle"
 	icon = 'icons/obj/sofa.dmi'
 	buildstackamount = 1
@@ -38,8 +38,8 @@
 
 // Original icon ported from Eris(?) and updated to work here.
 /obj/structure/chair/sofa/corp
-	name = "диван"
-	desc = "Мягкий и удобный."
+	name = "sofa"
+	desc = "Looks comfy."
 	icon_state = "corp_sofamiddle"
 
 /obj/structure/chair/sofa/corp/left
@@ -53,8 +53,8 @@
 
 // Bamboo benches
 /obj/structure/chair/sofa/bamboo
-	name = "бамбуковая скамья"
-	desc = "Самодельная, хы."
+	name = "bamboo bench"
+	desc = "Woody."
 	icon_state = "bamboo_sofamiddle"
 	resistance_flags = FLAMMABLE
 	max_integrity = 60

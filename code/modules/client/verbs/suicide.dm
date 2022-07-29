@@ -119,8 +119,8 @@
 		return
 	if(confirm == "Yes")
 		set_suicide(TRUE)
-		visible_message(span_danger("Мозг [capitalize(src.name)] начинает размякать и расслабляться. Похоже, что [p_they(TRUE)] потерял желание жить.") , \
-						span_userdanger("Мозг [capitalize(src.name)] начинает размякать и расслабляться. Похоже, что [p_they(TRUE)] потерял желание жить.."))
+		visible_message(span_danger("[src]'s brain is growing dull and lifeless. [p_they(TRUE)] look[p_s()] like [p_theyve()] lost the will to live."), \
+						span_userdanger("[src]'s brain is growing dull and lifeless. [p_they(TRUE)] look[p_s()] like [p_theyve()] lost the will to live."))
 
 		suicide_log()
 
@@ -136,8 +136,8 @@
 		return
 	if(confirm == "Yes")
 		set_suicide(TRUE)
-		visible_message(span_danger("[capitalize(src.name)] начинает падать. Похоже, что [p_theyve()] потерял желание жить.") , \
-						span_userdanger("[capitalize(src.name)] начинает падать. Похоже, что [p_theyve()] потерял желание жить."))
+		visible_message(span_danger("[src] begins to fall down. It looks like [p_theyve()] lost the will to live."), \
+						span_userdanger("[src] begins to fall down. It looks like [p_theyve()] lost the will to live."))
 
 		suicide_log()
 
@@ -153,27 +153,23 @@
 /mob/living/proc/canSuicide()
 	var/area/A = get_area(src)
 	if(A.area_flags & BLOCK_SUICIDE)
-		to_chat(src, span_warning("Нельзя убить себя здесь! Если хочется, то можно стать призраком."))
+		to_chat(src, span_warning("You can't commit suicide here! You can ghost if you'd like."))
 		return
 	switch(stat)
 		if(CONSCIOUS)
 			return TRUE
 		if(SOFT_CRIT)
-			to_chat(src, span_warning("Нельзя убить себя, находясь в критическом состоянии!"))
+			to_chat(src, span_warning("You can't commit suicide while in a critical condition!"))
 		if(UNCONSCIOUS, HARD_CRIT)
-			to_chat(src, span_warning("Нужно быть в сознании, чтобы убить себя!"))
+			to_chat(src, span_warning("You need to be conscious to commit suicide!"))
 		if(DEAD)
-			to_chat(src, span_warning("Ты уже мёртв!"))
+			to_chat(src, span_warning("You're already dead!"))
 	return
 
 /mob/living/carbon/canSuicide()
 	if(!..())
 		return
 	if(!(mobility_flags & MOBILITY_USE))	//just while I finish up the new 'fun' suiciding verb. This is to prevent metagaming via suicide
-		to_chat(src, span_warning("Говорят, что большая часть суицидов происходит под диким давлением. Да?"))
-		return
-	var/datum/component/mood/M = GetComponent(/datum/component/mood)
-	if(M.sanity >= SANITY_DISTURBED)
-		to_chat(src, span_warning("Зачем? У меня же всё в полном порядке!"))
+		to_chat(src, span_warning("You can't commit suicide whilst immobile! ((You can type Ghost instead however.))"))
 		return
 	return TRUE

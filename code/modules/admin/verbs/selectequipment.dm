@@ -96,7 +96,7 @@
 		return list("category" = category, "ref" = identifier, "name" = name, "priority" = priority)
 	return list("category" = category, "path" = identifier, "name" = name, "priority" = priority)
 
-/datum/select_equipment/proc/make_outfit_entries(category="Осн", list/outfit_list)
+/datum/select_equipment/proc/make_outfit_entries(category="Main", list/outfit_list)
 	var/list/entries = list()
 	for(var/path as anything in outfit_list)
 		var/datum/outfit/outfit = path
@@ -131,7 +131,7 @@
 	var/list/data = list()
 	if(!cached_outfits)
 		cached_outfits = list()
-		cached_outfits += list(outfit_entry("Осн", /datum/outfit, "Naked", priority=TRUE))
+		cached_outfits += list(outfit_entry("Main", /datum/outfit, "Naked", priority=TRUE))
 
 	data["outfits"] = cached_outfits
 	return data

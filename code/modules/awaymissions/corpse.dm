@@ -17,7 +17,7 @@
 	var/death = TRUE //Kill the mob
 	var/roundstart = TRUE //fires on initialize
 	var/instant = FALSE	//fires on New
-	var/short_desc = "Нет описания."
+	var/short_desc = "No desc."
 	var/flavour_text = ""
 	var/important_info = ""
 	/// Lazy string list of factions that the spawned mob will be in upon spawn
@@ -45,17 +45,17 @@
 	if(!SSticker.HasRoundStarted() || !loc || !ghost_usable)
 		return
 	if(!radial_based)
-		var/ghost_role = tgui_alert(usr, "Точно хочешь занять этот спаунер? (внимание, текущее тело будет покинуто)",,list("Да","Нет"))
-		if(ghost_role != "Да" || !loc || QDELETED(user))
+		var/ghost_role = tgui_alert(usr, "You sure you want to spawn here? (your previous body will be lost)",,list("Yes","No"))
+		if(ghost_role != "Yes" || !loc || QDELETED(user))
 			return
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER) && !(flags_1 & ADMIN_SPAWNED_1))
-		to_chat(user, span_warning("Администраторы временно отключили гост-роли"))
+		to_chat(user, span_warning("Ghost spawns are currently admin-disabled."))
 		return
 	if(!uses)
-		to_chat(user, span_warning("Заряды кончились!"))
+		to_chat(user, span_warning("No spawns left!"))
 		return
 	if(is_banned_from(user.key, banType))
-		to_chat(user, span_warning("А хуй тебе!"))
+		to_chat(user, span_warning("You are banned from this spawner!"))
 		return
 	if(!allow_spawn(user))
 		return

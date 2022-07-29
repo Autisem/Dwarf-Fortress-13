@@ -134,7 +134,7 @@
 /datum/controller/subsystem/ticker/proc/declare_completion()
 	set waitfor = FALSE
 
-	to_chat(world, "<br><br><br><center><span class='big bold'>Конец раунда.</span></center><br><br><br>")
+	to_chat(world, "<br><br><br><center><span class='big bold'>Round Ended.</span></center><br><br><br>")
 
 	log_game("The round has ended.")
 
@@ -170,7 +170,7 @@
 	CHECK_TICK
 
 	handle_hearts()
-	set_observer_default_invisibility(0, span_warning("Раунд завершён. Тебя видно!"))
+	set_observer_default_invisibility(0, span_warning("The round has ended. You are now visible!"))
 
 	CHECK_TICK
 
@@ -237,40 +237,34 @@
 /datum/controller/subsystem/ticker/proc/survivor_report(popcount)
 	var/list/parts = list()
 
-	parts += "<hr><b><font color=\"#60b6ff\">ИНФОРМАЦИЯ О РАУНДЕ //</font></b>"
+	parts += "<hr><b><font color=\"#60b6ff\">Round Information //</font></b>"
 	if(GLOB.round_id)
 		var/statspage = CONFIG_GET(string/roundstatsurl)
 		var/info = statspage ? "<a href='?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
-		parts += "[FOURSPACES]├ ID раунда: <b>[info]</b>"
+		parts += "[FOURSPACES]├ Round ID: <b>[info]</b>"
 	else
-		parts += "[FOURSPACES]├ ID раунда: <b>(<i>недоступно</i>)</b>"
-	parts += "[FOURSPACES]└ Длительность смены: <b>[DisplayTimeText(world.time - SSticker.round_start_time)]</b>"
+		parts += "[FOURSPACES]├ Round ID: <b>(<i>unavailable</i>)</b>"
+	parts += "[FOURSPACES]└ Round Duration: <b>[DisplayTimeText(world.time - SSticker.round_start_time)]</b>"
 
-	parts += "<hr><b><font color=\"#60b6ff\">ИНФОРМАЦИЯ О СТАНЦИИ //</font></b>"
-	parts += "[FOURSPACES]└ Состояние станции: <b>[mode.station_was_nuked ? span_redtext("уничтожена системой ядерного самоуничтожения")  : "[popcount["station_integrity"] == 100 ? span_greentext("нетронута")  : "[popcount["station_integrity"]]%"]"]</b>"
-
-	parts += "<hr><b><font color=\"#60b6ff\">ИНФОРМАЦИЯ О ПЕРСОНАЛЕ //</font></b>"
+	parts += "<hr><b><font color=\"#60b6ff\">Player Information //</font></b>"
 	var/total_players = GLOB.joined_player_list.len
 	if(total_players)
-		parts += "[FOURSPACES]├ За всю смену на станцию прибыло: <b>[total_players]</b>" // суммарно
-		parts += "[FOURSPACES]├ Из прибывших погибло: <b>[popcount[POPCOUNT_DEADS]]</b> (или <b>[PERCENT(popcount[POPCOUNT_DEADS]/total_players)]%</b> от прибывших)"
-		parts += "[FOURSPACES]├ Из прибывших выжило: <b>[popcount[POPCOUNT_SURVIVORS]]</b> (или <b>[PERCENT(popcount[POPCOUNT_SURVIVORS]/total_players)]%</b> от прибывших)"
-		parts += "[FOURSPACES]└ <b><font color=\"#60b6ff\">ИНФОРМАЦИЯ ОБ ЭВАКУИРОВАВШИХСЯ //</font></b>"
-		parts += "[FOURSPACES][FOURSPACES]└ <i><span class='redtext'>Из выживших никто не эвакуировался, ни на шаттле, ни на поде, ни любым другим способом</span>.</i>"
-		parts += "<hr><b><font color=\"#60b6ff\">ИНФОРМАЦИЯ О ПЕРВОЙ СМЕРТИ //</font></b>"
+		parts += "[FOURSPACES]├ Total: <b>[total_players]</b>"
+		parts += "[FOURSPACES]├ Dead: <b>[popcount[POPCOUNT_DEADS]]</b> (or <b>[PERCENT(popcount[POPCOUNT_DEADS]/total_players)]%</b> of total)"
+		parts += "[FOURSPACES]├ Survived: <b>[popcount[POPCOUNT_SURVIVORS]]</b> (or <b>[PERCENT(popcount[POPCOUNT_SURVIVORS]/total_players)]%</b> of total)"
+		parts += "<hr><b><font color=\"#60b6ff\">First Death //</font></b>"
 		if(SSblackbox.first_death)
 			var/list/first_death = SSblackbox.first_death
 			if(first_death.len)
-				parts += "[FOURSPACES]├ Имя: <b>[first_death["name"]]</b>"
-				parts += "[FOURSPACES]├ Должность: <b>[first_death["role"]]</b>"
-				parts += "[FOURSPACES]├ Локация: <b>[first_death["area"]]</b>"
-				parts += "[FOURSPACES]├ Повреждения: <b>[first_death["damage"]]</b>"
-				parts += "[FOURSPACES]└ Его последние слова: <b>[first_death["last_words"] ? "[first_death["last_words"]]" : "<i>отсутствовали</i>"]</b>"
+				parts += "[FOURSPACES]├ Name: <b>[first_death["name"]]</b>"
+				parts += "[FOURSPACES]├ Area: <b>[first_death["area"]]</b>"
+				parts += "[FOURSPACES]├ Damage: <b>[first_death["damage"]]</b>"
+				parts += "[FOURSPACES]└ Last Words: <b>[first_death["last_words"] ? "[first_death["last_words"]]" : "<i>none</i>"]</b>"
 				// ignore this comment, it fixes the broken sytax parsing caused by the " above
 			else
-				parts += "[FOURSPACES]└ <span class='greentext'>Никто не умер за смену</span>!"
+				parts += "[FOURSPACES]└ <span class='greentext'>Nobody died </span>!"
 	else
-		parts += "[FOURSPACES]└ <i><span class='redtext'>Персонал станции отсутствует. Кто вызвал шаттл и закончил раунд</span>?</i>"
+		parts += "[FOURSPACES]└ <i><span class='redtext'>No players</span>?</i>"
 
 	return parts.Join("<br>")
 

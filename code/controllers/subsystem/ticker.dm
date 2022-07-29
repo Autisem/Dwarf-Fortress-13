@@ -387,7 +387,7 @@ SUBSYSTEM_DEF(ticker)
 	// 		m = pick(memetips)
 
 	// if(m)
-	// 	to_chat(world, span_purple("<b>Заметка: </b>[html_encode(m)]"))
+	// 	to_chat(world, span_purple("<b>Tip of the round: </b>[html_encode(m)]"))
 
 /datum/controller/subsystem/ticker/proc/check_queue()
 	if(!queued_players.len)
@@ -604,7 +604,7 @@ SUBSYSTEM_DEF(ticker)
 	else if(gamelogloc)
 		to_chat(world, span_info("Round logs can be located <a href=\"[gamelogloc]\">at this website!</a>"))
 
-	log_game(span_boldannounce("Пересоздаём мир. [reason]"))
+	log_game(span_boldannounce("Rebooting. [reason]"))
 
 	world.Reboot()
 

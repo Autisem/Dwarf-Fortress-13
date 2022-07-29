@@ -102,7 +102,7 @@
 	SIGNAL_HANDLER
 
 	if(rotation_flags & ROTATION_ALTCLICK)
-		examine_list += span_notice("<hr>ПКМ для поворота по часовой стрелке.")
+		examine_list += span_notice("<hr>Alt-Click to rotate.")
 
 /datum/component/simple_rotation/proc/HandRot(datum/source, mob/user, rotation = default_rotation_direction)
 	SIGNAL_HANDLER
@@ -142,10 +142,10 @@
 	return !AM.anchored
 
 /datum/component/simple_rotation/proc/default_after_rotation(mob/user, rotation_type)
-	to_chat(user,span_notice("[rotation_type == ROTATION_FLIP ? "Переворачиваю" : "Поворачиваю"] [parent]."))
+	to_chat(user,span_notice("You [rotation_type == ROTATION_FLIP ? "flip" : "rotate"] [parent]."))
 
 /atom/movable/proc/simple_rotate_clockwise()
-	set name = "Повернуть по часовой"
+	set name = "Rotate clockwise"
 	set category = "Obj"
 	set src in oview(1)
 	var/datum/component/simple_rotation/rotcomp = GetComponent(/datum/component/simple_rotation)
@@ -153,7 +153,7 @@
 		rotcomp.HandRot(null,usr,ROTATION_CLOCKWISE)
 
 /atom/movable/proc/simple_rotate_counterclockwise()
-	set name = "Повернуть против часовой"
+	set name = "Rotate counterclockwise"
 	set category = "Obj"
 	set src in oview(1)
 	var/datum/component/simple_rotation/rotcomp = GetComponent(/datum/component/simple_rotation)
@@ -161,7 +161,7 @@
 		rotcomp.HandRot(null,usr,ROTATION_COUNTERCLOCKWISE)
 
 /atom/movable/proc/simple_rotate_flip()
-	set name = "Перевернуть"
+	set name = "Flip"
 	set category = "Obj"
 	set src in oview(1)
 	var/datum/component/simple_rotation/rotcomp = GetComponent(/datum/component/simple_rotation)

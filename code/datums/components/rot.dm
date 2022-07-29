@@ -87,11 +87,11 @@
 
 /datum/component/rot/proc/check_reagent(datum/reagents/source, datum/reagent/modified)
 	SIGNAL_HANDLER
-	if(modified && !istype(modified, /datum/reagent/toxin/formaldehyde) && !istype(modified, /datum/reagent/cryostylane))
+	if(modified)
 		return
-	if(source.has_reagent(/datum/reagent/toxin/formaldehyde, 15) || source.has_reagent(/datum/reagent/cryostylane))
-		rest(REAGENT_BLOCKER)
-		return
+	// if(FALSE) // replaced with false cause the reagents that block it were removed
+	// 	rest(REAGENT_BLOCKER)
+	// 	return
 	start_up(REAGENT_BLOCKER)
 
 /datum/component/rot/proc/check_for_temperature(datum/source, old_temp, new_temp)

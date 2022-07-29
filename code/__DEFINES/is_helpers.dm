@@ -131,8 +131,6 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isstructure(A) (istype(A, /obj/structure))
 
-#define ismachinery(A) (istype(A, /obj/machinery))
-
 #define ismopable(A) (A && (A.layer <= FLOOR_CLEAN_LAYER)) //If something can be cleaned by floor-cleaning devices such as mops or clean bots
 
 #define isorgan(A) (istype(A, /obj/item/organ))
@@ -173,8 +171,7 @@ GLOBAL_LIST_INIT(glass_sheet_types, typecacheof(list()))
 #define isProbablyWallMounted(O) (O.pixel_x > 20 || O.pixel_x < -20 || O.pixel_y > 20 || O.pixel_y < -20)
 #define isbook(O) (is_type_in_typecache(O, GLOB.book_types))
 
-GLOBAL_LIST_INIT(book_types, typecacheof(list(
-	/obj/item/storage/book)))
+GLOBAL_LIST_INIT(book_types, typecacheof(list()))
 
 #define is_thrall(M) (istype(M, /mob/living) && M.mind?.has_antag_datum(/datum/antagonist/thrall))
 #define is_shadow(M) (istype(M, /mob/living) && M.mind?.has_antag_datum(/datum/antagonist/shadowling))

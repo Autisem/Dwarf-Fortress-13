@@ -37,17 +37,6 @@
 	if (stack_overlays)
 		. += stack_overlays
 
-/obj/item/stack/ore/welder_act(mob/living/user, obj/item/I)
-	..()
-	if(!refined_type)
-		return TRUE
-
-	if(I.use_tool(src, user, 0, volume=50, amount=15))
-		new refined_type(drop_location())
-		use(1)
-
-	return TRUE
-
 /obj/item/stack/ore/fire_act(exposed_temperature, exposed_volume)
 	. = ..()
 	if(isnull(refined_type))

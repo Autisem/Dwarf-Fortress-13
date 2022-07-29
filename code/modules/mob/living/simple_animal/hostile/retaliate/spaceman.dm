@@ -10,8 +10,6 @@
 	turns_per_move = 5
 	response_disarm_continuous = "gently pushes aside"
 	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "бьёт"
-	response_harm_simple = "бьёт"
 	a_intent = INTENT_HARM
 	maxHealth = 100
 	health = 100
@@ -19,8 +17,6 @@
 	harm_intent_damage = 8
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	attack_verb_continuous = "бьёт"
-	attack_verb_simple = "бьёт"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
@@ -45,8 +41,6 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 10
 	melee_damage_upper = 15
-	attack_verb_continuous = "бьёт"
-	attack_verb_simple = "бьёт"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	faction = list("nanotrasenprivate")
 	a_intent = INTENT_HARM
@@ -66,6 +60,5 @@
 	ranged = 1
 	retreat_distance = 3
 	minimum_distance = 5
-	casingtype = /obj/item/ammo_casing/c46x30mm
 	projectilesound = 'sound/weapons/gun/smg/shot.ogg'
 	loot = list()

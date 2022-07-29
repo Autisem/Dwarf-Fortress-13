@@ -415,9 +415,9 @@
 		GLOB.master_mode = href_list["c_mode2"]
 		log_admin("[key_name(usr)] set the mode as [GLOB.master_mode].")
 		message_admins(span_adminnotice("[key_name_admin(usr)] set the mode as [GLOB.master_mode]."))
-		to_chat(world, span_adminnotice("<b>Режим: [GLOB.master_mode]</b>") , confidential = TRUE)
+		to_chat(world, span_adminnotice("<b>Gamemode: [GLOB.master_mode]</b>") , confidential = TRUE)
 		Game() // updates the main game menu
-		if (tgui_alert(usr, "Оставляем навсегда?", "Сохранение", list("Да", "Нет"), timeout = 0) == "Да")
+		if (tgui_alert(usr, "Save forever?", "Save", list("Yes", "No"), timeout = 0) == "Yes")
 			SSticker.save_mode(GLOB.master_mode)
 		HandleCMode()
 
@@ -1357,7 +1357,7 @@
 
 	else if(href_list["admincommend"])
 		var/mob/heart_recepient = locate(href_list["admincommend"])
-		if(tgui_alert(usr, "Хочешь выдать сердечко в ООС [heart_recepient.ckey]?", "<3?", list("Да", "Нет")) == "Нет")
+		if(tgui_alert(usr, "Would you like to give admin commendation to [heart_recepient.ckey]?", "<3?", list("Yes", "No")) == "No")
 			return
 		heart_recepient.receive_heart(usr, instant = TRUE)
 

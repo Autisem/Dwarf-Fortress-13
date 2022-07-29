@@ -39,11 +39,9 @@
 /datum/component/storage/concrete/pockets/shoes/Initialize()
 	. = ..()
 	set_holdable(list(
-		/obj/item/kitchen/knife, /obj/item/pen,
+		/obj/item/kitchen/knife,
 		/obj/item/reagent_containers/syringe,
-		/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/dropper,
-		/obj/item/screwdriver, /obj/item/weldingtool/mini,
-		/obj/item/firing_pin
+		/obj/item/screwdriver
 		),
 		list()
 		)
@@ -51,11 +49,9 @@
 /datum/component/storage/concrete/pockets/shoes/clown/Initialize()
 	. = ..()
 	set_holdable(list(
-		/obj/item/kitchen/knife, /obj/item/pen,
+		/obj/item/kitchen/knife,
 		/obj/item/reagent_containers/syringe,
-		/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/dropper,
-		/obj/item/screwdriver, /obj/item/weldingtool/mini,
-		/obj/item/firing_pin, /obj/item/bikehorn),
+		/obj/item/screwdriver, /obj/item/bikehorn),
 		list()
 		)
 
@@ -68,7 +64,6 @@
 	original_parent = parent
 	. = ..()
 	set_holdable(list( //Same items as a PDA
-		/obj/item/pen,
 		/obj/item/lipstick,
 		/obj/item/clothing/mask/cigarette)
 		)
@@ -83,9 +78,7 @@
 
 /datum/component/storage/concrete/pockets/helmet/Initialize()
 	. = ..()
-	set_holdable(list(/obj/item/reagent_containers/food/drinks/bottle/molotov,
-					  /obj/item/reagent_containers/food/drinks/drinkingglass,
-					  /obj/item/ammo_box/a762))
+	set_holdable(list(/obj/item/reagent_containers/food/drinks/drinkingglass))
 
 /datum/component/storage/concrete/pockets/big
 	max_items = 3

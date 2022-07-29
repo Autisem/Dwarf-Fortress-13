@@ -50,8 +50,8 @@
 /datum/keybinding/client/multiz_up_hotkeys
 	hotkey_keys = list("Northeast") // PAGEUP
 	name = "multiz_up_hotkeys"
-	full_name = "Вверх"
-	description = "Подняться/взлететь вверх"
+	full_name = "Up"
+	description = "Move up"
 	keybind_signal = COMSIG_KB_CLIENT_MULTIZ_UP
 
 /datum/keybinding/client/multiz_up_hotkeys/down(client/user)
@@ -64,8 +64,8 @@
 /datum/keybinding/client/multiz_down_hotkeys
 	hotkey_keys = list("Southeast") // PAGEDOWN
 	name = "multiz_down_hotkeys"
-	full_name = "Вниз"
-	description = "Опуститься/полететь вниз"
+	full_name = "Down"
+	description = "Move down"
 	keybind_signal = COMSIG_KB_CLIENT_MULTIZ_DOWN
 
 /datum/keybinding/client/multiz_down_hotkeys/down(client/user)

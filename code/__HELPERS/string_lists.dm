@@ -24,8 +24,7 @@ GLOBAL_LIST_EMPTY(string_lists)
 	return string_list(values)
 
 /turf/open/indestructible/baseturfs_ded
-	name = "обшивка"
-	desc = "НЕМНОГО ПОВРЕЖДЕНА ПИЗДЕЦ."
+	name = "Wall"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 	//icon = 'icons/turf/debug.dmi'

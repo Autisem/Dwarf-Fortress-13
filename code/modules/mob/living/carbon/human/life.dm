@@ -26,18 +26,17 @@
 	if(QDELETED(src))
 		return FALSE
 
-	if(!IS_IN_STASIS(src))
-		if(stat != DEAD)
-			//heart attack stuff
-			handle_heart(delta_time, times_fired)
-			handle_liver(delta_time, times_fired)
-			if(prob(2))
-				if(nutrition < NUTRITION_LEVEL_STARVING)
-					to_chat(src, span_warning("[pick("You feel hungry...", "You feel like eating...", "Your stomach growls...")]"))
-					take_overall_damage(stamina = 60)
-				if(hydration <= HYDRATION_LEVEL_DEHYDRATED)
-					to_chat(src, span_warning("[pick("You feel thirsty...", "Your throat feels dry...", "Some water would be great...")]"))
-					take_overall_damage(stamina = 60)
+	if(stat != DEAD)
+		//heart attack stuff
+		handle_heart(delta_time, times_fired)
+		handle_liver(delta_time, times_fired)
+		if(prob(2))
+			if(nutrition < NUTRITION_LEVEL_STARVING)
+				to_chat(src, span_warning("[pick("You feel hungry...", "You feel like eating...", "Your stomach growls...")]"))
+				take_overall_damage(stamina = 60)
+			if(hydration <= HYDRATION_LEVEL_DEHYDRATED)
+				to_chat(src, span_warning("[pick("You feel thirsty...", "Your throat feels dry...", "Some water would be great...")]"))
+				take_overall_damage(stamina = 60)
 
 		dna.species.spec_life(src, delta_time, times_fired) // for mutantraces
 

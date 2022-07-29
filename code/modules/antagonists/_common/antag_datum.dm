@@ -185,9 +185,9 @@ GLOBAL_LIST_EMPTY(antagonists)
 				break
 
 	if(objectives.len == 0 || objectives_complete)
-		report += "<span class='greentext big'>[capitalize(name)] успешен!</span>"
+		report += "<span class='greentext big'>[capitalize(name)] was successfull!</span>"
 	else
-		report += "<span class='redtext big'>[capitalize(name)] провален!</span>"
+		report += "<span class='redtext big'>[capitalize(name)] has failed!</span>"
 
 	return report.Join("<br>")
 

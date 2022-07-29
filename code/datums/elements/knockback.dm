@@ -12,7 +12,7 @@
 
 /datum/element/knockback/Attach(datum/target, throw_distance = 1, throw_anchored = FALSE, throw_gentle = FALSE)
 	. = ..()
-	if(ismachinery(target) || isstructure(target) || isgun(target)) // turrets, etc
+	if(isstructure(target) || isgun(target)) // turrets, etc
 		RegisterSignal(target, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
 	else if(isitem(target))
 		RegisterSignal(target, COMSIG_ITEM_AFTERATTACK, .proc/item_afterattack)

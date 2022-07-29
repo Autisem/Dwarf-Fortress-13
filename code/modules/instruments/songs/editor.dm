@@ -117,7 +117,6 @@
 /datum/song/Topic(href, href_list)
 	if(!usr.canUseTopic(parent, TRUE, FALSE, FALSE, FALSE))
 		usr << browse(null, "window=instrument")
-		usr.unset_machine()
 		return
 
 	parent.add_fingerprint(usr)

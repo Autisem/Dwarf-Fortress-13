@@ -7,7 +7,6 @@
 	barefootstep = FOOTSTEP_SAND
 	clawfootstep = FOOTSTEP_SAND
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-	floor_tile = /turf/open/floor/stone/raw
 	slowdown = 0
 	var/busy = FALSE
 

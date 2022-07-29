@@ -21,11 +21,11 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 
 	switch (href_list["action"])
 		if ("add")
-			var/ckey1 = input(usr, "Введите основной CKEY") as null|text
+			var/ckey1 = input(usr, "Enter main account ckey") as null|text
 			if (!ckey1)
 				return
 
-			var/ckey2 = input(usr, "Введите CKEY мультиаккаунта") as null|text
+			var/ckey2 = input(usr, "enter multiaccount ckey") as null|text
 			if (!ckey2)
 				return
 
@@ -51,7 +51,7 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 			qdel(query_already_exists)
 
 			if (already_exists_row)
-				alert(usr, "Эти уже есть в списке!")
+				alert(usr, "It's already recorded!")
 				return
 
 			var/datum/db_query/query_add_known_alt = SSdbcore.NewQuery({"
@@ -64,7 +64,7 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 			))
 
 			if (query_add_known_alt.warn_execute())
-				var/message = "[key_name(usr)] добавляет новую связку мультиакков [ckey1] и [ckey2]."
+				var/message = "[key_name(usr)] Added new known alt: [ckey1] and [ckey2]."
 				message_admins(message)
 				log_admin_private(message)
 
@@ -75,8 +75,8 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 			show_panel(usr.client)
 
 			if (!is_banned_from(ckey2, "Server"))
-				var/ban_choice = alert("[ckey2] не имеет банов на сервере. Откроем банпанель?",,"Да", "Нет")
-				if (ban_choice == "Да")
+				var/ban_choice = alert("[ckey2] isn't banned. Open Ban Panel?",,"Yes", "No")
+				if (ban_choice == "Yes")
 					holder.ban_panel(ckey2, role = "Server", duration = BAN_PANEL_PERMANENT)
 		if ("delete")
 			var/id = text2num(href_list["id"])
@@ -96,14 +96,14 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 				return
 
 			if (!query_known_alt_info.NextRow())
-				alert("Не могу найти по данному айди: [id]")
+				alert("Cannot find this id: [id]")
 				qdel(query_known_alt_info)
 				return
 
 			var/list/result = query_known_alt_info.item
 			qdel(query_known_alt_info)
 
-			if (alert("ТОЧНО БЛЯТЬ УДАЛЯЕМ СвЯЗЬ МЕЖДУ [result[1]] И [result[2]]?",,"ХУЯРЬ", "Нет") != "ХУЯРЬ")
+			if (alert("Delete known multiaccounts between [result[1]] & [result[2]]?",,"Yes", "No") != "Yes")
 				return
 
 			var/datum/db_query/query_delete_known_alt = SSdbcore.NewQuery({"
@@ -114,7 +114,7 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 			))
 
 			if (query_delete_known_alt.warn_execute())
-				var/message = "[key_name(usr)] удаляет связь между мультиакками [result[1]] и [result[2]]."
+				var/message = "[key_name(usr)] removed known alts between [result[1]] & [result[2]]."
 				message_admins(message)
 				log_admin_private(message)
 

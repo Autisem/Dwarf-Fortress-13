@@ -1,8 +1,8 @@
 // Note: tails only work in humans. They use human-specific parameters and rely on human code for displaying.
 
 /obj/item/organ/tail
-	name = "хвост"
-	desc = "Отрезанный хвост. От чего ты это отрезал?"
+	name = "tail"
+	desc = "A severed tail. What did you cut this off of?"
 	icon_state = "severedtail"
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_TAIL
@@ -17,8 +17,8 @@
 	tail_owner?.dna?.species?.on_tail_lost(tail_owner, src, special)
 
 /obj/item/organ/tail/cat
-	name = "кошачий хвост"
-	desc = "Отрезанный кошачий хвост. Кто сейчас виляет?"
+	name = "cat tail"
+	desc = "A severed cat tail. Who's wagging now?"
 	tail_type = "Cat"
 
 /obj/item/organ/tail/cat/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
@@ -38,8 +38,8 @@
 		H.update_body()
 
 /obj/item/organ/tail/lizard
-	name = "хвост ящерицы"
-	desc = "Отрезанный хвост ящерицы. Где-то, без сомнения, ненавистник ящериц очень доволен собой."
+	name = "lizard tail"
+	desc = "A severed lizard tail. Somewhere, no doubt, a lizard hater is very pleased with themselves."
 	color = "#116611"
 	tail_type = "Smooth"
 	var/spines = "None"
@@ -86,8 +86,8 @@
 	desc = "A fabricated severed lizard tail. This one's made of synthflesh. Probably not usable for lizard wine."
 
 /obj/item/organ/tail/monkey
-	name = "хвост обезьяны"
-	desc = "Отрезанный хвост обезьяны. Не похоже на банан."
+	name = "monkey tail"
+	desc = "A severed monkey tail. Does not look like a banana."
 	tail_type = "Monkey"
 	icon_state = "severedmonkeytail"
 
@@ -105,8 +105,3 @@
 		H.dna.features["tail_monkey"] = "None"
 		H.dna.species.mutant_bodyparts -= "tail_monkey"
 		H.update_body()
-
-/obj/item/organ/tail/cat/fox
-	name = "лисий хвост"
-	desc = "Отрезанный лисий хвост. Кто сейчас виляет?"
-	tail_type = "Fox"

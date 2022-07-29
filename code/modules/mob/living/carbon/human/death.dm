@@ -25,9 +25,7 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 	if(H)
 		H.beat = BEAT_NONE
 
-	to_chat(client, \
-	"<span class='notice'><i>Пришлось погибнуть. Было ли это по моей глупости или нет? Возможно моё тело ещё реанимируют, можно подождать...\
-	\nГоворят, что после смерти есть возможность получить вторую жизнь, можно попробовать найти свой шанс...</i></span>")
+	to_chat(src, span_warning("You have died. Barring complete bodyloss, you can in most cases be revived by other players. If you do not wish to be brought back, use the \"Do Not Resuscitate\" verb in the ghost tab."))
 
 	. = ..()
 
@@ -42,7 +40,7 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 		log_message("has died (BRUTE: [src.getBruteLoss()], BURN: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()])", LOG_ATTACK)
 
 /client/proc/show_tgui_notice(header, msg)
-	tgui_alert_async(src, header, msg, list("Понимаю"))
+	tgui_alert_async(src, header, msg, list("Understood"))
 
 /mob/living/carbon/proc/Drain()
 	become_husk(CHANGELING_DRAIN)

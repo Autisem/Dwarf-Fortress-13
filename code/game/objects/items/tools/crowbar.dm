@@ -1,6 +1,6 @@
 /obj/item/crowbar
-	name = "карманный лом"
-	desc = "Маленький ломик. Этот удобный инструмент полезен для многих вещей, например, для снятия напольной плитки или открывания дверей без электропитания."
+	name = "pocket crowbar"
+	desc = "A small crowbar. This handy tool is useful for lots of things, such as prying floor tiles."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar"
 	usesound = 'sound/items/crowbar.ogg'
@@ -12,9 +12,8 @@
 	custom_materials = list(/datum/material/iron=50)
 	drop_sound = 'sound/items/handling/crowbar_drop.ogg'
 	pickup_sound =  'sound/items/handling/crowbar_pickup.ogg'
-
-	attack_verb_continuous = list("атакует", "колотит", "бьёт", "ударяет", "вмазывает")
-	attack_verb_simple = list("атакует", "колотит", "бьёт", "ударяет", "вмазывает")
+	attack_verb_continuous = list("attacks", "bashes", "batters", "bludgeons", "whacks")
+	attack_verb_simple = list("attack", "bash", "batter", "bludgeon", "whack")
 	tool_behaviour = TOOL_CROWBAR
 	toolspeed = 1
 	var/force_opens = FALSE
@@ -23,39 +22,3 @@
 	user.visible_message(span_suicide("[user] is beating [user.p_them()]self to death with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(loc, 'sound/weapons/genhit.ogg', 50, TRUE, -1)
 	return (BRUTELOSS)
-
-/obj/item/crowbar/red
-	icon_state = "crowbar_red"
-	force = 8
-
-/obj/item/crowbar/abductor
-	name = "инопланетный лом"
-	desc = "Жесткий лёгкий ломик. Похоже, он работает сам по себе, даже не нужно прилагать никаких усилий."
-	icon = 'icons/obj/abductor.dmi'
-	usesound = 'sound/weapons/sonic_jackhammer.ogg'
-	icon_state = "crowbar"
-	toolspeed = 0.1
-
-
-/obj/item/crowbar/large
-	name = "лом"
-	desc = "Это большой ломик. Он не помещается в карманы, потому что он большой."
-	force = 12
-	w_class = WEIGHT_CLASS_NORMAL
-	throw_speed = 3
-	throw_range = 3
-	custom_materials = list(/datum/material/iron=70)
-	icon_state = "crowbar_large"
-	inhand_icon_state = "crowbar"
-	worn_icon_state = "crowbar"
-	toolspeed = 0.7
-
-/obj/item/crowbar/cyborg
-	name = "гидравлический лом"
-	desc = "Гидравлический инструмент, простой, но мощный."
-	icon = 'icons/obj/items/cyber_arm_tools.dmi'
-	icon_state = "crowbar_cyborg"
-	worn_icon_state = "crowbar"
-	usesound = 'sound/items/jaws_pry.ogg'
-	force = 10
-	toolspeed = 0.5

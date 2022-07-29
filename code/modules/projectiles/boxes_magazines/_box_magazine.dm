@@ -42,15 +42,12 @@
 		top_off(starting=TRUE)
 	update_icon()
 
-/obj/item/ammo_box/add_weapon_description()
-	AddElement(/datum/element/weapon_description, attached_proc = .proc/add_notes_box)
-
 /obj/item/ammo_box/proc/add_notes_box()
 	var/list/readout = list()
 
 	if(caliber && max_ammo) // Text references a 'magazine' as only magazines generally have the caliber variable initialized
-		readout += "До [span_warning("[max_ammo] патронов калибра [caliber]")] может быть найдено в магазине. \
-		\nСлучайный разряд любого из этих снарядов может привести к аннулированию вашего страхового договора."
+		readout += "Up to [span_warning("[max_ammo] [caliber] rounds")] can be found within this magazine. \
+		\nAccidentally discharging any of these projectiles may void your insurance contract."
 
 	var/obj/item/ammo_casing/mag_ammo = get_round(TRUE)
 

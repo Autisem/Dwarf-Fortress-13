@@ -2,13 +2,13 @@
 	var/fire_stacks
 
 /datum/component/igniter/Initialize(fire_stacks=1)
-	if(!isitem(parent) && !ishostile(parent) && !isgun(parent) && !ismachinery(parent) && !isstructure(parent))
+	if(!isitem(parent) && !ishostile(parent) && !isgun(parent) && !isstructure(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	src.fire_stacks = fire_stacks
 
 /datum/component/igniter/RegisterWithParent()
-	if(ismachinery(parent) || isstructure(parent) || isgun(parent)) // turrets, etc
+	if(isstructure(parent) || isgun(parent)) // turrets, etc
 		RegisterSignal(parent, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
 	else if(isitem(parent))
 		RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, .proc/item_afterattack)

@@ -162,7 +162,7 @@
 	if(!.)
 		return
 	if(!SSticker?.IsRoundInProgress())
-		to_chat(hud.mymob, span_boldwarning("Раунд ещё не начался или уже завершился..."))
+		to_chat(hud.mymob, span_boldwarning("The round did not start yet or has already ended..."))
 		return
 
 	//Determines Relevent Population Cap
@@ -181,12 +181,12 @@
 
 		var/queue_position = SSticker.queued_players.Find(new_player)
 		if(queue_position == 1)
-			to_chat(new_player, span_notice("Ты следующий по списку желающих войти в раунд. Тебя оповестят о подходящей возможности."))
+			to_chat(new_player, span_notice("You are next in line to join the game. You will be notified when a slot opens up."))
 		else if(queue_position)
-			to_chat(new_player, span_notice("Перед тобой [queue_position-1] игроков в очереди ожидания захода в раунд."))
+			to_chat(new_player, span_notice("There are [queue_position-1] players in front of you in the queue to join the game."))
 		else
 			SSticker.queued_players += new_player
-			to_chat(new_player, span_notice("Тебя добавили в очередь для захода в игру. Твой номер в очереди: [SSticker.queued_players.len]."))
+			to_chat(new_player, span_notice("You have been added to the queue to join the game. Your position in queue is [SSticker.queued_players.len]."))
 		return
 	if(check_whitelist(new_player?.client?.ckey) || new_player?.client?.holder)
 		new_player.Try_Latejion()

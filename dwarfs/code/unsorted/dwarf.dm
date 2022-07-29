@@ -29,7 +29,7 @@
 			H.heal_bodypart_damage(0.5,0.5,0.5)
 			return FALSE
 
-/datum/species/dwarf/random_name(gender,unique,lastname, en_lang = FALSE)
+/datum/species/dwarf/random_name(gender,unique,lastname)
 	return dwarf_name()
 
 // Dwarven tongue, they only know their language.

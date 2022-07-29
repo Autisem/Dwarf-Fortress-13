@@ -412,6 +412,6 @@
 	integer = FALSE // It is in hours, but just in case one wants to specify minutes.
 
 /datum/config_entry/flag/sdql_spells
-	config_entry_value = TRUE  //похуй ебал конфиги
+	config_entry_value = TRUE
 
 /datum/config_entry/flag/native_fov

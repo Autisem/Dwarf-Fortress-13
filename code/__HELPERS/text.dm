@@ -180,11 +180,11 @@
 				number_of_alphanumeric++
 				last_char_group = LETTERS_DETECTED
 
-			if(1040 to 1071)			//Русские буковки
+			if(1040 to 1071)			//Russian letters
 				number_of_alphanumeric++
 				last_char_group = LETTERS_DETECTED
 
-			if(1072 to 1105)			//Русские буковки
+			if(1072 to 1105)			//Russian letters
 				if(last_char_group == NO_CHARS_DETECTED || last_char_group == SPACES_DETECTED || last_char_group == SYMBOLS_DETECTED) //start of a word
 					char = uppertext(char)
 				number_of_alphanumeric++
@@ -243,7 +243,7 @@
 	if(last_char_group == SPACES_DETECTED)
 		t_out = copytext_char(t_out, 1, -1) //removes the last character (in this case a space)
 
-	for(var/bad_name in list("space","floor","wall","r-wall","monkey","неизвестный","inactive ai"))	//prevents these common metagamey names
+	for(var/bad_name in list("dwarf","floor","wall","r-wall","monkey","unknown","inactive ai"))	//prevents these common metagamey names
 		if(cmptext(t_out,bad_name))
 			return	//(not case sensitive)
 

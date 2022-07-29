@@ -1,6 +1,6 @@
 /obj/item/screwdriver
-	name = "отвёртка"
-	desc = "Ею можно откручивать и закручивать различные штуки."
+	name = "screwdriver"
+	desc = "You can be totally screwy with this."
 	gender = FEMALE
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver_map"
@@ -15,8 +15,8 @@
 	throw_speed = 3
 	throw_range = 5
 	custom_materials = list(/datum/material/iron=75)
-	attack_verb_continuous = list("втыкает")
-	attack_verb_simple = list("втыкает")
+	attack_verb_continuous = list("stabs")
+	attack_verb_simple = list("stab")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	usesound = list('sound/items/screwdriver.ogg', 'sound/items/screwdriver2.ogg')
 	tool_behaviour = TOOL_SCREWDRIVER
@@ -64,23 +64,3 @@
 		var/mutable_appearance/M = mutable_appearance(icon_file, "screwdriver_head")
 		M.appearance_flags = RESET_COLOR
 		. += M
-
-/obj/item/screwdriver/abductor
-	name = "инопланетная отвёртка"
-	desc = "Похожа на экспериментальную сверхзвуковую отвертку."
-	icon = 'icons/obj/abductor.dmi'
-	icon_state = "screwdriver_a"
-	inhand_icon_state = "screwdriver_nuke"
-	usesound = 'sound/items/pshoom.ogg'
-	toolspeed = 0.1
-	random_color = FALSE
-
-/obj/item/screwdriver/cyborg
-	name = "автоматическая отвертка"
-	desc = "Мощная автоматическая отвертка, разработанная для быстрой и точной работы."
-	icon = 'icons/obj/items/cyber_arm_tools.dmi'
-	icon_state = "screwdriver_cyborg"
-	hitsound = 'sound/items/drill_hit.ogg'
-	usesound = 'sound/items/drill_use.ogg'
-	toolspeed = 0.5
-	random_color = FALSE

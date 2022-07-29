@@ -374,7 +374,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	// Disassociates observer mind from the body mind
 	mind = null
 
-	// inc_metabalance(src, METACOIN_DNR_REWARD, reason="Соединение с телом прервано. Приятного времяпрепровождения.")
 	return TRUE
 
 /mob/dead/observer/proc/notify_cloning(message, sound, atom/source, flashwindow = TRUE)

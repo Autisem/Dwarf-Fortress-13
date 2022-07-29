@@ -541,7 +541,7 @@
 				burndamage += rand(30,40)
 
 		if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
-			status = "BRUTE: [brutedamage]</span>\] И \[<span class='warning'>BURN: [burndamage]"
+			status = "BRUTE: [brutedamage]</span>\] And \[<span class='warning'>BURN: [burndamage]"
 			if(!brutedamage && !burndamage)
 				status = "OK"
 

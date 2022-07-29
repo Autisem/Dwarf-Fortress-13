@@ -4,14 +4,10 @@ GLOBAL_LIST_INIT(wizard_second, world.file2list("strings/names/wizardsecond.txt"
 GLOBAL_LIST_INIT(ninja_titles, world.file2list("strings/names/ninjatitle.txt"))
 GLOBAL_LIST_INIT(ninja_names, world.file2list("strings/names/ninjaname.txt"))
 GLOBAL_LIST_INIT(commando_names, world.file2list("strings/names/death_commando.txt"))
-GLOBAL_LIST_INIT(first_names, world.file2list("strings/names/first.txt"))
-GLOBAL_LIST_INIT(first_names_male, world.file2list("strings/names/first_male.txt"))
-GLOBAL_LIST_INIT(first_names_female, world.file2list("strings/names/first_female.txt"))
-GLOBAL_LIST_INIT(last_names, world.file2list("strings/names/last.txt"))
-GLOBAL_LIST_INIT(first_names_en, world.file2list("strings/names/first_en.txt"))
-GLOBAL_LIST_INIT(first_names_male_en, world.file2list("strings/names/first_male_en.txt"))
-GLOBAL_LIST_INIT(first_names_female_en, world.file2list("strings/names/first_female_en.txt"))
-GLOBAL_LIST_INIT(last_names_en, world.file2list("strings/names/last_en.txt"))
+GLOBAL_LIST_INIT(first_names, world.file2list("strings/names/first_en.txt"))
+GLOBAL_LIST_INIT(first_names_male, world.file2list("strings/names/first_male_en.txt"))
+GLOBAL_LIST_INIT(first_names_female, world.file2list("strings/names/first_female_en.txt"))
+GLOBAL_LIST_INIT(last_names, world.file2list("strings/names/last_en.txt"))
 GLOBAL_LIST_INIT(lizard_names_male, world.file2list("strings/names/lizard_male.txt"))
 GLOBAL_LIST_INIT(lizard_names_female, world.file2list("strings/names/lizard_female.txt"))
 GLOBAL_LIST_INIT(clown_names, world.file2list("strings/names/clown.txt"))
@@ -50,5 +46,5 @@ List of configurable names in preferences and their metadata
 	),
 */
 GLOBAL_LIST_INIT(preferences_custom_names, list(
-	"human" = list("pref_name" = "Backup Name", "qdesc" = "используется, когда требуемая роль возможна только для людей с чистыми генами", "allow_numbers" = FALSE , "group" = "backup_human", "allow_null" = FALSE)
+	"human" = list("pref_name" = "Backup Name", "qdesc" = "dogshit", "allow_numbers" = FALSE , "group" = "backup_human", "allow_null" = FALSE)
 	))

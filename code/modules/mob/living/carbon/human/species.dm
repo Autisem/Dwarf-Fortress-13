@@ -230,29 +230,20 @@ GLOBAL_LIST_EMPTY(roundstart_races)
  * * unique - If true, ensures that this new name is not a duplicate of anyone else's name currently on the station.
  * * lastname - Does this species' naming system adhere to the last name system? Set to false if it doesn't.
  */
-/datum/species/proc/random_name(gender,unique,lastname,en_lang)
+/datum/species/proc/random_name(gender,unique,lastname)
 	if(unique)
 		return random_unique_name(gender)
 
 	var/randname
 	if(gender == MALE)
-		if (en_lang)
-			randname = pick(GLOB.first_names_male_en)
-		else
-			randname = pick(GLOB.first_names_male)
+		randname = pick(GLOB.first_names_male)
 	else
-		if (en_lang)
-			randname = pick(GLOB.first_names_female_en)
-		else
-			randname = pick(GLOB.first_names_female)
+		randname = pick(GLOB.first_names_female)
 
 	if(lastname)
 		randname += " [lastname]"
 	else
-		if (en_lang)
-			randname += " [pick(GLOB.last_names_en)]"
-		else
-			randname += " [pick(GLOB.last_names)]"
+		randname += " [pick(GLOB.last_names)]"
 
 	return randname
 
@@ -1116,7 +1107,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				if(!disable_warning)
 					to_chat(H, span_warning("<b>[capitalize(I.name)]</b> is too bulky!")) //should be src?
 				return FALSE
-			if( istype(I, /obj/item/pen) || is_type_in_list(I, H.wear_suit.allowed) )
+			if( is_type_in_list(I, H.wear_suit.allowed) )
 				return TRUE
 			return FALSE
 		if(ITEM_SLOT_HANDCUFFED)
@@ -1368,10 +1359,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		target.visible_message(span_danger("[user] [atk_verb]ed [target]!") , \
 					span_userdanger("You're [atk_verb]ed by [user] !") , span_hear("You hear a sickening sound of flesh hitting flesh!") , COMBAT_MESSAGE_RANGE, user)
 		to_chat(user, span_danger("You [atk_verb] [target]!"))
-
-		//target.visible_message(span_danger("[user][return_damage_string(dam_dice_rolled)] [atk_verb] [target]!") ,
-		//			span_userdanger("[user][return_damage_string(dam_dice_rolled)] [atk_verb] меня!") , span_hear("Слышу как что-то [return_damage_string(dam_dice_rolled)] бьёт по плоти!") ,COMBAT_MESSAGE_RANGE, user)
-		//to_chat(user, span_danger("Бью[return_damage_string(dam_dice_rolled)] [target]!"))
 
 		target.lastattacker = user.real_name
 		target.lastattackerckey = user.ckey

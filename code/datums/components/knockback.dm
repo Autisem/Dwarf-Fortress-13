@@ -7,7 +7,7 @@
 	var/throw_gentle
 
 /datum/component/knockback/Initialize(throw_distance=1, throw_anchored=FALSE, throw_gentle=FALSE)
-	if(!isitem(parent) && !ishostile(parent) && !isgun(parent) && !ismachinery(parent) && !isstructure(parent))
+	if(!isitem(parent) && !ishostile(parent) && !isgun(parent) && !isstructure(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	src.throw_distance = throw_distance
@@ -15,7 +15,7 @@
 	src.throw_gentle = throw_gentle
 
 /datum/component/knockback/RegisterWithParent()
-	if(ismachinery(parent) || isstructure(parent) || isgun(parent)) // turrets, etc
+	if(isstructure(parent) || isgun(parent)) // turrets, etc
 		RegisterSignal(parent, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
 	else if(isitem(parent))
 		RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, .proc/item_afterattack)

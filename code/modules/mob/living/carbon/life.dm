@@ -7,20 +7,16 @@
 		damageoverlaytemp = 0
 		update_damage_hud()
 
-	if(IS_IN_STASIS(src))
-		. = ..()
-		reagents.handle_stasis_chems(src, delta_time, times_fired)
-	else
-		//Reagent processing needs to come before breathing, to prevent edge cases.
-		handle_organs(delta_time, times_fired)
+	//Reagent processing needs to come before breathing, to prevent edge cases.
+	handle_organs(delta_time, times_fired)
 
-		. = ..()
-		if(QDELETED(src))
-			return
+	. = ..()
+	if(QDELETED(src))
+		return
 
-		if(.) //not dead
-			handle_blood(delta_time, times_fired)
-			handle_hydration(delta_time, times_fired)
+	if(.) //not dead
+		handle_blood(delta_time, times_fired)
+		handle_hydration(delta_time, times_fired)
 
 	if(stat == DEAD)
 		stop_sound_channel(CHANNEL_HEARTBEAT)
@@ -68,8 +64,6 @@
 
 /mob/living/carbon/proc/breathe(delta_time, times_fired)
 	var/obj/item/organ/lungs = getorganslot(ORGAN_SLOT_LUNGS)
-	if(reagents.has_reagent(/datum/reagent/toxin/lexorin, needs_metabolizing = TRUE))
-		return
 
 	if(!getorganslot(ORGAN_SLOT_BREATHING_TUBE))
 		if(health <= HEALTH_THRESHOLD_FULLCRIT || (pulledby && pulledby.grab_state >= GRAB_KILL) || HAS_TRAIT(src, TRAIT_MAGIC_CHOKE) || (lungs && lungs.organ_flags & ORGAN_FAILING))
@@ -126,8 +120,6 @@
 			if(organ?.owner) // This exist mostly because reagent metabolization can cause organ reshuffling
 				organ.on_life(delta_time, times_fired)
 	else
-		if(reagents.has_reagent(/datum/reagent/toxin/formaldehyde, 1) || reagents.has_reagent(/datum/reagent/cryostylane)) // No organ decay if the body contains formaldehyde.
-			return
 		for(var/V in internal_organs)
 			var/obj/item/organ/O = V
 			O.on_death(delta_time, times_fired) //Needed so organs decay while inside the body.
@@ -262,7 +254,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		if(drunkenness >= 81)
 			adjustToxLoss(0.5 * delta_time)
 			if(!stat && DT_PROB(2.5, delta_time))
-				to_chat(src, span_warning("Надо полежать..."))
+				to_chat(src, span_warning("Just a quick nap..."))
 
 		if(drunkenness >= 91)
 			adjustToxLoss(0.5 * delta_time)
@@ -421,11 +413,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				if(limb.cremation_progress >= 100)
 					if(limb.status == BODYPART_ORGANIC) //Non-organic limbs don't burn
 						limb.drop_limb()
-						limb.visible_message(span_warning("[capitalize(limb.name)] <b>[src]</b> обращается в пепел!"))
+						limb.visible_message(span_warning("[src]'s [limb.name] crumbles into ash!"))
 						qdel(limb)
 					else
 						limb.drop_limb()
-						limb.visible_message(span_warning("[capitalize(limb.name)] <b>[src]</b> отлетает от тела!"))
+						limb.visible_message(span_warning("[src]'s [limb.name] detaches from [p_their()] body!"))
 	if(still_has_limbs)
 		return
 
@@ -437,17 +429,17 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			if(head.cremation_progress >= 100)
 				if(head.status == BODYPART_ORGANIC) //Non-organic limbs don't burn
 					head.drop_limb()
-					head.visible_message(span_warning("Голова <b>[src]</b> обращается в пепел!"))
+					head.visible_message(span_warning("[src]'s head crumbles into ash!"))
 					qdel(head)
 				else
 					head.drop_limb()
-					head.visible_message(span_warning("Голова <b>[src]</b> отлетает от тела!"))
+					head.visible_message(span_warning("[src]'s head detaches from [p_their()] body!"))
 		return
 
 	//Nothing left: dust the body, drop the items (if they're flammable they'll burn on their own)
 	chest.cremation_progress += rand(1 * delta_time, 2.5 * delta_time)
 	if(chest.cremation_progress >= 100)
-		visible_message(span_warning("<b>[src]</b> обращается в пепел!"))
+		visible_message(span_warning("[src]'s body crumbles into a pile of ash!"))
 		dust(TRUE, TRUE)
 
 /////////////////////////////////////

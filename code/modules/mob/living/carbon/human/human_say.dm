@@ -2,9 +2,9 @@
 	verb_say = dna.species.say_mod
 	if(slurring)
 		if (HAS_TRAIT(src, TRAIT_SIGN_LANG))
-			return "вяло хрюкает"
+			return "loosely signs"
 		else
-			return "хрюкает"
+			return "slurs"
 	else
 		. = ..()
 

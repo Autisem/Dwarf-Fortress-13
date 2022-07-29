@@ -6,7 +6,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	set category = "OOC"
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_danger("ОЙ."))
+		to_chat(usr, span_danger("Say is currently admin-disabled."))
 		return
 
 	if(!mob)
@@ -14,16 +14,16 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 	if(!holder)
 		if(!GLOB.ooc_allowed)
-			to_chat(src, span_danger("OOC выключен. Приятной игры."))
+			to_chat(src, span_danger("OOC is globally disabled."))
 			return
 		if(!GLOB.dooc_allowed && (mob.stat == DEAD) && !isnewplayer(mob))
-			to_chat(usr, span_danger("OOC трупам не разрешён. Приятной игры."))
+			to_chat(usr, span_danger("OOC is disabled for dead players."))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, span_danger("Тебе нельзя. Приятной игры."))
+			to_chat(src, span_danger("You are muted from OOC."))
 			return
 		if(is_banned_from(ckey, "OOC"))
-			to_chat(src, span_danger("Не-а."))
+			to_chat(src, span_danger("You are banned from OOC."))
 			return
 
 	if(QDELETED(src))
@@ -40,21 +40,21 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 
 	if(SSticker.HasRoundStarted() && (msg[1] in list(".",";",":","#") || findtext_char(msg, "Say", 1, 5)))
-		if(tgui_alert(usr, "Похоже \"[raw_msg]\" выглядит как внутриигровое сообщение, написать его в OOC?", "Для OOC?", list("Да", "Нет")) != "Да")
+		if(tgui_alert(usr, "Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", list("Yes", "No")) != "Yes")
 			return
 
 	if(!holder)
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			to_chat(src, "<B>Привет, ты что, охуел?</B>")
+			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			qdel(src)
 			return
 
 	if(!(prefs.chat_toggles & CHAT_OOC))
-		to_chat(src, span_danger("Тебе нельзя."))
+		to_chat(src, span_danger("You have OOC muted."))
 		return
 
 	//lobby ooc
@@ -113,7 +113,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 			return
 	else //otherwise just toggle it
 		GLOB.ooc_allowed = !GLOB.ooc_allowed
-	to_chat(world, "<B>Чат ООС был глобально [GLOB.ooc_allowed ? "включен" : "отключен"]!</B>")
+	to_chat(world, "<B>The OOC channel has been globally [GLOB.ooc_allowed ? "enabled" : "disabled"]!</B>")
 
 /proc/toggle_dooc(toggle = null)
 	if(toggle != null)
@@ -162,7 +162,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 
 /client/verb/colorooc()
-	set name = "Свой цвет OOC"
+	set name = "Custom OOC Color"
 	set category = null
 
 	if(!holder || !check_rights_for(src, R_ADMIN))
@@ -171,7 +171,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		// 		return
 		return
 
-	var/new_ooccolor = input(src, "Выбирай цвет OOC. Учитывай тёмную и светлую темы.", "Цвет OOC", prefs.ooccolor) as color|null
+	var/new_ooccolor = input(src, "Please select the new player OOC color.", "OOC color", prefs.ooccolor) as color|null
 	if(isnull(new_ooccolor))
 		return
 	new_ooccolor = sanitize_ooccolor(new_ooccolor)
@@ -181,7 +181,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 
 /client/verb/resetcolorooc()
-	set name = "❌ Сбросить свой цвет OOC"
+	set name = "❌ Reset OOC Color"
 	set desc = "Returns your OOC Color to default"
 	set category = null
 
@@ -196,14 +196,14 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 //Checks admin notice
 /client/verb/admin_notice()
-	set name = "📘 Заметки раунда"
+	set name = "📘 Admin Notice"
 	set category = null
 	set desc ="Check the admin notice if it has been set"
 
 	if(GLOB.admin_notice)
-		to_chat(src, "<span class='boldnotice'>Заметка:</span>\n \t [GLOB.admin_notice]")
+		to_chat(src, "<span class='boldnotice'>Notice:</span>\n \t [GLOB.admin_notice]")
 	else
-		to_chat(src, span_notice("Нет ничего особенного на этот раунд."))
+		to_chat(src, span_notice("No admin notice for this round."))
 
 /client/verb/motd()
 	set name = "📘 MOTD"
@@ -217,7 +217,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		to_chat(src, span_notice("The Message of the Day has not been set."))
 
 /client/proc/self_notes()
-	set name = "📘 Просмотреть чем я отличился"
+	set name = "📘 Your Admin Notes"
 	set category = "OOC"
 	set desc = "View the notes that admins have written about you"
 
@@ -429,7 +429,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 			winset(src, "mainwindow.split", "splitter=[pct]")
 
 /client/verb/fix_stat_panel()
-	set name = "Починить ЭТУ панель"
+	set name = "Fix THIS Panel"
 	set hidden = TRUE
 
 	init_verbs()

@@ -20,20 +20,6 @@
 	victim.attackby(knife, tider)
 
 	TEST_ASSERT(victim.getBruteLoss() > 0, "Victim took no brute damage after being hit by a knife")
-
-/datum/unit_test/harm_different_damage/Run()
-	var/mob/living/carbon/human/attacker = allocate(/mob/living/carbon/human)
-	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human)
-	var/obj/item/weldingtool/welding_tool = allocate(/obj/item/weldingtool)
-
-	attacker.put_in_active_hand(welding_tool, forced = TRUE)
-	attacker.a_intent_change(INTENT_HARM)
-	welding_tool.attack_self(attacker) // Turn it on
-	victim.attackby(welding_tool, attacker)
-
-	TEST_ASSERT_EQUAL(victim.getBruteLoss(), 0, "Victim took brute damage from a lit welding tool")
-	TEST_ASSERT(victim.getFireLoss() > 0, "Victim took no burn damage after being hit by a lit welding tool")
-
 /datum/unit_test/attack_chain
 	var/attack_hit
 	var/post_attack_hit

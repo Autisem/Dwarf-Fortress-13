@@ -202,7 +202,7 @@
 	if(external)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_notice("Сообщение <b>администраторам</b>: <span class='linkify'>[rawmsg]</span>") ,
+			html = span_notice("PM to- <b>Admins</b>: <span class='linkify'>[rawmsg]</span>") ,
 			confidential = TRUE)
 		externalreplyamount--
 	else
@@ -213,11 +213,11 @@
 			if(holder)
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = span_danger("Сообщение от <b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span>") ,
+					html = span_danger("Admin PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span>") ,
 					confidential = TRUE)
 				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = span_notice("Сообщение для <b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span>") ,
+					html = span_notice("Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span>") ,
 					confidential = TRUE)
 				//omg this is dumb, just fill in both their tickets
 				var/interaction_message = "<font color='pink'>PM from-<b>[key_name(src, recipient, 1)]</b> to-<b>[key_name(recipient, src, 1)]</b>: [keywordparsedmsg]</font>"
@@ -226,7 +226,7 @@
 					admin_ticket_log(recipient, interaction_message)
 				SSblackbox.LogAhelp(current_ticket.id, "Reply", msg, recipient.ckey, src.ckey)
 			else		//recipient is an admin but sender is not
-				var/replymsg = "Ответ от <b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span>"
+				var/replymsg = "Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span>"
 				admin_ticket_log(src, span_red("[replymsg]"))
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
@@ -234,7 +234,7 @@
 					confidential = TRUE)
 				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = span_notice("Сообщение для <b>администраторов</b>: <span class='linkify'>[msg]</span>") ,
+					html = span_notice("PM to-<b>Admins</b>: <span class='linkify'>[msg]</span>") ,
 					confidential = TRUE)
 				SSblackbox.LogAhelp(current_ticket.id, "Reply", msg, recipient.ckey, src.ckey)
 
@@ -252,19 +252,19 @@
 
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = "\n<font color='red' size='4'><b>-- Сообщение от администратора --</b></font>",
+					html = "\n<font color='red' size='4'><b>-- Administrator private message --</b></font>",
 					confidential = TRUE)
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = span_adminsay("Администратор <b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span>") ,
+					html = span_adminsay("Admin PM from <b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span>") ,
 					confidential = TRUE)
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = "<span class='adminsay'><i>Нажми на имя администратора для ответа.</i></span>\n",
+					html = "<span class='adminsay'><i>Click on the administrator's name to reply.</i></span>\n",
 					confidential = TRUE)
 				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = span_notice("Для <b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[msg]</span>") ,
+					html = span_notice("Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[msg]</span>") ,
 					confidential = TRUE)
 
 				admin_ticket_log(recipient, "<font color='pink'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
@@ -313,7 +313,7 @@
 /client/proc/popup_admin_pm(client/recipient, msg)
 	var/sender = src
 	var/sendername = key
-	var/reply = input(recipient, msg,"Сообщение от [sendername]", "") as message|null	//show message and await a reply
+	var/reply = input(recipient, msg,"Admin PM from-[sendername]", "") as message|null	//show message and await a reply
 	if(recipient && reply)
 		if(sender)
 			recipient.cmd_admin_pm(sender,reply)										//sender is still about, let's reply to them
@@ -400,18 +400,18 @@
 
 	to_chat(C,
 		type = MESSAGE_TYPE_ADMINPM,
-		html = "\n<font color='red' size='4'><b>-- Сообщение от администратора --</b></font>",
+		html = "\n<font color='red' size='4'><b>-- Admin PM --</b></font>",
 		confidential = TRUE)
 	to_chat(C,
 		type = MESSAGE_TYPE_ADMINPM,
-		html = span_adminsay("Администратор <b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]") ,
+		html = span_adminsay("Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]") ,
 		confidential = TRUE)
 	to_chat(C,
 		type = MESSAGE_TYPE_ADMINPM,
-		html = "<span class='adminsay'><i>Нажми на имя администратора для ответа.</i></span>\n",
+		html = "<span class='adminsay'><i>Click on the administrator's name to reply.</i></span>\n",
 		confidential = TRUE)
 
-	admin_ticket_log(C, "<font color='pink'>Сообщение от [tgs_tagged]: [msg]</font>")
+	admin_ticket_log(C, "<font color='pink'>PM from-[tgs_tagged]: [msg]</font>")
 
 	window_flash(C, ignorepref = TRUE)
 	//always play non-admin recipients the adminhelp sound

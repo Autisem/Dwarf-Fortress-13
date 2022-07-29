@@ -112,7 +112,7 @@
 	if(istype(A, /obj/projectile))
 		var/obj/projectile/proj = A
 		proj.fire(dir2angle(BM.build_dir))
-		log_admin("Build Mode: [key_name(c)] fired [A] in [AREACOORD(object)] (dir=[dir2ru_text(BM.build_dir)]).")
+		log_admin("Build Mode: [key_name(c)] fired [A] in [AREACOORD(object)] (dir=[dir2text(BM.build_dir)]).")
 		return
 	A.safe_throw_at(throwtarget, range, speed, force = src.force, spin = src.spin)
-	log_admin("Build Mode: [key_name(c)] spawned [A] in [AREACOORD(object)][right_click ? ", activated it and" : " and"] thrown it (range = [range], speed = [speed], force = [force], dir=[dir2ru_text(BM.build_dir)]).")
+	log_admin("Build Mode: [key_name(c)] spawned [A] in [AREACOORD(object)][right_click ? ", activated it and" : " and"] thrown it (range = [range], speed = [speed], force = [force], dir=[dir2text(BM.build_dir)]).")

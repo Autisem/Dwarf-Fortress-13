@@ -1,8 +1,8 @@
 #define MAX_DENT_DECALS 15
 
 /turf/closed/wall
-	name = "стена"
-	desc = "Здоровенный кусок металла, который служит для разделения помещений."
+	name = "wall"
+	desc = "A wall."
 	icon = 'icons/turf/walls/baywall.dmi'
 	icon_state = "wall-0"
 	base_icon_state = "wall"
@@ -65,11 +65,6 @@
 		if(newgirder) //maybe we don't /want/ a girder!
 			transfer_fingerprints_to(newgirder)
 
-	for(var/obj/O in src.contents) //Eject contents!
-		if(istype(O, /obj/structure/sign/poster))
-			var/obj/structure/sign/poster/P = O
-			P.roll_and_drop(src)
-
 	ScrapeAway()
 
 /turf/closed/wall/proc/break_wall()
@@ -117,26 +112,11 @@
 	if((user.a_intent != INTENT_HELP) || !LAZYLEN(dent_decals))
 		return FALSE
 
-	if(W.tool_behaviour == TOOL_WELDER)
-		if(!W.tool_start_check(user, amount=0))
-			return FALSE
-
-		to_chat(user, span_notice("Начинаю чинить стену..."))
-		if(W.use_tool(src, user, 0, volume=100))
-			if(iswallturf(src) && LAZYLEN(dent_decals))
-				to_chat(user, span_notice("Стена починена."))
-				cut_overlay(dent_decals)
-				dent_decals.Cut()
-			return TRUE
-
 	return FALSE
 
 /turf/closed/wall/proc/try_wallmount(obj/item/W, mob/user, turf/T)
 	//Poster stuff
-	if(istype(W, /obj/item/poster))
-		place_poster(W,user)
-		return TRUE
-	else if(istype(W, /obj/item/blacksmith/torch_handle))
+	if(istype(W, /obj/item/blacksmith/torch_handle))
 		var/obj/item/blacksmith/torch_handle/F = W
 		if(F.try_build(src, user))
 			F.attach(src, user)
@@ -145,17 +125,6 @@
 	return FALSE
 
 /turf/closed/wall/proc/try_decon(obj/item/I, mob/user, turf/T)
-	if(I.tool_behaviour == TOOL_WELDER)
-		if(!I.tool_start_check(user, amount=0))
-			return FALSE
-
-		to_chat(user, span_notice("Начинаю разваривать стену..."))
-		if(I.use_tool(src, user, slicing_duration, volume=100))
-			if(iswallturf(src))
-				to_chat(user, span_notice("После недолгого ожидания удалось снять верхнюю обшивку."))
-				dismantle_wall()
-			return TRUE
-
 	return FALSE
 
 /turf/closed/wall/get_dumping_location(obj/item/storage/source, mob/user)

@@ -233,8 +233,6 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		if(damtype == BRUTE)
 			hitsound = "swing_hit"
 
-	add_weapon_description()
-
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NEW_ITEM, src)
 	if(LAZYLEN(embedding))
 		updateEmbedding()
@@ -244,10 +242,6 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	if(rating)
 		return armor_penetration.GetRating(rating)
 	return armor_penetration.GetRating(atck_type)
-
-/// Adds the weapon_description element, which shows the 'warning label' for especially dangerous objects. Override this for item types with special notes.
-/obj/item/proc/add_weapon_description()
-	AddElement(/datum/element/weapon_description)
 
 /obj/item/Destroy()
 	item_flags &= ~DROPDEL	//prevent reqdels
@@ -504,7 +498,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 /**
  *the mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
- *if this is being done by a mob other than M, it will include the mob equipper, who пытается equip the item to mob M. equipper will be null otherwise.
+ *if this is being done by a mob other than M, it will include the mob equipper, who tries to equip the item to mob M. equipper will be null otherwise.
  *If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
  * Arguments:
  * * disable_warning to TRUE if you wish it to not give you text outputs.
@@ -979,7 +973,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 			victim.transferItemToLoc(src, victim, TRUE)
 			victim.losebreath += 2
 			victim_cavity.cavity_item = src
-			to_chat(victim, span_warning("Проглатываю что-то жёсткое. [source_item? "Это было в [source_item]..." : ""]"))
+			to_chat(victim, span_warning("You swallow hard. [source_item? "Something small was in [source_item]..." : ""]"))
 		discover_after = FALSE
 
 	else

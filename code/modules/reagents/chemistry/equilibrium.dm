@@ -214,15 +214,6 @@
 			SSblackbox.record_feedback("tally", "chemical_reaction", 1, "[reaction.type] overheated reaction steps")
 			reaction.overheated(holder, src, step_volume_added)
 
-	//is our product too impure?
-	for(var/product in reaction.results)
-		var/datum/reagent/reagent = holder.has_reagent(product)
-		if(!reagent) //might be missing from overheat exploding
-			continue
-		if (reagent.purity < reaction.purity_min)//If purity is below the min, call the proc
-			SSblackbox.record_feedback("tally", "chemical_reaction", 1, "[reaction.type] overly impure reaction steps")
-			reaction.overly_impure(holder, src, step_volume_added)
-
 	//did we explode?
 	if(!holder.my_atom || holder.reagent_list.len == 0)
 		return FALSE
@@ -253,7 +244,6 @@
 
 	delta_t = 0 //how far off optimal temp we care
 	var/cached_temp = holder.chem_temp
-	var/purity = 1
 
 	//Begin checks
 	//Calculate DeltaT (Deviation of T from optimal)
@@ -284,13 +274,6 @@
 	//Catalyst modifier
 	delta_t *= speed_mod
 
-
-	//Then adjust purity of result with beaker reagent purity.
-	purity *= reactant_purity(reaction)
-
-	//Then adjust it from the input modifier
-	purity *= purity_modifier
-
 	//Now we calculate how much to add - this is normalised to the rate up limiter
 	var/delta_chem_factor = (reaction.rate_up_lim*delta_t)*delta_time//add/remove factor
 	var/total_step_added = 0
@@ -312,20 +295,7 @@
 		//create the products
 		step_add = delta_chem_factor * reaction.results[product]
 		//If we make purities in real time
-		if(reaction.reaction_flags & REACTION_REAL_TIME_SPLIT && purity < 1)
-			var/datum/reagent/product_ref = GLOB.chemical_reagents_list[product]
-			if(purity < reaction.purity_min && product_ref.failed_chem) //If we're failed
-				holder.add_reagent(product_ref.failed_chem, step_add, null, cached_temp, (1-purity))
-			else if(purity < product_ref.inverse_chem_val && product_ref.inverse_chem) //If we're inverse
-				holder.add_reagent(product_ref.inverse_chem, step_add, null, cached_temp, (1-purity))
-			else if(product_ref.impure_chem && product_ref.impure_chem) //if we're impure
-				holder.add_reagent(product*purity, step_add, null, cached_temp, purity)
-				holder.add_reagent(product_ref.impure_chem*(1-purity), step_add, null, cached_temp, (1-purity))
-			else //We can get here if the flag is set, but there's no associated impure_chem assigned. In some cases this is desired (i.e. multiver only wants to real time split it's inverse chem)
-				holder.add_reagent(product, step_add, null, cached_temp, purity)
-		//Default handiling
-		else
-			holder.add_reagent(product, step_add, null, cached_temp, purity)
+		holder.add_reagent(product, step_add, null, cached_temp)
 
 		reacted_vol += step_add
 		total_step_added += step_add
@@ -350,9 +320,6 @@
 		if(reaction.mix_sound)
 			playsound(get_turf(holder.my_atom), reaction.mix_sound, 80, TRUE)
 
-	//Used for UI output
-	reaction_quality = purity
-
 	//post reaction checks
 	if(!(check_fail_states(total_step_added)))
 		to_delete = TRUE
@@ -362,26 +329,6 @@
 		to_delete = TRUE
 
 	holder.update_total()//do NOT recalculate reactions
-
-
-/*
-* Calculates the total sum normalised purity of ALL reagents in a holder
-*
-* Currently calculates it irrespective of required reagents at the start, but this should be changed if this is powergamed to required reagents
-* It's not currently because overly_impure affects all reagents
-*/
-/datum/equilibrium/proc/reactant_purity(datum/chemical_reaction/C)
-	var/list/cached_reagents = holder.reagent_list
-	var/i = 0
-	var/cached_purity
-	for(var/datum/reagent/reagent as anything in holder.reagent_list)
-		if (reagent in cached_reagents)
-			cached_purity += reagent.purity
-			i++
-	if(!i)//I've never seen it get here with 0, but in case - it gets here when it blows up from overheat
-		stack_trace("No reactants found mid reaction for [C.type]. Beaker: [holder.my_atom]")
-		return 0 //we exploded and cleared reagents - but lets not kill the process
-	return cached_purity/i
 
 ///Panic stop a reaction - cleanup should be handled by the next timestep
 /datum/equilibrium/proc/force_clear_reactive_agents()

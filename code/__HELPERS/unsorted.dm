@@ -496,7 +496,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 /proc/anyprob(value)
 	return (rand(1,value)==value)
 
-/proc/parse_zone(zone)	// Именительный
+/proc/parse_zone(zone)
 	if(zone == BODY_ZONE_PRECISE_R_HAND)
 		return "right hand"
 	else if (zone == BODY_ZONE_PRECISE_L_HAND)
@@ -586,7 +586,6 @@ this may seem bad, but you're atleast as close to the center of the atom as poss
 Checks if that loc and dir has an item on the wall
 */
 GLOBAL_LIST_INIT(WALLITEMS, typecacheof(list(
-	/obj/structure/sign,
 	)))
 
 /proc/gotwallitem(loc, dir, check_external = 0)
@@ -1130,7 +1129,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		if (!force)
 			return QDEL_HINT_LETMELIVE
 
-		log_world("EVACUATE THE SHITCODE пытается STEAL MUH JOBS")
+		log_world("EVACUATE THE SHITCODE TRIED TO STEAL MUH JOBS")
 		GLOB.dview_mob = new
 	return ..()
 
@@ -1141,21 +1140,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	for(type in view(range, GLOB.dview_mob))
 
 #define FOR_DVIEW_END GLOB.dview_mob.loc = null
-
-//can a window be here, or is there a window blocking it?
-/proc/valid_window_location(turf/dest_turf, test_dir, is_fulltile = FALSE)
-	if(!dest_turf)
-		return FALSE
-	for(var/obj/turf_content in dest_turf)
-		if(istype(turf_content, /obj/structure/window))
-			var/obj/structure/window/window_structure = turf_content
-			if(window_structure.dir == test_dir || window_structure.fulltile || is_fulltile)
-				return FALSE
-		if(istype(turf_content, /obj/structure/railing))
-			var/obj/structure/railing/rail = turf_content
-			if(rail.dir == test_dir || is_fulltile)
-				return FALSE
-	return TRUE
 
 #define UNTIL(X) while(!(X)) stoplag()
 

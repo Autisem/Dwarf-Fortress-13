@@ -1,7 +1,7 @@
 // Basic ladder. By default links to the z-level above/below.
 /obj/structure/ladder
-	name = "лестница"
-	desc = "Крепкая металлическая лестница."
+	name = "ladder"
+	desc = "A sturdy ladder."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "ladder11"
 	anchored = TRUE
@@ -100,7 +100,7 @@
 	if (down)
 		tool_list["Down"] = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = SOUTH)
 	if (!length(tool_list))
-		to_chat(user, span_warning("[capitalize(src.name)] никуда не ведёт!"))
+		to_chat(user, span_warning("[src] doesn't seem to lead anywhere!"))
 		return
 
 	var/result = show_radial_menu(user, src, tool_list, custom_check = CALLBACK(src, .proc/check_menu, user, is_ghost), require_near = !is_ghost, tooltips = TRUE)
@@ -144,52 +144,9 @@
 
 /obj/structure/ladder/proc/show_fluff_message(going_up, mob/user)
 	if(going_up)
-		user.visible_message(span_notice("[user] поднимается наверх по лестнице.") , span_notice("Поднимаюсь наверх по лестнице."))
+		user.visible_message(span_notice("[user] climbs up [src]."), span_notice("You climb up [src]."))
 	else
-		user.visible_message(span_notice("[user] спускается вниз по лестнице.") , span_notice("Спускаюсь вниз по лестнице."))
-
-
-// Indestructible away mission ladders which link based on a mapped ID and height value rather than X/Y/Z.
-/obj/structure/ladder/unbreakable
-	name = "прочная лестница"
-	desc = "Невероятно крепкая лестница."
-	resistance_flags = INDESTRUCTIBLE
-	var/id
-	var/height = 0  // higher numbers are considered physically higher
-
-/obj/structure/ladder/unbreakable/Initialize()
-	GLOB.ladders += src
-	return ..()
-
-/obj/structure/ladder/unbreakable/Destroy()
-	. = ..()
-	if (. != QDEL_HINT_LETMELIVE)
-		GLOB.ladders -= src
-
-/obj/structure/ladder/unbreakable/LateInitialize()
-	// Override the parent to find ladders based on being height-linked
-	if (!id || (up && down))
-		update_icon()
-		return
-
-	for (var/O in GLOB.ladders)
-		var/obj/structure/ladder/unbreakable/L = O
-		if (L.id != id)
-			continue  // not one of our pals
-		if (!down && L.height == height - 1)
-			down = L
-			L.up = src
-			L.update_icon()
-			if (up)
-				break  // break if both our connections are filled
-		else if (!up && L.height == height + 1)
-			up = L
-			L.down = src
-			L.update_icon()
-			if (down)
-				break  // break if both our connections are filled
-
-	update_icon()
+		user.visible_message(span_notice("[user] climbs down [src]."), span_notice("You climb down [src]."))
 
 /obj/structure/ladder/crafted
 	crafted = TRUE

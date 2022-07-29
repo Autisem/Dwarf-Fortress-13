@@ -228,8 +228,8 @@
 	layer = EDGED_TURF_LAYER
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
-	name = "металлопена"
-	desc = "Лёгкая металлическая пенная стена."
+	name = "metal foam"
+	desc = "Light metallic foamy wall."
 	gender = PLURAL
 	max_integrity = 20
 	smoothing_groups = list(SMOOTH_GROUP_METALFOAM)

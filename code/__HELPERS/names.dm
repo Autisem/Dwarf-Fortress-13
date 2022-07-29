@@ -30,7 +30,7 @@ GLOBAL_VAR(command_name)
 	if (GLOB.command_name)
 		return GLOB.command_name
 
-	var/name = "Центральное Командование"
+	var/name = "Main Fortress"
 
 	GLOB.command_name = name
 	return name
@@ -79,7 +79,7 @@ GLOBAL_VAR(command_name)
 	return capitalize(new_station_name)
 
 /proc/odd_organ_name()
-	return "[pick(GLOB.gross_adjectives)], [pick(GLOB.gross_adjectives)] орган"
+	return "[pick(GLOB.gross_adjectives)], [pick(GLOB.gross_adjectives)] organ"
 
 /**
  * returns an ic name of the tool needed
@@ -90,18 +90,14 @@ GLOBAL_VAR(command_name)
 	switch(tool_behaviour)
 		if(TOOL_CROWBAR)
 			return "a crowbar"
-		if(TOOL_MULTITOOL)
-			return "a multitool"
 		if(TOOL_SCREWDRIVER)
 			return "a screwdriver"
-		if(TOOL_WIRECUTTER)
-			return "a pair of wirecutters"
 		if(TOOL_WRENCH)
 			return "a wrench"
-		if(TOOL_WELDER)
-			return "a welder"
 		if(TOOL_ANALYZER)
 			return "an analyzer tool"
+		if(TOOL_AXE)
+			return "an axe tool"
 		if(TOOL_MINING)
 			return "a mining implement"
 		if(TOOL_SHOVEL)
@@ -112,8 +108,6 @@ GLOBAL_VAR(command_name)
 			return "something to clamp bleeding"
 		if(TOOL_CAUTERY)
 			return "a cautery"
-		if(TOOL_DRILL)
-			return "a drilling tool"
 		if(TOOL_SCALPEL)
 			return "a fine cutting tool"
 		if(TOOL_SAW)

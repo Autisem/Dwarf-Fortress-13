@@ -49,8 +49,8 @@
 /mob/living/carbon/human/ZImpactDamage(turf/T, levels)
 	if(!HAS_TRAIT(src, TRAIT_FREERUNNING) || levels > 1) // falling off one level
 		return ..()
-	visible_message(span_danger("[capitalize(src.name)] влетает в [T], но остаётся в целости.") , \
-						span_userdanger("Падаю... и влетаю в [T], но остаюсь в целости."))
+	visible_message(span_danger("[src] makes a hard landing on [T] but remains unharmed from the fall."), \
+						span_userdanger("You brace for the fall. You make a hard landing on [T] but remain unharmed."))
 	Knockdown(levels * 50)
 
 /mob/living/carbon/human/prepare_data_huds()
@@ -95,7 +95,7 @@
 	if(!. && (injection_flags & INJECT_TRY_SHOW_ERROR_MESSAGE) && user)
 		var/obj/item/bodypart/the_part = get_bodypart(target_zone) || get_bodypart(BODY_ZONE_CHEST)
 
-		to_chat(user, span_alert("Нет открытой плоти или тонкого материала на [the_part.name]."))
+		to_chat(user, span_alert("There is no exposed flesh or thin material on [p_their()] [the_part.name]."))
 
 
 //Used for new human mobs created by cloning/goleming/podding
@@ -125,50 +125,50 @@
 			return FALSE
 
 		if (target.stat == DEAD || HAS_TRAIT(target, TRAIT_FAKEDEATH))
-			to_chat(src, span_warning("[target.name] мертво!"))
+			to_chat(src, span_warning("[target.name] is dead!"))
 			return FALSE
 
 		if (is_mouth_covered())
-			to_chat(src, span_warning("Надо бы маску снять!"))
+			to_chat(src, span_warning("Remove your mask first!"))
 			return FALSE
 
 		if (target.is_mouth_covered())
-			to_chat(src, span_warning("Снять бы с н[p_their()] маску сначала!"))
+			to_chat(src, span_warning("Remove [p_their()] mask first!"))
 			return FALSE
 
 		if (!getorganslot(ORGAN_SLOT_LUNGS))
-			to_chat(src, span_warning("У меня нет лёгких для проведения данной процедуры!"))
+			to_chat(src, span_warning("You have no lungs to breathe with, so you cannot perform CPR!"))
 			return FALSE
 
 		if (HAS_TRAIT(src, TRAIT_NOBREATH))
-			to_chat(src, span_warning("А я дышать то не умею. Как?"))
+			to_chat(src, span_warning("You do not breathe, so you cannot perform CPR!"))
 			return FALSE
 
-		visible_message(span_notice("[capitalize(src.name)] делает сердечно-легочную реанимацию [target.name]!") , \
-						span_notice("Делаю сердечно-легочную реанимацию [target.name]... Надо потерпеть!"))
+		visible_message(span_notice("[src] is trying to perform CPR on [target.name]!"), \
+						span_notice("You try to perform CPR on [target.name]... Hold still!"))
 
 		if (!do_mob(src, target, time = panicking ? CPR_PANIC_SPEED : (3 SECONDS)))
-			to_chat(src, span_warning("У меня не вышло сделать сердечно-легочную реанимацию [target]!"))
+			to_chat(src, span_warning("You fail to perform CPR on [target]!"))
 			return FALSE
 
 		if (target.health > target.crit_threshold)
 			return FALSE
 
-		visible_message(span_notice("[capitalize(src.name)] производит сердечно-легочную реанимацию [target.name]!") , span_notice("Произвожу сердечно-легочную реанимацию [target.name]."))
+		visible_message(span_notice("[src] performs CPR on [target.name]!"), span_notice("You perform CPR on [target.name]."))
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "saved_life", /datum/mood_event/saved_life)
 		log_combat(src, target, "CPRed")
 
 		if (HAS_TRAIT(target, TRAIT_NOBREATH))
-			to_chat(target, span_unconscious("Чувствую, как глоток свежего воздуха входит в мои легкие..."))
+			to_chat(target, span_unconscious("You feel a breath of fresh air... which is a sensation you don't recognise..."))
 		else if (!target.getorganslot(ORGAN_SLOT_LUNGS))
-			to_chat(target, span_unconscious("Чувствую глоток свежего воздуха... но мне не лучше..."))
+			to_chat(target, span_unconscious("You feel a breath of fresh air... but you don't feel any better..."))
 		else
 			target.adjustOxyLoss(-min(target.getOxyLoss(), 7))
-			to_chat(target, span_unconscious("Чувствую глоток свежего воздуха... мне лучше..."))
+			to_chat(target, span_unconscious("You feel a breath of fresh air enter your lungs... It feels good..."))
 
 		if (target.health <= target.crit_threshold)
 			if (!panicking)
-				to_chat(src, span_warning("[target] всё ещё лежит! Нужно попробовать ещё!"))
+				to_chat(src, span_warning("[target] still isn't up! You try harder!"))
 			panicking = TRUE
 		else
 			panicking = FALSE
@@ -369,8 +369,8 @@
 /mob/living/carbon/human/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
 	if(blood && (NOBLOOD in dna.species.species_traits) && !HAS_TRAIT(src, TRAIT_TOXINLOVER))
 		if(message)
-			visible_message(span_warning("[capitalize(src.name)] рыгает!") , \
-							span_userdanger("Ты пытаешься вырвать, но в твоем желудке нет ничего!"))
+			visible_message(span_warning("[src] dry heaves!"), \
+							span_userdanger("You try to throw up, but there's nothing in your stomach!"))
 		if(stun)
 			Paralyze(200)
 		return 1
@@ -465,22 +465,20 @@
 	var/skills_space = "" //cobby told me to do this
 	if(HAS_TRAIT(src, TRAIT_QUICKER_CARRY))
 		carrydelay = 3 SECONDS
-		skills_space = " экспертно"
+		skills_space = " very quickly"
 	else if(HAS_TRAIT(src, TRAIT_QUICK_CARRY))
 		carrydelay = 4 SECONDS
-		skills_space = " быстро"
+		skills_space = " quickly"
 
-	visible_message(span_notice("<b>[src]</b> начинает[skills_space] поднимать <b>[target]</b> на свою спину...") ,
-	//Joe Medic starts quickly/expertly lifting Grey Tider onto their back..
-	span_notice("[carrydelay < 3.5 SECONDS ? "Используя наночипы в своих перчатках начинаю" : "Начинаю"][skills_space] поднимать [target] на свою спину[carrydelay == 4 SECONDS ? ", пока мне помогают наночипы в моих перчатках..." : "..."]"))
-	//(Using your gloves' nanochips, you/You) ( /quickly/expertly) start to lift Grey Tider onto your back(, while assisted by the nanochips in your gloves../...)
+	visible_message(span_notice("[src] starts[skills_space] lifting [target] onto [p_their()] back..."),
+		span_notice("You[skills_space] start to lift [target] onto your back..."))//(Using your gloves' nanochips, you/You) ( /quickly/expertly) start to lift Grey Tider onto your back(, while assisted by the nanochips in your gloves../...)
 	if(!do_after(src, carrydelay, target))
-		visible_message(span_warning("<b>[src]</b> проваливает попытку поднять <b>[target]</b>!"))
+		visible_message(span_warning("[src] fails to fireman carry [target]!"))
 		return
 
 	//Second check to make sure they're still valid to be carried
 	if(!can_be_firemanned(target) || incapacitated(FALSE, TRUE) || target.buckled)
-		visible_message(span_warning("<b>[src]</b> проваливает попытку поднять <b>[target]</b>!"))
+		visible_message(span_warning("[src] fails to fireman carry [target]!"))
 		return
 
 	if(target.loc != loc)
@@ -494,23 +492,23 @@
 
 /mob/living/carbon/human/proc/piggyback(mob/living/carbon/target)
 	if(!can_piggyback(target))
-		to_chat(target, span_warning("Не хочу взбираться на <b>[src]</b>!"))
+		to_chat(target, span_warning("You can't piggyback ride [src] right now!"))
 		return
 
-	visible_message(span_notice("<b>[target]</b> начинает залезать на <b>[src]</b>..."))
+	visible_message(span_notice("[target] starts to climb onto [src]..."))
 	if(!do_after(target, 1.5 SECONDS, target = src) || !can_piggyback(target))
-		visible_message(span_warning("<b>[target]</b> не может залезть на <b>[src]</b>!"))
+		visible_message(span_warning("[target] fails to climb onto [src]!"))
 		return
 
 	if(target.incapacitated(FALSE, TRUE) || incapacitated(FALSE, TRUE))
-		target.visible_message(span_warning("<b>[target]</b> не может залезть на <b>[src]</b>"))
+		target.visible_message(span_warning("[target] can't hang onto [src]!"))
 		return
 
 	return buckle_mob(target, TRUE, TRUE, RIDER_NEEDS_ARMS)
 
 /mob/living/carbon/human/buckle_mob(mob/living/target, force = FALSE, check_loc = TRUE, buckle_mob_flags= NONE)
 	if(!is_type_in_typecache(target, can_ride_typecache))
-		target.visible_message(span_warning("<b>[target]</b> не понимает как взобраться на <b>[src]</b>..."))
+		target.visible_message(span_warning("[target] really can't seem to mount [src]..."))
 		return
 
 	if(!force)//humans are only meant to be ridden through piggybacking and special cases

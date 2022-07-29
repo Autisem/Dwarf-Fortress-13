@@ -7,19 +7,6 @@
 	user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return(OXYLOSS)
 
-/obj/item/restraints/examine(mob/user)
-	. = ..()
-	switch(breakoutchance)
-		if(100)
-			if(breakouttime % 600 == 0)
-				. += span_notice("<hr>От таких оков можно избавиться примерно за <b>[breakouttime/600]</b> [getnoun(breakouttime/600, "минуту","минуты","минут")].")
-			else
-				. += span_notice("<hr>От таких оков можно избавиться примерно за <b>[breakouttime/10]</b> [getnoun(breakouttime/10, "секунду","секунды","секунд")].")
-		if(90 to 100)
-			. += span_notice("<hr>Из таких оков можно вырваться с первой попытки за <b>[breakouttime/10]</b> [getnoun(breakouttime/10, "секунду","секунды","секунд")].")
-		if(0 to 90)
-			. += span_notice("<hr>Из таких оков можно вырваться с шансом приблизительно <b>[round(breakoutchance,10)]%</b> за <b>[breakouttime/10]</b> [getnoun(breakouttime/10, "секунду","секунды","секунд")].")
-
 /proc/getnoun(number, one, two, five)
 	var/n = abs(number)
 	n = n % 100
@@ -50,8 +37,8 @@
 //Handcuffs
 
 /obj/item/restraints/handcuffs
-	name = "наручники"
-	desc = "Используются для удержания животных в загоне."
+	name = "handcuffs"
+	desc = "Use this to keep prisoners in line."
 	gender = PLURAL
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "handcuff"
@@ -78,29 +65,29 @@
 	SEND_SIGNAL(C, COMSIG_CARBON_CUFF_ATTEMPTED, user)
 
 	if(iscarbon(user) && (HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50)))
-		to_chat(user, span_warning("[pick("Хыы", "Эээ", "Ммм", "Аыэ", "Оаэ", "Ааа", "Амм", "Омм")]... как это работает?!"))
+		to_chat(user, span_warning("Uh... how do those things work?!"))
 		apply_cuffs(user,user)
 		return
 
 	if(!C.handcuffed)
 		if(C.canBeHandcuffed())
-			C.visible_message(span_danger("[user] пытается надеть [src.name] на [C]!") , \
-								span_userdanger("[user] пытается надеть [src.name] на меня!"))
+			C.visible_message(span_danger("[user] is trying to put [name] on [C]!"), \
+								span_userdanger("[user] is trying to put [name] on you!"))
 
 			playsound(loc, cuffsound, 30, TRUE, -2)
 			log_combat(user, C, "attempted to handcuff")
 			if(do_mob(user, C, 30, timed_action_flags = IGNORE_SLOWDOWNS) && C.canBeHandcuffed())
 				apply_cuffs(C, user)
-				C.visible_message(span_notice("[user] заковывает [C].") , \
-									span_userdanger("[user] заковывает меня."))
+				C.visible_message(span_notice("[user] handcuffs [C]."), \
+									span_userdanger("[user] handcuffs you."))
 				SSblackbox.record_feedback("tally", "handcuffs", 1, type)
 
 				log_combat(user, C, "handcuffed")
 			else
-				to_chat(user, span_warning("Не выходит заковать [C]!"))
+				to_chat(user, span_warning("You fail to handcuff [C]!"))
 				log_combat(user, C, "failed to handcuff")
 		else
-			to_chat(user, span_warning("[C] не имеет двух рук..."))
+			to_chat(user, span_warning("[C] doesn't have two hands..."))
 
 /obj/item/restraints/handcuffs/proc/apply_cuffs(mob/living/carbon/target, mob/user, dispense = 0)
 	if(target.handcuffed)
@@ -123,76 +110,11 @@
 		qdel(src)
 	return
 
-/obj/item/restraints/handcuffs/cable
-	name = "кабельные стяжки"
-	desc = "Похоже, что какие-то кабели связаны вместе. Может использоваться, чтобы что-то или кого-то связать."
-	icon_state = "cuff"
-	inhand_icon_state = "coil"
-	color = "#ff0000"
-	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	breakouttime = 20 SECONDS
-	breakoutchance = 50
-	cuffsound = 'sound/weapons/cablecuff.ogg'
-
-/obj/item/restraints/handcuffs/cable/red
-	color = "#ff0000"
-
-/obj/item/restraints/handcuffs/cable/yellow
-	color = "#ffff00"
-
-/obj/item/restraints/handcuffs/cable/blue
-	color = "#1919c8"
-
-/obj/item/restraints/handcuffs/cable/green
-	color = "#00aa00"
-
-/obj/item/restraints/handcuffs/cable/pink
-	color = "#ff3ccd"
-
-/obj/item/restraints/handcuffs/cable/orange
-	color = "#ff8000"
-
-/obj/item/restraints/handcuffs/cable/cyan
-	color = "#00ffff"
-
-/obj/item/restraints/handcuffs/cable/white
-	color = null
-
-/obj/item/restraints/handcuffs/alien
-	icon_state = "handcuffAlien"
-
-/obj/item/restraints/handcuffs/fake
-	name = "наручники"
-	desc = "Поддельные наручники, предназначенные для ролевых игр."
-	breakoutchance = 100
-	breakouttime = 1 SECONDS
-
-/obj/item/restraints/handcuffs/cable/zipties
-	name = "стяжки"
-	desc = "Одноразовые пластиковые стяжки, которые можно использовать для временного сдерживания. После снятия разрушаются."
-	icon_state = "cuff"
-	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
-	custom_materials = null
-	breakouttime = 10 SECONDS
-	breakoutchance = 35
-	trashtype = /obj/item/restraints/handcuffs/cable/zipties/used
-	color = null
-
-/obj/item/restraints/handcuffs/cable/zipties/used
-	desc = "Пара оборванных стяжек."
-	icon_state = "cuff_used"
-	inhand_icon_state = "cuff"
-
-/obj/item/restraints/handcuffs/cable/zipties/used/attack()
-	return
-
 //Legcuffs
 
 /obj/item/restraints/legcuffs
-	name = "кандалы"
-	desc = "Упрощает надзор за заключёнными."
+	name = "leg cuffs"
+	desc = "Use this to keep prisoners in line."
 	gender = PLURAL
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "handcuff"
@@ -206,11 +128,11 @@
 	breakoutchance = 53.7 // 78.563% and 90.075% to break out on second and third try respectively
 
 /obj/item/restraints/legcuffs/beartrap
-	name = "медвежий капкан"
+	name = "bear trap"
+	desc = "A trap used to catch bears and other legged creatures."
 	throw_speed = 1
 	throw_range = 1
 	icon_state = "beartrap"
-	desc = "Ловушка, используемая для ловли медведей и других существ с длинными ногами.."
 	breakouttime = 10 SECONDS
 	breakoutchance = 100
 	var/armed = 0
@@ -239,7 +161,7 @@
 		return
 	armed = !armed
 	update_icon()
-	to_chat(user, span_notice("[capitalize(src.name)] теперь [armed ? "заряжена" : "разряжена"]."))
+	to_chat(user, span_notice("[src] is now [armed ? "armed" : "disarmed"]"))
 
 /obj/item/restraints/legcuffs/beartrap/proc/close_trap()
 	armed = FALSE
@@ -272,39 +194,13 @@
 					snap = FALSE
 			if(snap)
 				close_trap()
-				L.visible_message(span_danger("[L] наступает в <b>[src.name]</b>.") , \
-						span_userdanger("Наступаю в <b>[src.name]</b>!"))
+				L.visible_message(span_danger("\The [src] ensnares [L]!"), \
+					span_userdanger("\The [src] ensnares you!"))
 				L.apply_damage(trap_damage, BRUTE, def_zone)
 
-/obj/item/restraints/legcuffs/beartrap/energy
-	name = "энергосеть"
-	armed = 1
-	icon_state = "e_snare"
-	trap_damage = 0
-	breakouttime = 7 SECONDS
-	breakoutchance = 100
-	item_flags = DROPDEL
-	flags_1 = NONE
-
-/obj/item/restraints/legcuffs/beartrap/energy/Initialize()
-	. = ..()
-	addtimer(CALLBACK(src, .proc/dissipate), 100)
-
-/obj/item/restraints/legcuffs/beartrap/energy/proc/dissipate()
-	if(!ismob(loc))
-		do_sparks(1, TRUE, src)
-		qdel(src)
-
-/obj/item/restraints/legcuffs/beartrap/energy/attack_hand(mob/user, list/modifiers)
-	spring_trap(null, user)
-	return ..()
-
-/obj/item/restraints/legcuffs/beartrap/energy/cyborg
-	breakoutchance = 70 // Cyborgs shouldn't have a strong restraint
-
 /obj/item/restraints/legcuffs/bola
-	name = "бола"
-	desc = "Удерживающее устройство, предназначенное для метания в цель. При соединении с указанной целью он обхватит их ноги, затрудняя их быстрое перемещение."
+	name = "bola"
+	desc = "A restraining device designed to be thrown at the target. Upon connecting with said target, it will wrap around their legs, making it difficult for them to move quickly."
 	icon_state = "bola"
 	inhand_icon_state = "bola"
 	lefthand_file = 'icons/mob/inhands/weapons/thrown_lefthand.dmi'
@@ -332,47 +228,18 @@
  */
 /obj/item/restraints/legcuffs/bola/proc/ensnare(mob/living/carbon/C)
 	if(!C.legcuffed && C.num_legs >= 2)
-		visible_message(span_danger("<b>[src.name]</b> ловит ножки [C]!"))
+		visible_message(span_danger("\The [src] ensnares [C]!"), span_userdanger("\The [src] ensnares you!"))
 		C.legcuffed = src
 		forceMove(C)
 		C.update_equipment_speed_mods()
 		C.update_inv_legcuffed()
 		SSblackbox.record_feedback("tally", "handcuffs", 1, type)
-		to_chat(C, span_userdanger("<b>[src.name]</b> ловит мои ножки!"))
 		C.Knockdown(knockdown)
 		playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 
-/obj/item/restraints/legcuffs/bola/tactical //traitor variant
-	name = "крепкая бола"
-	desc = "Прочная бола, сделанная из длинной стальной цепи. Он выглядит тяжелым, достаточно, чтобы кого-нибудь споткнуть."
-	icon_state = "bola_r"
-	inhand_icon_state = "bola_r"
-	breakouttime = 8 SECONDS
-	breakoutchance = 100
-	knockdown = 35
-
-/obj/item/restraints/legcuffs/bola/energy //For Security
-	name = "энергобола"
-	desc = "Специализированная hardlight-бола, предназначенная для ловли убегающих преступников и помощи в арестах."
-	icon_state = "ebola"
-	inhand_icon_state = "ebola"
-	hitsound = 'sound/weapons/taserhit.ogg'
-	w_class = WEIGHT_CLASS_SMALL
-	breakouttime = 4 SECONDS
-	breakoutchance = 100
-	custom_price = PAYCHECK_HARD * 0.35
-
-/obj/item/restraints/legcuffs/bola/energy/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(iscarbon(hit_atom))
-		var/obj/item/restraints/legcuffs/beartrap/B = new /obj/item/restraints/legcuffs/beartrap/energy/cyborg(get_turf(hit_atom))
-		B.spring_trap(null, hit_atom)
-		qdel(src)
-		return
-	. = ..()
-
 /obj/item/restraints/legcuffs/bola/gonbola
-	name = "гонбола"
-	desc = "Эй, если тебя что-то обнимает за ноги, то с таким же успехом это может быть этот маленький парень."
+	name = "gonbola"
+	desc = "Hey, if you have to be hugged in the legs by anything, it might as well be this little guy."
 	icon_state = "gonbola"
 	inhand_icon_state = "bola_r"
 	breakoutchance = 5

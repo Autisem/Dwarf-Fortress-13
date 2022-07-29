@@ -155,7 +155,6 @@
 	heat = 1000
 	light_color = LIGHT_COLOR_ORANGE
 	light_system = MOVABLE_LIGHT
-	grind_results = list(/datum/reagent/sulfur = 15)
 
 /obj/item/flashlight/fueled/Initialize()
 	. = ..()

@@ -1,7 +1,7 @@
 // Base chasm, defaults to oblivion but can be overridden
 /turf/open/chasm
-	name = "бездна"
-	desc = "Смотри под ноги."
+	name = "chasm"
+	desc = "Watch your step."
 	baseturfs = /turf/open/chasm
 	icon = 'icons/turf/floors/chasms.dmi'
 	icon_state = "chasms-255"

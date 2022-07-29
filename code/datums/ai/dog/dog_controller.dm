@@ -209,13 +209,13 @@
 
 	var/spoken_text = speech_args[SPEECH_MESSAGE] // probably should check for full words
 	var/command
-	if(findtext_char(spoken_text, "лержать") || findtext_char(spoken_text, "сидеть") || findtext_char(spoken_text, "стоять"))
+	if(findtext_char(spoken_text, "lay down") || findtext_char(spoken_text, "sit") || findtext_char(spoken_text, "stand"))
 		command = COMMAND_HEEL
-	else if(findtext_char(spoken_text, "апорт") || findtext_char(spoken_text, "взять"))
+	else if(findtext_char(spoken_text, "fetch"))
 		command = COMMAND_FETCH
-	else if(findtext_char(spoken_text, "фас") || findtext_char(spoken_text, "кусай"))
+	else if(findtext_char(spoken_text, "attack") || findtext_char(spoken_text, "bite"))
 		command = COMMAND_ATTACK
-	else if(findtext_char(spoken_text, "умри"))
+	else if(findtext_char(spoken_text, "die"))
 		command = COMMAND_DIE
 	else
 		return

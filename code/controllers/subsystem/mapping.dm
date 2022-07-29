@@ -58,7 +58,7 @@ SUBSYSTEM_DEF(mapping)
 		var/old_config = config
 		config = global.config.defaultmap
 		if(!config || config.defaulted)
-			to_chat(world, span_boldannounce("Не могу загрузить следующий или стандартный конфиг карты, ставлю Meta Station."))
+			to_chat(world, span_boldannounce("Cannot load map config >:("))
 			config = old_config
 	initialize_biomes()
 	loadWorld()

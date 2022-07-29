@@ -1,6 +1,6 @@
 /obj/effect/oneway
-	name = " Односторонний эффект"
-	desc = "Принимает вещи только из одного направления."
+	name = "one way effect"
+	desc = "Only lets things in from it's dir."
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "field_dir"
 	invisibility = INVISIBILITY_MAXIMUM
@@ -12,8 +12,8 @@
 
 
 /obj/effect/wind
-	name = "Воздушный эффект"
-	desc = "Создает давление в своем направлении. Использовать осторожно"
+	name = "wind effect"
+	desc = "Creates pressure effect in it's direction. Use sparingly."
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "field_dir"
 	invisibility = INVISIBILITY_MAXIMUM
@@ -25,8 +25,8 @@
 
 //Keep these rare due to cost of doing these checks
 /obj/effect/path_blocker
-	name = "Магический барьер"
-	desc = "Ты не пройдешь."
+	name = "magic barrier"
+	desc = "You shall not pass."
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "blocker" //todo make this actually look fine when visible
 	anchored = TRUE

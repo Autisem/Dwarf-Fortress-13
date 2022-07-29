@@ -392,11 +392,11 @@
 				if (isnull(settings["mainsettings"][setting]["value"]))
 					settings["mainsettings"][setting]["value"] = oldval
 			if ("string")
-				settings["mainsettings"][setting]["value"] = stripped_input(user, "Введите новое значение для [settings["mainsettings"][setting]["desc"]]", "Введите новое значение для [settings["mainsettings"][setting]["desc"]]", settings["mainsettings"][setting]["value"])
+				settings["mainsettings"][setting]["value"] = stripped_input(user, "Select new value for [settings["mainsettings"][setting]["desc"]]", "Select new value for [settings["mainsettings"][setting]["desc"]]", settings["mainsettings"][setting]["value"])
 			if ("number")
-				settings["mainsettings"][setting]["value"] = input(user, "Введите новое значение для [settings["mainsettings"][setting]["desc"]]", "Введите новое значение для [settings["mainsettings"][setting]["desc"]]") as num
+				settings["mainsettings"][setting]["value"] = input(user, "Select new value for [settings["mainsettings"][setting]["desc"]]", "Select new value for [settings["mainsettings"][setting]["desc"]]") as num
 			if ("color")
-				settings["mainsettings"][setting]["value"] = input(user, "Введите новое значение для [settings["mainsettings"][setting]["desc"]]", "Введите новое значение для [settings["mainsettings"][setting]["desc"]]", settings["mainsettings"][setting]["value"]) as color
+				settings["mainsettings"][setting]["value"] = input(user, "Select new value for [settings["mainsettings"][setting]["desc"]]", "Select new value for [settings["mainsettings"][setting]["desc"]]", settings["mainsettings"][setting]["value"]) as color
 			if ("boolean")
 				settings["mainsettings"][setting]["value"] = input(user, "[settings["mainsettings"][setting]["desc"]]?") in list("Yes","No")
 			if ("ckey")
@@ -473,8 +473,3 @@
 			usr = src.mob
 			src.Topic(href, params2list(href), hsrc)	// this will direct to the atom's
 			return										// Topic() proc via client.Topic()
-
-	// no atomref specified (or not found)
-	// so just reset the user mob's machine var
-	if(src?.mob)
-		src.mob.unset_machine()

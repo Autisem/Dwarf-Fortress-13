@@ -9,7 +9,7 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 	friendly_verb_continuous = "howls at"
 	friendly_verb_simple = "howl at"
-	speak_emote = list("воет")
+	speak_emote = list("woofs")
 	speed = 5
 	move_to_delay = 5
 	maxHealth = 130
@@ -19,8 +19,8 @@
 	melee_damage_upper = 7.5
 	rapid_melee = 2 // every second attack
 	dodging = TRUE
-	attack_verb_continuous = "куает"
-	attack_verb_simple = "куает"
+	attack_verb_continuous = "bites"
+	attack_verb_simple = "bite"
 	attack_sound = 'sound/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	vision_range = 7

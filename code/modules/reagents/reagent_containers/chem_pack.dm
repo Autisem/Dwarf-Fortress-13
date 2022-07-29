@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/chem_pack
-	name = "пакет для внутривенного введения лекарств"
-	desc = "Пластиковый пакет под давлением, также известный как 'химпакет' используемый для внутривенного введения медикаментов. Он снабжен термостойкой полосой. Объем 100 единиц."
+	name = "intravenous medicine bag"
+	desc = "A plastic pressure bag, or 'chem pack', for IV administration of drugs. It is fitted with a thermosealing strip."
 	icon = 'icons/obj/bloodpack.dmi'
 	icon_state = "chempack"
 	volume = 100
@@ -14,7 +14,7 @@
 /obj/item/reagent_containers/chem_pack/AltClick(mob/living/user)
 	if(user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY) && !sealed)
 		if(iscarbon(user) && (HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50)))
-			to_chat(user, span_warning("Ух.. бля! Я случайно разлил содержимое пакета прямо на себя."))
+			to_chat(user, span_warning("Uh... whoops! You accidentally spill the content of the bag onto yourself."))
 			SplashReagents(user)
 			return
 
@@ -23,14 +23,14 @@
 		reagents.flags = reagent_flags
 		spillable = FALSE
 		sealed = TRUE
-		to_chat(user, span_notice("Запечатал пакет."))
+		to_chat(user, span_notice("You seal the bag."))
 
 /obj/item/reagent_containers/chem_pack/examine()
 	. = ..()
 	if(sealed)
-		. += "<hr><span class='notice'>Пакет запечатан.</span>"
+		. += span_notice("The bag is sealed shut.")
 	else
-		. += "<hr><span class='notice'>Alt+ЛКМ для того чтобы запечатать.</span>"
+		. += span_notice("Alt-click to seal it.")
 
 
 /obj/item/reagent_containers/chem_pack/attack_self(mob/user)

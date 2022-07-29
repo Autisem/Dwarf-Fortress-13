@@ -129,21 +129,6 @@
 		to_chat(user, span_notice("You finish digging."))
 		deconstruct(TRUE)
 
-/obj/structure/mineral_door/welder_act(mob/living/user, obj/item/I) //override if the door is supposed to be flammable.
-	..()
-	. = TRUE
-	if(anchored)
-		to_chat(user, span_warning("[capitalize(src.name)] is still firmly secured to the ground!"))
-		return
-
-	user.visible_message(span_notice("[user] starts to weld apart [src]!") , span_notice("You start welding apart [src]."))
-	if(!I.use_tool(src, user, 60, 5, 50))
-		to_chat(user, span_warning("You failed to weld apart [src]!"))
-		return
-
-	user.visible_message(span_notice("[user] welded [src] into pieces!") , span_notice("You welded apart [src]!"))
-	deconstruct(TRUE)
-
 /obj/structure/mineral_door/proc/crowbar_door(mob/living/user, obj/item/I) //if the door is flammable, call this in crowbar_act() so we can still decon it
 	. = TRUE
 	if(anchored)

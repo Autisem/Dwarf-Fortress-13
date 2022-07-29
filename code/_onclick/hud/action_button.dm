@@ -25,7 +25,7 @@
 		return
 	if((istype(over_object, /atom/movable/screen/movable/action_button) && !istype(over_object, /atom/movable/screen/movable/action_button/hide_toggle)))
 		if(locked)
-			to_chat(usr, span_warning("Кнопка действия \"[name]\" заблокирована, нужно её разблокировать."))
+			to_chat(usr, span_warning("Action button \"[name]\" is locked, you have to unblock it first."))
 			return
 		var/atom/movable/screen/movable/action_button/B = over_object
 		var/list/actions = usr.actions
@@ -45,14 +45,14 @@
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"])
 		if(locked)
-			to_chat(usr, span_warning("Кнопка действия \"[name]\" заблокирована, нужно её разблокировать."))
+			to_chat(usr, span_warning("Action button \"[name]\" is locked, you have to unblock it frist."))
 			return TRUE
 		moved = 0
 		usr.update_action_buttons() //redraw buttons that are no longer considered "moved"
 		return TRUE
 	if(modifiers["ctrl"])
 		locked = !locked
-		to_chat(usr, span_notice("Кнопка действия \"[name]\" [locked ? "" : "раз"]блокирована."))
+		to_chat(usr, span_notice("Action button \"[name]\" [locked ? "" : "un"]locked."))
 		if(id && usr.client) //try to (un)remember position
 			usr.client.prefs.action_buttons_screen_locs["[name]_[id]"] = locked ? moved : null
 		return TRUE

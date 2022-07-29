@@ -58,7 +58,7 @@
 
 	// Create the reagents to put into the air
 	create_reagents(10)
-	reagents.add_reagent(/datum/reagent/drug/space_drugs, 10)
+	reagents.add_reagent(/datum/reagent/drug, 10)
 
 	// Attach the smoke spreader and setup/start it.
 	S.attach(location)
@@ -86,8 +86,8 @@
 	icon_state = "frog_mech"
 	icon_dead = "mech_dead"
 	speak_chance = 1
-	speak = list("Ква", "Квас", "Квадракоптер")
-	speak_emote = list("квакает")
+	speak = list("quack", "ribbit")
+	speak_emote = list("quacks")
 	turns_per_move = 4
 	maxHealth = 180
 	health = 180

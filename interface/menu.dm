@@ -67,8 +67,8 @@ GLOBAL_LIST_EMPTY(menulist)
 // 	name = "Help"
 
 // /datum/verbs/menu/help/verb/wiki()
-// 	set name = "Вики"
-// 	set desc = "Вики"
+// 	set name = "Wiki"
+// 	set desc = "Wiki"
 // 	usr.client.wiki()
 
 // /datum/verbs/menu/help/verb/discord()
@@ -77,6 +77,6 @@ GLOBAL_LIST_EMPTY(menulist)
 // 	usr.client.forum()
 
 // /datum/verbs/menu/help/verb/donate()
-// 	set name = "Магазин"
-// 	set desc = "Магазин"
+// 	set name = "Donator Shop"
+// 	set desc = "Donator Shop"
 // 	usr.client.new_donates_panel()

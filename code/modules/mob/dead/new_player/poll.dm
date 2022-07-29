@@ -3,7 +3,7 @@
  *
  */
 /mob/dead/new_player/proc/handle_player_polling()
-	var/list/output = list("<head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><div align='center'><B>Опросы</B><hr><table>")
+	var/list/output = list("<head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><div align='center'><B>Polls</B><hr><table>")
 	var/rs = REF(src)
 	for(var/p in GLOB.polls)
 		var/datum/poll_question/poll = p
@@ -53,12 +53,12 @@
 	if(query_option_get_voted.NextRow())
 		voted_option_id = text2num(query_option_get_voted.item[1])
 	qdel(query_option_get_voted)
-	var/list/output = list("<head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><div align='center'><B>Опрос</B><hr><b>Вопрос: [poll.question]</b><br>")
+	var/list/output = list("<head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><div align='center'><B>Poll</B><hr><b>Question: [poll.question]</b><br>")
 	if(poll.subtitle)
 		output += "[poll.subtitle]<br>"
-	output += "<font size='2'>От даты <b>[poll.start_datetime]</b> до <b>[poll.end_datetime]</b></font><br>"
+	output += "<font size='2'>Poll runs from <b>[poll.start_datetime]</b> until <b>[poll.end_datetime]</b></font><br>"
 	if(poll.allow_revoting)
-		output += "<font size='2'>Можно менять голос.</font>"
+		output += "<font size='2'>Revoting is enabled.</font>"
 	if(!voted_option_id || poll.allow_revoting)
 		output += {"<form action='?src=[REF(src)]' method='get'>
 		<input type='hidden' name='src' value='[REF(src)]'>
@@ -75,7 +75,7 @@
 		output += ">[option.text]</label><br>"
 	output += "</td></tr></table>"
 	if(!voted_option_id || poll.allow_revoting)
-		output += "<p><input type='submit' value='Голосовать'></form>"
+		output += "<p><input type='submit' value='Vote'></form>"
 	output += "</div>"
 	src << browse(jointext(output, ""),"window=playerpoll;size=500x250")
 
@@ -97,19 +97,19 @@
 	if(query_text_get_replytext.NextRow())
 		reply_text = query_text_get_replytext.item[1]
 	qdel(query_text_get_replytext)
-	var/list/output = list("<head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><div align='center'><B>Опрос</B><hr><b>Вопрос: [poll.question]</b><br>")
+	var/list/output = list("<head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><div align='center'><B>Poll</B><hr><b>Question: [poll.question]</b><br>")
 	if(poll.subtitle)
 		output += "[poll.subtitle]<br>"
-	output += "<font size='2'>Дата от <b>[poll.start_datetime]</b> до <b>[poll.end_datetime]</b></font><br>"
+	output += "<font size='2'>Poll runs from <b>[poll.start_datetime]</b> until <b>[poll.end_datetime]</b></font><br>"
 	if(poll.allow_revoting)
-		output += "<font size='2'>Можно менять голос.</font>"
+		output += "<font size='2'>Revoting is enabled.</font>"
 	if(!reply_text || poll.allow_revoting)
 		output += {"<form action='?src=[REF(src)]' method='get'>
 		<input type='hidden' name='src' value='[REF(src)]'>
 		<input type='hidden' name='votepollref' value='[REF(poll)]'>
-		<font size='2'>Оставьте сообщение ниже:</font><br>
+		<font size='2'>Please provide feedback below:</font><br>
 		<textarea name='replytext' cols='50' rows='14'>[reply_text]</textarea>
-		<p><input type='submit' value='Отправить'></form>
+		<p><input type='submit' value='Submit'></form>
 		"}
 	else
 		output += "[reply_text]"
@@ -134,12 +134,12 @@
 	while(query_rating_get_votes.NextRow())
 		voted_ratings += list("[query_rating_get_votes.item[1]]" = query_rating_get_votes.item[2])
 	qdel(query_rating_get_votes)
-	var/list/output = list("<head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><div align='center'><B>Опрос</B><hr><b>Вопрос: [poll.question]</b><br>")
+	var/list/output = list("<head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><div align='center'><B>Poll</B><hr><b>Question: [poll.question]</b><br>")
 	if(poll.subtitle)
 		output += "[poll.subtitle]<br>"
-	output += "<font size='2'>Дата от <b>[poll.start_datetime]</b> до <b>[poll.end_datetime]</b></font><br>"
+	output += "<font size='2'>Poll runs from <b>[poll.start_datetime]</b> until <b>[poll.end_datetime]</b></font><br>"
 	if(poll.allow_revoting)
-		output += "<font size='2'>Можно менять голос.</font>"
+		output += "<font size='2'>Revoting is enabled.</font>"
 	if(!length(voted_ratings) || poll.allow_revoting)
 		output += {"<form action='?src=[REF(src)]' method='get'>
 		<input type='hidden' name='src' value='[REF(src)]'>
@@ -167,7 +167,7 @@
 			output += "</option>"
 		output += "</select></label>"
 	if(!length(voted_ratings) || poll.allow_revoting)
-		output += "<p><input type='submit' value='Отправить'></form>"
+		output += "<p><input type='submit' value='Submit'></form>"
 	output += "</div>"
 	src << browse(jointext(output, ""),"window=playerpoll;size=500x500")
 
@@ -189,12 +189,12 @@
 	while(query_multi_get_votes.NextRow())
 		voted_for += text2num(query_multi_get_votes.item[1])
 	qdel(query_multi_get_votes)
-	var/list/output = list("<head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><div align='center'><B>Опрос</B><hr><b>Вопрос: [poll.question]</b><br>")
+	var/list/output = list("<head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><div align='center'><B>Poll</B><hr><b>Question: [poll.question]</b><br>")
 	if(poll.subtitle)
 		output += "[poll.subtitle]<br>"
-	output += "Можно выбрать до [poll.options_allowed] вариантов. Если выбрать больше, то будет сохранено лишь только [poll.options_allowed] вариантов.<br><font size='2'>Дата от <b>[poll.start_datetime]</b> до <b>[poll.end_datetime]</b></font><br>"
+	output += "You can select up to [poll.options_allowed] options. If you select more, the first [poll.options_allowed] will be saved.<br><font size='2'>Poll runs from <b>[poll.start_datetime]</b> until <b>[poll.end_datetime]</b></font><br>"
 	if(poll.allow_revoting)
-		output += "<font size='2'>Можно менять голос.</font>"
+		output += "<font size='2'>Revoting is enabled.</font>"
 	if(!length(voted_for) || poll.allow_revoting)
 		output += {"<form action='?src=[REF(src)]' method='get'>
 		<input type='hidden' name='src' value='[REF(src)]'>
@@ -211,7 +211,7 @@
 		output += ">[option.text]</label><br>"
 	output += "</td></tr></table>"
 	if(!length(voted_for) || poll.allow_revoting)
-		output += "<p><input type='submit' value='Голосовать'></form>"
+		output += "<p><input type='submit' value='Submit'></form>"
 	output += "</div>"
 	src << browse(jointext(output, ""),"window=playerpoll;size=500x300")
 
@@ -280,26 +280,26 @@
 	</script>
 	</head>
 	<body>
-	<div align='center'><B>Опрос</B><hr><b>Вопрос: [poll.question]</b><br>"})
+	<div align='center'><B>Poll</B><hr><b>Question: [poll.question]</b><br>"})
 	if(poll.subtitle)
 		output += "[poll.subtitle]<br>"
-	output += "<font size='2'>Дата от <b>[poll.start_datetime]</b> до <b>[poll.end_datetime]</b></font><br>"
+	output += "<font size='2'>Poll runs from <b>[poll.start_datetime]</b> until <b>[poll.end_datetime]</b></font><br>"
 	if(poll.allow_revoting)
-		output += "<font size='2'>Можно менять голос.</font>"
-	output += "Выберите варианты от <b>более подходящих</b> до <b>менее подходящих</b><br></div>"
+		output += "<font size='2'>Revoting is enabled.</font>"
+	output += "Please sort the options in the order of <b>most preferred</b> to <b>least preferred</b><br></div>"
 	if(!length(voted_for) || poll.allow_revoting)
 		output += {"<form action='?src=[REF(src)]' method='POST'>
 		<input type='hidden' name='src' value='[REF(src)]'>
 		<input type='hidden' name='votepollref' value='[REF(poll)]'>
 		<input type='hidden' name='IRVdata' id='IRVdata'>
 		"}
-	output += "<div id='ballot' class='center'><b><center>Более подходящий</center></b><ol id='sortable' class='rankings' style='padding:0px'>"
+	output += "<div id='ballot' class='center'><b><center>Most Preferred</center></b><ol id='sortable' class='rankings' style='padding:0px'>"
 	for(var/o in prepared_options)
 		var/datum/poll_option/option = o
 		output += "<li optionref='[REF(option)]' class='ranking'><span class='grippy'></span> [option.text]</li>\n"
-	output += "</ol><b><center>Менее подходящий</center></b><br>"
+	output += "</ol><b><center>Least Preferred</center></b><br>"
 	if(!length(voted_for) || poll.allow_revoting)
-		output += "<p><input type='submit' value='Голосовать'></form>"
+		output += "<p><input type='submit' value='Vote'></form>"
 	output += "</div>"
 	src << browse(jointext(output, ""),"window=playerpoll;size=500x500")
 
@@ -349,11 +349,11 @@
 	if(query_validate_poll_vote.NextRow())
 		vote_id = text2num(query_validate_poll_vote.item[1])
 		if(vote_id && !poll.allow_revoting)
-			to_chat(usr, span_danger("Голосовать снова запрещено."))
+			to_chat(usr, span_danger("Revoting is disabled."))
 			qdel(query_validate_poll_vote)
 			return
 	else
-		to_chat(usr, span_danger("Опрос закрыт."))
+		to_chat(usr, span_danger("Selected poll is not open."))
 		qdel(query_validate_poll_vote)
 		return
 	qdel(query_validate_poll_vote)
@@ -385,7 +385,7 @@
 		return
 	var/datum/poll_option/option = locate(href_list["voteoptionref"]) in poll.options
 	if(!option)
-		to_chat(src, span_danger("Ничего не выбрано."))
+		to_chat(src, span_danger("No option was selected."))
 		return
 	var/datum/db_query/query_vote_option = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("poll_vote")] (id, datetime, pollid, optionid, ckey, ip, adminrank)
@@ -417,7 +417,7 @@
 		return
 	var/reply_text = href_list["replytext"]
 	if(!reply_text || (length_char(reply_text) > 2048))
-		to_chat(src, span_danger("Текст слишком длинный. Давай что-то поменьше, а?"))
+		to_chat(src, span_danger("The text you entered was blank or too long. Please correct the text and submit again."))
 		return
 	var/datum/db_query/query_vote_text = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("poll_textreply")] (id, datetime, pollid, ckey, ip, replytext, adminrank)
@@ -493,7 +493,7 @@
 	if(length(href_list) > 2)
 		href_list.Cut(1,3) //first two values aren't options
 	else
-		to_chat(src, span_danger("Ничего не выбрано."))
+		to_chat(src, span_danger("No options were selected."))
 
 	var/special_columns = list(
 		"datetime" = "NOW()",
@@ -504,7 +504,7 @@
 	var/vote_count = 0
 	for(var/h in href_list)
 		if(vote_count == poll.options_allowed)
-			to_chat(src, span_danger("ПЕРЕБОР! Только первые [poll.options_allowed] выбранных вариантов были записаны."))
+			to_chat(src, span_danger("Allowed option count exceeded, only the first [poll.options_allowed] selected options have been saved."))
 			break
 		vote_count++
 		var/datum/poll_option/option = locate(h) in poll.options
@@ -539,7 +539,7 @@
 		return
 	var/list/votelist = splittext(href_list["IRVdata"], ",")
 	if(!length(votelist))
-		to_chat(src, span_danger("Что-то сломалось в порядке. Педаль помоги?"))
+		to_chat(src, span_danger("No ordering data found. Please try again or contact an administrator."))
 
 	var/list/special_columns = list(
 		"datetime" = "NOW()",

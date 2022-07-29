@@ -175,17 +175,6 @@
 				deconstruct(TRUE, 1)
 			return
 
-	if(istype(I, /obj/item/storage/bag/tray))
-		var/obj/item/storage/bag/tray/T = I
-		if(T.contents.len > 0) // If the tray isn't empty
-			for(var/x in T.contents)
-				var/obj/item/item = x
-				AfterPutItemOnTable(item, user)
-			SEND_SIGNAL(I, COMSIG_TRY_STORAGE_QUICK_EMPTY, drop_location())
-			user.visible_message(span_notice("<b>[user]</b> empties <b>[I]</b> on <b>[src]</b>."))
-			return
-		// If the tray IS empty, continue on (tray will be placed on the table like other items)
-
 	if(istype(I, /obj/item/riding_offhand))
 		var/obj/item/riding_offhand/riding_item = I
 		var/mob/living/carried_mob = riding_item.rider
@@ -247,8 +236,8 @@
  */
 
 /obj/structure/table/optable
-	name = "операционный стол"
-	desc = "Используется для сложных медицинских процедур."
+	name = "surgery table"
+	desc = "Used for difficult medical procedures."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "optable"
 	smoothing_flags = NONE
@@ -262,7 +251,7 @@
 /obj/structure/table/optable/tablepush(mob/living/user, mob/living/pushed_mob)
 	pushed_mob.forceMove(loc)
 	pushed_mob.set_resting(TRUE, TRUE)
-	visible_message(span_notice("<b>[user]</b> укладывает <b>[pushed_mob]</b> на <b>[src]</b>."))
+	visible_message(span_notice("<b>[user]</b> lays <b>[pushed_mob]</b> on <b>[src]</b>."))
 	get_patient()
 
 /obj/structure/table/optable/proc/get_patient()

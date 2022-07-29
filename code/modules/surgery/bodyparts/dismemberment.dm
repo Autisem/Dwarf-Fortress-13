@@ -17,9 +17,9 @@
 	affecting.receive_damage(clamp(brute_dam/2 * affecting.body_damage_coeff, 15, 50), clamp(burn_dam/2 * affecting.body_damage_coeff, 0, 50), wound_bonus=CANT_WOUND) //Damage the chest based on limb's existing damage
 	if(!silent)
 		if(detach_limb)
-			C.visible_message(span_danger("<B>[capitalize(src.name)] отлетает от [C]!</B>"))
+			C.visible_message(span_danger("<B>[C]'s [name] is violently dismembered!</B>"))
 		else
-			C.visible_message(span_danger("<B>[capitalize(src.name)] [C] разлетается на кусочки!</B>"))
+			C.visible_message(span_danger("<B>[C]'s [src] flies apart!</B>"))
 	INVOKE_ASYNC(C, /mob.proc/emote, "agony")
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
 	if(detach_limb)
@@ -278,7 +278,7 @@
 
 	qdel(owner.GetComponent(/datum/component/creamed)) //clean creampie overlay
 
-	name = "голова [owner.real_name]"
+	name = "[owner.real_name]'s head"
 	..()
 
 //Attach a limb to a human and drop any existing limb of that type.

@@ -37,11 +37,9 @@
 	if(!loc)
 		return
 
-	if(!IS_IN_STASIS(src))
-		if(stat != DEAD)
-			//Breathing, if applicable
-			handle_breathing(delta_time, times_fired)
-
+	if(stat != DEAD)
+		//Breathing, if applicable
+		handle_breathing(delta_time, times_fired)
 		handle_wounds(delta_time, times_fired)
 
 		if (QDELETED(src))
@@ -56,9 +54,6 @@
 			handle_status_effects(delta_time, times_fired) //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
 
 	handle_fire(delta_time, times_fired)
-
-	if(machine)
-		machine.check_eye(src)
 
 	if(stat != DEAD)
 		return 1

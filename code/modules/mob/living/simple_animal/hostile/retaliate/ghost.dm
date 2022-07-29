@@ -18,11 +18,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	del_on_death = 1
-	emote_see = list("плачет тихо", "стонет", "бормочет")
-	attack_verb_continuous = "хватает"
-	attack_verb_simple = "хватает"
 	attack_sound = 'sound/hallucinations/growl1.ogg'
-	speak_emote = list("плачет")
 	deathmessage = "wails, disintegrating into a pile of ectoplasm!"
 	minbodytemp = 0
 	maxbodytemp = 1500
@@ -48,7 +44,7 @@
 			if(0)
 				name = "ghost of [pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
 			if(1)
-				name = "ghost of [pick(GLOB.first_names_female)] [pick(GLOB.last_names)]а"
+				name = "ghost of [pick(GLOB.first_names_female)] [pick(GLOB.last_names)]"
 
 
 /mob/living/simple_animal/hostile/retaliate/ghost/proc/give_hair()

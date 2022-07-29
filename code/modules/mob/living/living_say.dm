@@ -32,31 +32,31 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	//kinda localization -- rastaf0
 	//same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
 	// Location
-	"к" = MODE_R_HAND,
-	"д" = MODE_L_HAND,
-	"ш" = MODE_INTERCOM,
+	"r" = MODE_R_HAND,
+	"l" = MODE_L_HAND,
+	"i" = MODE_INTERCOM,
 
 	// Department
-	"р" = MODE_DEPARTMENT,
-	"с" = RADIO_CHANNEL_COMMAND,
-	"т" = RADIO_CHANNEL_SCIENCE,
-	"ь" = RADIO_CHANNEL_MEDICAL,
-	"у" = RADIO_CHANNEL_ENGINEERING,
-	"ы" = RADIO_CHANNEL_SECURITY,
-	"г" = RADIO_CHANNEL_SUPPLY,
-	"м" = RADIO_CHANNEL_SERVICE,
-	"й" = RADIO_CHANNEL_EXPLORATION,
+	"h" = MODE_DEPARTMENT,
+	"c" = RADIO_CHANNEL_COMMAND,
+	"n" = RADIO_CHANNEL_SCIENCE,
+	"m" = RADIO_CHANNEL_MEDICAL,
+	"e" = RADIO_CHANNEL_ENGINEERING,
+	"s" = RADIO_CHANNEL_SECURITY,
+	"u" = RADIO_CHANNEL_SUPPLY,
+	"v" = RADIO_CHANNEL_SERVICE,
+	"q" = RADIO_CHANNEL_EXPLORATION,
 
 	// Faction
-	"е" = RADIO_CHANNEL_SYNDICATE,
-	"н" = RADIO_CHANNEL_CENTCOM,
+	"t" = RADIO_CHANNEL_SYNDICATE,
+	"y" = RADIO_CHANNEL_CENTCOM,
 
 	// Admin
-	"з" = MODE_ADMIN,
-	"в" = MODE_DEADMIN,
+	"p" = MODE_ADMIN,
+	"d" = MODE_DEADMIN,
 
 	// Misc
-	"щ" = RADIO_CHANNEL_AI_PRIVATE
+	"o" = RADIO_CHANNEL_AI_PRIVATE
 ))
 
 /**
@@ -106,7 +106,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	if(ic_blocked)
 		//The filter warning message shows the sanitized message though.
-		to_chat(src, span_warning("Хочу сказать <span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span>, но у меня ничего не выходит."))
+		to_chat(src, span_warning("Your message was blocked\n<span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span>."))
 		SSblackbox.record_feedback("tally", "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 		return
 	var/list/message_mods = list()
@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 /*
 	if(client && SSlag_switch.measures[SLOWMODE_SAY] && !HAS_TRAIT(src, TRAIT_BYPASS_MEASURES) && !forced && src == usr)
 		if(!COOLDOWN_FINISHED(client, say_slowmode))
-			to_chat(src, span_warning("Сообщение не было отправлено из-за ограничений. Подождите [SSlag_switch.slowmode_cooldown/10] секунд перед отправкой нового.\n\"[message]\""))
+			to_chat(src, span_warning("Message blocked by lagswitch. Please wait [SSlag_switch.slowmode_cooldown/10] seconds before sending new message.\n\"[message]\""))
 			return
 		COOLDOWN_START(client, say_slowmode, SSlag_switch.slowmode_cooldown)
 */
@@ -165,10 +165,10 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	var/mob/living/carbon/human/H = src
 	if(!can_speak_vocal(message))
 		if (HAS_TRAIT(src, TRAIT_SIGN_LANG) && H.mind.miming)
-			to_chat(src, span_warning("Не могу петь!"))
+			to_chat(src, span_warning("You cannot sing!"))
 			return
 		else
-			to_chat(src, span_warning("Не могу говорить!"))
+			to_chat(src, span_warning("You cannot speak!"))
 			return
 
 	var/message_range = 7
@@ -255,10 +255,10 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	if(speaker != src)
 		if(!radio_freq) //These checks have to be seperate, else people talking on the radio will make "You can't hear yourself!" appear when hearing people over the radio while deaf.
-			deaf_message = "<span class='name'>[capitalize(speaker.name)]</span> [speaker.verb_say] что-то, но не могу понять что."
+			deaf_message = "<span class='name'>[capitalize(speaker.name)]</span> [speaker.verb_say] but you can't understand [speaker.p_them()]."
 			deaf_type = 1
 	else
-		deaf_message = span_notice("Не слышу себя!")
+		deaf_message = span_notice("You say something but can't hear yourself!")
 		deaf_type = 2 // Since you should be able to hear yourself without looking
 
 	// Create map text prior to modifying message for goonchat
@@ -394,19 +394,19 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	if(message_mods[WHISPER_MODE] == MODE_WHISPER)
 		. = verb_whisper
 	else if(message_mods[WHISPER_MODE] == MODE_WHISPER_CRIT)
-		. = "[verb_whisper] на последнем дыхании"
+		. = "[verb_whisper] last breath"
 	else if(message_mods[MODE_SING])
 		. = verb_sing
 	else if(stuttering)
 		if(HAS_TRAIT(src, TRAIT_SIGN_LANG))
-			. = "резво поёт"
+			. = "shakingly sings"
 		else
-			. = "заикается"
+			. = "stammers"
 	else if(derpspeech)
 		if(HAS_TRAIT(src, TRAIT_SIGN_LANG))
-			. = "баянит невнятно"
+			. = "incoherently sings"
 		else
-			. = "тараторит"
+			. = "gibbers"
 	else
 		. = ..()
 

@@ -273,7 +273,7 @@
 
 
 ///Is the mob incapacitated
-/mob/proc/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, ignore_stasis = FALSE)
+/mob/proc/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE)
 	return
 
 /**
@@ -725,7 +725,6 @@
 	set name = "❗ Reset Camera"
 	set category = "Special"
 	reset_perspective(null)
-	unset_machine()
 
 //suppress the .click/dblclick macros so people can't use them to identify the location of items or aimbot
 /mob/verb/DisClick(argu = null as anything, sec = "" as text, number1 = 0 as num  , number2 = 0 as num)
@@ -751,7 +750,6 @@
 
 	if(href_list["mach_close"])
 		var/t1 = text("window=[href_list["mach_close"]]")
-		unset_machine()
 		src << browse(null, t1)
 
 	if(user != src)
@@ -775,7 +773,7 @@
 /mob/proc/stripPanelUnequip(obj/item/what, mob/who)
 	return
 
-// The src mob пытается place an item on someone
+// The src mob tries to place an item on someone
 // Defined in living.dm
 /mob/proc/stripPanelEquip(obj/item/what, mob/who)
 	return
@@ -1194,9 +1192,6 @@
 			var/obj/O = var_value
 			if(!istype(O) || (O.obj_flags & DANGEROUS_POSSESSION))
 				return FALSE
-		if(NAMEOF(src, machine))
-			set_machine(var_value)
-			. =  TRUE
 		if(NAMEOF(src, focus))
 			set_focus(var_value)
 			. =  TRUE

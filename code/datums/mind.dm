@@ -336,15 +336,15 @@
 		all_objectives |= A.objectives
 
 	if(all_objectives.len)
-		output += "<B>Мои цели:</B>"
+		output += "<B>My objectives:</B>"
 		var/obj_count = 1
 		for(var/datum/objective/objective in all_objectives)
-			output += "<br><B>Цель #[obj_count++]</B>: [objective.explanation_text]"
+			output += "<br><B>Objective #[obj_count++]</B>: [objective.explanation_text]"
 			var/list/datum/mind/other_owners = objective.get_owners() - src
 			if(other_owners.len)
 				output += "<ul>"
 				for(var/datum/mind/M in other_owners)
-					output += "<li>Сообщник: [M.name]</li>"
+					output += "<li>Accomplice: [M.name]</li>"
 				output += "</ul>"
 
 	if(window)
@@ -495,10 +495,10 @@
 
 /datum/mind/proc/announce_objectives()
 	var/obj_count = 1
-	to_chat(current, span_notice("Мои текущие цели:"))
+	to_chat(current, span_notice("My objectives:"))
 	for(var/objective in get_all_objectives())
 		var/datum/objective/O = objective
-		to_chat(current, "<B>Цель #[obj_count]</B>: [O.explanation_text]")
+		to_chat(current, "<B>Objective #[obj_count]</B>: [O.explanation_text]")
 		obj_count++
 
 /datum/mind/proc/transfer_martial_arts(mob/living/new_character)

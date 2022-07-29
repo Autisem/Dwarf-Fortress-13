@@ -14,8 +14,8 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 	melee_damage_type = BURN
-	attack_verb_continuous = "разрывает"
-	attack_verb_simple = "разрывает"
+	attack_verb_continuous = "tears"
+	attack_verb_simple = "tear"
 	attack_sound = 'sound/effects/curseattack.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	throw_message = "passes through the smokey body of"

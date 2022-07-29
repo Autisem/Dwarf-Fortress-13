@@ -1,6 +1,6 @@
 /obj/item/lipstick
 	gender = PLURAL
-	name = "красный lipstick"
+	name = "red lipstick"
 	desc = "A generic brand of lipstick."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "lipstick"
@@ -9,7 +9,7 @@
 	var/open = FALSE
 
 /obj/item/lipstick/purple
-	name = "фиолетовый lipstick"
+	name = "purple lipstick"
 	colour = "purple"
 
 /obj/item/lipstick/jade
@@ -18,7 +18,7 @@
 	colour = "lime"
 
 /obj/item/lipstick/black
-	name = "чёрный lipstick"
+	name = "black lipstick"
 	colour = "black"
 
 /obj/item/lipstick/random
@@ -142,7 +142,7 @@
 					if(!get_location_accessible(H, location))
 						to_chat(user, span_warning("The mask is in the way!"))
 						return
-					user.visible_message(span_notice("[user] tries to change [H] facial hairstyle using [src].") , span_notice("Пытаюсь change [H] facial hairstyle using [src]."))
+					user.visible_message(span_notice("[user] tries to change [H] facial hairstyle using [src].") , span_notice("You try to change [H] facial hairstyle using [src]."))
 					if(new_style && do_after(user, 60, target = H))
 						user.visible_message(span_notice("[user] successfully changes [H] facial hairstyle using [src].") , span_notice("You successfully change [H] facial hairstyle using [src]."))
 						H.facial_hairstyle = new_style
@@ -191,7 +191,7 @@
 				if(HAS_TRAIT(H, TRAIT_BALD))
 					to_chat(H, span_warning("[H] is just way too bald. Like, really really bald."))
 					return
-				user.visible_message(span_notice("[user] tries to change [H] hairstyle using [src].") , span_notice("Пытаюсь change [H] hairstyle using [src]."))
+				user.visible_message(span_notice("[user] tries to change [H] hairstyle using [src].") , span_notice("You try to change [H] hairstyle using [src]."))
 				if(new_style && do_after(user, 60, target = H))
 					user.visible_message(span_notice("[user] successfully changes [H] hairstyle using [src].") , span_notice("You successfully change [H] hairstyle using [src]."))
 					H.hairstyle = new_style

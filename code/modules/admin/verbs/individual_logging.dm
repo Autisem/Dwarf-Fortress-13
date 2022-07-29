@@ -7,29 +7,29 @@
 	//Add client links
 	var/list/dat = list()
 
-	dat += "<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><title>Членосос</title>"
+	dat += "<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><title>Logging</title>"
 
 	if(M.client)
-		dat += "<center><p>Клиент</p></center>"
+		dat += "<center><p>Ckey</p></center>"
 		dat += "<center>"
 		dat += individual_logging_panel_link(M, INDIVIDUAL_ATTACK_LOG, LOGSRC_CLIENT, "Attack", source, ntype)
 		dat += individual_logging_panel_link(M, INDIVIDUAL_SAY_LOG, LOGSRC_CLIENT, "Say", source, ntype)
 		dat += individual_logging_panel_link(M, INDIVIDUAL_EMOTE_LOG, LOGSRC_CLIENT, "Emote", source, ntype)
 		dat += individual_logging_panel_link(M, INDIVIDUAL_OOC_LOG, LOGSRC_CLIENT, "OOC", source, ntype)
-		dat += individual_logging_panel_link(M, INDIVIDUAL_SHOW_ALL_LOG, LOGSRC_CLIENT, "ВСЕ", source, ntype)
+		dat += individual_logging_panel_link(M, INDIVIDUAL_SHOW_ALL_LOG, LOGSRC_CLIENT, "EVERYTHING", source, ntype)
 		dat += "</center>"
 	else
-		dat += "<p> У моба нет клиента </p>"
+		dat += "<p> No ckey attached to mob </p>"
 
 	dat += "<hr style='background:#000000; border:0; height:1px'>"
-	dat += "<center><p>Моб</p></center>"
+	dat += "<center><p>Mob</p></center>"
 	//Add the links for the mob specific log
 	dat += "<center>"
 	dat += individual_logging_panel_link(M, INDIVIDUAL_ATTACK_LOG, LOGSRC_MOB, "Attack", source, ntype)
 	dat += individual_logging_panel_link(M, INDIVIDUAL_SAY_LOG, LOGSRC_MOB, "Say", source, ntype)
 	dat += individual_logging_panel_link(M, INDIVIDUAL_EMOTE_LOG, LOGSRC_MOB, "Emote", source, ntype)
 	dat += individual_logging_panel_link(M, INDIVIDUAL_OOC_LOG, LOGSRC_MOB, "OOC", source, ntype)
-	dat += individual_logging_panel_link(M, INDIVIDUAL_SHOW_ALL_LOG, LOGSRC_MOB, "ВСЕ", source, ntype)
+	dat += individual_logging_panel_link(M, INDIVIDUAL_SHOW_ALL_LOG, LOGSRC_MOB, "EVERYTHING", source, ntype)
 	dat += "</center>"
 
 	dat += "<hr style='background:#000000; border:0; height:1px'>"
@@ -50,7 +50,7 @@
 		dat += concatenated_logs.Join("<br>")
 		dat += "</font>"
 
-	var/datum/browser/popup = new(usr, "invidual_logging_[key_name(M)]", "КТО СЛИЛ ЛОГИ???", 900, 600)
+	var/datum/browser/popup = new(usr, "invidual_logging_[key_name(M)]", "Logs", 900, 600)
 	popup.set_content(dat.Join())
 	popup.open()
 

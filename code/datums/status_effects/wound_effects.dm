@@ -1,8 +1,8 @@
 
 // The shattered remnants of your broken limbs fill you with determination!
 /atom/movable/screen/alert/status_effect/determined
-	name = "Решительность"
-	desc = "Серьезные раны, которые я получил, привели моё тело в режим «сражайся или беги»! Сейчас самое время искать выход!"
+	name = "Determined"
+	desc = "The serious wounds you've sustained have put your body into fight-or-flight mode! Now's the time to look for an exit!"
 	icon_state = "regenerative_core"
 
 /datum/status_effect/determined
@@ -11,10 +11,10 @@
 
 /datum/status_effect/determined/on_apply()
 	. = ..()
-	owner.visible_message(span_danger("[owner] стискивает [owner.p_their()] зубы от боли!") , span_notice("<b>Прилив адреналина даёт мне на мгновение забыть про раны!</b>") , vision_distance=COMBAT_MESSAGE_RANGE)
+	owner.visible_message(span_danger("[owner]'s body tenses up noticeably, gritting against [owner.p_their()] pain!"), span_notice("<b>Your senses sharpen as your body tenses up from the wounds you've sustained!</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
 
 /datum/status_effect/determined/on_remove()
-	owner.visible_message(span_danger("[owner] заметно ослабевает!") , span_warning("<b>Раны начинают болеть с огромной силой...</b>") , vision_distance=COMBAT_MESSAGE_RANGE)
+	owner.visible_message(span_danger("[owner]'s body slackens noticeably!"), span_warning("<b>Your adrenaline rush dies off, and the pain from your wounds come aching back in...</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
 	return ..()
 
 /datum/status_effect/limp
@@ -49,8 +49,8 @@
 	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_GAIN_WOUND, COMSIG_CARBON_LOSE_WOUND, COMSIG_CARBON_ATTACH_LIMB, COMSIG_CARBON_REMOVE_LIMB))
 
 /atom/movable/screen/alert/status_effect/limp
-	name = "Хромота"
-	desc = "Одна или несколько моих ног были ранены, замедляя меня! Стоит вылечить или хотя бы перевязать!"
+	name = "Limping"
+	desc = "One or more of your legs has been wounded, slowing down steps with that leg! Get it fixed, or at least in a sling of gauze!"
 
 /datum/status_effect/limp/proc/check_step(mob/whocares, OldLoc, Dir, forced)
 	SIGNAL_HANDLER

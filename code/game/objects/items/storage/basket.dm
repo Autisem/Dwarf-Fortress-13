@@ -1,6 +1,6 @@
 /obj/item/storage/basket
-	name = "корзина"
-	desc = "Корзина ручной работы."
+	name = "basket"
+	desc = "Hand made basket."
 	icon_state = "basket"
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FLAMMABLE

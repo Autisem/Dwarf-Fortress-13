@@ -519,10 +519,6 @@
 /datum/component/storage/proc/attackby(datum/source, obj/item/I, mob/M, params)
 	SIGNAL_HANDLER
 
-	if(istype(I, /obj/item/hand_labeler))
-		var/obj/item/hand_labeler/labeler = I
-		if(labeler.mode)
-			return FALSE
 	. = TRUE //no afterattack
 	if(!can_be_inserted(I, FALSE, M))
 		var/atom/real_location = real_location()

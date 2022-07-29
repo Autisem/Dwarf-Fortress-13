@@ -236,13 +236,13 @@
 			var/turf/open/floor/stepTurf = get_step(L, direct)
 			if(stepTurf)
 				for(var/obj/effect/decal/cleanable/food/salt/S in stepTurf)
-					to_chat(L, span_warning("[capitalize(S)] не даёт пройти!"))
+					to_chat(L, span_warning("[S] is blocking you!"))
 					return
 				if(stepTurf.turf_flags & NOJAUNT)
-					to_chat(L, span_warning("Странная аура блокирует путь."))
+					to_chat(L, span_warning("Mysterious aura is blocking you."))
 					return
 				if (locate(/obj/effect/blessing, stepTurf))
-					to_chat(L, span_warning("Святая энергия блокирует мой путь!"))
+					to_chat(L, span_warning("Holy power is blocking you!"))
 					return
 
 				L.forceMove(stepTurf)
@@ -251,13 +251,13 @@
 			var/turf/open/floor/stepTurf = get_step(L, direct)
 			if(stepTurf)
 				for(var/obj/effect/decal/cleanable/food/salt/S in stepTurf)
-					to_chat(L, span_warning("[capitalize(S)] не даёт пройти!"))
+					to_chat(L, span_warning("[S] is blocking you!"))
 					return
 				if((stepTurf.turf_flags & NOJAUNT))
-					to_chat(L, span_warning("Странная аура блокирует путь."))
+					to_chat(L, span_warning("Mysterious aura is blocking you."))
 					return
 				if (locate(/obj/effect/blessing, stepTurf))
-					to_chat(L, span_warning("Святая энергия блокирует мой путь!"))
+					to_chat(L, span_warning("Holy power is blocking you!"))
 					return
 
 				L.forceMove(stepTurf)

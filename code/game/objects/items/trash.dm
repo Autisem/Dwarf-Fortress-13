@@ -3,7 +3,7 @@
 	icon = 'icons/obj/janitor.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
-	desc = "Это мусор."
+	desc = "This is trash."
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 	item_flags = NOBLUDGEON
@@ -39,7 +39,6 @@
 /obj/item/trash/boritos
 	name = "boritos bag"
 	icon_state = "boritos"
-	grind_results = list(/datum/reagent/aluminium = 1) //from the mylar bag
 
 /obj/item/trash/popcorn
 	name = "popcorn"
@@ -88,7 +87,6 @@
 	name = "crushed can"
 	icon_state = "cola"
 	resistance_flags = NONE
-	grind_results = list(/datum/reagent/aluminium = 10)
 
 /obj/item/trash/can/food/peaches
 	name = "canned peaches"

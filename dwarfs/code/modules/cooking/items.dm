@@ -45,27 +45,27 @@
 		. = ..()
 		update_appearance()
 
-/obj/item/stick/attack_obj(obj/O, mob/living/user, params)
-	if(istype(O, /obj/structure/fireplace))
-		var/datum/cooking_recipe/R = find_recipe(subtypesof(/datum/cooking_recipe/stick), contents)
-		var/mob/living/carbon/human/H = user
-		if(!R)
-			var/held_index = H.is_holding(src)
-			if(held_index)
-				qdel(src)
-				var/obj/item/food/badrecipe/S = new
-				H.put_in_hand(S, held_index)
-			else
-				new /obj/item/food/badrecipe(loc)
-				qdel(src)
+// /obj/item/stick/attack_obj(obj/O, mob/living/user, params) // removed fireplace - replace it later with bonefire
+// 	if(istype(O, /obj/structure/fireplace))
+// 		var/datum/cooking_recipe/R = find_recipe(subtypesof(/datum/cooking_recipe/stick), contents)
+// 		var/mob/living/carbon/human/H = user
+// 		if(!R)
+// 			var/held_index = H.is_holding(src)
+// 			if(held_index)
+// 				qdel(src)
+// 				var/obj/item/food/badrecipe/S = new
+// 				H.put_in_hand(S, held_index)
+// 			else
+// 				new /obj/item/food/badrecipe(loc)
+// 				qdel(src)
 
-		var/obj/item/food/F = new R.result
-		var/held_index = H.is_holding(src)
-		if(held_index)
-			qdel(src)
-			H.put_in_hand(F, held_index)
-		else
-			F.forceMove(loc)
-			qdel(src)
-	else
-		. = ..()
+// 		var/obj/item/food/F = new R.result
+// 		var/held_index = H.is_holding(src)
+// 		if(held_index)
+// 			qdel(src)
+// 			H.put_in_hand(F, held_index)
+// 		else
+// 			F.forceMove(loc)
+// 			qdel(src)
+// 	else
+// 		. = ..()

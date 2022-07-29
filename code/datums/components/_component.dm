@@ -55,7 +55,7 @@
 		return
 
 	if(!parent)
-		stack_trace("Компонент [type] был создан без владельца! Аргументы: [json_encode(arguments)]")
+		stack_trace("Component [type] initialized without parent! Args: [json_encode(arguments)]")
 		qdel(src, TRUE, TRUE)
 		return
 
@@ -92,7 +92,7 @@
 /datum/component/proc/_JoinParent()
 	var/datum/P = parent
 	if(!parent)
-		stack_trace("Был вызван _JoinParent() компомнента [type] без владельца!")
+		stack_trace("_JoinParent() was called on [type] without valid parent!")
 		qdel(src, TRUE, TRUE)
 		return
 	//lazy init the parent's dc list

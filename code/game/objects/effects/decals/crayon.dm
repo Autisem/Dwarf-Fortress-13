@@ -1,8 +1,8 @@
 GLOBAL_LIST(gang_tags)
 
 /obj/effect/decal/cleanable/crayon
-	name = "руна"
-	desc = "Граффити. Проклятые дети."
+	name = "rune"
+	desc = "Graffiti."
 	icon = 'icons/effects/crayondecal.dmi'
 	icon_state = "rune1"
 	gender = NEUTER
@@ -16,7 +16,6 @@ GLOBAL_LIST(gang_tags)
 	. = ..()
 	if(e_name)
 		name = e_name
-	desc = "[capitalize(name)] - акт вандализма на станции."
 	if(alt_icon)
 		icon = alt_icon
 	if(type)

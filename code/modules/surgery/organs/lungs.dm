@@ -1,7 +1,7 @@
 /obj/item/organ/lungs
 	var/failed = FALSE
 	var/operated = FALSE	//whether we can still have our damages fixed through surgery
-	name = "лёгкие"
+	name = "lungs"
 	icon_state = "lungs"
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_LUNGS
@@ -11,14 +11,14 @@
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY * 0.9 // fails around 16.5 minutes, lungs are one of the last organs to die (of the ones we have)
 
-	low_threshold_passed = span_warning("Трудно дышать...")
-	high_threshold_passed = span_warning("Ощущаю какое-то сжатие вокруг груди, моё дыхание становится поверхностным и быстрым.")
-	now_fixed = span_warning("Моим лёгким, похоже, стало легче.")
-	low_threshold_cleared = span_info("Воздух начинает поступать в мои лёгкие. Благодать.")
-	high_threshold_cleared = span_info("Давление вокруг моей груди ослабевает, дышать стало легче.")
+	low_threshold_passed = span_warning("You feel short of breath.")
+	high_threshold_passed = span_warning("You feel some sort of constriction around your chest as your breathing becomes shallow and rapid.")
+	now_fixed = span_warning("Your lungs seem to once again be able to hold air.")
+	low_threshold_cleared = span_info("You can breathe normally again.")
+	high_threshold_cleared = span_info("The constriction around your chest loosens as your breathing calms down.")
 
 
-	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/medicine/salbutamol = 5)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 
 	//Breath damage
 
@@ -42,7 +42,7 @@
 	///Minimum amount of hexane needed to start having effect
 	var/hexane_min = 2
 
-	var/cold_message = "как моё лицо мёрзнет и ледяной воздух поступает"
+	var/cold_message = "your face freezing and an icicle forming"
 	var/cold_level_1_threshold = 260
 	var/cold_level_2_threshold = 200
 	var/cold_level_3_threshold = 120
@@ -51,7 +51,7 @@
 	var/cold_level_3_damage = COLD_GAS_DAMAGE_LEVEL_3
 	var/cold_damage_type = BURN
 
-	var/hot_message = "как моё лицо горит и горячий воздух поступает"
+	var/hot_message = "your face burning and a searing heat"
 	var/heat_level_1_threshold = 360
 	var/heat_level_2_threshold = 400
 	var/heat_level_3_threshold = 1000
@@ -60,7 +60,7 @@
 	var/heat_level_3_damage = HEAT_GAS_DAMAGE_LEVEL_3
 	var/heat_damage_type = BURN
 
-	var/crit_stabilizing_reagent = /datum/reagent/medicine/epinephrine
+	var/crit_stabilizing_reagent
 
 /obj/item/organ/lungs/proc/handle_too_little_breath(mob/living/carbon/human/H = null, breath_pp = 0, safe_breath_min = 0, true_pp = 0)
 	. = 0
@@ -93,49 +93,3 @@
 
 /obj/item/organ/lungs/get_availability(datum/species/S)
 	return !(TRAIT_NOBREATH in S.inherent_traits)
-
-/obj/item/organ/lungs/plasmaman
-	name = "плазма-фильтр"
-	desc = "Губчатая масса в форме ребра для фильтрации плазмы из дыхания."
-	icon_state = "lungs-plasma"
-
-	safe_oxygen_min = 0 //We don't breath this
-	safe_toxins_min = 16 //We breath THIS!
-	safe_toxins_max = 0
-
-/obj/item/organ/lungs/slime
-	name = "вакуоль"
-	desc = "Большая органелла, предназначенная для хранения кислорода и других важных газов."
-
-	safe_toxins_max = 0 //We breathe this to gain POWER.
-
-/obj/item/organ/lungs/cybernetic
-	name = "базовые кибернетические лёгкие"
-	desc = "Базовая кибернетическая версия легких, встречающаяся у традиционных гуманоидных существ."
-	icon_state = "lungs-c"
-	organ_flags = ORGAN_SYNTHETIC
-	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
-
-	var/emp_vulnerability = 80	//Chance of permanent effects if emp-ed.
-
-/obj/item/organ/lungs/cybernetic/tier2
-	name = "кибернетические лёгкие"
-	desc = "Кибернетическая версия легких традиционных гуманоидных существ. Позволяет потреблять больше кислорода, чем органические легкие, требуя немного меньшего давления."
-	icon_state = "lungs-c-u"
-	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD
-	safe_oxygen_min = 13
-	emp_vulnerability = 40
-
-/obj/item/organ/lungs/cybernetic/tier3
-	name = "продвинутые кибернетические лёгкие"
-	desc = "Более продвинутая версия штатных кибернетических легких. Отличается способностью отфильтровывать более низкие уровни токсинов и углекислого газа."
-	icon_state = "lungs-c-u2"
-	safe_toxins_max = 20
-	safe_co2_max = 20
-	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
-	safe_oxygen_min = 13
-	emp_vulnerability = 20
-
-	cold_level_1_threshold = 200
-	cold_level_2_threshold = 140
-	cold_level_3_threshold = 100

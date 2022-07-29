@@ -59,8 +59,8 @@
 	AddElement(/datum/element/climbable, climb_time = crate_climb_time, climb_stun = 0)
 
 /obj/structure/closet/crate/freezer
-	desc = "Фризер."
-	name = "морозильник"
+	desc = "freezer."
+	name = "freezer"
 	icon_state = "freezer"
 
 //Snowflake organ freezer code
@@ -85,8 +85,8 @@
 
 
 /obj/structure/closet/crate/freezer/blood
-	name = "морозильник для крови"
-	desc = "Холодильник с пакетами крови."
+	name = "blood freezer"
+	desc = "Freezer with blood bags."
 
 /obj/structure/closet/crate/freezer/blood/PopulateContents()
 	. = ..()
@@ -97,7 +97,5 @@
 	new /obj/item/reagent_containers/blood/b_plus(src)
 	new /obj/item/reagent_containers/blood/o_minus(src)
 	new /obj/item/reagent_containers/blood/o_plus(src)
-	new /obj/item/reagent_containers/blood/lizard(src)
-	new /obj/item/reagent_containers/blood/ethereal(src)
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/blood/random(src)

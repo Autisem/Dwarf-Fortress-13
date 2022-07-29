@@ -121,37 +121,6 @@
 /obj/item/reagent_containers/glass/on_accidental_consumption(mob/living/carbon/M, mob/living/carbon/user, obj/item/source_item, discover_after = TRUE)
 	return ..()
 
-/obj/item/reagent_containers/glass/beaker
-	name = "химический стакан"
-	desc = "Химический стакан, вместимостью до 50 единиц."
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "beaker"
-	inhand_icon_state = "beaker"
-	worn_icon_state = "beaker"
-	fill_icon_thresholds = list(0, 1, 20, 40, 60, 80, 100)
-
-/obj/item/reagent_containers/glass/beaker/Initialize()
-	. = ..()
-	update_icon()
-
-/obj/item/reagent_containers/glass/beaker/get_part_rating()
-	return reagents.maximum_volume
-
-/obj/item/reagent_containers/glass/beaker/jar
-	name = "банка мёда"
-	desc = "Банка для мёда. Она может вместить до 50 единиц сахарного наслаждения."
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "vapour"
-
-/obj/item/reagent_containers/glass/beaker/large
-	name = "большой химический стакан"
-	desc = "Большой химический стакан, вместимостью до 100 единиц."
-	icon_state = "beakerlarge"
-	volume = 100
-	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,20,25,30,50,100)
-	fill_icon_thresholds = list(0, 1, 20, 40, 60, 80, 100)
-
 /obj/item/reagent_containers/glass/bucket
 	name = "bucket"
 	desc = "It's a bucket."
@@ -234,15 +203,15 @@
 		.+=M
 
 /obj/item/pestle
-	name = "пестик"
-	desc = "Древний простой инструмент, используемый со ступкой для измельчения, или давки предметов."
+	name = "pestle"
+	desc = "An ancient, simple tool used in conjunction with a mortar to grind or juice items."
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "pestle"
 	force = 7
 
 /obj/item/reagent_containers/glass/mortar
-	name = "ступка"
+	name = "mortar"
 	desc = "A specially formed bowl of ancient design. It is possible to crush or juice items placed in it using a pestle; however the process, unlike modern methods, is slow and physically exhausting. Alt click to eject the item."
 	icon_state = "mortar"
 	amount_per_transfer_from_this = 10
@@ -293,8 +262,3 @@
 		grinded = I
 		return
 	to_chat(user, span_warning("You can't grind this!"))
-
-/obj/item/reagent_containers/glass/saline
-	name = "saline canister"
-	volume = 5000
-	list_reagents = list(/datum/reagent/medicine/salglu_solution = 5000)

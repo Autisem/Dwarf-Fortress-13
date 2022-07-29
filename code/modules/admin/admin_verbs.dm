@@ -152,7 +152,6 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/datum/admins/proc/create_or_modify_area,
 	/client/proc/check_timer_sources,
 	/client/proc/toggle_cdn,
-	/client/proc/force_evenmaster_rules,
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/possess, /proc/release))
 GLOBAL_PROTECT(admin_verbs_possess)
@@ -427,7 +426,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 					mob.name = mob.real_name
 				mob.mouse_opacity = initial(mob.mouse_opacity)
 		else
-			var/new_key = stripped_input(usr, "Выбери сикей. Можно на русском!", "Маскируемся", key, 26)
+			var/new_key = stripped_input(usr, "Enter your new ckey!", "Stealth", key, 26)
 			if(!new_key)
 				return
 			holder.fakekey = new_key
@@ -572,10 +571,6 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set name = "Readmin"
 	set category = "Admin"
 	set desc = "Regain your admin powers."
-
-	//if(!isdead(src.mob) && !check_rights(R_PERMISSIONS))
-	//	to_chat(src, span_interface("Тебе нельзя. Надо бы из тела выйти.") , confidential = TRUE)
-	//	return
 
 	var/datum/admins/A = GLOB.deadmins[ckey]
 

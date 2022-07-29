@@ -17,7 +17,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/fire = 3,
 	/datum/hallucination/self_delusion = 2,
 	/datum/hallucination/delusion = 2,
-	/datum/hallucination/shock = 1,
 	/datum/hallucination/death = 1,
 	/datum/hallucination/oh_yeah = 1
 	))
@@ -597,16 +596,13 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		"[pick_list_replacements(HAL_LINES_FILE, "aggressive")]",\
 		"[pick_list_replacements(HAL_LINES_FILE, "help")]",\
 		"[pick_list_replacements(HAL_LINES_FILE, "escape")]",\
-		"У меня вирус, [pick_list_replacements(HAL_LINES_FILE, "infection_advice")]!")
+		"I have a virus, [pick_list_replacements(HAL_LINES_FILE, "infection_advice")]!")
 
 	var/radio_messages = list("[pick_list_replacements(HAL_LINES_FILE, "people")] [pick_list_replacements(HAL_LINES_FILE, "accusations")]!",\
-		"Помогите!",\
-		"[pick_list_replacements(HAL_LINES_FILE, "threat")] в [pick_list_replacements(HAL_LINES_FILE, "location")][prob(50)?"!":"!!"]",\
-		"[pick("Где [target.first_name()]?", "Аррестуйте [target.first_name()]!")]",\
-		"[pick("По","Кто-нибудь, по","От")]зовите шаттл!",\
-		"[pick_list_replacements(HAL_LINES_FILE, "prikols")]",\
-		"У [pick_list_replacements(HAL_LINES_FILE, "jobs")] [pick_list_replacements(HAL_LINES_FILE, "tator-items")]!!!",\
-		"ИИ [pick("сбойный", "уничтожен")]!!")
+		"Help!",\
+		"[pick_list_replacements(HAL_LINES_FILE, "threat")] in [pick_list_replacements(HAL_LINES_FILE, "location")][prob(50)?"!":"!!"]",\
+		"[pick("Where is [target.first_name()]?", "Arrest [target.first_name()]!")]",\
+		"[pick_list_replacements(HAL_LINES_FILE, "prikols")]")
 
 	var/mob/living/carbon/person = null
 	var/datum/language/understood_language = target.get_random_understood_language()
@@ -664,32 +660,33 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(other)
 		if(close_other) //increase the odds
 			for(var/i in 1 to 5)
-				message_pool.Add(span_warning("Что-то укололо меня!"))
+				message_pool.Add(span_warning("You feel a tiny prick!"))
 		var/obj/item/storage/equipped_backpack = other.get_item_by_slot(ITEM_SLOT_BACK)
 		if(istype(equipped_backpack))
 			for(var/i in 1 to 5) //increase the odds
-				message_pool.Add("<span class='notice'>[other] кладёт [pick(\
-					"револьвер .357 калибра","energy sword","cryptographic sequencer","power sink","мини энергетический арбалет",\
-					"гибридный тазер","электрошоковая дубинка","flash","шприцевой пистолет","циркулярная пила","tank transfer valve",\
+				message_pool.Add("<span class='notice'>[other] puts the [pick(\
+					"revolver","energy sword","cryptographic sequencer","power sink","energy bow",\
+					"hybrid taser","stun baton","flash","syringe gun","circular saw","tank transfer valve",\
 					"ritual dagger","spellbook",\
-					"импульсный карабин","запасная ID-карта капитана","ручной телепортер","hypospray","Антикварный лазерный пистолет","X-01 MultiPhase Energy Gun","station's blueprints"\
-					)] в [equipped_backpack].</span>")
+					"Codex Cicatrix", "Living Heart",\
+					"pulse rifle","captain's spare ID","hand teleporter","hypospray","antique laser gun","X-01 MultiPhase Energy Gun","station's blueprints"\
+					)] into [equipped_backpack].</span>")
 
-		message_pool.Add("<B>[other]</B> [pick("чихает","кашляет")].")
+		message_pool.Add("<B>[other]</B> [pick("sneezes","coughs")].")
 
-	message_pool.Add(span_notice("Что-то ползает по трубам...") , \
-		span_notice("[pick("Рука", "Нога", "Спина", "Голова")] чешется.") ,\
-		span_warning("Ощущаю [pick("жар","холод","сухость","сырость","головокружение","слабость")].") ,
-		span_warning("В животе что-то грохочет.") ,
-		span_warning("Голова болит.") ,
-		span_warning("Голова гудит.") ,
-		"<B>[target]</B> чихает.")
+	message_pool.Add(span_notice("You hear something squeezing through the ducts..."), \
+		span_notice("Your [pick("arm", "leg", "back", "head")] itches."),\
+		span_warning("You feel [pick("hot","cold","dry","wet","woozy","faint")]."),
+		span_warning("Your stomach rumbles."),
+		span_warning("Your head hurts."),
+		span_warning("You hear a faint buzz in your head."),
+		"<B>[target]</B> sneezes.")
 	if(prob(10))
-		message_pool.Add(span_warning("Позади меня.") ,\
-			span_warning("Кто-то тихо смеётся.") ,
-			span_warning("Что-то движется.") ,
-			span_warning("Что-то шумит на потолке.") ,
-			span_warning("Что-то движется ко мне."))
+		message_pool.Add(span_warning("Behind you."),\
+			span_warning("You hear a faint laughter."),
+			span_warning("You see something move."),
+			span_warning("You hear skittering on the ceiling."),
+			span_warning("You see an inhumanly tall silhouette moving in the distance."))
 	if(prob(10))
 		message_pool.Add("[pick_list_replacements(HAL_LINES_FILE, "advice")]")
 	var/chosen = pick(message_pool)
@@ -969,7 +966,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			if(1) //revolver
 				halitem.icon = 'icons/obj/guns/projectile.dmi'
 				halitem.icon_state = "revolver"
-				halitem.name = "револьвер .357 калибра"
+				halitem.name = "revolver .357"
 			if(2) //c4
 				halitem.icon = 'icons/obj/grenade.dmi'
 				halitem.icon_state = "plastic-explosive0"
@@ -983,7 +980,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			if(4) //stun baton
 				halitem.icon = 'icons/obj/items_and_weapons.dmi'
 				halitem.icon_state = "stunbaton"
-				halitem.name = "электоршоковая дубинка"
+				halitem.name = "stun baton"
 			if(5) //emag
 				halitem.icon = 'icons/obj/card.dmi'
 				halitem.icon_state = "emag"
@@ -1085,9 +1082,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(AM == target)
 		if(istype(target, /obj/effect/dummy/phased_mob))
 			return
-		to_chat(target, span_userdanger("Падаю в пропасть!"))
+		to_chat(target, span_userdanger("You fall into the chasm!"))
 		target.Paralyze(40)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, target, span_notice("Но тут удивительно не глубоко.")), 15)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, target, span_notice("It's suprisingly shallow.")), 15)
 		QDEL_IN(src, 30)
 
 /obj/effect/hallucination/danger/anomaly
@@ -1116,8 +1113,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 /obj/effect/hallucination/danger/anomaly/proc/on_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
-	if(AM == target)
-		new /datum/hallucination/shock(target)
 
 /datum/hallucination/death
 
@@ -1127,7 +1122,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	target.set_screwyhud(SCREWYHUD_DEAD)
 	target.Paralyze(300)
 	target.silent += 10
-	to_chat(target, span_deadsay("<b>[target.real_name]</b> погибает в локации <b>[get_area_name(target)]</b>."))
+	to_chat(target, span_deadsay("<b>[target.real_name]</b> has died at <b>[get_area_name(target)]</b>."))
 
 	var/delay = 0
 
@@ -1142,8 +1137,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			fakemob = target //ever been so lonely you had to haunt yourself?
 		if(fakemob)
 			delay = rand(20, 50)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, target, "<span class='deadsay'><b>Призрак [fakemob.name]</b> говорит, \"[pick("рест ин писс","пидорасы блять","ебать у тебя имя [target.first_name()]","красава","че, опять?","допрыгался",\
-				"я[prob(50)?" блять":""] ненавижу этих [pick("культистов", "триторов", "ревенантов", "пидорасов","людей","опухоидов","педалей","натуралов")]")]\"</span>"), delay)
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, target, "<span class='deadsay'><b>DEAD: [fakemob.name]</b> says, \"[pick("rip","why did i just drop dead?","hey [target.first_name()]","git gud","you too?","is the AI rogue?",\
+				"i[prob(50)?" fucking":""] hate [pick("blood cult", "clock cult", "revenants", "this round","this","myself","admins","you")]")]\"</span>"), delay)
 
 	addtimer(CALLBACK(src, .proc/cleanup), delay + rand(70, 90))
 
@@ -1175,7 +1170,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	fire_overlay = image('icons/mob/OnFire.dmi', target, "Standing", ABOVE_MOB_LAYER)
 	if(target?.client)
 		target.client.images += fire_overlay
-	to_chat(target, span_userdanger("ГОРЮ!"))
+	to_chat(target, span_userdanger("You're set on fire!"))
 	target.throw_alert("fire", /atom/movable/screen/alert/fire, override = TRUE)
 	times_to_lower_stamina = rand(5, 10)
 	addtimer(CALLBACK(src, .proc/start_expanding), 20)
@@ -1243,40 +1238,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 #undef RAISE_FIRE_COUNT
 #undef RAISE_FIRE_TIME
-
-/datum/hallucination/shock
-	var/image/shock_image
-	var/image/electrocution_skeleton_anim
-
-/datum/hallucination/shock/New(mob/living/carbon/C, forced = TRUE)
-	set waitfor = FALSE
-	..()
-	shock_image = image(target, target, dir = target.dir)
-	shock_image.appearance_flags |= KEEP_APART
-	shock_image.color = rgb(0,0,0)
-	shock_image.override = TRUE
-	electrocution_skeleton_anim = image('icons/mob/human.dmi', target, icon_state = "electrocuted_base", layer=ABOVE_MOB_LAYER)
-	electrocution_skeleton_anim.appearance_flags |= RESET_COLOR|KEEP_APART
-	to_chat(target, span_userdanger("Меня ударило током. ЭТО ОЧЕНЬ БОЛЬНО!"))
-	if(target?.client)
-		target.client.images |= shock_image
-		target.client.images |= electrocution_skeleton_anim
-	addtimer(CALLBACK(src, .proc/reset_shock_animation), 40)
-	target.playsound_local(get_turf(src), "sparks", 100, 1)
-	target.staminaloss += 50
-	target.Stun(40)
-	target.jitteriness += 1000
-	target.do_jitter_animation(target.jitteriness)
-	addtimer(CALLBACK(src, .proc/shock_drop), 20)
-
-/datum/hallucination/shock/proc/reset_shock_animation()
-	if(target?.client)
-		target.client.images.Remove(shock_image)
-		target.client.images.Remove(electrocution_skeleton_anim)
-
-/datum/hallucination/shock/proc/shock_drop()
-	target.jitteriness = max(target.jitteriness - 990, 10) //Still jittery, but vastly less
-	target.Paralyze(60)
 
 /datum/hallucination/husks
 	var/image/halbody

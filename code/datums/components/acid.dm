@@ -156,7 +156,7 @@
 /datum/component/acid/proc/on_examine(atom/A, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_danger("\n[A] покрыт[A] кислотой!")
+	examine_list += span_danger("\n[A] is covered in acid!")
 
 /// Makes it possible to clean acid off of objects.
 /datum/component/acid/proc/on_clean(atom/A, clean_types)
@@ -196,7 +196,7 @@
 	if(!affecting?.receive_damage(0, 5))
 		return NONE
 
-	to_chat(user, span_warning("Трогаю [parent_atom] и обжигаюсь кислотой!"))
+	to_chat(user, span_warning("You touch [parent_atom] and burn your hand!"))
 	playsound(parent_atom, 'sound/weapons/sear.ogg', 50, TRUE)
 	user.update_damage_overlays()
 	return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -219,5 +219,5 @@
 	var/acid_used = min(acid_volume * 0.05, 20)
 	if(crosser.acid_act(acid_power, acid_used, FEET))
 		playsound(crosser, 'sound/weapons/sear.ogg', 50, TRUE)
-		to_chat(crosser, span_userdanger("Наступаю на [parent] и обжигаюсь кислотой!"))
+		to_chat(crosser, span_userdanger("You step on [parent] and burn your foot!"))
 		set_volume(max(acid_volume - acid_used, 10))

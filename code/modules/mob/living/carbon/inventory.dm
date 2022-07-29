@@ -198,7 +198,7 @@
 		to_chat(src, span_warning("<b>[offerer]</b> is no longer holding the item they were offering!"))
 		return
 	if(!get_empty_held_indexes())
-		to_chat(src, span_warning("Мои руки заняты!"))
+		to_chat(src, span_warning("You have no empty hands!"))
 		return
 	if(I.on_offer_taken(offerer, src)) // see if the item has special behavior for being accepted
 		return

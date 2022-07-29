@@ -1,7 +1,7 @@
 ///Opiods
 /datum/addiction/opiods
-	name = "опиоидов"
-	withdrawal_stage_messages = list("Что-то съедает меня изнутри...", "Нужно как-то утолить боль...", "Всё тело болит... Надо вмазаться!")
+	name = "opiod"
+	withdrawal_stage_messages = list("I feel aches in my bodies..", "I need some pain relief...", "It aches all over...I need some opiods!")
 
 /datum/addiction/opiods/withdrawal_stage_1_process(mob/living/carbon/affected_carbon, delta_time)
 	. = ..()
@@ -10,7 +10,7 @@
 
 /datum/addiction/opiods/withdrawal_enters_stage_2(mob/living/carbon/affected_carbon)
 	. = ..()
-	affected_carbon.apply_status_effect(STATUS_EFFECT_HIGHBLOODPRESSURE)
+	affected_carbon.apply_status_effect(/datum/status_effect/high_blood_pressure)
 
 /datum/addiction/opiods/withdrawal_stage_3_process(mob/living/carbon/affected_carbon, delta_time)
 	. = ..()
@@ -20,13 +20,14 @@
 
 /datum/addiction/opiods/end_withdrawal(mob/living/carbon/affected_carbon)
 	. = ..()
-	affected_carbon.remove_status_effect(STATUS_EFFECT_HIGHBLOODPRESSURE)
+	affected_carbon.remove_status_effect(/datum/status_effect/high_blood_pressure)
+	affected_carbon.set_disgust(affected_carbon.disgust * 0.5) //half their disgust to help
 
 ///Stimulants
 
 /datum/addiction/stimulants
-	name = "стимулянтов"
-	withdrawal_stage_messages = list("Что-то устаю... Надо бы взбодриться.", "Ух...", "Так... Хочется... Спать...")
+	name = "stimulant"
+	withdrawal_stage_messages = list("You feel a bit tired...You could really use a pick me up.", "You are getting a bit woozy...", "So...Tired...")
 
 /datum/addiction/stimulants/withdrawal_enters_stage_1(mob/living/carbon/affected_carbon)
 	. = ..()
@@ -34,7 +35,7 @@
 
 /datum/addiction/stimulants/withdrawal_enters_stage_2(mob/living/carbon/affected_carbon)
 	. = ..()
-	affected_carbon.apply_status_effect(STATUS_EFFECT_WOOZY)
+	affected_carbon.apply_status_effect(/datum/status_effect/woozy)
 
 /datum/addiction/stimulants/withdrawal_enters_stage_3(mob/living/carbon/affected_carbon)
 	. = ..()
@@ -43,13 +44,13 @@
 /datum/addiction/stimulants/end_withdrawal(mob/living/carbon/affected_carbon)
 	. = ..()
 	affected_carbon.remove_actionspeed_modifier(ACTIONSPEED_ID_STIMULANTS)
-	affected_carbon.remove_status_effect(STATUS_EFFECT_WOOZY)
+	affected_carbon.remove_status_effect(/datum/status_effect/woozy)
 	affected_carbon.remove_movespeed_modifier(MOVESPEED_ID_STIMULANTS)
 
 ///Alcohol
 /datum/addiction/alcohol
-	name = "спирта"
-	withdrawal_stage_messages = list("Надо прибухнуть...", "Может быть бар ещё открыт?..", "БОЖЕНЬКИ, ХОЧУ НАЖРАТЬСЯ!")
+	name = "alcohol"
+	withdrawal_stage_messages = list("I could use a drink...", "Maybe the bar is still open?..", "God I need a drink!")
 
 /datum/addiction/alcohol/withdrawal_stage_1_process(mob/living/carbon/affected_carbon, delta_time)
 	. = ..()
@@ -66,11 +67,11 @@
 	affected_carbon.hallucination = max(5 SECONDS, affected_carbon.hallucination)
 	if(DT_PROB(4, delta_time))
 		if(!HAS_TRAIT(affected_carbon, TRAIT_ANTICONVULSANT))
-			affected_carbon.apply_status_effect(STATUS_EFFECT_SEIZURE)
+			affected_carbon.apply_status_effect(/datum/status_effect/seizure)
 
 /datum/addiction/hallucinogens
-	name = "галлюнов"
-	withdrawal_stage_messages = list("Так пусто...", "Куда делись все эльфы?..", "Кому нужен этот тусклый мир?!")
+	name = "hallucinogen"
+	withdrawal_stage_messages = list("I feel so empty...", "I wonder what the machine elves are up to?..", "I need to see the beautiful colors again!!")
 
 /datum/addiction/hallucinogens/withdrawal_enters_stage_2(mob/living/carbon/affected_carbon)
 	. = ..()
@@ -91,7 +92,7 @@
 	affected_carbon.remove_status_effect(/datum/status_effect/trance, 40 SECONDS, TRUE)
 
 /datum/addiction/maintenance_drugs
-	name = "этих таблеток"
+	name = "maintenance drug"
 	withdrawal_stage_messages = list("", "", "")
 
 /datum/addiction/maintenance_drugs/withdrawal_enters_stage_1(mob/living/carbon/affected_carbon)
@@ -109,7 +110,7 @@
 		return
 	var/mob/living/carbon/human/affected_human = affected_carbon
 	if(affected_human.gender == MALE)
-		to_chat(affected_human, span_warning("Кожа чешется."))
+		to_chat(affected_human, span_warning("Your chin itches."))
 		affected_human.facial_hairstyle = "Beard (Full)"
 		affected_human.update_hair()
 	//Only like gross food
@@ -121,13 +122,8 @@
 	. = ..()
 	if(!ishuman(affected_carbon))
 		return
-	to_chat(affected_carbon, span_warning("В темноте вполне приятно..."))
+	to_chat(affected_carbon, span_warning("You feel yourself adapt to the darkness."))
 	var/mob/living/carbon/human/affected_human = affected_carbon
-
-	var/obj/item/organ/liver/empowered_liver = affected_carbon.getorgan(/obj/item/organ/liver)
-	if(empowered_liver)
-		ADD_TRAIT(empowered_liver, TRAIT_GREYTIDE_METABOLISM, "maint_drug_addiction")
-
 	var/obj/item/organ/eyes/empowered_eyes = affected_human.getorgan(/obj/item/organ/eyes)
 	if(empowered_eyes)
 		ADD_TRAIT(affected_human, TRAIT_NIGHT_VISION, "maint_drug_addiction")
@@ -161,7 +157,7 @@
 
 ///Makes you a hypochondriac - I'd like to call it hypochondria, but "I could use some hypochondria" doesn't work
 /datum/addiction/medicine
-	name = "лекарств"
+	name = "medicine"
 	withdrawal_stage_messages = list("", "", "")
 	var/datum/hallucination/fake_alert/hallucination
 	var/datum/hallucination/fake_health_doll/hallucination2
@@ -216,6 +212,9 @@
 		return
 	if(DT_PROB(65, delta_time))
 		return
+	if(affected_carbon.stat >= SOFT_CRIT)
+		return
+
 	var/obj/item/organ/organ = pick(affected_carbon.internal_organs)
 	if(organ.low_threshold)
 		to_chat(affected_carbon, organ.low_threshold_passed)
@@ -223,7 +222,7 @@
 	else if (organ.high_threshold_passed)
 		to_chat(affected_carbon, organ.high_threshold_passed)
 		return
-	to_chat(affected_carbon, span_warning("[uppertext(organ.name)] БОЛИТ!"))
+	to_chat(affected_carbon, span_warning("You feel a dull pain in your [organ.name]."))
 
 /datum/addiction/medicine/end_withdrawal(mob/living/carbon/affected_carbon)
 	. = ..()
@@ -233,9 +232,9 @@
 
 ///Nicotine
 /datum/addiction/nicotine
-	name = "никотина"
+	name = "nicotine"
 	addiction_relief_treshold = MIN_NICOTINE_ADDICTION_REAGENT_AMOUNT //much less because your intake is probably from ciggies
-	withdrawal_stage_messages = list("Надо покурить...", "Гадость. Хочу покурить.", "Всего одну затяжку... ВСЕГО ОДНУ ЗАТЯЖКУ!")
+	withdrawal_stage_messages = list("Feel like having a smoke...", "Getting antsy. Really need a smoke now.", "I can't take it! Need a smoke NOW!")
 
 	medium_withdrawal_moodlet = /datum/mood_event/nicotine_withdrawal_moderate
 	severe_withdrawal_moodlet = /datum/mood_event/nicotine_withdrawal_severe

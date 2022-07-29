@@ -349,24 +349,24 @@
 	SEND_SOUND(candidate_mob, 'sound/misc/notice2.ogg') //Alerting them to their consideration
 	if(flashwindow)
 		window_flash(candidate_mob.client)
-	var/list/answers = ignore_category ? list("Да", "Нет", "Никогда") : list("Да", "Нет")
-	switch(tgui_alert(candidate_mob, question, "Предложение получить новое тело!", answers, poll_time))
-		if("Да")
-			to_chat(candidate_mob, span_notice("Выбираем: Да."))
+	var/list/answers = ignore_category ? list("Yes", "No", "Never") : list("Yes", "No")
+	switch(tgui_alert(candidate_mob, question, "Al limited time offer!", answers, poll_time))
+		if("Yes")
+			to_chat(candidate_mob, span_notice("Choice registered: Yes."))
 			if(time_passed + poll_time <= world.time)
-				to_chat(candidate_mob, span_danger("СЛИШКОМ ПОЗДНО!"))
+				to_chat(candidate_mob, span_danger("Too late!"))
 				candidates -= candidate_mob
 			else
 				candidates += candidate_mob
-		if("Нет")
-			to_chat(candidate_mob, span_danger("Выбираем: Нет."))
+		if("No")
+			to_chat(candidate_mob, span_danger("Choice registered: No."))
 			candidates -= candidate_mob
-		if("Никогда")
+		if("Never")
 			var/list/ignore_list = GLOB.poll_ignore[ignore_category]
 			if(!ignore_list)
 				GLOB.poll_ignore[ignore_category] = list()
 			GLOB.poll_ignore[ignore_category] += candidate_mob.ckey
-			to_chat(candidate_mob, span_danger("Выбираем: Не спрашиваем до конца раунда."))
+			to_chat(candidate_mob, span_danger("Choice registered: Never for this round."))
 			candidates -= candidate_mob
 		else
 			candidates -= candidate_mob
@@ -385,7 +385,7 @@
 /proc/poll_candidates(question, jobban_type, be_special_flag = 0, poll_time = 300, ignore_category = null, flashwindow = TRUE, list/group = null)
 	var/time_passed = world.time
 	if (!question)
-		question = "Хочешь получить специальную роль?"
+		question = "Would you like to be a special role?"
 	var/list/result = list()
 	for(var/candidate in group)
 		var/mob/candidate_mob = candidate
@@ -506,7 +506,7 @@
 	if(!SSticker.IsRoundInProgress() || QDELETED(character))
 		return
 	var/area/A = get_area(character)
-	deadchat_broadcast(span_game(" прибывает на станцию в <span class='name'>[A.name]</span>.") , span_game("<span class='name'>[character.real_name]</span> ([rank])") , follow_target = character, message_type=DEADCHAT_ARRIVALRATTLE)
+	deadchat_broadcast(span_game(" has arrived at <span class='name'>[A.name]</span>.") , span_game("<span class='name'>[character.real_name]</span> ([rank])") , follow_target = character, message_type=DEADCHAT_ARRIVALRATTLE)
 	if(!character.mind)
 		return
 	if((character.mind.assigned_role == "Cyborg") || (character.mind.assigned_role == character.mind.special_role))

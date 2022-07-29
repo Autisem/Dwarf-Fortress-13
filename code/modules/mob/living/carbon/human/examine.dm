@@ -85,10 +85,7 @@
 
 	//handcuffed?
 	if(handcuffed)
-		if(istype(handcuffed, /obj/item/restraints/handcuffs/cable))
-			. += "<span class='warning'>[t_He] [t_is] [icon2html(handcuffed, user)] restrained with cable!</span>\n"
-		else
-			. += "<span class='warning'>[t_He] [t_is] [icon2html(handcuffed, user)] handcuffed!</span>\n"
+		. += "<span class='warning'>[t_He] [t_is] [icon2html(handcuffed, user)] handcuffed!</span>\n"
 
 	//belt
 	if(belt && !(belt.item_flags & EXAMINE_SKIP))
@@ -261,9 +258,6 @@
 		if(appears_dead)
 			bleed_text += ", but it has pooled and is not flowing.</span></B>\n"
 		else
-			if(reagents.has_reagent(/datum/reagent/toxin/heparin, needs_metabolizing = TRUE))
-				bleed_text += " incredibly quickly"
-
 			bleed_text += "!</B>\n"
 
 		for(var/i in grasped_limbs)
@@ -271,9 +265,6 @@
 			bleed_text += "[t_He] [t_is] holding [t_his] [grasped_part.name] to slow the bleeding!\n"
 
 		msg += bleed_text.Join()
-
-	if(reagents.has_reagent(/datum/reagent/teslium, needs_metabolizing = TRUE))
-		msg += "[t_He] [t_is] emitting a gentle blue glow!\n"
 
 	if(islist(stun_absorption))
 		for(var/i in stun_absorption)
@@ -349,10 +340,6 @@
 
 	if (length(msg))
 		. += span_warning("[msg.Join("")]")
-
-	if(isobserver(user))
-		if(HAS_TRAIT(src, TRAIT_CLIENT_LEAVED))
-			. += "<hr><span class='boldnotice'>This body can be posessed!</span>"
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 

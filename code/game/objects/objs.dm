@@ -67,8 +67,7 @@
 		T.add_blueprints_preround(src)
 
 /obj/Destroy(force=FALSE)
-	if(!ismachinery(src))
-		STOP_PROCESSING(SSobj, src) // TODO: Have a processing bitflag to reduce on unnecessary loops through the processing lists
+	STOP_PROCESSING(SSobj, src) // TODO: Have a processing bitflag to reduce on unnecessary loops through the processing lists
 	SStgui.close_uis(src)
 	. = ..()
 
@@ -76,7 +75,7 @@
 /obj/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force, gentle = FALSE, quickstart = TRUE)
 	. = ..()
 	if(obj_flags & FROZEN)
-		visible_message(span_danger("[capitalize(src.name)] разлетается на миллион частей!"))
+		visible_message(span_danger("[src] shatters into a million pieces!"))
 		qdel(src)
 
 /obj/proc/can_be_unfasten_wrench(mob/user, silent) //if we can unwrench this object; returns SUCCESSFUL_UNFASTEN and FAILED_UNFASTEN, which are both TRUE, or CANT_UNFASTEN, which isn't.
@@ -89,21 +88,21 @@
 	if(!(flags_1 & NODECONSTRUCT_1) && I.tool_behaviour == TOOL_WRENCH)
 		var/turf/ground = get_turf(src)
 		if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-			to_chat(user, span_notice("Не вышло прикрутить <b>[src.name]</b>."))
+			to_chat(user, span_notice("You failed to wrench <b>[src.name]</b>."))
 			return CANT_UNFASTEN
 		var/can_be_unfasten = can_be_unfasten_wrench(user)
 		if(!can_be_unfasten || can_be_unfasten == FAILED_UNFASTEN)
 			return can_be_unfasten
 		if(time)
-			to_chat(user, span_notice("Начинаю [anchored ? "от" : "при"]кручивать <b>[src.name]</b>..."))
+			to_chat(user, span_notice("You start to [anchored ? "un" : ""]wrench <b>[src.name]</b>..."))
 		I.play_tool_sound(src, 50)
 		var/prev_anchored = anchored
 		//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
 		if(I.use_tool(src, user, time, extra_checks = CALLBACK(src, .proc/unfasten_wrench_check, prev_anchored, user)))
 			if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-				to_chat(user, span_notice("Не вышло прикрутить <b>[src.name]</b>."))
+				to_chat(user, span_notice("You failed to wrench <b>[src.name]</b>."))
 				return CANT_UNFASTEN
-			to_chat(user, span_notice("[anchored ? "От" : "При"]кручиваю <b>[src.name]</b>."))
+			to_chat(user, span_notice("You [anchored ? "Un" : ""]wrench <b>[src.name]</b>."))
 			set_anchored(!anchored)
 			playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 			SEND_SIGNAL(src, COMSIG_OBJ_DEFAULT_UNFASTEN_WRENCH, anchored)
@@ -126,12 +125,12 @@
 		var/is_in_use = FALSE
 		var/list/nearby = viewers(1, src)
 		for(var/mob/M in nearby)
-			if ((M.client && M.machine == src))
+			if (M.client)
 				is_in_use = TRUE
 				ui_interact(M)
 		if(isAdminGhostAI(usr))
 			if (!(usr in nearby))
-				if (usr.client && usr.machine==src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
+				if (usr.client) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
 					is_in_use = TRUE
 					ui_interact(usr)
 
@@ -139,7 +138,7 @@
 
 		if(ishuman(usr))
 			if(!(usr in nearby))
-				if(usr.client && usr.machine==src)
+				if(usr.client)
 					is_in_use = TRUE
 					ui_interact(usr)
 		if (is_in_use)
@@ -152,7 +151,7 @@
 	if(obj_flags & IN_USE)
 		if(update_viewers)
 			for(var/mob/M in viewers(1, src))
-				if ((M.client && M.machine == src))
+				if (M.client)
 					src.interact(M)
 
 
@@ -163,25 +162,13 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_UI_INTERACT, user)
 	ui_interact(user)
 
-/mob/proc/unset_machine()
-	if(machine)
-		machine.on_unset_machine(src)
-		machine = null
-
 //called when the user unsets the machine.
 /atom/movable/proc/on_unset_machine(mob/user)
 	return
 
-/mob/proc/set_machine(obj/O)
-	if(src.machine)
-		unset_machine()
-	src.machine = O
-	if(istype(O))
-		O.obj_flags |= IN_USE
-
 /obj/item/proc/updateSelfDialog()
 	var/mob/M = src.loc
-	if(istype(M) && M.client && M.machine == src)
+	if(istype(M) && M.client)
 		src.attack_self(M)
 
 /obj/get_dumping_location(datum/component/storage/source,mob/user)
@@ -279,8 +266,6 @@
 
 /obj/examine(mob/user)
 	. = ..()
-	// if(obj_flags & UNIQUE_RENAME)
-		// . += "<hr><span class='smallnotice'>Можно переименовать это используя ручку или что-то подобное.</span>"
 	if(unique_reskin && !current_skin)
 		. += "<hr><span class='smallnotice'>RMB on the item to change its appearance.</span>"
 
@@ -312,7 +297,7 @@
 		return
 	current_skin = pick
 	icon_state = unique_reskin[pick]
-	to_chat(M, "[src.name] теперь выглядит как [pick].")
+	to_chat(M, "[src.name] Now looks like [pick].")
 
 /**
  * Checks if we are allowed to interact with a radial menu for reskins

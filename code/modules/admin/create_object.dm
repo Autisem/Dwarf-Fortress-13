@@ -15,7 +15,7 @@
 
 /datum/admins/proc/quick_create_object(mob/user)
 	var/static/list/create_object_forms = list(
-	/obj, /obj/structure, /obj/machinery, /obj/effect,
+	/obj, /obj/structure, /obj/effect,
 	/obj/item, /obj/item/clothing, /obj/item/stack, /obj/item,
 	/obj/item/reagent_containers, /obj/item/gun)
 

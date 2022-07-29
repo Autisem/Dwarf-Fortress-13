@@ -326,8 +326,8 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
  * * receiving - The item being given by the offerer
  */
 /atom/movable/screen/alert/give/proc/setup(mob/living/carbon/taker, mob/living/carbon/offerer, obj/item/receiving)
-	name = "[offerer] предлагает мне [receiving]"
-	desc = "[offerer] предлагает мне [receiving]. Нажми чтобы взять."
+	name = "[offerer] is offering me [receiving]"
+	desc = "[offerer] is offering me [receiving]. Click this alert to take it."
 	icon_state = "template"
 	cut_overlays()
 	add_overlay(receiving)
@@ -421,8 +421,8 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 
 /// Gives the player the option to succumb while in critical condition
 /atom/movable/screen/alert/succumb
-	name = "Сдаться"
-	desc = "Закончить череду событий и пропасть."
+	name = "Succumb"
+	desc = "Shuffle off this mortal coil."
 	icon_state = "succumb"
 
 /atom/movable/screen/alert/succumb/Click()
@@ -430,7 +430,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 		return
 
 	var/mob/living/living_owner = owner
-	var/last_whisper = input("Последние слова есть хоть?", "Последние слова") as null | text
+	var/last_whisper = input("Do you have any last words?", "Final Words") as null | text
 	if(!owner)
 		return
 	if (isnull(last_whisper) || !CAN_SUCCUMB(living_owner))
@@ -524,7 +524,7 @@ Recharging stations are available in robotics, the dormitory bathrooms, and the 
 //TODO: expand this system to replace the pollCandidates/CheckAntagonist/"choose quickly"/etc Yes/No messages
 /atom/movable/screen/alert/notify_cloning
 	name = "Revival"
-	desc = "Someone пытается revive you. Re-enter your corpse if you want to be revived!"
+	desc = "Someone is trying to revive you. Re-enter your corpse if you want to be revived!"
 	icon_state = "template"
 	timeout = 300
 
@@ -564,18 +564,18 @@ Recharging stations are available in robotics, the dormitory bathrooms, and the 
 //OBJECT-BASED
 
 /atom/movable/screen/alert/buckled
-	name = "Пристегнут"
-	desc = "Я пристегнут к чему-то или сижу. Клик, чтобы встать."
+	name = "Buckled"
+	desc = "You've been buckled to something. Click the alert to unbuckle unless you're handcuffed."
 	icon_state = "buckled"
 
 /atom/movable/screen/alert/restrained/handcuffed
-	name = "Закован"
-	desc = "На мне наручники и я ничего не могу делать. Не смогу двигаться если меня схватят. Клик, чтобы попробовать освободиться."
+	name = "Handcuffed"
+	desc = "You're handcuffed and can't act. If anyone drags you, you won't be able to move. Click the alert to free yourself."
 	click_master = FALSE
 
 /atom/movable/screen/alert/restrained/legcuffed
-	name = "Ноги связаны"
-	desc = "Мои ноги связаны и это меня замедляет. Клик, чтобы попробовать освободиться."
+	name = "Legcuffed"
+	desc = "You're legcuffed, which slows you down considerably. Click the alert to free yourself."
 	click_master = FALSE
 
 /atom/movable/screen/alert/restrained/Click()
@@ -595,15 +595,14 @@ Recharging stations are available in robotics, the dormitory bathrooms, and the 
 		return L.resist_buckle()
 
 /atom/movable/screen/alert/shoes/untied
-	name = "Шнурки развязаны"
-	desc = "Мои шнурки развязаны! Клик, чтобы завязать."
+	name = "Untied Shoes"
+	desc = "Your shoes are untied! Click the alert or your shoes to tie them."
 	icon_state = "shoealert"
 
 /atom/movable/screen/alert/shoes/knotted
-	name = "Шнурки перевязаны"
-	desc = "Кто-то связал шнурки моих ботинок друг с другом! Клик, чтобы развязать."
+	name = "Knotted Shoes"
+	desc = "Someone tied your shoelaces together! Click the alert or your shoes to undo the knot."
 	icon_state = "shoealert"
-
 /atom/movable/screen/alert/shoes/Click()
 	var/mob/living/carbon/C = usr
 	if(!istype(C) || !C.can_resist() || C != owner || !C.shoes)

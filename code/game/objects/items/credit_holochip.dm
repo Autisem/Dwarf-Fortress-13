@@ -17,7 +17,7 @@
 /obj/item/holochip/examine(mob/user)
 	. = ..()
 	. += "<hr><span class='notice'>It's loaded with [credits] credit[( credits > 1 ) ? "s" : ""]</span>\n"+\
-	"<hr><span class='notice'>ПКМ to split.</span>"
+	"<hr><span class='notice'>Alt-Click to split.</span>"
 
 /obj/item/holochip/proc/get_item_credit_value()
 	return credits

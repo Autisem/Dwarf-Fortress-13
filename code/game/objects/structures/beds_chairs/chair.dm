@@ -1,6 +1,6 @@
 /obj/structure/chair
-	name = "стул"
-	desc = "На нём можно сидеть."
+	name = "chair"
+	desc = "You can sit on it."
 	icon = 'icons/obj/chairs.dmi'
 	icon_state = "chair"
 	anchored = TRUE
@@ -19,9 +19,8 @@
 /obj/structure/chair/examine(mob/user)
 	. = ..()
 	. += "<hr>"
-	. += span_notice("Удерживается вместе парочкой <b>болтов</b>.")
 	if(!has_buckled_mobs() && can_buckle)
-		. += "</br><span class='notice'>Перетащите себя, чтобы сидеть на нём.</span>"
+		. += span_notice("While standing on [src], drag and drop your sprite onto [src] to buckle to it.")
 
 /obj/structure/chair/Initialize()
 	. = ..()
@@ -110,8 +109,8 @@
 
 
 /obj/structure/chair/wood
-	name = "деревянный стул"
-	desc = "Старое никогда не бывает слишком старым, чтобы не быть в моде."
+	name = "wooden chair"
+	desc = "Old is never too old to not be in fashion."
 	icon = 'icons/obj/chairs.dmi'
 	icon_state = "wooden_chair"
 	resistance_flags = FLAMMABLE
@@ -124,8 +123,8 @@
 	item_chair = /obj/item/chair/wood/wings
 
 /obj/structure/chair/comfy
-	name = "удобный стул"
-	desc = "Это выглядит удобно."
+	name = "comfy chair"
+	desc = "It looks comfy."
 	icon = 'icons/obj/chairs.dmi'
 	icon_state = "comfychair"
 	color = rgb(255,255,255)
@@ -177,34 +176,11 @@
 /obj/structure/chair/comfy/lime
 	color = rgb(255,251,0)
 
-/obj/structure/chair/comfy/shuttle
-	name = "пассажирское сиденье"
-	desc = "Удобное, безопасное сиденье. У него есть более крепко выглядящая система ремней, для более гладких полетов."
-	icon_state = "shuttle_chair"
-
-/obj/structure/chair/comfy/shuttle/GetArmrest()
-	return mutable_appearance('icons/obj/chairs.dmi', "shuttle_chair_armrest", plane = ABOVE_GAME_PLANE)
-
-/obj/structure/chair/office
-	icon = 'icons/obj/chairs.dmi'
-	anchored = FALSE
-	buildstackamount = 5
-	item_chair = null
-	icon_state = "officechair_dark"
-
-
-/obj/structure/chair/office/Moved()
-	. = ..()
-	playsound(src, 'sound/effects/roll.ogg', 100, TRUE)
-
-/obj/structure/chair/office/light
-	icon_state = "officechair_white"
-
 //Stool
 
 /obj/structure/chair/stool
-	name = "табуретка"
-	desc = "Для жопы."
+	name = "stool"
+	desc = "Apply butt."
 	icon_state = "stool"
 	can_buckle = FALSE
 	buildstackamount = 1
@@ -217,7 +193,7 @@
 			return
 		if(!usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, TRUE))
 			return
-		usr.visible_message(span_notice("[usr] хватает [src].") , span_notice("Хватаю [src]."))
+		usr.visible_message(span_notice("[usr] grabs [src].") , span_notice("You grab [src]."))
 		var/obj/item/C = new item_chair(loc)
 		C.set_custom_materials(custom_materials)
 		TransferComponents(C)
@@ -228,8 +204,8 @@
 	return ..()
 
 /obj/item/chair
-	name = "стул"
-	desc = "Особенность потасовок в баре."
+	name = "chair"
+	desc = "Bar brawl essential."
 	icon = 'icons/obj/chairs.dmi'
 	icon_state = "chair_toppled"
 	inhand_icon_state = "chair"
@@ -256,17 +232,17 @@
 /obj/item/chair/proc/plant(mob/user)
 	var/turf/T = get_turf(loc)
 	if(!isfloorturf(T))
-		to_chat(user, span_warning("Надо бы пол!"))
+		to_chat(user, span_warning("You need ground to plant this on!"))
 		return
 	for(var/obj/A in T)
 		if(istype(A, /obj/structure/chair))
-			to_chat(user, span_warning("Здесь уже есть стул!"))
+			to_chat(user, span_warning("There is already a chair here!"))
 			return
 		if(A.density && !(A.flags_1 & ON_BORDER_1))
-			to_chat(user, span_warning("Здесь уже что-то есть!"))
+			to_chat(user, span_warning("There is already something here!"))
 			return
 
-	user.visible_message(span_notice("[user] ставит [src.name] на пол.") , span_notice("Ставлю [src.name] на пол."))
+	user.visible_message(span_notice("[user] rights \the [src.name]."), span_notice("You right \the [name]."))
 	var/obj/structure/chair/C = new origin_type(get_turf(loc))
 	C.set_custom_materials(custom_materials)
 	TransferComponents(C)
@@ -287,9 +263,9 @@
 
 
 
-/obj/item/chair/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "атаку", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/chair/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == UNARMED_ATTACK && prob(hit_reaction_chance))
-		owner.visible_message(span_danger("[owner] отражает [attack_text] [src]!"))
+		owner.visible_message(span_danger("[owner] fends off [attack_text] with [src]!"))
 		return TRUE
 	return FALSE
 
@@ -298,7 +274,7 @@
 	if(!proximity)
 		return
 	if(prob(break_chance))
-		user.visible_message(span_danger("[user] разбивает [src] на куски об [target]"))
+		user.visible_message(span_danger("[user] smashes [src] to pieces against \the [target]"))
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
 			if(C.health < C.maxHealth*0.5)
@@ -310,14 +286,14 @@
 	origin_type = /obj/structure/chair/greyscale
 
 /obj/item/chair/stool
-	name = "табуретка"
+	name = "stool"
 	icon_state = "stool_toppled"
 	inhand_icon_state = "stool"
 	origin_type = /obj/structure/chair/stool
 	break_chance = 0 //It's too sturdy.
 
 /obj/item/chair/wood
-	name = "деревянный стул"
+	name = "wooden chair"
 	icon = 'icons/obj/chairs.dmi'
 	icon_state = "wooden_chair_toppled"
 	inhand_icon_state = "woodenchair"
@@ -331,68 +307,3 @@
 /obj/item/chair/wood/wings
 	icon_state = "wooden_chair_wings_toppled"
 	origin_type = /obj/structure/chair/wood/wings
-
-/obj/structure/chair/old
-	name = "странный стул"
-	desc = "На нём можно сидеть. Выглядит ОЧЕНЬ комфортным."
-	icon = 'icons/obj/chairs.dmi'
-	icon_state = "chairold"
-	item_chair = null
-
-/obj/structure/chair/mime
-	name = "невидимый стул"
-	desc = "Мда."
-	anchored = FALSE
-	icon_state = null
-	buildstacktype = null
-	item_chair = null
-	flags_1 = NODECONSTRUCT_1
-	alpha = 0
-
-/obj/structure/chair/mime/post_buckle_mob(mob/living/M)
-	M.pixel_y += 5
-
-/obj/structure/chair/mime/post_unbuckle_mob(mob/living/M)
-	M.pixel_y -= 5
-
-
-/obj/structure/chair/plastic
-	name = "складной пластиковый стул"
-	desc = "Независимо от того, сколько вы корчитесь, это все равно будет неудобно."
-	icon = 'icons/obj/chairs.dmi'
-	icon_state = "plastic_chair"
-	resistance_flags = FLAMMABLE
-	max_integrity = 50
-	buildstackamount = 2
-	item_chair = /obj/item/chair/plastic
-
-/obj/structure/chair/plastic/post_buckle_mob(mob/living/Mob)
-	Mob.pixel_y += 2
-	.=..()
-	if(iscarbon(Mob))
-		INVOKE_ASYNC(src, .proc/snap_check, Mob)
-
-/obj/structure/chair/plastic/post_unbuckle_mob(mob/living/Mob)
-	Mob.pixel_y -= 2
-
-/obj/structure/chair/plastic/proc/snap_check(mob/living/carbon/Mob)
-	if (Mob.nutrition >= NUTRITION_LEVEL_FAT)
-		to_chat(Mob, span_warning("Стул начинает трещать и трескаться, я слишком тяжелый!"))
-		if(do_after(Mob, 6 SECONDS, progress = FALSE))
-			Mob.visible_message(span_notice("Пластиковый стул защелкивается под весом [Mob]!"))
-			new /obj/effect/decal/cleanable/plastic(loc)
-			qdel(src)
-
-/obj/item/chair/plastic
-	name = "складной пластиковый стул"
-	desc = "Так или иначе, вы всегда можете найти его под борцовским рингом."
-	icon = 'icons/obj/chairs.dmi'
-	icon_state = "folded_chair"
-	inhand_icon_state = "folded_chair"
-	lefthand_file = 'icons/mob/inhands/misc/chairs_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/misc/chairs_righthand.dmi'
-	w_class = WEIGHT_CLASS_NORMAL
-	force = 7
-	throw_range = 5 //Lighter Weight --> Flies Farther.
-	break_chance = 25
-	origin_type = /obj/structure/chair/plastic

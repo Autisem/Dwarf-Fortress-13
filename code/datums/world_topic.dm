@@ -29,7 +29,7 @@
 	key_valid = config && (CONFIG_GET(string/comms_key) == input["key"])
 	var/key_cvalid = config && (CONFIG_GET(string/cross_key) == input["key"])
 	if(require_comms_key && !key_valid)
-		if(!key_cvalid) //хочу спать
+		if(!key_cvalid)
 			return "Bad Key"
 	input -= "key"
 	if(require_comms_key && !key_valid)
@@ -101,14 +101,14 @@
 	if (configured_network && configured_network != input["network"])
 		return
 
-	minor_announce(input["message"], "Входящее сообщение от [input["message_sender"]]")
+	minor_announce(input["message"], "Incoming message from [input["message_sender"]]")
 
 /datum/world_topic/news_report
 	keyword = "News_Report"
 	require_comms_key = TRUE
 
 /datum/world_topic/news_report/Run(list/input)
-	minor_announce(input["message"], "Входящее сообщение от [input["message_sender"]]")
+	minor_announce(input["message"], "Incoming message from [input["message_sender"]]")
 
 /datum/world_topic/adminmsg
 	keyword = "adminmsg"
@@ -293,27 +293,3 @@
 	message_admins("InCon -> [procname]() -> [lst.len ? "[list2params(lst)]":"0 args"].")
 
 	return call("/proc/[procname]")(arglist(lst))
-
-/**
- * Отправляет админ-анноунс
- */
-/proc/global_fucking_announce(text, userkey = null)
-	to_chat(world, "<span class='adminnotice'><b>[userkey ? userkey : "Administrator"] announces:</b></span>\n \t [text]")
-	return TRUE
-
-/**
- * Устанавливает сумму метакэша. Если нет в базе, то шлёт на хуй
- * announce: объявлять ли пользователю, если он в игре
- */
-/proc/set_metacoins_by_key(userkey, value = 0, announce = FALSE)
-	var/datum/db_query/query_set_metacoins = SSdbcore.NewQuery(
-		"UPDATE player SET metacoins = :value WHERE ckey = :userkey",
-		list("value" = value, "userkey" = userkey)
-	)
-	var/no_err = query_set_metacoins.Execute()
-	qdel(query_set_metacoins)
-	if(announce)
-		for(var/client/C in GLOB.clients)
-			if(userkey == C.ckey)
-				to_chat(C, "<span class='rose bold'>New balance: [value] chronos!</span>")
-	return no_err

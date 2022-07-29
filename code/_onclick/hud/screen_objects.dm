@@ -121,7 +121,7 @@
 	if(world.time <= usr.next_move)
 		return TRUE
 
-	if(usr.incapacitated(ignore_stasis = TRUE))
+	if(usr.incapacitated())
 		return TRUE
 
 	if(hud?.mymob && slot_id)

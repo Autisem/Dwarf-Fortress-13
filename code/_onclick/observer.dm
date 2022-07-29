@@ -53,22 +53,3 @@
 		if(user.client.prefs.inquisitive_ghost)
 			user.examinate(src)
 	return FALSE
-
-/mob/living/attack_ghost(mob/dead/observer/user)
-	if(HAS_TRAIT(src, TRAIT_CLIENT_LEAVED) && !is_banned_from(user.key, ROLE_ICECREAM))
-		var/ghost_role = tgui_alert(user, "Точно хочешь занять это тело? (Больше не сможешь вернуться в своё прошлое тело!)",,list("Да","Нет"))
-		if(ghost_role != "Да" || !user.loc || QDELETED(user))
-			return
-		if(QDELETED(src) || QDELETED(user))
-			return
-		if(src.client)
-			to_chat(user, span_warning("Тело уже занято! [prob(10) ? "Лошара." : "В следующий раз повезёт."]"))
-			return
-		to_chat(src, span_warning("Моё тело забрали?! Срочно нажми F1 и опиши проблему.")) //такой хуйни быть не должно.
-		log_game("[key_name(user)] Ice Creamed and became [src].")
-		message_admins("[key_name_admin(user)] забирает тело апатика ([ADMIN_LOOKUPFLW(src)]) себе.")
-		ghostize(0)
-		key = user.key
-		client?.init_verbs()
-		return
-	return ..()

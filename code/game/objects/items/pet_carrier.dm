@@ -3,7 +3,7 @@
 //Used to transport little animals without having to drag them across the station.
 //Comes with a handy lock to prevent them from running off.
 /obj/item/pet_carrier
-	name = "переноска для животных"
+	name = "pet carrier"
 	desc = "A big white-and-blue pet carrier. Good for carrying <s>meat to the chef</s> cute animals around."
 	icon = 'icons/obj/pet_carrier.dmi'
 	base_icon_state = "pet_carrier"
@@ -12,8 +12,8 @@
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	force = 5
-	attack_verb_continuous = list("лупит", "переносит")
-	attack_verb_simple = list("лупит", "переносит")
+	attack_verb_continuous = list("bashes", "carries")
+	attack_verb_simple = list("bash", "carry")
 	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 3
@@ -55,7 +55,7 @@
 	if(user.canUseTopic(src))
 		. += "<hr><span class='notice'>Activate it in your hand to [open ? "close" : "open"] its door.</span>"
 		if(!open)
-			. += "<hr><span class='notice'>ПКМ to [locked ? "unlock" : "lock"] its door.</span>"
+			. += "<hr><span class='notice'>Alt-Click to [locked ? "unlock" : "lock"] its door.</span>"
 
 /obj/item/pet_carrier/attack_self(mob/living/user)
 	if(open)

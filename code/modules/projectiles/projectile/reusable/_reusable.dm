@@ -1,6 +1,6 @@
 /obj/projectile/bullet/reusable
-	name = "многоразовая пуля"
-	desc = "И как ты вообще собираешься повторно использовать пулю?"
+	name = "reusable bullet"
+	desc = "How do you even reuse a bullet?"
 	impact_effect_type = null
 	embedding = null
 	shrapnel_type = null

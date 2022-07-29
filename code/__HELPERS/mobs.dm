@@ -257,7 +257,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		return FALSE
 	var/atom/target_loc = null
 	if(target && !istype(target))
-		stack_trace("Неверная цель в do_after. Пользователь: [user], задержка: [delay]")
+		stack_trace("Invalid target in do_after. Usr: [user], Delay: [delay]")
 	if(target && !isturf(target))
 		target_loc = target.loc
 
@@ -571,7 +571,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		return -(28 / 2) * log(1 - (temp_diff * change_rate))
 	return (28 / 2) * log(1 + (temp_diff * change_rate))
 
-#define ISADVANCEDTOOLUSER(mob) (HAS_TRAIT(mob, TRAIT_ADVANCEDTOOLUSER) && !HAS_TRAIT(mob, TRAIT_MONKEYLIKE))
+#define ISADVANCEDTOOLUSER(mob) (HAS_TRAIT(mob, TRAIT_ADVANCEDTOOLUSER))
 
 /// Gets the client of the mob, allowing for mocking of the client.
 /// You only need to use this if you know you're going to be mocking clients somewhere else.

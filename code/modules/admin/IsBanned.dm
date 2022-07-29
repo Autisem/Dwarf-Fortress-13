@@ -49,10 +49,10 @@
 	if(!real_bans_only && !C && IsGuestKey(key))
 		if (CONFIG_GET(flag/guest_ban))
 			log_access("Failed Login: [key] - Guests not allowed")
-			return list("reason"="guest", "desc"="\nГости не разрешены.")
+			return list("reason"="guest", "desc"="\nGuests are not allowed.")
 		if (CONFIG_GET(flag/panic_bunker) && SSdbcore.Connect())
 			log_access("Failed Login: [key] - Guests not allowed during panic bunker")
-			return list("reason"="guest", "desc"="\nОверпоп, заходите позже.")
+			return list("reason"="guest", "desc"="\nPanic bunker enabled, retry later.")
 
 	//Population Cap Checking
 	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
@@ -85,10 +85,10 @@
 							message_admins(msg)
 							addclientmessage(ckey,span_adminnotice("Admin [key] has been allowed to bypass a matching non-admin ban on [i["key"]] [i["ip"]]-[i["computerid"]]."))
 						continue
-				var/expires = "Навсегда."
+				var/expires = "Never."
 				if(i["expiration_time"])
-					expires = "Блокировка на [DisplayTimeText(text2num(i["duration"]) MINUTES)] заканчивается в [i["expiration_time"]] по серверному времени."
-				var/desc = {"Доступ запрещён, [i["key"]]. \nМетка: [html_decode(i["reason"])]. \nБлокировка #[i["id"]] выдана [i["bantime"]] во время раунда [i["round_id"]]. \n[expires]"}
+					expires = "Banned for [DisplayTimeText(text2num(i["duration"]) MINUTES)] ends on [i["expiration_time"]]."
+				var/desc = {"Access denied, [i["key"]]. \nReason: [html_decode(i["reason"])]. \nBan id #[i["id"]] banned on [i["bantime"]] round id [i["round_id"]]. \n[expires]"}
 				log_access("Failed Login: [key] [computer_id] [address] - Banned (#[i["id"]])")
 				return list("reason"="Banned","desc"="[desc]")
 	if (admin)
@@ -218,9 +218,9 @@
 			return null
 
 		if (C) //user is already connected!.
-			to_chat(C, "Возможно у вас проблемы. Если повторилось, то @Valtos#9999 поможет решить проблему.", confidential = TRUE)
+			to_chat(C, "It seems there has been a problem with ban checking. Please contact the coders.", confidential = TRUE)
 
-		var/desc = "\nПопробуйте лучше, ([bannedckey]). Метка:\n[html_decode(ban["message"])]\nВыдан [ban["admin"]]\n"
+		var/desc = "\nRetry again, ([bannedckey]). Reason:\n[html_decode(ban["message"])]\nBanned by: [ban["admin"]]\n"
 		. = list("reason" = "Stickyban", "desc" = desc)
 		log_access("Failed Login: [key] [computer_id] [address] - StickyBanned [ban["message"]] Target Username: [bannedckey] Placed by [ban["admin"]]")
 

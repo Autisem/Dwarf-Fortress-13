@@ -1219,16 +1219,10 @@
 		switch(tool_type)
 			if(TOOL_CROWBAR)
 				act_result = crowbar_act(user, I,)
-			if(TOOL_MULTITOOL)
-				act_result = multitool_act(user, I)
 			if(TOOL_SCREWDRIVER)
 				act_result = screwdriver_act(user, I)
 			if(TOOL_WRENCH)
 				act_result = wrench_act(user, I)
-			if(TOOL_WIRECUTTER)
-				act_result = wirecutter_act(user, I)
-			if(TOOL_WELDER)
-				act_result = welder_act(user, I)
 			if(TOOL_ANALYZER)
 				act_result = analyzer_act(user, I)
 	else
@@ -1238,16 +1232,10 @@
 		switch(tool_type)
 			if(TOOL_CROWBAR)
 				act_result = crowbar_act_secondary(user, I,)
-			if(TOOL_MULTITOOL)
-				act_result = multitool_act_secondary(user, I)
 			if(TOOL_SCREWDRIVER)
 				act_result = screwdriver_act_secondary(user, I)
 			if(TOOL_WRENCH)
 				act_result = wrench_act_secondary(user, I)
-			if(TOOL_WIRECUTTER)
-				act_result = wirecutter_act_secondary(user, I)
-			if(TOOL_WELDER)
-				act_result = welder_act_secondary(user, I)
 			if(TOOL_ANALYZER)
 				act_result = analyzer_act_secondary(user, I)
 	if(act_result) // A tooltype_act has completed successfully
@@ -1280,7 +1268,7 @@
 
 
 /atom/proc/StartProcessingAtom(mob/living/user, obj/item/I, list/chosen_option)
-	to_chat(user, span_notice("Начинаю работать с [src]."))
+	to_chat(user, span_notice("You start working on [src]."))
 	if(I.use_tool(src, user, chosen_option[TOOL_PROCESSING_TIME], volume=50))
 		var/atom/atom_to_create = chosen_option[TOOL_PROCESSING_RESULT]
 		var/list/atom/created_atoms = list()
@@ -1295,7 +1283,7 @@
 				created_atom.pixel_y += rand(-8,8)
 			SEND_SIGNAL(created_atom, COMSIG_ATOM_CREATEDBY_PROCESSING, src, chosen_option)
 			created_atom.OnCreatedFromProcessing(user, I, chosen_option, src)
-			to_chat(user, span_notice("Удалось сделать [chosen_option[TOOL_PROCESSING_AMOUNT]] [initial(atom_to_create.name)] из [src]."))
+			to_chat(user, span_notice("You make [chosen_option[TOOL_PROCESSING_AMOUNT]] [initial(atom_to_create.name)] from [src]."))
 			created_atoms.Add(created_atom)
 		SEND_SIGNAL(src, COMSIG_ATOM_PROCESSED, user, I, created_atoms)
 		UsedforProcessing(user, I, chosen_option)
@@ -1319,18 +1307,6 @@
 /atom/proc/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	return
 
-/// Called on an object when a tool with multitool capabilities is used to left click an object
-/atom/proc/multitool_act(mob/living/user, obj/item/tool)
-	return
-
-/// Called on an object when a tool with multitool capabilities is used to right click an object
-/atom/proc/multitool_act_secondary(mob/living/user, obj/item/tool)
-	return
-
-///Check if the multitool has an item in it's data buffer
-/atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
-	return TRUE
-
 /// Called on an object when a tool with screwdriver capabilities is used to left click an object
 /atom/proc/screwdriver_act(mob/living/user, obj/item/tool)
 	return
@@ -1345,22 +1321,6 @@
 
 /// Called on an object when a tool with wrench capabilities is used to right click an object
 /atom/proc/wrench_act_secondary(mob/living/user, obj/item/tool)
-	return
-
-/// Called on an object when a tool with wirecutter capabilities is used to left click an object
-/atom/proc/wirecutter_act(mob/living/user, obj/item/tool)
-	return
-
-/// Called on an object when a tool with wirecutter capabilities is used to right click an object
-/atom/proc/wirecutter_act_secondary(mob/living/user, obj/item/tool)
-	return
-
-/// Called on an object when a tool with welder capabilities is used to left click an object
-/atom/proc/welder_act(mob/living/user, obj/item/tool)
-	return
-
-/// Called on an object when a tool with welder capabilities is used to right click an object
-/atom/proc/welder_act_secondary(mob/living/user, obj/item/tool)
 	return
 
 /// Called on an object when a tool with analyzer capabilities is used to left click an object

@@ -27,7 +27,6 @@
 #define span_shadowling(str) ("<span class='shadowling'>" + str + "</span>")
 #define span_cultsmall(str) ("<span class='cultsmall'>" + str + "</span>")
 
-//ебал кокворк
 #define span_brass(str) ("<span class='brass'>" + str + "</span>")
 #define span_heavy_brass(str) ("<span class='heavy_brass'>" + str + "</span>")
 #define span_large_brass(str) ("<span class='large_brass'>" + str + "</span>")
@@ -39,4 +38,4 @@
 #define span_inathneq(str) ("<span class='inathneq'>" + str + "</span>")
 #define span_sevtug(str) ("<span class='sevtug'>" + str + "</span>")
 #define span_alloy(str) ("<span class='alloy'>" + str + "</span>")
-#define span_caution(str) ("<span class='сaution'>" + str + "</span>")
+#define span_caution(str) ("<span class='caution'>" + str + "</span>")

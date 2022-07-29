@@ -8,10 +8,7 @@
 	var/list/custom_dream_nouns = list()
 	var/fragment = ""
 
-	for(var/obj/item/bedsheet/sheet in loc)
-		custom_dream_nouns += sheet.dream_messages
-
-	dream_fragments += "вижу"
+	dream_fragments += "you see"
 
 	//Subject
 	if(custom_dream_nouns.len && prob(90))

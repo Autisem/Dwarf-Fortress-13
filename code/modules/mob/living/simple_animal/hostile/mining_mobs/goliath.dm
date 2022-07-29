@@ -15,7 +15,6 @@
 	ranged_cooldown_time = 120
 	friendly_verb_continuous = "wails at"
 	friendly_verb_simple = "wail at"
-	speak_emote = list("выдувает")
 	speed = 3
 	maxHealth = 300
 	health = 300
@@ -23,8 +22,8 @@
 	obj_damage = 100
 	melee_damage_lower = 25
 	melee_damage_upper = 25
-	attack_verb_continuous = "измельчает"
-	attack_verb_simple = "измельчает"
+	attack_verb_continuous = "crushes"
+	attack_verb_simple = "crush"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	throw_message = "does nothing to the rocky hide of the"
 	vision_range = 5

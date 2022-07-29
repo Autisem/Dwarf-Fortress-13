@@ -91,7 +91,7 @@
 		body += "<a href='?_src_=holder;[HrefToken()];modantagrep=set;mob=[REF(M)]'>=</a> "
 		body += "<a href='?_src_=holder;[HrefToken()];modantagrep=zero;mob=[REF(M)]'>0</a>"
 		// if(check_donations(M.client.ckey))
-		// 	body += "<br><b>Donator:</b> [check_donations(M.client.ckey)] р."
+		// 	body += "<br><b>Donator:</b> [check_donations(M.client.ckey)] points."
 		var/full_version = "Unknown"
 		if(M.client.byond_version)
 			full_version = "[M.client.byond_version].[M.client.byond_build ? M.client.byond_build : "xxx"]"
@@ -194,7 +194,7 @@
 
 	if (M.client)
 		body += "<br><b>Else:</b> "
-		//body += "<A href='?_src_=holder;[HrefToken()];forcespeech=[REF(M)]'>Форс-сей</A>"
+		body += "<A href='?_src_=holder;[HrefToken()];forcespeech=[REF(M)]'>Force-Say</A>"
 		//body += "<A href='?_src_=holder;[HrefToken()];tdome1=[REF(M)]'>Thunderdome 1</A>"
 		//body += "<A href='?_src_=holder;[HrefToken()];tdome2=[REF(M)]'>Thunderdome 2</A>"
 		//body += "<A href='?_src_=holder;[HrefToken()];tdomeadmin=[REF(M)]'>Thunderdome Admin</A>"
@@ -313,7 +313,7 @@
 	if(message)
 		if(!check_rights(R_SERVER,0))
 			message = adminscrub(message,500)
-		to_chat(world, "<span class='adminnotice'><b>[usr.client.holder.fakekey ? "Администратор" : usr.key] делает объявление:</b></span>\n \t [message]", confidential = TRUE)
+		to_chat(world, "<span class='adminnotice'><b>[usr.client.holder.fakekey ? "Admin" : usr.key] announces:</b></span>\n \t [message]", confidential = TRUE)
 		log_admin("Announce: [key_name(usr)] : [message]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Announce") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -419,9 +419,9 @@
 	var/new_nores = !CONFIG_GET(flag/norespawn)
 	CONFIG_SET(flag/norespawn, new_nores)
 	if (!new_nores)
-		to_chat(world, "<B>Разрешено переродиться.</B>", confidential = TRUE)
+		to_chat(world, "<B>Respawn enabled.</B>", confidential = TRUE)
 	else
-		to_chat(world, "<B>Запрещено перерождаться.</B>", confidential = TRUE)
+		to_chat(world, "<B>Respawn disabled.</B>", confidential = TRUE)
 	message_admins(span_adminnotice("[key_name_admin(usr)] toggled respawn to [!new_nores ? "On" : "Off"]."))
 	log_admin("[key_name(usr)] toggled respawn to [!new_nores ? "On" : "Off"].")
 	world.update_status()
@@ -440,10 +440,10 @@
 		SSticker.SetTimeLeft(newtime)
 		SSticker.start_immediately = FALSE
 		if(newtime < 0)
-			to_chat(world, "<b>Запуск отложен.</b>", confidential = TRUE)
+			to_chat(world, "<b>Game start has beed delayed.</b>", confidential = TRUE)
 			log_admin("[key_name(usr)] delayed the round start.")
 		else
-			to_chat(world, "<b>Игра начнётся через [DisplayTimeText(newtime)].</b>", confidential = TRUE)
+			to_chat(world, "<b>The game will start in [DisplayTimeText(newtime)].</b>", confidential = TRUE)
 			log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delay Game Start") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

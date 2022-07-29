@@ -2,10 +2,8 @@
 #define DEFAULT_ANNOUNCEMENT_SOUND "default_announcement"
 
 /// Preset central command names to chose from for centcom reports.
-#define CENTCOM_PRESET "Центральное Командование"
-#define SYNDICATE_PRESET "Синдикат"
-#define WIZARD_PRESET "Федерация Магов"
-#define CUSTOM_PRESET "Общество по правам негров"
+#define MAIN_PRESET "Main Fortress"
+#define CUSTOM_PRESET "Custom Fortress"
 
 /// Verb to change the global command name.
 /client/proc/cmd_change_command_name()
@@ -39,7 +37,7 @@
 	/// The mob using the UI.
 	var/mob/ui_user
 	/// The name of central command that will accompany our report
-	var/command_name = CENTCOM_PRESET
+	var/command_name = MAIN_PRESET
 	/// Whether we are using a custom name instead of a preset.
 	var/custom_name
 	/// The actual contents of the report we're going to send.
@@ -49,7 +47,7 @@
 	/// The sound that's going to accompany our message.
 	var/played_sound = DEFAULT_ANNOUNCEMENT_SOUND
 	/// A static list of preset names that can be chosen.
-	var/static/list/preset_names = list(CENTCOM_PRESET, SYNDICATE_PRESET, WIZARD_PRESET, CUSTOM_PRESET)
+	var/static/list/preset_names = list(MAIN_PRESET, CUSTOM_PRESET)
 
 /datum/command_report_menu/New(mob/user)
 	ui_user = user
@@ -136,7 +134,5 @@
 
 #undef DEFAULT_ANNOUNCEMENT_SOUND
 
-#undef CENTCOM_PRESET
-#undef SYNDICATE_PRESET
-#undef WIZARD_PRESET
+#undef MAIN_PRESET
 #undef CUSTOM_PRESET

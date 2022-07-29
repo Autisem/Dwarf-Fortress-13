@@ -288,7 +288,7 @@
 		durability_list += list("ACID" = armor.acid)
 
 	if(LAZYLEN(armor_list) || LAZYLEN(durability_list))
-		. += "<hr><span class='notice'>Здесь есть <a href='?src=[REF(src)];list_armor=1'>бирка</a> с описанием защитных свойств.</span>"
+		. += "<hr><span class='notice'>There is a <a href='?src=[REF(src)];list_armor=1'>label</a> with armor protective properties.</span>"
 
 */
 
@@ -296,14 +296,14 @@
 	. = ..()
 
 	if(href_list["list_armor"])
-		var/list/readout = list("<table class='examine_block'><tr><td><span class='notice'><u><b>ЗАЩИТНЫЕ КЛАССЫ (I-X)</u></b></span></td></tr>")
+		var/list/readout = list("<table class='examine_block'><tr><td><span class='notice'><u><b>PROTECTIVE LEVELS (I-X)</u></b></span></td></tr>")
 		if(LAZYLEN(armor_list))
-			readout += "<tr><td><b>БРОНЯ:</b></td></tr>"
+			readout += "<tr><td><b>ARMOR:</b></td></tr>"
 			for(var/dam_type in armor_list)
 				var/armor_amount = armor_list[dam_type]
 				readout += "<tr><td>\t[dam_type]</td><td>[armor_to_protection_class(armor_amount)]</td></tr>" //e.g. BOMB IV
 		if(LAZYLEN(durability_list))
-			readout += "<tr><td><b>СТОЙКОСТЬ:</b></td></tr>"
+			readout += "<tr><td><b>DURABILITY:</b></td></tr>"
 			for(var/dam_type in durability_list)
 				var/durability_amount = durability_list[dam_type]
 				readout += "<tr><td>\t[dam_type]</td><td>[armor_to_protection_class(durability_amount)]</td></tr>" //e.g. FIRE II

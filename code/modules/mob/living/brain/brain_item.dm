@@ -52,7 +52,7 @@
 	C.update_hair()
 
 /obj/item/organ/brain/proc/transfer_identity(mob/living/L)
-	name = "мозг [L.name]"
+	name = "brain [L.name]"
 	if(brainmob || decoy_override)
 		return
 	if(!L.mind)
@@ -83,17 +83,17 @@
 /obj/item/organ/brain/examine(mob/user)
 	. = ..()
 	if(suicided)
-		. += "<hr><span class='info'>Он начал слегка сереть. Носитель, должно быть, не смог справиться со всем этим стрессом.</span>"
+		. += span_info("It's started turning slightly grey. They must not have been able to handle the stress of it all.")
 		return
 	if((brainmob && (brainmob.client || brainmob.get_ghost())) || decoy_override)
 		if(organ_flags & ORGAN_FAILING)
-			. += "<hr><span class='info'>Кажется, в нем еще есть немного энергии, но он сильно поврежден... Возможно, получится восстановить его с помощью <b>маннитола</b>.</span>"
+			. += span_info("It seems to still have a bit of energy within it, but it's rather damaged... You may be able to restore it with some <b>mannitol</b>.")
 		else if(damage >= BRAIN_DAMAGE_DEATH*0.5)
-			. += "<hr><span class='info'>Можно почувствовать небольшую искру жизни, которая все еще осталась в этом мозге, но он повреждён. Возможно, получится восстановить его с помощью <b>маннитола</b>.</span>"
+			. += span_info("You can feel the small spark of life still left in this one, but it's got some bruises. You may be able to restore it with some <b>mannitol</b>.")
 		else
-			. += "<hr><span class='info'>Можно почувствовать маленькую искру жизни, которая все еще осталась в этом мозге.</span>"
+			. += span_info("You can feel the small spark of life still left in this one.")
 	else
-		. += "<hr><span class='info'>Он полностью мёртв.</span>"
+		. += span_info("This one is completely devoid of life.")
 
 /obj/item/organ/brain/attack(mob/living/carbon/C, mob/user)
 	if(!istype(C))
@@ -107,7 +107,7 @@
 	var/target_has_brain = C.getorgan(/obj/item/organ/brain)
 
 	if(!target_has_brain && C.is_eyes_covered())
-		to_chat(user, span_warning("Стоит открыть [C.p_their()] голову сначала!"))
+		to_chat(user, span_warning("You're going to need to remove [C.p_their()] head cover first!"))
 		return
 
 	//since these people will be dead M != usr
@@ -115,18 +115,18 @@
 	if(!target_has_brain)
 		if(!C.get_bodypart(BODY_ZONE_HEAD) || !user.temporarilyRemoveItemFromInventory(src))
 			return
-		var/msg = "[C] вставляет [src] в голову [user]."
+		var/msg = "[C] has [src] inserted into [C.p_their()] head by [user]."
 		if(C == user)
-			msg = "[user] вставляет [src] в [user.p_their()] голову!"
+			msg = "[user] inserts [src] into [user.p_their()] head!"
 
 		C.visible_message(span_danger("[msg]") ,
 						span_userdanger("[msg]"))
 
 		if(C != user)
-			to_chat(C, span_notice("[user] вставляет [src] в мою голову."))
-			to_chat(user, span_notice("Вставляю [src] в голову [C]."))
+			to_chat(C, span_notice("[user] inserts [src] into your head."))
+			to_chat(user, span_notice("You insert [src] into [C]'s head."))
 		else
-			to_chat(user, span_notice("Вставляю [src] в свою голову.") 	)
+			to_chat(user, span_notice("You insert [src] into your head.") )
 
 		Insert(C)
 	else
@@ -142,7 +142,7 @@
 
 /obj/item/organ/brain/on_life(delta_time, times_fired)
 	if(damage >= BRAIN_DAMAGE_DEATH) //rip
-		to_chat(owner, span_userdanger("Последняя искра жизни в моём мозгу угасает.."))
+		to_chat(owner, span_userdanger("The last spark of life in your brain fizzles out..."))
 		owner.death()
 
 /obj/item/organ/brain/check_damage_thresholds(mob/M)

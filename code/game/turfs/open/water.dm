@@ -1,7 +1,6 @@
 /turf/open/water
-	gender = FEMALE
-	name = "вода"
-	desc = "Ммм..."
+	name = "water"
+	desc = "Stay hydrated."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "riverwater_motion"
 	baseturfs = /turf/open/water
@@ -65,8 +64,8 @@
 
 /turf/open/openspace/water
 	gender = FEMALE
-	name = "вода"
-	desc = "Глубокая..."
+	name = "water"
+	desc = "It's deep..."
 	intact = TRUE
 	alpha = 160
 	icon = 'icons/turf/floors.dmi'

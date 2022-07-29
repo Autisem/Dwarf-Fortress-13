@@ -2,7 +2,7 @@
 	//NOTE: Floor code has been refactored, many procs were removed and refactored
 	//- you should use istype() if you want to find out whether a floor has a certain type
 	//- floor_tile is now a path, and not a tile obj
-	name = "плитка"
+	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	base_icon_state = "floor"
 	baseturfs = /turf/open/floor/stone/raw
@@ -20,7 +20,6 @@
 
 	var/broken = FALSE
 	var/burnt = FALSE
-	var/floor_tile = null //tile that this floor drops
 	var/list/broken_states
 	var/list/burnt_states
 
@@ -139,9 +138,6 @@
 	. = ..()
 	if(.)
 		return .
-	if(intact && istype(object, /obj/item/stack/tile))
-		try_replace_tile(object, user, params)
-		return TRUE
 	if(user.a_intent == INTENT_HARM && istype(object, /obj/item/stack/sheet))
 		var/obj/item/stack/sheet/sheets = object
 		return sheets.on_attack_floor(user, params)
@@ -152,41 +148,20 @@
 		if(intact && pry_tile(I, user))
 			return TRUE
 
-/turf/open/floor/proc/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
-	if(T.turf_type == type)
-		return
-	var/obj/item/crowbar/CB = user.is_holding_item_of_type(/obj/item/crowbar)
-	if(!CB)
-		return
-	var/turf/open/floor/P = pry_tile(CB, user, TRUE)
-	if(!istype(P))
-		return
-	P.attackby(T, user, params)
-
 /turf/open/floor/proc/pry_tile(obj/item/I, mob/user, silent = FALSE)
 	I.play_tool_sound(src, 80)
 	return remove_tile(user, silent)
 
-/turf/open/floor/proc/remove_tile(mob/user, silent = FALSE, make_tile = TRUE, force_plating)
+/turf/open/floor/proc/remove_tile(mob/user, silent = FALSE, force_plating)
 	if(broken || burnt)
 		broken = FALSE
 		burnt = FALSE
 		if(user && !silent)
-			to_chat(user, span_notice("Убираю повреждённую плитку."))
+			to_chat(user, span_notice("You remove the damaged tile."))
 	else
 		if(user && !silent)
-			to_chat(user, span_notice("Снимаю плитку."))
-		if(make_tile)
-			spawn_tile()
+			to_chat(user, span_notice("You remove the tile."))
 	return make_plating(force_plating)
-
-/turf/open/floor/proc/has_tile()
-	return floor_tile
-
-/turf/open/floor/proc/spawn_tile()
-	if(!has_tile())
-		return null
-	return new floor_tile(src)
 
 /turf/open/floor/acid_melt()
 	ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
@@ -195,13 +170,3 @@
 	name = "floor"
 	icon_state = "materialfloor"
 	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
-	floor_tile = /obj/item/stack/tile/material
-
-/turf/open/floor/material/has_tile()
-	return LAZYLEN(custom_materials)
-
-/turf/open/floor/material/spawn_tile()
-	. = ..()
-	if(.)
-		var/obj/item/stack/tile = .
-		tile.set_mats_per_unit(custom_materials, 1)

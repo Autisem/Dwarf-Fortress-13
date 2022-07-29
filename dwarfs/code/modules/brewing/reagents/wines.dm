@@ -1,5 +1,5 @@
 /datum/reagent/consumable/ethanol/wine
-	name = "wine"
+	name = "Wine"
 	description = "sus"
 	color = "#c9220cff"
 
@@ -8,5 +8,5 @@
 	AddComponent(/datum/component/fermentable, ferment_into=/datum/reagent/consumable/vinegar)
 
 /datum/reagent/consumable/ethanol/wine/plump
-	name = "plump wine"
+	name = "Plump wine"
 	color = "#96418aff"

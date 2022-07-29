@@ -74,16 +74,10 @@
 	switch(tool_result)
 		if("Crowbar")
 			tool_behaviour = TOOL_CROWBAR
-		if("Multitool")
-			tool_behaviour = TOOL_MULTITOOL
 		if("Screwdriver")
 			tool_behaviour = TOOL_SCREWDRIVER
-		if("Wirecutters")
-			tool_behaviour = TOOL_WIRECUTTER
 		if("Wrench")
 			tool_behaviour = TOOL_WRENCH
-		if("Welding Tool")
-			tool_behaviour = TOOL_WELDER
 		if("Analyzer")
 			tool_behaviour = TOOL_ANALYZER
 		if("Pickaxe")
@@ -96,8 +90,6 @@
 			tool_behaviour = TOOL_HEMOSTAT
 		if("Cautery")
 			tool_behaviour = TOOL_CAUTERY
-		if("Drill")
-			tool_behaviour = TOOL_DRILL
 		if("Scalpel")
 			tool_behaviour = TOOL_SCALPEL
 		if("Saw")

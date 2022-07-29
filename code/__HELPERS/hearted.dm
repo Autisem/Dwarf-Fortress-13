@@ -38,7 +38,7 @@
 	var/new_duration = world.realtime + duration
 	if(prefs.hearted_until > new_duration)
 		return
-	tgui_alert(src, "Кто-то поблагодарил меня за прошлый раунд!", "<3!", list("Лан"))
+	tgui_alert(src, "Somebody hearted you for the last round!", "<3!", list("Confirm"))
 	prefs.hearted_until = new_duration
 	prefs.hearted = TRUE
 	prefs.save_preferences()
@@ -47,17 +47,17 @@
 /mob/proc/query_heart(attempt=1)
 	if(!client || attempt > 3)
 		return
-	if(attempt == 1 && tgui_alert(src, "Понравился ли тебе кто-то в этом раунде?", "<3?", list("Да", "Нет"), timeout = 30 SECONDS) != "Да")
+	if(attempt == 1 && tgui_alert(src, "Was there another character you noticed being kind this round that you would like to anonymously thank?", "<3?", list("Yes", "No"), timeout = 30 SECONDS) != "Yes")
 		return
 
 	var/heart_nominee
 	switch(attempt)
 		if(1)
-			heart_nominee = input(src, "Как его зовут? Можешь ввести имя или фамилию. (оставь пустым для отмены)", "<3?")
+			heart_nominee = tgui_input_text(src, "What was their name? Just a first or last name may be enough.", "<3?")
 		if(2)
-			heart_nominee = input(src, "Погоди, как там зовут? Можешь ввести имя или фамилию. (оставь пустым для отмены)", "<3?")
+			heart_nominee = tgui_input_text(src, "Try again, what was their name? Just a first or last name may be enough.", "<3?")
 		if(3)
-			heart_nominee = input(src, "Давай попробуем ещё, как зовут душку? Можешь ввести имя или фамилию. (оставь пустым для отмены)", "<3?")
+			heart_nominee = tgui_input_text(src, "One more try, what was their name? Just a first or last name may be enough.", "<3?")
 
 	if(isnull(heart_nominee) || heart_nominee == "")
 		return
@@ -74,13 +74,13 @@
 		if(heart_contender == src)
 			continue
 
-		switch(tgui_alert(src, "Это нужный господин/госпожа: [heart_contender.real_name]?", "<3?", list("Да!", "Не", "Отмена"), timeout = 15 SECONDS))
-			if("Да!")
+		switch(tgui_alert(src, "Is this person: [heart_contender.real_name]?", "<3?", list("Yes!", "No", "Cancel"), timeout = 15 SECONDS))
+			if("Yes!")
 				heart_contender.receive_heart(src)
 				return
-			if("Не")
+			if("No")
 				continue
-			if("Отмена")
+			if("Cancel")
 				return
 
 	query_heart(attempt + 1)
@@ -99,7 +99,7 @@
 /mob/proc/receive_heart(mob/heart_sender, duration = 24 HOURS, instant = FALSE)
 	if(!client)
 		return
-	to_chat(src, span_nicegreen("Отправлено!"))
+	to_chat(src, span_nicegreen("Commendation sent!"))
 	message_admins("[key_name(heart_sender)] commended [key_name(src)] [instant ? "(instant)" : ""]")
 	log_admin("[key_name(heart_sender)] commended [key_name(src)] [instant ? "(instant)" : ""]")
 	if(instant || SSticker.current_state == GAME_STATE_FINISHED)

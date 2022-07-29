@@ -1,6 +1,6 @@
 /obj/effect/decal/cleanable/blood
-	name = "кровь"
-	desc = "Красная и довольно густая. Это же наш повар готовил так?"
+	name = "blood"
+	desc = "It's red and gooey. Perhaps it's the chef's cooking?"
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "floor1"
 	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
@@ -8,8 +8,8 @@
 	bloodiness = BLOOD_AMOUNT_PER_DECAL
 	beauty = -100
 	clean_type = CLEAN_TYPE_BLOOD
-	var/dryname = "засохшая кровь" //when the blood lasts long enough, it becomes dry and gets a new name
-	var/drydesc = "Омерзительное зрелище. Фу." //as above
+	var/dryname = "dried blood" //when the blood lasts long enough, it becomes dry and gets a new name
+	var/drydesc = "Looks like it's been here for a while. Eew." //as above
 	var/should_dry = TRUE
 	var/drytime = 0
 
@@ -76,17 +76,17 @@
 	alpha = 180
 
 /obj/effect/decal/cleanable/blood/tracks
-	name = "следы"
 	icon_state = "tracks"
+	desc = "They look like tracks left by wheels."
 	random_icon_states = null
 	beauty = -50
-	dryname = "высохшие следы"
-	drydesc = "Следы от колёс в виде крови. Машины очень злы, наверное."
+	dryname = "dried tracks"
+	drydesc = "Some old bloody tracks left by wheels. Machines are evil, perhaps."
 
 /obj/effect/decal/cleanable/trail_holder //not a child of blood on purpose
-	name = "кровь"
+	name = "blood"
 	icon = 'icons/effects/blood.dmi'
-	desc = "Мои инстинкты говорят мне, что не стоит идти по этому следу."
+	desc = "Your instincts say you shouldn't be following these."
 	beauty = -50
 	var/list/existing_dirs = list()
 
@@ -94,17 +94,18 @@
 	return TRUE
 
 /obj/effect/decal/cleanable/blood/gibs
-	name = "куча ошмёток"
-	desc = "Выглядят довольно вкусно, если бы это была карамель."
+	name = "gibs"
+	desc = "They look bloody and gruesome."
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "gib1"
 	layer = LOW_OBJ_LAYER
+	plane = GAME_PLANE
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
 	mergeable_decal = FALSE
 	turf_loc_check = FALSE
 
-	dryname = "гниющие ошмётки"
-	drydesc = "Выглядят довольно вкусно, если бы это была карамель и не было бы этого тошнотворного запаха."
+	dryname = "rotting gibs"
+	drydesc = "They look bloody and gruesome while some terrible smell fills the air."
 
 /obj/effect/decal/cleanable/blood/gibs/Initialize(mapload)
 	. = ..()
@@ -176,13 +177,13 @@
 	random_icon_states = list("gibmid1", "gibmid2", "gibmid3")
 
 /obj/effect/decal/cleanable/blood/gibs/old
-	name = "засохшие гнилые ошмётки"
-	desc = "Почему это никто не убрал до сих пор? Пахнет довольно неприятно."
+	name = "old rotting gibs"
+	desc = "Space Jesus, why didn't anyone clean this up? They smell terrible."
 	icon_state = "gib1-old"
 	bloodiness = 0
-	dryname = "засохшие гнилые ошмётки"
-	drydesc = "Почему это никто не убрал до сих пор? Пахнет довольно неприятно."
 	should_dry = FALSE
+	dryname = "old rotting gibs"
+	drydesc = "Space Jesus, why didn't anyone clean this up? They smell terrible."
 
 /obj/effect/decal/cleanable/blood/gibs/old/Initialize(mapload)
 	. = ..()
@@ -191,14 +192,14 @@
 	dry()
 
 /obj/effect/decal/cleanable/blood/drip
-	name = "капельки крови"
-	desc = "Красненькие."
+	name = "drips of blood"
+	desc = "It's red."
 	icon_state = "drip5" //using drip5 since the others tend to blend in with pipes & wires.
 	random_icon_states = list("drip1","drip2","drip3","drip4","drip5")
 	bloodiness = 0
 	var/drips = 1
-	dryname = "капельки крови"
-	drydesc = "Красненькие."
+	dryname = "drips of blood"
+	drydesc = "It's red."
 
 /obj/effect/decal/cleanable/blood/drip/can_bloodcrawl_in()
 	return TRUE
@@ -206,8 +207,8 @@
 
 //BLOODY FOOTPRINTS
 /obj/effect/decal/cleanable/blood/footprints
-	name = "кровавые следы"
-	desc = "ЧЬИ ЖЕ ЭТО СЛЕДЫ?"
+	name = "footprints"
+	desc = "WHOSE FOOTPRINTS ARE THESE?"
 	icon = 'icons/effects/footprints.dmi'
 	icon_state = "blood1"
 	random_icon_states = null
@@ -220,8 +221,8 @@
 
 	/// List of species that have made footprints here.
 	var/list/species_types = list()
-	dryname = "засохшие кровавые следы"
-	drydesc = "ХММ... КТО-ТО ТОЧНО ЗДЕСЬ ЕСТЬ!"
+	dryname = "dried footprints"
+	drydesc = "HMM... SOMEONE WAS HERE!"
 
 /obj/effect/decal/cleanable/blood/footprints/Initialize(mapload)
 	. = ..()
@@ -272,20 +273,20 @@
 /obj/effect/decal/cleanable/blood/footprints/examine(mob/user)
 	. = ..()
 	if((shoe_types.len + species_types.len) > 0)
-		. += "<hr>Хм, вероятно эти следы принадлежат:"
+		. += "You recognise the footprints as belonging to:"
 		for(var/sole in shoe_types)
 			var/obj/item/clothing/item = sole
 			. += "\n[icon2html(initial(item.icon), user, initial(item.icon_state))] <B>[initial(item.name)]</B> "
 		for(var/species in species_types)
 			// god help me
 			if(species == "unknown")
-				. += "<B>кому-то</B>."
+				. += "Some <B>feet</B>."
 			else if(species == "monkey")
-				. += "[icon2html('icons/mob/monkey.dmi', user, "monkey1")] <B>мартышке</B>."
+				. += "[icon2html('icons/mob/monkey.dmi', user, "monkey1")] Some <B>monkey feet</B>."
 			else if(species == "human")
-				. += "[icon2html('icons/mob/human_parts.dmi', user, "default_human_l_leg")] <B>человеку</B>."
+				. += "[icon2html('icons/mob/human_parts.dmi', user, "default_human_l_leg")] Some <B>human feet</B>."
 			else
-				. += "[icon2html('icons/mob/human_parts.dmi', user, "[species]_l_leg")] <B>мутанту типа [species]</B>."
+				. += "[icon2html('icons/mob/human_parts.dmi', user, "[species]_l_leg")] Some <B>[species] feet</B>."
 
 /obj/effect/decal/cleanable/blood/footprints/replace_decal(obj/effect/decal/cleanable/C)
 	if(blood_state != C.blood_state) //We only replace footprints of the same type as us
@@ -299,7 +300,7 @@
 
 
 /obj/effect/decal/cleanable/blood/hitsplatter
-	name = "кровь"
+	name = "blood"
 	pass_flags = PASSTABLE | PASSGRILLE
 	icon_state = "hitsplatter1"
 	random_icon_states = list("hitsplatter1", "hitsplatter2", "hitsplatter3")
@@ -357,46 +358,27 @@
 	qdel(src)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Bump(atom/bumped_atom)
-	if(!iswallturf(bumped_atom) && !istype(bumped_atom, /obj/structure/window))
+	if(!iswallturf(bumped_atom))
 		qdel(src)
 		return
-
-	if(istype(bumped_atom, /obj/structure/window))
-		var/obj/structure/window/bumped_window = bumped_atom
-		if(!bumped_window.fulltile)
-			qdel(src)
-			return
 
 	hit_endpoint = TRUE
 	if(isturf(prev_loc))
 		abstract_move(bumped_atom)
 		skip = TRUE
 		//Adjust pixel offset to make splatters appear on the wall
-		if(istype(bumped_atom, /obj/structure/window))
-			land_on_window(bumped_atom)
-		else
-			var/obj/effect/decal/cleanable/blood/splatter/over_window/final_splatter = new(prev_loc)
-			final_splatter.pixel_x = (dir == EAST ? 32 : (dir == WEST ? -32 : 0))
-			final_splatter.pixel_y = (dir == NORTH ? 32 : (dir == SOUTH ? -32 : 0))
+		var/obj/effect/decal/cleanable/blood/splatter/over_window/final_splatter = new(prev_loc)
+		final_splatter.pixel_x = (dir == EAST ? 32 : (dir == WEST ? -32 : 0))
+		final_splatter.pixel_y = (dir == NORTH ? 32 : (dir == SOUTH ? -32 : 0))
 	else // This will only happen if prev_loc is not even a turf, which is highly unlikely.
 		abstract_move(bumped_atom)
 		qdel(src)
 
-/// A special case for hitsplatters hitting windows, since those can actually be moved around, store it in the window and slap it in the vis_contents
-/obj/effect/decal/cleanable/blood/hitsplatter/proc/land_on_window(obj/structure/window/the_window)
-	if(!the_window.fulltile)
-		return
-	var/obj/effect/decal/cleanable/blood/splatter/over_window/final_splatter = new
-	final_splatter.forceMove(the_window)
-	the_window.vis_contents += final_splatter
-	the_window.bloodied = TRUE
-	qdel(src)
-
 /obj/effect/decal/cleanable/snow_footprints
-	name = "следы"
+	name = "footprints"
 	icon = 'icons/effects/footprints.dmi'
 	icon_state = "snow1"
-	desc = "Кто тут ходил?"
+	desc = "Who went here?"
 	var/entered_dirs = 0
 	var/exited_dirs = 0
 
@@ -451,9 +433,8 @@
 			. += snowstep_overlay
 
 /obj/effect/decal/cleanable/snow_trail
-	name = "следы"
+	name = "trail"
 	icon_state = "strail"
-	desc = "Точно стоит идти по этим следам."
 	layer = ABOVE_NORMAL_TURF_LAYER
 	random_icon_states = null
 	var/list/existing_dirs = list()

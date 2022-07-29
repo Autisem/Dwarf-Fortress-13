@@ -15,6 +15,6 @@
 	SIGNAL_HANDLER
 
 	if(user.mind == owner)
-		examine_list += span_notice("\nА это моя семейная реликвия. Главное - не потерять!")
+		examine_list += span_notice("\nThis is my heirloom, better not lose it!")
 	else if(isobserver(user))
-		examine_list += span_notice("\nЭто реликвия семьи [family_name], принадлежащая [owner].")
+		examine_list += span_notice("\nThis is a heirloom of [family_name], it belongs to [owner].")

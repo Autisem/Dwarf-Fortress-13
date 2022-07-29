@@ -2,24 +2,24 @@
 #define STOMACH_METABOLISM_CONSTANT 0.25
 
 /obj/item/organ/stomach
-	name = "желудок"
+	name = "stomach"
 	icon_state = "stomach"
 	w_class = WEIGHT_CLASS_SMALL
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_STOMACH
-	attack_verb_continuous = list("выжимает", "выдавливает", "шлёпает", "кормит")
-	attack_verb_simple = list("выжимает", "выдавливает", "шлёпает", "кормит")
+	attack_verb_continuous = list("gores", "squishes", "slaps", "digests")
+	attack_verb_simple = list("gore", "squish", "slap", "digest")
 	desc = "Onaka ga suite imasu."
 
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY * 1.15 // ~13 minutes, the stomach is one of the first organs to die
 
-	low_threshold_passed = span_info("Перед тем как утихнуть, в животе вспыхивает боль. Еда сейчас не кажется разумной идеей.")
-	high_threshold_passed = span_warning("Желудок горит от постоянной боли - с трудом могу переварить идею еды прямо сейчас!")
-	high_threshold_cleared = span_info("Боль в животе пока утихает, но еда все еще кажется непривлекательной.")
-	low_threshold_cleared = span_info("Последние приступы боли в животе утихли.")
+	low_threshold_passed = span_info("Your stomach flashes with pain before subsiding. Food doesn't seem like a good idea right now.")
+	high_threshold_passed = span_warning("Your stomach flares up with constant pain- you can hardly stomach the idea of food right now!")
+	high_threshold_cleared = span_info("The pain in your stomach dies down for now, but food still seems unappealing.")
+	low_threshold_cleared = span_info("The last bouts of pain in your stomach have died out.")
 
-	food_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue = 5)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	//This is a reagent user and needs more then the 10u from edible component
 	reagent_vol = 1000
 
@@ -105,13 +105,13 @@
 	//The stomach is damage has nutriment but low on theshhold, lo prob of vomit
 	if(DT_PROB(0.0125 * damage * nutri_vol * nutri_vol, delta_time))
 		body.vomit(damage)
-		to_chat(body, span_warning("Живот крутит от боли, потому что я не могу сдерживать эту еду!"))
+		to_chat(body, span_warning("Your stomach reels in pain as you're incapable of holding down all that food!"))
 		return
 
 	// the change of vomit is now high
 	if(damage > high_threshold && DT_PROB(0.05 * damage * nutri_vol * nutri_vol, delta_time))
 		body.vomit(damage)
-		to_chat(body, span_warning("Живот крутит от боли, потому что я не могу сдерживать эту еду!"))
+		to_chat(body, span_warning("Your stomach reels in pain as you're incapable of holding down all that food!"))
 
 	if(body.nutrition <= 50)
 		applyOrganDamage(1)
@@ -127,7 +127,7 @@
 				H.stuttering += 1
 				H.add_confusion(2)
 			if(DT_PROB(5, delta_time) && !H.stat)
-				to_chat(H, span_warning("Меня тошнит..."))
+				to_chat(H, span_warning("You feel kind of iffy..."))
 			H.jitteriness = max(H.jitteriness - 3, 0)
 		if(H.disgust >= DISGUST_LEVEL_VERYGROSS)
 			if(DT_PROB(pukeprob, delta_time)) //iT hAndLeS mOrE ThaN PukInG
@@ -161,90 +161,3 @@
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "disgust")
 
 	return ..()
-
-/obj/item/organ/stomach/bone
-	desc = "Вы не представляете, что делает этот странный шар из костей."
-	metabolism_efficiency = 0.05 //very bad
-	var/milk_brute_healing = 1.5
-	/// How much [BURN] damage milk heals every second
-	var/milk_burn_healing = 1.5
-
-/obj/item/organ/stomach/bone/on_life(delta_time, times_fired)
-	var/datum/reagent/consumable/milk/milk = locate(/datum/reagent/consumable/milk) in reagents.reagent_list
-	if(milk)
-		var/mob/living/carbon/body = owner
-		if(milk.volume > 10)
-			reagents.remove_reagent(milk.type, milk.volume - 10)
-			to_chat(owner, span_warning("Лишнее молоко капает с костей!"))
-		body.heal_bodypart_damage(milk_brute_healing * REAGENTS_EFFECT_MULTIPLIER * delta_time, milk_burn_healing * REAGENTS_EFFECT_MULTIPLIER * delta_time)
-
-		reagents.remove_reagent(milk.type, milk.metabolization_rate * delta_time)
-	return ..()
-
-/obj/item/organ/stomach/bone/plasmaman
-	name = "пищеварительный кристалл"
-	icon_state = "stomach-p"
-	desc = "Странный кристалл, отвечающий за метаболизм невидимой энергии, питающей плазмамена."
-	metabolism_efficiency = 0.12
-	milk_burn_healing = 0
-
-/obj/item/organ/stomach/ethereal
-	name = "Биохимическая батарея"
-	icon_state = "stomach-p" //Welp. At least it's more unique in functionaliy.
-	desc = "Кристаллический орган, хранящий электрический заряд эфирных существ."
-	var/crystal_charge = ETHEREAL_CHARGE_FULL
-
-/obj/item/organ/stomach/ethereal/on_life(delta_time, times_fired)
-	..()
-	adjust_charge(-ETHEREAL_CHARGE_FACTOR * delta_time)
-
-/obj/item/organ/stomach/ethereal/Insert(mob/living/carbon/M, special = 0)
-	..()
-	RegisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, .proc/charge)
-	RegisterSignal(owner, COMSIG_LIVING_ELECTROCUTE_ACT, .proc/on_electrocute)
-
-/obj/item/organ/stomach/ethereal/Remove(mob/living/carbon/M, special = 0)
-	UnregisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT)
-	UnregisterSignal(owner, COMSIG_LIVING_ELECTROCUTE_ACT)
-	..()
-
-/obj/item/organ/stomach/ethereal/proc/charge(datum/source, amount, repairs)
-	adjust_charge(amount / 3.5)
-
-/obj/item/organ/stomach/ethereal/proc/on_electrocute(datum/source, shock_damage, siemens_coeff = 1, flags = NONE)
-	if(flags & SHOCK_ILLUSION)
-		return
-	adjust_charge(shock_damage * siemens_coeff * 2)
-	to_chat(owner, span_notice("Поглощаю часть удара током своим телом!"))
-
-/obj/item/organ/stomach/ethereal/proc/adjust_charge(amount)
-	crystal_charge = clamp(crystal_charge + amount, ETHEREAL_CHARGE_NONE, ETHEREAL_CHARGE_DANGEROUS)
-
-/obj/item/organ/stomach/cybernetic
-	name = "базовый кибернетический желудок"
-	icon_state = "stomach-c"
-	desc = "Базовое устройство, имитирующее функции человеческого желудка."
-	organ_flags = ORGAN_SYNTHETIC
-	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
-	var/emp_vulnerability = 80	//Chance of permanent effects if emp-ed.
-	metabolism_efficiency = 0.7 // not as good at digestion
-
-/obj/item/organ/stomach/cybernetic/tier2
-	name = "кибернетический желудок"
-	icon_state = "stomach-c-u"
-	desc = "Электронное устройство, имитирующее функции человеческого желудка. Немного лучше справляется с отвратительной едой."
-	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD
-	disgust_metabolism = 2
-	emp_vulnerability = 40
-	metabolism_efficiency = 0.07
-
-/obj/item/organ/stomach/cybernetic/tier3
-	name = "продвинутый кибернетический желудок"
-	icon_state = "stomach-c-u2"
-	desc = "Усовершенствованная версия кибернетического желудка, предназначенная для дальнейшего улучшения органических желудков. Отлично справляется с отвратительной едой."
-	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
-	disgust_metabolism = 3
-	emp_vulnerability = 20
-	metabolism_efficiency = 0.01
-
-#undef STOMACH_METABOLISM_CONSTANT

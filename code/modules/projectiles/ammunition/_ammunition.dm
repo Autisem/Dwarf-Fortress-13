@@ -1,6 +1,6 @@
 /obj/item/ammo_casing
-	name = "патрон"
-	desc = "Патрон или гильза от патрона? Узнаем!"
+	name = "bullet casing"
+	desc = "A bullet casing."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "s-casing"
 	worn_icon_state = "bullet"
@@ -34,7 +34,7 @@
 	var/harmful = TRUE
 
 /obj/item/ammo_casing/spent
-	name = "гильза"
+	name = "spent bullet casing"
 	loaded_projectile = null
 
 /obj/item/ammo_casing/Initialize()
@@ -53,9 +53,6 @@
 	QDEL_NULL(loaded_projectile)
 	return ..()
 
-/obj/item/ammo_casing/add_weapon_description()
-	AddElement(/datum/element/weapon_description, attached_proc = .proc/add_notes_ammo)
-
 /**
  *
  * Outputs type-specific weapon stats for ammunition based on the projectile loaded inside the casing.
@@ -69,19 +66,12 @@
 		return
 
 	var/list/readout = list()
-	// No dividing by 0
-	if(exam_proj.damage > 0)
-		readout += "Most monkeys our legal team subjected to these [span_warning(caliber)] rounds succumbed to their wounds after [span_warning("[HITS_TO_CRIT(exam_proj.damage * pellets)] shot\s")] at point-blank, taking [span_warning("[pellets] shot\s")] per round"
-	if(exam_proj.stamina > 0)
-		readout += "[!readout.len ? "Most monkeys" : "More fortunate monkeys"] collapsed from exhaustion after [span_warning("[HITS_TO_CRIT(exam_proj.stamina * pellets)] impact\s")] of these [span_warning("[caliber]")] rounds"
-	if(!readout.len) // Everything else failed, give generic text
-		return "Our legal team has determined the offensive nature of these [span_warning(caliber)] rounds to be esoteric"
 	return readout.Join("\n") // Sending over a single string, rather than the whole list
 
 /obj/item/ammo_casing/update_icon()
 	. = ..()
 	icon_state = "[initial(icon_state)][loaded_projectile ? "-live" : ""]"
-	desc = "[initial(desc)][loaded_projectile ? "" : " Этот уже стрелян."]"
+	desc = "[initial(desc)][loaded_projectile ? null : " This one is spent."]"
 
 /*
  * On accidental consumption, 'spend' the ammo, and add in some gunpowder
@@ -90,8 +80,6 @@
 	if(loaded_projectile)
 		loaded_projectile = null
 		update_icon()
-		victim.reagents?.add_reagent(/datum/reagent/gunpowder, 3)
-		source_item?.reagents?.add_reagent(/datum/reagent/gunpowder, source_item.reagents.total_volume*(2/3))
 
 	return ..()
 
@@ -115,9 +103,9 @@
 					continue
 			if (boolets > 0)
 				box.update_icon()
-				to_chat(user, span_notice("Собираю [boolets] в [box], который теперь содержит [box.stored_ammo.len] патронов."))
+				to_chat(user, span_notice("You collect [boolets] shell\s. [box] now contains [box.stored_ammo.len] shell\s."))
 			else
-				to_chat(user, span_warning("ОЙ!"))
+				to_chat(user, span_warning("You fail to collect anything!"))
 	else
 		return ..()
 

@@ -160,16 +160,16 @@ SUBSYSTEM_DEF(events)
 
 /datum/controller/subsystem/events/proc/adjust_frequency_by_time_passed()
 	switch(world.time - SSticker.round_start_time)
-		if(1 HOURS to 2 HOURS) // 1.5 - 5 минут
+		if(1 HOURS to 2 HOURS)
 			frequency_lower = 1.5 MINUTES
 			frequency_upper = 5 MINUTES
-		if(2 HOURS to 3 HOURS) // 1 - 4 минуты
+		if(2 HOURS to 3 HOURS)
 			frequency_lower = 1 MINUTES
 			frequency_upper = 4 MINUTES
-		if(3 HOURS to 4 HOURS) // 0.5 - 2 минуты
+		if(3 HOURS to 4 HOURS)
 			frequency_lower = 0.5 MINUTES
 			frequency_upper = 2 MINUTES
-		if(5 HOURS to INFINITY) // вечный пиздец каждые 15 - 30 секунд
+		if(5 HOURS to INFINITY)
 			frequency_lower = 15 SECONDS
 			frequency_upper = 30 SECONDS
 			wizardmode = TRUE

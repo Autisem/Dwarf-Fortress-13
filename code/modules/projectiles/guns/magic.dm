@@ -1,6 +1,6 @@
 /obj/item/gun/magic
-	name = "посох ничего"
-	desc = "За этим посохом скучно наблюдать, потому что, хотя он появился первым, вы видели все, что он может делать в других посохах в течение многих лет."
+	name = "staff of nothing"
+	desc = "This staff is boring to watch because even though it came first you've seen everything it can do in other staves for years."
 	icon = 'icons/obj/guns/magic.dmi'
 	icon_state = "staffofnothing"
 	inhand_icon_state = "staff"
@@ -20,12 +20,11 @@
 	var/ammo_type
 	clumsy_check = 0
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL // Has no trigger at all, uses magic instead
-	pin = /obj/item/firing_pin/magic
 
 /obj/item/gun/magic/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	if(checks_antimagic && user.anti_magic_check(TRUE, FALSE, FALSE, 0, TRUE))
 		add_fingerprint(user)
-		to_chat(user, span_warning("Что-то мешает [src.name]."))
+		to_chat(user, span_warning("Something is interfering with [src]."))
 		return
 	. = ..()
 
@@ -70,7 +69,7 @@
 
 
 /obj/item/gun/magic/shoot_with_empty_chamber(mob/living/user as mob|obj)
-	to_chat(user, span_warning("<b>[name]</b> тихо свистит."))
+	to_chat(user, span_warning("The [name] whizzles quietly."))
 
 /obj/item/gun/magic/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is twisting [src] above [user.p_their()] head, releasing a magical blast! It looks like [user.p_theyre()] trying to commit suicide!"))

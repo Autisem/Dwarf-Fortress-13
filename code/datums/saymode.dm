@@ -1,6 +1,5 @@
 /datum/saymode
 	var/key
-	var/ru_key
 	var/mode
 
 //Return FALSE if you have handled the message. Otherwise, return TRUE and saycode will continue doing saycode things.
@@ -12,7 +11,6 @@
 
 /datum/saymode/vocalcords
 	key = MODE_KEY_VOCALCORDS
-	ru_key = "ч"
 	mode = MODE_VOCALCORDS
 
 /datum/saymode/vocalcords/handle_message(mob/living/user, message, datum/language/language)

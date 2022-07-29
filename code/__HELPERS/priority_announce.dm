@@ -6,11 +6,11 @@
 	//announcement += "<hr class='veryalert'>"
 
 	if(type == "Priority")
-		announcement += "<h1 class='alert'>Срочное Объявление</h1>"
+		announcement += "<h1 class='alert'>Priority Announcement</h1>"
 		if (title && length(title) > 0)
 			announcement += "<h2 class='alert'>[html_encode(title)]</h2>"
 	else if(type == "Captain")
-		announcement += "<h1 class='alert'>Капитан Объявляет</h1>"
+		announcement += "<h1 class='alert'>Captain Announcement</h1>"
 
 	else
 		if(!sender_override)
@@ -30,7 +30,7 @@
 			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
 				SEND_SOUND(M, s)
 
-/proc/minor_announce(message, title = "Внимание!", alert, html_encode = TRUE)
+/proc/minor_announce(message, title = "Attention!", alert, html_encode = TRUE)
 	if(!message)
 		return
 

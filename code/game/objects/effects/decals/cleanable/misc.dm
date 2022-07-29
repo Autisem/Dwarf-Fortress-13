@@ -80,27 +80,6 @@
 	name = "dust"
 	desc = "A thin layer of dust coating the floor."
 
-/obj/effect/decal/cleanable/greenglow
-	name = "glowing goo"
-	desc = "Jeez. I hope that's not for lunch."
-	icon_state = "greenglow"
-	light_power = 3
-	light_range = 2
-	light_color = LIGHT_COLOR_GREEN
-	beauty = -300
-
-/obj/effect/decal/cleanable/greenglow/ex_act()
-	return
-
-/obj/effect/decal/cleanable/greenglow/filled/Initialize()
-	. = ..()
-	reagents.add_reagent(pick(/datum/reagent/uranium, /datum/reagent/uranium/radium), 5)
-
-/obj/effect/decal/cleanable/greenglow/ecto
-	name = "ectoplasmic puddle"
-	desc = "You know who to call."
-	light_power = 2
-
 /obj/effect/decal/cleanable/cobweb
 	name = "cobweb"
 	desc = "Somebody should remove that."
@@ -185,11 +164,11 @@
 	icon_state = "plasma"
 
 /obj/effect/decal/cleanable/glitter/white
-	name = "белый glitter"
+	name = "white glitter"
 	icon_state = "nitrous_oxide"
 
 /obj/effect/decal/cleanable/glitter/blue
-	name = "синий glitter"
+	name = "blue glitter"
 	icon_state = "freon"
 
 /obj/effect/decal/cleanable/plasma
@@ -221,14 +200,14 @@
 	color = "#c6f4ff"
 
 /obj/effect/decal/cleanable/wrapping
-	name = "куча бумаги"
-	desc = "Куча бесполезных клочков бумаги. Кто-то намусорил!"
+	name = "paper shreds"
+	desc = "Torn pieces of cardboard and paper, left over from a package."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "paper_shreds"
 
 /obj/effect/decal/cleanable/garbage
-	name = "разлагающийся мусор"
-	desc = "Что-то гниющее лежит на полу. Из этой кучи что-то вытекает..."
+	name = "garbage"
+	desc = "A split open garbage bag, its stinking content seems to be partially liquified. Yuck!"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "garbage"
 	layer = OBJ_LAYER //To display the decal over wires.
@@ -236,8 +215,8 @@
 	clean_type = CLEAN_TYPE_HARD_DECAL
 
 /obj/effect/decal/cleanable/ants
-	name = "космические муравьи"
-	desc = "Небольшая колония космических муравьёв. Обычно они находятся в космосе без гравитации, поэтому не могут передвигаться далеко."
+	name = "ants"
+	desc = "A small colony of ants."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "spaceants"
 	beauty = -150
@@ -250,9 +229,4 @@
 	reagents.add_reagent(/datum/reagent/ants, rand(2, 5))
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)
-	var/memes = 1
-	if(prob(1))
-		name = "легендарные муравьи"
-		desc = "Небольшая колония космических муравьёв. Эти похоже были созданы из пластитана?"
-		memes = 25
-	AddComponent(/datum/component/caltrop, min_damage = 0.2, max_damage = memes, flags = (CALTROP_NOCRAWL | CALTROP_NOSTUN | CALTROP_BYPASS_SHOES), soundfile = 'sound/weapons/bite.ogg')
+	AddComponent(/datum/component/caltrop, min_damage = 0.2, max_damage = 0.1, flags = (CALTROP_NOCRAWL | CALTROP_NOSTUN | CALTROP_BYPASS_SHOES), soundfile = 'sound/weapons/bite.ogg')

@@ -62,64 +62,6 @@
 	. = ..()
 	AddComponent(/datum/component/wet_floor, TURF_WET_LUBE, INFINITY, 0, INFINITY, TRUE)
 
-/turf/open/indestructible/necropolis
-	name = "пол некрополя"
-	desc = "Смотрит на меня с подозрением. Тьфу."
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "necro1"
-	baseturfs = /turf/open/indestructible/necropolis
-	footstep = FOOTSTEP_LAVA
-	barefootstep = FOOTSTEP_LAVA
-	clawfootstep = FOOTSTEP_LAVA
-	heavyfootstep = FOOTSTEP_LAVA
-	tiled_dirt = FALSE
-
-/turf/open/indestructible/necropolis/Initialize()
-	. = ..()
-	if(prob(12))
-		icon_state = "necro[rand(2,3)]"
-
-/turf/open/indestructible/necropolis/air
-
-/turf/open/indestructible/boss //you put stone tiles on this and use it as a base
-	name = "пол некрополя"
-	icon = 'icons/turf/boss_floors.dmi'
-	icon_state = "boss"
-	baseturfs = /turf/open/indestructible/boss
-
-/turf/open/indestructible/boss/air
-
-/turf/open/indestructible/hierophant
-	icon = 'icons/turf/floors/hierophant_floor.dmi'
-	baseturfs = /turf/open/indestructible/hierophant
-	smoothing_flags = SMOOTH_CORNERS
-	tiled_dirt = FALSE
-
-/turf/open/indestructible/hierophant/two
-
-/turf/open/indestructible/hierophant/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
-	return FALSE
-
-/turf/open/indestructible/paper
-	name = "тетрадный пол"
-	desc = "Пол из неуязвимой бумаги для блокнотов."
-	icon_state = "paperfloor"
-	footstep = null
-	barefootstep = null
-	clawfootstep = null
-	heavyfootstep = null
-	tiled_dirt = FALSE
-
-/turf/open/indestructible/binary
-	name = "разрыв ткани реальности"
-	baseturfs = /turf/open/indestructible/binary
-	icon_state = "binary"
-	footstep = FOOTSTEP_PLATING
-	barefootstep = null
-	clawfootstep = null
-	heavyfootstep = null
-	slowdown = 3
-
 /turf/open/proc/freon_gas_act()
 	for(var/obj/I in contents)
 		if(I.resistance_flags & FREEZE_PROOF)

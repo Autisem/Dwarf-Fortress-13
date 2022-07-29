@@ -96,7 +96,7 @@
 	if (isnull(input_reagent))
 		return
 
-	var/list/shortcuts = list("meth" = /datum/reagent/drug/methamphetamine)
+	var/list/shortcuts = list()
 	if(shortcuts[input_reagent])
 		input_reagent = shortcuts[input_reagent]
 	else
@@ -146,7 +146,7 @@
 	//this genuinely hurts to look at
 	for(var/X in GLOB.chemical_reagents_list)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[X]
-		if(chem_name == lowertext(R.name) || chem_name == lowertext(R.enname))
+		if(chem_name == lowertext(R.name))
 			return X
 
 ///Takes a type in and returns a list of associated recipes

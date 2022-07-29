@@ -333,12 +333,6 @@
  * * simulated_only: Do we only worry about turfs with simulated atmos, most notably things that aren't space?
 */
 /turf/proc/LinkBlockedWithAccess(turf/destination_turf, caller)
-	var/actual_dir = get_dir(src, destination_turf)
-
-	for(var/obj/structure/window/iter_window in src)
-		if(!iter_window.CanAStarPass(actual_dir))
-			return TRUE
-
 	var/reverse_dir = get_dir(destination_turf, src)
 	for(var/obj/iter_object in destination_turf)
 		if(!iter_object.CanAStarPass(reverse_dir, caller))
