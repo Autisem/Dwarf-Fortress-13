@@ -6,17 +6,6 @@ import { useSharedState } from '../../backend';
 import { BoxProps } from '../../components/Box';
 
 export const MATERIAL_KEYS = {
-  "железо": "sheet-metal_3",
-  "стекло": "sheet-glass_3",
-  "серебро": "sheet-silver_3",
-  "золото": "sheet-gold_3",
-  "алмазы": "sheet-diamond",
-  "плазма": "sheet-plasma_3",
-  "уран": "sheet-uranium",
-  "бананиум": "sheet-bananium",
-  "титан": "sheet-titanium_3",
-  "блюспейс кристалл": "polycrystal",
-  "пластик": "sheet-plastic_3",
 } as const;
 
 export type Material = {

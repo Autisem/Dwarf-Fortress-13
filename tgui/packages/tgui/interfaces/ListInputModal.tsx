@@ -131,8 +131,8 @@ export const ListInputModal = (_, context) => {
               icon={searchBarVisible ? "search" : "font"}
               selected
               tooltip={searchBarVisible
-                ? "Режима поиска. Пиши и управляй стрелками для выбора."
-                : "Режим хоткеев. Пиши букву и прыгай к нужному. Enter для выбора."}
+                ? "Search mode. Write and use arrow keys for selecting."
+                : "Hotkey mode. Write a letter and search. Enter to select."}
               tooltipPosition="left"
               onClick={() => onSearchBarToggle()}
             />
@@ -230,7 +230,7 @@ const SearchBar = (props, context) => {
         act('choose', { choice: filteredItems[selected] });
       }}
       onInput={(_, value) => onSearch(value)}
-      placeholder="Поиск..."
+      placeholder="Search..."
       value={searchQuery}
     />
   );

@@ -13,39 +13,6 @@ Format:
 	votable (is this map votable)
 endmap
 
-map boxstation
+map df
 	default
-	votable
 endmap
-
-map metastation
-	minplayers 25
-	votable
-endmap
-
-map bashenka
-	minplayers 60
-	votable
-endmap
-
-map constructionstation
-	votable
-endmap
-
-map constructionstationow
-	votable
-endmap
-
-map crashsite
-	votable
-endmap
-
-map experro
-	votable
-endmap
-
-map deltastation
-	minplayers 50
-	votable
-endmap
-

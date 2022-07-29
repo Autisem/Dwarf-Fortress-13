@@ -91,7 +91,7 @@ const InputArea = (props, context) => {
           autoSelect
           fluid
           onInput={(_, value) => onType(value)}
-          placeholder="Напиши что-нибудь..."
+          placeholder="Write something..."
           value={input}
         />
       </Stack.Item>
@@ -104,7 +104,7 @@ const InputArea = (props, context) => {
           autoSelect
           height="100%"
           onInput={(_, value) => onType(value)}
-          placeholder="Напиши что-нибудь..."
+          placeholder="Write something..."
           value={input}
         />
       </Stack.Item>

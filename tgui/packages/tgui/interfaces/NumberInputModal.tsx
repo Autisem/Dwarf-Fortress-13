@@ -71,7 +71,7 @@ const InputArea = (props, context) => {
         <Button
           icon="angle-double-left"
           onClick={() => onClick(min_value || 0)}
-          tooltip="Минимум"
+          tooltip="Minimum"
         />
       </Stack.Item>
       <Stack.Item grow>
@@ -90,14 +90,14 @@ const InputArea = (props, context) => {
         <Button
           icon="angle-double-right"
           onClick={() => onClick(max_value || 10000)}
-          tooltip="Макс"
+          tooltip="Maximum"
         />
       </Stack.Item>
       <Stack.Item>
         <Button
           icon="redo"
           onClick={() => onClick(init_value || 0)}
-          tooltip="Сброс"
+          tooltip="Cancel"
         />
       </Stack.Item>
     </Stack>

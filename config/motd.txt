@@ -1,1 +1,19 @@
-<div id=motd-main> <center> <p id=motd-p>Добавь в закладки: <b id=motd-b>byond://s1.station13.ru:2019</b></p><p id=motd-p><a id=motd-a href="https://discord.gg/9uJ7dmM">Discord</a> | <a id=motd-a href="https://hub.station13.ru/rounds/">Stats</a> | <a id=motd-a href="https://github.com/frosty-dev">GitHub</a> | <a id=motd-a href="https://wiki.station13.ru/index.php?title=Main_Page">Wiki</a> | <a id=motd-a href="https://vk.com/ss13ru">VK</a></p></center></div>
+<div id=motd-main>
+	<center>
+		<p id=motd-p><img style='max-width:100%' src='https://cdn.discordapp.com/attachments/943552946472353792/945043534589866065/dftest.png'></p>
+		<hr id=motd-hr>
+	</center>
+		<p id=motd-p>
+			<b style='margin-left: 16px;'>IMPORTANT:</b>
+			<ul>
+				<li>
+					<b>Fortress currently in early development!</b>
+				</li>
+			</ul>
+		</p>
+	<center>
+		<hr id=motd-hr>
+		<p id=motd-p>Current Server: <b id=motd-b>byond://164.132.200.138:1997</b></p>
+		<p id=motd-p><big><a id=motd-a href="https://discord.gg/rVK4VgEYmz">Discord</a></big></p>
+	</center>
+</div>

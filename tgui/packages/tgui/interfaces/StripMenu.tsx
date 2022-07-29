@@ -156,14 +156,14 @@ const SLOTS: Record<
     displayName: "right hand",
     gridSpot: getGridSpotKey([2, 4]),
     image: "inventory-hand_r.png",
-    additionalComponent: <CornerText align="left">П</CornerText>,
+    additionalComponent: <CornerText align="left">R</CornerText>,
   },
 
   left_hand: {
     displayName: "left hand",
     gridSpot: getGridSpotKey([2, 5]),
     image: "inventory-hand_l.png",
-    additionalComponent: <CornerText align="right">Л</CornerText>,
+    additionalComponent: <CornerText align="right">L</CornerText>,
   },
 
   shoes: {

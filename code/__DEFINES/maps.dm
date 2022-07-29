@@ -9,7 +9,7 @@ fuck jannies
 // traits
 // boolean - marks a level as having that property if present
 #define ZTRAIT_MARX "Marx"
-#define ZTRAIT_FORTRESS "Station"
+#define ZTRAIT_FORTRESS "Fortress"
 #define ZTRAIT_RESERVED "Transit/Reserved"
 #define ZTRAIT_AWAY "Away Mission"
 

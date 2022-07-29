@@ -101,34 +101,6 @@
 /proc/random_unique_name(gender, attempts_to_find_unique_name=10)
 	. = dwarf_name()
 
-/proc/random_unique_lizard_name(gender, attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(lizard_name(gender))
-
-		if(!findname(.))
-			break
-
-/proc/random_unique_plasmaman_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(plasmaman_name())
-
-		if(!findname(.))
-			break
-
-/proc/random_unique_ethereal_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(ethereal_name())
-
-		if(!findname(.))
-			break
-
-/proc/random_unique_moth_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(pick(GLOB.moth_first)) + " " + capitalize(pick(GLOB.moth_last))
-
-		if(!findname(.))
-			break
-
 /proc/random_skin_tone()
 	return pick(GLOB.skin_tones)
 
