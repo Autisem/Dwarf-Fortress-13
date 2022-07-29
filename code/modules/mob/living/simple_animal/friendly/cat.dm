@@ -4,10 +4,10 @@ GLOBAL_LIST_EMPTY(cats)
 /mob/living/simple_animal/pet/cat
 	name = "cat"
 	desc = "Kitty!!"
-	icon = 'icons/mob/pets.dmi'
-	icon_state = "cat2"
-	icon_living = "cat2"
-	icon_dead = "cat2_dead"
+	icon = 'dwarfs/icons/mob/animals.dmi'
+	icon_state = "cat"
+	icon_living = "cat"
+	icon_dead = "cat_dead"
 	speak = list("Meow!", "Esp!", "Purr!", "HSSSSS")
 	speak_emote = list("purrs", "meows")
 	emote_hear = list("meows.", "mews.")
@@ -34,7 +34,7 @@ GLOBAL_LIST_EMPTY(cats)
 	var/mob/living/simple_animal/mouse/movement_target
 	gold_core_spawnable = FRIENDLY_SPAWN
 	can_be_held = TRUE
-	held_state = "cat2"
+	held_state = "cat"
 	pet_bonus = TRUE
 	pet_bonus_emote = "purrs!"
 	///In the case 'melee_damage_upper' is somehow raised above 0
