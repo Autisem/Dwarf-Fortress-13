@@ -50,7 +50,7 @@ async function main() {
 		}
 
 		let { title, text } = JSON.parse(editLine)
-		text = "<noinclude><b>Эта страница поддерживается Autowiki. НЕ РЕДАКТИРУЙТЕ её вручную.</b></noinclude>" + text
+		text = "<noinclude><b>This page is supported by Autowiki. DO NOT EDIT THIS MANUALLY.</b></noinclude>" + text
 
 		console.log(`Editing ${title}...`)
 		await bot.edit(

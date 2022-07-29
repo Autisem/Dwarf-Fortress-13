@@ -20,12 +20,12 @@ export const SpawnersMenu = (props, context) => {
               buttons={(
                 <>
                   <Button
-                    content="Перейти"
+                    content="Jump"
                     onClick={() => act('jump', {
                       name: spawner.name,
                     })} />
                   <Button
-                    content="Вселиться"
+                    content="Spawn"
                     onClick={() => act('spawn', {
                       name: spawner.name,
                     })} />

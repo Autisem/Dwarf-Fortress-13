@@ -196,7 +196,7 @@ const TimePanel = (props, context) => {
     <Stack.Item mt={1}>
       <Section>
         <Stack justify="space-between">
-          <Box fontSize={1.5}>Time Left: {time_remaining || 0}с</Box>
+          <Box fontSize={1.5}>Time Left: {time_remaining || 0} seconds</Box>
           {!!lower_admin && (
             <Button
               color="red"

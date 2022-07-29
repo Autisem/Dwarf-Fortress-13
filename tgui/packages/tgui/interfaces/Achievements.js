@@ -130,7 +130,7 @@ const HighScoreTable = (props, context) => {
               Key
             </Table.Cell>
             <Table.Cell textAlign="center">
-              Счёт
+              Count
             </Table.Cell>
           </Table.Row>
           {scores.map((score, i) => (

@@ -74,7 +74,7 @@ export const SelectEquipment = (props, context) => {
                 <Input
                   fluid
                   autoFocus
-                  placeholder="Поиск"
+                  placeholder="Search"
                   value={searchText}
                   onInput={(e, value) => setSearchText(value)} />
               </Stack.Item>
@@ -164,7 +164,7 @@ const OutfitDisplay = (props, context) => {
           icon="plus"
           fluid
           onClick={() => act('customoutfit')}>
-          Кастомизируем хуйню...
+          Customizing outfit...
         </Button>
       )}
     </Section>
@@ -191,7 +191,7 @@ const CurrentlySelectedDisplay = (props, context) => {
       )}
       <Stack.Item grow={1} basis={0}>
         <Box color="label">
-          Выбрано:
+          Selected:
         </Box>
         <Box
           title={entry?.path}
@@ -211,7 +211,7 @@ const CurrentlySelectedDisplay = (props, context) => {
           onClick={() => act('applyoutfit', {
             path: current_outfit,
           })}>
-          Погнали!
+          Apply!
         </Button>
       </Stack.Item>
     </Stack>

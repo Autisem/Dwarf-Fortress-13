@@ -51,11 +51,11 @@ export const PersonalCrafting = (props, context) => {
   const [tab, setTab] = useLocalState(context, 'tab', categories[0]?.name);
   const shownRecipes = recipes.filter((recipe) => recipe.category === tab);
   return (
-    <Window title="Создание" width={700} height={700}>
+    <Window title="Crafting" width={700} height={700}>
       <Window.Content>
         <Stack fill>
           <Stack.Item grow={1}>
-            <Section fill scrollable title="Категория">
+            <Section fill scrollable title="Category">
               <Tabs vertical>
                 {categories.map((category) => (
                   <Tabs.Tab
@@ -78,16 +78,16 @@ export const PersonalCrafting = (props, context) => {
           <Stack.Item grow={5}>
             <Section
               fill
-              title="Рецепты"
+              title="Recipes"
               buttons={
                 <>
                   <Button.Checkbox
-                    content="Компактно"
+                    content="Compact"
                     checked={display_compact}
                     onClick={() => act('toggle_compact')}
                   />
                   <Button.Checkbox
-                    content="Только возможные"
+                    content="Only Available"
                     checked={display_craftable_only}
                     onClick={() => act('toggle_recipes')}
                   />
@@ -97,7 +97,7 @@ export const PersonalCrafting = (props, context) => {
                 {busy ? (
                   <Dimmer fontSize="32px">
                     <Icon name="cog" spin={1} />
-                    {' Создаём...'}
+                    {' Crafting...'}
                   </Dimmer>
                 ) : (
                   <CraftingList craftables={shownRecipes} />
@@ -129,10 +129,10 @@ const CraftingList = (props, context) => {
           buttons={
             <Button
               icon="cog"
-              content="Создать"
+              content="Craft"
               disabled={!craftability[craftable.ref]}
               tooltip={
-                craftable.tool_text && 'Инструменты: ' + craftable.tool_text
+                craftable.tool_text && 'Tools: ' + craftable.tool_text
               }
               tooltipPosition="left"
               onClick={() =>
@@ -154,7 +154,7 @@ const CraftingList = (props, context) => {
         buttons={
           <Button
             icon="cog"
-            content="Создать"
+            content="Craft"
             disabled={!craftability[craftable.ref]}
             onClick={() =>
               act('make', {
@@ -164,17 +164,17 @@ const CraftingList = (props, context) => {
         }>
         <LabeledList>
           {!!craftable.req_text && (
-            <LabeledList.Item label="Требуется">
+            <LabeledList.Item label="Required">
               {craftable.req_text}
             </LabeledList.Item>
           )}
           {!!craftable.catalyst_text && (
-            <LabeledList.Item label="Катализатор">
+            <LabeledList.Item label="Catalyst">
               {craftable.catalyst_text}
             </LabeledList.Item>
           )}
           {!!craftable.tool_text && (
-            <LabeledList.Item label="Инструменты">
+            <LabeledList.Item label="Tools">
               {craftable.tool_text}
             </LabeledList.Item>
           )}

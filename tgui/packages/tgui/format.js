@@ -7,29 +7,29 @@
 import { clamp, round, toFixed } from 'common/math';
 
 const SI_SYMBOLS = [
-  'ф', // femto
-  'п', // pico
-  'н', // nano
-  'у', // micro
-  'м', // milli
+  'f', // femto
+  'p', // pico
+  'n', // nano
+  'μ', // micro
+  'm', // milli
   // NOTE: This is a space for a reason. When we right align si numbers,
   // in monospace mode, we want to units and numbers stay in their respective
   // columns. If rendering in HTML mode, this space will collapse into
   // a single space anyway.
   ' ',
-  'к', // kilo
-  'М', // mega
-  'Г', // giga
-  'Т', // tera
-  'П', // peta
-  'Э', // exa
-  'З', // zetta
-  'Ё', // yotta
-  'Р', // ronna
-  'К', // quecca
-  'Ф',
-  'Н',
-  'Х',
+  'k', // kilo
+  'M', // mega
+  'G', // giga
+  'T', // tera
+  'P', // peta
+  'E', // exa
+  'Z', // zetta
+  'Y', // yotta
+  'R', // ronna
+  'K', // quecca
+  'F',
+  'N',
+  'X',
 ];
 
 const SI_BASE_INDEX = SI_SYMBOLS.indexOf(' ');

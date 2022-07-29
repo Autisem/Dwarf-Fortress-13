@@ -22,7 +22,7 @@ export const createPage = obj => {
 
   return {
     id: createUuid(),
-    name: 'Новая вкладка',
+    name: 'New tab',
     acceptedTypes: acceptedTypes,
     unreadCount: 0,
     createdAt: Date.now(),
