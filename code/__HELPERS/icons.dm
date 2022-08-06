@@ -1231,6 +1231,73 @@ GLOBAL_DATUM_INIT(dummySave, /savefile, new("tmp/dummySave.sav")) //Cache of ico
 	var/icon/I = getFlatIcon(thing)
 	return icon2html(I, target, sourceonly = sourceonly)
 
+/proc/icon2path(thing, target, icon_state, dir = SOUTH, frame = 1, moving = FALSE, sourceonly = FALSE, extra_classes = null)
+    if (!thing)
+        return
+    if(SSlag_switch.measures[DISABLE_USR_ICON2HTML] && usr && !HAS_TRAIT(usr, TRAIT_BYPASS_MEASURES))
+        return
+
+    var/key
+    var/icon/I = thing
+
+    if (!target)
+        return
+    if (target == world)
+        target = GLOB.clients
+
+    var/list/targets
+    if (!islist(target))
+        targets = list(target)
+    else
+        targets = target
+        if (!targets.len)
+            return
+    if (!isicon(I))
+        if (isfile(thing)) //special snowflake
+            var/name = sanitize_filename("[generate_asset_name(thing)].png")
+            if (!SSassets.cache[name])
+                SSassets.transport.register_asset(name, thing)
+            for (var/thing2 in targets)
+                SSassets.transport.send_assets(thing2, name)
+            if(sourceonly)
+                return SSassets.transport.get_asset_url(name)
+            return SSassets.transport.get_asset_url(name)
+        var/atom/A = thing
+
+        I = A.icon
+        if (isnull(icon_state))
+            icon_state = A.icon_state
+            //Despite casting to atom, this code path supports mutable appearances, so let's be nice to them
+            if(isnull(icon_state) || (isatom(thing) && A.flags_1 & HTML_USE_INITAL_ICON_1))
+                icon_state = initial(A.icon_state)
+                if (isnull(dir))
+                    dir = initial(A.dir)
+
+        if (isnull(dir))
+            dir = A.dir
+
+        if (ishuman(thing)) // Shitty workaround for a BYOND issue.
+            var/icon/temp = I
+            I = icon()
+            I.Insert(temp, dir = SOUTH)
+            dir = SOUTH
+    else
+        if (isnull(dir))
+            dir = SOUTH
+        if (isnull(icon_state))
+            icon_state = ""
+
+    I = icon(I, icon_state, dir, frame, moving)
+
+    key = "[generate_asset_name(I)].png"
+    if(!SSassets.cache[key])
+        SSassets.transport.register_asset(key, I)
+    for (var/thing2 in targets)
+        SSassets.transport.send_assets(thing2, key)
+    if(sourceonly)
+        return SSassets.transport.get_asset_url(key)
+    return SSassets.transport.get_asset_url(key)
+
 GLOBAL_LIST_EMPTY(transformation_animation_objects)
 
 
