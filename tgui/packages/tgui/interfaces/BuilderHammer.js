@@ -67,6 +67,9 @@ export const BuilderHammer = (props, context) => {
                         width="80px"
                         height="80px"
                         m="4px"
+                        style={{
+                          'padding': '0',
+                        }}
                         onClick={() => setBpIndex(i)}>
                         <div
                           style={{
@@ -80,15 +83,19 @@ export const BuilderHammer = (props, context) => {
                             style={{
                               'height': '100%',
                               'width': '100%',
-                              'padding': '4px',
+                              'display': 'flex',
+                              'align-items': 'center',
+                              'justify-content': 'center',
+                              'padding': '6px',
                             }}>
-                            <img
-                              src={bp.icon}
-                              height="100%"
+                            <div
                               style={{
-                                display: 'block',
-                                margin: 'auto',
-                                objectFit: 'contain',
+                                'height': '100%',
+                                'width': '100%',
+                                'background-image': 'url(' + bp.icon + ')',
+                                'background-size': 'contain',
+                                'background-repeat': 'no-repeat',
+                                'background-position': 'center',
                               }}
                             />
                           </div>
@@ -123,15 +130,38 @@ export const BuilderHammer = (props, context) => {
                 <h1 style={{ 'font-size': '2.2rem' }}>
                   {capitalize(activeBlueprintObject.name)}
                 </h1>
-                <img
-                  height="128px"
+                <div
                   style={{
                     'margin': '8px 0',
-                    '-ms-interpolation-mode': 'nearest-neighbor',
-                    'image-rendering': 'pixelated',
-                  }}
-                  src={activeBlueprintObject.icon}
-                />
+                    'width': '128px',
+                    'height': '128px',
+                    'display': 'flex',
+                    'justify-content': 'center',
+                    'align-items': 'center',
+                  }}>
+                  {/* <img
+                    style={{
+                      'height': '100%',
+                      'width': '100%',
+                      'display': 'block',
+                      '-ms-interpolation-mode': 'nearest-neighbor',
+                      'image-rendering': 'pixelated',
+                      'background-color': 'green',
+                    }}
+                    src={activeBlueprintObject.icon}
+                  /> */}
+                  <div
+                    style={{
+                      'width': '100%',
+                      'height': '100%',
+                      'background-image':
+                        'url(' + activeBlueprintObject.icon + ')',
+                      'background-size': 'contain',
+                      'background-repeat': 'no-repeat',
+                      'background-position': 'center',
+                    }}
+                  />
+                </div>
                 <hr
                   style={{
                     'width': '75%',
@@ -210,7 +240,12 @@ export const BuilderHammer = (props, context) => {
                     'height': '40px',
                     'width': '128px',
                     'vertical-align': 'center',
-                  }}>
+                  }}
+                  onClick={() =>
+                    act('select_blueprint', {
+                      path: activeBlueprintObject.path,
+                    })
+                  }>
                   <div
                     style={{
                       'height': '40px',

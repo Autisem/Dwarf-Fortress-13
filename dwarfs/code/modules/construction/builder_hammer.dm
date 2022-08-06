@@ -26,15 +26,59 @@
 	else
 		. = ..()
 
-/obj/item/builder_hammer/attack_self(mob/user, modifiers)
-	var/list/blueprints = subtypesof(/obj/structure/blueprint)
-	var/list/names = list()
-	for(var/t in blueprints)
-		var/obj/structure/blueprint/B = t
-		names[initial(B.name)] = B
+/obj/item/builder_hammer/proc/generate_blueprints(user)
+    var/list/buildable = subtypesof(/obj/structure/blueprint)
+    var/list/blueprints = list()
+    var/list/cats = list()
+    //init categories
+    for(var/s in buildable)
+        var/obj/structure/blueprint/S = s
+        var/category = initial(S.cat)
+        if(!cats[category])
+            cats[category] = list()
+    //build recipes data for categories
+    for(var/s in buildable)
+        var/obj/structure/blueprint/S = new s
+        var/obj/structure/original = S.target_structure
+        var/category = S.cat
+        var/list/blueprint = list()
+        var/list/reqs = S.reqs
+        var/list/resources = list() // list of lists where each list is a resource data
+        for(var/i in reqs)
+            var/amt = reqs[i]
+            var/obj/O = i
+            var/icon_path = icon2path(initial(O.icon), user, initial(O.icon_state))
+            var/list/resource = list("name"=initial(O.name),"amount"=amt,"icon"=icon_path)
+            resources += list(resource)
 
-	var/answer = input(user, "Select a blueprint to build", "Blueprint selection.") as null|anything in names
-	if(!answer)
-		return
-	to_chat(user, span_notice("You selected [answer] to be built."))
-	selected_blueprint = names[answer]
+        blueprint["name"] = initial(original.name)
+        blueprint["desc"] = initial(original.desc)
+        blueprint["icon"] = icon2path(initial(original.icon), user, initial(original.icon_state))
+        blueprint["path"] = S.type
+        blueprint["reqs"] = resources
+        cats[category]+=list(blueprint)
+        qdel(S)
+        //add all categories to blueprints
+    for(var/cat in cats)
+        blueprints += list(list("name"=cat, "blueprints"=cats[cat]))
+    return blueprints
+
+/obj/item/builder_hammer/ui_interact(mob/user, datum/tgui/ui)
+  ui = SStgui.try_update_ui(user, src, ui)
+  if(!ui)
+    ui = new(user, src, "BuilderHammer")
+    ui.open()
+
+/obj/item/builder_hammer/ui_data(mob/user)
+	var/list/data = list()
+	var/list/blueprints = generate_blueprints(user)
+	data["blueprints"] = blueprints
+	return data
+
+/obj/item/builder_hammer/ui_act(action, list/params)
+	. = ..()
+	var/path = params["path"]
+	var/obj/structure/blueprint/B = new path
+	to_chat(usr, span_notice("Selected [initial(B.name)] for building."))
+	selected_blueprint = path
+	qdel(B)
