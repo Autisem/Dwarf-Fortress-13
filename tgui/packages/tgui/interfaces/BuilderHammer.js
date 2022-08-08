@@ -16,6 +16,11 @@ export const BuilderHammer = (props, context) => {
   const { blueprints, activeBlueprint } = data;
   const [tabIndex, setTabIndex] = useLocalState(context, 'tabIndex', 0);
   const [bpIndex, setBpIndex] = useLocalState(context, 'bpIndex', -1);
+  const [previewOrientation, setPreviewOrientation] = useLocalState(
+    context,
+    'previewOrientation',
+    0
+  );
   const activeBlueprintObject = blueprints[tabIndex].blueprints[bpIndex];
   return (
     <Window title="Building Menu" width={756} height={600}>
@@ -139,27 +144,23 @@ export const BuilderHammer = (props, context) => {
                     'justify-content': 'center',
                     'align-items': 'center',
                   }}>
-                  {/* <img
+                  <img
                     style={{
-                      'height': '100%',
-                      'width': '100%',
+                      'height': previewOrientation === 0 ? 'auto' : '100%',
+                      'width': previewOrientation === 0 ? '100%' : 'auto',
                       'display': 'block',
                       '-ms-interpolation-mode': 'nearest-neighbor',
                       'image-rendering': 'pixelated',
-                      'background-color': 'green',
                     }}
                     src={activeBlueprintObject.icon}
-                  /> */}
-                  <div
-                    style={{
-                      'width': '100%',
-                      'height': '100%',
-                      'background-image':
-                        'url(' + activeBlueprintObject.icon + ')',
-                      'background-size': 'contain',
-                      'background-repeat': 'no-repeat',
-                      'background-position': 'center',
-                    }}
+                    onLoad={(e) =>
+                      setPreviewOrientation(
+                        e.currentTarget.naturalWidth >
+                          e.currentTarget.naturalHeight
+                          ? 0
+                          : 1
+                      )
+                    }
                   />
                 </div>
                 <hr
