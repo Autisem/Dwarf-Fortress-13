@@ -70,6 +70,7 @@
 	desc = "Big chugus."
 	icon = 'dwarfs/icons/structures/96x96.dmi'
 	icon_state = "blueprint"
+	var/list/dimensions = list(1,0)
 
 /obj/structure/blueprint/large/brewery
 	name = "brewery blueprint"
