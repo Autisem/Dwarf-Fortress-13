@@ -7,27 +7,8 @@
 	//What do we want to build -> selected in gui
 	var/obj/structure/blueprint/selected_blueprint
 
-/turf/open/floor/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_BUILDER_HAMMER)
-		var/obj/item/builder_hammer/H = I
-		if(!H.selected_blueprint)
-			to_chat(user, span_warning("[H] doesn't have a blueprint selected!"))
-			return
-		var/obj/structure/blueprint/B = new H.selected_blueprint
-		var/list/dimensions = B.dimensions
-		qdel(B)
-		var/list/turfs = RECT_TURFS(dimensions[1], dimensions[2], src)
-		for(var/turf/T in turfs)
-			if(T.is_blocked_turf())
-				to_chat(user, span_warning("You have to free the space required to place the blueprint first!"))
-				return
-		new H.selected_blueprint(src)
-		H.selected_blueprint = null
-	else
-		. = ..()
-
 /obj/item/builder_hammer/proc/generate_blueprints(user)
-    var/list/buildable = subtypesof(/obj/structure/blueprint)
+    var/list/buildable = subtypesof(/obj/structure/blueprint) - /obj/structure/blueprint/large
     var/list/blueprints = list()
     var/list/cats = list()
     //init categories
@@ -75,10 +56,10 @@
 	data["blueprints"] = blueprints
 	return data
 
-/obj/item/builder_hammer/ui_act(action, list/params)
+/obj/item/builder_hammer/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-	var/path = params["path"]
-	var/obj/structure/blueprint/B = new path
+	var/path = text2path(params["path"])
+	var/obj/structure/blueprint/B = path
 	to_chat(usr, span_notice("Selected [initial(B.name)] for building."))
-	selected_blueprint = path
-	qdel(B)
+	selected_blueprint = B
+	ui.close()

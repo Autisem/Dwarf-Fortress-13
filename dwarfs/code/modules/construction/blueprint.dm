@@ -54,6 +54,33 @@
 			I.forceMove(src)
 		to_chat(user, span_notice("You add [I] to the blueprint."))
 
+/obj/structure/blueprint/proc/structure_overlay()
+	var/mutable_appearance/M = mutable_appearance(initial(target_structure.icon), initial(target_structure.icon_state), layer=ABOVE_MOB_LAYER)
+	M.color = "#5e8bdf"
+	M.alpha = 120
+	return M
+
+/obj/structure/blueprint/update_overlays()
+	. = ..()
+	var/mutable_appearance/M = structure_overlay()
+	. += M
+
+/obj/structure/blueprint/large //2x1 size
+	name = "big boi blueprint"
+	desc = "Big chugus."
+	icon = 'dwarfs/icons/structures/96x96.dmi'
+	icon_state = "blueprint"
+
+/obj/structure/blueprint/large/brewery
+	name = "brewery blueprint"
+	target_structure = /obj/structure/brewery/spawner
+	reqs = list(/obj/item/stack/sheet/stone=1)
+
+/obj/structure/blueprint/large/workbench
+	name = "workbench blueprint"
+	target_structure = /obj/structure/workbench
+	reqs = list(/obj/item/stack/sheet/planks=1)
+
 /obj/structure/blueprint/stove
 	name = "stove blueprint"
 	target_structure = /obj/structure/stove
@@ -78,20 +105,3 @@
 	name = "quern blueprint"
 	target_structure = /obj/structure/quern
 	reqs = list(/obj/item/stack/sheet/stone=1)
-
-/obj/structure/blueprint/workbench
-	name = "workbench blueprint"
-	target_structure = /obj/structure/workbench
-	reqs = list(/obj/item/stack/sheet/planks=1)
-
-/obj/structure/shroombile
-	name = "shroombile"
-	desc = "All my friends know the low rider"
-	icon = 'dwarfs/icons/structures/96x96.dmi'
-	icon_state = "shroombile"
-
-/obj/structure/blueprint/shroombile
-	name = "shroombile blueprint"
-	target_structure = /obj/structure/shroombile
-	reqs = list(/obj/item/stack/sheet/planks=1)
-

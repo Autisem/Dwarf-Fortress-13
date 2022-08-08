@@ -7,6 +7,8 @@
 	icon = 'dwarfs/icons/structures/32x64.dmi'
 
 /obj/structure/brewery/spawner
+	icon = 'dwarfs/icons/structures/64x64.dmi'
+	icon_state = "brewery"
 
 /obj/structure/brewery/spawner/Initialize()
 	. = ..()

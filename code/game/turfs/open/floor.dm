@@ -5,7 +5,7 @@
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	base_icon_state = "floor"
-	baseturfs = /turf/open/floor/stone/raw
+	baseturfs = /turf/open/floor/rock
 
 	footstep = FOOTSTEP_FLOOR
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
@@ -132,15 +132,31 @@
 	W?.update_icon()
 	return W
 
-/turf/open/floor/attackby(obj/item/object, mob/user, params)
-	if(!object || !user)
+/turf/open/floor/attackby(obj/item/I, mob/user, params)
+	if(!I || !user)
 		return TRUE
 	. = ..()
 	if(.)
 		return .
-	if(user.a_intent == INTENT_HARM && istype(object, /obj/item/stack/sheet))
-		var/obj/item/stack/sheet/sheets = object
+	if(user.a_intent == INTENT_HARM && istype(I, /obj/item/stack/sheet))
+		var/obj/item/stack/sheet/sheets = I
 		return sheets.on_attack_floor(user, params)
+	if(I.tool_behaviour == TOOL_BUILDER_HAMMER)
+		var/obj/item/builder_hammer/H = I
+		if(!H.selected_blueprint)
+			to_chat(user, span_warning("[H] doesn't have a blueprint selected!"))
+			return
+		var/obj/structure/blueprint/B = new H.selected_blueprint
+		var/list/dimensions = B.dimensions
+		qdel(B)
+		var/list/turfs = RECT_TURFS(dimensions[1], dimensions[2], src)
+		for(var/turf/T in turfs)
+			if(T.is_blocked_turf())
+				to_chat(user, span_warning("You have to free the space required to place the blueprint first!"))
+				return
+		var/obj/structure/blueprint/new_blueprint = new H.selected_blueprint(src)
+		new_blueprint.update_appearance()
+		H.selected_blueprint = null
 	return FALSE
 
 /turf/open/floor/crowbar_act(mob/living/user, obj/item/I)
