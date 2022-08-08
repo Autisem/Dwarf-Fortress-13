@@ -68,7 +68,7 @@
 /obj/structure/blueprint/large //2x1 size
 	name = "big boi blueprint"
 	desc = "Big chugus."
-	icon = 'dwarfs/icons/structures/96x96.dmi'
+	icon = 'dwarfs/icons/structures/64x32.dmi'
 	icon_state = "blueprint"
 	var/list/dimensions = list(1,0)
 
