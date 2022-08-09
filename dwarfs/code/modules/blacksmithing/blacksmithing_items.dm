@@ -386,7 +386,7 @@
 					qdel(B)
 				if(blocks_need <= 0)
 					break
-			T.ChangeTurf(/turf/closed/wall/stonewall, flags = CHANGETURF_IGNORE_AIR)
+			T.ChangeTurf(/turf/closed/wall/stone, flags = CHANGETURF_IGNORE_AIR)
 			user.visible_message(span_notice("<b>[user]</b> constructs a stone wall.") , \
 								span_notice("You construct a stone wall."))
 		if(SHPATEL_BUILD_FLOOR)

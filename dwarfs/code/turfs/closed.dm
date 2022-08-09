@@ -5,10 +5,8 @@
 	base_icon_state = "rockwall"
 	environment_type = "stone_raw"
 	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_INDUSTRIAL_LIFT)
-	canSmoothWith = list(SMOOTH_GROUP_INDUSTRIAL_LIFT)
-	turf_type = /turf/open/floor/stone/raw
-	baseturfs = /turf/open/floor/stone/raw
+	turf_type = /turf/open/floor/rock
+	baseturfs = /turf/open/floor/rock
 	mineralSpawnChanceList = list(/obj/item/stack/ore/gold = 5, /obj/item/stack/ore/iron = 40, /obj/item/stack/ore/gem/diamond=1,/obj/item/stack/ore/gem/ruby=1,/obj/item/stack/ore/gem/sapphire=1,/obj/item/stack/ore/coal=20)
 	mineralChance = 5
 
@@ -18,6 +16,9 @@
 
 /turf/closed/mineral/random/dwarf_lustress/gets_drilled(user, give_exp = FALSE)
 	. = ..()
+
+	if(prob(33))
+		new /obj/item/stack/ore/stone(drop_location())
 
 	if(prob(0.3))
 		to_chat(user, span_userdanger("THIS ROCK APPEARS TO BE ESPECIALLY SOFT!"))
@@ -30,9 +31,9 @@
 			if(QDELETED(src))
 				return
 			var/turf/TA = SSmapping.get_turf_above(src)
-			if(istype(TA, /turf/closed/mineral) || istype(TA, /turf/open/floor/stone/raw))
+			if(istype(TA, /turf/closed/mineral) || istype(TA, /turf/open/floor/rock))
 				TA.ChangeTurf(/turf/open/openspace)
-				var/turf/TT = ChangeTurf(/turf/open/floor/stone/raw)
+				var/turf/TT = ChangeTurf(/turf/open/floor/rock)
 				var/obj/O = new /obj/structure/stairs(TT)
 				O.dir = user.dir
 				user.visible_message(span_notice("<b>[user]</b> constructs stairs upwards") , \
@@ -41,16 +42,30 @@
 				to_chat(user, span_warning("Something very dense above!"))
 	return ..()
 
-/turf/closed/wall/stonewall
+/turf/closed/wall/stone
 	name = "stone wall"
 	desc = "Just a regular stone wall."
 	icon = 'dwarfs/icons/turf/walls_dwarven.dmi'
 	icon_state = "rich_wall-0"
 	base_icon_state = "rich_wall"
 	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_INDUSTRIAL_LIFT)
-	canSmoothWith = list(SMOOTH_GROUP_INDUSTRIAL_LIFT)
 	sheet_type = /obj/item/stack/sheet/stone
 	baseturfs = /turf/open/floor/stone
 	sheet_amount = 4
 	girder_type = null
+
+/turf/closed/mineral/random/sand
+	name = "sand"
+	smoothing_flags = SMOOTH_BITMASK
+	mineralSpawnChanceList = list(/obj/item/stack/ore/gold = 5, /obj/item/stack/ore/iron = 40, /obj/item/stack/ore/gem/diamond=1,/obj/item/stack/ore/gem/ruby=1,/obj/item/stack/ore/gem/sapphire=1,/obj/item/stack/ore/coal=20)
+	mineralChance = 5
+	baseturfs = /turf/open/floor/sand
+	smooth_icon = 'dwarfs/icons/turf/walls_sandstone.dmi'
+	base_icon_state = "rockwall"
+	icon = 'dwarfs/icons/turf/walls_sandstone.dmi'
+	icon_state = "rockwall-0"
+
+/turf/closed/mineral/random/sand/gets_drilled(user, give_exp)
+	. = ..()
+	if(prob(33))
+		new /obj/item/stack/sand(drop_location())

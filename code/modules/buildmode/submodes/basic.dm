@@ -21,11 +21,11 @@
 	if(istype(object,/turf) && left_click && !alt_click && !ctrl_click)
 		var/turf/T = object
 		if(islava(object))
-			T.PlaceOnTop(/turf/open/floor/stone/raw)
-		else if(isstrictlytype(object, /turf/open/floor/stone/raw))
+			T.PlaceOnTop(/turf/open/floor/rock)
+		else if(isstrictlytype(object, /turf/open/floor/rock))
 			T.PlaceOnTop(/turf/open/floor/stone)
 		else if(isfloorturf(object))
-			T.PlaceOnTop(/turf/closed/wall/stonewall)
+			T.PlaceOnTop(/turf/closed/wall/stone)
 		else if(iswallturf(object))
 			return
 		log_admin("Build Mode: [key_name(c)] built [T] at [AREACOORD(T)]")

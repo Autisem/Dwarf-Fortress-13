@@ -8,7 +8,7 @@
 /obj/structure/farm_plot/soil
 	name = "soil plot"
 	desc = "A pile of dirt collected together to grow surface plants in."
-	allowed_species = list("barley", , "cotton", "turnip", "carrot")
+	allowed_species = list("barley", "cotton", "turnip", "carrot")
 
 /obj/structure/farm_plot
 	name = "hydroponics tray"
@@ -25,11 +25,6 @@
 	var/list/allowed_species
 	///The currently planted plant
 	var/obj/structure/plant/myplant = null
-	///Have we been visited by a bee recently, so bees dont overpollinate one plant
-	// var/recent_bee_visit = FALSE
-	///The last user to add a reagent to the tray, mostly for logging purposes.
-	var/mob/lastuser
-
 
 /obj/structure/farm_plot/examine(mob/user)
 	. = ..()

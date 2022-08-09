@@ -12,6 +12,7 @@
 	icon_state = "metal"
 	max_integrity = 200
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
+	smoothing_groups = list(SMOOTH_GROUP_MINERAL_DOOR)
 
 	var/door_opened = FALSE //if it's open or not.
 	var/isSwitchingStates = FALSE //don't try to change stats if we're already opening

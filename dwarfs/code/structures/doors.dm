@@ -3,7 +3,6 @@
 	icon = 'dwarfs/icons/structures/stonedoor.dmi'
 	icon_state = "heavystone"
 	max_integrity = 600
-	smoothing_groups = list(SMOOTH_GROUP_INDUSTRIAL_LIFT)
 	var/locked_door = FALSE
 	sheetType = /obj/item/stack/sheet/stone
 

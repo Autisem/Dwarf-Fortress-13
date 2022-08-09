@@ -6,7 +6,7 @@
 	icon_state = "rock"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_MINERAL_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_MINERAL_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_MINERAL_WALLS, SMOOTH_GROUP_CLOSED_TURFS)
 	baseturfs = /turf/open/floor/stone
 	opacity = TRUE
 	density = TRUE
@@ -21,9 +21,6 @@
 
 /turf/closed/mineral/Initialize()
 	. = ..()
-	var/matrix/M = new
-	M.Translate(-4, -4)
-	transform = M
 	icon = smooth_icon
 
 /turf/closed/mineral/set_smoothed_icon_state(new_junction)

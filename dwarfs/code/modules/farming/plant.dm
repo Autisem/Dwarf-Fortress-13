@@ -23,7 +23,7 @@
 	var/lastcycle_growth // last time it advanced in growth
 	var/lifespan = 4 // plant's max age in cycles
 	var/age = 1 // plants age in cycles; cycle's length is growthdelta
-	var/obj/structure/farm_plot/plot // if planted via seeds will have a plot assigned to it
+	var/turf/open/tilled/plot // if planted via seeds will have a plot assigned to it
 
 /obj/structure/plant/examine(mob/user)
 	. = ..()
@@ -148,7 +148,7 @@
 /obj/structure/plant/proc/damagecycle()
 	if(age > lifespan)
 		health -= rand(1,3)
-	if(plot && !(species in plot?.allowed_species))
+	if(plot?.allowed_species && plot && !(species in plot?.allowed_species))
 		health -= rand(1,3)
 
 /obj/structure/plant/proc/harvest(var/mob/user)
