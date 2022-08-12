@@ -1,31 +1,29 @@
-#ifndef DFGEN
+#ifndef DFLIB
 
-/var/__dfgen
+/var/__dflib
 
-/proc/__detect_dfgen()
+/proc/__detect_dflib()
 	if (world.system_type == UNIX)
-		if (fexists("./dfgen.so"))
+		if (fexists("./dflib.so"))
 			// No need for LD_LIBRARY_PATH badness.
-			return __dfgen = "./dfgen.so"
-		else if (fexists("./dfgen"))
+			return __dflib = "./dflib.so"
+		else if (fexists("./dflib"))
 			// Old dumb filename.
-			return __dfgen = "./dfgen"
-		else if (fexists("[world.GetConfig("env", "HOME")]/.byond/bin/dfgen"))
+			return __dflib = "./dflib"
+		else if (fexists("[world.GetConfig("env", "HOME")]/.byond/bin/dflib"))
 			// Old dumb filename in `~/.byond/bin`.
-			return __dfgen = "dfgen"
+			return __dflib = "dflib"
 		else
 			// It's not in the current directory, so try others
-			return __dfgen = "dfgen.so"
+			return __dflib = "dflib.so"
 	else
-		return __dfgen = "dfgen"
+		return __dflib = "dflib"
 
-#define DFGEN (__dfgen || __detect_dfgen())
+#define DFLIB (__dflib || __detect_dflib())
 #endif
 
-/proc/simplex2(x=100, y=100, seed=null, frequency=0.03, octaves=5, lacunarity=2, gain=0.5)
+/proc/noise(x=100, y=100, seed=null, frequency=0.03, octaves=5, lacunarity=2)
 	if(!seed) seed = rand(1, 2000)
-	var/res = call(DFGEN,"noise")("[x]", "[y]" ,"[seed]", "[frequency]", "[octaves]", "[lacunarity]", "[gain]")
+	var/res = call(DFLIB,"simplex")("[x]", "[y]" ,"[seed]", "[frequency]", "[octaves]", "[lacunarity]")
 	var/list/lres = splittext(res, ",")
-	call(DFGEN,"del_memory")(lres[lres.len])
-	lres.Remove(lres[lres.len])
 	return lres

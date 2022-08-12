@@ -3,8 +3,8 @@
 
 /datum/map_generator/caves/generate_terrain(list/turfs)
 	var/start_time = REALTIMEOFDAY
-	var/list/height_values = simplex2(world.maxx, world.maxy)
-	var/list/temp_values = simplex2(world.maxx, world.maxy, frequency=0.005, lacunarity=0.4, gain=0.2)
+	var/list/height_values = noise(world.maxx, world.maxy)
+	var/list/temp_values = noise(world.maxx, world.maxy, frequency=0.005, lacunarity=0.4)
 	for(var/turf/T in turfs)
 		var/height = text2num(height_values[world.maxx * (T.y - 2) + T.x])
 		var/temp = text2num(temp_values[world.maxx * (T.y - 2) + T.x])
