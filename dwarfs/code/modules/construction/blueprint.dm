@@ -106,3 +106,8 @@
 	name = "quern blueprint"
 	target_structure = /obj/structure/quern
 	reqs = list(/obj/item/stack/sheet/stone=1)
+
+/obj/structure/blueprint/well
+	name = "well blueprint"
+	target_structure = /obj/structure/well
+	reqs = list(/obj/item/stack/sheet/stone=1)

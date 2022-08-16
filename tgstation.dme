@@ -750,6 +750,7 @@
 #include "code\game\objects\structures\spirit_board.dm"
 #include "code\game\objects\structures\stairs.dm"
 #include "code\game\objects\structures\tables_racks.dm"
+#include "code\game\objects\structures\well.dm"
 #include "code\game\objects\structures\beds_chairs\alien_nest.dm"
 #include "code\game\objects\structures\beds_chairs\bed.dm"
 #include "code\game\objects\structures\beds_chairs\chair.dm"

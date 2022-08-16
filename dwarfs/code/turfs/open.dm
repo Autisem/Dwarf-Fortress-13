@@ -230,3 +230,14 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_FLOOR_WATER)
 	canSmoothWith = list(SMOOTH_GROUP_FLOOR_WATER)
+
+/turf/open/water/attackby(obj/item/C, mob/user, params)
+	if(C.is_refillable())
+		var/obj/item/reagent_containers/CC = C
+		if(CC.reagents.total_volume == CC.volume)
+			to_chat(user, span_warning("[CC] is full!"))
+			return
+		to_chat(user, span_notice("You fill [CC] with water."))
+		CC.reagents.add_reagent(/datum/reagent/water, CC.volume - CC.reagents.total_volume)
+	else
+		. = ..()
