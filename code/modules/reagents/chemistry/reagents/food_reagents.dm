@@ -188,7 +188,8 @@
 
 	if(istype(exposed_obj, /obj/item/stack/sheet/hairlesshide))
 		var/obj/item/stack/sheet/hairlesshide/HH = exposed_obj
-		new /obj/item/stack/sheet/wethide(get_turf(HH), HH.amount)
+		var/obj/item/stack/sheet/wethide/W = new(get_turf(HH), HH.amount)
+		W.leather_amount = HH.leather_amount
 		qdel(HH)
 
 /*

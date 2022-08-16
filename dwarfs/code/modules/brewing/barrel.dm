@@ -31,15 +31,27 @@
 	update_appearance()
 
 /obj/structure/barrel/attackby(obj/item/I, mob/user, params)
+	if(!open)
+		return ..()
 	if(istype(I, /obj/item/reagent_containers))
-		if(!open)
-			to_chat(user, span_warning("[src] has to be opened first!"))
-			return
 		var/obj/item/reagent_containers/C = I
 		var/transfered = I.reagents.trans_to(reagents, C.amount_per_transfer_from_this)
 		if(transfered)
 			to_chat(user, span_notice("You transfer [transfered]u to [src]."))
 			update_appearance()
+	else if(istype(I, /obj/item/stack/sheet/bark))
+		var/datum/reagent/W = reagents.has_reagent(/datum/reagent/water)
+		if(!W)
+			to_chat(user, span_warning("[src] doesn't have water inside!"))
+			return
+		reagents.add_reagent(/datum/reagent/tanin, W.volume)
+		reagents.remove_reagent(W.type, W.volume)
+		var/obj/item/stack/B = I
+		B.use(1)
+		to_chat(user, span_notice("You throw a piece of bark in [src] and the water inside turns into tanin!"))
+		update_appearance()
+	else if(user.a_intent != INTENT_HARM)
+		reagents.expose(I)
 	else
 		. = ..()
 

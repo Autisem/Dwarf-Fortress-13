@@ -33,3 +33,12 @@ GLOBAL_LIST_INIT(plank_recipes, list (
 /obj/item/stack/sheet/planks/get_main_recipes()
 	. = ..()
 	. += GLOB.plank_recipes
+
+/obj/item/stack/sheet/bark
+	name = "bark"
+	desc = "Is this real?"
+	singular_name = "Bark"
+	icon = 'dwarfs/icons/items/components.dmi'
+	icon_state = "bark"
+	w_class = WEIGHT_CLASS_SMALL
+	merge_type = /obj/item/stack/sheet/bark

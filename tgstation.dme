@@ -1265,6 +1265,8 @@
 #include "dwarfs\code\modules\farming\tools.dm"
 #include "dwarfs\code\modules\farming\tree.dm"
 #include "dwarfs\code\modules\glassworking\sand.dm"
+#include "dwarfs\code\modules\leatherworking\reagents.dm"
+#include "dwarfs\code\modules\leatherworking\tanning_rack.dm"
 #include "dwarfs\code\modules\mapgen\mapgen.dm"
 #include "dwarfs\code\modules\tailoring\loom.dm"
 #include "dwarfs\code\structures\altar.dm"

@@ -35,6 +35,10 @@
 		for(var/i in 1 to itemstack.amount)
 			var/atom/movable/resulting_atom = new dry_result(source.drop_location())
 			ADD_TRAIT(resulting_atom, TRAIT_DRIED, ELEMENT_TRAIT(type))
+			if(istype(source, /obj/item/stack/sheet/wethide))
+				var/obj/item/stack/sheet/wethide/W = source
+				var/obj/item/stack/sheet/dryhide/D = resulting_atom
+				D.leather_amount = W.leather_amount
 		qdel(source)
 		return
 	else
