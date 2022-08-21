@@ -63,14 +63,14 @@
 			to_chat(user, span_warning("You need at leat 5 pieces."))
 			return
 		to_chat(user, span_notice("[src] you place [S] into [src]."))
-		var/obj/item/ingot_type
-		if(istype(I, /obj/item/stack/ore/gold))
-			ingot_type = /obj/item/blacksmith/ingot/gold
-		else
-			ingot_type = /obj/item/blacksmith/ingot
 		if(working && !contents.len)
 			start_smelting()
-		new ingot_type(src)
+		if(istype(I, /obj/item/stack/ore/gold))
+			new /obj/item/blacksmith/ingot/gold(src)
+		else if(istype(I, /obj/item/stack/ore/iron))
+			new /obj/item/blacksmith/ingot(src)
+		else if(istype(I, /obj/item/stack/sand))
+			new /obj/item/stack/glass(src)
 	else if(I.get_temperature())
 		if(!fuel)
 			to_chat(user, span_warning("[src] has no fuel."))
