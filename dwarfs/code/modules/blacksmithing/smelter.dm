@@ -54,7 +54,7 @@
 		deltimer(timerid)
 
 /obj/structure/smelter/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/stack/ore/iron) || istype(I, /obj/item/stack/ore/gold))
+	if(istype(I, /obj/item/stack/ore/iron) || istype(I, /obj/item/stack/ore/gold) || istype(I, /obj/item/stack/sand))
 		var/obj/item/stack/S = I
 		if(contents.len == max_items)
 			to_chat(user, span_warning("[src] is full!"))
