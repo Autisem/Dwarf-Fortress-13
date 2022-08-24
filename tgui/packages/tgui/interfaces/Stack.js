@@ -1,7 +1,7 @@
 import { createSearch } from 'common/string';
 import { sortBy } from 'common/collections';
 import { useBackend, useLocalState } from "../backend";
-import { Box, Button, Input, NoticeBox, Section, Collapsible, Table } from "../components";
+import { Box, Button, Input, NoticeBox, Section, Collapsible, Table, Tooltip } from "../components";
 import { Window } from "../layouts";
 
 export const Stack = (props, context) => {
@@ -161,6 +161,8 @@ const Recipe = (props, context) => {
     max_res_amount,
     req_amount,
     ref,
+    tools,
+    has_tools,
   } = recipe;
 
   let buttonName = title;
@@ -180,15 +182,31 @@ const Recipe = (props, context) => {
       <Table>
         <Table.Row>
           <Table.Cell>
+            {!recipe.has_tools &&(
+            <Tooltip
+            content={"Required tools: "+recipe.tools}>
             <Button
               fluid
-              disabled={!maxMultiplier}
+              disabled={!maxMultiplier || !recipe.has_tools}
               icon="wrench"
               content={buttonName}
               onClick={() => act("make", {
                 ref: recipe.ref,
                 multiplier: 1,
               })} />
+              </Tooltip>
+            )}
+            {!!recipe.has_tools &&(
+            <Button
+              fluid
+              disabled={!maxMultiplier || !recipe.has_tools}
+              icon="wrench"
+              content={buttonName}
+              onClick={() => act("make", {
+                ref: recipe.ref,
+                multiplier: 1,
+              })} />
+            )}
           </Table.Cell>
           {max_res_amount > 1 && maxMultiplier > 1 && (
             <Table.Cell collapsing>

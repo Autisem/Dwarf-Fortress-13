@@ -41,3 +41,11 @@
 	w_class = WEIGHT_CLASS_TINY
 	merge_type = /obj/item/stack/sheet/stone
 	material_type = /datum/material/stone
+
+GLOBAL_LIST_INIT(stone_recipes, list(
+	// new/datum/stack_recipe("Pot", /obj/structure/pot, 5, required_tools=TOOL_CHISEL),
+))
+
+/obj/item/stack/sheet/stone/get_main_recipes()
+	. = ..()
+	. += GLOB.stone_recipes

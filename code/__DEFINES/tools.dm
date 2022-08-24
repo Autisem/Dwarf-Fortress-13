@@ -5,6 +5,7 @@
 #define TOOL_ANALYZER "analyzer"
 #define TOOL_MINING "mining"
 #define TOOL_SHOVEL "shovel"
+#define TOOL_CHISEL "chisel"
 #define TOOL_AXE "axe"
 #define TOOL_HOE "hoe"
 #define TOOL_BUILDER_HAMMER "builder_hammer"

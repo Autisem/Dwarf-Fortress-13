@@ -155,7 +155,7 @@
  * Arguments:
  * * recipe_to_iterate - The list of recipes we are using to build recipes
  */
-/obj/item/stack/proc/recursively_build_recipes(list/recipe_to_iterate)
+/obj/item/stack/proc/recursively_build_recipes(list/recipe_to_iterate, mob/user)
 	var/list/L = list()
 	for(var/recipe in recipe_to_iterate)
 		if(istype(recipe, /datum/stack_recipe_list))
@@ -163,7 +163,7 @@
 			L["[R.title]"] = recursively_build_recipes(R.recipes)
 		if(istype(recipe, /datum/stack_recipe))
 			var/datum/stack_recipe/R = recipe
-			L["[R.title]"] = build_recipe(R)
+			L["[R.title]"] = build_recipe(R, user)
 	return L
 
 /**
@@ -172,13 +172,39 @@
  * Arguments:
  * * R - The stack recipe we are using to get a list of properties
  */
-/obj/item/stack/proc/build_recipe(datum/stack_recipe/R)
-	return list(
+/obj/item/stack/proc/build_recipe(datum/stack_recipe/R, mob/user)
+	var/has_tools = R.required_tools ? 0 : 1
+	var/list/nearby_tools = list()
+	if(!has_tools)
+		var/mob/living/carbon/human/H = user
+		var/obj/item/held = H.held_items.Copy()
+		list_clear_nulls(held)
+		var/list/possible_tools = held + locate(/obj/item) in view(0, user.loc)
+		// var/list/possible_tools = locate(/obj/item) in view(0, user.loc)
+		// if(!islist(possible_tools) && possible_tools)
+		// 	var/obj/item/possible_tool = possible_tools
+		// 	nearby_tools |= possible_tool.tool_behaviour
+		for(var/obj/item/I in possible_tools)
+			nearby_tools |= I.tool_behaviour
+		if(islist(R.required_tools))
+			var/all_tools = 1
+			for(var/tool in R.required_tools)
+				if(!(tool in nearby_tools))
+					all_tools = 0
+			has_tools = all_tools
+		else
+			if(R.required_tools in nearby_tools)
+				has_tools = 1
+
+	var/list/L = list(
 		"res_amount" = R.res_amount,
 		"max_res_amount" = R.max_res_amount,
 		"req_amount" = R.req_amount,
 		"ref" = "\ref[R]",
+		"tools" = R.required_tools ? (islist(R.required_tools) ? jointext(R.required_tools, ", "): R.required_tools) : 0,
+		"has_tools" = has_tools
 	)
+	return L
 
 /**
  * Checks if the recipe is valid to be used
@@ -209,12 +235,13 @@
 /obj/item/stack/ui_data(mob/user)
 	var/list/data = list()
 	data["amount"] = get_amount()
+	data["recipes"] = recursively_build_recipes(recipes, user)
 	return data
 
-/obj/item/stack/ui_static_data(mob/user)
-	var/list/data = list()
-	data["recipes"] = recursively_build_recipes(recipes)
-	return data
+// /obj/item/stack/ui_static_data(mob/user)
+// 	var/list/data = list()
+
+// 	return data
 
 /obj/item/stack/ui_act(action, params)
 	. = ..()
@@ -529,8 +556,9 @@
 	var/applies_mats = FALSE
 	var/trait_booster = null
 	var/trait_modifier = 1
+	var/list/required_tools = null
 
-/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1,time = 0, one_per_turf = FALSE, on_floor = FALSE, window_checks = FALSE, placement_checks = FALSE, applies_mats = FALSE, trait_booster = null, trait_modifier = 1)
+/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1,time = 0, one_per_turf = FALSE, on_floor = FALSE, window_checks = FALSE, placement_checks = FALSE, applies_mats = FALSE, trait_booster = null, trait_modifier = 1, required_tools = null)
 	src.title = title
 	src.result_type = result_type
 	src.req_amount = req_amount
@@ -543,6 +571,7 @@
 	src.applies_mats = applies_mats
 	src.trait_booster = trait_booster
 	src.trait_modifier = trait_modifier
+	src.required_tools = required_tools
 /*
  * Recipe list datum
  */
