@@ -2,6 +2,8 @@
 	var/name = "Caves"
 
 /datum/map_generator/caves/generate_terrain(list/turfs)
+	if(CONFIG_GET(flag/disable_generation))
+		return
 	var/start_time = REALTIMEOFDAY
 	var/list/height_values = noise(world.maxx, world.maxy)
 	var/list/temp_values = noise(world.maxx, world.maxy, frequency=0.005, lacunarity=0.4)
