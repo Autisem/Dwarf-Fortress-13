@@ -18,12 +18,15 @@
 	var/icon_dead // icon when plant dies
 	var/growthstages = 5 // how many growth stages it has
 	var/growthdelta = 5 SECONDS // how long between two growth stages
+	var/temp_growthdelta = 5 SECONDS // used growsthdelta value that is influenced by factors like fartilizer
+	var/lastcycle_eat
+	var/eat_delta = 5 SECONDS
 	var/growthstage = 1 // current 'age' of the plant
 	var/dead = FALSE // to prevent spam in plantdies()
 	var/lastcycle_growth // last time it advanced in growth
 	var/lifespan = 4 // plant's max age in cycles
 	var/age = 1 // plants age in cycles; cycle's length is growthdelta
-	var/turf/open/tilled/plot // if planted via seeds will have a plot assigned to it
+	var/turf/open/floor/tilled/plot // if planted via seeds will have a plot assigned to it
 
 /obj/structure/plant/examine(mob/user)
 	. = ..()
@@ -49,6 +52,7 @@
 		icon_dead = "[species]-dead"
 	lastcycle_produce = world.time
 	lastcycle_health = world.time
+	lastcycle_eat = world.time
 	update_appearance()
 
 /obj/structure/plant/Destroy()
@@ -62,7 +66,7 @@
 	if(dead)
 		return
 	var/needs_update = 0 // Checks if the icon needs updating so we don't redraw empty trays every time
-	var/time_until_growth = lastcycle_growth+growthdelta // time to advance age
+	var/time_until_growth = lastcycle_growth+temp_growthdelta // time to advance age
 	if(plot?.fertlevel)
 		time_until_growth = time_until_growth*0.8 // fertilizer makes plants grow 20% faster
 	if(world.time >= time_until_growth)
@@ -78,21 +82,6 @@
 		if(harvestable)
 			needs_update = 1
 
-//Water//////////////////////////////////////////////////////////////////
-		// // Drink random amount of water
-		// waterlevel = clamp(waterlevel-waterrate, 0, watermax)
-
-		// // If the plant is dry, it loses health pretty fast
-		// if(waterlevel <= 10)
-		// 	adjustHealth(-rand(0,1) / rating)
-		// 	if(waterlevel <= 0)
-		// 		adjustHealth(-rand(0,2) / rating)
-
-		// // Sufficient water level and nutrient level = plant healthy
-		// else if(waterlevel > 10 && reagents.total_volume > 0)
-		// 	adjustHealth(rand(1,2) / rating)
-
-
 	if(health <= 0 && !dead)
 		plantdies()
 		dead = TRUE
@@ -102,14 +91,16 @@
 		lastcycle_health = world.time
 		damagecycle()
 
-	if(plot)
-		plot.fertlevel = clamp(plot.fertlevel-plot.fertrate, 0, plot.fertmax)
+	if(world.time > lastcycle_eat+eat_delta)
+		lastcycle_eat = world.time
+		eatcycle()
 
 	if(needs_update)
 		update_appearance()
 
 
 /obj/structure/plant/proc/plantdies()
+	SEND_SIGNAL(src, COSMIG_PLANT_DIES)
 	if(dead)
 		return
 	visible_message(span_warning("[src] withers away!"))
@@ -117,6 +108,9 @@
 		return
 	qdel(src)
 
+/obj/structure/plant/proc/eatcycle()
+	SEND_SIGNAL(src, COSMIG_PLANT_EAT_TICK)
+	return
 
 /obj/structure/plant/update_appearance(updates)
 	. = ..()
@@ -135,20 +129,23 @@
 	return TRUE
 
 /obj/structure/plant/proc/grown()
-	return
+	SEND_SIGNAL(src, COSMIG_PLANT_ON_GROWN)
 
 /obj/structure/plant/proc/growthcycle()
+	var/res = SEND_SIGNAL(src, COSMIG_PLANT_ON_GROW)
+	if(res & COMPONENT_CANCEL_PLANT_GROW)
+		return
 	age++
 	growthstage = clamp(growthstage+1, 1, growthstages)
 
 /obj/structure/plant/proc/producecycle()
+	SEND_SIGNAL(src, COSMIG_PLANT_PRODUCE_TICK)
 	if(can_grow_harvestable())
 		harvestable = TRUE
 
 /obj/structure/plant/proc/damagecycle()
+	SEND_SIGNAL(src, COSMIG_PLANT_DAMAGE_TICK)
 	if(age > lifespan)
-		health -= rand(1,3)
-	if(plot?.allowed_species && plot && !(species in plot?.allowed_species))
 		health -= rand(1,3)
 
 /obj/structure/plant/proc/harvest(var/mob/user)

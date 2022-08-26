@@ -157,6 +157,19 @@
 		var/obj/structure/blueprint/new_blueprint = new H.selected_blueprint(src)
 		new_blueprint.update_appearance()
 		H.selected_blueprint = null
+	else if(istype(I, /obj/item/sapling))
+		var/obj/item/offhand = user.get_inactive_held_item()
+		if(!offhand && offhand.tool_behaviour != TOOL_SHOVEL)
+			to_chat(user, span_warning("You need a shovel to plant [I]!"))
+			return
+		var/obj/item/sapling/S = I
+		var/obj/structure/plant/P = new S.plant_type(src)
+		P.health = S.health
+		P.growthstage = S.growthstage
+		P.update_appearance()
+		to_chat(user, span_notice("You plant [S]."))
+		qdel(S)
+		user.mind.adjust_experience(/datum/skill/farming, rand(1,7))
 	return FALSE
 
 /turf/open/floor/crowbar_act(mob/living/user, obj/item/I)

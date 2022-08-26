@@ -15,7 +15,7 @@
 			if(-INFINITY to -0.7)
 				turf_type = /turf/open/water
 			if(-0.7 to -0.6)
-				turf_type = /turf/open/dirt
+				turf_type = /turf/open/floor/dirt
 			if(-0.6 to -0.3)
 				if(temp > 0)
 					turf_type = /turf/open/floor/sand

@@ -94,40 +94,55 @@
 
 /turf/open/floor/sand/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SHOVEL)
+		to_chat(user, span_notice("You start digging [src]..."))
 		if(I.use_tool(src, user, 5 SECONDS))
 			if(QDELETED(src))
 				return
-			for(var/i in 1 to rand(3, 6))
-				var/obj/item/S = new /obj/item/stack/sand(src)
-				S.pixel_x = rand(-8, 8)
-				S.pixel_y = rand(-8, 8)
-			digged_up = TRUE
-			user.visible_message(span_notice("<b>[user]</b> digs up some stones.") , \
-				span_notice("You dig up some stones."))
+			if(digged_up)
+				user.visible_message(span_notice("[user] digs out a hole in the ground."), span_notice("You dig out a hole in the ground."))
+				ChangeTurf(/turf/open/openspace)
+			else
+				new/obj/item/stack/sand(src, rand(3,6))
+				digged_up = TRUE
+				user.visible_message(span_notice("<b>[user]</b> digs up some stones.") , \
+					span_notice("You dig up some stones."))
 	else
 		. = ..()
 
-/turf/open/dirt
+/turf/open/floor/dirt
 	name = "fertile dirt"
 	desc = "Found near bodies of water. Can be farmed on."
 	icon = 'dwarfs/icons/turf/floors_fertile.dmi'
 	icon_state = "fertile"
+	var/digged_up = FALSE
 
-/turf/open/dirt/attackby(obj/item/I, mob/user, params)
+/turf/open/floor/dirt/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_HOE)
+		if(digged_up)
+			to_chat(user, span_warning("There is no more dirt to be tilled!"))
+			return
 		to_chat(user, span_notice("You start tilling [src]..."))
 		if(I.use_tool(src, user, 10 SECONDS))
-			ChangeTurf(/turf/open/tilled)
+			ChangeTurf(/turf/open/floor/tilled)
 			user.mind.adjust_experience(/datum/skill/farming, 7)
+	else if(I.tool_behaviour == TOOL_SHOVEL)
+		to_chat(user, span_notice("You start digging [src]..."))
+		if(I.use_tool(src, user, 5 SECONDS))
+			if(digged_up)
+				return
+			else
+				new/obj/item/stack/dirt(src, rand(2,5))
+				user.visible_message(span_notice("<b>[user]</b> digs up some dirt.") , \
+					span_notice("You dig up some dirt."))
 
-/turf/open/tilled
+/turf/open/floor/tilled
 	name = "tilled dirt"
 	desc = "Ready for plants."
 	icon = 'dwarfs/icons/turf/floors_fertile.dmi'
 	icon_state = "fertile_tilled"
-	// var/waterlevel = 100
-	// var/watermax = 100
-	// var/waterrate = 1
+	var/waterlevel = 0
+	var/watermax = 100
+	var/waterrate = 1
 	var/fertlevel = 0
 	var/fertmax = 100
 	var/fertrate = 1
@@ -136,7 +151,7 @@
 	var/obj/structure/plant/myplant = null
 
 
-/turf/open/tilled/examine(mob/user)
+/turf/open/floor/tilled/examine(mob/user)
 	. = ..()
 	.+="<hr>"
 	if(myplant)
@@ -154,36 +169,35 @@
 		else
 			fert_text+="There is no fertilizer in it."
 	.+=fert_text
-	// var/water_text = "<br>"
-	// switch(waterlevel)
-	// 	if(60 to 100)
-	// 		water_text+="Looks very moist."
-	// 	if(30 to 59)
-	// 		water_text+="Looks normal."
-	// 	if(1 to 29)
-	// 		water_text+="Looks a bit dry."
-	// 	else
-	// 		water_text+="Looks extremely dry."
-	// .+=water_text
+	var/water_text = "<br>"
+	switch(waterlevel)
+		if(60 to 100)
+			water_text+="Looks very moist."
+		if(30 to 59)
+			water_text+="Looks normal."
+		if(1 to 29)
+			water_text+="Looks a bit dry."
+		else
+			water_text+="Looks extremely dry."
+	.+=water_text
 
-/turf/open/tilled/Destroy()
+/turf/open/floor/tilled/Destroy()
 	if(myplant)
 		QDEL_NULL(myplant)
 	return ..()
 
-/turf/open/tilled/attackby(obj/item/O, mob/user, params)
-	//Called when mob user "attacks" it with object O
+/turf/open/floor/tilled/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/growable/seeds))
 		if(!myplant)
 			var/obj/item/growable/seeds/S = O
-			if(!user.transferItemToLoc(O, src))
-				return
-			to_chat(user, span_notice("You plant [O]."))
+			to_chat(user, span_notice("You plant [S]."))
 			var/obj/structure/plant/P = new S.plant(loc)
+			qdel(S)
 			myplant = P
 			P.plot = src
-			TRAY_NAME_UPDATE
 			myplant.update_appearance()
+			RegisterSignal(P, COSMIG_PLANT_DAMAGE_TICK, .proc/on_damage)
+			RegisterSignal(P, COSMIG_PLANT_EAT_TICK, .proc/on_eat)
 			return
 		else
 			to_chat(user, span_warning("[capitalize(src.name)] already has seeds in it!"))
@@ -208,7 +222,7 @@
 	else
 		return ..()
 
-/turf/open/tilled/attack_hand(mob/user)
+/turf/open/floor/tilled/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -217,10 +231,22 @@
 			to_chat(user, span_notice("You remove the dead plant from [src]."))
 			QDEL_NULL(myplant)
 			update_appearance()
-			TRAY_NAME_UPDATE
 	else
 		if(user)
 			user.examinate(src)
+
+/turf/open/floor/tilled/proc/on_damage(obj/structure/plant/source)
+	SIGNAL_HANDLER
+	if(!waterlevel)
+		source.health -= rand(1,3)
+	if(allowed_species && !(source.species in allowed_species))
+		source.health -= rand(1,3)
+
+/turf/open/floor/tilled/proc/on_eat(obj/structure/plant/source)
+	SIGNAL_HANDLER
+	waterlevel = clamp(waterlevel-waterrate, 0, watermax)
+	fertlevel = clamp(fertlevel-fertrate, 0, fertmax)
+
 /turf/open/water
 	name = "water"
 	desc = "Stay hydrated."

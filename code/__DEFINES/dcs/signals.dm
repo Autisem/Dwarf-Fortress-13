@@ -1078,12 +1078,13 @@
 
 //Plants / Plant Traits
 
-///called when a plant with slippery skin is slipped on (mob/victim)
-#define COMSIG_PLANT_ON_SLIP "plant_on_slip"
-///called when a plant with liquid contents is squashed on (atom/target)
-#define COMSIG_PLANT_ON_SQUASH "plant_on_squash"
-///called when a plant grows in a tray (obj/machinery/hydroponics)
-#define COMSIG_PLANT_ON_GROW "plant_on_grow"
+#define COSMIG_PLANT_ON_GROW "plant_on_grow"
+	#define COMPONENT_CANCEL_PLANT_GROW (1<<0)
+#define COSMIG_PLANT_ON_GROWN "plant_on_grown"
+#define COSMIG_PLANT_DAMAGE_TICK "plant_damage_tick"
+#define COSMIG_PLANT_EAT_TICK "plant_eat_tick"
+#define COSMIG_PLANT_PRODUCE_TICK "plant_produce_tick"
+#define COSMIG_PLANT_DIES "plant_dies"
 
 //Gibs
 
