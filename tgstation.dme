@@ -1285,6 +1285,7 @@
 #include "dwarfs\code\unsorted\recipes.dm"
 #include "dwarfs\code\unsorted\rituals.dm"
 #include "dwarfs\code\unsorted\stats.dm"
+#include "dwarfs\code\unsorted\storage.dm"
 #include "interface\interface.dm"
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"

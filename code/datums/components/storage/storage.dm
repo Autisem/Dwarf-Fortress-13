@@ -7,6 +7,7 @@
 	var/datum/component/storage/concrete/master //If not null, all actions act on master and this is just an access point.
 
 	var/list/can_hold //if this is set, only items, and their children, will fit
+	var/list/can_hold_init //only items and their parents will fit; init subtypes with init
 	var/list/cant_hold //if this is set, items, and their children, won't fit
 	var/list/exception_hold //if set, these items will be the exception to the max size of object that can fit.
 	/// If set can only contain stuff with this single trait present.
@@ -102,6 +103,9 @@
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_SECONDARY, .proc/on_open_storage_attackby)
 	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, .proc/mousedrop_onto)
 	RegisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO, .proc/mousedrop_receive)
+
+	if(can_hold_init)
+		can_hold = string_list(typecacheof(can_hold_init))
 
 	update_actions()
 
@@ -629,7 +633,7 @@
 			to_chat(M, span_warning("<b>[capitalize(host.name)]</b> is full, you have to free some space first!"))
 		return FALSE //Storage item is full
 	if(length(can_hold))
-		if(!is_type_in_list(I, can_hold))
+		if(!is_type_in_typecache(I, can_hold))
 			if(!stop_messages)
 				to_chat(M, span_warning("<b>[capitalize(host.name)]</b> cannot store <b>[capitalize(I.name)]</b>!"))
 			return FALSE
