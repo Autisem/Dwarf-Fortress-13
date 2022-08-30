@@ -465,17 +465,22 @@
 /obj/item/blacksmith/partial/pickaxe
 	name = "pickaxe blade"
 	real_force = 4
-	icon_state = "dagger_blade"
+	icon_state = "pickaxe_head"
 
 /obj/item/blacksmith/partial/shovel
 	name = "shovel blade"
 	real_force = 4
-	icon_state = "dagger_blade"
+	icon_state = "shovel_head"
 
 /obj/item/blacksmith/partial/axe
 	name = "axe blade"
 	real_force = 4
-	icon_state = "dagger_blade"
+	icon_state = "axe_head"
+
+/obj/item/blacksmith/partial/builder_hammer
+	name = "builder's hammer head"
+	real_force = 4
+	icon_state = "hammer_head"
 
 /obj/item/blacksmith/partial/zwei
 	name = "zweihander blade"

@@ -35,6 +35,11 @@
 	result = /obj/item/blacksmith/partial/axe
 	max_resulting = 2
 
+/datum/smithing_recipe/axe
+	name = "\[part\] builder's hammer"
+	result = /obj/item/blacksmith/partial/builder_hammer
+	max_resulting = 2
+
 /datum/smithing_recipe/smithing_hammer
 	name = "hammer"
 	result = /obj/item/blacksmith/smithing_hammer
@@ -155,3 +160,9 @@
 	result = /obj/item/shovel
 	reqs = list(/obj/item/blacksmith/partial/shovel=1, /obj/item/tool_handle=1)
 	primary = /obj/item/blacksmith/partial/shovel
+
+/datum/workbench_recipe/shovel
+	name = "builder's hammer"
+	result = /obj/item/builder_hammer
+	reqs = list(/obj/item/blacksmith/partial/builder_hammer=1, /obj/item/tool_handle=1)
+	primary = /obj/item/blacksmith/partial/builder_hammer
