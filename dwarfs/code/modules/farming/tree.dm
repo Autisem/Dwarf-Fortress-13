@@ -6,13 +6,13 @@
 	lifespan = INFINITY
 	var/small_log_type = /obj/item/log
 	var/large_log_type = /obj/item/log
-	var/list/small_log_amount = list(0,1,1,2,0) //a list of small logs with amount corresponding to the growthstage
-	var/list/large_log_amount = list(0,0,0,0,1) //a list of large logs with amount corresponding to the growthstage
+	var/list/small_log_amount = list(0,1,1,2,0,2,0) //a list of small logs with amount corresponding to the growthstage
+	var/list/large_log_amount = list(0,0,0,0,1,1,2) //a list of large logs with amount corresponding to the growthstage
 	var/cutting_time = 40 SECONDS
 
 /obj/structure/plant/tree/Initialize()
 	. = ..()
-	pixel_x = -20
+	pixel_x = -32
 
 /obj/structure/plant/tree/proc/try_chop(obj/item/tool, mob/living/user)
 	to_chat(user, span_notice("You start chopping down [src]..."))
@@ -51,9 +51,11 @@
 	name = "towercap"
 	desc = "hehe >:)"
 	species = "towercap"
-	produced = list(/obj/item/growable/seeds/towercap=1)
+	produced = list(/obj/item/growable/seeds/towercap=2)
 	large_log_type = /obj/item/log/large/towercap
 	small_log_type = /obj/item/log/towercap
+	icon_ripe = "towercap-7"
+	growthstages = 7
 	// growthdelta = 1 MINUTES
 	// produce_delta = 1 MINUTES
 	// max_harvestables =
