@@ -1,11 +1,16 @@
 /obj/structure/sapling_pot
 	name = "sapling pot"
+	desc = "For some reason it only accepts tree seeds."
+	icon = 'dwarfs/icons/structures/32x64.dmi'
+	icon_state = "tree_pot"
+	density = 1
 	var/has_dirt = FALSE
 	var/waterlevel = 0
 	var/watermax = 100
 	var/list/allowed_species
 	///The currently planted plant
 	var/obj/structure/plant/myplant = null
+	var/target_growthstage = 3
 
 /obj/structure/sapling_pot/Destroy()
 	if(myplant)
@@ -21,15 +26,38 @@
 
 /obj/structure/sapling_pot/proc/on_grow(obj/structure/plant/source)
 	SIGNAL_HANDLER
-	if(source.growthstage ==2)
+	spawn(20) update_appearance() // update appearance after parent proc finishes processing
+	if(!waterlevel)
+		// Completely block growing when there's no water
+		return COMPONENT_CANCEL_PLANT_GROW
+	if(source.growthstage == target_growthstage)
 		source.age++
 		return COMPONENT_CANCEL_PLANT_GROW
+
+/obj/structure/sapling_pot/proc/on_death(obj/structure/plant/source)
+	SIGNAL_HANDLER
+	visible_message(span_warning("[myplant] withers away!"))
+	UnregisterSignal(myplant, list(COSMIG_PLANT_DAMAGE_TICK, COSMIG_PLANT_ON_GROW, COSMIG_PLANT_DIES))
+	QDEL_NULL(myplant)
+	update_appearance()
 
 /obj/structure/sapling_pot/examine(mob/user)
 	. = ..()
 	.+="<hr>"
 	if(myplant)
 		.+="There is \a [myplant] growing here."
+		.+="<br>"
+		switch(myplant.health/myplant.maxhealth)
+			if(1)
+				.+="[myplant] looks healthy."
+			if(0.6 to 0.9)
+				.+="[myplant] looks ill."
+			if(0.3 to 0.6)
+				.+="[myplant] looks very ill."
+			if(0.1 to 0.3)
+				.+="[myplant] looks like it's about to die."
+			else
+				.+="[myplant] is dead."
 	else
 		.+="It's empty."
 	var/water_text = "<br>"
@@ -47,15 +75,20 @@
 /obj/structure/sapling_pot/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/growable/seeds))
 		if(!myplant)
+			if(!has_dirt)
+				to_chat(user, span_warning("[src] doens't have any soil inside!"))
+				return
 			var/obj/item/growable/seeds/S = O
 			to_chat(user, span_notice("You plant [S]."))
-			var/obj/structure/plant/P = new S.plant(loc)
+			var/obj/structure/plant/P = new S.plant()
 			qdel(S)
 			myplant = P
 			P.plot = src
 			myplant.update_appearance()
 			RegisterSignal(P, COSMIG_PLANT_DAMAGE_TICK, .proc/on_damage)
 			RegisterSignal(P, COSMIG_PLANT_ON_GROW, .proc/on_grow)
+			RegisterSignal(P, COSMIG_PLANT_DIES, .proc/on_death)
+			update_appearance()
 			return
 		else
 			to_chat(user, span_warning("[capitalize(src.name)] already has seeds in it!"))
@@ -96,20 +129,24 @@
 		waterlevel += to_trans
 		to_chat(user, span_notice("You water [src]."))
 		user.mind.adjust_experience(/datum/skill/farming, rand(1,5))
+		update_appearance()
 	else
 		return ..()
 
 /obj/structure/sapling_pot/attack_hand(mob/user)
-	if(myplant && myplant.growthstage == 2)
+	if(myplant && myplant.growthstage == target_growthstage)
 		to_chat(user, span_notice("You start removing the sapling from [src]..."))
 		if(do_after(user, 10 SECONDS, src))
 			var/mob/living/carbon/human/H = user
 			var/obj/item/sapling/S = new()
 			S.health = myplant.health
+			S.maxhealth = myplant.maxhealth
 			S.name = "[myplant.species] sapling"
 			S.plant_type = myplant.type
 			S.growthstage = myplant.growthstage
+			S.icon_state = "[myplant.species]_sapling"
 			START_PROCESSING(SSprocessing, S)
+			UnregisterSignal(myplant, list(COSMIG_PLANT_DAMAGE_TICK, COSMIG_PLANT_ON_GROW, COSMIG_PLANT_DIES))
 			QDEL_NULL(myplant)
 			H.put_in_active_hand(S)
 			to_chat(user, span_notice("You remove [S] from [src]."))
@@ -121,6 +158,15 @@
 /obj/structure/sapling_pot/update_icon_state()
 	. = ..()
 	if(has_dirt)
-		icon_state = "sapling_pot_dirt"
+		if(waterlevel)
+			icon_state = "tree_pot_soil"
+		else
+			icon_state = "tree_pot_soil_dry"
 	else
 		icon_state = initial(icon_state)
+
+/obj/structure/sapling_pot/update_overlays()
+	. = ..()
+	if(myplant)
+		var/mutable_appearance/sapling = mutable_appearance('dwarfs/icons/structures/tree_pot_plants.dmi', "[myplant.species]_[myplant.growthstage]")
+		. += sapling

@@ -159,7 +159,7 @@
 		H.selected_blueprint = null
 	else if(istype(I, /obj/item/sapling))
 		var/obj/item/offhand = user.get_inactive_held_item()
-		if(!offhand && offhand.tool_behaviour != TOOL_SHOVEL)
+		if(!offhand || offhand?.tool_behaviour != TOOL_SHOVEL)
 			to_chat(user, span_warning("You need a shovel to plant [I]!"))
 			return
 		var/obj/item/sapling/S = I
