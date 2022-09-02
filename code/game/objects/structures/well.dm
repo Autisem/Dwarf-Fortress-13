@@ -3,6 +3,7 @@
 	desc = "Get water here."
 	icon = 'dwarfs/icons/structures/workshops.dmi'
 	icon_state = "well"
+	density = 1
 	var/working = FALSE
 	//IMPORTANT: work_time should be somewhat the same as "well_working" animation duration otherwise it will look crappy
 	var/work_time = 3.9 SECONDS
