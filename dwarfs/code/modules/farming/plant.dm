@@ -18,7 +18,7 @@
 	var/icon_dead // icon when plant dies
 	var/growthstages = 5 // how many growth stages it has
 	var/growthdelta = 5 SECONDS // how long between two growth stages
-	var/temp_growthdelta = 5 SECONDS // used growsthdelta value that is influenced by factors like fartilizer
+	var/list/growth_modifiers = list() // growth modifiers that affect our plant e.g. fertilizer, soil quality, etc. This is a dictianory list for easy overwrites
 	var/lastcycle_eat
 	var/eat_delta = 5 SECONDS
 	var/growthstage = 1 // current 'age' of the plant
@@ -66,9 +66,10 @@
 	if(dead)
 		return
 	var/needs_update = 0 // Checks if the icon needs updating so we don't redraw empty trays every time
+	var/temp_growthdelta = growthdelta
+	for(var/modifier in growth_modifiers)
+		temp_growthdelta *= growth_modifiers[modifier]
 	var/time_until_growth = lastcycle_growth+temp_growthdelta // time to advance age
-	if(plot?.fertlevel)
-		time_until_growth = time_until_growth*0.8 // fertilizer makes plants grow 20% faster
 	if(world.time >= time_until_growth)
 		lastcycle_growth = world.time
 		growthcycle()
@@ -154,7 +155,7 @@
 	for(var/_P in produced)
 		var/obj/P = _P
 		var/harvested = rand(0, produced[P])// TODO: tweak numbers according to skill; higher skill can give additional harvestables
-		if(plot?.fertlevel)
+		if(growth_modifiers["fertilizer"] < 1 && growth_modifiers["fertilizer"] != 0) // it's fertilized
 			harvested += 3
 		if(harvested)
 			for(var/i in 1 to harvested)

@@ -246,6 +246,7 @@
 	SIGNAL_HANDLER
 	waterlevel = clamp(waterlevel-waterrate, 0, watermax)
 	fertlevel = clamp(fertlevel-fertrate, 0, fertmax)
+	source.growth_modifiers["fertilizer"] = fertlevel ? 0.8 : 1
 
 /turf/open/water
 	name = "water"
