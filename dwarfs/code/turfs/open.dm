@@ -129,11 +129,13 @@
 		to_chat(user, span_notice("You start digging [src]..."))
 		if(I.use_tool(src, user, 5 SECONDS))
 			if(digged_up)
-				return
+				user.visible_message(span_notice("[user] digs out a hole in the ground."), span_notice("You dig out a hole in the ground."))
+				ChangeTurf(/turf/open/openspace)
 			else
 				new/obj/item/stack/dirt(src, rand(2,5))
 				user.visible_message(span_notice("<b>[user]</b> digs up some dirt.") , \
 					span_notice("You dig up some dirt."))
+				digged_up = TRUE
 
 /turf/open/floor/tilled
 	name = "tilled dirt"

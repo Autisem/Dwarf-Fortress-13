@@ -146,7 +146,7 @@
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "uV" = (
-/turf/open/tilled,
+/turf/open/floor/tilled,
 /area/dwarf/fortress)
 "vf" = (
 /turf/open/openspace,
@@ -260,7 +260,7 @@
 /area/dwarf/fortress)
 "TT" = (
 /obj/effect/landmark/start/dwarf,
-/turf/open/tilled,
+/turf/open/floor/tilled,
 /area/dwarf/fortress)
 "TZ" = (
 /obj/structure/sconce/lit{
