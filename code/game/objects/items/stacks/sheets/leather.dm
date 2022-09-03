@@ -81,8 +81,8 @@
 	merge_type = /obj/item/stack/sheet/leather
 
 GLOBAL_LIST_INIT(leather_recipes, list (
-	new/datum/stack_recipe("Backpack", /obj/item/storage/satchel),
-	new/datum/stack_recipe("Ore Bag", /obj/item/storage/ore)
+	new/datum/stack_recipe("Satchel", /obj/item/storage/satchel),
+	new/datum/stack_recipe("Soil Bag", /obj/item/storage/soil)
 ))
 
 /obj/item/stack/sheet/leather/get_main_recipes()
