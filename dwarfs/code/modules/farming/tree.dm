@@ -51,7 +51,7 @@
 	name = "towercap"
 	desc = "hehe >:)"
 	species = "towercap"
-	produced = list(/obj/item/growable/seeds/towercap=2)
+	produced = list(/obj/item/growable/seeds/tree/towercap=2)
 	large_log_type = /obj/item/log/large/towercap
 	small_log_type = /obj/item/log/towercap
 	icon_ripe = "towercap-7"

@@ -191,6 +191,9 @@
 /turf/open/floor/tilled/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/growable/seeds))
 		if(!myplant)
+			if(istype(O, /obj/item/growable/seeds/tree))
+				to_chat(user, span_warning("Cannot plant this here!"))
+				return
 			var/obj/item/growable/seeds/S = O
 			to_chat(user, span_notice("You plant [S]."))
 			var/obj/structure/plant/P = new S.plant(loc)

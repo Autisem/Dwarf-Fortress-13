@@ -75,6 +75,9 @@
 /obj/structure/sapling_pot/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/growable/seeds))
 		if(!myplant)
+			if(!istype(O, /obj/item/growable/seeds/tree))
+				to_chat(user, span_warning("Cannot plant this here!"))
+				return
 			if(!has_dirt)
 				to_chat(user, span_warning("[src] doens't have any soil inside!"))
 				return
