@@ -23,8 +23,6 @@ Mineral Sheets
 	icon_state = "diamond"
 	// inhand_icon_state = "sheet-diamond"
 	singular_name = "diamond"
-	sheettype = "diamond"
-	point_value = 25
 	merge_type = /obj/item/stack/sheet/mineral/gem/diamond
 
 /obj/item/stack/sheet/mineral/gem/sapphire
@@ -33,8 +31,6 @@ Mineral Sheets
 	icon_state = "sapphire"
 	// inhand_icon_state = "sheet-sapphire"
 	singular_name = "sapphire"
-	sheettype = "sapphire"
-	point_value = 25
 	merge_type = /obj/item/stack/sheet/mineral/gem/sapphire
 
 /obj/item/stack/sheet/mineral/gem/ruby
@@ -43,8 +39,6 @@ Mineral Sheets
 	icon_state = "ruby"
 	// inhand_icon_state = "sheet-ruby"
 	singular_name = "ruby"
-	sheettype = "ruby"
-	point_value = 25
 	merge_type = /obj/item/stack/sheet/mineral/gem/ruby
 
 /*
@@ -56,9 +50,7 @@ Mineral Sheets
 	icon_state = "sheet-gold"
 	inhand_icon_state = "sheet-gold"
 	singular_name = "golden sheet"
-	sheettype = "gold"
 	mats_per_unit = list(/datum/material/gold=MINERAL_MATERIAL_AMOUNT)
-	point_value = 20
 	merge_type = /obj/item/stack/sheet/mineral/gold
 	material_type = /datum/material/gold
 	novariants = TRUE

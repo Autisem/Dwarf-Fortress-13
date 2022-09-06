@@ -14,9 +14,9 @@
 	var/mine_experience = 5 //How much experience do you get for mining this ore?
 	novariants = TRUE // Ore stacks handle their icon updates themselves to keep the illusion that there's more going
 	var/list/stack_overlays
-	var/spreadChance = 0 //Also used by mineral turfs for spreading veins
-	var/ore_icon  //icons for ore overlays
-	var/ore_basename //sus?
+	var/ore_icon  // icons for ore overlays
+	var/ore_basename // basename for ore_icon
+	var/datum/vein/vein_type // Type of vein this ore spawns in
 
 /obj/item/stack/ore/update_overlays()
 	. = ..()
@@ -57,10 +57,10 @@
 	inhand_icon_state = "Iron ore"
 	singular_name = "iron ore chunk"
 	mine_experience = 1
-	spreadChance = 60
 	merge_type = /obj/item/stack/ore/iron
 	ore_icon = 'dwarfs/icons/turf/ores/iron.dmi'
 	ore_basename = "iron"
+	vein_type = /datum/vein/line
 
 /obj/item/stack/ore/coal
 	name = "coal"
@@ -70,10 +70,10 @@
 	singular_name = "coal chunk"
 	refined_type = /obj/item/stack/sheet/mineral/coal
 	mine_experience = 1
-	spreadChance = 80
 	merge_type = /obj/item/stack/ore/coal
 	ore_icon = 'dwarfs/icons/turf/ores/coal.dmi'
 	ore_basename = "coal"
+	vein_type = /datum/vein/line
 
 /obj/item/stack/ore/coal/get_fuel()
 	return 15 * amount
@@ -85,14 +85,13 @@
 	singular_name = "gold ore chunk"
 	mine_experience = 5
 	refined_type = /obj/item/stack/sheet/mineral/gold
-	spreadChance = 30
 	merge_type = /obj/item/stack/ore/gold
 	ore_icon = 'dwarfs/icons/turf/ores/gold.dmi'
 	ore_basename = "gold"
+	vein_type = /datum/vein/line
 
 /obj/item/stack/ore/gem
 	max_amount = 1
-	spreadChance = 10
 
 /obj/item/stack/ore/gem/diamond
 	name = "diamond ore"
@@ -104,6 +103,7 @@
 	merge_type = /obj/item/stack/ore/gem/diamond
 	ore_icon = 'dwarfs/icons/turf/ores/diamond.dmi'
 	ore_basename = "diamond"
+	vein_type = /datum/vein/cluster
 
 /obj/item/stack/ore/gem/sapphire
 	name = "sapphire ore"
@@ -115,6 +115,7 @@
 	merge_type = /obj/item/stack/ore/gem/sapphire
 	ore_icon = 'dwarfs/icons/turf/ores/sapphire.dmi'
 	ore_basename = "sapphire"
+	vein_type = /datum/vein/cluster
 
 /obj/item/stack/ore/gem/ruby
 	name = "ruby ore"
@@ -126,6 +127,7 @@
 	merge_type = /obj/item/stack/ore/gem/ruby
 	ore_icon = 'dwarfs/icons/turf/ores/ruby.dmi'
 	ore_basename = "ruby"
+	vein_type = /datum/vein/cluster
 
 /obj/item/stack/ore/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
 	. = ..()

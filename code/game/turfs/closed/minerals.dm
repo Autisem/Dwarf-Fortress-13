@@ -33,21 +33,6 @@
 		var/icon/ore = new(initial(mineralType.ore_icon), "[initial(mineralType.ore_basename)]-[new_junction]")
 		overlays += ore
 
-/turf/closed/mineral/proc/Spread_Vein()
-	var/spreadChance = initial(mineralType.spreadChance)
-	if(spreadChance)
-		for(var/dir in GLOB.cardinals)
-			if(prob(spreadChance))
-				var/turf/T = get_step(src, dir)
-				var/turf/closed/mineral/random/M = T
-				if(istype(M) && !M.mineralType)
-					M.Change_Ore(mineralType)
-
-/turf/closed/mineral/proc/Change_Ore(ore_type, random = 0)
-	if(random)
-		mineralAmt = rand(1, 5)
-		mineralType = ore_type // Everything else assumes that this is typed correctly so don't set it to non-ores thanks.
-
 /turf/closed/mineral/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	if(turf_type)
 		underlay_appearance.icon = initial(turf_type.icon)
@@ -132,36 +117,21 @@
 
 /turf/closed/mineral/random
 	var/list/mineralSpawnChanceList = list(/obj/item/stack/ore/gem/diamond = 1, /obj/item/stack/ore/gold = 10, /obj/item/stack/ore/iron = 40)
-	var/mineralChance = 13
+	var/mineralChance = 1
 
 /turf/closed/mineral/random/Initialize()
-
-	mineralSpawnChanceList = typelist("mineralSpawnChanceList", mineralSpawnChanceList)
-
 	. = ..()
-	if (prob(mineralChance))
-		var/path = pickweight(mineralSpawnChanceList)
-		if(ispath(path, /turf))
-			var/stored_flags = 0
-			if(turf_flags & NO_RUINS)
-				stored_flags |= NO_RUINS
-			var/turf/T = ChangeTurf(path,null,CHANGETURF_IGNORE_AIR)
-			T.turf_flags |= stored_flags
+	if(prob(mineralChance))
+		return INITIALIZE_HINT_LATELOAD
 
-			T.baseturfs = src.baseturfs
-			if(ismineralturf(T))
-				var/turf/closed/mineral/M = T
-				M.turf_type = src.turf_type
-				M.mineralAmt = rand(1, 5)
-				M.environment_type = src.environment_type
-				src = M
-				M.levelupdate()
-			else
-				src = T
-				T.levelupdate()
-
-		else
-			Change_Ore(path, 1)
-			Spread_Vein(path)
-		name = initial(mineralType.name)
-
+/turf/closed/mineral/random/LateInitialize()
+	. = ..()
+	var/obj/item/stack/ore/O = pickweight(mineralSpawnChanceList)
+	var/vein_type = initial(O.vein_type)
+	if(!vein_type)
+		mineralType = O
+		mineralAmt = rand(1,5)
+	else
+		var/datum/vein/V = new vein_type(src)
+		V.generate(O)
+		qdel(V)
