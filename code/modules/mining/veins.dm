@@ -34,28 +34,28 @@
 		return
 	var/list/core = circlerangeturfs(my_turf, core_radius)
 	var/list/outer = circlerangeturfs(my_turf, outer_radius) - core
-	var/list/clear = circlerangeturfs(my_turf, outer_radius+1)
+	// var/list/clear = circlerangeturfs(my_turf, outer_radius+1)
 	var/obj/item/stack/ore/O = ore_type
-	var/core_count = 0
-	var/outer_count = 0
+	// var/core_count = 0
+	// var/outer_count = 0
 	for(var/turf/closed/mineral/M in core)
 		if(prob(core_spread_chance))
-			core_count++
+			// core_count++
 			M.mineralType = ore_type
 			M.mineralAmt = rand(1, 5)
 			M.draw_ore(M.smoothing_junction)
 			M.name = initial(O.name)
 	for(var/turf/closed/mineral/M in outer)
 		if(prob(outer_spread_chance))
-			outer_count++
+			// outer_count++
 			M.mineralType = ore_type
 			M.mineralAmt = rand(1, 5)
 			M.draw_ore(M.smoothing_junction)
 			M.name = initial(O.name)
-	for(var/turf/closed/mineral/M in clear)
-		if(!M.mineralType)
-			M.ScrapeAway()
-	log_world("Cluster generated. Core radius: [core_radius]; Outer radius: [outer_radius]; Core: [core_count]; Outer: [outer_count]")
+	// for(var/turf/closed/mineral/M in clear)
+	// 	if(!M.mineralType)
+	// 		M.ScrapeAway()
+	// log_world("Ore cluster generated. Core radius: [core_radius]; Outer radius: [outer_radius]; Core: [core_count]; Outer: [outer_count]")
 
 /datum/vein/line
 	var/direction
@@ -81,25 +81,25 @@
 		return
 	var/list/core = RECT_TURFS((direction ? core_length : core_width), (direction ? core_width : core_length), my_turf)
 	var/list/outer = RECT_TURFS((direction ? outer_length : outer_width), (direction ? outer_width : outer_length), my_turf) - core
-	var/list/clear = RECT_TURFS((direction ? outer_length+1 : outer_width+1), (direction ? outer_width+1 : outer_length+1), my_turf)
+	// var/list/clear = RECT_TURFS((direction ? outer_length+1 : outer_width+1), (direction ? outer_width+1 : outer_length+1), my_turf)
 	var/obj/item/stack/ore/O = ore_type
-	var/core_count = 0
-	var/outer_count = 0
+	// var/core_count = 0
+	// var/outer_count = 0
 	for(var/turf/closed/mineral/M in core)
 		if(prob(core_spread_chance))
-			core_count++
+			// core_count++
 			M.mineralType = ore_type
 			M.mineralAmt = rand(1, 5)
 			M.draw_ore(M.smoothing_junction)
 			M.name = initial(O.name)
 	for(var/turf/closed/mineral/M in outer)
 		if(prob(outer_spread_chance))
-			outer_count++
+			// outer_count++
 			M.mineralType = ore_type
 			M.mineralAmt = rand(1, 5)
 			M.draw_ore(M.smoothing_junction)
 			M.name = initial(O.name)
-	for(var/turf/closed/mineral/M in clear)
-		if(!M.mineralType)
-			M.ScrapeAway()
-	log_world("Line generated. Core: [core_count]; Outer: [outer_count]")
+	// for(var/turf/closed/mineral/M in clear)
+	// 	if(!M.mineralType)
+	// 		M.ScrapeAway()
+	// log_world("Ore line generated. Core: [core_count]; Outer: [outer_count]")
