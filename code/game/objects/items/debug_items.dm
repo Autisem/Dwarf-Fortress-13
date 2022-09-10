@@ -81,7 +81,7 @@
 		if("Analyzer")
 			tool_behaviour = TOOL_ANALYZER
 		if("Pickaxe")
-			tool_behaviour = TOOL_MINING
+			tool_behaviour = TOOL_PICKAXE
 		if("Shovel")
 			tool_behaviour = TOOL_SHOVEL
 		if("Retractor")

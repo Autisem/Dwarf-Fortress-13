@@ -46,7 +46,7 @@
 		to_chat(usr, span_warning("You don't have the dexterity to do this!"))
 		return
 
-	if(I.tool_behaviour == TOOL_MINING)
+	if(I.tool_behaviour == TOOL_PICKAXE)
 		var/turf/T = user.loc
 		if (!isturf(T))
 			return
@@ -92,7 +92,7 @@
 	..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		var/obj/item/I = H.is_holding_tool_quality(TOOL_MINING)
+		var/obj/item/I = H.is_holding_tool(TOOL_PICKAXE)
 		if(I)
 			attackby(I, H)
 		return

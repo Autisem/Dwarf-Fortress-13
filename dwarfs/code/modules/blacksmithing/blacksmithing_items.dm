@@ -337,13 +337,14 @@
 	torch = null
 	update_appearance()
 
-#define SHPATEL_BUILD_FLOOR 1
-#define SHPATEL_BUILD_WALL 2
-#define SHPATEL_BUILD_DOOR 3
-#define SHPATEL_BUILD_TABLE 4
-#define SHPATEL_BUILD_CHAIR 5
+#define TROWEL_BUILD_FLOOR 1
+#define TROWEL_BUILD_WALL 2
+#define TROWEL_BUILD_DOOR 3
+#define TROWEL_BUILD_TABLE 4
+#define TROWEL_BUILD_CHAIR 5
+#define TROWEL_BUILD_STAIRS 6
 
-/obj/item/blacksmith/shpatel
+/obj/item/blacksmith/trowel
 	name = "trowel"
 	desc = "Used for building purposes."
 	icon = 'dwarfs/icons/items/tools.dmi'
@@ -354,60 +355,62 @@
 	force = 8
 	throwforce = 12
 	throw_range = 3
-	var/mode = SHPATEL_BUILD_FLOOR
+	var/mode = TROWEL_BUILD_FLOOR
+	var/mat_need = 0
 
-/obj/item/blacksmith/shpatel/afterattack(atom/A, mob/user, proximity)
+/obj/item/blacksmith/trowel/afterattack(atom/A, mob/user, proximity)
 	. = ..()
 	if(!proximity)
 		return
 	do_job(A, user)
 
-/obj/item/blacksmith/shpatel/proc/check_resources()
+/obj/item/blacksmith/trowel/proc/check_resources()
 	var/mat_to = 0
-	var/mat_need = 0
+	mat_need = 0
 	for(var/obj/item/stack/sheet/stone/B in view(1))
 		mat_to += B.amount
 	switch(mode)
-		if(SHPATEL_BUILD_WALL) mat_need = 4
-		if(SHPATEL_BUILD_FLOOR) mat_need = 1
+		if(TROWEL_BUILD_WALL) mat_need = 4
+		if(TROWEL_BUILD_FLOOR) mat_need = 1
+		if(TROWEL_BUILD_STAIRS) mat_need = 3
 	if(mat_to >= mat_need)
 		return TRUE
 	else
 		return FALSE
 
-/obj/item/blacksmith/shpatel/proc/use_resources(var/turf/open/floor/T, mob/user)
+/obj/item/blacksmith/trowel/proc/use_resources(turf/T, mob/user)
+	var/needed = mat_need
+	for(var/obj/item/stack/sheet/stone/B in view(1))
+		var/temp_needed = needed
+		while(!B.use(temp_needed))
+			temp_needed--
+		needed -= temp_needed
+		if(needed == 0) break
 	switch(mode)
-		if(SHPATEL_BUILD_WALL)
-			var/blocks_need = 5
-			for(var/obj/item/stack/sheet/stone/B in view(1))
-				blocks_need -= B.amount
-				B.amount = -blocks_need
-				B.update_icon()
-				if(B.amount <= 0)
-					qdel(B)
-				if(blocks_need <= 0)
-					break
-			T.ChangeTurf(/turf/closed/wall/stone, flags = CHANGETURF_IGNORE_AIR)
+		if(TROWEL_BUILD_WALL)
+			T.ChangeTurf(/turf/closed/wall/stone)
 			user.visible_message(span_notice("<b>[user]</b> constructs a stone wall.") , \
 								span_notice("You construct a stone wall."))
-		if(SHPATEL_BUILD_FLOOR)
-			var/blocks_need = 1
-			for(var/obj/item/stack/sheet/stone/B in view(1))
-				blocks_need -= B.amount
-				B.amount = -blocks_need
-				B.update_icon()
-				if(B.amount <= 0)
-					qdel(B)
-				if(blocks_need <= 0)
-					break
-			T.ChangeTurf(/turf/open/floor/stone, flags = CHANGETURF_INHERIT_AIR)
+		if(TROWEL_BUILD_FLOOR)
+			if(isopenspace(T))
+				var/obj/L = locate(/obj/structure/lattice) in T
+				if(!L)
+					to_chat(user, span_warning("[src] requires a lattice to build floor."))
+					return
+				else
+					qdel(L)
+			T.ChangeTurf(/turf/open/floor/stone)
 			user.visible_message(span_notice("<b>[user]</b> constructs stone floor.") , \
 								span_notice("You construct stone floor."))
+		if(TROWEL_BUILD_STAIRS)
+			var/obj/structure/stairs/S = new(T)
+			S.dir = user.dir
+			user.visible_message(span_notice("<b>[user]</b> constructs stone stairs."), span_notice("You construct stone stairs."))
 
-/obj/item/blacksmith/shpatel/proc/do_job(atom/A, mob/user)
+/obj/item/blacksmith/trowel/proc/do_job(atom/A, mob/user)
 	if(!istype(A, /turf/open/floor))
 		return
-	if(mode != SHPATEL_BUILD_FLOOR && !istype(A, /turf/open/floor/stone))
+	if(mode != TROWEL_BUILD_FLOOR && !isfloorturf(A))
 		to_chat(user, span_warning("Can't build here!"))
 		return
 	var/turf/T = get_turf(A)
@@ -420,33 +423,36 @@
 	else
 		to_chat(user, span_warning("Not enough materials!"))
 
-/obj/item/blacksmith/shpatel/proc/check_menu(mob/living/user)
+/obj/item/blacksmith/trowel/proc/check_menu(mob/living/user)
 	if(!istype(user))
 		return FALSE
 	if(user.incapacitated() || !user.Adjacent(src))
 		return FALSE
 	return TRUE
 
-/obj/item/blacksmith/shpatel/attack_self(mob/user)
+/obj/item/blacksmith/trowel/attack_self(mob/user)
 	..()
 	var/list/choices = list(
 		"Floor" = image(icon = 'dwarfs/icons/turf/floors_dwarven.dmi', icon_state = "stone_floor"),
-		"Wall" = image(icon = 'dwarfs/icons/turf/walls_dwarven.dmi', icon_state = "rich_wall-0")
+		"Wall" = image(icon = 'dwarfs/icons/turf/walls_dwarven.dmi', icon_state = "rich_wall-0"),
+		"Stairs" = image(icon='dwarfs/icons/structures/stone_stairs.dmi', icon_state = "stairs_t")
 	)
 	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(choice)
 		if("Floor")
-			mode = SHPATEL_BUILD_FLOOR
+			mode = TROWEL_BUILD_FLOOR
 		if("Wall")
-			mode = SHPATEL_BUILD_WALL
+			mode = TROWEL_BUILD_WALL
+		if("Stairs")
+			mode = TROWEL_BUILD_STAIRS
 
-#undef SHPATEL_BUILD_FLOOR
-#undef SHPATEL_BUILD_WALL
-#undef SHPATEL_BUILD_DOOR
-#undef SHPATEL_BUILD_TABLE
-#undef SHPATEL_BUILD_CHAIR
+#undef TROWEL_BUILD_FLOOR
+#undef TROWEL_BUILD_WALL
+#undef TROWEL_BUILD_DOOR
+#undef TROWEL_BUILD_TABLE
+#undef TROWEL_BUILD_CHAIR
 
 /obj/item/blacksmith/partial
 	desc = "Looks like a part of something bigger."

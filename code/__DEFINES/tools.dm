@@ -3,7 +3,7 @@
 #define TOOL_SCREWDRIVER "screwdriver"
 #define TOOL_WRENCH "wrench"
 #define TOOL_ANALYZER "analyzer"
-#define TOOL_MINING "mining"
+#define TOOL_PICKAXE "pickaxe"
 #define TOOL_SHOVEL "shovel"
 #define TOOL_CHISEL "chisel"
 #define TOOL_AXE "axe"

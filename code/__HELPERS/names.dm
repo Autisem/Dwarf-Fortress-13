@@ -80,8 +80,8 @@ GLOBAL_VAR(command_name)
 			return "an analyzer tool"
 		if(TOOL_AXE)
 			return "an axe tool"
-		if(TOOL_MINING)
-			return "a mining implement"
+		if(TOOL_PICKAXE)
+			return "a pickaxe tool"
 		if(TOOL_SHOVEL)
 			return "a digging tool"
 		if(TOOL_RETRACTOR)

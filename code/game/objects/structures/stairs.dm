@@ -46,6 +46,14 @@
 	listeningTo = null
 	return ..()
 
+/obj/structure/stairs/attackby(obj/item/I, mob/user, params)
+	if(I.tool_behaviour == TOOL_PICKAXE)
+		user.visible_message(span_notice("[user] starts deconstructing [src]."), span_notice("You start deconstructing [src]."))
+		if(I.use_tool(src, user, 5 SECONDS))
+			new /obj/item/stack/sheet/stone(get_turf(src), 2)
+			qdel(src)
+			user.visible_message(span_notice("[user] deconstruct [src]."), span_notice("You deconstruct [src]."))
+
 /obj/structure/stairs/Move() //Look this should never happen but...
 	. = ..()
 	if(force_open_above)
@@ -96,9 +104,31 @@
 	if(!istype(checking))
 		return
 	if(!checking.zPassIn(climber, UP, get_turf(src)))
+		if(ismineralturf(checking))
+			if(ishuman(climber))
+				var/mob/living/carbon/human/H = climber
+				var/obj/item/tool = H.is_holding_tool(TOOL_PICKAXE)
+				if(!tool)
+					return
+				to_chat(climber, span_notice("You start mining your way up..."))
+				if(tool.use_tool(H, H, 10 SECONDS))
+					var/turf/closed/mineral/M = checking
+					M.gets_drilled(H, TRUE)
 		return
 	var/turf/target = get_step_multiz(get_turf(src), (dir|UP))
 	if(istype(target) && !climber.can_z_move(DOWN, target, z_move_flags = ZMOVE_FALL_FLAGS)) //Don't throw them into a tile that will just dump them back down.
+		if(isclosedturf(target))
+			if(ismineralturf(target))
+				var/turf/closed/mineral/M = target
+				if(ishuman(climber))
+					var/mob/living/carbon/human/H = climber
+					var/obj/item/tool = H.is_holding_tool(TOOL_PICKAXE)
+					if(!tool)
+						return
+					to_chat(climber, span_notice("You start mining your way up..."))
+					if(tool.use_tool(H, H, 10 SECONDS))
+						M.gets_drilled(H, TRUE)
+			return
 		climber.zMove(target = target, z_move_flags = ZMOVE_STAIRS_FLAGS)
 		/// Moves anything that's being dragged by src or anything buckled to it to the stairs turf.
 		climber.pulling?.move_from_pull(climber, loc, climber.glide_size)

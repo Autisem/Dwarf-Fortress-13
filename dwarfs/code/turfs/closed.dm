@@ -14,7 +14,7 @@
 	. = ..()
 
 	if(prob(33))
-		new /obj/item/stack/ore/stone(drop_location())
+		new /obj/item/stack/ore/stone(src)
 
 	if(prob(0.3))
 		to_chat(user, span_userdanger("THIS ROCK APPEARS TO BE ESPECIALLY SOFT!"))
@@ -22,8 +22,7 @@
 
 /turf/closed/mineral/random/dwarf_lustress/attackby_secondary(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/pickaxe) && params)
-		playsound(src, pick(I.usesound), 100, TRUE)
-		if(do_after(user, 10 SECONDS, target = src))
+		if(I.use_tool(src, user, 10 SECONDS))
 			if(QDELETED(src))
 				return
 			var/turf/TA = SSmapping.get_turf_above(src)
@@ -64,4 +63,4 @@
 /turf/closed/mineral/random/sand/gets_drilled(user, give_exp)
 	. = ..()
 	if(prob(33))
-		new /obj/item/stack/sand(drop_location())
+		new /obj/item/stack/sand(src)

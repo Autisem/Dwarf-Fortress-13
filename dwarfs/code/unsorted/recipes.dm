@@ -88,7 +88,7 @@
 
 /datum/smithing_recipe/shpatel
 	name = "trowel"
-	result = /obj/item/blacksmith/shpatel
+	result = /obj/item/blacksmith/trowel
 	max_resulting = 2
 
 /datum/smithing_recipe/crown

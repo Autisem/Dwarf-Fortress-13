@@ -43,46 +43,30 @@
 	return FALSE
 
 /turf/open/floor/rock/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/pickaxe))
-		if(digged_up)
-			playsound(src, pick(I.usesound), 100, TRUE)
-			if(do_after(user, 5 SECONDS, target = src))
-				if(QDELETED(src))
-					return
-				var/turf/TD = SSmapping.get_turf_below(src)
-				if(istype(TD, /turf/closed/mineral))
-					TD.ChangeTurf(/turf/open/floor/rock)
-					var/obj/O = new /obj/structure/stairs(TD)
-					O.dir = REVERSE_DIR(user.dir)
-					ChangeTurf(/turf/open/openspace)
-					user.visible_message(span_notice("<b>[user]</b> constructs stairs downwards.") , \
-										span_notice("You construct stairs downwards."))
-				else
-					to_chat(user, span_warning("Something very dense underneath!"))
-	if((I.tool_behaviour == TOOL_SHOVEL) && params)
-		playsound(src, pick(I.usesound), 100, TRUE)
-		if(do_after(user, 5 SECONDS, target = src))
+	if(I.tool_behaviour == TOOL_PICKAXE)
+		if(I.use_tool(src, user, 5 SECONDS))
 			if(QDELETED(src))
 				return
 			if(digged_up)
 				var/turf/TD = SSmapping.get_turf_below(src)
-				if(istype(TD, /turf/closed/mineral))
-					TD.ChangeTurf(/turf/open/floor/rock)
+				if(ismineralturf(TD) || isopenturf(TD))
+					if(ismineralturf(TD))
+						TD.ScrapeAway()
 					ChangeTurf(/turf/open/openspace)
 					user.visible_message(span_warning("<b>[user]</b> digs up a hole!") , \
 										span_notice("You dig up a hole."))
 				else
 					to_chat(user, span_warning("Something very dense underneath!"))
 			else
-				for(var/i in 1 to rand(3, 6))
+				for(var/i in 1 to rand(2, 5))
 					var/obj/item/S = new /obj/item/stack/ore/stone(src)
 					S.pixel_x = rand(-8, 8)
 					S.pixel_y = rand(-8, 8)
 				digged_up = TRUE
 				user.visible_message(span_notice("<b>[user]</b> digs up some stones.") , \
 									span_notice("You dig up some stones."))
-	if(..())
-		return
+	else
+		. = ..()
 
 /turf/open/floor/sand
 	name = "sand"
@@ -93,9 +77,10 @@
 	var/digged_up = FALSE
 
 /turf/open/floor/sand/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_SHOVEL)
+	if(I.tool_behaviour == TOOL_SHOVEL || I.tool_behaviour == TOOL_PICKAXE)
 		to_chat(user, span_notice("You start digging [src]..."))
-		if(I.use_tool(src, user, 5 SECONDS))
+		var/dig_time = I.tool_behaviour == TOOL_SHOVEL ? 5 SECONDS : 10 SECONDS
+		if(I.use_tool(src, user, dig_time))
 			if(QDELETED(src))
 				return
 			if(digged_up)
@@ -125,9 +110,10 @@
 		if(I.use_tool(src, user, 10 SECONDS))
 			ChangeTurf(/turf/open/floor/tilled)
 			user.mind.adjust_experience(/datum/skill/farming, 7)
-	else if(I.tool_behaviour == TOOL_SHOVEL)
+	else if(I.tool_behaviour == TOOL_SHOVEL || I.tool_behaviour == TOOL_PICKAXE)
 		to_chat(user, span_notice("You start digging [src]..."))
-		if(I.use_tool(src, user, 5 SECONDS))
+		var/dig_time = I.tool_behaviour == TOOL_SHOVEL ? 5 SECONDS : 10 SECONDS
+		if(I.use_tool(src, user, dig_time))
 			if(digged_up)
 				user.visible_message(span_notice("[user] digs out a hole in the ground."), span_notice("You dig out a hole in the ground."))
 				ChangeTurf(/turf/open/openspace)

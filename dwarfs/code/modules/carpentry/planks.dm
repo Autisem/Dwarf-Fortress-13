@@ -42,3 +42,9 @@ GLOBAL_LIST_INIT(plank_recipes, list (
 	icon_state = "bark"
 	w_class = WEIGHT_CLASS_SMALL
 	merge_type = /obj/item/stack/sheet/bark
+
+/obj/structure/lattice
+	name = "wooden lattice"
+	desc = "Blocks you from falling down and allows building floors."
+	anchored = 1
+	obj_flags = BLOCK_Z_IN_UP | BLOCK_Z_IN_DOWN | BLOCK_Z_OUT_DOWN

@@ -125,3 +125,14 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 				if(ishuman(user))
 					var/mob/living/carbon/human/H = user
 					H.adjustStaminaLoss(60)
+
+/turf/open/openspace/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/stack/sheet/planks))
+		var/obj/item/stack/S = I
+		if(S.use(4))
+			new /obj/structure/lattice(src)
+			to_chat(user, span_notice("You build wooden lattice above [src]."))
+		else
+			to_chat(user, span_warning("Not enough material to build wooden lattice."))
+	else
+		. = ..()

@@ -135,5 +135,5 @@
 	attack_verb_continuous = list("whacks", "spoons", "taps")
 	custom_materials = list(/datum/material/iron=120)
 	custom_price = PAYCHECK_PRISONER * 5
-	tool_behaviour = TOOL_MINING
+	tool_behaviour = TOOL_PICKAXE
 	toolspeed = 25 // Literally 25 times worse than the base pickaxe
