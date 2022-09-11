@@ -43,7 +43,7 @@
 	material_type = /datum/material/stone
 
 GLOBAL_LIST_INIT(stone_recipes, list(
-	// new/datum/stack_recipe("Pot", /obj/structure/pot, 5, required_tools=TOOL_CHISEL),
+	new/datum/stack_recipe("Pot", /obj/structure/sapling_pot, 5, required_tools=TOOL_CHISEL),
 ))
 
 /obj/item/stack/sheet/stone/get_main_recipes()
