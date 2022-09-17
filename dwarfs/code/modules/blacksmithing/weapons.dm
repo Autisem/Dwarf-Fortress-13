@@ -74,15 +74,15 @@
 	resistance_flags = FIRE_PROOF
 	skill = /datum/skill/combat/dagger
 
-/obj/item/blacksmith/dagger/Initialize()
-	. = ..()
-	AddComponent(/datum/component/attack_toggle,\
-		attacks=list(SHARP,PIERCE),\
-		damages=list(20, 3),\
-		cooldowns=list(CLICK_CD_MELEE, CLICK_CD_RAPID),\
-		attack_verbs_simple=list(list("attack","slash"), list("pierce","poke","stab")),\
-		attack_verbs_continuous=list(list("attacks","slashes"), list("pierces","pokes","stabs"))\
-	)
+// /obj/item/blacksmith/dagger/Initialize()
+// 	. = ..()
+// 	AddComponent(/datum/component/attack_toggle,\
+// 		attacks=list(SHARP,PIERCE),\
+// 		damages=list(20, 3),\
+// 		cooldowns=list(CLICK_CD_MELEE, CLICK_CD_RAPID),\
+// 		attack_verbs_simple=list(list("attack","slash"), list("pierce","poke","stab")),\
+// 		attack_verbs_continuous=list(list("attacks","slashes"), list("pierces","pokes","stabs"))\
+// 	)
 
 /obj/item/blacksmith/sword
 	name = "sword"
