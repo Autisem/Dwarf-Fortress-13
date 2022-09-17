@@ -433,7 +433,7 @@
 /obj/item/blacksmith/trowel/attack_self(mob/user)
 	..()
 	var/list/choices = list(
-		"Floor" = image(icon = 'dwarfs/icons/turf/floors_dwarven.dmi', icon_state = "stone_floor"),
+		"Floor" = image(icon = 'dwarfs/icons/turf/floors.dmi', icon_state = "stone_floor"),
 		"Wall" = image(icon = 'dwarfs/icons/turf/walls_dwarven.dmi', icon_state = "rich_wall-0"),
 		"Stairs" = image(icon='dwarfs/icons/structures/stone_stairs.dmi', icon_state = "stairs_t")
 	)

@@ -7,7 +7,6 @@
 /turf/open/floor/stone
 	name = "stone floor"
 	desc = "Classic."
-	icon = 'dwarfs/icons/turf/floors_dwarven.dmi'
 	icon_state = "stone_floor"
 	footstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
@@ -30,7 +29,6 @@
 /turf/open/floor/rock
 	name = "rock"
 	desc = "Terrible."
-	icon = 'dwarfs/icons/turf/floors_cavern.dmi'
 	icon_state = "stone"
 	slowdown = 1
 	baseturfs = /turf/open/lava/smooth/nospread
@@ -63,6 +61,7 @@
 					S.pixel_x = rand(-8, 8)
 					S.pixel_y = rand(-8, 8)
 				digged_up = TRUE
+				icon_state = "stone_dug"
 				user.visible_message(span_notice("<b>[user]</b> digs up some stones.") , \
 									span_notice("You dig up some stones."))
 	else
@@ -71,7 +70,6 @@
 /turf/open/floor/sand
 	name = "sand"
 	desc = "Cheese?"
-	icon = 'dwarfs/icons/turf/floors_cavern.dmi'
 	icon_state = "sand"
 	baseturfs = /turf/open/floor/sand
 	var/digged_up = FALSE
@@ -89,16 +87,16 @@
 			else
 				new/obj/item/stack/sand(src, rand(3,6))
 				digged_up = TRUE
+				icon_state = "sand_dug"
 				user.visible_message(span_notice("<b>[user]</b> digs up some stones.") , \
 					span_notice("You dig up some stones."))
 	else
 		. = ..()
 
 /turf/open/floor/dirt
-	name = "fertile dirt"
+	name = "dirt"
 	desc = "Found near bodies of water. Can be farmed on."
-	icon = 'dwarfs/icons/turf/floors_fertile.dmi'
-	icon_state = "fertile"
+	icon_state = "soil"
 	var/digged_up = FALSE
 
 /turf/open/floor/dirt/attackby(obj/item/I, mob/user, params)
@@ -122,12 +120,14 @@
 				user.visible_message(span_notice("<b>[user]</b> digs up some dirt.") , \
 					span_notice("You dig up some dirt."))
 				digged_up = TRUE
+				icon_state = "soil_dug"
+	else
+	 . = ..()
 
 /turf/open/floor/tilled
 	name = "tilled dirt"
 	desc = "Ready for plants."
-	icon = 'dwarfs/icons/turf/floors_fertile.dmi'
-	icon_state = "fertile_tilled"
+	icon_state = "soil_tilled"
 	var/waterlevel = 0
 	var/watermax = 100
 	var/waterrate = 1
