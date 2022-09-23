@@ -182,7 +182,7 @@
 				return
 			var/obj/item/growable/seeds/S = O
 			to_chat(user, span_notice("You plant [S]."))
-			var/obj/structure/plant/P = new S.plant(loc)
+			var/obj/structure/plant/P = new S.plant(src)
 			qdel(S)
 			myplant = P
 			P.plot = src
