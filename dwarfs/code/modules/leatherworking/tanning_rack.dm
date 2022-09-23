@@ -3,6 +3,8 @@
 	desc = "Used for drying wet hide."
 	icon = 'dwarfs/icons/structures/workshops.dmi'
 	icon_state = "tanning_rack"
+	anchored = TRUE
+	density = TRUE
 	var/tanning_time = 1 MINUTES
 	var/timerid
 
