@@ -16,7 +16,6 @@
 	name = "cat hide"
 	desc = "The by-product of cat farming."
 	singular_name = "cat hide piece"
-	icon = 'dwarfs/icons/items/components.dmi'
 	icon_state = "hide_cat"
 	inhand_icon_state = "sheet-cat"
 	leather_amount = 2
@@ -27,6 +26,18 @@
 	name = "torn cat hide"
 	leather_amount = 1
 	singular_name = "torn cat hide piece"
+
+/obj/item/stack/sheet/animalhide/troll
+	name = "troll hide"
+	icon_state = "hide_troll"
+	singular_name = "troll hide piece"
+	leather_amount = 5
+	damaged_type = /obj/item/stack/sheet/animalhide/troll/damaged
+
+/obj/item/stack/sheet/animalhide/troll/damaged
+	name = "torn troll hide"
+	singular_name = "torn troll hide piece"
+	leather_amount = 2
 
 /obj/item/stack/sheet/hairlesshide
 	name = "hairless hide"
@@ -97,7 +108,6 @@ GLOBAL_LIST_INIT(leather_recipes, list (
 	icon_state = "goliath_hide"
 	singular_name = "hide plate"
 	max_amount = 6
-	novariants = FALSE
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_NORMAL
 	layer = MOB_LAYER

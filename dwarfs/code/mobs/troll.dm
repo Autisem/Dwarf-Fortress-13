@@ -14,6 +14,7 @@
 	weather_immunities = list("lava","ash")
 	see_in_dark = 1
 	butcher_results = list(/obj/item/food/meat/slab = list(2,3), /obj/item/stack/ore/stone = list(3,6), /obj/item/stack/sheet/mineral/coal = list(1,5))
+	hide_type = /obj/item/stack/sheet/animalhide/troll
 	response_help_continuous = "pushes"
 	response_help_simple = "pushes"
 	response_disarm_continuous = "pushes"

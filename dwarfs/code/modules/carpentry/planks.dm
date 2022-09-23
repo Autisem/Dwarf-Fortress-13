@@ -46,5 +46,7 @@ GLOBAL_LIST_INIT(plank_recipes, list (
 /obj/structure/lattice
 	name = "wooden lattice"
 	desc = "Blocks you from falling down and allows building floors."
+	icon = 'dwarfs/icons/structures/construction.dmi'
+	icon_state = "lattice"
 	anchored = 1
 	obj_flags = BLOCK_Z_IN_UP | BLOCK_Z_IN_DOWN | BLOCK_Z_OUT_DOWN
