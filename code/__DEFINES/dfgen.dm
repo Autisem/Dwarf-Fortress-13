@@ -22,8 +22,8 @@
 #define DFLIB (__dflib || __detect_dflib())
 #endif
 
-/proc/noise(x=100, y=100, seed=null, frequency=0.03, octaves=5, lacunarity=2)
+/proc/fbm(x=100, y=100, seed=null, frequency=0.03, octaves=5, lacunarity=2, persistence=0.5)
 	if(!seed) seed = rand(1, 2000)
-	var/res = call(DFLIB,"simplex")("[x]", "[y]" ,"[seed]", "[frequency]", "[octaves]", "[lacunarity]")
+	var/res = call(DFLIB,"fbm")("[x]", "[y]" ,"[seed]", "[frequency]", "[octaves]", "[lacunarity]", "[persistence]")
 	var/list/lres = splittext(res, ",")
 	return lres

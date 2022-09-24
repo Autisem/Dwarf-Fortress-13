@@ -5,8 +5,8 @@
 	if(CONFIG_GET(flag/disable_generation))
 		return
 	var/start_time = REALTIMEOFDAY
-	var/list/height_values = noise(world.maxx, world.maxy)
-	var/list/temp_values = noise(world.maxx, world.maxy, frequency=0.005, lacunarity=0.4)
+	var/list/height_values = fbm(world.maxx, world.maxy)
+	var/list/temp_values = fbm(world.maxx, world.maxy, frequency=0.006, lacunarity=0.4, persistence=0.4)
 	for(var/turf/T in turfs)
 		var/height = text2num(height_values[world.maxx * (T.y - 2) + T.x])
 		var/temp = text2num(temp_values[world.maxx * (T.y - 2) + T.x])
