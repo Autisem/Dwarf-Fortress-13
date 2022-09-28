@@ -10,14 +10,9 @@
 	icon_state = "rock"
 	singular_name = "Stone piece"
 	max_amount = 1
-	refined_type = /obj/item/stack/sheet/stone
 	merge_type = /obj/item/stack/ore/stone
 
 /obj/item/stack/ore/stone/attackby(obj/item/I, mob/living/user, params)
-
-	if(user.a_intent == INTENT_HARM)
-		return ..()
-
 	if(istype(I, /obj/item/blacksmith/chisel))
 		playsound(src, 'sound/weapons/tough.wav', 100, TRUE)
 		if(prob(25))
@@ -27,6 +22,8 @@
 		to_chat(user, span_notice("You process \the [src]."))
 		qdel(src)
 		return
+	else
+	 . = ..()
 
 /obj/item/stack/sheet/stone
 	name = "stone"

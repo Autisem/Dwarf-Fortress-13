@@ -10,7 +10,6 @@
 	inhand_icon_state = "ore"
 	full_w_class = WEIGHT_CLASS_BULKY
 	singular_name = "ore chunk"
-	var/refined_type = null //What this ore defaults to being refined into
 	var/mine_experience = 5 //How much experience do you get for mining this ore?
 	novariants = TRUE // Ore stacks handle their icon updates themselves to keep the illusion that there's more going
 	var/list/stack_overlays
@@ -37,30 +36,20 @@
 	if (stack_overlays)
 		. += stack_overlays
 
-/obj/item/stack/ore/fire_act(exposed_temperature, exposed_volume)
-	. = ..()
-	if(isnull(refined_type))
-		return
-	else
-		var/probability = (rand(0,100))/100
-		var/burn_value = probability*amount
-		var/amountrefined = round(burn_value, 1)
-		if(amountrefined < 1)
-			qdel(src)
-		else
-			new refined_type(drop_location(),amountrefined)
-			qdel(src)
+/obj/item/stack/ore/smeltable
+	var/refined_type
 
-/obj/item/stack/ore/iron
+/obj/item/stack/ore/smeltable/iron
 	name = "iron ore"
 	icon_state = "iron"
 	inhand_icon_state = "Iron ore"
 	singular_name = "iron ore chunk"
 	mine_experience = 1
-	merge_type = /obj/item/stack/ore/iron
+	merge_type = /obj/item/stack/ore/smeltable/iron
 	ore_icon = 'dwarfs/icons/turf/ores/iron.dmi'
 	ore_basename = "iron"
 	vein_type = /datum/vein/line
+	refined_type = /obj/item/blacksmith/ingot
 
 /obj/item/stack/ore/coal
 	name = "coal"
@@ -68,7 +57,6 @@
 	icon_state = "coal"
 	inhand_icon_state = "Iron ore"
 	singular_name = "coal chunk"
-	refined_type = /obj/item/stack/sheet/mineral/coal
 	mine_experience = 1
 	merge_type = /obj/item/stack/ore/coal
 	ore_icon = 'dwarfs/icons/turf/ores/coal.dmi'
@@ -78,27 +66,28 @@
 /obj/item/stack/ore/coal/get_fuel()
 	return 15 * amount
 
-/obj/item/stack/ore/gold
+/obj/item/stack/ore/smeltable/gold
 	name = "gold ore"
 	icon_state = "gold"
 	inhand_icon_state = "Gold ore"
 	singular_name = "gold ore chunk"
 	mine_experience = 5
-	refined_type = /obj/item/stack/sheet/mineral/gold
-	merge_type = /obj/item/stack/ore/gold
+	refined_type = /obj/item/blacksmith/ingot/gold
+	merge_type = /obj/item/stack/ore/smeltable/gold
 	ore_icon = 'dwarfs/icons/turf/ores/gold.dmi'
 	ore_basename = "gold"
 	vein_type = /datum/vein/line
 
 /obj/item/stack/ore/gem
 	max_amount = 1
+	var/cut_type
 
 /obj/item/stack/ore/gem/diamond
 	name = "diamond ore"
 	icon_state = "diamond_uncut"
 	// inhand_icon_state = "Diamond ore"
 	singular_name = "uncut diamond"
-	refined_type = /obj/item/stack/sheet/mineral/gem/diamond
+	cut_type = /obj/item/stack/sheet/mineral/gem/diamond
 	mine_experience = 10
 	merge_type = /obj/item/stack/ore/gem/diamond
 	ore_icon = 'dwarfs/icons/turf/ores/diamond.dmi'
@@ -110,7 +99,7 @@
 	icon_state = "sapphire_uncut"
 	// inhand_icon_state = "Diamond ore"
 	singular_name = "uncut sapphire"
-	refined_type = /obj/item/stack/sheet/mineral/gem/sapphire
+	cut_type = /obj/item/stack/sheet/mineral/gem/sapphire
 	mine_experience = 10
 	merge_type = /obj/item/stack/ore/gem/sapphire
 	ore_icon = 'dwarfs/icons/turf/ores/sapphire.dmi'
@@ -122,7 +111,7 @@
 	icon_state = "ruby_uncut"
 	// inhand_icon_state = "Diamond ore"
 	singular_name = "uncut ruby"
-	refined_type = /obj/item/stack/sheet/mineral/gem/ruby
+	cut_type = /obj/item/stack/sheet/mineral/gem/ruby
 	mine_experience = 10
 	merge_type = /obj/item/stack/ore/gem/ruby
 	ore_icon = 'dwarfs/icons/turf/ores/ruby.dmi'

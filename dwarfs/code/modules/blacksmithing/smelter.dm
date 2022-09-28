@@ -54,8 +54,8 @@
 		deltimer(timerid)
 
 /obj/structure/smelter/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/stack/ore/iron) || istype(I, /obj/item/stack/ore/gold) || istype(I, /obj/item/stack/sand))
-		var/obj/item/stack/S = I
+	if(istype(I, /obj/item/stack/ore/smeltable))
+		var/obj/item/stack/ore/smeltable/S = I
 		if(contents.len == max_items)
 			to_chat(user, span_warning("[src] is full!"))
 			return
@@ -65,12 +65,7 @@
 		to_chat(user, span_notice("[src] you place [S] into [src]."))
 		if(working && !contents.len)
 			start_smelting()
-		if(istype(I, /obj/item/stack/ore/gold))
-			new /obj/item/blacksmith/ingot/gold(src)
-		else if(istype(I, /obj/item/stack/ore/iron))
-			new /obj/item/blacksmith/ingot(src)
-		else if(istype(I, /obj/item/stack/sand))
-			new /obj/item/stack/glass(src)
+		new S.refined_type(src)
 	else if(I.get_temperature())
 		if(!fuel)
 			to_chat(user, span_warning("[src] has no fuel."))

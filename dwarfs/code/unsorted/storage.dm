@@ -15,5 +15,5 @@
 	STR.max_combined_stack_amount = 50
 	STR.set_holdable(list(
 		/obj/item/stack/dirt,
-		/obj/item/stack/sand
+		/obj/item/stack/ore/smeltable/sand
 	))

@@ -21,7 +21,7 @@
 			return
 		busy = FALSE
 		var/obj/item/stack/ore/gem/G = I
-		new G.refined_type(loc)
+		new G.cut_type(loc)
 		to_chat(user, span_notice("You process [G] on \a [src]"))
 		qdel(G)
 		icon_state = "gemcutter"

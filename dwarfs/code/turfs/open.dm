@@ -85,7 +85,7 @@
 				user.visible_message(span_notice("[user] digs out a hole in the ground."), span_notice("You dig out a hole in the ground."))
 				ChangeTurf(/turf/open/openspace)
 			else
-				new/obj/item/stack/sand(src, rand(3,6))
+				new/obj/item/stack/ore/smeltable/sand(src, rand(3,6))
 				digged_up = TRUE
 				icon_state = "sand_dug"
 				user.visible_message(span_notice("<b>[user]</b> digs up some stones.") , \

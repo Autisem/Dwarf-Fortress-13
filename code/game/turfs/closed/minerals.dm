@@ -116,7 +116,7 @@
 	return
 
 /turf/closed/mineral/random
-	var/list/mineralSpawnChanceList = list(/obj/item/stack/ore/gem/diamond = 1, /obj/item/stack/ore/gold = 10, /obj/item/stack/ore/iron = 40)
+	var/list/mineralSpawnChanceList = list(/obj/item/stack/ore/gem/diamond = 1, /obj/item/stack/ore/smeltable/gold = 10, /obj/item/stack/ore/smeltable/iron = 40)
 	var/mineralChance = 1
 
 /turf/closed/mineral/random/Initialize()
