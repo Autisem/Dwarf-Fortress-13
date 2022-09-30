@@ -218,7 +218,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						S["real_name"] >> name
 						if(!name)
 							name = "Character [i]"
-						dat += "<a class='csetup_characters_character' href='?_src_=prefs;preference=changeslot;num=[i];' [i == default_slot ? "class='linkOn'" : ""]>[name]</a> "
+						dat += "<a href='?_src_=prefs;preference=changeslot;num=[i];' [i == default_slot ? "class='linkOn'" : ""]>[name]</a> "
 					dat += "</div>"
 			dat += "<center><a href='?_src_=prefs;preference=skills'>Skills</a></center>"
 			dat += "<div class='csetup_main'>"
@@ -1348,7 +1348,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			else if(firstspace == name_length)
 				real_name += "[pick(GLOB.last_names)]"
 
-	if(skills && character.mind)
+	if(skills && character.mind && !character_setup)
 		for(var/skilltype in skills)
 			if(skills[skilltype] > 0)
 				character.mind.adjust_experience(skilltype, SKILL_EXP_LIST[skills[skilltype]+1])
