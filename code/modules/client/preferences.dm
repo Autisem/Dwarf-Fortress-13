@@ -492,9 +492,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<a href='?_src_=prefs;preference=reset_all'>Reset</a>"
 	dat += "</center>"
 
-	var/datum/asset/stuff = get_asset_datum(/datum/asset/simple/metacoins)
-	stuff.send(user)
-
 	winshow(user, "preferences_window", TRUE)
 	var/datum/browser/popup = new(user, "preferences_browser_new", "<div align='center'>Preferences</div>", 500, 640)
 	popup.set_content(dat.Join())
