@@ -160,7 +160,7 @@
 		humanc = character	//Let's retypecast the var to be human,
 
 	if(humanc)	//These procs all expect humans
-		humanc.equipOutfit(/datum/outfit/dwarf)
+		humanc.equipOutfit(/datum/outfit/dwarf/random_tunic)
 
 	GLOB.joined_player_list += character.ckey
 

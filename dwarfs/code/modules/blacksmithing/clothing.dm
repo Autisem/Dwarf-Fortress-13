@@ -171,6 +171,10 @@
 
 /obj/item/clothing/under/tunic/Initialize(mycolor=null)
 	. = ..()
+	select_color("white")
+
+/obj/item/clothing/under/tunic/random/Initialize(mycolor=null)
+	. = ..()
 	select_color(mycolor)
 
 /obj/item/clothing/under/tunic/proc/select_color(mycolor=null)

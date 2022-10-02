@@ -76,6 +76,11 @@
 	uniform = /obj/item/clothing/under/tunic
 	shoes = /obj/item/clothing/shoes/boots
 
+/datum/outfit/dwarf/random_tunic
+	name = "Dwarf Random Tunic"
+	uniform = /obj/item/clothing/under/tunic/random
+	shoes = /obj/item/clothing/shoes/boots
+
 /datum/outfit/dwarf_king
 	name = "Dwarf King"
 	uniform = /obj/item/clothing/under/tunic
