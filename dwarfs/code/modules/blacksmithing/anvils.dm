@@ -99,7 +99,7 @@
 		if(current_ingot)
 			if(current_ingot.heattemp <= 0)
 				update_appearance()
-				to_chat(user, span_warning("\the [current_ingot] is to cold too keep working."))
+				to_chat(user, span_warning("\The [current_ingot] is to cold too keep working."))
 				return
 			if(current_ingot.recipe)
 				var/height = 30

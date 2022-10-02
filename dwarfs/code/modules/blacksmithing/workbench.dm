@@ -83,7 +83,7 @@
 					text += "<br>[amount - src.amount(O)] [initial(O.name)]"
 			.+=text
 		else
-			.+="<hr>[recipe.name] is ready to be assembled."
+			.+="<hr>[recipe] is ready to be assembled."
 	else
 		.+="<br>[src] is empty!"
 
