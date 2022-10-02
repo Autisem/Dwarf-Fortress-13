@@ -114,6 +114,15 @@
 				if(tool.use_tool(H, H, 10 SECONDS))
 					var/turf/closed/mineral/M = checking
 					M.gets_drilled(H, TRUE)
+		else if(isfloorturf(checking))
+			if(ishuman(climber))
+				var/mob/living/carbon/human/H = climber
+				var/obj/item/tool = H.is_holding_tool(TOOL_PICKAXE)
+				if(!tool)
+					return
+				to_chat(climber, span_notice("You start mining your way up..."))
+				if(tool.use_tool(H, H, 10 SECONDS))
+					checking.ChangeTurf(/turf/open/openspace)
 		return
 	var/turf/target = get_step_multiz(get_turf(src), (dir|UP))
 	if(istype(target) && !climber.can_z_move(DOWN, target, z_move_flags = ZMOVE_FALL_FLAGS)) //Don't throw them into a tile that will just dump them back down.

@@ -20,23 +20,6 @@
 		to_chat(user, span_userdanger("THIS ROCK APPEARS TO BE ESPECIALLY SOFT!"))
 		new /mob/living/simple_animal/hostile/troll(src)
 
-/turf/closed/mineral/random/dwarf_lustress/attackby_secondary(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/pickaxe) && params)
-		if(I.use_tool(src, user, 10 SECONDS))
-			if(QDELETED(src))
-				return
-			var/turf/TA = SSmapping.get_turf_above(src)
-			if(istype(TA, /turf/closed/mineral) || istype(TA, /turf/open/floor/rock))
-				TA.ChangeTurf(/turf/open/openspace)
-				var/turf/TT = ChangeTurf(/turf/open/floor/rock)
-				var/obj/O = new /obj/structure/stairs(TT)
-				O.dir = user.dir
-				user.visible_message(span_notice("<b>[user]</b> constructs stairs upwards") , \
-									span_notice("You construct stairs upwards."))
-			else
-				to_chat(user, span_warning("Something very dense above!"))
-	return ..()
-
 /turf/closed/wall/stone
 	name = "stone wall"
 	desc = "Just a regular stone wall."
