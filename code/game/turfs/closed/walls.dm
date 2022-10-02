@@ -116,8 +116,8 @@
 
 /turf/closed/wall/proc/try_wallmount(obj/item/W, mob/user, turf/T)
 	//Poster stuff
-	if(istype(W, /obj/item/blacksmith/torch_handle))
-		var/obj/item/blacksmith/torch_handle/F = W
+	if(istype(W, /obj/item/torch_handle))
+		var/obj/item/torch_handle/F = W
 		if(F.try_build(src, user))
 			F.attach(src, user)
 		return TRUE

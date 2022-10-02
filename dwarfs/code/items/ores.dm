@@ -13,7 +13,7 @@
 	merge_type = /obj/item/stack/ore/stone
 
 /obj/item/stack/ore/stone/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/blacksmith/chisel))
+	if(I.tool_behaviour == TOOL_CHISEL)
 		playsound(src, 'sound/weapons/tough.wav', 100, TRUE)
 		if(prob(25))
 			to_chat(user, span_warning("You process \the [src]."))

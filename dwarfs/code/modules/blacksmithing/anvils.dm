@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 	var/acd = FALSE
-	var/obj/item/blacksmith/ingot/current_ingot = null
+	var/obj/item/ingot/current_ingot = null
 	var/list/allowed_things = list()
 
 /obj/structure/anvil/update_overlays()
@@ -24,7 +24,7 @@
 	. = ..()
 	if(.)
 		return .
-	if(!usr.is_holding_item_of_type(/obj/item/blacksmith/smithing_hammer)||!(usr in view(1, src)))
+	if(!usr.is_holding_item_of_type(/obj/item/smithing_hammer)||!(usr in view(1, src)))
 		usr<<browse(null, "window=Anvil")
 		return
 	if(href_list["hit"])
@@ -46,7 +46,7 @@
 						span_notice("You hit \the anvil with \a hammer."))
 		current_ingot.progress_current++
 		H.adjustStaminaLoss(rand(1, 5))
-		H.mind.adjust_experience(/datum/skill/smithing, rand(0, 4) * current_ingot.mod_grade)
+		H.mind.adjust_experience(/datum/skill/smithing, rand(0, 4) * current_ingot.grade)
 		return
 
 /obj/structure/anvil/proc/miss(mob/user)
@@ -69,10 +69,10 @@
 		var/datum/smithing_recipe/SR = new item()
 		allowed_things += SR
 
-/obj/structure/anvil/proc/load_slider(var/obj/item/blacksmith/smithing_hammer/hammer, var/mob/living/carbon/human/H)
+/obj/structure/anvil/proc/load_slider(var/obj/item/smithing_hammer/hammer, var/mob/living/carbon/human/H)
 	var/html = file2text('dwarfs/code/modules/blacksmithing/minigames/slider.html')
 	var/list/to_replace = list("HITHERE", "MISSHERE", "SPEEDHERE", "WIDTHHERE")
-	var/list/replaceble = list("byond://?src=[REF(src)];hit=1", "byond://?src=[REF(src)];miss=1", "[1+current_ingot.mod_grade]", "[20+H.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SMITHING_MODIFIER)+hammer.level*3]")
+	var/list/replaceble = list("byond://?src=[REF(src)];hit=1", "byond://?src=[REF(src)];miss=1", "[1+current_ingot.grade]", "[20+H.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SMITHING_MODIFIER)+hammer.grade*3]")
 	for(var/i in 1 to length(to_replace))
 		html = replacetext(html, to_replace[i], replaceble[i])
 	return html
@@ -94,8 +94,8 @@
 	acd = TRUE
 	addtimer(VARSET_CALLBACK(src, acd, FALSE), H.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) SECONDS)
 
-	if(istype(I, /obj/item/blacksmith/smithing_hammer))
-		var/obj/item/blacksmith/smithing_hammer/hammer = I
+	if(istype(I, /obj/item/smithing_hammer))
+		var/obj/item/smithing_hammer/hammer = I
 		if(current_ingot)
 			if(current_ingot.heattemp <= 0)
 				update_appearance()
@@ -112,7 +112,7 @@
 					return
 				if(current_ingot.progress_current > current_ingot.progress_need)
 					current_ingot.progress_current = 0
-					current_ingot.mod_grade++
+					current_ingot.grade++
 					current_ingot.progress_need = round(current_ingot.progress_need * 1.1)
 					to_chat(user, span_notice("You hit \the anvil with \a [hammer]."))
 					playsound(src, 'dwarfs/sounds/anvil_hit.ogg', 70, TRUE)
@@ -136,7 +136,7 @@
 		else
 			to_chat(user, span_warning("Nothing to forge here."))
 
-	else if(istype(I, /obj/item/blacksmith/tongs))
+	else if(istype(I, /obj/item/tongs))
 		if(current_ingot)
 			if(I.contents.len)
 				to_chat(user, span_warning("You are already holding something!"))
@@ -152,7 +152,7 @@
 				if(current_ingot)
 					to_chat(user, span_warning("You are already holding \a [current_ingot]."))
 					return
-				var/obj/item/blacksmith/ingot/N = I.contents[I.contents.len]
+				var/obj/item/ingot/N = I.contents[I.contents.len]
 				N.forceMove(src)
 				current_ingot = N
 				to_chat(user, span_notice("You place \the [current_ingot] onto \the [src]."))

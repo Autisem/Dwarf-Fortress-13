@@ -1,4 +1,4 @@
-/obj/item/blacksmith/zwei
+/obj/item/zwei
 	name = "zweihander"
 	desc = "Can even cut down trees."
 	icon = 'dwarfs/icons/items/weapons.dmi'
@@ -19,17 +19,17 @@
 	reach = 2
 	skill = /datum/skill/combat/longsword
 
-/obj/item/blacksmith/zwei/ComponentInitialize()
+/obj/item/zwei/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
 
-/obj/item/blacksmith/zwei/afterattack(atom/target, mob/user, proximity)
+/obj/item/zwei/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(!proximity)
 		return
 	user.changeNext_move(3 SECONDS)
 
-/obj/item/blacksmith/flail
+/obj/item/flail
 	name = "flail"
 	desc = "Spin it really fast."
 	icon = 'dwarfs/icons/items/weapons.dmi'
@@ -49,13 +49,13 @@
 	resistance_flags = FIRE_PROOF
 	skill = /datum/skill/combat/flail
 
-/obj/item/blacksmith/flail/afterattack(atom/target, mob/user, proximity)
+/obj/item/flail/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(!proximity)
 		return
 	user.changeNext_move(3 SECONDS)
 
-/obj/item/blacksmith/dagger
+/obj/item/dagger
 	name = "dagger"
 	desc = "Quick, light and quite sharp."
 	icon = 'dwarfs/icons/items/weapons.dmi'
@@ -73,18 +73,18 @@
 	max_integrity = 20
 	resistance_flags = FIRE_PROOF
 	skill = /datum/skill/combat/dagger
-
-// /obj/item/blacksmith/dagger/Initialize()
-// 	. = ..()
-// 	AddComponent(/datum/component/attack_toggle,\
-// 		attacks=list(SHARP,PIERCE),\
-// 		damages=list(20, 3),\
-// 		cooldowns=list(CLICK_CD_MELEE, CLICK_CD_RAPID),\
-// 		attack_verbs_simple=list(list("attack","slash"), list("pierce","poke","stab")),\
-// 		attack_verbs_continuous=list(list("attacks","slashes"), list("pierces","pokes","stabs"))\
-// 	)
-
-/obj/item/blacksmith/sword
+/*
+/obj/item/dagger/Initialize()
+	. = ..()
+	AddComponent(/datum/component/attack_toggle,\
+		attacks=list(SHARP,PIERCE),\
+		damages=list(20, 3),\
+		cooldowns=list(CLICK_CD_MELEE, CLICK_CD_RAPID),\
+		attack_verbs_simple=list(list("attack","slash"), list("pierce","poke","stab")),\
+		attack_verbs_continuous=list(list("attacks","slashes"), list("pierces","pokes","stabs"))\
+	)
+*/
+/obj/item/sword
 	name = "sword"
 	desc = "Regular sword."
 	icon = 'dwarfs/icons/items/weapons.dmi'

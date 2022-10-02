@@ -49,7 +49,7 @@
 	ore_icon = 'dwarfs/icons/turf/ores/iron.dmi'
 	ore_basename = "iron"
 	vein_type = /datum/vein/line
-	refined_type = /obj/item/blacksmith/ingot
+	refined_type = /obj/item/ingot
 
 /obj/item/stack/ore/coal
 	name = "coal"
@@ -72,7 +72,7 @@
 	inhand_icon_state = "Gold ore"
 	singular_name = "gold ore chunk"
 	mine_experience = 5
-	refined_type = /obj/item/blacksmith/ingot/gold
+	refined_type = /obj/item/ingot/gold
 	merge_type = /obj/item/stack/ore/smeltable/gold
 	ore_icon = 'dwarfs/icons/turf/ores/gold.dmi'
 	ore_basename = "gold"

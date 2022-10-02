@@ -46,13 +46,11 @@
 		busy = FALSE
 		playsound(src, 'dwarfs/sounds/anvil_hit.ogg', 70, TRUE)
 		var/obj/O = new recipe.result(loc)
-		if(istype(get_primary(), /obj/item/blacksmith/partial))
-			var/obj/item/blacksmith/partial/P = get_primary()
-			O.name = "[P.grade][O.name][P.grade]"
-			O.calculate_smithing_stats(P.level)
-			if(istype(O, /obj/item/blacksmith))
-				var/obj/item/blacksmith/B = O
-				B.level = P.level
+		var/grd = get_highest_grade()
+		var/grd_name = grade_name(grd)
+		O.grade = grd
+		O.apply_grade(grd)
+		O.name = "[grd_name][name][grd_name]"
 		to_chat(user, span_notice("You assemble [O]."))
 		qdel(recipe)
 		recipe = null
@@ -93,11 +91,11 @@
 		if(istype(I, O))
 			return TRUE
 
-/obj/structure/workbench/proc/get_primary()
-	. = null
+/obj/structure/workbench/proc/get_highest_grade()
+	. = 1
 	for(var/obj/I in contents)
-		if(istype(I, recipe.primary))
-			. = I
+		if(I.grade > .)
+			. = I.grade
 
 /obj/structure/workbench/proc/check_ready()
 	var/r = TRUE

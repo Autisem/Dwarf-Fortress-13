@@ -1,7 +1,11 @@
-/atom/proc/calculate_smithing_stats(grade)
+/atom/proc/apply_grade(grade)
 	return
 
-/obj/item/pickaxe/calculate_smithing_stats(grade)
+/proc/grade_name(grade)
+	var/list/grades = list("*", "-", "+", "≡", "☼", "☼☼")
+	return grades[grade]
+
+/obj/item/pickaxe/apply_grade(grade)
 	switch(grade)
 		if(1)
 			force = 8
@@ -28,7 +32,7 @@
 			throwforce = 10
 			toolspeed = 0.2
 
-/obj/item/blacksmith/zwei/calculate_smithing_stats(grade)
+/obj/item/zwei/apply_grade(grade)
 	switch(grade)
 		if(1)
 			force = 15
@@ -55,7 +59,7 @@
 			throwforce = 18
 			block_chance = 10
 
-/obj/item/blacksmith/flail/calculate_smithing_stats(grade)
+/obj/item/flail/apply_grade(grade)
 	switch(grade)
 		if(1)
 			force = 9
@@ -82,7 +86,7 @@
 			throwforce = 30
 			block_chance = 0
 
-/obj/item/blacksmith/dagger/calculate_smithing_stats(grade)
+/obj/item/dagger/apply_grade(grade)
 	switch(grade)
 		if(1)
 			force = 3
@@ -109,7 +113,7 @@
 			throwforce = 10
 			block_chance = 0
 
-/obj/item/blacksmith/sword/calculate_smithing_stats(grade)
+/obj/item/sword/apply_grade(grade)
 	switch(grade)
 		if(1)
 			force = 15
@@ -136,7 +140,7 @@
 			throwforce = 34
 			block_chance = 25
 
-/obj/item/clothing/suit/armor/light_plate/calculate_smithing_stats(grade)
+/obj/item/clothing/suit/armor/light_plate/apply_grade(grade)
 	switch(grade)
 		if(1)
 			armor = list(SHARP=20, PIERCE=15, BLUNT=10, FIRE=10, ACID=15, WOUND=30)
@@ -151,7 +155,7 @@
 		if(6)
 			armor = list(SHARP=45, PIERCE=40, BLUNT=35, FIRE=35, ACID=40, WOUND=55)
 
-/obj/item/clothing/suit/armor/heavy_plate/calculate_smithing_stats(grade)
+/obj/item/clothing/suit/armor/heavy_plate/apply_grade(grade)
 	switch(grade)
 		if(1)
 			armor = list(SHARP=35, PIERCE=30, BLUNT=15, FIRE=20, ACID=20, WOUND=45)
@@ -166,7 +170,7 @@
 		if(6)
 			armor = list(SHARP=65, PIERCE=65, BLUNT=45, FIRE=50, ACID=50, WOUND=75)
 
-/obj/item/clothing/under/chainmail/calculate_smithing_stats(grade)
+/obj/item/clothing/under/chainmail/apply_grade(grade)
 	switch(grade)
 		if(1)
 			armor = list(SHARP=10, PIERCE=5, BLUNT=0, FIRE=0, ACID=0, WOUND=20)
@@ -181,7 +185,7 @@
 		if(6)
 			armor = list(SHARP=40, PIERCE=35, BLUNT=0, FIRE=0, ACID=0, WOUND=50)
 
-/obj/item/clothing/head/helmet/plate_helmet/calculate_smithing_stats(grade)
+/obj/item/clothing/head/helmet/plate_helmet/apply_grade(grade)
 	switch(grade)
 		if(1)
 			armor = list(SHARP=10, PIERCE=20, BLUNT=6, FIRE=6, ACID=6, WOUND=30)
@@ -196,7 +200,7 @@
 		if(6)
 			armor = list(SHARP=40, PIERCE=50, BLUNT=30, FIRE=30, ACID=30, WOUND=60)
 
-/obj/item/clothing/gloves/plate_gloves/calculate_smithing_stats(grade)
+/obj/item/clothing/gloves/plate_gloves/apply_grade(grade)
 	switch(grade)
 		if(1)
 			armor = list(SHARP=10, PIERCE=5, BLUNT=0, FIRE=6, ACID=5, WOUND=5)
@@ -211,7 +215,7 @@
 		if(6)
 			armor = list(SHARP=40, PIERCE=35, BLUNT=25, FIRE=30, ACID=30, WOUND=40)
 
-/obj/item/clothing/shoes/jackboots/plate_boots/calculate_smithing_stats(grade)
+/obj/item/clothing/shoes/jackboots/plate_boots/apply_grade(grade)
 	switch(grade)
 		if(1)
 			armor = list(SHARP=10, PIERCE=5, BLUNT=0, FIRE=0, ACID=0, WOUND=10)
@@ -226,7 +230,7 @@
 		if(6)
 			armor = list(SHARP=35, PIERCE=30, BLUNT=15, FIRE=25, ACID=25, WOUND=30)
 
-/obj/item/clothing/head/helmet/dwarf_crown/calculate_smithing_stats(grade)
+/obj/item/clothing/head/helmet/dwarf_crown/apply_grade(grade)
 	switch(grade)
 		if(1)
 			armor = list(SHARP=5, PIERCE=5, BLUNT=5, FIRE=10, ACID=10, WOUND=20)

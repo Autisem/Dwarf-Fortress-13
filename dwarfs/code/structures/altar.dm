@@ -10,7 +10,7 @@
 	var/active = FALSE
 	var/resources = 0
 	var/list/available_rituals = list(/datum/ritual/summon_tools,/datum/ritual/summon_frog,/datum/ritual/summon_dwarf,/datum/ritual/summon_seeds)
-	var/list/allowed_resources = list(/obj/item/blacksmith/ingot/gold=25,
+	var/list/allowed_resources = list(/obj/item/ingot/gold=25,
 									/obj/item/stack/sheet/mineral/gem/diamond=50,
 									/obj/item/stack/sheet/mineral/gem/ruby=40,
 									/obj/item/stack/sheet/mineral/gem/sapphire=30,
@@ -101,7 +101,7 @@
 		if("frog")
 			new /mob/living/simple_animal/hostile/retaliate/frog(loc)
 		if("tools")
-			for(var/tool in list(/obj/item/blacksmith/smithing_hammer, /obj/item/blacksmith/tongs))
+			for(var/tool in list(/obj/item/smithing_hammer, /obj/item/tongs))
 				new tool(loc)
 	busy = FALSE
 	to_chat(user, span_notice("You finish the ritual."))

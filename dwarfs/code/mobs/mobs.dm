@@ -94,7 +94,7 @@
 	faction = list("mining")
 	weather_immunities = list("ash")
 	see_in_dark = 1
-	butcher_results = list(/obj/item/blacksmith/ingot = list(1,1), /obj/item/food/meat/slab = list(1,2))
+	butcher_results = list(/obj/item/ingot = list(1,1), /obj/item/food/meat/slab = list(1,2))
 	attack_verb_continuous = "attacks"
 	attack_verb_simple = "attacks"
 	response_help_continuous = "pushes"

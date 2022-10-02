@@ -54,14 +54,14 @@
 		working = TRUE
 		update_appearance()
 		to_chat(user, span_notice("You light up [src]."))
-	else if(istype(I, /obj/item/blacksmith/tongs))
+	else if(istype(I, /obj/item/tongs))
 		if(!working)
 			to_chat(user, span_warning("[src] has to be lit up first."))
 			return
 		if(I.contents.len)
-			if(istype(I.contents[I.contents.len], /obj/item/blacksmith/ingot))
+			if(istype(I.contents[I.contents.len], /obj/item/ingot))
 				if(do_after(user, 10, src))
-					var/obj/item/blacksmith/ingot/N = I.contents[I.contents.len]
+					var/obj/item/ingot/N = I.contents[I.contents.len]
 					N.heattemp = 350
 					I.update_appearance()
 					to_chat(user, span_notice("You heat up [N]."))
