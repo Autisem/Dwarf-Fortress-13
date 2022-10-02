@@ -39,6 +39,7 @@
 		return
 	if(ready)
 		busy = TRUE
+		to_chat(user, span_notice("You start assembling [recipe]..."))
 		if(!do_after(user, 10 SECONDS, target = src))
 			busy = FALSE
 			return
@@ -59,10 +60,8 @@
 		return
 	var/list/recipes = list()
 	var/list/recipe_names = list()
-	for(var/t in typesof(/datum/workbench_recipe))
+	for(var/t in subtypesof(/datum/workbench_recipe))
 		var/datum/workbench_recipe/r = new t
-		if(isstrictlytype(r, /datum/workbench_recipe))
-			continue
 		recipes[r.name] = r
 		recipe_names+=r.name
 	var/answer = tgui_input_list(user, "What to assemble?", "Workbench", recipe_names)
@@ -74,35 +73,25 @@
 /obj/structure/workbench/examine(mob/user)
 	. = ..()
 	if(recipe)
-		.+="<hr>Currenly [recipe.name] is assembled."
-		var/text = "Required"
-		for(var/S in recipe.reqs)
-			var/obj/item/stack/I = new S()
-			var/r = recipe.reqs[I.type] - amount(I)
-			var/govno = r ? "[r]":""
-			if(r)
-				text+="<br>[I.name]: [govno]"
-			qdel(I)
-		if(text != "Required")
-			.+="<hr>[text]"
+		.+="<br>Currenly [recipe.name] is assembled."
+		if(!ready)
+			var/text = "<br>Required:"
+			for(var/type in recipe.reqs)
+				var/obj/O = type
+				var/amount = recipe.reqs[O]
+				if(amount - src.amount(O))
+					text += "<br>[amount - src.amount(O)] [initial(O.name)]"
+			.+=text
 		else
 			.+="<hr>[recipe.name] is ready to be assembled."
 	else
-		.+="<hr>[src] is empty!"
-
-/obj/structure/workbench/proc/amount(obj/item/I)
-	. = 0
-	for(var/obj/O in contents)
-		if(istype(O, I.type))
-			.+=1
+		.+="<br>[src] is empty!"
 
 /obj/structure/workbench/proc/is_required(obj/item/I)
 	. = FALSE
 	for(var/O in recipe.reqs)
-		var/obj/item/R = new O()
-		if(istype(I, R.type))
-			. = TRUE
-		qdel(R)
+		if(istype(I, O))
+			return TRUE
 
 /obj/structure/workbench/proc/get_primary()
 	. = null
@@ -112,30 +101,36 @@
 
 /obj/structure/workbench/proc/check_ready()
 	var/r = TRUE
-	for(var/S in recipe.reqs)
-		var/obj/item/It = new S
-		if((recipe.reqs[It.type] - amount(It)) > 0)
+	for(var/type in recipe.reqs)
+		if((recipe.reqs[type] - amount(type)) > 0)
 			r = FALSE
 			break
 	ready = r
 	return r
 
-/obj/structure/workbench/attacked_by(obj/item/I, mob/living/user)
+/obj/structure/workbench/proc/amount(type)
+	. = 0
+	for(var/obj/item/I in contents)
+		if(istype(I, type))
+			if(istype(I, /obj/item/stack))
+				var/obj/item/stack/S = I
+				.+=S.amount
+			else
+				.++
+
+/obj/structure/workbench/attackby(obj/item/I, mob/user, params)
 	if(!recipe)
-		..()
-		return
-	if(is_required(I))
-		if((recipe.reqs[I.type]-amount(I))>0)
+		return ..()
+	else if(is_required(I))
+		if((recipe.reqs[I.type]-amount(I.type))>0)
 			if(istype(I, /obj/item/stack))
 				var/obj/item/stack/S = I
 				I = new S.type()
-				S.amount-=1
-				if(S.amount<1)
-					qdel(S)
-			user.transferItemToLoc(I, src)
+				S.use(1)
+			I.forceMove(src)
 			visible_message(span_notice("[user] places [I] on \the [src].") ,span_notice("You place [I] on \the [src]."))
 			check_ready()
 		else
 			to_chat(user, span_warning("There is enough [I]."))
 	else
-		..()
+		return ..()
