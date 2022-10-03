@@ -8,6 +8,7 @@
 	gender = NEUTER
 	speak_chance = 0
 	turns_per_move = 2
+	speed = 1.5
 	maxHealth = 350
 	health = 350
 	faction = list("mining")
