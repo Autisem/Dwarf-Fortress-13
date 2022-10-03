@@ -185,15 +185,15 @@
 /area/dwarf/fortress)
 "Cw" = (
 /obj/structure/table/stone,
-/obj/item/blacksmith/smithing_hammer,
-/obj/item/blacksmith/tongs,
+/obj/item/smithing_hammer,
+/obj/item/tongs,
 /obj/item/flashlight/fueled/lantern,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "DC" = (
 /obj/structure/table/stone,
-/obj/item/blacksmith/ingot,
-/obj/item/blacksmith/ingot,
+/obj/item/ingot,
+/obj/item/ingot,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "FQ" = (
@@ -212,7 +212,7 @@
 /area/dwarf/fortress)
 "IO" = (
 /obj/structure/table/stone,
-/obj/item/blacksmith/ingot,
+/obj/item/ingot,
 /turf/open/floor/stone,
 /area/dwarf/fortress)
 "IQ" = (
