@@ -33,13 +33,16 @@
 		miss(usr)
 
 /obj/structure/anvil/proc/hit(mob/user)
+	if(current_ingot.heattemp <= 0)
+		update_appearance()
+		to_chat(user, span_warning("\The [current_ingot] is to cold too keep working."))
+		return
 	var/mob/living/carbon/human/H = user
 	if(current_ingot.progress_current == current_ingot.progress_need)
 		current_ingot.progress_current++
 		playsound(src, 'dwarfs/sounds/anvil_hit.ogg', 70, TRUE)
 		to_chat(user, span_notice("[current_ingot] is ready. Hit it again to keep smithing or cool it down."))
 		user<<browse(null, "window=Anvil")
-		return
 	else
 		playsound(src, 'dwarfs/sounds/anvil_hit.ogg', 70, TRUE)
 		user.visible_message(span_notice("<b>[user]</b> hits \the anvil with \a hammer.") , \
@@ -47,10 +50,8 @@
 		current_ingot.progress_current++
 		H.adjustStaminaLoss(rand(1, 5))
 		H.mind.adjust_experience(/datum/skill/smithing, rand(0, 4) * current_ingot.grade)
-		return
 
 /obj/structure/anvil/proc/miss(mob/user)
-	// var/mob/living/carbon/human/H = user
 	current_ingot.durability--
 	if(current_ingot.durability == 0)
 		to_chat(user, span_warning("the ingot crumbles into countless metal pieces..."))
