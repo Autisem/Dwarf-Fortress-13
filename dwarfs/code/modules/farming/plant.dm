@@ -2,7 +2,6 @@
 	name = "plant"
 	desc = "Green?"
 	icon = 'dwarfs/icons/farming/growing.dmi'
-	icon_state = "sample"
 	anchored = TRUE
 	layer = ABOVE_ALL_MOB_LAYER
 	var/species = "plant" // used for icons and to whitelist plants in plots
@@ -20,8 +19,8 @@
 	var/growthdelta = 5 SECONDS // how long between two growth stages
 	var/list/growth_modifiers = list() // growth modifiers that affect our plant e.g. fertilizer, soil quality, etc. This is a dictianory list for easy overwrites
 	var/lastcycle_eat
-	var/eat_delta = 5 SECONDS
-	var/growthstage = 1 // current 'age' of the plant
+	var/eat_delta = 5 SECONDS // how often this plant eats nutrients when planted inside a plot
+	var/growthstage = 0 // current growth stage of the plant
 	var/dead = FALSE // to prevent spam in plantdies()
 	var/lastcycle_growth // last time it advanced in growth
 	var/lifespan = 4 // plant's max age in cycles
@@ -47,7 +46,6 @@
 	START_PROCESSING(SSplants, src)
 	if(!icon_ripe)
 		icon_ripe = "[species]-ripe"
-
 	if(!icon_dead)
 		icon_dead = "[species]-dead"
 	lastcycle_produce = world.time
@@ -113,13 +111,13 @@
 	SEND_SIGNAL(src, COSMIG_PLANT_EAT_TICK)
 	return
 
-/obj/structure/plant/update_appearance(updates)
+/obj/structure/plant/update_icon(updates)
 	. = ..()
 	if(dead)
 		icon_state = icon_dead
 	else if(harvestable)
 		icon_state = icon_ripe
-	else
+	else if(growthstage > 0)
 		icon_state = "[species]-[growthstage]"
 
 /obj/structure/plant/proc/can_grow_harvestable()
