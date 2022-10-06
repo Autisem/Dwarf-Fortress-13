@@ -38,15 +38,6 @@
 	else
 		. = ..()
 
-/obj/structure/plant/tree/apple
-	name = "apple tree"
-	desc = ""
-	species = "apple"
-	produced = list(/obj/item/growable/apple=4)
-	// growthdelta = 1 MINUTES
-	// produce_delta = 1 MINUTES
-	// max_harvestables =
-
 /obj/structure/plant/tree/towercap
 	name = "towercap"
 	desc = "hehe >:)"
@@ -58,8 +49,16 @@
 	growthstages = 7
 	// growthdelta = 1 MINUTES
 	// produce_delta = 1 MINUTES
-	// max_harvestables =
 
+/*
+/obj/structure/plant/tree/apple
+	name = "apple tree"
+	desc = ""
+	species = "apple"
+	produced = list(/obj/item/growable/apple=4)
+	// growthdelta = 1 MINUTES
+	// produce_delta = 1 MINUTES
+	// max_harvestables =
 
 /obj/structure/plant/tree/alder
 	name = "alder tree"
@@ -258,3 +257,4 @@
 	// growthdelta = 1 MINUTES
 	// produce_delta = 1 MINUTES
 	// max_harvestables =
+*/
