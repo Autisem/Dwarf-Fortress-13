@@ -14,14 +14,13 @@
 
 /obj/item/stack/ore/stone/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_CHISEL)
-		playsound(src, 'sound/weapons/tough.wav', 100, TRUE)
-		if(prob(25))
-			to_chat(user, span_warning("You process \the [src]."))
-			return
-		new /obj/item/stack/sheet/stone(user.loc)
-		to_chat(user, span_notice("You process \the [src]."))
-		qdel(src)
-		return
+		if(I.use_tool(src, user, 1 SECONDS))
+			if(prob(25))
+				to_chat(user, span_warning("You process \the [src]."))
+				return
+			new /obj/item/stack/sheet/stone(user.loc)
+			to_chat(user, span_notice("You process \the [src]."))
+			use(1)
 	else
 	 . = ..()
 

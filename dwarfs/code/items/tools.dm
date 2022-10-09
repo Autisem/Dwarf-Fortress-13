@@ -79,6 +79,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BACK
 	hitsound = 'sound/weapons/bladeslice.ogg'
+	usesound = 'dwarfs/sounds/tools/axe/axe_chop.ogg'
 
 /obj/item/smithing_hammer
 	name = "smithing hammer"
@@ -116,6 +117,7 @@
 	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
 	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
+	usesound = 'dwarfs/sounds/tools/chisel/chisel_hit.ogg'
 	tool_behaviour = TOOL_CHISEL
 	atck_type = SHARP
 	w_class = WEIGHT_CLASS_SMALL
@@ -194,6 +196,7 @@
 	icon_state = "trowel"
 	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
 	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	usesound = 'dwarfs/sounds/tools/trowel/trowel_dig.ogg'
 	w_class = WEIGHT_CLASS_SMALL
 	force = 8
 	throwforce = 12
@@ -258,7 +261,9 @@
 		return
 	var/turf/T = get_turf(A)
 	if(check_resources())
+		var/channel = playsound(src.loc, 'dwarfs/sounds/tools/trowel/trowel_dig.ogg', 50, TRUE)
 		if(do_after(user, 5 SECONDS, target = A))
+			stop_sound_channel_nearby(src, channel)
 			if(check_resources())
 				use_resources(T, user)
 				playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
@@ -296,3 +301,9 @@
 #undef TROWEL_BUILD_DOOR
 #undef TROWEL_BUILD_TABLE
 #undef TROWEL_BUILD_CHAIR
+
+/obj/item/hoe
+	name = "hoe"
+	desc = "None in the area next to you."
+	tool_behaviour = TOOL_HOE
+	usesound = 'dwarfs/sounds/tools/hoe/hoe_dig.ogg'

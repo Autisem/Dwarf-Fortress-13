@@ -105,9 +105,13 @@
 			to_chat(user, span_warning("There is no more dirt to be tilled!"))
 			return
 		to_chat(user, span_notice("You start tilling [src]..."))
+		var/channel = playsound(src.loc, 'dwarfs/sounds/tools/hoe/hoe_dig_long.ogg', 50, TRUE)
 		if(I.use_tool(src, user, 10 SECONDS))
+			stop_sound_channel_nearby(src, channel)
 			ChangeTurf(/turf/open/floor/tilled)
 			user.mind.adjust_experience(/datum/skill/farming, 7)
+		else
+			stop_sound_channel_nearby(src, channel)
 	else if(I.tool_behaviour == TOOL_SHOVEL || I.tool_behaviour == TOOL_PICKAXE)
 		to_chat(user, span_notice("You start digging [src]..."))
 		var/dig_time = I.tool_behaviour == TOOL_SHOVEL ? 5 SECONDS : 10 SECONDS

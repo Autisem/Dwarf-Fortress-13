@@ -82,6 +82,7 @@
 	busy_operating = TRUE
 	update_appearance()
 	to_chat(user, span_notice("You start working at [src]."))
+	var/channel = playsound(src, 'dwarfs/sounds/tools/quern/quern_mill_long.ogg', 70, TRUE)
 	if(do_after(user, work_time, src))
 		if(contents.len)
 			var/obj/item/growable/G = contents[1]
@@ -89,6 +90,8 @@
 		else // has grain reagents
 			var/datum/reagent/grain/G =  reagents.has_reagent_subtype(/datum/reagent/grain)
 			SEND_SIGNAL(G, COSMIG_REAGENT_GRINDED, src)
+	else
+		stop_sound_channel_nearby(src, channel)
 	busy_operating = FALSE
 	update_appearance()
 	to_chat(user, span_notice("You finish working at [src]."))

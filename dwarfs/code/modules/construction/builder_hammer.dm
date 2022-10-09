@@ -3,6 +3,7 @@
 	desc = ">:D"
 	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "builder_hammer"
+	usesound = 'dwarfs/sounds/tools/hammer/hammer_hit.ogg'
 	tool_behaviour = TOOL_BUILDER_HAMMER
 	//What do we want to build -> selected in gui
 	var/obj/structure/blueprint/selected_blueprint

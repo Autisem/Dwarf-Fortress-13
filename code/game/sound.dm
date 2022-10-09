@@ -52,6 +52,7 @@ falloff_distance - Distance at which falloff begins. Sound is at peak volume (in
 
 	//allocate a channel if necessary now so its the same for everyone
 	channel = channel || SSsounds.random_available_channel()
+	. = channel
 
 	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/sound/S = sound(get_sfx(soundin))
@@ -176,6 +177,9 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 
 /mob/proc/stop_sound_channel(chan)
 	SEND_SOUND(src, sound(null, repeat = 0, wait = 0, channel = chan))
+
+/proc/stop_sound_channel_nearby(atom/source, chan)
+	playsound(source, null, 100, channel=chan)
 
 /mob/proc/set_sound_channel_volume(channel, volume)
 	var/sound/S = sound(null, FALSE, FALSE, channel, volume)

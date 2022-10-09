@@ -44,7 +44,7 @@
 			busy = FALSE
 			return
 		busy = FALSE
-		playsound(src, 'dwarfs/sounds/anvil_hit.ogg', 70, TRUE)
+		playsound(src, 'dwarfs/sounds/tools/anvil/anvil_hit.ogg', 70, TRUE)
 		var/obj/O = new recipe.result(loc)
 		var/grd = get_highest_grade()
 		var/grd_name = grade_name(grd)
