@@ -50,7 +50,7 @@
 		var/grd_name = grade_name(grd)
 		O.grade = grd
 		O.apply_grade(grd)
-		O.name = "[grd_name][name][grd_name]"
+		O.name = "[grd_name][O.name][grd_name]"
 		to_chat(user, span_notice("You assemble [O]."))
 		qdel(recipe)
 		recipe = null
