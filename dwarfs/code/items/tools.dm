@@ -84,6 +84,7 @@
 /obj/item/smithing_hammer
 	name = "smithing hammer"
 	desc = "Used for forging."
+	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "smithing_hammer"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20

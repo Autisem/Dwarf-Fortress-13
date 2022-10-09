@@ -41,8 +41,8 @@
 	max_resulting = 2
 
 /datum/smithing_recipe/smithing_hammer
-	name = "hammer"
-	result = /obj/item/smithing_hammer
+	name = "\[part\] smithing hammer"
+	result = /obj/item/partial/smithing_hammer
 
 /datum/smithing_recipe/tongs
 	name = "tongs"
@@ -131,11 +131,6 @@
 	result = /obj/item/clothing/head/helmet/dwarf_crown
 	reqs = list(/obj/item/stack/sheet/mineral/gem/sapphire = 3, /obj/item/partial/crown_empty = 1)
 
-/datum/workbench_recipe/dagger_sneath
-	name = "dagger sneath"
-	result = /obj/item/storage/belt/dagger_sneath
-	reqs = list(/obj/item/stack/sheet/leather = 3)
-
 /datum/workbench_recipe/pickaxe
 	name = "pickaxe"
 	result = /obj/item/pickaxe
@@ -155,3 +150,8 @@
 	name = "builder's hammer"
 	result = /obj/item/builder_hammer
 	reqs = list(/obj/item/partial/builder_hammer=1, /obj/item/tool_handle=1)
+
+/datum/workbench_recipe/smithing_hammer
+	name = "smithing hammer"
+	result = /obj/item/smithing_hammer
+	reqs = list(/obj/item/partial/smithing_hammer=1, /obj/item/tool_handle=1)

@@ -77,34 +77,6 @@
 			to_chat(user, span_notice("You grab \the [src] with \the [I]."))
 			return
 
-/obj/item/storage/belt/dagger_sneath
-	name = "dagger sneath"
-	desc = "Perfect habitat for your little friend."
-	icon_state = "dagger_sneath"
-	inhand_icon_state = "dagger_sneath"
-	worn_icon_state = "dagger_sneath"
-	w_class = WEIGHT_CLASS_BULKY
-
-/obj/item/storage/belt/dagger_sneath/ComponentInitialize()
-	. = ..()
-	AddElement(/datum/element/update_icon_updates_onmob)
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 1
-	STR.rustle_sound = FALSE
-	STR.quickdraw = TRUE
-	STR.max_w_class = WEIGHT_CLASS_BULKY
-	STR.set_holdable(list(
-		/obj/item/dagger
-		))
-
-/obj/item/storage/belt/dagger_sneath/update_icon_state()
-	icon_state = "dagger_sneath"
-	worn_icon_state = "dagger_sneath"
-	if(contents.len)
-		icon_state += "-sword"
-		worn_icon_state += "-sword"
-	return ..()
-
 /obj/item/torch_handle
 	name = "torch handle"
 	desc = "Can be attached to a wall."
@@ -252,6 +224,10 @@
 /obj/item/partial/builder_hammer
 	name = "builder's hammer head"
 	icon_state = "hammer_head"
+
+/obj/item/partial/smithing_hammer
+	name = "smithing hammer head"
+	icon_state = "smithing_hammer_head"
 
 /obj/item/partial/zwei
 	name = "zweihander blade"
