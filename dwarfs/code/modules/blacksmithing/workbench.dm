@@ -56,18 +56,21 @@
 		contents.Cut()
 		recipe = null
 		ready = FALSE
-		return
-	var/list/recipes = list()
-	var/list/recipe_names = list()
-	for(var/t in subtypesof(/datum/workbench_recipe))
-		var/datum/workbench_recipe/r = new t
-		recipes[r.name] = r
-		recipe_names+=r.name
-	var/answer = tgui_input_list(user, "What to assemble?", "Workbench", recipe_names)
-	if(!answer)
-		return
-	recipe = recipes[answer]
-	to_chat(user, span_notice("You select [recipe.name] for assembly."))
+	else
+		var/list/recipes = list()
+		var/list/recipe_names = list()
+		for(var/t in subtypesof(/datum/workbench_recipe))
+			var/datum/workbench_recipe/r = new t
+			recipes[r.name] = r
+			recipe_names+=r.name
+		var/answer = tgui_input_list(user, "What to assemble?", "Workbench", recipe_names)
+		if(!answer)
+			return
+		if(contents.len)
+			for(var/obj/I in contents)
+				I.forceMove(get_turf(src))
+		recipe = recipes[answer]
+		to_chat(user, span_notice("You select [recipe.name] for assembly."))
 
 /obj/structure/workbench/examine(mob/user)
 	. = ..()
