@@ -53,6 +53,7 @@
 		O.name = "[grd_name][O.name][grd_name]"
 		to_chat(user, span_notice("You assemble [O]."))
 		qdel(recipe)
+		contents.Cut()
 		recipe = null
 		ready = FALSE
 		return
