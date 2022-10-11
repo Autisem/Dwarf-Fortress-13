@@ -1,5 +1,7 @@
-/atom/proc/apply_grade(grade)
-	return
+/obj/proc/apply_grade(grade)
+	src.grade = grade
+	var/grd_name = grade_name(grade)
+	name = "[grd_name][initial(name)][grd_name]"
 
 /proc/grade_name(grade)
 	var/list/grades = list("*", "-", "+", "≡", "☼", "☼☼")
