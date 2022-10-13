@@ -146,7 +146,7 @@
 	result = /obj/item/shovel
 	reqs = list(/obj/item/partial/shovel=1, /obj/item/tool_handle=1)
 
-/datum/workbench_recipe/shovel
+/datum/workbench_recipe/builder_hammer
 	name = "builder's hammer"
 	result = /obj/item/builder_hammer
 	reqs = list(/obj/item/partial/builder_hammer=1, /obj/item/tool_handle=1)
