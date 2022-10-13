@@ -101,6 +101,10 @@
 	result = /obj/item/partial/scepter_part
 	metal_type_need = "gold"
 
+/datum/smithing_recipe/lantern_parts
+	name = "\[part\] lantern parts"
+	result = /obj/item/partial/lantern_parts
+
 /datum/workbench_recipe
 	var/name = "workbench_recipe"
 	var/result
@@ -155,3 +159,8 @@
 	name = "smithing hammer"
 	result = /obj/item/smithing_hammer
 	reqs = list(/obj/item/partial/smithing_hammer=1, /obj/item/tool_handle=1)
+
+/datum/workbench_recipe/lantern
+	name = "lantern"
+	result = /obj/item/flashlight/fueled/lantern
+	reqs = list(/obj/item/partial/lantern_parts=1, /obj/item/flashlight/fueled/candle =1, /obj/item/stack/glass =2)
