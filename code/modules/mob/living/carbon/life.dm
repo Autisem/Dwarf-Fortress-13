@@ -328,6 +328,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(bodytemperature >= min_temp && bodytemperature <= max_temp)
 		bodytemperature = clamp(bodytemperature + amount, min_temp, max_temp)
 
+		// TODO: remove that, add real temperature damage scalling, TEMPORARY SOLUTION
+		if(bodytemperature >= temperature_resistance)
+			apply_damage( 5, BURN, spread_damage = TRUE)
+			bodytemperature = temperature_resistance
+
+
+
 
 ///////////
 //Stomach//
