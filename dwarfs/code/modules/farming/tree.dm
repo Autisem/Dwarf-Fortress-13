@@ -44,15 +44,16 @@
 
 /obj/structure/plant/tree/towercap
 	name = "towercap"
-	desc = "hehe >:)"
+	desc = "A mushroom-like subterranean tree. Bears tower cap logs once chopped down."
 	species = "towercap"
 	produced = list(/obj/item/growable/seeds/tree/towercap=2)
 	large_log_type = /obj/item/log/large/towercap
 	small_log_type = /obj/item/log/towercap
+	health = 100
 	icon_ripe = "towercap-7"
 	growthstages = 7
-	// growthdelta = 1 MINUTES
-	// produce_delta = 1 MINUTES
+	growthdelta = 80 SECONDS
+	produce_delta = 120 SECONDS
 
 /*
 /obj/structure/plant/tree/apple

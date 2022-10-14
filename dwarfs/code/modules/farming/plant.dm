@@ -48,6 +48,8 @@
 		icon_ripe = "[species]-ripe"
 	if(!icon_dead)
 		icon_dead = "[species]-dead"
+	if(health != maxhealth)
+		maxhealth = health
 	lastcycle_produce = world.time
 	lastcycle_health = world.time
 	lastcycle_eat = world.time

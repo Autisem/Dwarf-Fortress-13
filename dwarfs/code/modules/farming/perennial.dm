@@ -13,10 +13,10 @@
 
 /obj/structure/plant/garden/perennial/sweet_pod
 	name = "sweet_pod"
-	desc = "As it goes from its name - sweet plant used by dwarves in many different ways"
+	desc = "Crop treasured for it sweet fruits, which can be made into sweet syrup."
 	species = "sweet_pod"
-	health = 40
-	maxhealth = 40
+	health = 60
+	maxhealth = 60
 	growthstages = 5
 	produce_delta = 90 SECONDS
 	growthdelta = 60 SECONDS
