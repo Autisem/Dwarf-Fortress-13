@@ -9,8 +9,7 @@
 	///Weighted list of extra features that can spawn in the area, such as geysers.
 	var/list/feature_spawn_list = list(/obj/structure/geyser/random = 1)
 	///Weighted list of mobs that can spawn in the area.
-	var/list/mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast/random = 50, \
-		SPAWN_MEGAFAUNA = 4)
+	var/list/mob_spawn_list = list(SPAWN_MEGAFAUNA = 4)
 	///Weighted list of flora that can spawn in the area.
 	var/list/flora_spawn_list
 

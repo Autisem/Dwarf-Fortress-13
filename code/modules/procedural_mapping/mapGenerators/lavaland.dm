@@ -10,7 +10,7 @@
 
 /datum/map_generator_module/splatter_layer/lavaland_monsters
 	spawnableTurfs = list()
-	spawnableAtoms = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast = 10)
+	spawnableAtoms = list()
 
 /datum/map_generator/lavaland/ground_only
 	modules = list(/datum/map_generator_module/bottom_layer/lavaland_default)

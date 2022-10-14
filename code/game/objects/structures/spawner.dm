@@ -32,13 +32,8 @@
 	max_mobs = 3
 	icon = 'icons/mob/nest.dmi'
 	spawn_text = "crawls out of"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goliath, /mob/living/simple_animal/hostile/asteroid/fugu)
+	mob_types = list(/mob/living/simple_animal/hostile/asteroid/fugu)
 	faction = list("mining")
-
-/obj/structure/spawner/mining/goliath
-	name = "goliath den"
-	desc = "A den housing a nest of goliaths, oh god why?"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goliath)
 
 /obj/structure/spawner/mining/wumborian
 	name = "wumborian fugu den"

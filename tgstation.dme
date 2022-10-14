@@ -1098,7 +1098,6 @@
 #include "code\modules\mob\living\simple_animal\hostile\jungle\mega_arachnid.dm"
 #include "code\modules\mob\living\simple_animal\hostile\jungle\mook.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\curse_blob.dm"
-#include "code\modules\mob\living\simple_animal\hostile\mining_mobs\goliath.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\mining_mobs.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mining_mobs\wolf.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\bat.dm"
