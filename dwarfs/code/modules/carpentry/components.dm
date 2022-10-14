@@ -31,3 +31,9 @@
 	desc = ">:)"
 	icon = 'dwarfs/icons/items/components.dmi'
 	icon_state = "sword_handle"
+
+/obj/item/scepter_shaft
+	name = "scepter shaft"
+	desc = ">:)"
+	icon = 'dwarfs/icons/items/components.dmi'
+	icon_state = "scepter_shaft"

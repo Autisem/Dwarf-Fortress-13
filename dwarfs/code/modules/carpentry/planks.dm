@@ -28,6 +28,7 @@ GLOBAL_LIST_INIT(plank_recipes, list (
 	new/datum/stack_recipe("Wooden Table", /obj/structure/table/wood, 5, time=40 SECONDS, tools=TOOL_AXE),
 	new/datum/stack_recipe("Wooden Chair", /obj/item/chair/wood, 5, time=45 SECONDS, tools=TOOL_AXE),
 	new/datum/stack_recipe("Loom", /obj/structure/loom, 15, time=60 SECONDS, tools=TOOL_AXE),
+	new/datum/stack_recipe("Scepter Shaft", /obj/item/scepter_shaft, 2, time=20 SECONDS, tools=TOOL_AXE),
 ))
 //new/datum/stack_recipe(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1,time = 0)
 /obj/item/stack/sheet/planks/get_main_recipes()

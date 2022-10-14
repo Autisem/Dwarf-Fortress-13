@@ -163,4 +163,9 @@
 /datum/workbench_recipe/lantern
 	name = "lantern"
 	result = /obj/item/flashlight/fueled/lantern
-	reqs = list(/obj/item/partial/lantern_parts=1, /obj/item/flashlight/fueled/candle =1, /obj/item/stack/glass =2)
+	reqs = list(/obj/item/partial/lantern_parts=1, /obj/item/flashlight/fueled/candle=1, /obj/item/stack/glass=2)
+
+/datum/workbench_recipe/scepter
+	name = "scepter"
+	result = /obj/item/scepter
+	reqs = list(/obj/item/partial/scepter_part=1, /obj/item/scepter_shaft=1)

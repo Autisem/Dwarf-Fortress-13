@@ -103,3 +103,22 @@
 	max_integrity = 50
 	resistance_flags = FIRE_PROOF
 	skill = /datum/skill/combat/sword
+
+/obj/item/scepter
+	name = "scepter"
+	desc = "King's scepter. For him to rule, for you to obey." // also  "King's second most important tool. You hit peasants with it."
+	icon = 'dwarfs/icons/items/weapons.dmi'
+	icon_state = "king_scepter"
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	inhand_icon_state = "king_scepter"
+	flags_1 = CONDUCT_1
+	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	force = 5
+	throwforce = 5
+	w_class = WEIGHT_CLASS_BULKY
+	hitsound = 'sound/weapons/whip.ogg'
+	block_chance = 20
+	atck_type = BLUNT
+	max_integrity = 50
+	resistance_flags = FIRE_PROOF
