@@ -255,9 +255,12 @@
 			user.visible_message(span_notice("<b>[user]</b> constructs stone stairs."), span_notice("You construct stone stairs."))
 
 /obj/item/trowel/proc/do_job(atom/A, mob/user)
-	if(!istype(A, /turf/open/floor))
-		return
+	to_chat(user, (mode == TROWEL_BUILD_FLOOR && !isfloorturf(A) && !isopenspace(A)))
+	to_chat(user, (mode == TROWEL_BUILD_FLOOR && isopenspace(A) && !(locate(/obj/structure/lattice) in A)))
 	if(mode != TROWEL_BUILD_FLOOR && !isfloorturf(A))
+		to_chat(user, span_warning("Can't build here!"))
+		return
+	else if((mode == TROWEL_BUILD_FLOOR && !isfloorturf(A) && !isopenspace(A)) || (mode == TROWEL_BUILD_FLOOR && isopenspace(A) && !(locate(/obj/structure/lattice) in A)))
 		to_chat(user, span_warning("Can't build here!"))
 		return
 	var/turf/T = get_turf(A)
