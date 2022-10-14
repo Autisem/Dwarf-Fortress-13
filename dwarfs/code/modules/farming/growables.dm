@@ -13,6 +13,9 @@
 	var/list/tastes
 	// var/list/eatverbs
 	var/bite_consumption
+	var/mood_event_type = /datum/mood_event/ate_raw_food
+	var/mood_gain = -2
+	var/mood_duration = 2 MINUTES
 
 /obj/item/growable/proc/MakePressable()
 	return
@@ -27,7 +30,8 @@
 	var/datum/component/mood/M = eater.GetComponent(/datum/component/mood)
 	if(!M)
 		return
-	M.add_event(null, "foog", /datum/mood_event/ate_food)
+	if(mood_event_type)
+		M.add_event(null, "food", mood_event_type, mood_gain ? mood_gain : null, mood_duration ? mood_duration : null)
 
 /obj/item/growable/Initialize()
 	. = ..()
@@ -80,35 +84,43 @@
 
 /obj/item/growable/cave_wheat
 	name = "cave wheat"
-	desc = ""
+	desc = "Grey wheat, growing in dark caves. Dwarfs favorirte beer component."
 	icon_state = "cave_wheat"
 	seed_type = /obj/item/growable/seeds/cave_wheat
+	mood_gain = -20
+	food_reagents = list(/datum/reagent/consumable/nutriment=10)
 
 /obj/item/growable/cave_wheat/MakeGrindable()
 	AddComponent(/datum/component/grindable, /datum/reagent/grain/cave_wheat, 10)
 
 /obj/item/growable/barley
 	name = "barley"
-	desc = ""
+	desc = "Grain growing on the surface, most common in the human cities."
 	icon_state = "barley"
 	seed_type = /obj/item/growable/seeds/barley
+	mood_gain = -20
+	food_reagents = list(/datum/reagent/consumable/nutriment=10)
 
 /obj/item/growable/barley/MakeGrindable()
 	AddComponent(/datum/component/grindable, /datum/reagent/grain/barley, 10)
 
 /obj/item/growable/turnip
 	name = "turnip"
-	desc = ""
+	desc = "Turnips are easy to grow and provide nutritious roots."
 	icon_state = "turnip"
 	seed_type = /obj/item/growable/seeds/turnip
 	edible = TRUE
+	mood_gain = -10
+	food_reagents = list(/datum/reagent/consumable/nutriment=50)
 
 /obj/item/growable/carrot
 	name = "carrot"
-	desc = ""
+	desc = "Everybody knows what a carrot is."
 	icon_state = "carrot"
 	seed_type = /obj/item/growable/seeds/carrot
 	edible = TRUE
+	mood_gain = -10
+	food_reagents = list(/datum/reagent/consumable/nutriment=50)
 
 /obj/item/growable/cotton
 	name = "cotton"
@@ -118,10 +130,12 @@
 
 /obj/item/growable/sweet_pod
 	name = "sweet pod"
-	desc = ""
+	desc = "Plant bearing a sweet fruits when grown."
 	icon_state = "sweet_pod"
 	seed_type = /obj/item/growable/seeds/sweet_pod
 	edible = TRUE
+	mood_gain = -5
+	food_reagents = list(/datum/reagent/consumable/nutriment=50)
 
 /obj/item/growable/sweet_pod/MakePressable()
 	AddComponent(/datum/component/pressable, /datum/reagent/consumable/juice/sweet_pod, 10)
@@ -134,10 +148,12 @@
 
 /obj/item/growable/plump_helmet
 	name = "plump helmet"
-	desc = ""
+	desc = "A big purple shrooms treasured by dwarves."
 	icon_state = "plump_helmet"
 	seed_type = /obj/item/growable/seeds/plump_helmet
 	edible = TRUE
+	mood_gain = -10
+	food_reagents = list(/datum/reagent/consumable/nutriment=50)
 
 /obj/item/growable/plump_helmet/MakePressable()
 	AddComponent(/datum/component/pressable, /datum/reagent/consumable/juice/plump, 10)

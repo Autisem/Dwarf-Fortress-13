@@ -33,8 +33,10 @@
 	var/venue_value
 	///Food that's immune to decomposition.
 	var/preserved_food = FALSE
-	///Mood gain when eaten
+	///Mood when eaten
 	var/mood_gain
+	var/mood_event_type
+	var/mood_duration
 
 /obj/item/food/Initialize(mapload)
 	. = ..()
@@ -82,12 +84,14 @@
 	var/datum/component/mood/M = eater.GetComponent(/datum/component/mood)
 	if(!M)
 		return
-	M.add_event(null, "foog", /datum/mood_event/ate_food)
+	if(mood_event_type)
+		M.add_event(null, "food", mood_event_type, mood_gain ? mood_gain : null, mood_duration ? mood_duration : null)
 
 /obj/item/food/badrecipe
 	name = "burned recipe"
-	desc = "Not yummy."
+	desc = "You've failed it. Try again."
 	icon_state = "food_ruined"
+	mood_event_type = /datum/mood_event/ate_badfood
 
 /obj/item/food/cookie
 	name = "cookie"

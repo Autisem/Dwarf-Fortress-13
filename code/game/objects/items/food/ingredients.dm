@@ -2,29 +2,53 @@
 
 /obj/item/food/slice/plump_helmet
 	name = "plump slice"
+	desc = "Juicy slice of juicy mushroom."
 	icon_state = "plump_slice"
+	mood_event_type = /datum/mood_event/ate_raw_food/mild
+	mood_gain = -10
+	mood_duration = 1 MINUTES
+	food_reagents = list(/datum/reagent/consumable/nutriment=15)
 
 /obj/item/food/slice/meat
 	name = "meat slice"
+	desc = "Meat cutlet."
 	icon_state = "meat_slice"
+	mood_event_type = /datum/mood_event/ate_raw_food/meat
+	mood_gain = -30
+	mood_duration = 5 MINUTES
+	food_reagents = list(/datum/reagent/consumable/nutriment=20)
 
 /obj/item/food/slice/meat/troll
 	name = "troll meat slice"
+	desc = "Meat cutlet, made for a greater dishes."
 	icon_state = "troll_slice"
 
 /obj/item/food/slice/dough
 	name = "dough slice"
+	desc = "Cut piece of a dough"
 	icon_state = "dough_slice"
+	mood_event_type = /datum/mood_event/ate_raw_food/mild
+	mood_gain = -10
+	mood_duration = 1 MINUTES
+	food_reagents = list(/datum/reagent/consumable/nutriment=20)
 
 /obj/item/food/dough
 	name = "dough"
-	desc = "Almost a bread."
+	desc = "Dough for all kind of bakery."
 	icon_state = "dough"
+	mood_event_type = /datum/mood_event/ate_raw_food/mild
+	mood_gain = -20
+	mood_duration = 1 MINUTES
+	food_reagents = list(/datum/reagent/consumable/nutriment=20)
 
 /obj/item/food/flat_dough
 	name = "flat dough"
-	desc = "Every flat earther's dream."
+	desc = "Mama mia!"
 	icon_state = "dough_flat"
+	mood_event_type = /datum/mood_event/ate_raw_food/mild
+	mood_gain = -20
+	mood_duration = 1 MINUTES
+	food_reagents = list(/datum/reagent/consumable/nutriment=20)
 
 /obj/item/food/dough/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/slice/dough, 3, 2 SECONDS)
@@ -68,9 +92,14 @@
 
 /obj/item/food/sausage
 	name = "sausage"
-	desc = "Long."
+	desc = "Best served roasted."
 	icon_state = "sausage"
+	mood_event_type = /datum/mood_event/ate_raw_food/meat
+	mood_gain = -30
+	mood_duration = 5 MINUTES
+	food_reagents = list(/datum/reagent/consumable/nutriment=30)
 
 /obj/item/food/sausage/luxurious
+	food_reagents = list(/datum/reagent/consumable/nutriment=50)
 
 /obj/item/food/sausage/failed // bad sausage; gives poop when cooked

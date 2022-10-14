@@ -379,9 +379,13 @@ Behavior that's still missing from this component that original food items had t
 	on_consume?.Invoke(eater, feeder)
 
 	to_chat(feeder, span_warning("There is nothing left of [parent], oh no!"))
+	// if needed in future uncomment and add mood event 'eaten wothout table'
+	// if(!istype(feeder.buckled, /obj/structure/chair) || !(locate(/obj/structure/table) in range(1, feeder)))
+	// 	var/datum/component/mood/M = eater.GetComponent(/datum/component/mood)
+	// 	if(M)
 	if(isturf(parent))
 		var/turf/T = parent
-		T.ScrapeAway(1, CHANGETURF_INHERIT_AIR)
+		T.ScrapeAway()
 	else
 		qdel(parent)
 

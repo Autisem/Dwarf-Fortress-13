@@ -273,7 +273,7 @@
 	master.crit_threshold = (master.crit_threshold - insanity_effect) + newval
 	insanity_effect = newval
 
-/datum/component/mood/proc/add_event(datum/source, category, type, ...) //Category will override any events in the same category, should be unique unless the event is based on the same thing like hunger.
+/datum/component/mood/proc/add_event(datum/source, category, type, change=null, timeout=null, ...) //Category will override any events in the same category, should be unique unless the event is based on the same thing like hunger.
 	SIGNAL_HANDLER
 
 	var/datum/mood_event/the_event
@@ -287,11 +287,15 @@
 			if(the_event.timeout)
 				the_event.timer = addtimer(CALLBACK(src, .proc/clear_event, null, category), the_event.timeout, TIMER_STOPPABLE|TIMER_UNIQUE|TIMER_OVERRIDE)
 			return //Don't have to update the event.
-	var/list/params = args.Copy(4)
+	var/list/params = args.Copy(6)
 	params.Insert(1, parent)
 	if(!type)
 		stack_trace("Mood event trying to create null type.")
 	the_event = new type(arglist(params))
+	if(change)
+		the_event.mood_change = change
+	if(timeout)
+		the_event.timeout = timeout
 
 	mood_events[category] = the_event
 	the_event.category = category

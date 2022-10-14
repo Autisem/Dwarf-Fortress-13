@@ -19,10 +19,37 @@
 	description = "<span class='boldwarning'>I'm starving!</span>\n"
 	mood_change = -10
 
-/datum/mood_event/ate_food
-	description = span_green("I ate something.")
-	mood_change = 5000
-	timeout = 3 MINUTES
+/datum/mood_event/ate_raw_food
+	description = span_red("I ate raw food.")
+
+/datum/mood_event/ate_raw_food/severe
+
+/datum/mood_event/ate_raw_food/mild
+
+/datum/mood_event/ate_raw_food/meat
+	description = span_red("I ate raw meat!")
+	mood_change = -30
+	timeout = 5 MINUTES
+
+/datum/mood_event/ate_meal
+	description = span_green("I ate a meal.")
+	mood_change = 10
+	timeout = 4 MINUTES
+
+/datum/mood_event/ate_meal/decent
+	description = span_green("I ate a decent meal.")
+	mood_change = 20
+	timeout = 10 MINUTES
+
+/datum/mood_event/ate_meal/luxurious
+	description = span_green("I ate a luxurious meal!")
+	mood_change = 30
+	timeout = 20 MINUTES
+
+/datum/mood_event/ate_badfood
+	description = span_red("I ate a failed food!")
+	mood_change = -40
+	timeout = 4 MINUTES
 
 //charge
 /datum/mood_event/supercharged
