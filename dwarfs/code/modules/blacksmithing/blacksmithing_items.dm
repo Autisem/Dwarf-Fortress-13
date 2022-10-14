@@ -252,3 +252,7 @@
 /obj/item/scepter_shaft
 	name = "scepter shaft"
 	icon_state = "scepter_shaft"
+
+/obj/item/partial/lantern_parts
+	name = "lantern parts"
+	icon_state = "lantern_parts"

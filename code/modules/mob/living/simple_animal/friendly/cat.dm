@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(cats)
 	maxbodytemp = 400
 	animal_species = /mob/living/simple_animal/pet/cat
 	childtype = list(/mob/living/simple_animal/pet/cat/kitten)
-	butcher_results = list(/obj/item/food/meat/slab = list(1,2))
+	butcher_results = list(/obj/item/food/meat/slab = list(1,2), /obj/item/stack/sheet/tallow = list(0,2))
 	hide_type = /obj/item/stack/sheet/animalhide/cat
 	response_help_continuous = "pets"
 	response_help_simple = "pet"
