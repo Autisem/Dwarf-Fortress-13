@@ -128,6 +128,9 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 
 /turf/open/openspace/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/stack/sheet/planks))
+		if(locate(/obj/structure/lattice) in src)
+			to_chat(user, span_warning("There already is a lattice!"))
+			return
 		var/obj/item/stack/S = I
 		if(S.use(5))
 			new /obj/structure/lattice(src)
