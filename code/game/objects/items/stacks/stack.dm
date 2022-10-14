@@ -558,7 +558,7 @@
 	var/trait_modifier = 1
 	var/list/required_tools = null
 
-/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1,time = 0, one_per_turf = FALSE, on_floor = FALSE, window_checks = FALSE, placement_checks = FALSE, applies_mats = FALSE, trait_booster = null, trait_modifier = 1, required_tools = null)
+/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1,time = 0, one_per_turf = FALSE, on_floor = FALSE, window_checks = FALSE, placement_checks = FALSE, applies_mats = FALSE, trait_booster = null, trait_modifier = 1, tools = null)
 	src.title = title
 	src.result_type = result_type
 	src.req_amount = req_amount
@@ -571,7 +571,7 @@
 	src.applies_mats = applies_mats
 	src.trait_booster = trait_booster
 	src.trait_modifier = trait_modifier
-	src.required_tools = required_tools
+	src.required_tools = tools
 /*
  * Recipe list datum
  */
