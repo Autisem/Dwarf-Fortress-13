@@ -50,13 +50,13 @@
 		var/turf/T = user.loc
 		if (!isturf(T))
 			return
-
-		if(last_act + (40 * I.toolspeed) > world.time)//prevents message spam
+		var/time = 3 SECONDS * I.toolspeed * user.mind.get_skill_modifier(/datum/skill/mining, SKILL_SPEED_MODIFIER)
+		if(last_act + time > world.time)//prevents message spam
 			return
 		last_act = world.time
 		to_chat(user, span_notice("You start picking..."))
 
-		if(I.use_tool(src, user, 40, volume=50))
+		if(I.use_tool(src, user, time, volume=50))
 			if(ismineralturf(src))
 				to_chat(user, span_notice("You finish cutting into the rock."))
 				gets_drilled(user, TRUE)

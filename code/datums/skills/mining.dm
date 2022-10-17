@@ -2,4 +2,6 @@
 	name = "Mining"
 	title = "Miner"
 	desc = "A dwarf's biggest skill, after drinking."
-	modifiers = list(SKILL_SPEED_MODIFIER = list(1, 0.95, 0.9, 0.85, 0.75, 0.6, 0.5),SKILL_PROBS_MODIFIER=list(10, 15, 20, 25, 30, 35, 40))
+	modifiers = list(
+		SKILL_SPEED_MODIFIER = list(3,2.5,2,1.7,1.4,1.2,1.1,1,0.9,0.7,0.6)
+		)

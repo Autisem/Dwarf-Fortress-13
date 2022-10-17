@@ -131,7 +131,6 @@
 					to_chat(user, span_warning("Too late to change your mind."))
 					return
 				current_ingot.recipe = new sel_recipe.type()
-				current_ingot.recipe.max_resulting = H.mind.get_skill_modifier(/datum/skill/smithing, SKILL_RANDS_MODIFIER)
 				playsound(src, 'dwarfs/sounds/tools/anvil/anvil_hit.ogg', 70, TRUE)
 				to_chat(user, span_notice("You begin to forge..."))
 		else

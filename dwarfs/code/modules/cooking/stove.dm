@@ -185,15 +185,10 @@
 			timers[2] = addtimer(CALLBACK(src, .proc/try_cook, right_item), cook_time, TIMER_STOPPABLE)
 
 /obj/structure/stove/proc/try_cook(obj/item/I)
-	if(left_item == I)
-		left_item = null
-	else if(right_item == I)
-		right_item = null
-	update_appearance()
 	var/list/possible_recipes = list()
 	if(istype(I, /obj/item/reagent_containers/glass/cooking_pot))
 		possible_recipes = subtypesof(/datum/cooking_recipe/pot)
-	if(istype(I, /obj/item/reagent_containers/glass/pan))
+	else if(istype(I, /obj/item/reagent_containers/glass/pan))
 		possible_recipes = subtypesof(/datum/cooking_recipe/pan)
 	var/datum/cooking_recipe/R = find_recipe(possible_recipes, I.contents, I.reagents.reagent_list)
 	if(!R)
@@ -201,6 +196,11 @@
 		I.reagents.clear_reagents()
 		new /obj/item/food/badrecipe(get_turf(src))
 		return
+	if(left_item == I)
+		left_item = null
+	else if(right_item == I)
+		right_item = null
+	update_appearance()
 	var/obj/item/food/F = initial(R.result)
 	new F(get_turf(src))
 	qdel(I)

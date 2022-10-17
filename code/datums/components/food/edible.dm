@@ -52,7 +52,7 @@ Behavior that's still missing from this component that original food items had t
 	eat_time = 10,
 	list/tastes,
 	list/eatverbs = list("bite","chew","nibble","gnaw","gobble","chomp"),
-	bite_consumption = 2,
+	bite_consumption = 50,
 	junkiness,
 	datum/callback/after_eat,
 	datum/callback/on_consume,
