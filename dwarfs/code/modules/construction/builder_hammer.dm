@@ -1,6 +1,6 @@
 /obj/item/builder_hammer
 	name = "builder's hammer"
-	desc = ">:D"
+	desc = "Used to build various structures. Very handy."
 	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "builder_hammer"
 	usesound = 'dwarfs/sounds/tools/hammer/hammer_hit.ogg'

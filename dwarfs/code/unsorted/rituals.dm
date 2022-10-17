@@ -19,7 +19,7 @@
 /datum/ritual/summon_frog
 	name = "Ritual of quack"
 	true_name = "frog"
-	desc = "Quack."
+	desc = "Quack. I mean REEEEE..."
 	cost = 500
 
 /datum/ritual/summon_tools

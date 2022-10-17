@@ -69,7 +69,7 @@
 
 /obj/item/axe
 	name = "axe"
-	desc = "<:)"
+	desc = "Used for foraging wood."
 	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "axe"
 	tool_behaviour = TOOL_AXE

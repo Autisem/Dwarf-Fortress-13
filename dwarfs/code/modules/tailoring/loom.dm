@@ -1,6 +1,6 @@
 /obj/structure/loom
 	name = "loom"
-	desc = ":("
+	desc = "Nobody ever told anyone that weaving is easy. Neither fun."
 	icon = 'dwarfs/icons/structures/workshops.dmi'
 	icon_state = "loom"
 	var/working = FALSE

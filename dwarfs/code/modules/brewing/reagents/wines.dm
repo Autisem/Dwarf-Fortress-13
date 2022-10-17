@@ -1,6 +1,6 @@
 /datum/reagent/consumable/ethanol/wine
 	name = "Wine"
-	description = "sus"
+	description = "Traditional dwarfen mushroom wine. Heals dwarf's souls and minds (and probably more)."
 	color = "#c9220cff"
 
 /datum/reagent/consumable/ethanol/wine/New()

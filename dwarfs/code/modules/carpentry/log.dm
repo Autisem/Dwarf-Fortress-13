@@ -1,6 +1,6 @@
 /obj/item/log
 	name = "log"
-	desc = "Flat."
+	desc = "Wooden tree trunk requiring heavy labor."
 	icon = 'dwarfs/icons/items/components.dmi'
 	icon_state = "log"
 	throw_range = 0
@@ -31,7 +31,7 @@
 
 /obj/item/log/large
 	name = "large log"
-	desc = "Big flat."
+	desc = "Huge, wooden tree trunk requiring very heavy labor."
 	icon_state = "large_log"
 	density = 1
 	w_class = WEIGHT_CLASS_GIGANTIC

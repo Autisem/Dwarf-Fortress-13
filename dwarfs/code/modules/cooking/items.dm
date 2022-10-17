@@ -1,6 +1,6 @@
 /obj/item/stick
 	name = "stick"
-	desc = "Stick."
+	desc = "Stick. That's just stick."
 	icon = 'dwarfs/icons/items/components.dmi'
 	icon_state = "tool_handle"
 
@@ -72,7 +72,7 @@
 
 /obj/item/stack/sheet/tallow
 	name = "tallow"
-	desc = "Pure grease, do not use it while raining."
+	desc = "Pure grease, do not use it while it's raining."
 	singular_name = "Tallow"
 	icon = 'dwarfs/icons/items/components.dmi'
 	icon_state = "tallow"

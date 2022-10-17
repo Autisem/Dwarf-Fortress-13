@@ -124,7 +124,7 @@
 
 /obj/item/growable/cotton
 	name = "cotton"
-	desc = ""
+	desc = "No animal was harmed during picking these. Cannot say it about other humanoid species."
 	icon_state = "cotton"
 	seed_type = /obj/item/growable/seeds/cotton
 
@@ -142,7 +142,7 @@
 
 /obj/item/growable/pig_tail
 	name = "pig tail"
-	desc = ""
+	desc = "Despite of its name, it's fully vegan. Maybe except the worms."
 	icon_state = "pig_tail"
 	seed_type = /obj/item/growable/seeds/pig_tail
 

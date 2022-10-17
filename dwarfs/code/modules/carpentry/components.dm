@@ -1,6 +1,6 @@
 /obj/item/torch_handle
 	name = "torch handle"
-	desc = ">:)"
+	desc = "Put torch here."
 	icon = 'dwarfs/icons/items/equipment.dmi'
 	icon_state = "torch_empty"
 
@@ -22,18 +22,18 @@
 
 /obj/item/tool_handle
 	name = "tool handle"
-	desc = ">:)"
+	desc = "Basic component needed for making tools."
 	icon = 'dwarfs/icons/items/components.dmi'
 	icon_state = "tool_handle"
 
 /obj/item/weapon_hilt
 	name = "weapon hilt"
-	desc = ">:)"
+	desc = "Protects you from slide cutting your hands off."
 	icon = 'dwarfs/icons/items/components.dmi'
 	icon_state = "sword_handle"
 
 /obj/item/scepter_shaft
 	name = "scepter shaft"
-	desc = ">:)"
+	desc = "Truly royal scepter shaft. Will look great in king's hands."
 	icon = 'dwarfs/icons/items/components.dmi'
 	icon_state = "scepter_shaft"

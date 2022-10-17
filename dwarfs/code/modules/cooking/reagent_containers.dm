@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/glass/sack
 	name = "sack"
-	desc = "sack of balls"
+	desc = "Storage sack, for seeds or something."
 	icon = 'dwarfs/icons/items/kitchen.dmi'
 	icon_state = "bag"
 	volume = 80
@@ -26,7 +26,7 @@
 
 /obj/item/reagent_containers/glass/cooking_pot
 	name = "cooking pot"
-	desc = "boomer"
+	desc = "A Midsummer Night's Dream of Chilli Pot"
 	icon = 'dwarfs/icons/items/kitchen.dmi'
 	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
 	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'

@@ -66,8 +66,8 @@
 	. += M
 
 /obj/structure/blueprint/large //2x1 size
-	name = "big boi blueprint"
-	desc = "Big chugus."
+	name = "large blueprint"
+	desc = "That's some real construction going on in here."
 	icon = 'dwarfs/icons/structures/64x32.dmi'
 	icon_state = "blueprint"
 	dimensions = list(1,0)
