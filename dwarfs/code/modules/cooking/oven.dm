@@ -1,6 +1,6 @@
 /obj/structure/oven
 	name = "oven"
-	desc = ""
+	desc = "One of essentials for delicious cuisine. Warm meal is what you need."
 	icon = 'dwarfs/icons/structures/32x64.dmi'
 	icon_state = "oven_empty_lower"
 	anchored = TRUE

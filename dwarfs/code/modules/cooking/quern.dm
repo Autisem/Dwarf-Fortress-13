@@ -1,6 +1,6 @@
 /obj/structure/quern
 	name = "quern"
-	desc = "Rotational sus."
+	desc = "Manual whole grain mill. At least you eat healthy."
 	icon = 'dwarfs/icons/structures/workshops.dmi'
 	icon_state = "millstone"
 	density = TRUE

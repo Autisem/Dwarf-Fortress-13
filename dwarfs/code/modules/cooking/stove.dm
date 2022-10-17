@@ -2,7 +2,7 @@
 
 /obj/structure/stove
 	name = "stove"
-	desc = "Cook cock"
+	desc = "Slowfire, (mainly) wood infused stove. Great for cooking and boiling stuff."
 	icon = 'dwarfs/icons/structures/workshops.dmi'
 	icon_state = "stove_closed_empty"
 	density = 1
