@@ -60,7 +60,7 @@ export const BuilderHammer = (props, context) => {
                   'padding': '6px',
                 }}>
                 <div style={{ 'display': 'flex', 'flex-wrap': 'wrap' }}>
-                  {blueprints[0].blueprints.map((bp, i) => (
+                  {blueprints[tabIndex].blueprints.map((bp, i) => (
                     <div
                       key={bp.name}
                       style={{
