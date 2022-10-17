@@ -47,7 +47,7 @@ export const BuilderHammer = (props, context) => {
                     <Tabs.Tab
                       selected={i === tabIndex}
                       key={cat}
-                      onClick={() => setTabIndex(i)}>
+                      onClick={() => { setBpIndex(0); setTabIndex(i); }}>
                       {capitalize(cat.name)}
                     </Tabs.Tab>
                   ))}
