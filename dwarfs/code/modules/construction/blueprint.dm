@@ -76,38 +76,46 @@
 	name = "brewery blueprint"
 	target_structure = /obj/structure/brewery/spawner
 	reqs = list(/obj/item/stack/sheet/stone=1)
+	cat = "food processing"
 
 /obj/structure/blueprint/large/workbench
 	name = "workbench blueprint"
 	target_structure = /obj/structure/workbench
 	reqs = list(/obj/item/stack/sheet/planks=1)
+	cat = "crafstmanship"
 
 /obj/structure/blueprint/stove
 	name = "stove blueprint"
 	target_structure = /obj/structure/stove
 	reqs = list(/obj/item/stack/sheet/stone=1)
+	cat = "food processing"
 
 /obj/structure/blueprint/oven
 	name = "oven blueprint"
 	target_structure = /obj/structure/oven
 	reqs = list(/obj/item/stack/sheet/stone=1)
+	cat = "food processing"
 
 /obj/structure/blueprint/smelter
 	name = "smelter blueprint"
 	target_structure = /obj/structure/smelter
 	reqs = list(/obj/item/stack/sheet/stone=1)
+	cat = "crafstmanship"
 
 /obj/structure/blueprint/forge
 	name = "forge blueprint"
 	target_structure = /obj/structure/forge
 	reqs = list(/obj/item/stack/sheet/stone=1)
+	cat = "crafstmanship"
 
 /obj/structure/blueprint/quern
 	name = "quern blueprint"
 	target_structure = /obj/structure/quern
 	reqs = list(/obj/item/stack/sheet/stone=1)
+	cat = "food processing"
 
 /obj/structure/blueprint/well
 	name = "well blueprint"
 	target_structure = /obj/structure/well
 	reqs = list(/obj/item/stack/sheet/stone=1)
+	cat = "utils"
