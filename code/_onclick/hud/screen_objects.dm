@@ -272,14 +272,6 @@
 	else
 		return ..()
 
-/atom/movable/screen/act_intent/alien
-	icon = 'icons/hud/screen_alien.dmi'
-	screen_loc = ui_movi
-
-/atom/movable/screen/act_intent/robot
-	icon = 'icons/hud/screen_cyborg.dmi'
-	screen_loc = ui_borg_intents
-
 /atom/movable/screen/mov_intent
 	name = "run/walk"
 	icon = 'icons/hud/screen_midnight.dmi'
@@ -490,13 +482,6 @@
 	if(!hud?.mymob)
 		return
 	. += mutable_appearance(overlay_icon, "[hud.mymob.zone_selected]")
-
-/atom/movable/screen/zone_sel/alien
-	icon = 'icons/hud/screen_alien.dmi'
-	overlay_icon = 'icons/hud/screen_alien.dmi'
-
-/atom/movable/screen/zone_sel/robot
-	icon = 'icons/hud/screen_cyborg.dmi'
 
 /atom/movable/screen/flash
 	name = "flash"
