@@ -38,12 +38,6 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	var/atom/movable/screen/keeper_magic_display
 
-	var/atom/movable/screen/alien_plasma_display
-	var/atom/movable/screen/alien_queen_finder
-
-	var/atom/movable/screen/devil/soul_counter/devilsouldisplay
-
-
 	var/atom/movable/screen/action_intent
 	var/atom/movable/screen/zone_select
 	var/atom/movable/screen/pull_icon
@@ -132,8 +126,6 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	wanted_lvl = null
 	internals = null
 	keeper_magic_display = null
-	alien_plasma_display = null
-	alien_queen_finder = null
 
 
 

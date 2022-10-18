@@ -148,6 +148,7 @@
 	open = !open
 	update_appearance()
 	to_chat(user, span_notice("You [open?"open":"close"] [src]."))
+	playsound(src, 'dwarfs/sounds/structures/toggle_open.ogg', 50, TRUE)
 
 /obj/structure/stove/process(delta_time)
 	if(!working)
