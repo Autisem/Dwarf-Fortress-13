@@ -16,11 +16,13 @@
 				turf_type = /turf/open/water
 			if(-0.7 to -0.6)
 				turf_type = /turf/open/floor/dirt
+				generate_turf_flora(T, 8)
 			if(-0.6 to -0.3)
 				if(temp > 0)
 					turf_type = /turf/open/floor/sand
 				else
 					turf_type = /turf/open/floor/rock
+					generate_turf_flora(T, 1)
 			if(-0.3 to INFINITY)
 				if(temp > 0)
 					turf_type = /turf/closed/mineral/random/sand
@@ -29,6 +31,13 @@
 		T.ChangeTurf(turf_type, initial(turf_type.baseturfs))
 	to_chat(world, span_green(" -- #<b>[name]</b>:> <b>[(REALTIMEOFDAY - start_time)/10]s</b> -- "))
 	log_world("[name] is done job for [(REALTIMEOFDAY - start_time)/10]s!")
+
+/datum/map_generator/caves/generate_turf_flora(turf, chance)
+	if(prob(chance))
+		var/obj/structure/plant/tree/towercap/temp = new (turf)
+		temp.growthstage = rand(0, 7)
+		temp.growthdelta = rand(80, 400) SECONDS
+		temp.update_appearance()
 
 /datum/map_generator/caves/upper
 	name = "Upper Caves"
