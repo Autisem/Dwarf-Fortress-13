@@ -51,7 +51,7 @@
 
 /datum/component/wet_floor/proc/update_overlay()
 	var/intended
-	if(!istype(parent, /turf/open/floor))
+	if(!isfloorturf(parent))
 		intended = generic_turf_overlay
 	else
 		switch(highest_strength)
@@ -111,7 +111,33 @@
 		. = max(., time_left_list[i])
 
 /datum/component/wet_floor/process()
-	dry(null, ALL, FALSE, 0)
+	// ! Used for unfreezing objects
+	// var/turf/open/T = parent
+	var/diff = world.time - last_process
+	var/decrease = 0
+	// This temperature is hardcoded workaround due to disabled temperature system
+	var/t = 20
+	// Next hardcoded workaround, probably it was just 0 temperature
+	var/T0C = 0
+
+	// monke workaround
+	decrease = ((t - T0C) / SSwet_floors.temperature_coeff) * (diff / SSwet_floors.time_ratio)
+	// ! commenting out due to strange behavior, not working anyway
+	// switch(t)
+		// if(-INFINITY to T0C)
+		// 	add_wet(TURF_WET_ICE, max_time_left()) //Water freezes into ice!
+		// if(T0C to T0C + 100)
+		//	 decrease = ((t - T0C) / SSwet_floors.temperature_coeff) * (diff / SSwet_floors.time_ratio)
+		// if(T0C + 100 to INFINITY)
+		// 	decrease = INFINITY
+	decrease = max(0, decrease)
+	if((is_wet() & TURF_WET_ICE) && t > T0C) //Ice melts into water!
+		// ! Just commented below cause there is no proc for that, also probably it wouldnt work anyway
+		// for(var/obj/O in T.contents)
+			// O.unfreeze()
+		add_wet(TURF_WET_WATER, max_time_left())
+		dry(null, TURF_WET_ICE)
+	dry(null, ALL, FALSE, decrease)
 	check()
 	last_process = world.time
 
