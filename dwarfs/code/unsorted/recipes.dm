@@ -173,4 +173,9 @@
 /datum/workbench_recipe/mop
 	name = "mop"
 	result = /obj/item/mop
-	reqs = list(/obj/item/tool_handle=1, /obj/item/stack/sheet/animalhide/cat =2)
+	reqs = list(/obj/item/tool_handle=1, /obj/item/stack/sheet/animalhide/cat =1)
+
+/datum/workbench_recipe/rag
+	name = "rag"
+	result = /obj/item/reagent_containers/glass/rag
+	reqs = list(/obj/item/stack/sheet/animalhide/cat =2)
