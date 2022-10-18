@@ -111,7 +111,8 @@
 		. = max(., time_left_list[i])
 
 /datum/component/wet_floor/process()
-	var/turf/open/T = parent
+	// ! Used for unfreezing objects
+	// var/turf/open/T = parent
 	var/diff = world.time - last_process
 	var/decrease = 0
 	// This temperature is hardcoded workaround due to disabled temperature system
