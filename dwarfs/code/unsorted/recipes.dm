@@ -169,3 +169,8 @@
 	name = "scepter"
 	result = /obj/item/scepter
 	reqs = list(/obj/item/partial/scepter_part=1, /obj/item/scepter_shaft=1)
+
+/datum/workbench_recipe/mop
+	name = "mop"
+	result = /obj/item/mop
+	reqs = list(/obj/item/tool_handle=1, /obj/item/stack/sheet/animalhide/cat =2)
