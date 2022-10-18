@@ -259,7 +259,6 @@
 #include "code\_onclick\hud\radial.dm"
 #include "code\_onclick\hud\radial_persistent.dm"
 #include "code\_onclick\hud\render_plate.dm"
-#include "code\_onclick\hud\revenanthud.dm"
 #include "code\_onclick\hud\screen_objects.dm"
 #include "code\controllers\admin.dm"
 #include "code\controllers\controller.dm"
