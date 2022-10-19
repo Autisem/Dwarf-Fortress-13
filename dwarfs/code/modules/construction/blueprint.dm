@@ -23,9 +23,10 @@
 			if(!(i in contained) || reqs[i] != contained[i])
 				to_chat(user, span_warning("[src] is is missing materials to be built!"))
 				return
-		to_chat(user, span_notice("You build [initial(target_structure.name)]."))
-		new target_structure(get_turf(src))
-		qdel(src)
+		if(I.use_tool(src, user, 20 SECONDS, volume=50))
+			to_chat(user, span_notice("You build [initial(target_structure.name)]."))
+			new target_structure(get_turf(src))
+			qdel(src)
 	else
 		var/_type
 		var/contained = 0
