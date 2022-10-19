@@ -4,7 +4,8 @@
 	singular_name = "Plank"
 	icon = 'dwarfs/icons/items/components.dmi'
 	icon_state = "planks"
-	inhand_icon_state = "sheet-metal"
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	merge_type = /obj/item/stack/sheet/planks
 
