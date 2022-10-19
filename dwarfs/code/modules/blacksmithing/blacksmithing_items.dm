@@ -5,6 +5,9 @@
 	desc = "Can be forged into something."
 	icon = 'dwarfs/icons/items/ingots.dmi'
 	icon_state = "iron"
+	inhand_icon_state = "iron_ingot"
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 2
 	throwforce = 5
@@ -22,6 +25,9 @@
 	icon_state = "gold"
 	type_metal = "gold"
 	metal_color = "#ffae34"
+	inhand_icon_state = "gold_ingot"
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 
 /obj/item/ingot/examine(mob/user)
 	. = ..()
