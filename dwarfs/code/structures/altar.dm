@@ -13,8 +13,10 @@
 	var/list/allowed_resources = list(/obj/item/ingot/gold=25,
 									/obj/item/stack/sheet/mineral/gem/diamond=50,
 									/obj/item/stack/sheet/mineral/gem/ruby=40,
-									/obj/item/stack/sheet/mineral/gem/sapphire=30,
-									)
+									/obj/item/stack/sheet/mineral/gem/sapphire=30)
+	var/list/spawnable_seeds = list(/obj/item/growable/seeds/carrot, /obj/item/growable/seeds/cave_wheat, /obj/item/growable/seeds/turnip,
+			 					   /obj/item/growable/seeds/pig_tail, /obj/item/growable/seeds/plump_helmet, /obj/item/growable/seeds/sweet_pod,
+			  					   /obj/item/growable/seeds/barley, /obj/item/growable/seeds/cotton)
 
 /obj/structure/dwarf_altar/Initialize()
 	. = ..()
@@ -91,17 +93,17 @@
 		return
 	switch(initial(R.true_name))
 		if("seeds")
-			to_chat(user, span_notice("No seeds!"))
-			// for(var/seed in list(/obj/item/seeds/tower))
-			// 	for(var/i in 1 to 2)
-			// 		new seed(loc)
+			//spawns from 1 to 4 random seeds
+			for(var/i in 1 to rand(2,4))
+				var/seed = spawnable_seeds[rand(0,7)]
+				new seed(loc)
 		if("dwarf")
 			active = TRUE
 			notify_ghosts("New dwarf is ready.", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Dwarf spawn available.")
 		if("frog")
 			new /mob/living/simple_animal/hostile/retaliate/frog(loc)
 		if("tools")
-			for(var/tool in list(/obj/item/smithing_hammer, /obj/item/tongs, /obj/item/builder_hammer))
+			for(var/tool in list(/obj/item/smithing_hammer, /obj/item/tongs, /obj/item/builder_hammer, /obj/item/chisel, /obj/item/pickaxe))
 				new tool(loc)
 	busy = FALSE
 	to_chat(user, span_notice("You finish the ritual."))
