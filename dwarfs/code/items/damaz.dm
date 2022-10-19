@@ -3,6 +3,8 @@
 	desc = "A book of grudges."
 	icon = 'dwarfs/icons/items/weapons.dmi'
 	icon_state = "damaz"
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 
 /obj/item/damaz/proc/can_use(mob/user) // for altar
 	var/allowed = isdwarf(user)
