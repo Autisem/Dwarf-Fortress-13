@@ -122,3 +122,43 @@
 	atck_type = BLUNT
 	max_integrity = 50
 	resistance_flags = FIRE_PROOF
+
+/obj/item/spear
+	name = "spear"
+	desc = "Pointy stick. Robustest." // also  "King's second most important tool. You hit peasants with it."
+	icon = 'dwarfs/icons/items/weapons.dmi'
+	icon_state = "spear"
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	inhand_icon_state = "spear"
+	flags_1 = CONDUCT_1
+	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	force = 20
+	throwforce = 30
+	w_class = WEIGHT_CLASS_BULKY
+	hitsound = 'sound/weapons/pierce_slow.ogg'
+	block_chance = 5
+	atck_type = PIERCE
+	max_integrity = 50
+	resistance_flags = FIRE_PROOF
+
+/obj/item/halberd
+	name = "halberd"
+	desc = "Pointy stick with bladee. Robustester." // also  "King's second most important tool. You hit peasants with it."
+	icon = 'dwarfs/icons/items/weapons.dmi'
+	icon_state = "halberd"
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	inhand_icon_state = "halberd"
+	flags_1 = CONDUCT_1
+	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	force = 20
+	throwforce = 5
+	w_class = WEIGHT_CLASS_BULKY
+	hitsound = 'sound/weapons/pierce_slow.ogg'
+	block_chance = 15
+	atck_type = PIERCE
+	max_integrity = 50
+	resistance_flags = FIRE_PROOF
+
+

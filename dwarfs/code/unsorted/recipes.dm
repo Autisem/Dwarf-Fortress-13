@@ -44,6 +44,14 @@
 	name = "\[part\] smithing hammer"
 	result = /obj/item/partial/smithing_hammer
 
+/datum/smithing_recipe/spear
+	name = "\[part\] spear"
+	result = /obj/item/partial/spear
+
+/datum/smithing_recipe/halberd
+	name = "\[part\] halberd"
+	result = /obj/item/partial/halberd
+
 /datum/smithing_recipe/tongs
 	name = "tongs"
 	result = /obj/item/tongs
@@ -129,6 +137,16 @@
 	name = "sword"
 	result = /obj/item/sword
 	reqs = list(/obj/item/stack/sheet/leather = 1, /obj/item/partial/sword=1, /obj/item/weapon_hilt=1)
+
+/datum/workbench_recipe/spear
+	name = "spear"
+	result = /obj/item/spear
+	reqs = list(/obj/item/stack/sheet/leather = 1, /obj/item/partial/spear =1, /obj/item/tool_handle=1)
+
+/datum/workbench_recipe/halberd
+	name = "halberd"
+	result = /obj/item/halberd
+	reqs = list(/obj/item/partial/halberd =1, /obj/item/tool_handle=1)
 
 /datum/workbench_recipe/crown
 	name = "crown"

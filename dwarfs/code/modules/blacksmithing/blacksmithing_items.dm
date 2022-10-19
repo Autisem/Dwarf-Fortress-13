@@ -252,3 +252,11 @@
 /obj/item/partial/lantern_parts
 	name = "lantern parts"
 	icon_state = "lantern_parts"
+
+/obj/item/partial/spear
+	name = "spear head"
+	icon_state = "spear_head"
+
+/obj/item/partial/halberd
+	name = "halberd head"
+	icon_state = "halberd_head"
