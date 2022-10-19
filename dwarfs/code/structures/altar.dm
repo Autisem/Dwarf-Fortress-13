@@ -101,7 +101,7 @@
 		if("frog")
 			new /mob/living/simple_animal/hostile/retaliate/frog(loc)
 		if("tools")
-			for(var/tool in list(/obj/item/smithing_hammer, /obj/item/tongs))
+			for(var/tool in list(/obj/item/smithing_hammer, /obj/item/tongs, /obj/item/builder_hammer))
 				new tool(loc)
 	busy = FALSE
 	to_chat(user, span_notice("You finish the ritual."))
