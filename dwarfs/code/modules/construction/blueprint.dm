@@ -75,47 +75,71 @@
 /obj/structure/blueprint/large/brewery
 	name = "brewery blueprint"
 	target_structure = /obj/structure/brewery/spawner
-	reqs = list(/obj/item/stack/sheet/stone=1)
+	reqs = list(/obj/item/stack/sheet/planks=8, /obj/item/stack/sheet/stone=4 ,/obj/item/ingot=4)
 	cat = "food processing"
 
 /obj/structure/blueprint/large/workbench
 	name = "workbench blueprint"
 	target_structure = /obj/structure/workbench
-	reqs = list(/obj/item/stack/sheet/planks=1)
+	reqs = list(/obj/item/stack/sheet/planks=10, /obj/item/ingot=2)
 	cat = "crafstmanship"
 
 /obj/structure/blueprint/stove
 	name = "stove blueprint"
 	target_structure = /obj/structure/stove
-	reqs = list(/obj/item/stack/sheet/stone=1)
+	reqs = list(/obj/item/stack/sheet/stone=10, /obj/item/ingot=1)
 	cat = "food processing"
 
 /obj/structure/blueprint/oven
 	name = "oven blueprint"
 	target_structure = /obj/structure/oven
-	reqs = list(/obj/item/stack/sheet/stone=1)
+	reqs = list(/obj/item/stack/sheet/stone=15)
 	cat = "food processing"
 
 /obj/structure/blueprint/smelter
 	name = "smelter blueprint"
 	target_structure = /obj/structure/smelter
-	reqs = list(/obj/item/stack/sheet/stone=1)
+	reqs = list(/obj/item/stack/sheet/stone=15)
 	cat = "crafstmanship"
 
 /obj/structure/blueprint/forge
 	name = "forge blueprint"
 	target_structure = /obj/structure/forge
-	reqs = list(/obj/item/stack/sheet/stone=1)
+	reqs = list(/obj/item/stack/sheet/stone=20)
 	cat = "crafstmanship"
 
 /obj/structure/blueprint/quern
 	name = "quern blueprint"
 	target_structure = /obj/structure/quern
-	reqs = list(/obj/item/stack/sheet/stone=1)
+	reqs = list(/obj/item/stack/sheet/stone=8, /obj/item/stack/sheet/planks=2)
 	cat = "food processing"
 
 /obj/structure/blueprint/well
 	name = "well blueprint"
 	target_structure = /obj/structure/well
-	reqs = list(/obj/item/stack/sheet/stone=1)
+	reqs = list(/obj/item/stack/sheet/stone=15, /obj/item/stack/sheet/planks=4, /obj/item/ingot=1, /obj/item/stack/sheet/string=5)
 	cat = "utils"
+
+/obj/structure/blueprint/anvil
+	name = "anvil blueprint"
+	target_structure = /obj/structure/anvil
+	reqs = list(/obj/item/ingot=5)
+	cat = "crafstmanship"
+
+/obj/structure/blueprint/gemcutter
+	name = "gemstone grinder blueprint"
+	target_structure = /obj/structure/gemcutter
+	reqs = list(/obj/item/ingot=2, /obj/item/stack/sheet/planks=6, /obj/item/stack/glass=1)
+	cat = "crafstmanship"
+
+/obj/structure/blueprint/altar
+	name = "altar blueprint"
+	target_structure = /obj/structure/dwarf_altar
+	reqs = list(/obj/item/stack/sheet/stone=25, /obj/item/flashlight/fueled/candle=6)
+	cat = "utils"
+
+/obj/structure/blueprint/loom
+	name = "loom blueprint"
+	target_structure = /obj/structure/loom
+	reqs = list(/obj/item/stack/sheet/planks=8, /obj/item/ingot=2)
+	cat = "crafstmanship"
