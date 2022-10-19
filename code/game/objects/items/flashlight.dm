@@ -255,6 +255,9 @@
 	w_class = WEIGHT_CLASS_TINY
 	light_range = 3
 	icon_state = "candle"
+	inhand_icon_state = "candle"
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	light_color = LIGHT_COLOR_YELLOW
 	light_system = MOVABLE_LIGHT
 	on_damage = 4
