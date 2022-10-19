@@ -129,10 +129,13 @@
 	seed_type = /obj/item/growable/seeds/cotton
 
 /obj/item/growable/cotton/attack_self(mob/user, modifiers)
+	for(var/i in 1 to rand(1,2))
+		new seed_type(get_turf(src))
 	var/obj/item/stack/sheet/string/S = new(null, 2)
 	var/held_index = user.is_holding(src)
 	qdel(src)
 	user.put_in_hand(S, held_index)
+	to_chat(user, span_notice("You weave [src] into a string."))
 
 /obj/item/growable/sweet_pod
 	name = "sweet pod"
@@ -153,10 +156,13 @@
 	seed_type = /obj/item/growable/seeds/pig_tail
 
 /obj/item/growable/pig_tail/attack_self(mob/user, modifiers)
+	for(var/i in 1 to rand(1,2))
+		new seed_type(get_turf(src))
 	var/obj/item/stack/sheet/string/S = new()
 	var/held_index = user.is_holding(src)
 	qdel(src)
 	user.put_in_hand(S, held_index)
+	to_chat(user, span_notice("You weave [src] into a string."))
 
 /obj/item/growable/plump_helmet
 	name = "plump helmet"
