@@ -12,6 +12,10 @@
 	var/obj/structure/plant/myplant = null
 	var/target_growthstage = 3
 
+/obj/structure/sapling_pot/Initialize()
+	. = ..()
+	AddComponent(/datum/component/liftable, slowdown = 5, worn_icon='dwarfs/icons/mob/inhand/righthand_32x64.dmi', inhand_icon_state=icon_state)
+
 /obj/structure/sapling_pot/Destroy()
 	if(myplant)
 		QDEL_NULL(myplant)
