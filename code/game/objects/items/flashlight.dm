@@ -225,8 +225,8 @@
 	icon_state = "torch"
 	icon_state_burned = "torch_burned"
 	inhand_icon_state = "torch"
-	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	light_color = LIGHT_COLOR_ORANGE
 	light_system = MOVABLE_LIGHT
 	on_damage = 10
