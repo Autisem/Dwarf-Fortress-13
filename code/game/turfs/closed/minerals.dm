@@ -50,7 +50,7 @@
 		var/turf/T = user.loc
 		if (!isturf(T))
 			return
-		var/time = 3 SECONDS * I.toolspeed * user.mind.get_skill_modifier(/datum/skill/mining, SKILL_SPEED_MODIFIER)
+		var/time = 3 SECONDS * user.mind.get_skill_modifier(/datum/skill/mining, SKILL_SPEED_MODIFIER)
 		if(last_act + time > world.time)//prevents message spam
 			return
 		last_act = world.time
