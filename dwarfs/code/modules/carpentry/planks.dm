@@ -44,6 +44,8 @@ GLOBAL_LIST_INIT(plank_recipes, list (
 	icon_state = "bark"
 	w_class = WEIGHT_CLASS_SMALL
 	merge_type = /obj/item/stack/sheet/bark
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
 
 /obj/structure/lattice
 	name = "wooden lattice"

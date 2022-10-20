@@ -16,6 +16,8 @@ Mineral Sheets
 /obj/item/stack/sheet/mineral/gem
 	max_amount = 1
 	novariants = TRUE
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
 
 /obj/item/stack/sheet/mineral/gem/diamond
 	name = "diamond"

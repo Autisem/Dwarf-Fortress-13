@@ -7,7 +7,6 @@
 	name = "rock"
 	icon = 'dwarfs/icons/items/ores_gems.dmi'
 	icon_state = "ore"
-	inhand_icon_state = "ore"
 	full_w_class = WEIGHT_CLASS_BULKY
 	singular_name = "ore chunk"
 	var/mine_experience = 5 //How much experience do you get for mining this ore?
@@ -16,6 +15,8 @@
 	var/ore_icon  // icons for ore overlays
 	var/ore_basename // basename for ore_icon
 	var/datum/vein/vein_type // Type of vein this ore spawns in
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
 
 /obj/item/stack/ore/update_overlays()
 	. = ..()
@@ -42,7 +43,6 @@
 /obj/item/stack/ore/smeltable/iron
 	name = "iron ore"
 	icon_state = "iron"
-	inhand_icon_state = "Iron ore"
 	singular_name = "iron ore chunk"
 	mine_experience = 1
 	merge_type = /obj/item/stack/ore/smeltable/iron
@@ -50,12 +50,12 @@
 	ore_basename = "iron"
 	vein_type = /datum/vein/line
 	refined_type = /obj/item/ingot
+	inhand_icon_state = "iron_ore"
 
 /obj/item/stack/ore/coal
 	name = "coal"
 	icon = 'dwarfs/icons/items/ores_gems.dmi'
 	icon_state = "coal"
-	inhand_icon_state = "Iron ore"
 	singular_name = "coal chunk"
 	mine_experience = 1
 	merge_type = /obj/item/stack/ore/coal
@@ -77,6 +77,7 @@
 	ore_icon = 'dwarfs/icons/turf/ores/gold.dmi'
 	ore_basename = "gold"
 	vein_type = /datum/vein/line
+	inhand_icon_state = "gold_ore"
 
 /obj/item/stack/ore/gem
 	max_amount = 1
@@ -104,7 +105,6 @@
 	merge_type = /obj/item/stack/ore/gem/sapphire
 	ore_icon = 'dwarfs/icons/turf/ores/sapphire.dmi'
 	ore_basename = "sapphire"
-	vein_type = /datum/vein/cluster
 
 /obj/item/stack/ore/gem/ruby
 	name = "ruby ore"
