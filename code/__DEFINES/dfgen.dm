@@ -27,3 +27,9 @@
 	var/res = call(DFLIB,"fbm")("[x]", "[y]" ,"[seed]", "[frequency]", "[octaves]", "[lacunarity]", "[persistence]")
 	var/list/lres = splittext(res, ",")
 	return lres
+
+// Defining default seed because it will never provide coherent noise if seed on every run would be different
+/proc/fbm3d(x=100, y=100, z=1, seed=1, frequency=0.03, octaves=5, lacunarity=2, persistence=0.5)
+	var/res = call(DFLIB,"fbm3d")("[x]", "[y]", "[z]" ,"[seed]", "[frequency]", "[octaves]", "[lacunarity]", "[persistence]")
+	var/list/lres = splittext(res, ",")
+	return lres
