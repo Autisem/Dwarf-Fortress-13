@@ -622,8 +622,6 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		owner.update_inv_head()
 	if(flags & ITEM_SLOT_FEET)
 		owner.update_inv_shoes()
-	if(flags & ITEM_SLOT_ID)
-		owner.update_inv_wear_id()
 	if(flags & ITEM_SLOT_BELT)
 		owner.update_inv_belt()
 	if(flags & ITEM_SLOT_BACK)

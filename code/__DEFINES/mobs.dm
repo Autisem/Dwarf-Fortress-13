@@ -311,7 +311,6 @@
 // Offsets defines
 
 #define OFFSET_UNIFORM "uniform"
-#define OFFSET_ID "id"
 #define OFFSET_GLOVES "gloves"
 #define OFFSET_GLASSES "glasses"
 #define OFFSET_EARS "ears"

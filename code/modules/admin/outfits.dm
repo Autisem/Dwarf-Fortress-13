@@ -225,7 +225,6 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	O.suit_store = text2path(href_list["outfit_s_store"])
 	O.l_pocket = text2path(href_list["outfit_l_pocket"])
 	O.r_pocket = text2path(href_list["outfit_r_pocket"])
-	O.id = text2path(href_list["outfit_id"])
 	O.belt = text2path(href_list["outfit_belt"])
 	O.ears = text2path(href_list["outfit_ears"])
 

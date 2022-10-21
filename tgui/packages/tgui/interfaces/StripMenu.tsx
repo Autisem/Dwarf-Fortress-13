@@ -174,14 +174,8 @@ const SLOTS: Record<
 
   suit_storage: {
     displayName: "suit storage",
-    gridSpot: getGridSpotKey([4, 0]),
-    image: "inventory-suit_storage.png",
-  },
-
-  id: {
-    displayName: "ID",
     gridSpot: getGridSpotKey([4, 1]),
-    image: "inventory-id.png",
+    image: "inventory-suit_storage.png",
   },
 
   belt: {

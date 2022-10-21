@@ -107,15 +107,6 @@
 	static_inventory += using
 
 	inv_box = new /atom/movable/screen/inventory()
-	inv_box.name = "ID"
-	inv_box.icon = ui_style
-	inv_box.icon_state = "id"
-	inv_box.screen_loc = ui_id
-	inv_box.slot_id = ITEM_SLOT_ID
-	inv_box.hud = src
-	static_inventory += inv_box
-
-	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "mask"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "mask"
@@ -366,9 +357,6 @@
 			if(H.s_store)
 				H.s_store.screen_loc = ui_sstore1
 				screenmob.client.screen += H.s_store
-			if(H.wear_id)
-				H.wear_id.screen_loc = ui_id
-				screenmob.client.screen += H.wear_id
 			if(H.belt)
 				H.belt.screen_loc = ui_belt
 				screenmob.client.screen += H.belt
@@ -384,8 +372,6 @@
 		else
 			if(H.s_store)
 				screenmob.client.screen -= H.s_store
-			if(H.wear_id)
-				screenmob.client.screen -= H.wear_id
 			if(H.belt)
 				screenmob.client.screen -= H.belt
 			if(H.back)

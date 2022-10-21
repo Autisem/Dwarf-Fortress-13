@@ -13,7 +13,6 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	/datum/strippable_item/mob_item_slot/gloves,
 	/datum/strippable_item/mob_item_slot/feet,
 	/datum/strippable_item/mob_item_slot/suit_storage,
-	/datum/strippable_item/mob_item_slot/id,
 	/datum/strippable_item/mob_item_slot/belt,
 	/datum/strippable_item/mob_item_slot/pocket/left,
 	/datum/strippable_item/mob_item_slot/pocket/right,
@@ -107,10 +106,6 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 /datum/strippable_item/mob_item_slot/suit_storage
 	key = STRIPPABLE_ITEM_SUIT_STORAGE
 	item_slot = ITEM_SLOT_SUITSTORE
-
-/datum/strippable_item/mob_item_slot/id
-	key = STRIPPABLE_ITEM_ID
-	item_slot = ITEM_SLOT_ID
 
 /datum/strippable_item/mob_item_slot/belt
 	key = STRIPPABLE_ITEM_BELT
