@@ -94,6 +94,7 @@
 		working = TRUE
 		update_appearance()
 		to_chat(user, span_notice("You light up [src]."))
+		playsound(src, 'dwarfs/sounds/effects/ignite.ogg', 50, TRUE)
 		start_cooking()
 	else if(I.get_fuel())
 		if(!open)
@@ -153,6 +154,8 @@
 /obj/structure/stove/process(delta_time)
 	if(!working)
 		return
+	if(prob(20))
+		playsound(src, 'dwarfs/sounds/effects/fire_cracking_short.ogg', 100, TRUE)
 	if(!fuel)
 		working = FALSE
 		visible_message(span_notice("[src]'s flames die out."))

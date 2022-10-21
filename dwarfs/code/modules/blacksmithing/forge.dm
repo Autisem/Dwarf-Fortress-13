@@ -32,6 +32,8 @@
 /obj/structure/forge/process(delta_time)
 	if(!working)
 		return
+	if(prob(20))
+		playsound(src, 'dwarfs/sounds/effects/fire_cracking_short.ogg', 100, TRUE)
 	if(!fuel)
 		working = FALSE
 		update_appearance()
@@ -54,6 +56,7 @@
 		working = TRUE
 		update_appearance()
 		to_chat(user, span_notice("You light up [src]."))
+		playsound(src, 'dwarfs/sounds/effects/ignite.ogg', 50, TRUE)
 	else if(istype(I, /obj/item/tongs))
 		if(!working)
 			to_chat(user, span_warning("[src] has to be lit up first."))

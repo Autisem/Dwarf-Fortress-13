@@ -78,6 +78,7 @@
 		working = TRUE
 		update_appearance()
 		to_chat(user, span_notice("You light up [src]."))
+		playsound(src, 'dwarfs/sounds/effects/ignite.ogg', 50, TRUE)
 	else
 		return ..()
 
@@ -109,6 +110,8 @@
 /obj/structure/brewery/l/process(delta_time)
 	if(!working)
 		return
+	if(prob(20))
+		playsound(src, 'dwarfs/sounds/effects/fire_cracking_short.ogg', 100, TRUE)
 	fuel = max(fuel-1, 0)
 	if(!fuel)
 		working = FALSE

@@ -74,6 +74,7 @@
 			to_chat(user, span_warning("[src] is already lit."))
 			return
 		to_chat(user, span_notice("You light up [src]."))
+		playsound(src, 'dwarfs/sounds/effects/ignite.ogg', 50, TRUE)
 		working = TRUE
 		if(contents.len)
 			start_smelting()
@@ -89,6 +90,8 @@
 /obj/structure/smelter/process(delta_time)
 	if(!working)
 		return
+	if(prob(20))
+		playsound(src, 'dwarfs/sounds/effects/fire_cracking_short.ogg', 100, TRUE)
 	if(!fuel)
 		working = FALSE
 		update_appearance()
