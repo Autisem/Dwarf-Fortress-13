@@ -68,3 +68,7 @@
 /obj/effect/temp_visual/rockfall/proc/fall()
 	var/turf/T = get_turf(src)
 	playsound(T,'sound/magic/fleshtostone.ogg', 80, TRUE)
+
+/mob/living/simple_animal/hostile/troll/death(gibbed)
+	. = ..()
+	playsound(src, 'dwarfs/sounds/mobs/troll/troll_death.ogg', 70, TRUE)

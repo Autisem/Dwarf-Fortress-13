@@ -4,9 +4,9 @@
 
 /proc/__detect_dflib()
 	if (world.system_type == UNIX)
-		if (fexists("./dflib.so"))
+		if (fexists("./libdflib.so"))
 			// No need for LD_LIBRARY_PATH badness.
-			return __dflib = "./dflib.so"
+			return __dflib = "./libdflib.so"
 		else if (fexists("./dflib"))
 			// Old dumb filename.
 			return __dflib = "./dflib"
@@ -15,7 +15,7 @@
 			return __dflib = "dflib"
 		else
 			// It's not in the current directory, so try others
-			return __dflib = "dflib.so"
+			return __dflib = "libdflib.so"
 	else
 		return __dflib = "dflib"
 

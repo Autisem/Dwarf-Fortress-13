@@ -50,9 +50,6 @@
 	/// Type path of item to go in the glasses slot
 	var/glasses = null
 
-	/// Type path of item to go in the idcard slot
-	var/id = null
-
 	/// Type path of ID card trim associated with this outfit.
 	var/id_trim = null
 
@@ -189,8 +186,6 @@
 		H.equip_to_slot_or_del(new ears(H),ITEM_SLOT_EARS, TRUE)
 	if(glasses)
 		H.equip_to_slot_or_del(new glasses(H),ITEM_SLOT_EYES, TRUE)
-	if(id)
-		H.equip_to_slot_or_del(new id(H),ITEM_SLOT_ID, TRUE)
 	if(suit_store)
 		H.equip_to_slot_or_del(new suit_store(H),ITEM_SLOT_SUITSTORE, TRUE)
 
@@ -251,8 +246,6 @@
 		H.back.add_fingerprint(H, ignoregloves = TRUE)
 		for(var/obj/item/I in H.back.contents)
 			I.add_fingerprint(H, ignoregloves = TRUE)
-	if(H.wear_id)
-		H.wear_id.add_fingerprint(H, ignoregloves = TRUE)
 	if(H.w_uniform)
 		H.w_uniform.add_fingerprint(H, ignoregloves = TRUE)
 	if(H.wear_suit)
@@ -287,7 +280,7 @@
 
 /// Return a list of all the types that are required to disguise as this outfit type
 /datum/outfit/proc/get_chameleon_disguise_info()
-	var/list/types = list(uniform, suit, back, belt, gloves, shoes, head, mask, neck, ears, glasses, id, l_pocket, r_pocket, suit_store, r_hand, l_hand)
+	var/list/types = list(uniform, suit, back, belt, gloves, shoes, head, mask, neck, ears, glasses, l_pocket, r_pocket, suit_store, r_hand, l_hand)
 	types += chameleon_extras
 	types += skillchips
 	list_clear_nulls(types)
@@ -310,7 +303,6 @@
 	.["neck"] = neck
 	.["ears"] = ears
 	.["glasses"] = glasses
-	.["id"] = id
 	.["l_pocket"] = l_pocket
 	.["r_pocket"] = r_pocket
 	.["suit_store"] = suit_store
@@ -348,7 +340,6 @@
 	neck = text2path(outfit_data["neck"])
 	ears = text2path(outfit_data["ears"])
 	glasses = text2path(outfit_data["glasses"])
-	id = text2path(outfit_data["id"])
 	l_pocket = text2path(outfit_data["l_pocket"])
 	r_pocket = text2path(outfit_data["r_pocket"])
 	suit_store = text2path(outfit_data["suit_store"])

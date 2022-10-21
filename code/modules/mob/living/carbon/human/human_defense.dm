@@ -15,7 +15,7 @@
 	if(!d_type)
 		return 0
 	var/protection = 0
-	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform, back, gloves, shoes, belt, s_store, glasses, ears, wear_id, wear_neck) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
+	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform, back, gloves, shoes, belt, s_store, glasses, ears, wear_neck) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
 	for(var/bp in body_parts)
 		if(!bp)
 			continue
@@ -30,7 +30,7 @@
 ///Get all the clothing on a specific body part
 /mob/living/carbon/human/proc/clothingonpart(obj/item/bodypart/def_zone)
 	var/list/covering_part = list()
-	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform, back, gloves, shoes, belt, s_store, glasses, ears, wear_id, wear_neck) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
+	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform, back, gloves, shoes, belt, s_store, glasses, ears, wear_neck) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
 	for(var/bp in body_parts)
 		if(!bp)
 			continue
@@ -113,7 +113,8 @@
 	if(to_parry && to_parry.skill)
 		if(prob(mind.get_skill_modifier(to_parry.skill, SKILL_PARRY_MODIFIER)+to_parry.block_chance))
 			visible_message(span_danger("<b>[src]</b> parries [attack_text]!"), span_danger("You parry [attack_text] attack!"))
-			playsound(src, 'sound/weapons/tap.ogg', 60, TRUE, -1)
+			if(to_parry.parrysound)
+				playsound(src, to_parry.parrysound, 60, TRUE, -1)
 			mind.adjust_experience(to_parry.skill, initial(to_parry.skill.exp_per_parry))
 			return TRUE
 	return FALSE
@@ -127,7 +128,8 @@
 		if(to_parry && to_parry.skill)
 			if(prob(mind.get_skill_modifier(to_parry.skill, SKILL_PARRY_MODIFIER)+to_parry.block_chance))
 				visible_message(span_danger("<b>[src]</b> parries the attack!"), span_danger("You parry the attack!"))
-				playsound(src, 'sound/weapons/tap.ogg', 60, TRUE, -1)
+				if(to_parry.parrysound)
+					playsound(src, to_parry.parrysound, 60, TRUE, -1)
 				mind.adjust_experience(to_parry.skill, initial(to_parry.skill.exp_per_parry))
 				return TRUE
 		if(mind.martial_art && prob(mind.martial_art.block_chance) && mind.martial_art.can_use(src) && throw_mode && !incapacitated(FALSE, TRUE))
@@ -399,8 +401,6 @@
 			. = get_bodypart(BODY_ZONE_CHEST)
 			if(.)
 				damaged += .
-			if(wear_id)
-				inventory_items_to_kill += wear_id
 			if(r_store)
 				inventory_items_to_kill += r_store
 			if(l_store)

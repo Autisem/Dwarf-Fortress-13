@@ -18,8 +18,6 @@
 			return legcuffed
 		if(ITEM_SLOT_BELT)
 			return belt
-		if(ITEM_SLOT_ID)
-			return wear_id
 		if(ITEM_SLOT_EARS)
 			return ears
 		if(ITEM_SLOT_EYES)
@@ -55,7 +53,6 @@
 		gloves,
 		shoes,
 		belt,
-		wear_id,
 		l_store,
 		r_store,
 		w_uniform
@@ -195,8 +192,6 @@
 				dropItemToGround(r_store, TRUE) //Again, makes sense for pockets to drop.
 			if(l_store)
 				dropItemToGround(l_store, TRUE)
-			if(wear_id)
-				dropItemToGround(wear_id)
 			if(belt)
 				dropItemToGround(belt)
 		w_uniform = null

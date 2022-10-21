@@ -36,8 +36,6 @@
 #define ITEM_SLOT_HEAD			(1<<6)
 /// Shoe slot
 #define ITEM_SLOT_FEET			(1<<7)
-/// ID slot
-#define ITEM_SLOT_ID			(1<<8)
 /// Belt slot
 #define ITEM_SLOT_BELT			(1<<9)
 /// Back slot

@@ -40,8 +40,7 @@
 #define ui_devilsouldisplay "WEST:6,CENTER-1:15"
 
 //Lower center, persistent menu
-#define ui_sstore1 "CENTER-5:10,SOUTH:5"
-#define ui_id "CENTER-4:12,SOUTH:5"
+#define ui_sstore1 "CENTER-4:12,SOUTH:5"
 #define ui_belt "CENTER-3:14,SOUTH:5"
 #define ui_back "CENTER-2:14,SOUTH:5"
 #define ui_storage1 "CENTER+1:18,SOUTH:5"
