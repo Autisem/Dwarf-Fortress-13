@@ -7,6 +7,9 @@
 	var/list/grades = list("*", "-", "+", "≡", "☼", "☼☼")
 	return grades[grade]
 
+/*******************************************************************************************************************/
+
+
 /obj/item/zwei/apply_grade(grade)
     ..()
     switch(grade)
@@ -246,6 +249,86 @@
             block_chance = 0
             toolspeed = 1
             armor_penetration = list(SHARP=4, PIERCE=6, BLUNT=13, FIRE=0, WOUND=0)
+
+/obj/item/halberd/apply_grade(grade)
+    ..()
+    switch(grade)
+        if(1)
+            force = 15
+            throwforce = 8
+            block_chance = 0
+            toolspeed = 1
+            armor_penetration = list(SHARP=3, PIERCE=4, BLUNT=0, FIRE=0, WOUND=0)
+        if(2)
+            force = 17
+            throwforce = 10
+            block_chance = 0
+            toolspeed = 1
+            armor_penetration = list(SHARP=5, PIERCE=5, BLUNT=0, FIRE=0, WOUND=0)
+        if(3)
+            force = 18
+            throwforce = 13
+            block_chance = 0
+            toolspeed = 1
+            armor_penetration = list(SHARP=7, PIERCE=8, BLUNT=0, FIRE=0, WOUND=0)
+        if(4)
+            force = 20
+            throwforce = 15
+            block_chance = 0
+            toolspeed = 1
+            armor_penetration = list(SHARP=10, PIERCE=12, BLUNT=0, FIRE=0, WOUND=0)
+        if(5)
+            force = 24
+            throwforce = 18
+            block_chance = 0
+            toolspeed = 1
+            armor_penetration = list(SHARP=15, PIERCE=14, BLUNT=0, FIRE=0, WOUND=0)
+        if(6)
+            force = 28
+            throwforce = 22
+            block_chance = 0
+            toolspeed = 1
+            armor_penetration = list(SHARP=18, PIERCE=18, BLUNT=0, FIRE=0, WOUND=0)
+
+/obj/item/scepter/apply_grade(grade)
+    ..()
+    switch(grade)
+        if(1)
+            force = 4
+            throwforce = 4
+            block_chance = 0
+            toolspeed = 1
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(2)
+            force = 5
+            throwforce = 5
+            block_chance = 0
+            toolspeed = 1
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=1, FIRE=0, WOUND=0)
+        if(3)
+            force = 6
+            throwforce = 6
+            block_chance = 0
+            toolspeed = 1
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=2, FIRE=0, WOUND=0)
+        if(4)
+            force = 7
+            throwforce = 7
+            block_chance = 0
+            toolspeed = 1
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=4, FIRE=0, WOUND=0)
+        if(5)
+            force = 8
+            throwforce = 8
+            block_chance = 0
+            toolspeed = 1
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=5, FIRE=0, WOUND=0)
+        if(6)
+            force = 8
+            throwforce = 8
+            block_chance = 0
+            toolspeed = 1
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=6, FIRE=0, WOUND=0)
 
 /obj/item/pickaxe/apply_grade(grade)
     ..()
@@ -487,85 +570,129 @@
             toolspeed = 0.6
             armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
 
-/obj/item/halberd/apply_grade(grade)
+/obj/item/smithing_hammer/apply_grade(grade)
     ..()
     switch(grade)
         if(1)
-            force = 15
-            throwforce = 8
+            force = 3
+            throwforce = 3
             block_chance = 0
-            toolspeed = 1
-            armor_penetration = list(SHARP=3, PIERCE=4, BLUNT=0, FIRE=0, WOUND=0)
-        if(2)
-            force = 17
-            throwforce = 10
-            block_chance = 0
-            toolspeed = 1
-            armor_penetration = list(SHARP=5, PIERCE=5, BLUNT=0, FIRE=0, WOUND=0)
-        if(3)
-            force = 18
-            throwforce = 13
-            block_chance = 0
-            toolspeed = 1
-            armor_penetration = list(SHARP=7, PIERCE=8, BLUNT=0, FIRE=0, WOUND=0)
-        if(4)
-            force = 20
-            throwforce = 15
-            block_chance = 0
-            toolspeed = 1
-            armor_penetration = list(SHARP=10, PIERCE=12, BLUNT=0, FIRE=0, WOUND=0)
-        if(5)
-            force = 24
-            throwforce = 18
-            block_chance = 0
-            toolspeed = 1
-            armor_penetration = list(SHARP=15, PIERCE=14, BLUNT=0, FIRE=0, WOUND=0)
-        if(6)
-            force = 28
-            throwforce = 22
-            block_chance = 0
-            toolspeed = 1
-            armor_penetration = list(SHARP=18, PIERCE=18, BLUNT=0, FIRE=0, WOUND=0)
-
-/obj/item/scepter/apply_grade(grade)
-    ..()
-    switch(grade)
-        if(1)
-            force = 4
-            throwforce = 4
-            block_chance = 0
-            toolspeed = 1
+            toolspeed = 3
             armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
         if(2)
             force = 5
             throwforce = 5
             block_chance = 0
-            toolspeed = 1
-            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=1, FIRE=0, WOUND=0)
+            toolspeed = 2
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
         if(3)
             force = 6
             throwforce = 6
             block_chance = 0
             toolspeed = 1
-            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=2, FIRE=0, WOUND=0)
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
         if(4)
             force = 7
             throwforce = 7
             block_chance = 0
-            toolspeed = 1
-            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=4, FIRE=0, WOUND=0)
+            toolspeed = 0.9
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
         if(5)
             force = 8
             throwforce = 8
             block_chance = 0
+            toolspeed = 0.7
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(6)
+            force = 10
+            throwforce = 10
+            block_chance = 0
+            toolspeed = 0.6
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+
+/obj/item/tongs/apply_grade(grade)
+    ..()
+    switch(grade)
+        if(1)
+            force = 3
+            throwforce = 3
+            block_chance = 0
+            toolspeed = 3
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(2)
+            force = 5
+            throwforce = 5
+            block_chance = 0
+            toolspeed = 2
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(3)
+            force = 6
+            throwforce = 6
+            block_chance = 0
             toolspeed = 1
-            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=5, FIRE=0, WOUND=0)
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(4)
+            force = 7
+            throwforce = 7
+            block_chance = 0
+            toolspeed = 0.9
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(5)
+            force = 8
+            throwforce = 8
+            block_chance = 0
+            toolspeed = 0.7
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(6)
+            force = 10
+            throwforce = 10
+            block_chance = 0
+            toolspeed = 0.6
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+
+/obj/item/trowel/apply_grade(grade)
+    ..()
+    switch(grade)
+        if(1)
+            force = 1
+            throwforce = 1
+            block_chance = 0
+            toolspeed = 3
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(2)
+            force = 2
+            throwforce = 2
+            block_chance = 0
+            toolspeed = 2
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(3)
+            force = 4
+            throwforce = 4
+            block_chance = 0
+            toolspeed = 1
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(4)
+            force = 5
+            throwforce = 5
+            block_chance = 0
+            toolspeed = 0.9
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(5)
+            force = 7
+            throwforce = 7
+            block_chance = 0
+            toolspeed = 0.7
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
         if(6)
             force = 8
             throwforce = 8
             block_chance = 0
-            toolspeed = 1
-            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=6, FIRE=0, WOUND=0)
+            toolspeed = 0.6
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+
+
+
+/*******************************************************************************************************************/
 
 /obj/item/clothing/suit/armor/light_plate/apply_grade(grade)
     ..()

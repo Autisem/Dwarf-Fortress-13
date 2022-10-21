@@ -1,11 +1,12 @@
 /*****************Pickaxes & Drills & Shovels****************/
 /obj/item/pickaxe
 	name = "pickaxe"
+	desc = "Strike the earth!"
 	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "pickaxe"
-	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	force = 15
+	atck_type = PIERCE
 	throwforce = 10
 	inhand_icon_state = "pickaxe"
 	worn_icon_state = "pickaxe"
@@ -36,7 +37,7 @@
 
 /obj/item/shovel
 	name = "shovel"
-	desc = "A large tool for digging and moving dirt."
+	desc = "Shovel made for excavating soils."
 	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "shovel"
 	worn_icon_state = "shovel"
@@ -69,7 +70,7 @@
 
 /obj/item/axe
 	name = "axe"
-	desc = "Used for foraging wood."
+	desc = "A common tool for chopping down trees."
 	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "axe"
 	tool_behaviour = TOOL_AXE
@@ -90,6 +91,7 @@
 	force = 20
 	throwforce = 25
 	throw_range = 4
+	atck_type = BLUNT
 
 /obj/item/smithing_hammer/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	..()
@@ -112,7 +114,7 @@
 
 /obj/item/chisel
 	name = "chisel"
-	desc = "Used for carving on stone."
+	desc = "Chisel, used by masons to process stone goods."
 	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "chisel"
 	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
@@ -120,7 +122,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	usesound = 'dwarfs/sounds/tools/chisel/chisel_hit.ogg'
 	tool_behaviour = TOOL_CHISEL
-	atck_type = SHARP
+	atck_type = PIERCE
 	w_class = WEIGHT_CLASS_SMALL
 	force = 10
 	throwforce = 12
@@ -136,6 +138,7 @@
 	icon_state = "tongs_open"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 4
+	atck_type = BLUNT
 	throwforce = 6
 	throw_range = 7
 
@@ -200,6 +203,7 @@
 	usesound = 'dwarfs/sounds/tools/trowel/trowel_dig.ogg'
 	w_class = WEIGHT_CLASS_SMALL
 	force = 8
+	atck_type = PIERCE
 	throwforce = 12
 	throw_range = 3
 	var/mode = TROWEL_BUILD_FLOOR
@@ -308,6 +312,8 @@
 
 /obj/item/hoe
 	name = "hoe"
-	desc = "None in the area next to you."
+	desc = "Till the earth!"
 	tool_behaviour = TOOL_HOE
 	usesound = 'dwarfs/sounds/tools/hoe/hoe_dig.ogg'
+	atck_type = PIERCE
+	force = 7

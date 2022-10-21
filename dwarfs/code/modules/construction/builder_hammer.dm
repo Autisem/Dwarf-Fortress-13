@@ -1,10 +1,11 @@
 /obj/item/builder_hammer
 	name = "builder's hammer"
-	desc = "Used to build various structures. Very handy."
+	desc = "A building engineers main tool - the hammer."
 	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "builder_hammer"
 	usesound = 'dwarfs/sounds/tools/hammer/hammer_hit.ogg'
 	tool_behaviour = TOOL_BUILDER_HAMMER
+	atck_type = BLUNT
 	//What do we want to build -> selected in gui
 	var/obj/structure/blueprint/selected_blueprint
 
