@@ -217,7 +217,7 @@
 
 	// now we have our wounding_type and are ready to carry on with wounds and dealing the actual damage
 	if(owner && wounding_dmg >= WOUND_MINIMUM_DAMAGE && wound_bonus != CANT_WOUND)
-		check_wounding(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus, attack_direction)
+		check_wounding(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus, attack_direction, attack_type)
 
 	/*
 	// END WOUND HANDLING
@@ -257,7 +257,7 @@
 	if(!owner || phantom_wounding_dmg <= WOUND_MINIMUM_DAMAGE || wound_bonus == CANT_WOUND)
 		return
 
-	check_wounding(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus)
+	check_wounding(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus, attack_type=attack_type)
 
 /**
  * check_wounding() is where we handle rolling for, selecting, and applying a wound if we meet the criteria
@@ -271,7 +271,7 @@
  * * wound_bonus- The wound_bonus of an attack
  * * bare_wound_bonus- The bare_wound_bonus of an attack
  */
-/obj/item/bodypart/proc/check_wounding(woundtype, damage, wound_bonus, bare_wound_bonus, attack_direction)
+/obj/item/bodypart/proc/check_wounding(woundtype, damage, wound_bonus, bare_wound_bonus, attack_direction, attack_type)
 	if(HAS_TRAIT(owner, TRAIT_NEVER_WOUNDED))
 		return
 
@@ -285,7 +285,7 @@
 	if(HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		damage *= 1.1
 
-	if(prob(get_damage() / max_damage * 100))
+	if(prob(get_damage() / max_damage * 100) && damage > 10 && attack_type == SHARP)
 		dismember()
 		return
 
