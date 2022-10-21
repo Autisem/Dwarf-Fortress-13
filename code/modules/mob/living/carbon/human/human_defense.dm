@@ -113,7 +113,8 @@
 	if(to_parry && to_parry.skill)
 		if(prob(mind.get_skill_modifier(to_parry.skill, SKILL_PARRY_MODIFIER)+to_parry.block_chance))
 			visible_message(span_danger("<b>[src]</b> parries [attack_text]!"), span_danger("You parry [attack_text] attack!"))
-			playsound(src, 'sound/weapons/tap.ogg', 60, TRUE, -1)
+			if(to_parry.parrysound)
+				playsound(src, to_parry.parrysound, 60, TRUE, -1)
 			mind.adjust_experience(to_parry.skill, initial(to_parry.skill.exp_per_parry))
 			return TRUE
 	return FALSE
@@ -127,7 +128,8 @@
 		if(to_parry && to_parry.skill)
 			if(prob(mind.get_skill_modifier(to_parry.skill, SKILL_PARRY_MODIFIER)+to_parry.block_chance))
 				visible_message(span_danger("<b>[src]</b> parries the attack!"), span_danger("You parry the attack!"))
-				playsound(src, 'sound/weapons/tap.ogg', 60, TRUE, -1)
+				if(to_parry.parrysound)
+					playsound(src, to_parry.parrysound, 60, TRUE, -1)
 				mind.adjust_experience(to_parry.skill, initial(to_parry.skill.exp_per_parry))
 				return TRUE
 		if(mind.martial_art && prob(mind.martial_art.block_chance) && mind.martial_art.can_use(src) && throw_mode && !incapacitated(FALSE, TRUE))

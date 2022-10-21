@@ -73,6 +73,8 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	var/hitsound
 	///Played when the item is used, for example tools
 	var/usesound
+	///Sound when the item attack is missed
+	var/misssound = 'dwarfs/sounds/weapons/sword/sword_miss.ogg'
 	///Used when yate into a mob
 	var/mob_throw_hit_sound
 	///Sound used when equipping the item into a valid slot
@@ -84,8 +86,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	///Whether or not we use stealthy audio levels for this item's attack sounds
 	var/stealthy_audio = FALSE
 
-	var/list/block_sounds
-
+	var/parrysound = 'dwarfs/sounds/weapons/sword/sword_parry.ogg'
 	///How large is the object, used for stuff like whether it can fit in backpacks or not
 	var/w_class = WEIGHT_CLASS_NORMAL
 	///This is used to determine on which slots an item can fit.
