@@ -216,6 +216,7 @@ DEFINE_BITFIELD(smoothing_junction, list(
 		CRASH("smooth_icon called for [src] with smoothing_flags == [smoothing_flags]")
 
 /atom/proc/smooth_borders()
+	return
 
 /turf/open/floor/smooth_borders()
 	cut_overlays()
@@ -538,11 +539,6 @@ DEFINE_BITFIELD(smoothing_junction, list(
 				T.smooth_icon()
 			else
 				QUEUE_SMOOTH(T)
-		if(T.smoothing_flags & SMOOTH_BORDERS)
-			if(now)
-				T.smooth_borders()
-			else
-				QUEUE_SMOOTH_BORDERS(T)
 		for(var/R in T)
 			var/atom/A = R
 			if(A.smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
@@ -550,6 +546,13 @@ DEFINE_BITFIELD(smoothing_junction, list(
 					A.smooth_icon()
 				else
 					QUEUE_SMOOTH(A)
+	for(var/V in away_turfs)
+		var/turf/T = V
+		if(T.smoothing_flags & SMOOTH_BORDERS)
+			if(now)
+				T.smooth_borders()
+			else
+				QUEUE_SMOOTH_BORDERS(T)
 
 
 /atom/proc/clear_smooth_overlays()

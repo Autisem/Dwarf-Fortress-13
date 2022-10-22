@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(icon_smooth)
 		if (MC_TICK_CHECK)
 			return
 
-	if (!cached.len)
+	if (!cached.len && !cached_borders.len)
 		if (deferred.len)
 			smooth_queue = deferred
 			deferred = cached
@@ -48,15 +48,25 @@ SUBSYSTEM_DEF(icon_smooth)
 			can_fire = FALSE
 
 /datum/controller/subsystem/icon_smooth/Initialize()
-	smooth_zlevel(1, TRUE)
-	smooth_zlevel(2, TRUE)
+	for(var/z in 0 to world.maxz)
+		smooth_zlevel(z, TRUE)
 
 	var/list/queue = smooth_queue
 	smooth_queue = list()
+	var/list/queue_borders = smooth_borders_queue
+	smooth_borders_queue = list()
 
 	while(length(queue))
 		var/atom/smoothing_atom = queue[length(queue)]
 		queue.len--
+		if(QDELETED(smoothing_atom) || !(smoothing_atom.smoothing_flags & SMOOTH_QUEUED) || smoothing_atom.z <= 2)
+			continue
+		smoothing_atom.smooth_icon()
+		CHECK_TICK
+
+	while(length(queue_borders))
+		var/atom/smoothing_atom = queue_borders[length(queue_borders)]
+		queue_borders.len--
 		if(QDELETED(smoothing_atom) || !(smoothing_atom.smoothing_flags & SMOOTH_QUEUED) || smoothing_atom.z <= 2)
 			continue
 		smoothing_atom.smooth_icon()

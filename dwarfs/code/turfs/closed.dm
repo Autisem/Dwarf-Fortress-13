@@ -31,7 +31,6 @@
 
 /turf/closed/mineral/random/sand
 	name = "sand"
-	smoothing_flags = SMOOTH_BITMASK
 	mineralSpawnChanceList = list(/obj/item/stack/ore/smeltable/gold = 20, /obj/item/stack/ore/smeltable/iron = 40, /obj/item/stack/ore/gem/diamond=10,/obj/item/stack/ore/gem/ruby=10,/obj/item/stack/ore/gem/sapphire=10,/obj/item/stack/ore/coal=20)
 	mineralChance = 0.1
 	baseturfs = /turf/open/floor/sand
