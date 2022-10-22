@@ -4,7 +4,6 @@
 	icon_state = "rockwall-0"
 	base_icon_state = "rockwall"
 	environment_type = "stone_raw"
-	smoothing_flags = SMOOTH_BITMASK
 	turf_type = /turf/open/floor/rock
 	baseturfs = /turf/open/floor/rock
 	mineralSpawnChanceList = list(/obj/item/stack/ore/smeltable/gold = 20, /obj/item/stack/ore/smeltable/iron = 40, /obj/item/stack/ore/gem/diamond=10,/obj/item/stack/ore/gem/ruby=10,/obj/item/stack/ore/gem/sapphire=10,/obj/item/stack/ore/coal=20)
@@ -26,11 +25,9 @@
 	icon = 'dwarfs/icons/turf/walls_dwarven.dmi'
 	icon_state = "rich_wall-0"
 	base_icon_state = "rich_wall"
-	smoothing_flags = SMOOTH_BITMASK
 	sheet_type = /obj/item/stack/sheet/stone
 	baseturfs = /turf/open/floor/stone
 	sheet_amount = 4
-	girder_type = null
 
 /turf/closed/mineral/random/sand
 	name = "sand"

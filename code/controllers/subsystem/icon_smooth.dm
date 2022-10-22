@@ -8,7 +8,10 @@ SUBSYSTEM_DEF(icon_smooth)
 	///Blueprints assemble an image of what pipes/manifolds/wires look like on initialization, and thus should be taken after everything's been smoothed
 	var/list/blueprint_queue = list()
 	var/list/smooth_queue = list()
+	var/list/smooth_borders_queue = list()
 	var/list/deferred = list()
+
+	var/list/borders_cache = list()
 
 /datum/controller/subsystem/icon_smooth/fire()
 	var/list/cached = smooth_queue
@@ -19,6 +22,19 @@ SUBSYSTEM_DEF(icon_smooth)
 			continue
 		if(smoothing_atom.flags_1 & INITIALIZED_1)
 			smoothing_atom.smooth_icon()
+		else
+			deferred += smoothing_atom
+		if (MC_TICK_CHECK)
+			return
+
+	var/list/cached_borders = smooth_borders_queue
+	while(length(cached_borders))
+		var/atom/smoothing_atom = cached_borders[length(cached_borders)]
+		cached_borders.len--
+		if(QDELETED(smoothing_atom))
+			continue
+		if(smoothing_atom.flags_1 & INITIALIZED_1)
+			smoothing_atom.smooth_borders()
 		else
 			deferred += smoothing_atom
 		if (MC_TICK_CHECK)
@@ -67,9 +83,15 @@ SUBSYSTEM_DEF(icon_smooth)
 	if(!can_fire)
 		can_fire = TRUE
 
+/datum/controller/subsystem/icon_smooth/proc/add_to_queue_border(atom/thing)
+	smooth_borders_queue += thing
+	if(!can_fire)
+		can_fire = TRUE
+
 /datum/controller/subsystem/icon_smooth/proc/remove_from_queues(atom/thing)
 	thing.smoothing_flags &= ~SMOOTH_QUEUED
 	smooth_queue -= thing
+	smooth_borders_queue -= thing
 	if(blueprint_queue)
 		blueprint_queue -= thing
 	deferred -= thing

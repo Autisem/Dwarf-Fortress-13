@@ -3,6 +3,8 @@
 #define SMOOTH_CORNERS	(1<<0)
 /// Smoothing system in where adjacencies are calculated and used to select a pre-baked icon_state, encoded by bitmasking.
 #define SMOOTH_BITMASK		(1<<1)
+/// Smoothing borders between tiles
+#define SMOOTH_BORDERS (1<<6)
 /// Atom has diagonal corners, with underlays under them.
 #define SMOOTH_DIAGONAL_CORNERS	(1<<2)
 /// Atom will smooth with the borders of the map.
@@ -19,6 +21,7 @@ DEFINE_BITFIELD(smoothing_flags, list(
 	"SMOOTH_BORDER" = SMOOTH_BORDER,
 	"SMOOTH_QUEUED" = SMOOTH_QUEUED,
 	"SMOOTH_OBJ" = SMOOTH_OBJ,
+	"SMOOTH_BORDERS" = SMOOTH_BORDERS,
 ))
 
 
@@ -28,6 +31,10 @@ DEFINE_BITFIELD(smoothing_flags, list(
 
 #define QUEUE_SMOOTH_NEIGHBORS(thing_to_queue) for(var/neighbor in orange(1, thing_to_queue)) {var/atom/atom_neighbor = neighbor; QUEUE_SMOOTH(atom_neighbor)}
 
+
+#define QUEUE_SMOOTH_BORDERS(thing_to_queue) if(thing_to_queue.smoothing_flags & SMOOTH_BORDERS) {SSicon_smooth.add_to_queue_border(thing_to_queue)}
+
+#define QUEUE_SMOOTH_BORDERS_NEIGHBORS(thing_to_queue) for(var/neighbor in orange(1, thing_to_queue)) {var/atom/atom_neighbor = neighbor; QUEUE_SMOOTH_BORDERS(atom_neighbor)}
 
 /**SMOOTHING GROUPS
  * Groups of things to smooth with.

@@ -142,6 +142,9 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	QUEUE_SMOOTH_NEIGHBORS(src)
 	QUEUE_SMOOTH(src)
 
+	QUEUE_SMOOTH_BORDERS(src)
+	QUEUE_SMOOTH_BORDERS_NEIGHBORS(src)
+
 	return W
 
 /// Take off the top layer turf and replace it with the next baseturf down

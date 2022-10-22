@@ -4,7 +4,7 @@
 	name = "rock"
 	icon = 'icons/turf/mining.dmi'
 	icon_state = "rock"
-	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER | SMOOTH_BORDERS
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_MINERAL_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_MINERAL_WALLS, SMOOTH_GROUP_CLOSED_TURFS)
 	baseturfs = /turf/open/floor/stone
@@ -25,13 +25,16 @@
 
 /turf/closed/mineral/set_smoothed_icon_state(new_junction)
 	. = ..()
-	draw_ore(new_junction)
+	update_appearance()
+
+/turf/closed/mineral/update_overlays()
+	. = ..()
+	if(mineralType && mineralAmt)
+		. += draw_ore(smoothing_junction)
 
 /turf/closed/mineral/proc/draw_ore(new_junction)
-	if(mineralType && mineralAmt)
-		overlays.Cut()
 		var/icon/ore = new(initial(mineralType.ore_icon), "[initial(mineralType.ore_basename)]-[new_junction]")
-		overlays += ore
+		. = ore
 
 /turf/closed/mineral/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	if(turf_type)

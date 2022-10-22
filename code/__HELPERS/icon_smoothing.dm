@@ -143,6 +143,55 @@ DEFINE_BITFIELD(smoothing_junction, list(
 					. |= SOUTHEAST_JUNCTION
 
 
+///returns a list of junctions defined above
+/atom/proc/calculate_adjacencies_list()
+	. = list()
+
+	if(!loc)
+		return
+
+	for(var/direction in GLOB.cardinals)
+		switch(find_type_in_direction(direction))
+			if(NULLTURF_BORDER)
+				if((smoothing_flags & SMOOTH_BORDER))
+					. += direction //BYOND and smooth dirs are the same for cardinals
+			if(ADJ_FOUND)
+				. += direction //BYOND and smooth dirs are the same for cardinals
+
+	if(. & NORTH_JUNCTION)
+		if(. & WEST_JUNCTION)
+			switch(find_type_in_direction(NORTHWEST))
+				if(NULLTURF_BORDER)
+					if((smoothing_flags & SMOOTH_BORDER))
+						. += NORTHWEST_JUNCTION
+				if(ADJ_FOUND)
+					. += NORTHWEST_JUNCTION
+
+		if(. & EAST_JUNCTION)
+			switch(find_type_in_direction(NORTHEAST))
+				if(NULLTURF_BORDER)
+					if((smoothing_flags & SMOOTH_BORDER))
+						. += NORTHEAST_JUNCTION
+				if(ADJ_FOUND)
+					. += NORTHEAST_JUNCTION
+
+	if(. & SOUTH_JUNCTION)
+		if(. & WEST_JUNCTION)
+			switch(find_type_in_direction(SOUTHWEST))
+				if(NULLTURF_BORDER)
+					if((smoothing_flags & SMOOTH_BORDER))
+						. += SOUTHWEST_JUNCTION
+				if(ADJ_FOUND)
+					. += SOUTHWEST_JUNCTION
+
+		if(. & EAST_JUNCTION)
+			switch(find_type_in_direction(SOUTHEAST))
+				if(NULLTURF_BORDER)
+					if((smoothing_flags & SMOOTH_BORDER))
+						. += SOUTHEAST_JUNCTION
+				if(ADJ_FOUND)
+					. += SOUTHEAST_JUNCTION
+
 /atom/movable/calculate_adjacencies()
 	if(can_be_unanchored && !anchored)
 		return NONE
@@ -166,6 +215,99 @@ DEFINE_BITFIELD(smoothing_junction, list(
 	else
 		CRASH("smooth_icon called for [src] with smoothing_flags == [smoothing_flags]")
 
+/atom/proc/smooth_borders()
+
+/turf/open/floor/smooth_borders()
+	cut_overlays()
+	update_appearance(UPDATE_ICON)
+	var/list/cardinals = GLOB.cardinals - calculate_adjacencies_list()
+	for(var/cardinal in cardinals)
+		var/turf/open/T = get_step(src, cardinal)
+		if(!T || isclosedturf(T) || type == T.type || !(T.smoothing_flags & SMOOTH_BORDERS))
+			continue
+		var/cname = "[type];[cardinal];[smoothing_junction ? smoothing_junction : 0]"
+		var/tname = "[T.type];[REVERSE_DIR(cardinal)];[T.smoothing_junction ? T.smoothing_junction : 0]"
+		if(!SSicon_smooth.borders_cache["[cname][tname]"])
+			var/icon/ci = icon(icon, icon_state)
+			var/icon/ti = icon(T.icon, T.icon_state)
+			var/icon/border = new(icon='dwarfs/icons/technical.dmi', icon_state="transparent")
+			var/height = 0
+			switch(cardinal)
+				if(NORTH, EAST)
+					height = 32
+				if(SOUTH, WEST)
+					height = 1
+			for(var/i in 1 to 32)
+				var/cp
+				var/tp
+				if(cardinal in list(NORTH, SOUTH))
+					cp = ci.GetPixel(i, height)
+					tp = ti.GetPixel(i, 33-height)
+				else
+					cp = ci.GetPixel(height, i)
+					tp = ti.GetPixel(33-height, i)
+				var/crgb = GetColors(cp)
+				var/trgb = GetColors(tp)
+
+				var/cr = crgb[1]
+				var/cg = crgb[2]
+				var/cb = crgb[3]
+
+				var/tr = trgb[1]
+				var/tg = trgb[2]
+				var/tb = trgb[3]
+				if(cardinal in list(NORTH, SOUTH))
+					border.DrawBox(rgb(cr-(cr-tr)/3, cg-(cg-tg)/3, cb-(cb-tb)/3), i, height)
+				else
+					border.DrawBox(rgb(cr-(cr-tr)/3, cg-(cg-tg)/3, cb-(cb-tb)/3), height, i)
+			SSicon_smooth.borders_cache["[cname][tname]"] = border
+		add_overlay(SSicon_smooth.borders_cache["[cname][tname]"])
+
+/turf/closed/smooth_borders()
+	cut_overlays()
+	update_appearance(UPDATE_ICON)
+	var/list/cardinals = GLOB.cardinals.Copy()
+	for(var/cardinal in cardinals)
+		var/turf/closed/T = get_step(src, cardinal)
+		if(!T || isfloorturf(T) || type == T.type || !(T.smoothing_flags & SMOOTH_BORDERS))
+			continue
+		var/cname = "[type];[cardinal];[smoothing_junction ? smoothing_junction : 0]"
+		var/tname = "[T.type];[REVERSE_DIR(cardinal)];[T.smoothing_junction ? T.smoothing_junction : 0]"
+		if(!SSicon_smooth.borders_cache["[cname][tname]"])
+			var/icon/ci = icon(icon, icon_state)
+			var/icon/ti = icon(T.icon, T.icon_state)
+			var/icon/border = new(icon='dwarfs/icons/technical.dmi', icon_state="transparent")
+			var/height = 0
+			switch(cardinal)
+				if(NORTH, EAST)
+					height = 32
+				if(SOUTH, WEST)
+					height = 1
+			for(var/i in 1 to 32)
+				var/cp
+				var/tp
+				if(cardinal in list(NORTH, SOUTH))
+					cp = ci.GetPixel(i, height)
+					tp = ti.GetPixel(i, 33-height)
+				else
+					cp = ci.GetPixel(height, i)
+					tp = ti.GetPixel(33-height, i)
+				var/crgb = GetColors(cp)
+				var/trgb = GetColors(tp)
+
+				var/cr = crgb[1]
+				var/cg = crgb[2]
+				var/cb = crgb[3]
+
+				var/tr = trgb[1]
+				var/tg = trgb[2]
+				var/tb = trgb[3]
+				if(cardinal in list(NORTH, SOUTH))
+					border.DrawBox(rgb(cr-(cr-tr)/3, cg-(cg-tg)/3, cb-(cb-tb)/3), i, height)
+				else
+					border.DrawBox(rgb(cr-(cr-tr)/3, cg-(cg-tg)/3, cb-(cb-tb)/3), height, i)
+			SSicon_smooth.borders_cache["[cname][tname]"] = border
+		add_overlay(SSicon_smooth.borders_cache["[cname][tname]"])
 
 /atom/proc/corners_diagonal_smooth(adjacencies)
 	switch(adjacencies)
@@ -396,6 +538,11 @@ DEFINE_BITFIELD(smoothing_junction, list(
 				T.smooth_icon()
 			else
 				QUEUE_SMOOTH(T)
+		if(T.smoothing_flags & SMOOTH_BORDERS)
+			if(now)
+				T.smooth_borders()
+			else
+				QUEUE_SMOOTH_BORDERS(T)
 		for(var/R in T)
 			var/atom/A = R
 			if(A.smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
@@ -464,6 +611,27 @@ DEFINE_BITFIELD(smoothing_junction, list(
 			return SOUTHWEST
 		if(SOUTH_JUNCTION | EAST_JUNCTION | SOUTHEAST_JUNCTION)
 			return SOUTHEAST
+		else
+			return NONE
+
+/proc/reverse_jdir(dir)
+	switch(dir)
+		if(NORTH)
+			return NORTH_JUNCTION
+		if(SOUTH)
+			return SOUTH_JUNCTION
+		if(WEST)
+			return WEST_JUNCTION
+		if(EAST)
+			return EAST_JUNCTION
+		if(NORTHWEST)
+			return NORTHWEST_JUNCTION
+		if(NORTHEAST)
+			return NORTHEAST_JUNCTION
+		if(SOUTHEAST)
+			return SOUTHEAST_JUNCTION
+		if(SOUTHWEST)
+			return SOUTHWEST_JUNCTION
 		else
 			return NONE
 
