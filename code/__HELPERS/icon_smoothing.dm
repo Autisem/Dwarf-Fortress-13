@@ -221,7 +221,7 @@ DEFINE_BITFIELD(smoothing_junction, list(
 /turf/open/floor/smooth_borders()
 	cut_overlays()
 	update_appearance(UPDATE_ICON)
-	var/list/cardinals = GLOB.cardinals - calculate_adjacencies_list()
+	var/list/cardinals = GLOB.cardinals.Copy()
 	for(var/cardinal in cardinals)
 		var/turf/open/T = get_step(src, cardinal)
 		if(!T || isclosedturf(T) || type == T.type || !(T.smoothing_flags & SMOOTH_BORDERS))

@@ -14,7 +14,6 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	slowdown = 0
 	var/busy = FALSE
-	canSmoothWith = null
 
 /turf/open/floor/stone/ScrapeAway(amount, flags)
 	return ChangeTurf(/turf/open/floor/rock)
@@ -34,7 +33,6 @@
 	slowdown = 1
 	baseturfs = /turf/open/lava/smooth/nospread
 	var/digged_up = FALSE
-	canSmoothWith = null
 
 /turf/open/floor/rock/ScrapeAway(amount, flags)
 	return ChangeTurf(/turf/open/lava/smooth/nospread)
@@ -75,7 +73,6 @@
 	icon_state = "sand"
 	baseturfs = /turf/open/floor/sand
 	var/digged_up = FALSE
-	canSmoothWith = null
 
 /turf/open/floor/sand/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SHOVEL || I.tool_behaviour == TOOL_PICKAXE)
