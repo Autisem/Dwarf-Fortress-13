@@ -135,6 +135,25 @@
 "wz" = (
 /turf/closed/indestructible/black,
 /area/dwarf/fortress)
+"yj" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/growable/seeds/cave_wheat,
+/obj/item/growable/seeds/cave_wheat,
+/obj/item/growable/seeds/cave_wheat,
+/obj/item/growable/seeds/pig_tail,
+/obj/item/growable/seeds/pig_tail,
+/obj/item/growable/seeds/pig_tail,
+/obj/item/growable/seeds/plump_helmet,
+/obj/item/growable/seeds/plump_helmet,
+/obj/item/growable/seeds/plump_helmet,
+/obj/item/growable/seeds/sweet_pod,
+/obj/item/growable/seeds/sweet_pod,
+/obj/item/growable/seeds/sweet_pod,
+/obj/item/growable/seeds/turnip,
+/obj/item/growable/seeds/turnip,
+/obj/item/growable/seeds/turnip,
+/turf/open/floor/rock,
+/area/dwarf/fortress)
 "MB" = (
 /turf/open/floor/rock,
 /area/dwarf/cavesgen/middle_level)
@@ -226513,7 +226532,7 @@ cK
 cK
 cK
 ou
-cK
+yj
 cK
 cK
 cK
