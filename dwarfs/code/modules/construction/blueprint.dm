@@ -83,7 +83,7 @@
 	name = "workbench blueprint"
 	target_structure = /obj/structure/workbench
 	reqs = list(/obj/item/stack/sheet/planks=10, /obj/item/ingot=2)
-	cat = "crafstmanship"
+	cat = "craftsmanship"
 
 /obj/structure/blueprint/stove
 	name = "stove blueprint"
@@ -101,13 +101,13 @@
 	name = "smelter blueprint"
 	target_structure = /obj/structure/smelter
 	reqs = list(/obj/item/stack/sheet/stone=15)
-	cat = "crafstmanship"
+	cat = "craftsmanship"
 
 /obj/structure/blueprint/forge
 	name = "forge blueprint"
 	target_structure = /obj/structure/forge
 	reqs = list(/obj/item/stack/sheet/stone=20)
-	cat = "crafstmanship"
+	cat = "craftsmanship"
 
 /obj/structure/blueprint/quern
 	name = "quern blueprint"
@@ -125,13 +125,13 @@
 	name = "anvil blueprint"
 	target_structure = /obj/structure/anvil
 	reqs = list(/obj/item/ingot=5)
-	cat = "crafstmanship"
+	cat = "craftsmanship"
 
 /obj/structure/blueprint/gemcutter
 	name = "gemstone grinder blueprint"
 	target_structure = /obj/structure/gemcutter
 	reqs = list(/obj/item/ingot=2, /obj/item/stack/sheet/planks=6, /obj/item/stack/glass=1)
-	cat = "crafstmanship"
+	cat = "craftsmanship"
 
 /obj/structure/blueprint/altar
 	name = "altar blueprint"
@@ -143,4 +143,11 @@
 	name = "loom blueprint"
 	target_structure = /obj/structure/loom
 	reqs = list(/obj/item/stack/sheet/planks=8, /obj/item/ingot=2)
-	cat = "crafstmanship"
+	cat = "craftsmanship"
+
+// dirty water barrel from smithing (yes, this is a bad solution)
+/obj/structure/blueprint/waterbarrel
+	name = "water barrel"
+	target_structure = /obj/structure/waterbarrel
+	reqs = list(/obj/item/stack/sheet/planks=7, /obj/item/ingot=1)
+	cat = "craftsmanship"

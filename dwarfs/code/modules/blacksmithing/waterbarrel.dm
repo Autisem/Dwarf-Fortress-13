@@ -1,4 +1,4 @@
-/obj/structure/dwarf_waterbarrel
+/obj/structure/waterbarrel
 	name = "barrel with dirty water"
 	desc = "Do. Not. Drink."
 	icon = 'dwarfs/icons/structures/workshops.dmi'
@@ -7,7 +7,7 @@
 	density = TRUE
 	layer = TABLE_LAYER
 
-/obj/structure/dwarf_waterbarrel/attacked_by(obj/item/I, mob/living/user)
+/obj/structure/waterbarrel/attacked_by(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/tongs))
 		if(I.contents.len)
 			if(istype(I.contents[I.contents.len], /obj/item/ingot))
