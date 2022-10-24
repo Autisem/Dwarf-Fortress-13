@@ -266,3 +266,7 @@
 /obj/item/partial/halberd
 	name = "halberd head"
 	icon_state = "halberd_head"
+
+/obj/item/partial/kitchen_knife
+	name = "kitchen knife blade"
+	icon_state = "kitchen_knife_blade"

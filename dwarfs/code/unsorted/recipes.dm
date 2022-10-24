@@ -113,6 +113,10 @@
 	name = "\[part\] lantern parts"
 	result = /obj/item/partial/lantern_parts
 
+/datum/smithing_recipe/kitchen_knife
+	name = "\[part\] kitchen knife"
+	result = /obj/item/partial/kitchen_knife
+
 /datum/workbench_recipe
 	var/name = "workbench_recipe"
 	var/result
@@ -197,3 +201,8 @@
 	name = "rag"
 	result = /obj/item/reagent_containers/glass/rag
 	reqs = list(/obj/item/stack/sheet/animalhide/cat =2)
+
+/datum/workbench_recipe/kitchen_knife
+	name = "kitchen_knife"
+	result = /obj/item/kitchen/knife
+	reqs = list(/obj/item/partial/kitchen_knife=1, /obj/item/weapon_hilt=1)
