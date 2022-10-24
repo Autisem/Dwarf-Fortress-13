@@ -690,6 +690,45 @@
             toolspeed = 0.6
             armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
 
+/obj/item/kitchen/knife/apply_grade(grade)
+    ..()
+    switch(grade)
+        if(1)
+            force = 4
+            throwforce = 4
+            block_chance = 0
+            toolspeed = 3
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(2)
+            force = 5
+            throwforce = 5
+            block_chance = 0
+            toolspeed = 2
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(3)
+            force = 6
+            throwforce = 6
+            block_chance = 0
+            toolspeed = 1
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(4)
+            force = 7
+            throwforce = 7
+            block_chance = 0
+            toolspeed = 0.9
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(5)
+            force = 8
+            throwforce = 8
+            block_chance = 0
+            toolspeed = 0.7
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
+        if(6)
+            force = 10
+            throwforce = 10
+            block_chance = 0
+            toolspeed = 0.6
+            armor_penetration = list(SHARP=0, PIERCE=0, BLUNT=0, FIRE=0, WOUND=0)
 
 
 /*******************************************************************************************************************/

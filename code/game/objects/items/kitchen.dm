@@ -68,15 +68,13 @@
 	icon_state = "kitchen_knife"
 	inhand_icon_state = "knife"
 	worn_icon_state = "knife"
-	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
-	flags_1 = CONDUCT_1
+	desc = "A general purpose Chef's Knife. Guaranteed to stay sharp for years to come."
 	force = 10
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 10
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	throw_speed = 3
 	throw_range = 6
-	custom_materials = list(/datum/material/iron=12000)
 	attack_verb_continuous = list("slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	atck_type = SHARP
