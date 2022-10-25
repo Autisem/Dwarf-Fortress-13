@@ -315,5 +315,9 @@
 	desc = "Till the earth!"
 	tool_behaviour = TOOL_HOE
 	usesound = 'dwarfs/sounds/tools/hoe/hoe_dig.ogg'
+	icon = 'dwarfs/icons/items/tools.dmi'
+	icon_state = "hoe"
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	atck_type = PIERCE
 	force = 7
