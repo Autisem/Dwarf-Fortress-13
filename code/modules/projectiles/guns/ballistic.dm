@@ -89,8 +89,6 @@
 	///Whether the gun can be sawn off by sawing tools
 	var/can_be_sawn_off  = FALSE
 	var/flip_cooldown = 0
-	var/suppressor_x_offset ///pixel offset for the suppressor overlay on the x axis.
-	var/suppressor_y_offset ///pixel offset for the suppressor overlay on the y axis.
 
 /obj/item/gun/ballistic/Initialize()
 	. = ..()
@@ -120,14 +118,11 @@
 
 /obj/item/gun/ballistic/vv_edit_var(vname, vval)
 	. = ..()
-	if(vname in list(NAMEOF(src, suppressor_x_offset), NAMEOF(src, suppressor_y_offset), NAMEOF(src, internal_magazine), NAMEOF(src, magazine), NAMEOF(src, chambered), NAMEOF(src, empty_indicator), NAMEOF(src, sawn_off), NAMEOF(src, bolt_locked), NAMEOF(src, bolt_type)))
+	if(vname in list(NAMEOF(src, internal_magazine), NAMEOF(src, magazine), NAMEOF(src, chambered), NAMEOF(src, empty_indicator), NAMEOF(src, sawn_off), NAMEOF(src, bolt_locked), NAMEOF(src, bolt_type)))
 		update_icon()
 
 /obj/item/gun/ballistic/update_icon_state()
-	if(current_skin)
-		icon_state = "[unique_reskin[current_skin]][sawn_off ? "_sawn" : ""]"
-	else
-		icon_state = "[initial(icon_state)][sawn_off ? "_sawn" : ""]"
+	icon_state = "[initial(icon_state)][sawn_off ? "_sawn" : ""]"
 	return ..()
 
 /obj/item/gun/ballistic/update_overlays()
@@ -137,13 +132,6 @@
 			. += "[icon_state]_bolt[bolt_locked ? "_locked" : ""]"
 		if (bolt_type == BOLT_TYPE_OPEN && bolt_locked)
 			. += "[icon_state]_bolt"
-	if (suppressed)
-		var/mutable_appearance/MA = mutable_appearance(icon, "[icon_state]_suppressor")
-		if(suppressor_x_offset)
-			MA.pixel_x = suppressor_x_offset
-		if(suppressor_y_offset)
-			MA.pixel_y = suppressor_y_offset
-		. += MA
 	if(!chambered && empty_indicator) //this is duplicated in c20's update_overlayss due to a layering issue with the select fire icon.
 		. += "[icon_state]_empty"
 
@@ -304,21 +292,6 @@
 				A.update_icon()
 				update_icon()
 			return
-	if(istype(A, /obj/item/suppressor))
-		var/obj/item/suppressor/S = A
-		if(!can_suppress)
-			to_chat(user, span_warning("You can't seem to figure out how to fit [S] on [src]!"))
-			return
-		if(!user.is_holding(src))
-			to_chat(user, span_warning("You need be holding [src] to fit [S] to it!"))
-			return
-		if(suppressed)
-			to_chat(user, span_warning("[src] already has a suppressor!"))
-			return
-		if(user.transferItemToLoc(A, src))
-			to_chat(user, span_notice("You screw [S] onto [src]."))
-			install_suppressor(A)
-			return
 	if (can_be_sawn_off)
 		if (sawoff(user, A))
 			return
@@ -328,33 +301,6 @@
 	if (sawn_off)
 		bonus_spread += SAWN_OFF_ACC_PENALTY
 	. = ..()
-
-///Installs a new suppressor, assumes that the suppressor is already in the contents of src
-/obj/item/gun/ballistic/proc/install_suppressor(obj/item/suppressor/S)
-	suppressed = S
-	w_class += S.w_class //so pistols do not fit in pockets when suppressed
-	update_icon()
-
-/obj/item/gun/ballistic/clear_suppressor()
-	if(!can_unsuppress)
-		return
-	if(isitem(suppressed))
-		var/obj/item/I = suppressed
-		w_class -= I.w_class
-	return ..()
-
-/obj/item/gun/ballistic/AltClick(mob/user)
-	if (unique_reskin && !current_skin && user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY))
-		reskin_obj(user)
-		return
-	if(loc == user)
-		if(suppressed && can_unsuppress)
-			var/obj/item/suppressor/S = suppressed
-			if(!user.is_holding(src))
-				return ..()
-			to_chat(user, span_notice("You unscrew [S] from [src]."))
-			user.put_in_hands(S)
-			clear_suppressor()
 
 ///Prefire empty checks for the bolt drop
 /obj/item/gun/ballistic/proc/prefire_empty_checks()
@@ -438,8 +384,6 @@
 		. += "It does not seem to have a round chambered."
 	if (bolt_locked)
 		. += "The [bolt_wording] is locked back and needs to be released before firing or de-fouling."
-	if (suppressed)
-		. += "It has a suppressor attached that can be removed with <b>alt+click</b>."
 
 ///Gets the number of bullets in the gun
 /obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE)
@@ -529,11 +473,3 @@
 		if(AC.loaded_projectile)
 			process_fire(user, user, FALSE)
 			. = TRUE
-
-
-/obj/item/suppressor
-	name = "suppressor"
-	desc = "A syndicate small-arms suppressor for maximum espionage."
-	icon = 'icons/obj/guns/projectile.dmi'
-	icon_state = "suppressor"
-	w_class = WEIGHT_CLASS_TINY

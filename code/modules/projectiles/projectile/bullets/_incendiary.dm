@@ -21,7 +21,6 @@
 	ricochet_chance = 10000
 	ricochets_max = 4
 	ricochet_incidence_leeway = 0
-	suppressed = SUPPRESSED_VERY
 	damage_type = BURN
 	flag = BLUNT
 	speed = 1.2

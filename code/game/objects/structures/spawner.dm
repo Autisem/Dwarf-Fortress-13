@@ -23,19 +23,3 @@
 	if(faction_check(faction, M.faction, FALSE)&&!M.client)
 		return
 	..()
-
-/obj/structure/spawner/mining
-	name = "monster den"
-	desc = "A hole dug into the ground, harboring all kinds of monsters found within most caves or mining asteroids."
-	icon_state = "hole"
-	max_integrity = 200
-	max_mobs = 3
-	icon = 'icons/mob/nest.dmi'
-	spawn_text = "crawls out of"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/fugu)
-	faction = list("mining")
-
-/obj/structure/spawner/mining/wumborian
-	name = "wumborian fugu den"
-	desc = "A den housing a nest of wumborian fugus, how do they all even fit in there?"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/fugu)

@@ -101,8 +101,7 @@
 /obj/bullet_act(obj/projectile/P)
 	. = ..()
 	playsound(src, P.hitsound, 50, TRUE)
-	if(P.suppressed != SUPPRESSED_VERY)
-		visible_message(span_danger("<b>[src]</b> is hit by <b>[P.name]</b>!") , null, null, COMBAT_MESSAGE_RANGE)
+	visible_message(span_danger("<b>[src]</b> is hit by <b>[P.name]</b>!") , null, null, COMBAT_MESSAGE_RANGE)
 	if(!QDELETED(src)) //Bullet on_hit effect might have already destroyed this object
 		take_damage(P.damage, P.damage_type, P.flag, 0, turn(P.dir, 180), P.armour_penetration)
 

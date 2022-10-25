@@ -46,15 +46,6 @@
 		list()
 		)
 
-/datum/component/storage/concrete/pockets/shoes/clown/Initialize()
-	. = ..()
-	set_holdable(list(
-		/obj/item/kitchen/knife,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/screwdriver, /obj/item/bikehorn),
-		list()
-		)
-
 /datum/component/storage/concrete/pockets/pocketprotector
 	max_items = 3
 	max_w_class = WEIGHT_CLASS_TINY
@@ -64,7 +55,6 @@
 	original_parent = parent
 	. = ..()
 	set_holdable(list( //Same items as a PDA
-		/obj/item/lipstick,
 		/obj/item/clothing/mask/cigarette)
 		)
 

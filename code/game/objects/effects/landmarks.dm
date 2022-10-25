@@ -103,3 +103,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	name = "portal exit"
 	icon_state = "portal_exit"
 	var/id
+
+/obj/effect/landmark/error
+	name = "error"
+	icon_state = "error_room"

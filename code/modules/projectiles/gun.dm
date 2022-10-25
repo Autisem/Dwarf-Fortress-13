@@ -26,7 +26,6 @@
 	var/vary_fire_sound = TRUE
 	var/fire_sound_volume = 50
 	var/dry_fire_sound = 'sound/weapons/gun/general/dry_fire.ogg'
-	var/suppressed = null //whether or not a message is displayed when fired
 	var/can_suppress = FALSE
 	var/suppressed_sound = 'sound/weapons/gun/general/heavy_shot_suppressed.ogg'
 	var/suppressed_volume = 60
@@ -92,8 +91,6 @@
 		QDEL_NULL(chambered)
 	if(azoom)
 		QDEL_NULL(azoom)
-	if(isatom(suppressed)) //SUPPRESSED IS USED AS BOTH A TRUE/FALSE AND AS A REF, WHAT THE FUCKKKKKKKKKKKKKKKKK
-		QDEL_NULL(suppressed)
 	return ..()
 
 /obj/item/gun/handle_atom_del(atom/A)
@@ -102,16 +99,7 @@
 		update_appearance()
 	if(A == bayonet)
 		clear_bayonet()
-	if(A == suppressed)
-		clear_suppressor()
 	return ..()
-
-///Clears var and updates icon. In the case of ballistic weapons, also updates the gun's weight.
-/obj/item/gun/proc/clear_suppressor()
-	if(!can_unsuppress)
-		return
-	suppressed = null
-	update_appearance()
 
 /obj/item/gun/examine(mob/user)
 	. = ..()
@@ -147,24 +135,21 @@
 	if(recoil)
 		shake_camera(user, recoil + 1, recoil)
 
-	if(suppressed)
-		playsound(user, suppressed_sound, suppressed_volume, vary_fire_sound, ignore_walls = FALSE, extrarange = SILENCED_SOUND_EXTRARANGE, falloff_distance = 0)
-	else
-		playsound(user, fire_sound, fire_sound_volume, vary_fire_sound)
-		if(message)
-			if(pointblank)
-				user.visible_message(span_danger("[user] fires [src] point blank at [pbtarget]!"), \
-								span_danger("You fire [src] point blank at [pbtarget]!"), \
-								span_hear("You hear a gunshot!"), COMBAT_MESSAGE_RANGE, pbtarget)
-				to_chat(pbtarget, span_userdanger("[user] fires [src] point blank at you!"))
-				if(pb_knockback > 0 && ismob(pbtarget))
-					var/mob/PBT = pbtarget
-					var/atom/throw_target = get_edge_target_turf(PBT, user.dir)
-					PBT.throw_at(throw_target, pb_knockback, 2)
-			else
-				user.visible_message(span_danger("[user] fires [src]!"), \
-								span_danger("You fire [src]!"), \
-								span_hear("You hear a gunshot!"), COMBAT_MESSAGE_RANGE)
+	playsound(user, fire_sound, fire_sound_volume, vary_fire_sound)
+	if(message)
+		if(pointblank)
+			user.visible_message(span_danger("[user] fires [src] point blank at [pbtarget]!"), \
+							span_danger("You fire [src] point blank at [pbtarget]!"), \
+							span_hear("You hear a gunshot!"), COMBAT_MESSAGE_RANGE, pbtarget)
+			to_chat(pbtarget, span_userdanger("[user] fires [src] point blank at you!"))
+			if(pb_knockback > 0 && ismob(pbtarget))
+				var/mob/PBT = pbtarget
+				var/atom/throw_target = get_edge_target_turf(PBT, user.dir)
+				PBT.throw_at(throw_target, pb_knockback, 2)
+		else
+			user.visible_message(span_danger("[user] fires [src]!"), \
+							span_danger("You fire [src]!"), \
+							span_hear("You hear a gunshot!"), COMBAT_MESSAGE_RANGE)
 
 /obj/item/gun/attack_secondary(mob/living/victim, mob/living/user, params)
 	if (user.GetComponent(/datum/component/gunpoint))
@@ -256,7 +241,7 @@
 		else //Smart spread
 			sprd = round((((rand_spr/burst_size) * iteration) - (0.5 + (rand_spr * 0.25))) * (randomized_gun_spread + randomized_bonus_spread))
 		before_firing(target,user)
-		if(!chambered.fire_casing(target, user, params, 0, suppressed, zone_override, sprd, src, extra_damage, extra_penetration))
+		if(!chambered.fire_casing(target, user, params, 0, zone_override, sprd, src, extra_damage, extra_penetration))
 			shoot_with_empty_chamber(user)
 			firing_burst = FALSE
 			return FALSE
@@ -312,7 +297,7 @@
 					return
 			sprd = round((rand(0, 1) - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
 			before_firing(target,user)
-			if(!chambered.fire_casing(target, user, params, 0, suppressed, zone_override, sprd, src, extra_damage, extra_penetration))
+			if(!chambered.fire_casing(target, user, params, 0, zone_override, sprd, src, extra_damage, extra_penetration))
 				shoot_with_empty_chamber(user)
 				return
 			else

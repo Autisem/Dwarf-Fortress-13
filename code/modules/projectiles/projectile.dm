@@ -22,7 +22,6 @@
 	var/def_zone = "" //Aiming at
 	var/atom/movable/firer = null//Who shot it
 	var/atom/fired_from = null // the atom that the projectile was fired from (gun, turret)
-	var/suppressed = FALSE //Attack message
 	var/yo = null
 	var/xo = null
 	var/atom/original = null // the original target clicked
@@ -253,8 +252,6 @@
 			new impact_effect_type(target_loca, hitx, hity)
 		if(isturf(target) && hitsound_wall)
 			var/volume = clamp(vol_by_damage() + 20, 0, 100)
-			if(suppressed)
-				volume = 5
 			playsound(loc, hitsound_wall, volume, TRUE, -1)
 		return BULLET_ACT_HIT
 
@@ -275,17 +272,11 @@
 		var/limb_hit = hit_limb
 		if(limb_hit)
 			organ_hit_text = " in \the [parse_zone(limb_hit)]"
-		if(suppressed==SUPPRESSED_VERY)
-			playsound(loc, hitsound, 5, TRUE, -1)
-		else if(suppressed)
-			playsound(loc, hitsound, 5, TRUE, -1)
-			to_chat(L, span_userdanger("You're shot by \a [src][organ_hit_text]!"))
-		else
-			if(hitsound)
-				var/volume = vol_by_damage()
-				playsound(src, hitsound, volume, TRUE, -1)
-			L.visible_message(span_danger("[L] is hit by \a [src][organ_hit_text]!"), \
-					span_userdanger("You're hit by \a [src][organ_hit_text]!"), null, COMBAT_MESSAGE_RANGE)
+		if(hitsound)
+			var/volume = vol_by_damage()
+			playsound(src, hitsound, volume, TRUE, -1)
+		L.visible_message(span_danger("[L] is hit by \a [src][organ_hit_text]!"), \
+				span_userdanger("You're hit by \a [src][organ_hit_text]!"), null, COMBAT_MESSAGE_RANGE)
 		L.on_hit(src)
 
 	var/reagent_note

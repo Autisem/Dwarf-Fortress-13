@@ -21,27 +21,3 @@
 	if(length(flora_types) && prob(flora_density))
 		var/obj/structure/flora = pick(flora_types)
 		new flora(gen_turf)
-
-/datum/biome/mudlands
-	turf_type = /turf/open/floor/stone
-	flora_density = 3
-
-/datum/biome/plains
-	turf_type = /turf/open/floor/stone
-	flora_density = 15
-
-/datum/biome/jungle
-	turf_type = /turf/open/floor/stone
-	flora_density = 40
-
-/datum/biome/jungle/deep
-	flora_density = 65
-
-/datum/biome/wasteland
-	turf_type = /turf/open/floor/stone
-
-/datum/biome/water
-	turf_type = /turf/open/water
-
-/datum/biome/snowforest/deep
-	flora_density = 65

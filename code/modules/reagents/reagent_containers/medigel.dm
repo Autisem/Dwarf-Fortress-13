@@ -23,14 +23,6 @@
 	var/self_delay = 30
 	var/squirt_mode = 0
 	custom_price = PAYCHECK_MEDIUM * 2
-	unique_reskin = list(
-		"Blue" = "medigel_blue",
-		"Cyan" = "medigel_cyan",
-		"Green" = "medigel_green",
-		"Red" = "medigel_red",
-		"Orange" = "medigel_orange",
-		"Purple" = "medigel_purple"
-	)
 
 /obj/item/reagent_containers/medigel/attack_self(mob/user)
 	squirt_mode = !squirt_mode

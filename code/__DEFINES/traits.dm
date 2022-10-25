@@ -663,8 +663,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define HIPPOCRATIC_OATH_TRAIT "hippocratic_oath"
 /// Trait granted by [/datum/status_effect/blooddrunk]
 #define BLOODDRUNK_TRAIT "blooddrunk"
-/// Trait granted by lipstick
-#define LIPSTICK_TRAIT "lipstick_trait"
 /// Self-explainatory.
 #define BEAUTY_ELEMENT_TRAIT "beauty_element"
 #define MOOD_COMPONENT_TRAIT "mood_component"
