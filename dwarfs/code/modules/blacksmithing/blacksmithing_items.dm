@@ -270,3 +270,7 @@
 /obj/item/partial/kitchen_knife
 	name = "kitchen knife blade"
 	icon_state = "kitchen_knife_blade"
+
+/obj/item/partial/hoe
+	name = "hoe head"
+	icon_state = "hoe_head"

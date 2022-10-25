@@ -117,6 +117,10 @@
 	name = "\[part\] kitchen knife"
 	result = /obj/item/partial/kitchen_knife
 
+/datum/smithing_recipe/hoe
+	name = "\[part\] hoe blade"
+	result = /obj/item/partial/hoe
+
 /datum/workbench_recipe
 	var/name = "workbench_recipe"
 	var/result
@@ -206,3 +210,8 @@
 	name = "kitchen_knife"
 	result = /obj/item/kitchen/knife
 	reqs = list(/obj/item/partial/kitchen_knife=1, /obj/item/weapon_hilt=1)
+
+/datum/workbench_recipe/hoe
+	name = "hoe"
+	result = /obj/item/hoe
+	reqs = list(/obj/item/partial/hoe=1, /obj/item/tool_handle=1)
