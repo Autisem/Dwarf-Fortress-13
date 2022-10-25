@@ -43,3 +43,14 @@
 	. = ..()
 	if(prob(33))
 		new /obj/item/stack/ore/smeltable/sand(src)
+
+/turf/closed/mineral/random/dwarf_lustress/attackby(obj/item/I, mob/user, params)
+	if(I.tool_behaviour == TOOL_CHISEL)
+		var/turf/T = src
+		var/time = 5 SECONDS * user.mind.get_skill_modifier(/datum/skill/mining, SKILL_SPEED_MODIFIER)
+		to_chat(user, span_notice("You start carving stone wall..."))
+		if(I.use_tool(src, user, time, volume=50))
+			if(ismineralturf(src))
+				to_chat(user, span_notice("You finish carving stone wall."))
+				T.ChangeTurf(/turf/closed/wall/stone, initial(turf_type.baseturfs))
+	..()
