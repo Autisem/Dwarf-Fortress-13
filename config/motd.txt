@@ -1,6 +1,6 @@
 <div id=motd-main>
 	<center>
-		<p id=motd-p><img style='max-width:100%' src='https://cdn.discordapp.com/attachments/943552946472353792/945043534589866065/dftest.png'></p>
+		<p id=motd-p><img style='max-width:100%' src='https://assets.station13.ru/l/d1.gif'></p>
 		<hr id=motd-hr>
 	</center>
 		<p id=motd-p>
