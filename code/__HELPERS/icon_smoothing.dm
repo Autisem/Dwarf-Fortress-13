@@ -216,9 +216,10 @@ DEFINE_BITFIELD(smoothing_junction, list(
 		CRASH("smooth_icon called for [src] with smoothing_flags == [smoothing_flags]")
 
 /atom/proc/smooth_borders()
-	return
+	smoothing_flags &= ~SMOOTH_B_QUEUED
 
 /turf/open/floor/smooth_borders()
+	..()
 	cut_overlays()
 	update_appearance(UPDATE_ICON)
 	var/list/cardinals = GLOB.cardinals.Copy()
@@ -265,6 +266,7 @@ DEFINE_BITFIELD(smoothing_junction, list(
 		add_overlay(SSicon_smooth.borders_cache["[cname][tname]"])
 
 /turf/closed/smooth_borders()
+	..()
 	cut_overlays()
 	update_appearance(UPDATE_ICON)
 	var/list/cardinals = GLOB.cardinals.Copy()

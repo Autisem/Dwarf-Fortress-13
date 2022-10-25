@@ -11,6 +11,7 @@
 #define SMOOTH_BORDER	(1<<3)
 /// Atom is currently queued to smooth.
 #define SMOOTH_QUEUED	(1<<4)
+#define SMOOTH_B_QUEUED (1<<7)
 /// Smooths with objects, and will thus need to scan turfs for contents.
 #define SMOOTH_OBJ		(1<<5)
 
@@ -20,6 +21,7 @@ DEFINE_BITFIELD(smoothing_flags, list(
 	"SMOOTH_DIAGONAL_CORNERS" = SMOOTH_DIAGONAL_CORNERS,
 	"SMOOTH_BORDER" = SMOOTH_BORDER,
 	"SMOOTH_QUEUED" = SMOOTH_QUEUED,
+	"SMOOTH_B_QUEUED" = SMOOTH_B_QUEUED,
 	"SMOOTH_OBJ" = SMOOTH_OBJ,
 	"SMOOTH_BORDERS" = SMOOTH_BORDERS,
 ))

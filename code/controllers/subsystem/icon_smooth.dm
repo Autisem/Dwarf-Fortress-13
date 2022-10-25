@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(icon_smooth)
 			can_fire = FALSE
 
 /datum/controller/subsystem/icon_smooth/Initialize()
-	for(var/z in 0 to world.maxz)
+	for(var/z in 2 to world.maxz)
 		smooth_zlevel(z, TRUE)
 
 	var/list/queue = smooth_queue
@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(icon_smooth)
 	while(length(queue))
 		var/atom/smoothing_atom = queue[length(queue)]
 		queue.len--
-		if(QDELETED(smoothing_atom) || !(smoothing_atom.smoothing_flags & SMOOTH_QUEUED) || smoothing_atom.z <= 2)
+		if(QDELETED(smoothing_atom) || !(smoothing_atom.smoothing_flags & SMOOTH_QUEUED) || smoothing_atom.z < 2)
 			continue
 		smoothing_atom.smooth_icon()
 		CHECK_TICK
@@ -67,9 +67,9 @@ SUBSYSTEM_DEF(icon_smooth)
 	while(length(queue_borders))
 		var/atom/smoothing_atom = queue_borders[length(queue_borders)]
 		queue_borders.len--
-		if(QDELETED(smoothing_atom) || !(smoothing_atom.smoothing_flags & SMOOTH_QUEUED) || smoothing_atom.z <= 2)
+		if(QDELETED(smoothing_atom) || !(smoothing_atom.smoothing_flags & SMOOTH_B_QUEUED) || smoothing_atom.z < 2)
 			continue
-		smoothing_atom.smooth_icon()
+		smoothing_atom.smooth_borders()
 		CHECK_TICK
 
 	queue = blueprint_queue
@@ -94,12 +94,16 @@ SUBSYSTEM_DEF(icon_smooth)
 		can_fire = TRUE
 
 /datum/controller/subsystem/icon_smooth/proc/add_to_queue_border(atom/thing)
+	if(thing.smoothing_flags & SMOOTH_B_QUEUED)
+		return
+	thing.smoothing_flags |= SMOOTH_B_QUEUED
 	smooth_borders_queue += thing
 	if(!can_fire)
 		can_fire = TRUE
 
 /datum/controller/subsystem/icon_smooth/proc/remove_from_queues(atom/thing)
 	thing.smoothing_flags &= ~SMOOTH_QUEUED
+	thing.smoothing_flags &= ~SMOOTH_B_QUEUED
 	smooth_queue -= thing
 	smooth_borders_queue -= thing
 	if(blueprint_queue)
