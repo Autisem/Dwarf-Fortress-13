@@ -412,51 +412,6 @@
 		if(next_use_time > world.time)
 			START_PROCESSING(SSfastprocess, src)
 
-
-//Stickmemes
-/datum/action/item_action/stickmen
-	name = "Summon Stick Minions"
-	desc = "Allows you to summon faithful stickmen allies to aide you in battle."
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
-	button_icon_state = "art_summon"
-
-//surf_ss13
-/datum/action/item_action/bhop
-	name = "Activate Jump Boots"
-	desc = "Activates the jump boot's internal propulsion system, allowing the user to dash over 4-wide gaps."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "jetboot"
-
-/datum/action/item_action/bhop/brocket
-	name = "Activate Rocket Boots"
-	desc = "Activates the boot's rocket propulsion system, allowing the user to hurl themselves great distances."
-
-/datum/action/language_menu
-	name = "Language Menu"
-	desc = "Open the language menu to review your languages, their keys, and select your default language."
-	button_icon_state = "language_menu"
-	check_flags = NONE
-
-/datum/action/language_menu/Trigger()
-	if(!..())
-		return FALSE
-	if(ismob(owner))
-		var/mob/M = owner
-		var/datum/language_holder/H = M.get_language_holder()
-		H.open_language_menu(usr)
-
-/datum/action/item_action/wheelys
-	name = "Toggle Wheels"
-	desc = "Pops out or in your shoes' wheels."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "wheelys"
-
-/datum/action/item_action/kindle_kicks
-	name = "Activate Kindle Kicks"
-	desc = "Kick you feet together, activating the lights in your Kindle Kicks."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "kindleKicks"
-
 /datum/action/item_action/storage_gather_mode
 	name = "Switch gathering mode"
 	desc = "Switches the gathering mode of a storage object."

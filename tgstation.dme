@@ -374,7 +374,6 @@
 #include "code\datums\world_topic.dm"
 #include "code\datums\achievements\_achievement_data.dm"
 #include "code\datums\achievements\_awards.dm"
-#include "code\datums\actions\beam_rifle.dm"
 #include "code\datums\ai\_ai_behavior.dm"
 #include "code\datums\ai\_ai_controller.dm"
 #include "code\datums\ai\_ai_planning_subtree.dm"
