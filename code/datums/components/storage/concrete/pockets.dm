@@ -40,8 +40,6 @@
 	. = ..()
 	set_holdable(list(
 		/obj/item/kitchen/knife,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/screwdriver
 		),
 		list()
 		)

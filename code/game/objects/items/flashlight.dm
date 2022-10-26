@@ -6,8 +6,6 @@
 	icon_state = "flashlight"
 	inhand_icon_state = "flashlight"
 	worn_icon_state = "flashlight"
-	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
@@ -269,8 +267,6 @@
 	name = "lantern"
 	icon_state = "lantern"
 	inhand_icon_state = "lantern"
-	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
 	desc = "Brother, lamp"
 	light_range = 6			// luminosity when on
 	light_system = MOVABLE_LIGHT

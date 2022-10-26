@@ -3,8 +3,6 @@
 #define DYE_REGISTRY_GLOVES "gloves"
 #define DYE_REGISTRY_SNEAKERS "sneakers"
 #define DYE_REGISTRY_FANNYPACK "fannypack"
-#define DYE_REGISTRY_BEDSHEET "bedsheet"
-#define DYE_LAWYER_SPECIAL "lawyer_special"
 
 #define DYE_RED "red"
 #define DYE_ORANGE "orange"

@@ -10,10 +10,9 @@
 	throwforce = 10
 	inhand_icon_state = "pickaxe"
 	worn_icon_state = "pickaxe"
-	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
-	custom_materials = list(/datum/material/iron=2000) //one sheet, but where can you make them?
 	tool_behaviour = TOOL_PICKAXE
 	toolspeed = 1
 	usesound = list('sound/effects/picaxe1.ogg', 'sound/effects/picaxe2.ogg', 'sound/effects/picaxe3.ogg')
@@ -41,8 +40,8 @@
 	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "shovel"
 	worn_icon_state = "shovel"
-	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
 	force = 8
