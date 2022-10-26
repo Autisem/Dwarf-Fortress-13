@@ -46,25 +46,3 @@
 	light_range = 1.9 //slightly less range than lava
 	light_power = 0.65 //less bright, too
 	light_color = LIGHT_COLOR_LAVA //let's just say you're falling into lava, that makes sense right
-
-// Chasms for Ice moon, with planetary atmos and glow
-/turf/open/chasm/icemoon
-	icon = 'icons/turf/floors/icechasms.dmi'
-	icon_state = "icechasms-255"
-	base_icon_state = "icechasms"
-	baseturfs = /turf/open/chasm/icemoon
-	light_range = 1.9
-	light_power = 0.65
-	light_color = LIGHT_COLOR_PURPLE
-
-// Chasms for the jungle, with planetary atmos and a different icon
-/turf/open/chasm/jungle
-	icon = 'icons/turf/floors/junglechasm.dmi'
-	icon_state = "junglechasm-255"
-	base_icon_state = "junglechasm"
-	baseturfs = /turf/open/chasm/jungle
-
-/turf/open/chasm/jungle/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
-	underlay_appearance.icon = 'icons/turf/floors.dmi'
-	underlay_appearance.icon_state = "dirt"
-	return TRUE

@@ -29,8 +29,7 @@
 												/datum/hallucination/fire,
 												/datum/hallucination/self_delusion,
 												/datum/hallucination/death,
-												/datum/hallucination/delusion,
-												/datum/hallucination/oh_yeah)
+												/datum/hallucination/delusion)
 			for(var/mob/living/carbon/C in GLOB.alive_mob_list)
 				if(C.z in SSmapping.levels_by_trait(ZTRAIT_MARX))//not for admin/ooc stuff
 					continue

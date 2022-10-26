@@ -77,50 +77,6 @@
 	icon_state = "shieldsparkles"
 	duration = 3
 
-/obj/effect/temp_visual/dir_setting/ninja
-	name = "ninja shadow"
-	icon = 'icons/mob/mob.dmi'
-	icon_state = "uncloak"
-	duration = 9
-
-/obj/effect/temp_visual/dir_setting/ninja/cloak
-	icon_state = "cloak"
-
-/obj/effect/temp_visual/dir_setting/ninja/shadow
-	icon_state = "shadow"
-
-/obj/effect/temp_visual/dir_setting/ninja/phase
-	name = "ninja energy"
-	icon_state = "phasein"
-
-/obj/effect/temp_visual/dir_setting/ninja/phase/out
-	icon_state = "phaseout"
-
-/obj/effect/temp_visual/dir_setting/wraith
-	name = "shadow"
-	icon = 'icons/mob/cult.dmi'
-	icon_state = "phase_shift2_cult"
-	duration = 0.6 SECONDS
-
-/obj/effect/temp_visual/dir_setting/wraith/angelic
-	icon_state = "phase_shift2_holy"
-
-/obj/effect/temp_visual/dir_setting/wraith/mystic
-	icon_state = "phase_shift2_wizard"
-
-/obj/effect/temp_visual/dir_setting/wraith/out
-	icon_state = "phase_shift_cult"
-
-/obj/effect/temp_visual/dir_setting/wraith/out/angelic
-	icon_state = "phase_shift_holy"
-
-/obj/effect/temp_visual/dir_setting/wraith/out/mystic
-	icon_state = "phase_shift_wizard"
-
-/obj/effect/temp_visual/dir_setting/tailsweep
-	icon_state = "tailsweep"
-	duration = 4
-
 /obj/effect/temp_visual/dir_setting/curse
 	icon_state = "curse"
 	duration = 32

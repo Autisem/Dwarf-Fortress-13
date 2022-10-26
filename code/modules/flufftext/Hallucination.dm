@@ -18,7 +18,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/self_delusion = 2,
 	/datum/hallucination/delusion = 2,
 	/datum/hallucination/death = 1,
-	/datum/hallucination/oh_yeah = 1
 	))
 
 
@@ -92,8 +91,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	var/mob/living/carbon/target = null
 
 /obj/effect/hallucination/simple
-	var/image_icon = 'icons/mob/alien.dmi'
-	var/image_state = "alienh_pounce"
+	var/image_icon
+	var/image_state
 	var/px = 0
 	var/py = 0
 	var/col_mod = null
@@ -155,99 +154,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	layer = FLY_LAYER
 	plane = GAME_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
-/obj/effect/hallucination/simple/xeno
-	image_icon = 'icons/mob/alien.dmi'
-	image_state = "alienh_pounce"
-
-/obj/effect/hallucination/simple/xeno/Initialize(mapload, mob/living/carbon/T)
-	. = ..()
-	name = "alien hunter ([rand(1, 1000)])"
-
-/obj/effect/hallucination/simple/xeno/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	update_icon("alienh_pounce")
-	if(hit_atom == target && target.stat!=DEAD)
-		target.Paralyze(100)
-		target.visible_message(span_danger("[target] flails around wildly.") ,span_userdanger("[name] pounces on you!"))
-
-/obj/effect/hallucination/simple/bubblegum
-	name = "Bubblegum"
-	image_icon = 'icons/mob/lavaland/96x96megafauna.dmi'
-	image_state = "bubblegum"
-	px = -32
-
-/datum/hallucination/oh_yeah
-	var/obj/effect/hallucination/simple/bubblegum/bubblegum
-	var/image/fakebroken
-	var/image/fakerune
-	var/turf/landing
-	var/charged
-	var/next_action = 0
-
-/datum/hallucination/oh_yeah/New(mob/living/carbon/C, forced = TRUE)
-	set waitfor = FALSE
-	. = ..()
-	var/turf/closed/wall/wall
-	for(var/turf/closed/wall/W in range(7,target))
-		wall = W
-		break
-	if(!wall)
-		return INITIALIZE_HINT_QDEL
-	feedback_details += "Source: [wall.x],[wall.y],[wall.z]"
-
-	fakebroken = image('icons/turf/floors.dmi', wall, "plating", layer = TURF_LAYER)
-	landing = get_turf(target)
-	var/turf/landing_image_turf = get_step(landing, SOUTHWEST) //the icon is 3x3
-	fakerune = image('icons/effects/96x96.dmi', landing_image_turf, "landing", layer = ABOVE_OPEN_TURF_LAYER)
-	fakebroken.override = TRUE
-	if(target?.client)
-		target.client.images |= fakebroken
-		target.client.images |= fakerune
-	target.playsound_local(wall,'sound/effects/meteorimpact.ogg', 150, 1)
-	bubblegum = new(wall, target)
-	addtimer(CALLBACK(src, .proc/start_processing), 10)
-
-/datum/hallucination/oh_yeah/proc/start_processing()
-	if (isnull(target))
-		qdel(src)
-		return
-	START_PROCESSING(SSfastprocess, src)
-
-/datum/hallucination/oh_yeah/process(delta_time)
-	next_action -= delta_time
-
-	if (next_action > 0)
-		return
-
-	if (get_turf(bubblegum) != landing && target?.stat != DEAD)
-		if(!landing || (get_turf(bubblegum)).loc.z != landing.loc.z)
-			qdel(src)
-			return
-		bubblegum.forceMove(get_step_towards(bubblegum, landing))
-		bubblegum.setDir(get_dir(bubblegum, landing))
-		target.playsound_local(get_turf(bubblegum), 'sound/effects/meteorimpact.ogg', 150, 1)
-		shake_camera(target, 2, 1)
-		if(bubblegum.Adjacent(target) && !charged)
-			charged = TRUE
-			target.Paralyze(80)
-			target.adjustStaminaLoss(40)
-			step_away(target, bubblegum)
-			shake_camera(target, 4, 3)
-			target.visible_message(span_warning("[target] jumps backwards, falling on the ground!") ,span_userdanger("[bubblegum] slams into you!"))
-		next_action = 0.2
-	else
-		STOP_PROCESSING(SSfastprocess, src)
-		QDEL_IN(src, 3 SECONDS)
-
-/datum/hallucination/oh_yeah/Destroy()
-	if(target?.client)
-		target.client.images.Remove(fakebroken)
-		target.client.images.Remove(fakerune)
-	QDEL_NULL(fakebroken)
-	QDEL_NULL(fakerune)
-	QDEL_NULL(bubblegum)
-	STOP_PROCESSING(SSfastprocess, src)
-	return ..()
 
 /datum/hallucination/battle
 	var/battle_type
@@ -479,7 +385,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	set waitfor = FALSE
 	. = ..()
 	var/image/A = null
-	var/kind = force_kind ? force_kind : pick("nothing","monkey","corgi","carp","skeleton","demon","zombie")
+	var/kind = force_kind ? force_kind : pick("nothing")
 	feedback_details += "Type: [kind]"
 	var/list/nearby
 	if(skip_nearby)
@@ -493,24 +399,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			if("nothing")
 				A = image('icons/effects/effects.dmi',H,"nothing")
 				A.name = "..."
-			if("monkey")//Monkey
-				A = image('icons/mob/monkey.dmi',H,"monkey1")
-				A.name = "Monkey ([rand(1,999)])"
-			if("carp")//Carp
-				A = image('icons/mob/carp.dmi',H,"carp")
-				A.name = "Space Carp"
-			if("corgi")//Corgi
-				A = image('icons/mob/pets.dmi',H,"corgi")
-				A.name = "Corgi"
-			if("skeleton")//Skeletons
-				A = image('icons/mob/human.dmi',H,"skeleton")
-				A.name = "Skeleton"
-			if("zombie")//Zombies
-				A = image('icons/mob/human.dmi',H,"zombie")
-				A.name = "Zombie"
-			if("demon")//Demon
-				A = image('icons/mob/mob.dmi',H,"daemon")
-				A.name = "Demon"
 			if("custom")
 				A = image(custom_icon_file, H, custom_icon)
 				A.name = custom_name
@@ -534,24 +422,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	set waitfor = FALSE
 	..()
 	var/image/A = null
-	var/kind = force_kind ? force_kind : pick("monkey","corgi","carp","skeleton","demon","zombie","robot")
+	var/kind = force_kind ? force_kind : pick("troll")
 	feedback_details += "Type: [kind]"
 	switch(kind)
-		if("monkey")//Monkey
-			A = image('icons/mob/monkey.dmi',target,"monkey1")
-		if("carp")//Carp
-			A = image('icons/mob/animal.dmi',target,"carp")
-		if("corgi")//Corgi
-			A = image('icons/mob/pets.dmi',target,"corgi")
-		if("skeleton")//Skeletons
-			A = image('icons/mob/human.dmi',target,"skeleton")
-		if("zombie")//Zombies
-			A = image('icons/mob/human.dmi',target,"zombie")
-		if("demon")//Demon
-			A = image('icons/mob/mob.dmi',target,"daemon")
-		if("robot")//Cyborg
-			A = image('icons/mob/robots.dmi',target,"robot")
-			target.playsound_local(target,'sound/voice/liveagain.ogg', 75, 1)
+		if("troll")
+			A = image('dwarfs/icons/mob/hostile.dmi',target,"troll")
 		if("custom")
 			A = image(custom_icon_file, target, custom_icon)
 	A.override = 1
@@ -1238,7 +1113,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		possible_points += F
 	if(possible_points.len)
 		var/turf/open/floor/husk_point = pick(possible_points)
-		switch(rand(1,4))
+		switch(rand(1,3))
 			if(1)
 				var/image/body = image('icons/mob/human.dmi',husk_point,"husk",TURF_LAYER)
 				var/matrix/M = matrix()
@@ -1247,8 +1122,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				halbody = body
 			if(2,3)
 				halbody = image('icons/mob/human.dmi',husk_point,"husk",TURF_LAYER)
-			if(4)
-				halbody = image('icons/mob/alien.dmi',husk_point,"alienother",TURF_LAYER)
 
 		if(target?.client)
 			target.client.images += halbody

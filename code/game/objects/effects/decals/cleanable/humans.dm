@@ -281,8 +281,6 @@
 			// god help me
 			if(species == "unknown")
 				. += "Some <B>feet</B>."
-			else if(species == "monkey")
-				. += "[icon2html('icons/mob/monkey.dmi', user, "monkey1")] Some <B>monkey feet</B>."
 			else if(species == "human")
 				. += "[icon2html('icons/mob/human_parts.dmi', user, "default_human_l_leg")] Some <B>human feet</B>."
 			else

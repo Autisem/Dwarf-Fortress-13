@@ -45,7 +45,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 // you are refactoring shitty landmark code.
 /obj/effect/landmark/start/dwarf
 	name = "Dwarf"
-	icon_state = "Assistant" //icon_state is case sensitive. why are all of these capitalized? because fuck you that's why
+	icon_state = "dwarf"
 
 /obj/effect/landmark/start/dwarf/Initialize(mapload)
 	GLOB.dwarf_starts.Add(src)
@@ -81,7 +81,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 //observer start
 /obj/effect/landmark/observer_start
 	name = "Observer-Start"
-	icon_state = "observer_start"
+	icon_state = "x2"
 
 //generic event spawns
 /obj/effect/landmark/event_spawn

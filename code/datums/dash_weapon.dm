@@ -10,8 +10,8 @@
 	var/dash_sound = 'sound/magic/blink.ogg'
 	var/recharge_sound = 'sound/magic/charge.ogg'
 	var/beam_effect = "blur"
-	var/phasein = /obj/effect/temp_visual/dir_setting/ninja/phase
-	var/phaseout = /obj/effect/temp_visual/dir_setting/ninja/phase/out
+	var/phasein
+	var/phaseout
 
 /datum/action/innate/dash/Grant(mob/user, obj/dasher)
 	. = ..()
