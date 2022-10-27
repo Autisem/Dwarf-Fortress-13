@@ -1,6 +1,5 @@
 /obj/structure/farm_plot/muddy
 	name = "muddy plot"
-	icon = 'dwarfs/icons/farming/equipment.dmi'
 	icon_state = "plantbox"
 	desc = "A pile of mud collected together to grow cave plants in."
 	allowed_species = list("cave_wheat", "pig_tail", "plump_helmet", "sweet_pod")
@@ -11,8 +10,8 @@
 	allowed_species = list("barley", "cotton", "turnip", "carrot")
 
 /obj/structure/farm_plot
-	name = "hydroponics tray"
-	icon = 'icons/obj/hydroponics/equipment.dmi'
+	name = "plot"
+	icon = 'dwarfs/icons/farming/equipment.dmi'
 	icon_state = "soil"
 	anchored = TRUE
 	///The amount of water in the tray (max 100)

@@ -27,7 +27,6 @@
 /obj/item/debug/omnitool
 	name = "omnitool"
 	desc = "The original hypertool, born before them all. Use it in hand to unleash its true power."
-	icon = 'icons/obj/device.dmi'
 	icon_state = "hypertool"
 	inhand_icon_state = "hypertool"
 	toolspeed = 0.1
@@ -48,57 +47,20 @@
 	if(!user)
 		return
 	var/list/tool_list = list(
-		"Crowbar" = image(icon = 'icons/obj/tools.dmi', icon_state = "crowbar"),
-		"Multitool" = image(icon = 'icons/obj/device.dmi', icon_state = "multitool"),
-		"Screwdriver" = image(icon = 'icons/obj/tools.dmi', icon_state = "screwdriver_map"),
-		"Wirecutters" = image(icon = 'icons/obj/tools.dmi', icon_state = "cutters_map"),
-		"Wrench" = image(icon = 'icons/obj/tools.dmi', icon_state = "wrench"),
-		"Welding Tool" = image(icon = 'icons/obj/tools.dmi', icon_state = "miniwelder"),
-		"Analyzer" = image(icon = 'icons/obj/device.dmi', icon_state = "analyzer"),
 		"Pickaxe" = image(icon = 'icons/obj/mining.dmi', icon_state = "pickaxe"),
 		"Shovel" = image(icon = 'icons/obj/mining.dmi', icon_state = "shovel"),
-		"Retractor" = image(icon = 'icons/obj/surgery.dmi', icon_state = "retractor"),
-		"Hemostat" = image(icon = 'icons/obj/surgery.dmi', icon_state = "hemostat"),
-		"Cautery" = image(icon = 'icons/obj/surgery.dmi', icon_state = "cautery"),
-		"Drill" = image(icon = 'icons/obj/surgery.dmi', icon_state = "drill"),
-		"Scalpel" = image(icon = 'icons/obj/surgery.dmi', icon_state = "scalpel"),
-		"Saw" = image(icon = 'icons/obj/surgery.dmi', icon_state = "saw"),
-		"Bonesetter" = image(icon = 'icons/obj/surgery.dmi', icon_state = "bone setter"),
-		"Knife" = image(icon = 'icons/obj/kitchen.dmi', icon_state = "knife"),
-		"Blood Filter" = image(icon = 'icons/obj/surgery.dmi', icon_state = "bloodfilter"),
-		"Rolling Pin" = image(icon = 'icons/obj/kitchen.dmi', icon_state = "rolling_pin")
+		"Knife" = image(icon = 'icons/obj/tools.dmi', icon_state = "knife"),
+		"Rolling Pin" = image(icon = 'icons/obj/tools.dmi', icon_state = "rolling_pin")
 		)
 	var/tool_result = show_radial_menu(user, src, tool_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(tool_result)
-		if("Crowbar")
-			tool_behaviour = TOOL_CROWBAR
-		if("Screwdriver")
-			tool_behaviour = TOOL_SCREWDRIVER
-		if("Wrench")
-			tool_behaviour = TOOL_WRENCH
-		if("Analyzer")
-			tool_behaviour = TOOL_ANALYZER
 		if("Pickaxe")
 			tool_behaviour = TOOL_PICKAXE
 		if("Shovel")
 			tool_behaviour = TOOL_SHOVEL
-		if("Retractor")
-			tool_behaviour = TOOL_RETRACTOR
-		if("Hemostat")
-			tool_behaviour = TOOL_HEMOSTAT
-		if("Cautery")
-			tool_behaviour = TOOL_CAUTERY
-		if("Scalpel")
-			tool_behaviour = TOOL_SCALPEL
-		if("Saw")
-			tool_behaviour = TOOL_SAW
-		if("Bonesetter")
-			tool_behaviour = TOOL_BONESET
 		if("Knife")
 			tool_behaviour = TOOL_KNIFE
-		if("Blood Filter")
-			tool_behaviour = TOOL_BLOODFILTER
 		if("Rolling Pin")
 			tool_behaviour = TOOL_ROLLINGPIN

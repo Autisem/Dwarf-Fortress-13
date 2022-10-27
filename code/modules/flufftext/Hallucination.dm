@@ -13,7 +13,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/stray_bullet = 7,
 	/datum/hallucination/items_other = 7,
 	/datum/hallucination/husks = 7,
-	/datum/hallucination/items = 4,
 	/datum/hallucination/fire = 3,
 	/datum/hallucination/self_delusion = 2,
 	/datum/hallucination/delusion = 2,
@@ -743,69 +742,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	LAZYNULL(human_mob.hal_screwydoll)
 	human_mob.update_health_hud()
 	return ..()
-
-
-/datum/hallucination/items/New(mob/living/carbon/C, forced = TRUE)
-	set waitfor = FALSE
-	..()
-	//Strange items
-
-	var/obj/halitem = new
-
-	halitem = new
-	var/obj/item/l_hand = target.get_item_for_held_index(1)
-	var/obj/item/r_hand = target.get_item_for_held_index(2)
-	var/l = ui_hand_position(target.get_held_index_of_item(l_hand))
-	var/r = ui_hand_position(target.get_held_index_of_item(r_hand))
-	var/list/slots_free = list(l,r)
-	if(l_hand)
-		slots_free -= l
-	if(r_hand)
-		slots_free -= r
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		if(!H.belt)
-			slots_free += ui_belt
-		if(!H.l_store)
-			slots_free += ui_storage1
-		if(!H.r_store)
-			slots_free += ui_storage2
-	if(slots_free.len)
-		halitem.screen_loc = pick(slots_free)
-		halitem.plane = ABOVE_HUD_PLANE
-		switch(rand(1,6))
-			if(1) //revolver
-				halitem.icon = 'icons/obj/guns/projectile.dmi'
-				halitem.icon_state = "revolver"
-				halitem.name = "revolver .357"
-			if(2) //c4
-				halitem.icon = 'icons/obj/grenade.dmi'
-				halitem.icon_state = "plastic-explosive0"
-				halitem.name = "C4"
-				if(prob(25))
-					halitem.icon_state = "plasticx40"
-			if(3) //sword
-				halitem.icon = 'icons/obj/transforming_energy.dmi'
-				halitem.icon_state = "e_sword"
-				halitem.name = "energy sword"
-			if(4) //stun baton
-				halitem.icon = 'icons/obj/items_and_weapons.dmi'
-				halitem.icon_state = "stunbaton"
-				halitem.name = "stun baton"
-			if(5) //emag
-				halitem.icon = 'icons/obj/card.dmi'
-				halitem.icon_state = "emag"
-				halitem.name = "cryptographic sequencer"
-			if(6) //flashbang
-				halitem.icon = 'icons/obj/grenade.dmi'
-				halitem.icon_state = "flashbang1"
-				halitem.name = "flashbang"
-		feedback_details += "Type: [halitem.name]"
-		if(target?.client)
-			target.client.screen += halitem
-		QDEL_IN(halitem, rand(150, 350))
-
-	qdel(src)
 
 /datum/hallucination/dangerflash
 

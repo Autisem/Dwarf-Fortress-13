@@ -83,35 +83,6 @@
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle4"
 
-/obj/item/trash/can
-	name = "crushed can"
-	icon_state = "cola"
-	resistance_flags = NONE
-
-/obj/item/trash/can/food/peaches
-	name = "canned peaches"
-	icon = 'icons/obj/food/canned.dmi'
-	icon_state = "peachcan_empty"
-
-/obj/item/trash/can/food/peaches/maint
-	name = "Maintenance Peaches"
-	icon_state = "peachcanmaint_empty"
-
-/obj/item/trash/can/food/beans
-	name = "tin of beans"
-	icon = 'icons/obj/food/canned.dmi'
-	icon_state = "beans_empty"
-
-/obj/item/trash/can/food/tomatoes
-	name = "canned San Marzano tomatoes"
-	icon = 'icons/obj/food/canned.dmi'
-	icon_state = "tomatoescan_empty"
-
-/obj/item/trash/can/food/pine_nuts
-	name = "canned pine nuts"
-	icon = 'icons/obj/food/canned.dmi'
-	icon_state = "pinenutscan_empty"
-
 /obj/item/trash/spacers_sidekick
 	name = "\improper Spacer's Sidekick packet"
 	icon_state = "spacers_sidekick"

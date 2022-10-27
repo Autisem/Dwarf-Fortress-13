@@ -230,7 +230,6 @@
 
 //i left this here despite being a mob spawner because this is a base type
 /obj/effect/mob_spawn/human/alive
-	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	death = FALSE
 	roundstart = FALSE //you could use these for alive fake humans on roundstart but this is more common scenario

@@ -64,7 +64,6 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/atom/movable/screen/healthdoll
 	var/atom/movable/screen/internals
 	var/atom/movable/screen/tooltip
-	var/atom/movable/screen/wanted/wanted_lvl
 	var/atom/movable/screen/spacesuit
 	var/atom/movable/screen/station_height/station_height
 	var/atom/movable/screen/station_height_bg/station_height_bg
@@ -123,7 +122,6 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	healths = null
 	stamina = null
 	healthdoll = null
-	wanted_lvl = null
 	internals = null
 	keeper_magic_display = null
 
