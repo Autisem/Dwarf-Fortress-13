@@ -224,6 +224,15 @@
 		var/obj/item/fertilizer/F = O
 		fertlevel = clamp(fertlevel+F.fertilizer, 0, fertmax)
 		qdel(F)
+	else if(O.is_refillable())
+		var/datum/reagent/W = O.reagents.has_reagent(/datum/reagent/water)
+		if(!W)
+			to_chat(user, span_warning("[O] doesn't have water!"))
+			return
+		var/to_remove = W.volume >= 15 ? 15 : W.volume
+		O.reagents.remove_reagent(/datum/reagent/water, to_remove)
+		to_chat(user, span_notice("You water [src]."))
+		waterlevel = clamp(waterlevel+to_remove, 0, watermax)
 	else
 		return ..()
 
