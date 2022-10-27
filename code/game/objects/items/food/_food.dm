@@ -77,8 +77,7 @@
 
 ///This proc makes things decompose. Set preserved_food to TRUE to make it never decompose.
 /obj/item/food/proc/MakeDecompose(mapload)
-	if(!preserved_food)
-		AddComponent(/datum/component/decomposition, mapload, decomp_flags = foodtypes)
+	return
 
 /obj/item/food/proc/on_consume(mob/living/eater, mob/living/feeder)
 	var/datum/component/mood/M = eater.GetComponent(/datum/component/mood)

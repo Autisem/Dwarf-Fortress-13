@@ -491,7 +491,6 @@
 #include "code\datums\components\container_item\container_item.dm"
 #include "code\datums\components\crafting\crafting.dm"
 #include "code\datums\components\crafting\recipes.dm"
-#include "code\datums\components\food\decomposition.dm"
 #include "code\datums\components\food\edible.dm"
 #include "code\datums\components\riding\riding.dm"
 #include "code\datums\components\riding\riding_mob.dm"
