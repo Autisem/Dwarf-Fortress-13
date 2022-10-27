@@ -40,9 +40,6 @@
 			layer = ABOVE_MOB_LAYER
 	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = duration)
 
-/obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter
-	splatter_type = "xsplatter"
-
 /obj/effect/temp_visual/dir_setting/speedbike_trail
 	name = "speedbike trails"
 	icon_state = "ion_fade"
@@ -104,24 +101,6 @@
 
 /obj/effect/temp_visual/dir_setting/curse/hand
 	icon_state = "cursehand"
-
-
-/obj/effect/temp_visual/bsa_splash
-	name = "\improper Bluespace energy wave"
-	desc = "A massive, rippling wave of bluepace energy, all rapidly exhausting itself the moment it leaves the concentrated beam of light."
-	icon = 'icons/effects/beam_splash.dmi'
-	icon_state = "beam_splash_l"
-	layer = ABOVE_ALL_MOB_LAYER
-	pixel_y = -16
-	duration = 50
-
-/obj/effect/temp_visual/bsa_splash/Initialize(mapload, dir)
-	. = ..()
-	switch(dir)
-		if(WEST)
-			icon_state = "beam_splash_w"
-		if(EAST)
-			icon_state = "beam_splash_e"
 
 /obj/effect/temp_visual/wizard
 	name = "water"
@@ -437,55 +416,6 @@
 /obj/effect/temp_visual/cart_space/bad
 	icon_state = "launchpad_pull"
 	duration = 2 SECONDS
-
-/obj/effect/constructing_effect
-	icon = 'icons/effects/effects_rcd.dmi'
-	icon_state = ""
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	var/status = 0
-	var/delay = 0
-
-/obj/effect/constructing_effect/Initialize(mapload, rcd_delay, rcd_status)
-	. = ..()
-	status = rcd_status
-	delay = rcd_delay
-	if (status == RCD_DECONSTRUCT)
-		addtimer(CALLBACK(src, /atom/.proc/update_icon), 11)
-		delay -= 11
-		icon_state = "rcd_end_reverse"
-	else
-		update_icon()
-
-/obj/effect/constructing_effect/update_icon_state()
-	icon_state = "rcd"
-	if (delay < 10)
-		icon_state += "_shortest"
-	else if (delay < 20)
-		icon_state += "_shorter"
-	else if (delay < 37)
-		icon_state += "_short"
-	if (status == RCD_DECONSTRUCT)
-		icon_state += "_reverse"
-	return ..()
-
-/obj/effect/constructing_effect/proc/end_animation()
-	if (status == RCD_DECONSTRUCT)
-		qdel(src)
-	else
-		icon_state = "rcd_end"
-		addtimer(CALLBACK(src, .proc/end), 15)
-
-/obj/effect/constructing_effect/proc/end()
-	qdel(src)
-
-/obj/effect/temp_visual/vent_wind
-	icon = 'icons/effects/atmospherics.dmi'
-	icon_state = "vent_wind"
-	layer = FLY_LAYER
-	duration = 4.8
-	mouse_opacity = 0
 
 /obj/effect/temp_visual/electricity
 	icon_state = "electricity3"

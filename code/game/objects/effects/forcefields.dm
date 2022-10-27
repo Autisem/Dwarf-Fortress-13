@@ -1,5 +1,5 @@
 /obj/effect/forcefield
-	desc = "A space wizard's magic wall."
+	desc = "A wizard's magic wall."
 	name = "FORCEWALL"
 	icon_state = "m_shield"
 	anchored = TRUE
@@ -11,28 +11,3 @@
 	. = ..()
 	if(timeleft)
 		QDEL_IN(src, timeleft)
-
-/obj/effect/forcefield/cult
-	desc = "An unholy shield that blocks all attacks."
-	name = "glowing wall"
-	icon = 'icons/effects/cult_effects.dmi'
-	icon_state = "cultshield"
-	timeleft = 200
-
-/// A form of the cult forcefield that lasts permanently.
-/// Used on the Shuttle 667.
-/obj/effect/forcefield/cult/permanent
-	timeleft = 0
-
-///////////Mimewalls///////////
-
-/obj/effect/forcefield/mime
-	icon_state = "nothing"
-	name = "invisible wall"
-	desc = "You have a bad feeling about this."
-	alpha = 0
-
-/obj/effect/forcefield/mime/advanced
-	name = "invisible blockade"
-	desc = "You're gonna be here awhile."
-	timeleft = 600
