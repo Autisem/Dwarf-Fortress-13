@@ -43,8 +43,8 @@
 		if (FOOD_AMAZING)
 			SEND_SIGNAL(exposed_mob, COMSIG_ADD_MOOD_EVENT, "quality_food", /datum/mood_event/amazingtaste)
 
-	if(reagent_state == LIQUID)
-		exposed_mob.hydration += max(0.5, nutriment_factor) * hydration_factor
+	// if(reagent_state == LIQUID) // this doesn't even make sense
+	// 	exposed_mob.hydration += max(0.5, nutriment_factor) * hydration_factor
 
 /datum/reagent/consumable/nutriment
 	name = "Nutrient"
@@ -164,6 +164,7 @@
 	glass_desc = "The father of all refreshments."
 	shot_glass_icon_state = "shotglassclear"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+	hydration_factor = DRINK_HYDRATION_FACTOR_HIGH
 
 /*
  * Water reaction to turf
@@ -216,6 +217,7 @@
 	glass_name = "glass of milk"
 	glass_desc = "White and nutritious goodness!"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+	hydration_factor = DRINK_HYDRATION_FACTOR_MEDIUM
 
 /datum/reagent/consumable/milk/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	if(M.getBruteLoss() && DT_PROB(10, delta_time))

@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 		if(amount >= 0.5)
 			exposed_mob.reagents.add_reagent(type, amount)
 	if(methods & INGEST)
-		exposed_mob.hydration += reac_volume * hydration_factor
+		exposed_mob.hydration += reac_volume * hydration_factor * 10
 
 /datum/reagent/proc/FINISHONMOBLIFE(mob/living/M)
 	current_cycle++

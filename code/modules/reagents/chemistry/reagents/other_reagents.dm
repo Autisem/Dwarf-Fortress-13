@@ -10,6 +10,7 @@
 	glass_desc = "Are you sure this is tomato juice?"
 	shot_glass_icon_state = "shotglassred"
 	penetrates_skin = NONE
+	hydration_factor = DRINK_HYDRATION_FACTOR_LOW
 
 /datum/reagent/liquidgibs
 	name = "Liquid Gibs"
