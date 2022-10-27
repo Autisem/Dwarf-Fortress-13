@@ -11,7 +11,7 @@ GLOBAL_LIST_INIT(cloth_recipes, list(
 	new/datum/stack_recipe("Boots", /obj/item/clothing/shoes/boots, 5, time=30 SECONDS)
 ))
 
-/obj/item/stack/cloth/get_main_recipes()
+/obj/item/stack/sheet/cloth/get_main_recipes()
 	. = ..()
 	. += GLOB.cloth_recipes
 
