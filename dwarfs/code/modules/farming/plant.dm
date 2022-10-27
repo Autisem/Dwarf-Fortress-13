@@ -2,6 +2,7 @@
 	name = "plant"
 	desc = "Green?"
 	icon = 'dwarfs/icons/farming/growing.dmi'
+	icon_state = "0"
 	anchored = TRUE
 	layer = ABOVE_ALL_MOB_LAYER
 	var/species = "plant" // used for icons and to whitelist plants in plots
