@@ -22,10 +22,10 @@
 /datum/instrument/chromatic/fluid_celeste
 	name = "FluidR3 Celeste"
 	id = "r3celeste"
-	real_samples = list("36"='sound/runtime/instruments/synthesis_samples/chromatic/fluid_celeste/c2.ogg',
-				   "48"='sound/runtime/instruments/synthesis_samples/chromatic/fluid_celeste/c3.ogg',
-				   "60"='sound/runtime/instruments/synthesis_samples/chromatic/fluid_celeste/c4.ogg',
-				   "72"='sound/runtime/instruments/synthesis_samples/chromatic/fluid_celeste/c5.ogg',
-				   "84"='sound/runtime/instruments/synthesis_samples/chromatic/fluid_celeste/c6.ogg',
-				   "96"='sound/runtime/instruments/synthesis_samples/chromatic/fluid_celeste/c7.ogg',
-				   "108"='sound/runtime/instruments/synthesis_samples/chromatic/fluid_celeste/c8.ogg')
+	real_samples = list("36"='sound/runtime/instruments/synthesis_samples/chromatic/fluid_celeste/C2.ogg',
+				   "48"='sound/runtime/instruments/synthesis_samples/chromatic/fluid_celeste/C3.ogg',
+				   "60"='sound/runtime/instruments/synthesis_samples/chromatic/fluid_celeste/C4.ogg',
+				   "72"='sound/runtime/instruments/synthesis_samples/chromatic/fluid_celeste/C5.ogg',
+				   "84"='sound/runtime/instruments/synthesis_samples/chromatic/fluid_celeste/C6.ogg',
+				   "96"='sound/runtime/instruments/synthesis_samples/chromatic/fluid_celeste/C7.ogg',
+				   "108"='sound/runtime/instruments/synthesis_samples/chromatic/fluid_celeste/C8.ogg')

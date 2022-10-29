@@ -17,13 +17,13 @@
 /datum/instrument/piano/fluid_harpsichord
 	name = "FluidR3 Harpsichord"
 	id = "r3harpsi"
-	real_samples = list("36"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/c2.ogg',
-				   "48"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/c3.ogg',
-				   "60"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/c4.ogg',
-				   "72"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/c5.ogg',
-				   "84"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/c6.ogg',
-				   "96"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/c7.ogg',
-				   "108"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/c8.ogg')
+	real_samples = list("36"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/C2.ogg',
+				   "48"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/C3.ogg',
+				   "60"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/C4.ogg',
+				   "72"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/C5.ogg',
+				   "84"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/C6.ogg',
+				   "96"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/C7.ogg',
+				   "108"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/C8.ogg')
 
 /datum/instrument/piano/crisis_harpsichord
 	name = "Crisis Harpsichord"

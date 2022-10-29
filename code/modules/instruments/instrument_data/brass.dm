@@ -14,13 +14,13 @@
 /datum/instrument/brass/crisis_trombone
 	name = "Crisis Trombone"
 	id = "crtrombone"
-	real_samples = list("36"='sound/runtime/instruments/synthesis_samples/brass/crisis_trombone/c2.ogg',
-				   "48"='sound/runtime/instruments/synthesis_samples/brass/crisis_trombone/c3.ogg',
-				   "60"='sound/runtime/instruments/synthesis_samples/brass/crisis_trombone/c4.ogg',
-				   "72"='sound/runtime/instruments/synthesis_samples/brass/crisis_trombone/c5.ogg')
+	real_samples = list("36"='sound/runtime/instruments/synthesis_samples/brass/crisis_trombone/C2.ogg',
+				   "48"='sound/runtime/instruments/synthesis_samples/brass/crisis_trombone/C3.ogg',
+				   "60"='sound/runtime/instruments/synthesis_samples/brass/crisis_trombone/C4.ogg',
+				   "72"='sound/runtime/instruments/synthesis_samples/brass/crisis_trombone/C5.ogg')
 
 /datum/instrument/brass/crisis_trumpet
 	name = "Crisis Trumpet"
 	id = "crtrumpet"
-	real_samples = list("60"='sound/runtime/instruments/synthesis_samples/brass/crisis_trumpet/c4.ogg',
-				   "72"='sound/runtime/instruments/synthesis_samples/brass/crisis_trumpet/c5.ogg')
+	real_samples = list("60"='sound/runtime/instruments/synthesis_samples/brass/crisis_trumpet/C4.ogg',
+				   "72"='sound/runtime/instruments/synthesis_samples/brass/crisis_trumpet/C5.ogg')
