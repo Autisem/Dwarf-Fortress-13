@@ -72,7 +72,7 @@
 
 // register signals withthe parent item
 /datum/component/two_handed/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/on_equip)
+	RegisterSignal(parent, COMSIG_ITEM_PUT_IN_HAND, .proc/put_in_hand)
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/on_drop)
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, .proc/on_attack_self)
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/on_attack)
@@ -82,7 +82,7 @@
 
 // Remove all siginals registered to the parent item
 /datum/component/two_handed/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED,
+	UnregisterSignal(parent, list(COMSIG_ITEM_PUT_IN_HAND,
 								COMSIG_ITEM_DROPPED,
 								COMSIG_ITEM_ATTACK_SELF,
 								COMSIG_ITEM_ATTACK,
@@ -91,11 +91,11 @@
 								COMSIG_ITEM_SHARPEN_ACT))
 
 /// Triggered on equip of the item containing the component
-/datum/component/two_handed/proc/on_equip(datum/source, mob/user, slot)
+/datum/component/two_handed/proc/put_in_hand(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
 
-	if(require_twohands && slot == ITEM_SLOT_HANDS) // force equip the item
-		wield(user)
+	if(require_twohands) // force equip the item
+		return wield(user)
 	if(!user.is_holding(parent) && wielded && !require_twohands)
 		unwield(user)
 
@@ -134,7 +134,7 @@
 			user.dropItemToGround(parent, force=TRUE)
 		else
 			to_chat(user, span_warning("You need your other hand to be empty!"))
-		return
+		return COMPONENT_BLOCK_PUT_IN_HAND
 	if(user.usable_hands < 2)
 		if(require_twohands)
 			user.dropItemToGround(parent, force=TRUE)

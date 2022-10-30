@@ -51,7 +51,6 @@
 	if(!do_after(H, lift_delay, over))
 		return
 	if(!H.put_in_active_hand(item))
-		to_chat(H, span_notice("You fail to lift \the [over]."))
 		return
 	to_chat(H, span_notice("You lift \the [over]."))
 	var/obj/P = over
