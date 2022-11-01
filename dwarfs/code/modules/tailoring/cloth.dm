@@ -22,9 +22,10 @@ GLOBAL_LIST_INIT(cloth_recipes, list(
 	name = "yarn string"
 	desc = "Long strings of fibers rolled into a ball. Processen in loom into fabric."
 	singular_name = "string"
-	//no icon yet :(
 	icon = 'dwarfs/icons/items/components.dmi'
-	icon_state = "cloth"
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	icon_state = "string"
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/stack/sheet/string/get_fuel()
