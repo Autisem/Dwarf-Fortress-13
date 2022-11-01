@@ -31,11 +31,11 @@
 	desc = "Terrible."
 	icon_state = "stone"
 	slowdown = 1
-	baseturfs = /turf/open/lava/smooth/nospread
+	baseturfs = /turf/open/lava
 	var/digged_up = FALSE
 
 /turf/open/floor/rock/ScrapeAway(amount, flags)
-	return ChangeTurf(/turf/open/lava/smooth/nospread)
+	return ChangeTurf(/turf/open/lava)
 
 /turf/open/floor/rock/crowbar_act(mob/living/user, obj/item/I)
 	return FALSE

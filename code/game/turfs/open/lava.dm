@@ -2,7 +2,12 @@
 
 /turf/open/lava
 	name = "lava"
-	icon_state = "lava"
+	icon = 'dwarfs/icons/turf/lava.dmi'
+	icon_state = "lava-255"
+	base_icon_state = "lava"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_FLOOR_LAVA)
+	canSmoothWith = list(SMOOTH_GROUP_FLOOR_LAVA)
 	gender = PLURAL //"That's some lava."
 	baseturfs = /turf/open/lava //lava all the way down
 	slowdown = 2
@@ -23,7 +28,7 @@
 	/// How much temperature we expose objects with
 	var/temperature_damage = 10000
 
-	var/spread = TRUE
+	var/spread = FALSE
 
 	var/turf/open/lava/magmus_top
 
@@ -41,7 +46,7 @@
 
 	var/turf/top_turf = SSmapping.get_turf_above(src)
 	if(isopenspace(top_turf))
-		magmus_top = top_turf.ChangeTurf(/turf/open/lava/smooth/nospread)
+		magmus_top = top_turf.ChangeTurf(/turf/open/lava)
 
 /turf/open/lava/spread_liquid()
 	var/list/temp_turf_list = list()
@@ -53,7 +58,7 @@
 		if(!T || isclosedturf(T) || islava(T))
 			continue
 
-		T.ChangeTurf(/turf/open/lava/smooth)
+		T.ChangeTurf(/turf/open/lava)
 
 	return TRUE
 
@@ -171,19 +176,3 @@
 			if(L) //mobs turning into object corpses could get deleted here.
 				L.adjust_fire_stacks(lava_firestacks * delta_time)
 				L.IgniteMob()
-
-/turf/open/lava/smooth
-	name = "lava"
-	baseturfs = /turf/open/lava/smooth
-	icon = 'icons/turf/floors/lava.dmi'
-	icon_state = "lava-255"
-	base_icon_state = "lava"
-	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
-	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_FLOOR_LAVA)
-	canSmoothWith = list(SMOOTH_GROUP_FLOOR_LAVA)
-
-/turf/open/lava/smooth/lava_land_surface
-	baseturfs = /turf/open/lava/smooth/lava_land_surface
-
-/turf/open/lava/smooth/nospread
-	spread = FALSE
