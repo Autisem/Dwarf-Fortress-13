@@ -9,6 +9,7 @@
 	var/wielded = FALSE /// Are we holding the two handed item properly
 	var/force_multiplier = 0 /// The multiplier applied to force when wielded, does not work with force_wielded, and force_unwielded
 	var/force_wielded = 0 /// The force of the item when weilded
+	var/use_grades = FALSE /// Whether to apply grade stats on wield
 	var/force_unwielded = 0 /// The force of the item when unweilded
 	var/wieldsound = FALSE /// Play sound when wielded
 	var/unwieldsound = FALSE /// Play sound when unwielded
@@ -32,7 +33,7 @@
  * * icon_wielded (optional) The icon to be used when wielded
  */
 /datum/component/two_handed/Initialize(require_twohands=FALSE, wieldsound=FALSE, unwieldsound=FALSE, attacksound=FALSE, \
-										force_multiplier=0, force_wielded=0, force_unwielded=0, icon_wielded=FALSE)
+										force_multiplier=0, force_wielded=0, force_unwielded=0, icon_wielded=FALSE, use_grades=FALSE)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -42,6 +43,7 @@
 	src.attacksound = attacksound
 	src.force_multiplier = force_multiplier
 	src.force_wielded = force_wielded
+	src.use_grades = use_grades
 	src.force_unwielded = force_unwielded
 	src.icon_wielded = icon_wielded
 
@@ -50,7 +52,7 @@
 
 // Inherit the new values passed to the component
 /datum/component/two_handed/InheritComponent(datum/component/two_handed/new_comp, original, require_twohands, wieldsound, unwieldsound, \
-											force_multiplier, force_wielded, force_unwielded, icon_wielded)
+											force_multiplier, force_wielded, force_unwielded, icon_wielded, use_grades)
 	if(!original)
 		return
 	if(require_twohands)
@@ -69,6 +71,8 @@
 		src.force_unwielded = force_unwielded
 	if(icon_wielded)
 		src.icon_wielded = icon_wielded
+	if(use_grades)
+		src.use_grades = use_grades
 
 // register signals withthe parent item
 /datum/component/two_handed/RegisterWithParent()
@@ -150,12 +154,15 @@
 
 	// update item stats and name
 	var/obj/item/parent_item = parent
-	if(force_multiplier)
-		parent_item.force *= force_multiplier
-	else if(force_wielded)
-		parent_item.force = force_wielded
-	if(sharpened_increase)
-		parent_item.force += sharpened_increase
+	if(use_grades)
+		parent_item.apply_grade(parent_item.grade)
+	else
+		if(force_multiplier)
+			parent_item.force *= force_multiplier
+		else if(force_wielded)
+			parent_item.force = force_wielded
+		if(sharpened_increase)
+			parent_item.force += sharpened_increase
 	parent_item.name = "[parent_item.name] (Wielded)"
 	parent_item.update_icon()
 
