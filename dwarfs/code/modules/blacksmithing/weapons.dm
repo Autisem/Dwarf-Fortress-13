@@ -132,6 +132,10 @@
 	resistance_flags = FIRE_PROOF
 	skill = /datum/skill/combat/spear
 
+/obj/item/spear/Initialize()
+	. = ..()
+	AddComponent(/datum/component/two_handed, force_unwielded=5, use_grades=TRUE, inhand_icon_wielded="spear_w")
+
 /obj/item/spear/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(!proximity)

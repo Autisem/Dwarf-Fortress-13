@@ -2,6 +2,8 @@
 	name = "builder's hammer"
 	desc = "A building engineers main tool - the hammer."
 	icon = 'dwarfs/icons/items/tools.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
 	icon_state = "builder_hammer"
 	usesound = 'dwarfs/sounds/tools/hammer/hammer_hit.ogg'
 	tool_behaviour = TOOL_BUILDER_HAMMER

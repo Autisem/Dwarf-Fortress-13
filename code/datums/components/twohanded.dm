@@ -16,6 +16,7 @@
 	var/attacksound = FALSE /// Play sound on attack when wielded
 	var/require_twohands = FALSE /// Does it have to be held in both hands
 	var/icon_wielded = FALSE /// The icon that will be used when wielded
+	var/inhand_icon_wielded = FALSE /// The icon state that will be used when wielded
 	var/obj/item/offhand/offhand_item = null /// Reference to the offhand created for the item
 	var/sharpened_increase = 0 /// The amount of increase recived from sharpening the item
 /**
@@ -33,7 +34,7 @@
  * * icon_wielded (optional) The icon to be used when wielded
  */
 /datum/component/two_handed/Initialize(require_twohands=FALSE, wieldsound=FALSE, unwieldsound=FALSE, attacksound=FALSE, \
-										force_multiplier=0, force_wielded=0, force_unwielded=0, icon_wielded=FALSE, use_grades=FALSE)
+										force_multiplier=0, force_wielded=0, force_unwielded=0, icon_wielded=FALSE, use_grades=FALSE, inhand_icon_wielded=FALSE)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -46,13 +47,14 @@
 	src.use_grades = use_grades
 	src.force_unwielded = force_unwielded
 	src.icon_wielded = icon_wielded
+	src.inhand_icon_wielded = inhand_icon_wielded
 
 	if(require_twohands)
 		ADD_TRAIT(parent, TRAIT_NEEDS_TWO_HANDS, ABSTRACT_ITEM_TRAIT)
 
 // Inherit the new values passed to the component
 /datum/component/two_handed/InheritComponent(datum/component/two_handed/new_comp, original, require_twohands, wieldsound, unwieldsound, \
-											force_multiplier, force_wielded, force_unwielded, icon_wielded, use_grades)
+											force_multiplier, force_wielded, force_unwielded, icon_wielded, use_grades, inhand_icon_wielded)
 	if(!original)
 		return
 	if(require_twohands)
@@ -73,6 +75,8 @@
 		src.icon_wielded = icon_wielded
 	if(use_grades)
 		src.use_grades = use_grades
+	if(inhand_icon_wielded)
+		src.inhand_icon_wielded = inhand_icon_wielded
 
 // register signals withthe parent item
 /datum/component/two_handed/RegisterWithParent()
@@ -261,11 +265,20 @@
  */
 /datum/component/two_handed/proc/on_update_icon(obj/item/source)
 	SIGNAL_HANDLER
-	if(!wielded)
-		return NONE
-	if(!icon_wielded)
-		return NONE
-	source.icon_state = icon_wielded
+	if(wielded)
+		if(!icon_wielded && !inhand_icon_wielded)
+			return NONE
+		if(icon_wielded)
+			source.icon_state = icon_wielded
+		if(inhand_icon_wielded)
+			source.inhand_icon_state = inhand_icon_wielded
+	else
+		if(!icon_wielded && !inhand_icon_wielded)
+			return NONE
+		if(icon_wielded)
+			source.icon_state = initial(source.icon_state)
+		if(inhand_icon_wielded)
+			source.inhand_icon_state = initial(source.inhand_icon_state)
 	return COMSIG_ATOM_NO_UPDATE_ICON_STATE
 
 /**
