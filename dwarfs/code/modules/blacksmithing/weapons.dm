@@ -146,12 +146,18 @@
 	name = "warhammer"
 	desc = "Warhammer makes a great choice for the dwarven warrior. As a natural miners and blacksmiths - it have all same principes of use as common dwarven tools."
 	icon = 'dwarfs/icons/items/weapons.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
 	icon_state = "warhammer"
 	w_class = WEIGHT_CLASS_HUGE
 	atck_type = BLUNT
 	force = 20
 	reach = 2
 	skill = /datum/skill/combat/hammer
+
+/obj/item/warhammer/Initialize()
+	. = ..()
+	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
 
 /obj/item/warhammer/afterattack(atom/target, mob/user, proximity)
 	. = ..()

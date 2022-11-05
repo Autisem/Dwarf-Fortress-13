@@ -780,7 +780,7 @@
 
 ///from base of obj/item/equipped(): (/mob/equipper, slot)
 #define COMSIG_ITEM_EQUIPPED "item_equip"
-#define COMSIG_ITEM_PUT_IN_HAND "item_put_in_hand"
+#define COMSIG_ITEM_CAN_PUT_IN_HAND "item_can_put_in_hand"
 #define COMPONENT_BLOCK_PUT_IN_HAND (1<<0)
 /// A mob has just equipped an item. Called on [/mob] from base of [/obj/item/equipped()]: (/obj/item/equipped_item, slot)
 #define COMSIG_MOB_EQUIPPED_ITEM "mob_equipped_item"

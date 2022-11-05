@@ -80,29 +80,31 @@
 
 // register signals withthe parent item
 /datum/component/two_handed/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ITEM_PUT_IN_HAND, .proc/put_in_hand)
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/on_equip)
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/on_drop)
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, .proc/on_attack_self)
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/on_attack)
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_ICON, .proc/on_update_icon)
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/on_moved)
 	RegisterSignal(parent, COMSIG_ITEM_SHARPEN_ACT, .proc/on_sharpen)
+	RegisterSignal(parent, COMSIG_ITEM_CAN_PUT_IN_HAND, .proc/can_wield)
 
 // Remove all siginals registered to the parent item
 /datum/component/two_handed/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_ITEM_PUT_IN_HAND,
+	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED,
 								COMSIG_ITEM_DROPPED,
 								COMSIG_ITEM_ATTACK_SELF,
 								COMSIG_ITEM_ATTACK,
 								COMSIG_ATOM_UPDATE_ICON,
 								COMSIG_MOVABLE_MOVED,
-								COMSIG_ITEM_SHARPEN_ACT))
+								COMSIG_ITEM_SHARPEN_ACT,
+								COMSIG_ITEM_CAN_PUT_IN_HAND))
 
 /// Triggered on equip of the item containing the component
-/datum/component/two_handed/proc/put_in_hand(datum/source, mob/user, slot)
+/datum/component/two_handed/proc/on_equip(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
 
-	if(require_twohands) // force equip the item
+	if(require_twohands && slot == ITEM_SLOT_HANDS) // force equip the item
 		return wield(user)
 	if(!user.is_holding(parent) && wielded && !require_twohands)
 		unwield(user)
@@ -127,6 +129,19 @@
 	else if(user.is_holding(parent))
 		wield(user)
 
+/datum/component/two_handed/proc/can_wield(datum/source, mob/living/carbon/user, hand_index)
+	SIGNAL_HANDLER
+	if(user.get_inactive_held_item() && require_twohands)
+		if(require_twohands)
+			to_chat(user, span_notice("[parent] is too cumbersome to carry in one hand!"))
+		else
+			to_chat(user, span_warning("You need your other hand to be empty!"))
+		return COMPONENT_BLOCK_PUT_IN_HAND
+	if(user.usable_hands < 2)
+		to_chat(user, span_warning("You need your other hand to be empty!"))
+		return COMPONENT_BLOCK_PUT_IN_HAND
+
+
 /**
  * Wield the two handed item in both hands
  *
@@ -135,18 +150,6 @@
  */
 /datum/component/two_handed/proc/wield(mob/living/carbon/user)
 	if(wielded)
-		return
-	if(user.get_inactive_held_item())
-		if(require_twohands)
-			to_chat(user, span_notice("[parent] is too cumbersome to carry in one hand!"))
-			user.dropItemToGround(parent, force=TRUE)
-		else
-			to_chat(user, span_warning("You need your other hand to be empty!"))
-		return COMPONENT_BLOCK_PUT_IN_HAND
-	if(user.usable_hands < 2)
-		if(require_twohands)
-			user.dropItemToGround(parent, force=TRUE)
-		to_chat(user, span_warning("You don't have enough intact hands."))
 		return
 
 	// wield update status

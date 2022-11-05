@@ -145,7 +145,9 @@
 /mob/proc/can_equip(obj/item/I, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	return FALSE
 
-/mob/proc/can_put_in_hand(I, hand_index)
+/mob/proc/can_put_in_hand(obj/item/I, hand_index)
+	if(SEND_SIGNAL(I, COMSIG_ITEM_CAN_PUT_IN_HAND, src, hand_index) & COMPONENT_BLOCK_PUT_IN_HAND)
+		return FALSE
 	if(hand_index > held_items.len)
 		return FALSE
 	if(!put_in_hand_check(I))
@@ -156,8 +158,6 @@
 
 /mob/proc/put_in_hand(obj/item/I, hand_index, forced = FALSE, ignore_anim = TRUE)
 	if(hand_index == null || (!forced && !can_put_in_hand(I, hand_index)))
-		return FALSE
-	if(SEND_SIGNAL(I, COMSIG_ITEM_PUT_IN_HAND, src, hand_index) & COMPONENT_BLOCK_PUT_IN_HAND)
 		return FALSE
 	if(isturf(I.loc) && !ignore_anim)
 		I.do_pickup_animation(src)
