@@ -71,6 +71,7 @@
 	name = "axe"
 	desc = "A common tool for chopping down trees."
 	icon = 'dwarfs/icons/items/tools.dmi'
+	worn_icon = 'dwarfs/icons/mob/clothing/back.dmi'
 	icon_state = "axe"
 	tool_behaviour = TOOL_AXE
 	force = 10
