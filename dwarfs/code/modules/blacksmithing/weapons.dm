@@ -185,6 +185,10 @@
 	resistance_flags = FIRE_PROOF
 	skill = /datum/skill/combat/halberd
 
+/obj/item/halberd/Initialize()
+	. = ..()
+	AddComponent(/datum/component/two_handed, force_unwielded=5, use_grades=TRUE, inhand_icon_wielded="halberd_w")
+
 /obj/item/halberd/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(!proximity)
