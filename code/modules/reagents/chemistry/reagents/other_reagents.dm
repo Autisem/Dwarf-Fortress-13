@@ -12,6 +12,19 @@
 	penetrates_skin = NONE
 	hydration_factor = DRINK_HYDRATION_FACTOR_LOW
 
+/datum/reagent/goblin_blood
+	data = list("blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null,"mind"=null,"ckey"=null,"gender"=null,"real_name"=null,"cloneable"=null,"factions"=null,"quirks"=null)
+	name = "Goblin Blood"
+	color = "#1e6f50" // rgb: 200, 0, 0
+	metabolization_rate = 12.5 * REAGENTS_METABOLISM //fast rate so it disappears fast.
+	taste_description = "iron"
+	taste_mult = 1.3
+	glass_icon_state = "glass_green"
+	glass_name = "glass of goblin blood"
+	glass_desc = "Ain't that a jelly?"
+	shot_glass_icon_state = "shotglassgreen"
+	penetrates_skin = NONE
+
 /datum/reagent/liquidgibs
 	name = "Liquid Gibs"
 	color = "#CC4633"

@@ -218,3 +218,15 @@
 	if(!proximity)
 		return
 	user.changeNext_move(0.6 SECONDS)
+
+/obj/item/club
+	name = "club"
+	desc = "You hit head with it."
+	icon = 'dwarfs/icons/items/weapons.dmi'
+	icon_state = "club"
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	force = 13
+	throwforce = 10
+	atck_type = BLUNT
+	w_class = WEIGHT_CLASS_BULKY

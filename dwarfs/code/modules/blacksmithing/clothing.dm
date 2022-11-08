@@ -183,3 +183,12 @@
 	worn_icon_state = "tunic_[mycolor]"
 	icon_state = "tunic_[mycolor]"
 	name = "[mycolor] [initial(name)]"
+
+/obj/item/clothing/under/loincloth
+	name = "loincloth"
+	desc = "A few pieces of fabric barely holding together."
+	worn_icon = 'dwarfs/icons/mob/clothing/under.dmi'
+	worn_icon_state = "loincloth"
+	icon = 'dwarfs/icons/items/clothing/under.dmi'
+	icon_state = "loincloth"
+	body_parts_covered = GROIN|LEGS

@@ -1229,6 +1229,7 @@
 #include "dwarfs\code\turfs\closed.dm"
 #include "dwarfs\code\turfs\open.dm"
 #include "dwarfs\code\unsorted\dwarf.dm"
+#include "dwarfs\code\unsorted\goblin.dm"
 #include "dwarfs\code\unsorted\recipes.dm"
 #include "dwarfs\code\unsorted\rituals.dm"
 #include "dwarfs\code\unsorted\stats.dm"

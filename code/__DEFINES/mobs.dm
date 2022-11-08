@@ -64,6 +64,7 @@
 #define ALIEN_BODYPART "alien"
 #define LARVA_BODYPART "larva"
 #define DEVIL_BODYPART "devil"
+#define GOBLIN_BODYPART "goblin"
 /*see __DEFINES/inventory.dm for bodypart bitflag defines*/
 
 // Health/damage defines
