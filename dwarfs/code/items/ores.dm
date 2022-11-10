@@ -14,7 +14,7 @@
 
 /obj/item/stack/ore/stone/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_CHISEL)
-		if(I.use_tool(src, user, 1 SECONDS))
+		if(I.use_tool(src, user, 1 SECONDS, volume=50))
 			if(prob(25))
 				to_chat(user, span_warning("You process \the [src]."))
 				return

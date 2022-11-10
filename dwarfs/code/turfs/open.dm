@@ -70,7 +70,7 @@
 		var/turf/T = src
 		var/time = 5 SECONDS * user.mind.get_skill_modifier(/datum/skill/mining, SKILL_SPEED_MODIFIER)
 		to_chat(user, span_notice("You start carving stone floor..."))
-		if(I.use_tool(src, user, time))
+		if(I.use_tool(src, user, time, volume=50))
 			to_chat(user, span_notice("You finish carving stone floor."))
 			T.ChangeTurf(/turf/open/floor/stone)
 	else
