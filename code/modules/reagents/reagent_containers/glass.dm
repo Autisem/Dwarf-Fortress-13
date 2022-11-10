@@ -166,7 +166,7 @@
 				to_chat(user, span_warning("[capitalize(src.name)] is empty!"))
 			else
 				reagents.trans_to(O, 5, transfered_by = user)
-				to_chat(user, span_notice("You fill [src.name]."))
+				to_chat(user, span_notice("You wet [O.name] in [src.name]."))
 				playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 	else
 		..()
