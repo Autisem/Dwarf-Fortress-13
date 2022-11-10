@@ -12,7 +12,6 @@
 	barefootstep = FOOTSTEP_SAND
 	clawfootstep = FOOTSTEP_SAND
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-	slowdown = 0
 	var/busy = FALSE
 
 /turf/open/floor/stone/ScrapeAway(amount, flags)
@@ -30,7 +29,7 @@
 	name = "rock"
 	desc = "Terrible."
 	icon_state = "stone"
-	slowdown = 1
+	slowdown = 0.7
 	baseturfs = /turf/open/lava
 	var/digged_up = FALSE
 
@@ -82,6 +81,7 @@
 	desc = "Cheese?"
 	icon_state = "sand"
 	baseturfs = /turf/open/floor/sand
+	slowdown = 0.4
 	var/digged_up = FALSE
 
 /turf/open/floor/sand/attackby(obj/item/I, mob/user, params)
@@ -107,6 +107,7 @@
 	name = "dirt"
 	desc = "Found near bodies of water. Can be farmed on."
 	icon_state = "soil"
+	slowdown = 1
 	var/digged_up = FALSE
 
 /turf/open/floor/dirt/attackby(obj/item/I, mob/user, params)
@@ -142,6 +143,7 @@
 	name = "tilled dirt"
 	desc = "Ready for plants."
 	icon_state = "soil_tilled"
+	slowdown = 1
 	var/waterlevel = 0
 	var/watermax = 100
 	var/waterrate = 1
@@ -271,6 +273,7 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_FLOOR_WATER)
 	canSmoothWith = list(SMOOTH_GROUP_FLOOR_WATER)
+	slowdown = 2
 
 /turf/open/water/attackby(obj/item/C, mob/user, params)
 	if(C.is_refillable())
