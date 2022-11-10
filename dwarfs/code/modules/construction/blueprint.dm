@@ -12,6 +12,12 @@
 	var/list/dimensions = list(0,0)
 	var/cat = "misc"
 
+/obj/structure/blueprint/examine(mob/user)
+	. = ..()
+	var/text = "<br>Required materials:"
+	for(var/i in reqs)
+		text += "<br>[get_req_amount(i)-get_amount(i)]"
+
 /obj/structure/blueprint/Destroy()
 	for(var/obj/item/I in contents)
 		I.forceMove(get_turf(src))
