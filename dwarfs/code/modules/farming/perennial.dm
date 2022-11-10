@@ -2,7 +2,7 @@
 /obj/structure/plant/garden/perennial
 	name = "perennial plant"
 	desc = "Long green?"
-	density = TRUE
+	density = FALSE
 
 /obj/structure/plant/garden/perennial/can_grow_harvestable()
 	if(!length(produced))
