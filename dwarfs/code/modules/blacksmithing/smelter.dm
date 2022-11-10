@@ -21,6 +21,13 @@
 	. = ..()
 	STOP_PROCESSING(SSprocessing, src)
 
+/obj/structure/smelter/examine(mob/user)
+	. = ..()
+	if(contents.len)
+		. += "<br> \The [src] is smelting \a [contents[1]]."
+	else
+		. += "<br> \The [src] is empty!"
+
 /obj/structure/smelter/update_icon_state()
 	. = ..()
 	if(working)
