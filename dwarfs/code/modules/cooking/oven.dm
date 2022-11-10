@@ -2,7 +2,7 @@
 	name = "oven"
 	desc = "One of essentials for delicious cuisine. Warm meal is what you need."
 	icon = 'dwarfs/icons/structures/32x64.dmi'
-	icon_state = "oven_empty_lower"
+	icon_state = "oven_empty"
 	anchored = TRUE
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
