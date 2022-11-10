@@ -12,15 +12,15 @@
 	var/list/dimensions = list(0,0)
 	var/cat = "misc"
 
+/obj/structure/blueprint/Destroy()
+	for(var/obj/item/I in contents)
+		I.forceMove(get_turf(src))
+	. = ..()
+
 /obj/structure/blueprint/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_BUILDER_HAMMER)
-		var/list/contained = list()
-		for(var/obj/O in contents)
-			if(!(O.type in contained))
-				contained[O.type] = 0
-			contained[O.type] += 1
 		for(var/i in reqs)
-			if(!(i in contained) || reqs[i] != contained[i])
+			if((get_req_amount(i)-get_amount(i)) < 1)
 				to_chat(user, span_warning("[src] is is missing materials to be built!"))
 				return
 		if(I.use_tool(src, user, 20 SECONDS, volume=50))
@@ -28,32 +28,7 @@
 			new target_structure(get_turf(src))
 			qdel(src)
 	else
-		var/_type
-		var/contained = 0
-		//Check the hard way because of subtypes
-		for(var/i in reqs)
-			if(istype(I, i))
-				_type = i
-				//figure out how much we actually need
-				for(var/obj/O in contents)
-					if(istype(O, I.type))
-						contained++
-				break
-		if(!_type)
-			return ..()
-		if(reqs[_type] == contained)
-			to_chat(user, span_warning("There are already enough [I]!"))
-			return
-		if(istype(I, /obj/item/stack))
-			var/obj/item/stack/S = I
-			var/required = reqs[_type] - contained
-			while(!S.use(required))
-				required--
-			for(var/i in 1 to required)
-				new S.type(src)
-		else
-			I.forceMove(src)
-		to_chat(user, span_notice("You add [I] to the blueprint."))
+		add_material(user, I)
 
 /obj/structure/blueprint/proc/structure_overlay()
 	var/mutable_appearance/M = mutable_appearance(initial(target_structure.icon), initial(target_structure.icon_state), layer=ABOVE_MOB_LAYER)
@@ -65,6 +40,38 @@
 	. = ..()
 	var/mutable_appearance/M = structure_overlay()
 	. += M
+
+/obj/structure/blueprint/proc/get_amount(type)
+	. = 0
+	for(var/obj/item/I in contents)
+		if(istype(I, type))
+			if(isstack(I))
+				var/obj/item/stack/S = I
+				. += S.amount
+			else
+				.++
+
+/obj/structure/blueprint/proc/get_req_amount(type)
+	. = reqs[type]
+	if(!.)
+		return -1
+
+/obj/structure/blueprint/proc/add_material(mob/user, obj/item/I)
+	. = TRUE
+	var/diff = get_req_amount(I.type)-get_amount(I.type)
+	if(diff < 1)
+		to_chat(user, span_warning("[src] already has enough of [I]."))
+		return
+	if(isstack(I))
+		var/obj/item/stack/S = I
+		var/to_use = diff <= S.amount ? diff : S.amount
+		S.use(to_use)
+		for(var/obj/item/stack/O in locate(I.type) in contents)
+			O.amount += to_use
+			break
+	else
+		I.forceMove(src)
+	to_chat(user, span_notice("You add [I] to [src]."))
 
 /obj/structure/blueprint/large //2x1 size
 	name = "large blueprint"
