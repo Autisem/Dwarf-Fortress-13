@@ -13,6 +13,8 @@ SUBSYSTEM_DEF(events)
 
 	var/wizardmode = FALSE
 
+	can_fire = FALSE
+
 /datum/controller/subsystem/events/Initialize(time, zlevel)
 	for(var/type in typesof(/datum/round_event_control))
 		var/datum/round_event_control/E = new type()
