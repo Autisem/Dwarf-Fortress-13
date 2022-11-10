@@ -12,7 +12,7 @@
 	return TRUE
 
 /obj/structure/plant/garden/perennial/sweet_pod
-	name = "sweet_pod"
+	name = "sweet pod"
 	desc = "Crop treasured for it sweet fruits, which can be made into sweet syrup."
 	species = "sweet_pod"
 	health = 60
