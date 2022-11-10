@@ -87,7 +87,6 @@
 	)
 
 	space_chance = 35
-	icon = 'dwarfs/icons/mob/language.dmi'
 	icon_state = "goblin"
 
 /datum/language_holder/goblin
