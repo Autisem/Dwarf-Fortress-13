@@ -116,7 +116,7 @@
 			to_chat(user, span_warning("There is no more dirt to be tilled!"))
 			return
 		to_chat(user, span_notice("You start tilling [src]..."))
-		var/channel = playsound(src.loc, 'dwarfs/sounds/tools/hoe/hoe_dig_long.ogg', 50, TRUE)
+		var/channel = playsound(src, 'dwarfs/sounds/tools/hoe/hoe_dig_long.ogg', 50, TRUE)
 		if(I.use_tool(src, user, 10 SECONDS))
 			stop_sound_channel_nearby(src, channel)
 			ChangeTurf(/turf/open/floor/tilled)
