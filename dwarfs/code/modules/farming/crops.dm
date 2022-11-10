@@ -12,6 +12,8 @@
 
 /obj/structure/plant/garden/harvest(mob/user)
 	. = ..()
+	if(!.)
+		return
 	qdel(src)
 
 /obj/structure/plant/garden/crop/plump_helmet

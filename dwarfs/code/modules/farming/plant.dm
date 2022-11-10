@@ -150,9 +150,11 @@
 	if(age > lifespan)
 		health -= rand(1,3)
 
-/obj/structure/plant/proc/harvest(var/mob/user)
-	if(!do_after(user, 1 SECONDS, src)) // TODO: tweak time according to skill
-		return
+/obj/structure/plant/proc/harvest(mob/user)
+	. = TRUE
+	var/speed_mod = user?.mind ? user.mind.get_skill_modifier(/datum/skill/farming, SKILL_SPEED_MODIFIER) : 1
+	if(!do_after(user, 5 SECONDS * speed_mod, src)) // TODO: tweak time according to skill
+		return FALSE
 	for(var/_P in produced)
 		var/obj/P = _P
 		var/harvested = rand(0, produced[P])// TODO: tweak numbers according to skill; higher skill can give additional harvestables
