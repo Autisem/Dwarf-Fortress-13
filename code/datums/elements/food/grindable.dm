@@ -18,8 +18,6 @@
 /datum/component/grindable/proc/grind_item(obj/item/growable/source, obj/structure/quern/Q)
 	SIGNAL_HANDLER
 	Q.reagents.add_reagent(grindable_liquid_type, liquid_amount)
-	for(var/i in 1 to rand(1,2))
-		new source.seed_type(get_turf(source))
 	qdel(parent)
 
 /datum/component/grindable/proc/grind_reagent(datum/reagent/source, obj/structure/quern/Q)

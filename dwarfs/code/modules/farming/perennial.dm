@@ -22,6 +22,7 @@
 	growthdelta = 60 SECONDS
 	lifespan = 9
 	produced = list(/obj/item/growable/sweet_pod=5)
+	seed_type = /obj/item/growable/seeds/sweet_pod
 /*
 /obj/structure/plant/garden/perennial/grape
 	name = "grape"

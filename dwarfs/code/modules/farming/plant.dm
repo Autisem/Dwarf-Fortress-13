@@ -6,6 +6,7 @@
 	anchored = TRUE
 	layer = OBJ_LAYER
 	var/species = "plant" // used for icons and to whitelist plants in plots
+	var/seed_type
 	var/health = 40
 	var/maxhealth = 40
 	var/health_delta = 5 SECONDS // how often plant takes damage when it has to
@@ -76,7 +77,7 @@
 		growthcycle()
 		needs_update = 1
 		if(age == growthstages)
-			produce_delta = world.time
+			lastcycle_produce = world.time
 			grown()
 	if(world.time >= lastcycle_produce+produce_delta)
 		lastcycle_produce = world.time
@@ -153,16 +154,19 @@
 /obj/structure/plant/proc/harvest(mob/user)
 	. = TRUE
 	var/speed_mod = user?.mind ? user.mind.get_skill_modifier(/datum/skill/farming, SKILL_SPEED_MODIFIER) : 1
-	if(!do_after(user, 5 SECONDS * speed_mod, src)) // TODO: tweak time according to skill
+	if(!do_after(user, 5 SECONDS * speed_mod, src))
 		return FALSE
 	for(var/_P in produced)
-		var/obj/P = _P
+		var/obj/item/growable/P = _P
 		var/harvested = rand(0, produced[P])// TODO: tweak numbers according to skill; higher skill can give additional harvestables
 		if(growth_modifiers["fertilizer"] < 1 && growth_modifiers["fertilizer"] != 0) // it's fertilized
 			harvested += 3
 		if(harvested)
 			for(var/i in 1 to harvested)
 				new P(loc)
+			if(seed_type)
+				for(var/i in 1 to rand(1,2))
+					new seed_type(get_turf(src))
 			to_chat(user, span_notice("You harvest [initial(P.name)] from [src]."))
 		else
 			to_chat(user, span_warning("You fail to harvest [initial(P.name)] from [src]."))

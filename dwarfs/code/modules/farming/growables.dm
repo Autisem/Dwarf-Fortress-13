@@ -4,7 +4,6 @@
 	icon = 'dwarfs/icons/farming/growable.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	var/edible = FALSE // some types are edible; some seeds are edible
-	var/seed_type // if contains seeds it can be processed to get them, except seeds ofc
 	var/list/food_reagents
 	var/food_flags
 	var/foodtypes
@@ -86,7 +85,6 @@
 	name = "cave wheat"
 	desc = "Grey wheat, growing in dark caves. Dwarfs favorirte beer component."
 	icon_state = "cave_wheat"
-	seed_type = /obj/item/growable/seeds/cave_wheat
 	mood_gain = -20
 	food_reagents = list(/datum/reagent/consumable/nutriment=10)
 
@@ -97,7 +95,6 @@
 	name = "barley"
 	desc = "Grain growing on the surface, most common in the human cities."
 	icon_state = "barley"
-	seed_type = /obj/item/growable/seeds/barley
 	mood_gain = -20
 	food_reagents = list(/datum/reagent/consumable/nutriment=10)
 
@@ -108,7 +105,6 @@
 	name = "turnip"
 	desc = "Turnips are easy to grow and provide nutritious roots."
 	icon_state = "turnip"
-	seed_type = /obj/item/growable/seeds/turnip
 	edible = TRUE
 	mood_gain = -10
 	food_reagents = list(/datum/reagent/consumable/nutriment=50)
@@ -117,7 +113,6 @@
 	name = "carrot"
 	desc = "Everybody knows what a carrot is."
 	icon_state = "carrot"
-	seed_type = /obj/item/growable/seeds/carrot
 	edible = TRUE
 	mood_gain = -10
 	food_reagents = list(/datum/reagent/consumable/nutriment=50)
@@ -126,11 +121,8 @@
 	name = "cotton"
 	desc = "No animal was harmed during picking these. Cannot say it about other humanoid species."
 	icon_state = "cotton"
-	seed_type = /obj/item/growable/seeds/cotton
 
 /obj/item/growable/cotton/attack_self(mob/user, modifiers)
-	for(var/i in 1 to rand(1,2))
-		new seed_type(get_turf(src))
 	var/obj/item/stack/sheet/string/S = new(null, 2)
 	var/held_index = user.is_holding(src)
 	qdel(src)
@@ -141,7 +133,6 @@
 	name = "sweet pod"
 	desc = "Plant bearing a sweet fruits when grown."
 	icon_state = "sweet_pod"
-	seed_type = /obj/item/growable/seeds/sweet_pod
 	edible = TRUE
 	mood_gain = -5
 	food_reagents = list(/datum/reagent/consumable/nutriment=50)
@@ -153,11 +144,8 @@
 	name = "pig tail"
 	desc = "Despite of its name, it's fully vegan. Maybe except the worms."
 	icon_state = "pig_tail"
-	seed_type = /obj/item/growable/seeds/pig_tail
 
 /obj/item/growable/pig_tail/attack_self(mob/user, modifiers)
-	for(var/i in 1 to rand(1,2))
-		new seed_type(get_turf(src))
 	var/obj/item/stack/sheet/string/S = new()
 	var/held_index = user.is_holding(src)
 	qdel(src)
@@ -168,7 +156,6 @@
 	name = "plump helmet"
 	desc = "A big purple shrooms treasured by dwarves."
 	icon_state = "plump_helmet"
-	seed_type = /obj/item/growable/seeds/plump_helmet
 	edible = TRUE
 	mood_gain = -10
 	food_reagents = list(/datum/reagent/consumable/nutriment=50)

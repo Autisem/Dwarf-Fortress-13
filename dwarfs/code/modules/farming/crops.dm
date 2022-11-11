@@ -10,7 +10,7 @@
 	. = ..()
 	icon_ripe = "[species]-[growthstages]"
 
-/obj/structure/plant/garden/harvest(mob/user)
+/obj/structure/plant/garden/crop/harvest(mob/user)
 	. = ..()
 	if(!.)
 		return
@@ -27,6 +27,7 @@
 	produce_delta = 40 SECONDS
 	lifespan = 6
 	produced = list(/obj/item/growable/plump_helmet=3)
+	seed_type = /obj/item/growable/seeds/plump_helmet
 
 /obj/structure/plant/garden/crop/pig_tail
 	name = "pig tail"
@@ -39,6 +40,7 @@
 	produce_delta = 80 SECONDS
 	lifespan = 6
 	produced = list(/obj/item/growable/pig_tail=2)
+	seed_type = /obj/item/growable/seeds/pig_tail
 
 /obj/structure/plant/garden/crop/barley
 	name = "barley"
@@ -51,6 +53,7 @@
 	produce_delta = 60 SECONDS
 	lifespan = 6
 	produced = list(/obj/item/growable/barley=4)
+	seed_type = /obj/item/growable/seeds/barley
 
 /obj/structure/plant/garden/crop/cotton
 	name = "cotton"
@@ -63,6 +66,7 @@
 	produce_delta = 80 SECONDS
 	lifespan = 6
 	produced = list(/obj/item/growable/cotton=2)
+	seed_type = /obj/item/growable/seeds/cotton
 
 /obj/structure/plant/garden/crop/turnip
 	name = "turnip"
@@ -74,7 +78,8 @@
 	growthdelta = 100 SECONDS
 	produce_delta = 45 SECONDS
 	lifespan = 6
-	produced = list(/obj/item/growable/turnip=2, /obj/item/growable/seeds/turnip=4)
+	produced = list(/obj/item/growable/turnip=2)
+	seed_type = /obj/item/growable/seeds/turnip
 
 /obj/structure/plant/garden/crop/carrot
 	name = "carrot"
@@ -86,7 +91,8 @@
 	growthdelta = 100 SECONDS
 	produce_delta = 45 SECONDS
 	lifespan = 6
-	produced = list(/obj/item/growable/carrot=2, /obj/item/growable/seeds/carrot=4)
+	produced = list(/obj/item/growable/carrot=2)
+	seed_type = /obj/item/growable/seeds/carrot
 
 /obj/structure/plant/garden/crop/cave_wheat
 	name = "cave wheat"
@@ -99,3 +105,4 @@
 	produce_delta = 60 SECONDS
 	lifespan = 6
 	produced = list(/obj/item/growable/cave_wheat=4)
+	seed_type = /obj/item/growable/seeds/cave_wheat

@@ -48,6 +48,7 @@
 	desc = "A mushroom-like subterranean tree. Bears tower cap logs once chopped down."
 	species = "towercap"
 	produced = list(/obj/item/growable/seeds/tree/towercap=2)
+	seed_type = /obj/item/growable/seeds/tree/towercap
 	large_log_type = /obj/item/log/large/towercap
 	small_log_type = /obj/item/log/towercap
 	health = 100

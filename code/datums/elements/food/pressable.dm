@@ -17,6 +17,4 @@
 		P.reagents.add_reagent(pressable_liquid_type, liquid_amount)
 	else
 		P.reagents.add_reagent(/datum/reagent/blood, liquid_amount)
-	for(var/i in 1 to rand(1,2))
-		new G.seed_type(get_turf(parent))
 	qdel(parent)
