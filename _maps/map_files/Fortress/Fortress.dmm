@@ -64,6 +64,7 @@
 /obj/item/shovel,
 /obj/item/builder_hammer,
 /obj/item/hoe,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rock,
 /area/dwarf/fortress)
 "gD" = (
