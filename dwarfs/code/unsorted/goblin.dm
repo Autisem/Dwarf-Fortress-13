@@ -33,8 +33,10 @@
 	GLOB.goblin_list -= C
 	. = ..()
 
-/datum/species/dwarf/random_name(gender,unique,lastname)
-	return dwarf_name()
+/datum/species/goblin/random_name(gender,unique,lastname)
+	var/first = GLOB.language_adjectives[pick(GLOB.language_adjectives)]["Goblin"]
+	var/last = GLOB.language_nouns[pick(GLOB.language_nouns)]["Goblin"]
+	return "[capitalize(first)] [capitalize(last)]"
 
 // Dwarven tongue, they only know their language.
 /obj/item/organ/tongue/goblin
