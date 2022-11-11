@@ -22,7 +22,7 @@
 	. = ..()
 	var/difference = min(ORESTACK_OVERLAYS_MAX, amount) - (LAZYLEN(stack_overlays)+1)
 	if(difference == 0)
-		return
+		return . += stack_overlays
 	else if(difference < 0 && LAZYLEN(stack_overlays))			//amount < stack_overlays, remove excess.
 		if (LAZYLEN(stack_overlays)-difference <= 0)
 			stack_overlays = null
