@@ -9,3 +9,4 @@ build:
     image: node:lts
     script:
         - tgui/bin/tgui --ci
+

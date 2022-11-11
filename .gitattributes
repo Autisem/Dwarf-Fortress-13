@@ -44,3 +44,4 @@
 
 ## Force changelog merging to use union
 html/changelog.html text eol=lf merge=union
+

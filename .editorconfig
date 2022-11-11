@@ -18,3 +18,4 @@ trim_trailing_whitespace = false
 
 [Dockerfile]
 indent_style = space
+
