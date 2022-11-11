@@ -57,7 +57,7 @@
 	new /obj/effect/temp_visual/heart(loc)
 	if(prob(33))
 		manual_emote("[pet_bonus_emote]")
-	SEND_SIGNAL(petter, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
+	SEND_SIGNAL(petter, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal,0,0, src)
 
 /mob/living/simple_animal/attack_paw(mob/living/carbon/human/M)
 	if(..()) //successful monkey bite.

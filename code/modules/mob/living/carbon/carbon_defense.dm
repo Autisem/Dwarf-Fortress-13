@@ -382,10 +382,10 @@
 		if(!HAS_TRAIT(src, TRAIT_BADTOUCH))
 			if(bodytemperature > M.bodytemperature)
 				if(!HAS_TRAIT(M, TRAIT_BADTOUCH))
-					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/warmhug, src) // Hugger got a warm hug (Unless they hate hugs)
+					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/warmhug,0,0, src) // Hugger got a warm hug (Unless they hate hugs)
 				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/hug) // Reciver always gets a mood for being hugged
 			else
-				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/warmhug, M) // You got a warm hug
+				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/warmhug,0,0, M) // You got a warm hug
 
 		// Let people know if they hugged someone really warm or really cold
 		if(M.bodytemperature > 340.15)
@@ -402,9 +402,9 @@
 			var/datum/component/mood/hugger_mood = M.GetComponent(/datum/component/mood)
 			if (hugger_mood.sanity >= SANITY_GREAT)
 				new /obj/effect/temp_visual/heart(loc)
-				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/besthug, M)
+				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/besthug,0,0, M)
 			else if (hugger_mood.sanity >= SANITY_DISTURBED)
-				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/betterhug, M)
+				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/betterhug,0,0, M)
 
 		if(HAS_TRAIT(src, TRAIT_BADTOUCH))
 			to_chat(M, span_warning("[src] looks visibly upset as you hug [p_them()]."))

@@ -158,7 +158,7 @@
 	pushed_mob.visible_message(span_danger("<b>[user]</b> smashes [pushed_mob]'s head againts \the <b>[src]</b>!") ,
 								span_userdanger("<b>[user]</b> smashes your head against \the <b>[src]</b>!"))
 	log_combat(user, pushed_mob, "head slammed", null, "against [src]")
-	SEND_SIGNAL(pushed_mob, COMSIG_ADD_MOOD_EVENT, "table", /datum/mood_event/table_limbsmash, banged_limb)
+	SEND_SIGNAL(pushed_mob, COMSIG_ADD_MOOD_EVENT, "table", /datum/mood_event/table_limbsmash,0,0, banged_limb)
 
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
 	if(!(flags_1 & NODECONSTRUCT_1) && user.a_intent != INTENT_HELP)

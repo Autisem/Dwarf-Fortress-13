@@ -105,15 +105,15 @@
 
 /// Called when addiction enters stage 1
 /datum/addiction/proc/withdrawal_enters_stage_1(mob/living/carbon/affected_carbon)
-	SEND_SIGNAL(affected_carbon, COMSIG_ADD_MOOD_EVENT, "[type]_addiction", light_withdrawal_moodlet, name)
+	SEND_SIGNAL(affected_carbon, COMSIG_ADD_MOOD_EVENT, "[type]_addiction", light_withdrawal_moodlet,0,0, name)
 
 /// Called when addiction enters stage 2
 /datum/addiction/proc/withdrawal_enters_stage_2(mob/living/carbon/affected_carbon)
-	SEND_SIGNAL(affected_carbon, COMSIG_ADD_MOOD_EVENT, "[type]_addiction", medium_withdrawal_moodlet, name)
+	SEND_SIGNAL(affected_carbon, COMSIG_ADD_MOOD_EVENT, "[type]_addiction", medium_withdrawal_moodlet,0,0, name)
 
 /// Called when addiction enters stage 3
 /datum/addiction/proc/withdrawal_enters_stage_3(mob/living/carbon/affected_carbon)
-	SEND_SIGNAL(affected_carbon, COMSIG_ADD_MOOD_EVENT, "[type]_addiction", severe_withdrawal_moodlet, name)
+	SEND_SIGNAL(affected_carbon, COMSIG_ADD_MOOD_EVENT, "[type]_addiction", severe_withdrawal_moodlet,0,0, name)
 
 /datum/addiction/proc/end_withdrawal(mob/living/carbon/affected_carbon)
 	LAZYSET(affected_carbon.mind.active_addictions, type, 1) //Keeps withdrawal at first cycle.
