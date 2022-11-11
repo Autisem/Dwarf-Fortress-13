@@ -119,8 +119,9 @@
 	icon_state = "spear"
 	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	worn_icon = 'dwarfs/icons/mob/clothing/back.dmi'
 	inhand_icon_state = "spear"
-	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	slot_flags = ITEM_SLOT_BACK
 	force = 20
 	throwforce = 30
 	w_class = WEIGHT_CLASS_BULKY
