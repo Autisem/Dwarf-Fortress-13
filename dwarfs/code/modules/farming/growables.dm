@@ -85,7 +85,7 @@
 	name = "cave wheat"
 	desc = "Grey wheat, growing in dark caves. Dwarfs favorirte beer component."
 	icon_state = "cave_wheat"
-	mood_gain = -20
+	mood_gain = -3
 	food_reagents = list(/datum/reagent/consumable/nutriment=10)
 
 /obj/item/growable/cave_wheat/MakeGrindable()
@@ -95,7 +95,7 @@
 	name = "barley"
 	desc = "Grain growing on the surface, most common in the human cities."
 	icon_state = "barley"
-	mood_gain = -20
+	mood_gain = -3
 	food_reagents = list(/datum/reagent/consumable/nutriment=10)
 
 /obj/item/growable/barley/MakeGrindable()
@@ -106,7 +106,7 @@
 	desc = "Turnips are easy to grow and provide nutritious roots."
 	icon_state = "turnip"
 	edible = TRUE
-	mood_gain = -10
+	mood_gain = -1
 	food_reagents = list(/datum/reagent/consumable/nutriment=50)
 
 /obj/item/growable/carrot
@@ -114,7 +114,7 @@
 	desc = "Everybody knows what a carrot is."
 	icon_state = "carrot"
 	edible = TRUE
-	mood_gain = -10
+	mood_gain = -1
 	food_reagents = list(/datum/reagent/consumable/nutriment=50)
 
 /obj/item/growable/cotton
@@ -134,7 +134,7 @@
 	desc = "Plant bearing a sweet fruits when grown."
 	icon_state = "sweet_pod"
 	edible = TRUE
-	mood_gain = -5
+	mood_gain = -1
 	food_reagents = list(/datum/reagent/consumable/nutriment=50)
 
 /obj/item/growable/sweet_pod/MakePressable()
@@ -157,7 +157,7 @@
 	desc = "A big purple shrooms treasured by dwarves."
 	icon_state = "plump_helmet"
 	edible = TRUE
-	mood_gain = -10
+	mood_gain = -2
 	food_reagents = list(/datum/reagent/consumable/nutriment=50)
 
 /obj/item/growable/plump_helmet/MakePressable()

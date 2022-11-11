@@ -28,7 +28,7 @@
 
 /datum/mood_event/ate_raw_food/meat
 	description = span_red("I ate raw meat!")
-	mood_change = -30
+	mood_change = -8
 	timeout = 5 MINUTES
 
 /datum/mood_event/ate_meal
@@ -38,17 +38,17 @@
 
 /datum/mood_event/ate_meal/decent
 	description = span_green("I ate a decent meal.")
-	mood_change = 20
+	mood_change = 15
 	timeout = 10 MINUTES
 
 /datum/mood_event/ate_meal/luxurious
 	description = span_green("I ate a luxurious meal!")
-	mood_change = 30
+	mood_change = 20
 	timeout = 20 MINUTES
 
 /datum/mood_event/ate_badfood
 	description = span_red("I ate a failed food!")
-	mood_change = -40
+	mood_change = -15
 	timeout = 4 MINUTES
 
 //charge

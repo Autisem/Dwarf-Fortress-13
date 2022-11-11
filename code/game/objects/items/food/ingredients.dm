@@ -5,7 +5,7 @@
 	desc = "Juicy slice of juicy mushroom."
 	icon_state = "plump_slice"
 	mood_event_type = /datum/mood_event/ate_raw_food/mild
-	mood_gain = -10
+	mood_gain = -2
 	mood_duration = 1 MINUTES
 	food_reagents = list(/datum/reagent/consumable/nutriment=15)
 
@@ -14,7 +14,7 @@
 	desc = "Meat cutlet."
 	icon_state = "meat_slice"
 	mood_event_type = /datum/mood_event/ate_raw_food/meat
-	mood_gain = -30
+	mood_gain = -5
 	mood_duration = 5 MINUTES
 	food_reagents = list(/datum/reagent/consumable/nutriment=20)
 
@@ -28,7 +28,7 @@
 	desc = "Cut piece of a dough"
 	icon_state = "dough_slice"
 	mood_event_type = /datum/mood_event/ate_raw_food/mild
-	mood_gain = -10
+	mood_gain = -4
 	mood_duration = 1 MINUTES
 	food_reagents = list(/datum/reagent/consumable/nutriment=20)
 
@@ -37,7 +37,7 @@
 	desc = "Dough for all kind of bakery."
 	icon_state = "dough"
 	mood_event_type = /datum/mood_event/ate_raw_food/mild
-	mood_gain = -20
+	mood_gain = -4
 	mood_duration = 1 MINUTES
 	food_reagents = list(/datum/reagent/consumable/nutriment=20)
 
@@ -46,7 +46,7 @@
 	desc = "Mama mia!"
 	icon_state = "dough_flat"
 	mood_event_type = /datum/mood_event/ate_raw_food/mild
-	mood_gain = -20
+	mood_gain = -4
 	mood_duration = 1 MINUTES
 	food_reagents = list(/datum/reagent/consumable/nutriment=20)
 
@@ -95,7 +95,7 @@
 	desc = "Best served roasted."
 	icon_state = "sausage"
 	mood_event_type = /datum/mood_event/ate_raw_food/meat
-	mood_gain = -30
+	mood_gain = -5
 	mood_duration = 5 MINUTES
 	food_reagents = list(/datum/reagent/consumable/nutriment=30)
 
