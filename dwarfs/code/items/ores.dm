@@ -19,6 +19,7 @@
 				to_chat(user, span_warning("You process \the [src]."))
 				return
 			new /obj/item/stack/sheet/stone(user.loc)
+			user.mind.adjust_experience(/datum/skill/mining, 1)
 			to_chat(user, span_notice("You process \the [src]."))
 			use(1)
 	else
