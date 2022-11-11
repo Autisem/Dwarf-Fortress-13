@@ -47,7 +47,10 @@ export const BuilderHammer = (props, context) => {
                     <Tabs.Tab
                       selected={i === tabIndex}
                       key={cat}
-                      onClick={() => { setBpIndex(0); setTabIndex(i); }}>
+                      onClick={() => {
+                        setBpIndex(0);
+                        setTabIndex(i);
+                      }}>
                       {capitalize(cat.name)}
                     </Tabs.Tab>
                   ))}
@@ -78,6 +81,7 @@ export const BuilderHammer = (props, context) => {
                         onClick={() => setBpIndex(i)}>
                         <div
                           style={{
+                            'position': 'relative',
                             'height': '100%',
                             'width': '100%',
                             'display': 'flex',
@@ -95,8 +99,8 @@ export const BuilderHammer = (props, context) => {
                             }}>
                             <div
                               style={{
-                                'height': '100%',
-                                'width': '100%',
+                                'height': '90%',
+                                'width': '90%',
                                 'background-image': 'url(' + bp.icon + ')',
                                 'background-size': 'contain',
                                 'background-repeat': 'no-repeat',
@@ -104,8 +108,24 @@ export const BuilderHammer = (props, context) => {
                               }}
                             />
                           </div>
-                          <div>
-                            <span>{capitalize(bp.name)}</span>
+                          <div
+                            style={{
+                              'display': 'flex',
+                              'position': 'relative',
+                              'max-width': '80px',
+                              'top': '-5px',
+                            }}>
+                            <span
+                              style={{
+                                'position': 'relative',
+                                'text-align': 'center',
+                                'white-space': 'normal',
+                                'display': 'inline-block',
+                                'max-width': '80px',
+                                'word-wrap': 'break-word',
+                              }}>
+                              {capitalize(bp.name)}
+                            </span>
                           </div>
                         </div>
                       </Button>
