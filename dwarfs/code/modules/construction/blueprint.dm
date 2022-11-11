@@ -14,9 +14,10 @@
 
 /obj/structure/blueprint/examine(mob/user)
 	. = ..()
-	var/text = "<br>Required materials:"
+	. += "<br>Required materials:"
 	for(var/i in reqs)
-		text += "<br>[get_req_amount(i)-get_amount(i)]"
+		var/obj/O = i
+		. += "<br>[get_req_amount(i)-get_amount(i)] [initial(O.name)]"
 
 /obj/structure/blueprint/Destroy()
 	for(var/obj/item/I in contents)
@@ -26,12 +27,13 @@
 /obj/structure/blueprint/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_BUILDER_HAMMER)
 		for(var/i in reqs)
-			if((get_req_amount(i)-get_amount(i)) < 1)
+			if((get_req_amount(i)-get_amount(i)) > 0)
 				to_chat(user, span_warning("[src] is is missing materials to be built!"))
 				return
 		if(I.use_tool(src, user, 20 SECONDS, volume=50))
 			to_chat(user, span_notice("You build [initial(target_structure.name)]."))
 			new target_structure(get_turf(src))
+			contents.Cut()
 			qdel(src)
 	else
 		add_material(user, I)
@@ -72,9 +74,13 @@
 		var/obj/item/stack/S = I
 		var/to_use = diff <= S.amount ? diff : S.amount
 		S.use(to_use)
+		var/added = FALSE
 		for(var/obj/item/stack/O in locate(I.type) in contents)
 			O.amount += to_use
+			added = TRUE
 			break
+		if(!added)
+			new S.type(src, to_use)
 	else
 		I.forceMove(src)
 	to_chat(user, span_notice("You add [I] to [src]."))
