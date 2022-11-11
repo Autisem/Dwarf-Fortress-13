@@ -4,7 +4,7 @@
 	icon = 'dwarfs/icons/farming/growing.dmi'
 	icon_state = "0"
 	anchored = TRUE
-	layer = ABOVE_ALL_MOB_LAYER
+	layer = OBJ_LAYER
 	var/species = "plant" // used for icons and to whitelist plants in plots
 	var/health = 40
 	var/maxhealth = 40

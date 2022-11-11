@@ -4,6 +4,7 @@
 	icon = 'dwarfs/icons/farming/growing_tree_96x96.dmi'
 	density = TRUE
 	lifespan = INFINITY
+	layer = ABOVE_MOB_LAYER
 	var/small_log_type = /obj/item/log
 	var/large_log_type = /obj/item/log
 	var/list/small_log_amount = list(0,1,1,2,0,2,0) //a list of small logs with amount corresponding to the growthstage
