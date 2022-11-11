@@ -267,7 +267,9 @@
 	name = "lantern"
 	icon_state = "lantern"
 	inhand_icon_state = "lantern"
+	worn_icon_state = "lantern"
 	desc = "Brother, lamp"
+	worn_icon = 'dwarfs/icons/mob/clothing/belt.dmi'
 	light_range = 6			// luminosity when on
 	light_system = MOVABLE_LIGHT
 	light_color = "#e7c16d"

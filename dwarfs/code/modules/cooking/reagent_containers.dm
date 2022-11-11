@@ -30,6 +30,7 @@
 	icon = 'dwarfs/icons/items/kitchen.dmi'
 	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
 	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	inhand_icon_state = "cooking_pot"
 	icon_state = "cooking_pot_open"
 	amount_per_transfer_from_this = 10
 	volume = 100

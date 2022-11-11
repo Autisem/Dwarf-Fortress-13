@@ -4,14 +4,15 @@
 	desc = "Strike the earth!"
 	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "pickaxe"
-	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
+	slot_flags = ITEM_SLOT_BACK
 	force = 15
 	atck_type = PIERCE
 	throwforce = 10
 	inhand_icon_state = "pickaxe"
 	worn_icon_state = "pickaxe"
-	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
+	worn_icon = 'dwarfs/icons/mob/clothing/back.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	tool_behaviour = TOOL_PICKAXE
 	toolspeed = 1.5
@@ -26,22 +27,14 @@
 	user.visible_message(span_suicide("[user] couldn't do it!"))
 	return SHAME
 
-/obj/item/pickaxe/rusted
-	name = "rusty pickaxe"
-	desc = "Rusty. Pickaxe."
-	attack_verb_continuous = list("ineffectively hits")
-	attack_verb_simple = list("ineffectively hit")
-	force = 1
-	throwforce = 1
-
 /obj/item/shovel
 	name = "shovel"
 	desc = "Shovel made for excavating soils."
 	icon = 'dwarfs/icons/items/tools.dmi'
 	icon_state = "shovel"
 	worn_icon_state = "shovel"
-	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
 	force = 8
@@ -72,6 +65,8 @@
 	desc = "A common tool for chopping down trees."
 	icon = 'dwarfs/icons/items/tools.dmi'
 	worn_icon = 'dwarfs/icons/mob/clothing/back.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	icon_state = "axe"
 	tool_behaviour = TOOL_AXE
 	force = 10
@@ -86,6 +81,8 @@
 	name = "smithing hammer"
 	desc = "Used for forging."
 	icon = 'dwarfs/icons/items/tools.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	icon_state = "smithing_hammer"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20

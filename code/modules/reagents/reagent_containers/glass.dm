@@ -125,6 +125,7 @@
 	name = "bucket"
 	desc = "It's a bucket."
 	icon = 'dwarfs/icons/items/containers.dmi'
+	worn_icon = 'dwarfs/icons/mob/clothing/head.dmi'
 	icon_state = "bucket"
 	inhand_icon_state = "bucket"
 	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
