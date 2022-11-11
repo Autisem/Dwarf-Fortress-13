@@ -5,7 +5,6 @@
 	icon_state = "anvil"
 	density = TRUE
 	anchored = TRUE
-	var/acd = FALSE
 	var/obj/item/ingot/current_ingot = null
 	var/list/allowed_things = list()
 
@@ -36,6 +35,7 @@
 	if(current_ingot.heattemp <= 0)
 		update_appearance()
 		to_chat(user, span_warning("\The [current_ingot] is to cold too keep working."))
+		usr<<browse(null, "window=Anvil")
 		return
 	var/mob/living/carbon/human/H = user
 	if(current_ingot.progress_current == current_ingot.progress_need)
@@ -52,6 +52,11 @@
 		H.mind.adjust_experience(/datum/skill/smithing, rand(0, 4) * current_ingot.grade)
 
 /obj/structure/anvil/proc/miss(mob/user)
+	if(current_ingot.heattemp <= 0)
+		update_appearance()
+		to_chat(user, span_warning("\The [current_ingot] is to cold too keep working."))
+		usr<<browse(null, "window=Anvil")
+		return
 	current_ingot.durability--
 	if(current_ingot.durability == 0)
 		to_chat(user, span_warning("the ingot crumbles into countless metal pieces..."))
@@ -83,17 +88,11 @@
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 
-	if(acd)
-		return
-
 	if(!ishuman(user))
 		to_chat(user, span_warning("My hands are too weak to do this!"))
 		return
 
 	var/mob/living/carbon/human/H = user
-
-	acd = TRUE
-	addtimer(VARSET_CALLBACK(src, acd, FALSE), H.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) SECONDS)
 
 	if(istype(I, /obj/item/smithing_hammer))
 		var/obj/item/smithing_hammer/hammer = I
