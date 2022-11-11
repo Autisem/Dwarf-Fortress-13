@@ -68,8 +68,8 @@
 	if(world.time <= next_click)
 		return
 	next_click = world.time + 1
-	hydration = max(0, hydration-HYDRATION_LOSS_PER_CLICK)
-	adjust_nutrition(-NUTRITION_LOSS_PER_CLICK)
+	// hydration = max(0, hydration-HYDRATION_LOSS_PER_CLICK)
+	// adjust_nutrition(-NUTRITION_LOSS_PER_CLICK)
 
 	if(check_click_intercept(params,A))
 		return
