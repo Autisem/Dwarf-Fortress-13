@@ -65,6 +65,7 @@
 /obj/item/builder_hammer,
 /obj/item/hoe,
 /obj/item/reagent_containers/glass/bucket,
+/obj/item/damaz,
 /turf/open/floor/rock,
 /area/dwarf/fortress)
 "gD" = (
@@ -164,6 +165,23 @@
 "Wb" = (
 /turf/open/genturf,
 /area/dwarf/cavesgen/bottom_level)
+"Xy" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/food/dish/plump_skewer,
+/obj/item/food/dish/plump_skewer,
+/obj/item/food/dish/plump_skewer,
+/obj/item/food/dish/plump_skewer,
+/obj/item/food/dish/plump_skewer,
+/obj/item/food/dish/plump_skewer,
+/obj/item/food/dish/plump_skewer,
+/obj/item/food/dish/plump_skewer,
+/obj/item/food/dish/plump_skewer,
+/obj/item/food/dish/plump_skewer,
+/obj/item/food/dish/plump_skewer,
+/obj/item/food/dish/plump_skewer,
+/obj/item/food/dish/plump_skewer,
+/turf/open/floor/rock,
+/area/dwarf/fortress)
 "XE" = (
 /turf/open/genturf,
 /area/dwarf/cavesgen/middle_level)
@@ -225029,7 +225047,7 @@ eq
 cK
 cK
 cK
-cK
+Xy
 Qr
 Qr
 Qr
