@@ -53,7 +53,7 @@
 
 /datum/skill/combat/longsword
     name = "Greatsword Combat"
-    desc = "To use those giant swords effectievely requires a lot of strenght and experience. Increases two-handed swords combat stats"
+    desc = "Using one of those giant swords effectievely requires a lot of strenght and experience. Increases two-handed swords combat stats"
     title = "Swordsmeister"
     modifiers = list(
             SKILL_MISS_MODIFIER=list(50, 40, 45, 40, 35, 30, 25, 20, 15, 10, 5),
