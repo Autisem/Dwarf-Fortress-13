@@ -67,15 +67,21 @@
 	else
 		return attack_hand(user)
 
-/turf/closed/mineral/proc/gets_drilled(user, give_exp = FALSE)
+/turf/closed/mineral/proc/gets_drilled(mob/user, give_exp = FALSE)
+	var/min_mod = user.mind ? user.mind.get_skill_modifier(/datum/skill/mining, SKILL_AMOUNT_MIN_MODIFIER) : 0
+	var/max_mod = user.mind ? user.mind.get_skill_modifier(/datum/skill/mining, SKILL_AMOUNT_MAX_MODIFIER) : 0
+	var/to_spawn = rand(mineralAmt+min_mod, mineralAmt+max_mod)
 	if (mineralType && (mineralAmt > 0) && ispath(mineralType, /obj/item/stack))
-		new mineralType(src, mineralAmt)
-		SSblackbox.record_feedback("tally", "ore_mined", mineralAmt, mineralType)
+		if(to_spawn > 1)
+			new mineralType(src, mineralAmt)
+			SSblackbox.record_feedback("tally", "ore_mined", mineralAmt, mineralType)
+		else
+			to_chat(user, span_warning("You failed to collect any ore from [src]!"))
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(give_exp)
 			if (mineralType && (mineralAmt > 0))
-				H.mind.adjust_experience(/datum/skill/mining, initial(mineralType.mine_experience) * mineralAmt)
+				H.mind.adjust_experience(/datum/skill/mining, initial(mineralType.mine_experience) * to_spawn)
 			else
 				H.mind.adjust_experience(/datum/skill/mining, 4)
 
