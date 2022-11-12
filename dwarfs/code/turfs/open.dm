@@ -85,7 +85,7 @@
 			if(QDELETED(src))
 				return
 			if(digged_up)
-				try_digdown(xI,user)
+				try_digdown(I,user)
 			else
 				new/obj/item/stack/ore/smeltable/sand(src, rand(3,6))
 				digged_up = TRUE
