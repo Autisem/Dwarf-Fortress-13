@@ -26,7 +26,7 @@
 		stop_sound_channel_nearby(src, channel)
 
 		user?.mind.adjust_experience(/datum/skill/logging, 3.6)
-		if(current_step == cutting_steps)
+		if(current_step >= cutting_steps)
 			to_chat(user, span_notice("You chop down [src]."))
 			chop_tree(get_turf(src))
 			qdel(src)
