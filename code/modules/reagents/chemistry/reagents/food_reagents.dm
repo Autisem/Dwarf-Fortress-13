@@ -56,7 +56,7 @@
 
 	var/brute_heal = 1
 	var/burn_heal = 0
-	hydration_factor = DRINK_HYDRATION_FACTOR_SALTY
+	hydration_factor = 0.1
 
 /datum/reagent/consumable/nutriment/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	if(DT_PROB(30, delta_time))
