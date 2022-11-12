@@ -10,7 +10,7 @@
 	var/list/small_log_amount = list(0,1,1,2,0,2,0) //a list of small logs with amount corresponding to the growthstage
 	var/list/large_log_amount = list(0,0,0,0,1,1,2) //a list of large logs with amount corresponding to the growthstage
 	var/cutting_time = 4 SECONDS //time between each chop
-	var/cutting_steps = 10 //how many times you have to chop the tree
+	var/cutting_steps = 9 //how many times you have to chop the tree, 1 less because on the last chop you actuely cut it down
 	var/current_step = 0
 
 /obj/structure/plant/tree/Initialize()
