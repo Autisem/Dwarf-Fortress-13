@@ -286,3 +286,11 @@
 		CC.reagents.add_reagent(/datum/reagent/water, CC.volume - CC.reagents.total_volume)
 	else
 		. = ..()
+
+/turf/open/water/attack_hand(mob/user)
+	if(ishuman(user))
+		to_chat(user, span_notice("You start drinking from [src]..."))
+		if(do_after(user, 5 SECONDS, src))
+			playsound(user,'sound/items/drink.ogg', rand(10,50), TRUE)
+			user.hydration = clamp(user.hydration+rand(10,60), 0, HYDRATION_LEVEL_MAX)
+			to_chat(user, span_notice("You drink from [src]."))
