@@ -85,7 +85,7 @@
 	return 2 * amount
 
 GLOBAL_LIST_INIT(tallow_recipes, list (
-	new/datum/stack_recipe("Candle", /obj/item/flashlight/fueled/candle, 4,,,30),
+	new/datum/stack_recipe("Candle", /obj/item/flashlight/fueled/candle, 1,,,30),
 ))
 //new/datum/stack_recipe(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1,time = 0)
 /obj/item/stack/sheet/tallow/get_main_recipes()
