@@ -176,3 +176,9 @@
 	target_structure = /obj/structure/press
 	reqs = list(/obj/item/stack/sheet/planks=10, /obj/item/ingot=1)
 	cat = "food processing"
+
+/obj/structure/blueprint/dryer
+	name = "tanning rack"
+	target_structure = /obj/structure/tanning_rack
+	reqs = list(/obj/item/stack/sheet/planks=7)
+	cat = "craftsmanship"
