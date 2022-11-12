@@ -236,7 +236,7 @@
 		if(needed == 0) break
 	switch(mode)
 		if(TROWEL_BUILD_WALL)
-			T.ChangeTurf(/turf/closed/wall/stone)
+			T.ChangeTurf(/turf/closed/wall/stone,/turf/open/floor/rock)
 			user.visible_message(span_notice("<b>[user]</b> constructs a stone wall.") , \
 								span_notice("You construct a stone wall."))
 		if(TROWEL_BUILD_FLOOR)
