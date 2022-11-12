@@ -20,14 +20,17 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
  */
 /datum/skill/New()
 	. = ..()
-	levelUpMessages = list("<span class='nicegreen'>What the hell is [name]? Tell an admin if you see this message.</span>", //This first index shouldn't ever really be used
-	"<span class='nicegreen'>I'm starting to figure out what [name] really is!</span>",
-	"<span class='nicegreen'>I'm getting a little better at [name]!</span>",
-	"<span class='nicegreen'>I'm getting much better at [name]!</span>",
-	"<span class='nicegreen'>I feel like I've become quite proficient at [name]!</span>",
-	"<span class='nicegreen'>After lots of practice, I've begun to truly understand the intricacies \
-	and surprising depth behind [name]. I now consider myself a master [title].</span>",
-	"<span class='nicegreen'>Through incredible determination and effort, I've reached the peak of my [name] abiltities. I'm finally able to consider myself a legendary [title]!</span>" )
+	levelUpMessages = list(span_green("What the hell is [name]? Tell an admin if you see this message."), //This first index shouldn't ever really be used
+	span_green("I'm starting to figure out what [name] is!"),
+	span_green("I'm getting a little better at [name]!"),
+	span_green("I'm starting to understand some details of [name]!"),
+	span_green("I'm getting better at [name]! I realise that there is a lot more to learn about [name]!"),
+	span_green("I'm getting much better at [name]!"),
+	span_green("I fell like i've reached a new level of understanding of [name]! I can be consideren an expert [title]]!"),
+	span_green("I feel like I've become even more proficient at [name]!"),
+	span_green("After lots of practice, I've begun to truly understand the intricacies and surprising depth behind [name]. I now consider myself a master [title]."),
+	span_green("With immense effort I feel like I've reachen a new enlightment in [name]! I now cinsider myself a grand master [title]."),
+	span_green("Through incredible determination and effort, I've reached the peak of my [name] abiltities. I'm finally able to consider myself a legendary [title]!") )
 
 /**
  * level_gained: Gives skill levelup messages to the user
@@ -55,8 +58,4 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
  * * new_level - The current level of the user. Used to check if it meets the requirements for a reward
  */
 /datum/skill/proc/try_skill_reward(datum/mind/mind, new_level)
-	if (new_level != SKILL_LEVEL_LEGEND)
-		return
-	if (LAZYFIND(mind.skills_rewarded, src.type))
-		return
-	LAZYADD(mind.skills_rewarded, src.type)
+	return
