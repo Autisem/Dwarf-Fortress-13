@@ -126,9 +126,9 @@
 	if(!.)
 		return
 	var/mob/dead/new_player/new_player = hud.mymob
-	if(!(new_player?.client?.holder))
-		to_chat(hud.mymob, span_boldwarning("Disabled for testing."))
-		return
+	// if(!(new_player?.client?.holder))
+	// 	to_chat(hud.mymob, span_boldwarning("Disabled for testing."))
+	// 	return
 	ready = !ready
 	if(ready)
 		new_player.ready = PLAYER_READY_TO_PLAY
@@ -188,11 +188,12 @@
 			SSticker.queued_players += new_player
 			to_chat(new_player, span_notice("You have been added to the queue to join the game. Your position in queue is [SSticker.queued_players.len]."))
 		return
-	if(check_whitelist(new_player?.client?.ckey) || new_player?.client?.holder)
-		new_player.Try_Latejion()
-	else
-		to_chat(hud.mymob, span_boldwarning("Disabled for testing."))
-		return
+	new_player.Try_Latejion()
+	// if(check_whitelist(new_player?.client?.ckey) || new_player?.client?.holder)
+	// 	new_player.Try_Latejion()
+	// else
+	// 	to_chat(hud.mymob, span_boldwarning("Disabled for testing."))
+	// 	return
 
 /atom/movable/screen/lobby/button/join/proc/show_join_button()
 	SIGNAL_HANDLER
@@ -225,10 +226,11 @@
 	if(!.)
 		return
 	var/mob/dead/new_player/new_player = hud.mymob
-	if(new_player?.client?.holder)
-		new_player.make_me_an_observer()
-	else
-		to_chat(hud.mymob, span_boldwarning("Disabled for testing."))
+	new_player.make_me_an_observer()
+	// if(new_player?.client?.holder)
+	// 	new_player.make_me_an_observer()
+	// else
+	// 	to_chat(hud.mymob, span_boldwarning("Disabled for testing."))
 
 /atom/movable/screen/lobby/button/observe/proc/enable_observing()
 	SIGNAL_HANDLER
