@@ -73,7 +73,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/old_bp = blueprint_data
 	blueprint_data = null
 
-	var/list/old_baseturfs = baseturfs
+	var/list/old_baseturfs = src.type
 	var/old_type = type
 
 	var/list/post_change_callbacks = list()
