@@ -29,10 +29,10 @@
 		if(current_step == cutting_steps)
 			to_chat(user, span_notice("You chop down [src]."))
 			chop_tree(get_turf(src))
+			qdel(src)
 		else
 			to_chat(user, span_notice("You cut a fine notch into [src]."))
 			current_step++
-		qdel(src)
 	else
 		stop_sound_channel_nearby(src, channel)
 
