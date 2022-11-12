@@ -243,6 +243,21 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////admins2.dm merge
 //i.e. buttons/verbs
 
+/datum/admins/proc/spawn_goblins()
+	if (!usr.client.holder)
+		return
+	var/ans = input(usr, "How many goblins to spawn?", "Goblins", 2) as null|num
+	if(!ans)
+		return
+	spawn()
+		var/mob/living/carbon/human/species/goblin/leader = new(get_turf(usr))
+		leader.equipOutfit(/datum/outfit/goblin_leader)
+		offer_control(leader)
+	for(var/i in 1 to ans)
+		spawn()
+			var/mob/living/carbon/human/species/goblin/goblen = new(get_turf(usr))
+			goblen.equipOutfit(/datum/outfit/goblin)
+			offer_control(goblen)
 
 /datum/admins/proc/restart()
 	set category = "Server"

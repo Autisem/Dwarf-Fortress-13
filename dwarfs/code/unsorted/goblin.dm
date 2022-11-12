@@ -100,3 +100,9 @@
 	uniform = /obj/item/clothing/under/loincloth
 	r_hand = /obj/item/club
 	back = /obj/item/pickaxe
+
+/datum/outfit/goblin_leader
+	name = "Goblin Leader"
+	uniform = /obj/item/clothing/under/loincloth
+	r_hand = /obj/item/dagger
+	back = /obj/item/pickaxe
