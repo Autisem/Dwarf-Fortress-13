@@ -49,6 +49,16 @@
 /turf/open/floor/proc/setup_burnt_states()
 	return
 
+/turf/open/floor/proc/try_digdown(obj/item/I,mob/user)
+	var/turf/TD = SSmapping.get_turf_below(src)
+	if(ismineralturf(TD) || isopenturf(TD))
+		if(ismineralturf(TD))
+			TD.ScrapeAway()
+		ChangeTurf(/turf/open/openspace)
+		user.visible_message(span_notice("[user] digs out a hole in the ground."), span_notice("You dig out a hole in the ground."))
+	else
+		to_chat(user, span_warning("Something very dense underneath!"))
+
 /turf/open/floor/Destroy()
 	if(is_fortress_level(z))
 		GLOB.station_turfs -= src
