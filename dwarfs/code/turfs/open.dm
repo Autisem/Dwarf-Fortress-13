@@ -45,15 +45,7 @@
 			if(QDELETED(src))
 				return
 			if(digged_up)
-				var/turf/TD = SSmapping.get_turf_below(src)
-				if(ismineralturf(TD) || isopenturf(TD))
-					if(ismineralturf(TD))
-						TD.ScrapeAway()
-					ChangeTurf(/turf/open/openspace)
-					user.visible_message(span_warning("<b>[user]</b> digs up a hole!") , \
-										span_notice("You dig up a hole."))
-				else
-					to_chat(user, span_warning("Something very dense underneath!"))
+				try_digdown(I,user)
 			else
 				for(var/i in 1 to rand(2, 5))
 					var/obj/item/S = new /obj/item/stack/ore/stone(src)
@@ -93,8 +85,7 @@
 			if(QDELETED(src))
 				return
 			if(digged_up)
-				user.visible_message(span_notice("[user] digs out a hole in the ground."), span_notice("You dig out a hole in the ground."))
-				ChangeTurf(/turf/open/openspace)
+				try_digdown(I,user)
 			else
 				new/obj/item/stack/ore/smeltable/sand(src, rand(3,6))
 				digged_up = TRUE
@@ -129,8 +120,7 @@
 		var/dig_time = I.tool_behaviour == TOOL_SHOVEL ? 5 SECONDS : 10 SECONDS
 		if(I.use_tool(src, user, dig_time))
 			if(digged_up)
-				user.visible_message(span_notice("[user] digs out a hole in the ground."), span_notice("You dig out a hole in the ground."))
-				ChangeTurf(/turf/open/openspace)
+				try_digdown(I,user)
 			else
 				new/obj/item/stack/dirt(src, rand(2,5))
 				user.visible_message(span_notice("<b>[user]</b> digs up some dirt.") , \
