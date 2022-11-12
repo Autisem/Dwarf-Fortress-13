@@ -49,7 +49,7 @@
 /turf/open/floor/proc/setup_burnt_states()
 	return
 
-/turf/open/floor/proc/try_digdown(obj/item/I,mob/user)
+/turf/open/floor/proc/try_digdown(obj/item/I, mob/user)
 	var/turf/TD = SSmapping.get_turf_below(src)
 	if(ismineralturf(TD) || isopenturf(TD))
 		if(ismineralturf(TD))
