@@ -154,11 +154,13 @@
 /obj/structure/plant/proc/harvest(mob/user)
 	. = TRUE
 	var/speed_mod = user?.mind ? user.mind.get_skill_modifier(/datum/skill/farming, SKILL_SPEED_MODIFIER) : 1
+	var/min_mod = user.mind.get_skill_modifier(/datum/skill/farming, SKILL_AMOUNT_MIN_MODIFIER)
+	var/max_mod = user.mind.get_skill_modifier(/datum/skill/farming, SKILL_AMOUNT_MAX_MODIFIER)
 	if(!do_after(user, 5 SECONDS * speed_mod, src))
 		return FALSE
 	for(var/_P in produced)
 		var/obj/item/growable/P = _P
-		var/harvested = rand(0, produced[P])// TODO: tweak numbers according to skill; higher skill can give additional harvestables
+		var/harvested = rand(0+min_mod, produced[P]+max_mod)
 		if(growth_modifiers["fertilizer"] < 1 && growth_modifiers["fertilizer"] != 0) // it's fertilized
 			harvested += 3
 		if(harvested)
