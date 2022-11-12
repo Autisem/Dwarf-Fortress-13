@@ -1,6 +1,6 @@
 /obj/structure/brewery
 	name = "brewery"
-	desc = "Looks like a distillery but who am I to tell you."
+	desc = "A highly sophisticated machine that produces precious liquids."
 	anchored = 1
 	density = 1
 	layer = ABOVE_MOB_LAYER

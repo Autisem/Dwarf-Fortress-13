@@ -1,6 +1,6 @@
 /obj/structure/workbench
 	name = "workbench"
-	desc = "Almost that cube game."
+	desc = "A place to assemble all your wonderful creations."
 	icon = 'dwarfs/icons/structures/64x32.dmi'
 	icon_state = "workshop"
 	density = TRUE

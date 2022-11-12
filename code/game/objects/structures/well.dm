@@ -1,6 +1,6 @@
 /obj/structure/well
 	name = "well"
-	desc = "Get water here."
+	desc = "A good source of water in remote areas."
 	icon = 'dwarfs/icons/structures/workshops.dmi'
 	icon_state = "well"
 	density = 1

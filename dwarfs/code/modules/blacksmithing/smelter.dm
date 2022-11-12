@@ -1,6 +1,6 @@
 /obj/structure/smelter
 	name = "smelter"
-	desc = "Looks weird, probably useless."
+	desc = "Smelts that precious mineral you mined into useful ingot."
 	icon = 'dwarfs/icons/structures/workshops.dmi'
 	icon_state = "smelter"
 	density = TRUE

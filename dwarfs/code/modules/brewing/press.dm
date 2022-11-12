@@ -1,6 +1,6 @@
 /obj/structure/press
 	name = "Fluid press"
-	desc = "Used by dwarves (and not only) to extract sweet (and sour) juices"
+	desc = "Used to extract sweet and not so sweet juices"
 	icon = 'dwarfs/icons/structures/32x64.dmi'
 	icon_state = "press_open"
 	density = 1

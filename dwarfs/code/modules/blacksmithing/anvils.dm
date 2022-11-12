@@ -1,6 +1,6 @@
 /obj/structure/anvil
 	name = "anvil"
-	desc = "Can't move."
+	desc = "Sturdy enough to withstand all those missed hits."
 	icon = 'dwarfs/icons/structures/workshops.dmi'
 	icon_state = "anvil"
 	density = TRUE
