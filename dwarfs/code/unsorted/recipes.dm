@@ -35,7 +35,7 @@
 	result = /obj/item/partial/axe
 	max_resulting = 2
 
-/datum/smithing_recipe/axe
+/datum/smithing_recipe/builder_hammer
 	name = "\[part\] builder's hammer"
 	result = /obj/item/partial/builder_hammer
 	max_resulting = 2
