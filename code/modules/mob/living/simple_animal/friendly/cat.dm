@@ -1,6 +1,6 @@
 //Cat
 GLOBAL_LIST_EMPTY(cats)
-#define MAX_CATS 30
+#define MAX_CATS 100
 /mob/living/simple_animal/pet/cat
 	name = "cat"
 	desc = "Kitty!!"
