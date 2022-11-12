@@ -41,8 +41,9 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
  * * new_level - The newly gained level. Can check the actual level to give different messages at different levels, see defines in skills.dm
  * * old_level - Similar to the above, but the level you had before levelling up.
  */
-/datum/skill/proc/level_gained(datum/mind/mind, new_level, old_level)//just for announcements (doesn't go off if the xp gain is silent)
-	to_chat(mind.current, levelUpMessages[new_level]) //new_level will be a value from 1 to 11, so we get appropriate message from the 11-element levelUpMessages list
+/datum/skill/proc/level_gained(datum/mind/mind, new_level, old_level, silent=FALSE)//just for announcements (doesn't go off if the xp gain is silent)
+	if(!silent)
+		to_chat(mind.current, levelUpMessages[new_level]) //new_level will be a value from 1 to 11, so we get appropriate message from the 11-element levelUpMessages list
 /**
  * level_lost: See level_gained, same idea but fires on skill level-down
  */

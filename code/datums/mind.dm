@@ -189,7 +189,8 @@
 	if(silent)
 		return
 	if(S.level > old_level)
-		S.level_gained(src, S.level, old_level)
+		for(var/i in 1 to S.level-old_level)
+			S.level_gained(src, i, old_level)
 	else if(S.level < old_level)
 		S.level_lost(src, S.level, old_level)
 
