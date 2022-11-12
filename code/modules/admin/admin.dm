@@ -249,6 +249,7 @@
 	var/ans = input(usr, "How many goblins to spawn?", "Goblins", 2) as null|num
 	if(!ans)
 		return
+	new /obj/item/flashlight/fueled/torch/lit (get_turf(usr))
 	spawn()
 		var/mob/living/carbon/human/species/goblin/leader = new(get_turf(usr))
 		leader.equipOutfit(/datum/outfit/goblin_leader)
