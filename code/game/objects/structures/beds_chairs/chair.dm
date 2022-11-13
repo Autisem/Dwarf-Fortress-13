@@ -15,6 +15,22 @@
 	var/buildstackamount = 1
 	var/item_chair = /obj/item/chair // if null it can't be picked up
 	layer = OBJ_LAYER
+	var/mutable_appearance/armrest
+
+/obj/structure/chair/Initialize()
+	armrest = GetArmrest()
+	armrest.layer = ABOVE_MOB_LAYER
+	armrest.plane = ABOVE_GAME_PLANE
+	return ..()
+
+/obj/structure/chair/proc/GetArmrest()
+	return
+
+/obj/structure/chair/proc/update_armrest()
+	if(has_buckled_mobs())
+		add_overlay(armrest)
+	else
+		cut_overlay(armrest)
 
 /obj/structure/chair/examine(mob/user)
 	. = ..()
@@ -90,10 +106,12 @@
 /obj/structure/chair/post_buckle_mob(mob/living/M)
 	. = ..()
 	handle_layer()
+	update_armrest()
 
 /obj/structure/chair/post_unbuckle_mob()
 	. = ..()
 	handle_layer()
+	update_armrest()
 
 /obj/structure/chair/setDir(newdir)
 	..()
@@ -111,16 +129,15 @@
 /obj/structure/chair/wood
 	name = "wooden chair"
 	desc = "Old is never too old to not be in fashion."
-	icon = 'icons/obj/chairs.dmi'
+	icon = 'dwarfs/icons/structures/chairs.dmi'
 	icon_state = "wooden_chair"
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
 	buildstackamount = 3
 	item_chair = /obj/item/chair/wood
 
-/obj/structure/chair/wood/wings
-	icon_state = "wooden_chair_wings"
-	item_chair = /obj/item/chair/wood/wings
+/obj/structure/chair/wood/GetArmrest()
+	return mutable_appearance(icon, "wooden_chair_armrest")
 
 /obj/structure/chair/comfy
 	name = "comfy chair"
@@ -132,34 +149,10 @@
 	max_integrity = 70
 	buildstackamount = 2
 	item_chair = null
-	var/mutable_appearance/armrest
-
-/obj/structure/chair/comfy/Initialize()
-	armrest = GetArmrest()
-	armrest.layer = ABOVE_MOB_LAYER
-	armrest.plane = ABOVE_GAME_PLANE
-	return ..()
-
-/obj/structure/chair/comfy/proc/GetArmrest()
-	return mutable_appearance('icons/obj/chairs.dmi', "comfychair_armrest", plane = ABOVE_GAME_PLANE)
 
 /obj/structure/chair/comfy/Destroy()
 	QDEL_NULL(armrest)
 	return ..()
-
-/obj/structure/chair/comfy/post_buckle_mob(mob/living/M)
-	. = ..()
-	update_armrest()
-
-/obj/structure/chair/comfy/proc/update_armrest()
-	if(has_buckled_mobs())
-		add_overlay(armrest)
-	else
-		cut_overlay(armrest)
-
-/obj/structure/chair/comfy/post_unbuckle_mob()
-	. = ..()
-	update_armrest()
 
 /obj/structure/chair/comfy/brown
 	color = rgb(255,113,0)
@@ -176,15 +169,6 @@
 /obj/structure/chair/comfy/lime
 	color = rgb(255,251,0)
 
-//Stool
-
-/obj/structure/chair/stool
-	name = "stool"
-	desc = "Apply butt."
-	icon_state = "stool"
-	can_buckle = FALSE
-	buildstackamount = 1
-	item_chair = /obj/item/chair/stool
 
 /obj/structure/chair/MouseDrop(over_object, src_location, over_location)
 	. = ..()
@@ -285,13 +269,6 @@
 	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 	origin_type = /obj/structure/chair/greyscale
 
-/obj/item/chair/stool
-	name = "stool"
-	icon_state = "stool_toppled"
-	inhand_icon_state = "stool"
-	origin_type = /obj/structure/chair/stool
-	break_chance = 0 //It's too sturdy.
-
 /obj/item/chair/wood
 	name = "wooden chair"
 	icon = 'icons/obj/chairs.dmi'
@@ -303,7 +280,3 @@
 	origin_type = /obj/structure/chair/wood
 	custom_materials = null
 	break_chance = 50
-
-/obj/item/chair/wood/wings
-	icon_state = "wooden_chair_wings_toppled"
-	origin_type = /obj/structure/chair/wood/wings
