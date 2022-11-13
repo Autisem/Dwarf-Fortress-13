@@ -25,5 +25,5 @@
 	name = "barley flour"
 
 /datum/reagent/flour/cave_wheat
-	name = "cave whear flour"
+	name = "cave wheat flour"
 	color = "#6e6e6eff"
