@@ -58,7 +58,7 @@ SUBSYSTEM_DEF(vote)
 				non_voters -= non_voter_ckey
 		if(non_voters.len > 0)
 			if(mode == "restart")
-				choices["Continue"] += non_voters.len
+				// choices["Continue"] += non_voters.len // ignore non-voters
 				if(choices["Continue"] >= greatest_votes)
 					greatest_votes = choices["Continue"]
 			else if(mode == "gamemode")
@@ -137,8 +137,7 @@ SUBSYSTEM_DEF(vote)
 				active_admins = TRUE
 				break
 		if(!active_admins)
-			// No delay in case the restart is due to lag
-			SSticker.Reboot("Restart vote successfull!", "restart vote", 1)
+			SSticker.force_ending = 1
 		else
 			to_chat(world, span_green("Notice: Restart vote will not restart the server automatically because there are active admins on."))
 			message_admins("A restart vote has passed, but there are active admins on with +server, so it has been canceled. If you wish, you may restart the server.")
