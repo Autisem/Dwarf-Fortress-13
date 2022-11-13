@@ -166,12 +166,12 @@
 /datum/status_effect/incapacitating/sleeping/tick()
 	if(owner.maxHealth)
 		var/health_ratio = owner.health / owner.maxHealth
-		var/healing = -1
+		var/healing = -2
 		if((locate(/obj/structure/bed) in owner.loc))
-			healing -= 2
+			healing -= 5
 		else if((locate(/obj/structure/table) in owner.loc))
-			healing -= 1
-		if(health_ratio < 0.8)
+			healing -= 2
+		if(health_ratio < 0.9)
 			owner.adjustBruteLoss(healing)
 			owner.adjustFireLoss(healing)
 			owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
