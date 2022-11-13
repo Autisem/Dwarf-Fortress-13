@@ -72,41 +72,17 @@
 
 /datum/outfit/dwarf
 	name = "Dwarf"
+	uniform = /obj/item/clothing/under/tunic
+	shoes = /obj/item/clothing/shoes/boots
+
+/datum/outfit/dwarf/random_tunic
+	name = "Dwarf Random Tunic"
 	uniform = /obj/item/clothing/under/tunic/random
+	back = /obj/item/pickaxe
 	belt = /obj/item/flashlight/fueled/lantern
 
-
-/*
-Below here are selectable loadouts via prefernces.
-If you want them to actuely show up, go to code\modules\client\preferences.dm on line 2 and add them to the list
-*/
-/datum/outfit/dwarf/miner
-	name = "Dwarf miner"
-	back = /obj/item/pickaxe
-
-/datum/outfit/dwarf/farmer
-	name = "Dwarf farmer"
-	r_hand = /obj/item/hoe
-	head = /obj/item/reagent_containers/glass/bucket
-
-/datum/outfit/dwarf/logger
-	name = "Dwarf logger"
-	back = /obj/item/axe
-
-/datum/outfit/dwarf/mason
-	name = "Dwarf mason"
-	l_pocket = /obj/item/chisel
-	r_pocket = /obj/item/trowel
-
-/datum/outfit/dwarf/chef
-	name = "Dwarf chef"
-	r_hand = /obj/item/kitchen
-
-/datum/outfit/dwarf/blacksmith
-	name = "Dwarf blacksmith"
-	r_hand = /obj/item/tongs
-	l_hand = /obj/item/smithing_hammer
-
-/datum/outfit/dwarf/king
+/datum/outfit/dwarf_king
 	name = "Dwarf King"
+	uniform = /obj/item/clothing/under/tunic
+	shoes = /obj/item/clothing/shoes/boots
 	head = /obj/item/clothing/head/helmet/dwarf_crown

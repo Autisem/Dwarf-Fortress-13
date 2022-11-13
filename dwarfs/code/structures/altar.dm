@@ -39,7 +39,7 @@
 		return FALSE
 	var/mob/living/carbon/human/D = new /mob/living/carbon/human(loc)
 	D.set_species(/datum/species/dwarf)
-	D.equipOutfit(/datum/outfit/dwarf)
+	D.equipOutfit(/datum/outfit/dwarf/random_tunic)
 	D.key = user.key
 	D.mind.assigned_role = "Dwarf"
 	active = FALSE
@@ -76,7 +76,7 @@
 			return FALSE
 		M.set_species(/datum/species/dwarf)
 		M.unequip_everything()
-		M.equipOutfit(/datum/outfit/dwarf)
+		M.equipOutfit(/datum/outfit/dwarf/random_tunic)
 		active = FALSE
 		to_chat(M, span_notice("You become a dwarf."))
 
