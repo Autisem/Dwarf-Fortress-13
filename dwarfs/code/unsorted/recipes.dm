@@ -98,7 +98,7 @@
 	max_resulting = 3
 
 /datum/smithing_recipe/torch_fixture
-	name = "torch handle"
+	name = "torch fixture"
 	result = /obj/item/torch_handle
 	max_resulting = 5
 
@@ -157,12 +157,12 @@
 /datum/workbench_recipe/spear
 	name = "spear"
 	result = /obj/item/spear
-	reqs = list(/obj/item/stack/sheet/leather = 1, /obj/item/partial/spear =1, /obj/item/tool_handle=1)
+	reqs = list(/obj/item/stack/sheet/leather = 1, /obj/item/partial/spear =1, /obj/item/stick=1)
 
 /datum/workbench_recipe/halberd
 	name = "halberd"
 	result = /obj/item/halberd
-	reqs = list(/obj/item/partial/halberd =1, /obj/item/tool_handle=1)
+	reqs = list(/obj/item/partial/halberd =1, /obj/item/stick=1)
 
 /datum/workbench_recipe/crown
 	name = "crown"
@@ -172,27 +172,27 @@
 /datum/workbench_recipe/pickaxe
 	name = "pickaxe"
 	result = /obj/item/pickaxe
-	reqs = list(/obj/item/partial/pickaxe=1, /obj/item/tool_handle=1)
+	reqs = list(/obj/item/partial/pickaxe=1, /obj/item/stick=1)
 
 /datum/workbench_recipe/axe
 	name = "axe"
 	result = /obj/item/axe
-	reqs = list(/obj/item/partial/axe=1, /obj/item/tool_handle=1)
+	reqs = list(/obj/item/partial/axe=1, /obj/item/stick=1)
 
 /datum/workbench_recipe/shovel
 	name = "shovel"
 	result = /obj/item/shovel
-	reqs = list(/obj/item/partial/shovel=1, /obj/item/tool_handle=1)
+	reqs = list(/obj/item/partial/shovel=1, /obj/item/stick=1)
 
 /datum/workbench_recipe/builder_hammer
 	name = "builder's hammer"
 	result = /obj/item/builder_hammer
-	reqs = list(/obj/item/partial/builder_hammer=1, /obj/item/tool_handle=1)
+	reqs = list(/obj/item/partial/builder_hammer=1, /obj/item/stick=1)
 
 /datum/workbench_recipe/smithing_hammer
 	name = "smithing hammer"
 	result = /obj/item/smithing_hammer
-	reqs = list(/obj/item/partial/smithing_hammer=1, /obj/item/tool_handle=1)
+	reqs = list(/obj/item/partial/smithing_hammer=1, /obj/item/stick=1)
 
 /datum/workbench_recipe/lantern
 	name = "lantern"
@@ -202,12 +202,12 @@
 /datum/workbench_recipe/scepter
 	name = "scepter"
 	result = /obj/item/scepter
-	reqs = list(/obj/item/partial/scepter_part=1, /obj/item/scepter_shaft=1)
+	reqs = list(/obj/item/partial/scepter_part=1, /obj/item/stick=1)
 
 /datum/workbench_recipe/mop
 	name = "mop"
 	result = /obj/item/mop
-	reqs = list(/obj/item/tool_handle=1, /obj/item/stack/sheet/animalhide/cat =1)
+	reqs = list(/obj/item/stick=1, /obj/item/stack/sheet/animalhide/cat =1)
 
 /datum/workbench_recipe/rag
 	name = "rag"
@@ -222,4 +222,4 @@
 /datum/workbench_recipe/hoe
 	name = "hoe"
 	result = /obj/item/hoe
-	reqs = list(/obj/item/partial/hoe=1, /obj/item/tool_handle=1)
+	reqs = list(/obj/item/partial/hoe=1, /obj/item/stick=1)
