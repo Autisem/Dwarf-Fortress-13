@@ -84,6 +84,7 @@ If you want them to actuely show up, go to code\modules\client\preferences.dm on
 /datum/outfit/dwarf/miner
 	name = "Dwarf miner"
 	back = /obj/item/pickaxe
+	l_hand = /obj/item/shovel
 
 /datum/outfit/dwarf/farmer
 	name = "Dwarf farmer"
