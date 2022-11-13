@@ -73,7 +73,6 @@
 /datum/outfit/dwarf
 	name = "Dwarf"
 	uniform = /obj/item/clothing/under/tunic/random
-	back = /obj/item/pickaxe
 	belt = /obj/item/flashlight/fueled/lantern
 
 
