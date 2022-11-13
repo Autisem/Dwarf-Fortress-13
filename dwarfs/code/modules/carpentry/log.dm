@@ -25,6 +25,7 @@
 		user.mind.adjust_experience(/datum/skill/logging, 12)
 		var/plank_amt = rand(4, 6)
 		new /obj/item/stack/sheet/planks(my_turf, plank_amt)
+		new /obj/item/stack/sheet/bark(my_turf, rand(1, 2))
 		qdel(src)
 	else
 		return ..()
