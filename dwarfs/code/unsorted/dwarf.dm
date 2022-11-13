@@ -101,6 +101,6 @@ If you want them to actuely show up, go to code\modules\client\preferences.dm on
 	name = "Dwarf chef"
 	l_pocket = /obj/item/kitchen
 
-/obj/item/kitchen/knife
+/datum/outfit/dwarf/king
 	name = "Dwarf King"
 	head = /obj/item/clothing/head/helmet/dwarf_crown
