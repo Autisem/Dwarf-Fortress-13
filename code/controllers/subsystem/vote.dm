@@ -58,7 +58,7 @@ SUBSYSTEM_DEF(vote)
 				non_voters -= non_voter_ckey
 		if(non_voters.len > 0)
 			if(mode == "restart")
-				choices["Continue"] += non_voters.len
+				// choices["Continue"] += non_voters.len // ignore non-voters
 				if(choices["Continue"] >= greatest_votes)
 					greatest_votes = choices["Continue"]
 			else if(mode == "gamemode")
