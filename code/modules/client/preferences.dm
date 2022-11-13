@@ -4,7 +4,8 @@ GLOBAL_LIST_INIT(loadout_choices, list("Mason" = /datum/outfit/dwarf/mason,
 										"Miner" = /datum/outfit/dwarf/miner,
 										"Logger" = /datum/outfit/dwarf/logger,
 										"Farmer" = /datum/outfit/dwarf/farmer,
-										"Chef" = /datum/outfit/dwarf/chef))
+										"Chef" = /datum/outfit/dwarf/chef,
+										"Blacksmith" = /datum/outfit/dwarf/blacksmith))
 /datum/preferences
 	var/client/parent
 	//doohickeys for savefiles
