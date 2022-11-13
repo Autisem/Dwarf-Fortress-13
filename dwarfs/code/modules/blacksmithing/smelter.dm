@@ -9,7 +9,7 @@
 	light_color = "#BB661E"
 	var/working = FALSE
 	var/fuel = 0
-	var/smelting_time = 1 MINUTES
+	var/smelting_time = 30 SECONDS
 	var/max_items = 5
 	var/timerid
 
