@@ -142,8 +142,6 @@ GLOBAL_LIST_INIT(loadout_choices, list("Mason" = /datum/outfit/dwarf/mason, "Min
 	var/broadcast_login_logout = TRUE
 	///picked loadout
 	var/datum/outfit/loadout = /datum/outfit/dwarf
-	///Static list out oufits
-	var/static/list/choices = list()
 
 /datum/preferences/New(client/C)
 	parent = C
