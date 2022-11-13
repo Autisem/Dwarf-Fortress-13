@@ -111,7 +111,10 @@
 		var/channel = playsound(src, 'dwarfs/sounds/tools/hoe/hoe_dig_long.ogg', 50, TRUE)
 		if(I.use_tool(src, user, 10 SECONDS))
 			stop_sound_channel_nearby(src, channel)
-			ChangeTurf(/turf/open/floor/tilled)
+			var/turf/open/floor/tilled/T = ChangeTurf(/turf/open/floor/tilled)
+			if((locate(/turf/open/water) in range(1, T)))
+				T.waterlevel = T.watermax
+				T.update_appearance()
 			user.mind.adjust_experience(/datum/skill/farming, 7)
 		else
 			stop_sound_channel_nearby(src, channel)
@@ -226,6 +229,7 @@
 		O.reagents.remove_reagent(/datum/reagent/water, to_remove)
 		to_chat(user, span_notice("You water [src]."))
 		waterlevel = clamp(waterlevel+to_remove, 0, watermax)
+		update_appearance()
 	else
 		return ..()
 
@@ -251,11 +255,19 @@
 
 /turf/open/floor/tilled/proc/on_eat(obj/structure/plant/source)
 	SIGNAL_HANDLER
-	if(locate(/turf/open/water) in view(1))
+	if((locate(/turf/open/water) in range(1)))
 		waterlevel = watermax
 	waterlevel = clamp(waterlevel-waterrate, 0, watermax)
+	update_appearance()
 	fertlevel = clamp(fertlevel-fertrate, 0, fertmax)
 	source.growth_modifiers["fertilizer"] = fertlevel ? 0.8 : 1
+
+/turf/open/floor/tilled/update_icon_state()
+	. = ..()
+	if((waterlevel/watermax) < 0.3)
+		icon_state = "soil_tilled"
+	else
+		icon_state = "soil_tilled_wet"
 
 /turf/open/water
 	name = "water"
