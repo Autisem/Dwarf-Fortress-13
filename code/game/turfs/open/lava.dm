@@ -176,3 +176,17 @@
 			if(L) //mobs turning into object corpses could get deleted here.
 				L.adjust_fire_stacks(lava_firestacks * delta_time)
 				L.IgniteMob()
+
+/turf/open/lava/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/tongs))
+		if(I.contents.len)
+			if(istype(I.contents[I.contents.len], /obj/item/ingot))
+				if(do_after(user, 10, src))
+					var/obj/item/ingot/N = I.contents[I.contents.len]
+					N.heattemp = 350
+					I.update_appearance()
+					to_chat(user, span_notice("You heat up [N]."))
+		else
+			to_chat(user, span_warning("[I] has nothing to heat up."))
+	else
+		. = ..()
