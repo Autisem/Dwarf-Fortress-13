@@ -74,6 +74,7 @@
 	name = "Dwarf"
 	uniform = /obj/item/clothing/under/tunic/random
 	belt = /obj/item/flashlight/fueled/lantern
+	shoes = /obj/item/clothing/shoes/boots
 
 
 /*
@@ -106,6 +107,11 @@ If you want them to actuely show up, go to code\modules\client\preferences.dm on
 	name = "Dwarf blacksmith"
 	r_hand = /obj/item/tongs
 	l_hand = /obj/item/smithing_hammer
+
+/datum/outfit/dwarf/builder
+	name = "Dwarf builder"
+	r_hand = /obj/item/builder_hammer
+	l_hand = /obj/item/trowel
 
 /datum/outfit/dwarf/king
 	name = "Dwarf King"
