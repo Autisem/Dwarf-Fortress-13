@@ -95,7 +95,12 @@ If you want them to actuely show up, go to code\modules\client\preferences.dm on
 /datum/outfit/dwarf/mason
 	name = "Dwarf mason"
 	l_pocket = /obj/item/chisel
+	r_pocket = /obj/item/trowel
 
-/datum/outfit/dwarf/king
+/datum/outfit/dwarf/chef
+	name = "Dwarf chef"
+	l_pocket = /obj/item/kitchen
+
+/obj/item/kitchen/knife
 	name = "Dwarf King"
 	head = /obj/item/clothing/head/helmet/dwarf_crown
