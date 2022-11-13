@@ -78,7 +78,8 @@
 /datum/outfit/dwarf/random_tunic
 	name = "Dwarf Random Tunic"
 	uniform = /obj/item/clothing/under/tunic/random
-	shoes = /obj/item/clothing/shoes/boots
+	back = /obj/item/pickaxe
+	belt = /obj/item/flashlight/fueled/lantern
 
 /datum/outfit/dwarf_king
 	name = "Dwarf King"
