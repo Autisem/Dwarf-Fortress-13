@@ -170,8 +170,10 @@
 				for(var/i in 1 to rand(1,2))
 					new seed_type(get_turf(src))
 			to_chat(user, span_notice("You harvest [initial(P.name)] from [src]."))
+			user.mind.adjust_experience(/datum/skill/farming, harvested*8)
 		else
 			to_chat(user, span_warning("You fail to harvest [initial(P.name)] from [src]."))
+			user.mind.adjust_experience(/datum/skill/farming, 5)
 	update_appearance()
 	harvestable = FALSE
 
