@@ -72,16 +72,25 @@
 
 /datum/outfit/dwarf
 	name = "Dwarf"
-	uniform = /obj/item/clothing/under/tunic
-	shoes = /obj/item/clothing/shoes/boots
-
-/datum/outfit/dwarf/random_tunic
-	name = "Dwarf Random Tunic"
 	uniform = /obj/item/clothing/under/tunic/random
 	shoes = /obj/item/clothing/shoes/boots
 
-/datum/outfit/dwarf_king
+/datum/outfit/dwarf/miner
+	name = "Dwarf miner"
+	back = /obj/item/pickaxe
+
+/datum/outfit/dwarf/farmer
+	name = "Dwarf farmer"
+	back = /obj/item/hoe
+
+/datum/outfit/dwarf/logger
+	name = "Dwarf logger"
+	back = /obj/item/axe
+
+/datum/outfit/dwarf/mason
+	name = "Dwarf mason"
+	l_pocket = /obj/item/chisel
+
+/datum/outfit/dwarf/king
 	name = "Dwarf King"
-	uniform = /obj/item/clothing/under/tunic
-	shoes = /obj/item/clothing/shoes/boots
 	head = /obj/item/clothing/head/helmet/dwarf_crown

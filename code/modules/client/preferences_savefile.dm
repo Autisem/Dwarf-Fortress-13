@@ -294,6 +294,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["btvolume_max"], btvolume_max)
 	WRITE_FILE(S["hearted_until"], (hearted_until > world.realtime ? hearted_until : null))
 	WRITE_FILE(S["disabled_autocap"], disabled_autocap)
+	WRITE_FILE(S["loadout"], loadout)
 	return TRUE
 
 /datum/preferences/proc/load_character(slot)
@@ -382,6 +383,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	READ_FILE(S["preferred_ai_core_display"], preferred_ai_core_display)
 	READ_FILE(S["prefered_security_department"], prefered_security_department)
+	READ_FILE(S["loadout"], loadout)
 
 	//try to fix any outdated data if necessary
 	//preference updating will handle saving the updated data for us.
