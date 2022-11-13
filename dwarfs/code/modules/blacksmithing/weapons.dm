@@ -174,7 +174,7 @@
 	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
 	inhand_icon_state = "halberd"
-	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	slot_flags = ITEM_SLOT_BACK
 	force = 20
 	throwforce = 5
 	reach = 2
@@ -185,6 +185,7 @@
 	max_integrity = 50
 	resistance_flags = FIRE_PROOF
 	skill = /datum/skill/combat/halberd
+	tool_behaviour = TOOL_AXE
 
 /obj/item/halberd/Initialize()
 	. = ..()
