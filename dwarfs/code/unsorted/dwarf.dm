@@ -87,7 +87,7 @@ If you want them to actuely show up, go to code\modules\client\preferences.dm on
 /datum/outfit/dwarf/farmer
 	name = "Dwarf farmer"
 	back = /obj/item/hoe
-	l_hand = /obj/item/reagent_containers/glass/bucket
+	head = /obj/item/reagent_containers/glass/bucket
 
 /datum/outfit/dwarf/logger
 	name = "Dwarf logger"
