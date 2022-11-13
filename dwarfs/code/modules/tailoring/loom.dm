@@ -50,6 +50,6 @@
 	if(do_after(user, 15 SECONDS, src))
 		to_chat(user, span_notice("You finish working at [src]."))
 		ready = FALSE
-		new /obj/item/stack/sheet/cloth(get_turf(src), 2)
+		new /obj/item/stack/sheet/cloth(get_turf(src), 4)
 	working = FALSE
 	update_appearance()

@@ -14,7 +14,7 @@
 	novariants = TRUE
 
 GLOBAL_LIST_INIT(glass_recipes, list(
-		new/datum/stack_recipe("Demijohn", /obj/structure/demijohn, 15, time=60 SECONDS),
+		new/datum/stack_recipe("Demijohn", /obj/structure/demijohn, 10, time=30 SECONDS),
 		// new/datum/stack_recipe("Glass Bottle", /obj/item/reagent_containers/glass/bottle, 5, time=30 SECONDS)
 	))
 

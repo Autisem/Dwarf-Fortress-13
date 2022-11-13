@@ -7,8 +7,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 GLOBAL_LIST_INIT(cloth_recipes, list(
-	new/datum/stack_recipe("Dwarf Tunic", /obj/item/clothing/under/tunic/random, 10, time=20 SECONDS),
-	new/datum/stack_recipe("Boots", /obj/item/clothing/shoes/boots, 5, time=30 SECONDS)
+	new/datum/stack_recipe("Dwarf Tunic", /obj/item/clothing/under/tunic/random, 6, time=15 SECONDS),
+	new/datum/stack_recipe("Boots", /obj/item/clothing/shoes/boots, 3, time=10 SECONDS)
 ))
 
 /obj/item/stack/sheet/cloth/get_main_recipes()
