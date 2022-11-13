@@ -178,7 +178,7 @@
 			Severity
 			<br>
 			<label class='inputlabel radio'>None
-			<input type='radio' id='none' name='radioseverity' value='none'[edit_id ? " disabled" : ""]>
+			<input type='radio' id='none' name='radioseverity' checked value='none'[edit_id ? " disabled" : ""]>
 			<div class='inputbox'></div></label>
 			<label class='inputlabel radio'>Medium
 			<input type='radio' id='medium' name='radioseverity' value='medium'[edit_id ? " disabled" : ""]>
@@ -366,7 +366,8 @@
 	else
 		severity = href_list["radioseverity"]
 		if(!severity)
-			error_state += "No severity was selected."
+			severity = "none"
+			// error_state += "No severity was selected."
 		switch(href_list["radioban"])
 			if("server")
 				roles_to_ban += "Server"
