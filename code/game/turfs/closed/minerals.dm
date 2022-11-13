@@ -67,6 +67,23 @@
 	else
 		return attack_hand(user)
 
+/turf/closed/mineral/attackby_secondary(obj/item/I, mob/user, params)
+	if(I.tool_behaviour == TOOL_PICKAXE)
+		var/time = 3 SECONDS * user.mind.get_skill_modifier(/datum/skill/mining, SKILL_SPEED_MODIFIER)
+		if(last_act + time > world.time)//prevents message spam
+			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+		last_act = world.time
+		to_chat(user, span_notice("You start carving stairs out of [src]..."))
+		if(I.use_tool(src, user, time, volume=50))
+			if(ismineralturf(src))
+				to_chat(user, span_notice("You finish cutting into the rock."))
+				var/obj/structure/stairs/S = new(src)
+				S.dir = user.dir
+				gets_drilled(user, TRUE)
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	else
+		. = ..()
+
 /turf/closed/mineral/proc/gets_drilled(mob/user, give_exp = FALSE)
 	var/min_mod = user.mind ? user.mind.get_skill_modifier(/datum/skill/mining, SKILL_AMOUNT_MIN_MODIFIER) : 0
 	var/max_mod = user.mind ? user.mind.get_skill_modifier(/datum/skill/mining, SKILL_AMOUNT_MAX_MODIFIER) : 0
