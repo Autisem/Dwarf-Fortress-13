@@ -75,6 +75,11 @@
 	uniform = /obj/item/clothing/under/tunic/random
 	shoes = /obj/item/clothing/shoes/boots
 
+
+/*
+Below here are selectable loadouts via prefernces.
+If you want them to actuely show up, go to code\modules\client\preferences.dm on line 2 and add them to the list
+*/
 /datum/outfit/dwarf/miner
 	name = "Dwarf miner"
 	back = /obj/item/pickaxe
