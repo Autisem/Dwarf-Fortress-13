@@ -74,7 +74,7 @@
 	desc = "This hide has been cleaned and dried but it still needs to be exposed to tanin."
 	singular_name = "dry hide piece"
 	icon = 'dwarfs/icons/items/components.dmi'
-	icon_state = "dry_hide"
+	icon_state = "dried_hide"
 	merge_type = /obj/item/stack/sheet/dryhide
 	max_amount = 1
 	var/leather_amount
