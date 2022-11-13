@@ -103,6 +103,7 @@ If you want them to actuely show up, go to code\modules\client\preferences.dm on
 /datum/outfit/dwarf/chef
 	name = "Dwarf chef"
 	r_hand = /obj/item/kitchen/knife
+	l_hand = /obj/item/kitchen/rollingpin
 
 /datum/outfit/dwarf/blacksmith
 	name = "Dwarf blacksmith"
