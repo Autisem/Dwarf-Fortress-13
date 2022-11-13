@@ -349,7 +349,7 @@ SUBSYSTEM_DEF(ticker)
 			continue
 		var/atom/A = pick(GLOB.dwarf_starts)
 		new_player_human.forceMove(get_turf(A))
-		new_player_human.equipOutfit(new_player_mob.client?.prefs.loadout ? new_player_mob.client.prefs.loadout : /datum/outfit/dwarf)// if for SOME reason the pref is null
+		new_player_human.equipOutfit(new_player_mob.client?.prefs?.loadout? ? new_player_mob.client.prefs.loadout : /datum/outfit/dwarf)// if for SOME reason the pref is null
 		new_player_human.mind.assigned_role = "Dwarf"
 
 /datum/controller/subsystem/ticker/proc/transfer_characters()
