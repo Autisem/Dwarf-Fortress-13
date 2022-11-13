@@ -6,6 +6,16 @@
 	var/open = TRUE
 	density = 1
 
+/obj/structure/barrel/examine(mob/user)
+	. = ..()
+	if(!reagents.total_volume)
+		. += "<br>\The [src] is empty."
+	else
+		var/list/r = list()
+		for(var/datum/reagent/R in reagents.reagent_list)
+			r += "[R.volume] [R.name]"
+		. += "\The [src] contains [r.Join(", ")]"
+
 /obj/structure/barrel/Initialize()
 	. = ..()
 	create_reagents(300)
