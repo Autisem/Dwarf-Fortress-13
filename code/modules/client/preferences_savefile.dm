@@ -294,7 +294,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["btvolume_max"], btvolume_max)
 	WRITE_FILE(S["hearted_until"], (hearted_until > world.realtime ? hearted_until : null))
 	WRITE_FILE(S["disabled_autocap"], disabled_autocap)
-	WRITE_FILE(S["loadout"], loadout)
 	return TRUE
 
 /datum/preferences/proc/load_character(slot)
@@ -368,6 +367,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_ipc_antenna"], features["ipc_antenna"])
 	READ_FILE(S["skills"], skills)
 	READ_FILE(S["skill_points"], skill_points)
+	READ_FILE(S["loadout"], loadout)
 	READ_FILE(S["skill_points_per_skill"], skill_points_per_skill)
 	if(!CONFIG_GET(flag/join_with_mutant_humans))
 		features["tail_human"] = "none"
@@ -383,7 +383,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	READ_FILE(S["preferred_ai_core_display"], preferred_ai_core_display)
 	READ_FILE(S["prefered_security_department"], prefered_security_department)
-	READ_FILE(S["loadout"], loadout)
+
 
 	//try to fix any outdated data if necessary
 	//preference updating will handle saving the updated data for us.
@@ -511,6 +511,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["skills"], skills)
 	WRITE_FILE(S["skill_points"], skill_points)
 	WRITE_FILE(S["skill_points_per_skill"], skill_points_per_skill)
+	WRITE_FILE(S["loadout"], loadout)
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)
