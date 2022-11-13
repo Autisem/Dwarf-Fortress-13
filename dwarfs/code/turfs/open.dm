@@ -222,7 +222,7 @@
 		if(!W)
 			to_chat(user, span_warning("[O] doesn't have water!"))
 			return
-		var/to_remove = W.volume >= 15 ? 15 : W.volume
+		var/to_remove = W.volume >= 50 ? 50 : W.volume
 		O.reagents.remove_reagent(/datum/reagent/water, to_remove)
 		to_chat(user, span_notice("You water [src]."))
 		waterlevel = clamp(waterlevel+to_remove, 0, watermax)
@@ -251,6 +251,8 @@
 
 /turf/open/floor/tilled/proc/on_eat(obj/structure/plant/source)
 	SIGNAL_HANDLER
+	if(locate(/turf/open/water) in view(1))
+		waterlevel = watermax
 	waterlevel = clamp(waterlevel-waterrate, 0, watermax)
 	fertlevel = clamp(fertlevel-fertrate, 0, fertmax)
 	source.growth_modifiers["fertilizer"] = fertlevel ? 0.8 : 1
