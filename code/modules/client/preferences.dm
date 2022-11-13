@@ -1,5 +1,11 @@
 GLOBAL_LIST_EMPTY(preferences_datums)
-
+//If you create a new outfit for the loadout system add them to here aswel
+GLOBAL_LIST_INIT(loadout_choices, list("Mason" = /datum/outfit/dwarf/mason,
+										"Miner" = /datum/outfit/dwarf/miner,
+										"Logger" = /datum/outfit/dwarf/logger,
+										"Farmer" = /datum/outfit/dwarf/farmer,
+										"Chef" = /datum/outfit/dwarf/chef,
+										"Blacksmith" = /datum/outfit/dwarf/blacksmith))
 /datum/preferences
 	var/client/parent
 	//doohickeys for savefiles
@@ -140,6 +146,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/disabled_autocap = FALSE
 	///If we want to broadcast deadchat connect/disconnect messages
 	var/broadcast_login_logout = TRUE
+	///picked loadout
+	var/loadout = /datum/outfit/dwarf
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -221,6 +229,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						dat += "<a href='?_src_=prefs;preference=changeslot;num=[i];' [i == default_slot ? "class='linkOn'" : ""]>[name]</a> "
 					dat += "</div>"
 			dat += "<center><a href='?_src_=prefs;preference=skills'>Skills</a></center>"
+			dat += "<center><a href='?_src_=prefs;preference=loadout'>Loadout</a></center>"
 			dat += "<div class='csetup_main'>"
 			if(is_banned_from(user.ckey, "Appearance"))
 				dat += "<div class='csetup_banned'>You are banned from appearance. You can still setup your character but you name and appearance will be random.</div>"
@@ -1274,6 +1283,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("skills")
 					show_skill_panel(user)
+					return
+				if("loadout")
+					var/chosen = input(user,"What will be your loadout?") as null | anything in GLOB.loadout_choices
+					if(chosen)
+						loadout = GLOB.loadout_choices[chosen]
+						to_chat(user, span_notice("You have selected the [chosen]"))
 					return
 
 				if("edit_skills")
