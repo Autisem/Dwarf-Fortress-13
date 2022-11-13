@@ -86,7 +86,7 @@ If you want them to actuely show up, go to code\modules\client\preferences.dm on
 
 /datum/outfit/dwarf/farmer
 	name = "Dwarf farmer"
-	back = /obj/item/hoe
+	r_hand =  = /obj/item/hoe
 	head = /obj/item/reagent_containers/glass/bucket
 
 /datum/outfit/dwarf/logger
@@ -100,7 +100,12 @@ If you want them to actuely show up, go to code\modules\client\preferences.dm on
 
 /datum/outfit/dwarf/chef
 	name = "Dwarf chef"
-	l_pocket = /obj/item/kitchen
+	r_hand = /obj/item/kitchen
+
+/datum/outfit/dwarf/blacksmith
+	name = "Dwarf blacksmith"
+	r_hand = /obj/item/tongs
+	l_hand = /obj/item/smithing_hammer
 
 /datum/outfit/dwarf/king
 	name = "Dwarf King"

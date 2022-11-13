@@ -146,7 +146,7 @@ GLOBAL_LIST_INIT(loadout_choices, list("Mason" = /datum/outfit/dwarf/mason,
 	///If we want to broadcast deadchat connect/disconnect messages
 	var/broadcast_login_logout = TRUE
 	///picked loadout
-	var/datum/outfit/loadout = /datum/outfit/dwarf
+	var/loadout = /datum/outfit/dwarf
 
 /datum/preferences/New(client/C)
 	parent = C
