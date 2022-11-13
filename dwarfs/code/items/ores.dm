@@ -5,10 +5,10 @@
 	sheet_type = /obj/item/stack/sheet/stone
 
 /obj/item/stack/ore/stone
-	name = "stone"
+	name = "rock"
 	icon = 'dwarfs/icons/items/ores_gems.dmi'
 	icon_state = "rock"
-	singular_name = "Stone piece"
+	singular_name = "Rock piece"
 	max_amount = 1
 	merge_type = /obj/item/stack/ore/stone
 
