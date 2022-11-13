@@ -25,6 +25,8 @@
 	. = ..()
 
 /obj/structure/blueprint/attackby(obj/item/I, mob/user, params)
+	if(user.a_intent == INTENT_HARM)
+		return ..()
 	if(I.tool_behaviour == TOOL_BUILDER_HAMMER)
 		for(var/i in reqs)
 			if((get_req_amount(i)-get_amount(i)) > 0)
