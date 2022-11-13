@@ -62,6 +62,14 @@
 	result = /obj/item/chisel
 	max_resulting = 2
 
+/datum/smithing_recipe/pan
+	name = "frying pan"
+	result = /obj/item/reagent_containers/glass/pan
+
+/datum/smithing_recipe/pot
+	name = "cooking pot"
+	result = /obj/item/reagent_containers/glass/cooking_pot
+
 /datum/smithing_recipe/light_plate
 	name = "chest plate"
 	result = /obj/item/clothing/suit/armor/light_plate
