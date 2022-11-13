@@ -160,7 +160,7 @@
 		humanc = character	//Let's retypecast the var to be human,
 
 	if(humanc)	//These procs all expect humans
-		humanc.equipOutfit(humanc.client.prefs.loadout ? humanc.client.prefs.loadout : /datum/outfit/dwarf)// if for SOME reason the pref is null
+		humanc.equipOutfit(humanc.client.prefs.loadout ? humanc.client.prefs.loadout : /datum/outfit/dwarf/miner)// if for SOME reason the pref is null
 
 	GLOB.joined_player_list += character.ckey
 
