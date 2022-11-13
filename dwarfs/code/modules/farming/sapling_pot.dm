@@ -100,7 +100,7 @@
 		else
 			to_chat(user, span_warning("[capitalize(src.name)] already has seeds in it!"))
 			return
-	else if(istype(O, /obj/item/shovel))
+	else if(O.tool_behaviour == TOOL_SHOVEL)
 		user.visible_message(span_notice("[user] starts digging out [src]'s plants...") ,
 			span_notice("You start digging out [src]'s plants..."))
 		if(O.use_tool(src, user, 50, volume=50) || !myplant)
@@ -157,9 +157,7 @@
 			QDEL_NULL(myplant)
 			H.put_in_active_hand(S)
 			to_chat(user, span_notice("You remove [S] from [src]."))
-			has_dirt = FALSE
-			waterlevel = 0
-			user.mind.adjust_experience(/datum/skill/farming, rand(1,5))
+			user.mind.adjust_experience(/datum/skill/farming, rand(10, 25))
 			update_appearance()
 
 /obj/structure/sapling_pot/update_icon_state()
