@@ -9,7 +9,9 @@
 	var/large_log_type = /obj/item/log
 	var/list/small_log_amount = list(0,1,1,2,0,2,0) //a list of small logs with amount corresponding to the growthstage
 	var/list/large_log_amount = list(0,0,0,0,1,1,2) //a list of large logs with amount corresponding to the growthstage
-	var/cutting_time = 40 SECONDS
+	var/cutting_time = 4 SECONDS //time between each chop
+	var/cutting_steps = 9 //how many times you have to chop the tree, 1 less because on the last chop you actuely cut it down
+	var/current_step = 0
 
 /obj/structure/plant/tree/Initialize()
 	. = ..()
@@ -22,10 +24,15 @@
 	var/channel = playsound(src.loc, 'dwarfs/sounds/tools/axe/axe_chop_long.ogg', 50, TRUE)
 	if(tool.use_tool(src, user, cutting_time*time_mod))
 		stop_sound_channel_nearby(src, channel)
-		to_chat(user, span_notice("You chop down [src]."))
-		user?.mind.adjust_experience(/datum/skill/logging, 36)
-		chop_tree(get_turf(src))
-		qdel(src)
+
+		user?.mind.adjust_experience(/datum/skill/logging, 3.6)
+		if(current_step >= cutting_steps)
+			to_chat(user, span_notice("You chop down [src]."))
+			chop_tree(get_turf(src))
+			qdel(src)
+		else
+			to_chat(user, span_notice("You cut a fine notch into [src]."))
+			current_step++
 	else
 		stop_sound_channel_nearby(src, channel)
 
