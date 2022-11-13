@@ -1,5 +1,6 @@
 GLOBAL_LIST_EMPTY(preferences_datums)
-GLOBAL_LIST_INIT(loadout_choices, list("Mason" = /datum/outfit/dwarf/mason, "Miner" = /datum/outfit/dwarf/miner))
+//If you create a new outfit for the loadout system add them to here aswel
+GLOBAL_LIST_INIT(loadout_choices, list("Mason" = /datum/outfit/dwarf/mason, "Miner" = /datum/outfit/dwarf/miner, "Logger" = /datum/outfit/dwarf/logger, "Farmer" = /datum/outfit/dwarf/farmer))
 /datum/preferences
 	var/client/parent
 	//doohickeys for savefiles
