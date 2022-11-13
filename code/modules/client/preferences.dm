@@ -1,5 +1,5 @@
 GLOBAL_LIST_EMPTY(preferences_datums)
-
+GLOBAL_LIST_INIT(loadout_choices, list("Mason" = /datum/outfit/dwarf/mason, "Miner" = /datum/outfit/dwarf/miner))
 /datum/preferences
 	var/client/parent
 	//doohickeys for savefiles
@@ -140,6 +140,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/disabled_autocap = FALSE
 	///If we want to broadcast deadchat connect/disconnect messages
 	var/broadcast_login_logout = TRUE
+	///picked loadout
+	var/datum/outfit/loadout = /datum/outfit/dwarf
+	///Static list out oufits
+	var/static/list/choices = list()
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -221,6 +225,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						dat += "<a href='?_src_=prefs;preference=changeslot;num=[i];' [i == default_slot ? "class='linkOn'" : ""]>[name]</a> "
 					dat += "</div>"
 			dat += "<center><a href='?_src_=prefs;preference=skills'>Skills</a></center>"
+			dat += "<center><a href='?_src_=prefs;preference=loadout'>Loadout</a></center>"
 			dat += "<div class='csetup_main'>"
 			if(is_banned_from(user.ckey, "Appearance"))
 				dat += "<div class='csetup_banned'>You are banned from appearance. You can still setup your character but you name and appearance will be random.</div>"
@@ -1274,6 +1279,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("skills")
 					show_skill_panel(user)
+					return
+				if("loadout")
+					var/chosen = input(user,"What will be your loadout?") as null | anything in GLOB.loadout_choices
+					if(chosen)
+						loadout = GLOB.loadout_choices[chosen]
+						to_chat(user, span_notice("You have selected the [chosen]"))
 					return
 
 				if("edit_skills")
