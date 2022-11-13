@@ -221,6 +221,7 @@
 		if(TROWEL_BUILD_WALL) mat_need = 4
 		if(TROWEL_BUILD_FLOOR) mat_need = 1
 		if(TROWEL_BUILD_STAIRS) mat_need = 3
+		if(TROWEL_BUILD_DOOR) mat_need = 3
 	if(mat_to >= mat_need)
 		return TRUE
 	else
@@ -254,14 +255,19 @@
 			var/obj/structure/stairs/S = new(T)
 			S.dir = user.dir
 			user.visible_message(span_notice("<b>[user]</b> constructs stone stairs."), span_notice("You construct stone stairs."))
+		if(TROWEL_BUILD_DOOR)
+			var/obj/structure/mineral_door/heavystone/D = new(T)
+			D.dir = user.dir
+			user.visible_message(span_notice("<b>[user]</b> constructs stone door."), span_notice("You construct stone door."))
 
 /obj/item/trowel/proc/do_job(atom/A, mob/user)
-	to_chat(user, (mode == TROWEL_BUILD_FLOOR && !isfloorturf(A) && !isopenspace(A)))
-	to_chat(user, (mode == TROWEL_BUILD_FLOOR && isopenspace(A) && !(locate(/obj/structure/lattice) in A)))
 	if(mode != TROWEL_BUILD_FLOOR && !isfloorturf(A))
 		to_chat(user, span_warning("Can't build here!"))
 		return
 	else if((mode == TROWEL_BUILD_FLOOR && !isfloorturf(A) && !isopenspace(A)) || (mode == TROWEL_BUILD_FLOOR && isopenspace(A) && !(locate(/obj/structure/lattice) in A)))
+		to_chat(user, span_warning("Can't build here!"))
+		return
+	else if(mode == TROWEL_BUILD_DOOR && !isfloorturf(A))
 		to_chat(user, span_warning("Can't build here!"))
 		return
 	var/turf/T = get_turf(A)
@@ -288,7 +294,8 @@
 	var/list/choices = list(
 		"Floor" = image(icon = 'dwarfs/icons/turf/floors.dmi', icon_state = "stone_floor"),
 		"Wall" = image(icon = 'dwarfs/icons/turf/walls_dwarven.dmi', icon_state = "rich_wall-0"),
-		"Stairs" = image(icon='dwarfs/icons/structures/stone_stairs.dmi', icon_state = "stairs_t")
+		"Stairs" = image(icon='dwarfs/icons/structures/stone_stairs.dmi', icon_state = "stairs_t"),
+		"Door" = image(icon='dwarfs/icons/structures/stonedoor.dmi', icon_state = "heavystone")
 	)
 	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
@@ -300,6 +307,8 @@
 			mode = TROWEL_BUILD_WALL
 		if("Stairs")
 			mode = TROWEL_BUILD_STAIRS
+		if("Door")
+			mode = TROWEL_BUILD_DOOR
 
 #undef TROWEL_BUILD_FLOOR
 #undef TROWEL_BUILD_WALL
