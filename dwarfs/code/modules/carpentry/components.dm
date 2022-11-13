@@ -4,6 +4,9 @@
 	icon = 'dwarfs/icons/items/components.dmi'
 	icon_state = "sword_handle"
 
+/obj/item/weapon_hilt/get_fuel()
+	return 3
+
 /obj/item/stick
 	name = "stick"
 	desc = "Stick. That's just stick."
@@ -11,6 +14,9 @@
 	icon_state = "tool_handle"
 	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+
+/obj/item/stick/get_fuel()
+	return 5
 
 /obj/item/stick/Initialize()
 	. = ..()
