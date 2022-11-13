@@ -274,3 +274,7 @@
 /obj/item/partial/hoe
 	name = "hoe head"
 	icon_state = "hoe_head"
+
+/obj/item/partial/warhammer
+	name = "warhammer head"
+	icon_state = "warhammer_head"

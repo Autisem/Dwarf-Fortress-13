@@ -30,6 +30,10 @@
 	result = /obj/item/partial/shovel
 	max_resulting = 2
 
+/datum/smithing_recipe/warhammer
+	name = "\[part\] warhammer"
+	result = /obj/item/partial/warhammer
+
 /datum/smithing_recipe/axe
 	name = "\[part\] axe"
 	result = /obj/item/partial/axe
@@ -173,6 +177,11 @@
 	name = "pickaxe"
 	result = /obj/item/pickaxe
 	reqs = list(/obj/item/partial/pickaxe=1, /obj/item/stick=1)
+
+/datum/workbench_recipe/warhammer
+	name = "warhammer"
+	result = /obj/item/warhammer
+	reqs = list(/obj/item/partial/warhammer=1, /obj/item/stick=1)
 
 /datum/workbench_recipe/axe
 	name = "axe"
