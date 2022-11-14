@@ -1051,7 +1051,7 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 
 		if(prefs)
 			prefs.copy_to(body,TRUE,FALSE)
-		else if (outfit_override)
+		if (outfit_override)
 			body.equipOutfit(outfit_override,visualsOnly = TRUE)
 
 
