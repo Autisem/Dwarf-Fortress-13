@@ -18,10 +18,10 @@ GLOBAL_VAR_INIT(temperature_seed, 0)
 		switch(height)
 			if(-INFINITY to -0.7)
 				turf_type = /turf/open/water
-			if(-0.7 to -0.6)
+			if(-0.7 to -0.45)
 				turf_type = /turf/open/floor/dirt
 				generate_turf_flora(T, 8)
-			if(-0.6 to -0.3)
+			if(-0.45 to -0.3)
 				if(temp > 0)
 					turf_type = /turf/open/floor/sand
 				else
